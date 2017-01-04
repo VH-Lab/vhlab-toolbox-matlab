@@ -1,0 +1,10 @@
+This is the Van Hooser lab's general-purpose Matlab toolbox 
+
+It has been developed by Steve Van Hooser and his collaborators (notably 
+Alexander Heimel, Mark Mazurek, and others) over the years.
+
+It is our intention that we only distribute code that we write or code that 
+we have permission to redistribute. But this code has evolved since 1999, and it is
+possible that something not meant for redistribution or something misattributed is present here.
+If this is the case, please post an issue and it will be corrected.
+
