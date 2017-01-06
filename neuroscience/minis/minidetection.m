@@ -1,5 +1,5 @@
 function [ministruct] = minidetection(data, si, varargin)
-% MINIDETECTION - Detect minis from noise
+% MINIDETECTION - Detect minis from noise -- THIS FUNCTION DOESNT WORK YET, STILL IN DEVELOPMENT
 %
 %  MINISTRUCT = MINIDETECTION(DATA, SI, ...)
 %
@@ -87,16 +87,16 @@ samples_per_mini = samples_after - samples_before + 1;
 
 threshold = stats(best_threshold).threshold * mean(noise_m);
 
-for R=1:r,
-	matched = conv(data(R
-	[index_up, index_down, row_minisamples{R}] = threshold_crossings_epochs(data(R,:), threshold);
-	row_minitimes{R} = (minisamples-1) * si;
-	row_miniwaveforms{R} = data(R, repmat(samples_before:samples_after,length(row_minisamples{R}),1) + repmat(row_minisamples{R}(:), samples_per_mini, 1));
-	for j=1:length(row_miniwaveforms{R}),
+%for R=1:r,
+	%matched = conv(data(R
+%	[index_up, index_down, row_minisamples{R}] = threshold_crossings_epochs(data(R,:), threshold);
+%	row_minitimes{R} = (minisamples-1) * si;
+%	row_miniwaveforms{R} = data(R, repmat(samples_before:samples_after,length(row_minisamples{R}),1) + repmat(row_minisamples{R}(:), samples_per_mini, 1));
+%	for j=1:length(row_miniwaveforms{R}),
+%
+%	end;
 
-	end;
-
-end
+%end
 
 %  row_minisamples{}     | For each row of DATA, the samples that correspond to mini peaks
 %  row_minitimes{}       | For each row of DATA, the times (from beginning of row DATA)

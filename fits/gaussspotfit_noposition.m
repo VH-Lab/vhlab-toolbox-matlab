@@ -25,7 +25,6 @@ radii = unique(radius);
 amp_initial = [];
 [amp_initial,themaxind] = max(response(inds));
 C = radii(themaxind).^2 * [1 0; 0 1];
-end;
 
  % ellipse_params, 1 column per ellipse; [x_ctr, y_ctr, a, b, and rotation]
 ellipse_params = [x_ctr(:)' ; y_ctr(:)'; radius(:)'; radius(:)'; 0*x_ctr(:)'; ((radius(:)')>0)-1 ] ;
