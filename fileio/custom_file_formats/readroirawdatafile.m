@@ -59,7 +59,7 @@ parameters.ref = fread(fid,1,'uint8');              % now at 84 bytes
 parameters.comment = fread(fid,80,'char');          % now at 164 bytes
 parameters.comment = char(parameters.comment(find(parameters.comment)))';
 parameters.precision = double(fread(fid,1,'uint8'));
-parameters.indexesincluded = fread(fid,1,'uint8);  
+parameters.indexesincluded = fread(fid,1,'uint8');  
 
 fseek(fid,headersize,'bof');
 

@@ -1,4 +1,4 @@
-function hb = shiftedbar(bins, data, shft,col)
+function hb = shiftedbar(bins, data, shft, col)
 
 % SHIFTEDBAR - Shifted bar graph
 %
@@ -25,9 +25,14 @@ end;
 
 if nRow>1,
 	if ~(eqlen(size(shft),[1 1])|prod(size(shft))~=nRow),
-	  error(['shft must have == number of points as bins,data have rows.'; end;
-	if eqlen(size(shft),[1 1]), shft = repmat(shft,1,nRow); end;
-    if size(col,1)==1, col = repmat(col,nRow,1); end;
+		error(['shft must have == number of points as bins,data have rows.']);
+	end;
+	if eqlen(size(shft),[1 1]),
+		shft = repmat(shft,1,nRow);
+	end;
+	if size(col,1)==1,
+		col = repmat(col,nRow,1);
+	end;
 end;
 
 hb = [];

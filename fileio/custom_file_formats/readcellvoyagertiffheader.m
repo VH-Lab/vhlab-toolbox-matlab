@@ -10,7 +10,7 @@ function header_string = readcellvoyagerheaderfile(filename)
 
 finfo = imfinfo(filename);
 
-header_string = finfo(1).UnknownTags(2).Value);
+header_string = finfo(1).UnknownTags(2).Value;
 header_string = header_string(14:2:end);
 
 
