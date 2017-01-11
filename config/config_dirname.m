@@ -7,7 +7,7 @@ function dirname = config_dirname
 %  By default, the location is in a directory called 'vhlab_configuration' that 
 %  is located in the same directory as vhlab_mltbx_toolbox. 
 %
-%  If the DIRNAME does not exist, it is created.
+%  If the DIRNAME does not exist, it is created and added to the current Matlab path.
 
 pathname = which('config_dirname');
 
@@ -17,5 +17,6 @@ dirname= [pathname(1:pi(end-2)) 'vhlab_configuration' filesep];
 
 if ~exist(dirname,'dir')
 	mkdir(dirname);
+    addpath(dirname);
 end;
 
