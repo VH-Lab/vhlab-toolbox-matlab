@@ -56,7 +56,7 @@ static void dotdisc(double y[],int ylen,double *t[],int *numT,double dots[],
 			T = (double *)realloc(T,(*numT)*sizeof(double));
 			T[(int)(*numT)-1] = ceil(i-((double)ptsgood/2.0));
 			ptsgood = 0;
-		} else {if (m==1) { ptsgood = ptsgood++; }}
+		} else {if (m==1) { ptsgood = ptsgood+1; }}
 	}
 	*t = T;
 }
