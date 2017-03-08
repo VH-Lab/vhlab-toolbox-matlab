@@ -64,6 +64,7 @@ function [rev_corr, rev_corr_raw, xc_stimsignal, xc_stimstim] = reverse_correlat
 %                              |   autocorrelation function. If empty, then it is calculated
 %                              |   from xc_stimstim.
 %   normalize (1)              | Perform normalization of the kernel by dx and dt
+%   normalize_xc_stimsignal (0)| Perform normalization of xc_stimsignal by dx and dt
 %   dx (1)                     | Resolution of kernel in columns
 %   dt (1)                     | Resolution of kernel in time
 %
@@ -76,6 +77,7 @@ Rinv = [];
 normalize = 1;
 dx = 1;
 dt = 1;
+normalize_xc_stimsignal = 0;
 
 debug_plot = 0;
 
@@ -132,6 +134,10 @@ rev_corr_raw = Rinv * xc_stimsignal;
 
 if normalize,
 	rev_corr_raw = rev_corr_raw / (dx * dt);  % put it in appropriate units
+end;
+
+if normalize_xc_stimsignal,
+	xc_stimsignal = xc_stimsignal / (dx * dt);
 end;
 	
 % Step 5: If necessary, filter the reverse correlation kernel
