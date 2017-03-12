@@ -7,7 +7,9 @@ function b = validvarname(varname)
 %  Returns 1 if VARNAME is a valid variable name in Matlab, or returns 0
 %  otherwise.
 %
-%  Questions to vanhoosr@brandeis.edu
+%  Note: There is now a Matlab function that does this: ISVARNAME
+%
+%  See also: ISVARNAME
 
 b=1;
 try, eval([varname '=5;']); catch, b=0; end;
