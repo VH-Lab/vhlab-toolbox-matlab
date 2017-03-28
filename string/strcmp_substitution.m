@@ -14,7 +14,7 @@ function [tf, match_string, substitute_string] = strcmp_substitution(s1, s2, var
 %
 %  The function also has the form:
 %
-%  [TF, SUBSTITUTE_STRING] = STRCMP_SUBSTITUTION(S1, A, ...)
+%  [TF, MATCH_STRING, SUBSTITUTE_STRING] = STRCMP_SUBSTITUTION(S1, A, ...)
 %
 %   where A is a cell array of strings. TF will be a vector of 0/1s the same length as A,
 %   and SUBSTITUTE_STRING will be a cell array of the suitable substitute strings.
@@ -28,7 +28,6 @@ function [tf, match_string, substitute_string] = strcmp_substitution(s1, s2, var
 %  ----------------------------------------------------------------------
 %  SubstituteStringSymbol('#') | The symbol to indicate the substitute string 
 %  UseSubstituteString(1)      | Should we use the SubstituteString option?
-%  UseLiteralCharacter(1)      | Use the LiteralCharacter
 %  SubstituteString('')        | Force the function to use this string as the only acceptable
 %                              |    replacement for SubstituteStringSymbol
 %  ForceCellOutput(0)          | 0/1 should we output a cell even if we receive single strings as S1, S2?
@@ -47,7 +46,6 @@ function [tf, match_string, substitute_string] = strcmp_substitution(s1, s2, var
 SubstituteStringSymbol = '#';
 UseSubstituteString = 1;
 LiteralCharacter = '\';
-UseLiteralCharacter = 1;
 SubstituteString = '';
 ForceCellOutput = 0;
 
@@ -95,6 +93,8 @@ if UseSubstituteString,
 			s1_ = [s1_(1:(mymatches(i)-1)) SubstituteString s1_(mymatches(i)+1:end)];
 			mymatches(i+1:end) = mymatches(i+1:end) + length(SubstituteString) - 1; % move these guys along
 		end;
+		s1_
+		s2(indexes),
 		tf2 = strcmp(s1_,s2(indexes)); % works for arrays, too
 		indexeshere = find(tf2);
 		tf(indexes(indexeshere)) = 1; % we found a match
@@ -114,7 +114,7 @@ if UseSubstituteString,
 		indexeshere = find(tf2);
 		tf(indexes(indexeshere)) = 1;
 		for j=1:length(indexeshere),
-			substitute_string{indexes(indexeshere(j))} = S{indexeshere(j)}{1};
+			substitute_string{indexes(indexeshere(j))} = S{indexeshere(j)}{1}{1};
 		end;
 	end;
 end;

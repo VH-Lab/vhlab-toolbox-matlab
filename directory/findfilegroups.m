@@ -6,9 +6,10 @@ function filelist = findfilegroups(parentdir, fileparameters, varargin)
 %  Finds groups of files based on parameters.
 %
 %  FILEPARAMETERS should be a cell list of file name search parameters.
-%  These parameters can include wildcards ('*') and symbols that indicate that
-%  the same string needs to be present across files ('#'). Searches will return matches
-%  of these groups of files in PARENTDIR and all of its subdirectories.
+%  These parameters can include regular expresion wildcards ('.*') and symbols
+%  that indicate that the same string needs to be present across files ('#').
+%  Searches will return matches of these groups of files in PARENTDIR and all
+%  of its subdirectories.
 %
 %  FILELIST is a cell array of all of the instances of these file groups.
 %  That is, FILELIST{i} is the ith instance of these file groups.
@@ -24,8 +25,6 @@ function filelist = findfilegroups(parentdir, fileparameters, varargin)
 %  SameStringSearchSymbol('#') | The symbol to be used to indicate the the same
 %                              |    string across files
 %  UseSameStringSearchSymbol(1)| Should we use the same string search field?
-%  LiteralCharacter('\')       | When this character preceeds another character, interpret
-%                              |    the second character literally (not as a SameStringSearchSymbol)
 %  UseLiteralCharacter(1)      | Use the LiteralCharacter
 %  SearchParentFirst(1)        | Should we search the parent before the subdirectories of the
 %                              |    parent? Otherwise, subdirectories are searched first.
@@ -33,7 +32,7 @@ function filelist = findfilegroups(parentdir, fileparameters, varargin)
 %  Examples:
 %
 %      % finds all files with '.ext' extension.
-%      fileparameters = {'*.ext'};
+%      fileparameters = {'.*\.ext\>'};
 %
 %      % finds all sets of files 'stimtimes.txt' and 'reference.txt' when these files
 %      % co-occur in the same subdirectory of PARENTDIR
@@ -44,8 +43,6 @@ function filelist = findfilegroups(parentdir, fileparameters, varargin)
 %      % For example, if the files 'stimtimes1.txt' and 'reference1.txt' were in the same
 %      % subdirectory, these would be returned together.
 %      fileparameters = {'stimtimes#.txt','reference#.txt'}
-
-error('still under construction!!!');
 
 SameStringSearchSymbol = '#';
 UseSameStringSearchSymbol = 1;
@@ -69,49 +66,47 @@ end;
 
  % now look in this directory
 
-   % could be many groups of matches in the directory
+   % could be many groups of matches in the directory, find all potential lists
 
-mymatches = emptystruct('searchString');
+filelist_potential = emptystruct('searchString','filelist');
 
-filelist_potential = {d(regularfiles)};
+   % in order for a file group to pass, we have to find potential passing matches to the first criterion
 
-   % in order for a group to pass, we have to find potential passing matches to the first criteria
+s2 = {d(regularfiles).name};
 
-for i=regularFiles,
-	[b,searchString] = match_step(d(i).name, fileparameters{1}, varargin{:});
-	if b,
-		matchpotential.searchString = searchString;
-		matchpotential.filelist = {[parentlist filesep d(i).name]};
-		filelist_potential(end+1) = matchpotential;
-	end;
+[tf, match_string, searchString] = strcmp_substitution(fileparameters{1}, s2, ...
+	'SubstituteStringSymbol', SameStringSearchSymbol, 'UseSubstiteString',UseSameStringSearchSymbol);
+
+indexes = find(tf);
+for i=indexes,
+	matchpotential.searchString = searchString{i};
+	matchpotential.filelist = {match_string{i}};
+	filelist_potential(end+1) = matchpotential;
 end;
 
 for k=2:length(fileparameters),
-	for i=regularFiles,
-		for j=1:length(filelist_potential),
-			[b,newsearchString] = match_step2(filelist_potential,...
-				d(i).name, fileparameters{k}, varargin{:});
-			if b&~isempty(newsearchString), % add a new possibility
-				matchpotential.searchString = newsearchString;
-				matchpotential.filelist=cat(2,filelist_potential(j).filelist,{d(i).name});
-				filelist_potential(end+1) = matchpotential;
-			elseif b,
-				filelist_potential(j).filelist = cat(2,filelist_potential(j).filelist,...
-						{d(i).name});
-			end;
-		end;
-	end;
-	% now eliminate any filelist_potentials that don't match
-	indexes = [];
+	new_filelist_potential = emptystruct('searchString','filelist'); % we will add to this list
 	for j=1:length(filelist_potential),
-		if length(filelist_potential(j).filelist)==k,
-			indexes(end+1) = j;
+		[tf,match_string,newSearchString] = strcmp_substitution(fileparameters{k}, s2, ...
+			'SubstituteStringSymbol', SameStringSearchSymbol, 'UseSubstiteString',UseSameStringSearchSymbol,...
+			'SubstituteString',filelist_potential(j).searchString);
+
+		indexes = find(tf);
+
+		for i=indexes,
+			if isempty(filelist_potential(j).searchString),
+				matchpotential.searchString = newSearchString;
+			else,
+				matchpotential.searchString = filelist_potential(j).searchString;
+			end;
+			matchpotential.filelist = cat(1,filelist_potential(j).filelist,{match_string{indexes}});
+			new_filelist_potential(end+1) = matchpotential;
 		end;
 	end;
-	filelist_potential = filelist_potential(indexes);
-	if isempty(filelist_potential), 
-		break;  % no matches
-	end;
+
+	filelist_potential = new_filelist_potential;
+
+	if isempty(filelist_potential), break; end; % no matches possible anymore
 end;
 
  % now we have scanned everything, report the file groups
@@ -119,7 +114,6 @@ end;
 for j=1:length(filelist_potential),
 	filelist{end+1} = filelist_potential(j).filelist;
 end;
-
 
  % now search subdirs if we haven't already
 
@@ -129,7 +123,5 @@ if SearchParentFirst,
 			fileparameters, varargin{:});
 	end;
 end;
-
-
 
 
