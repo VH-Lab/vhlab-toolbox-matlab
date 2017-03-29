@@ -93,8 +93,6 @@ if UseSubstituteString,
 			s1_ = [s1_(1:(mymatches(i)-1)) SubstituteString s1_(mymatches(i)+1:end)];
 			mymatches(i+1:end) = mymatches(i+1:end) + length(SubstituteString) - 1; % move these guys along
 		end;
-		s1_
-		s2(indexes),
 		tf2 = strcmp(s1_,s2(indexes)); % works for arrays, too
 		indexeshere = find(tf2);
 		tf(indexes(indexeshere)) = 1; % we found a match
