@@ -31,18 +31,30 @@ function filelist = findfilegroups(parentdir, fileparameters, varargin)
 %
 %  Examples:
 %
+%      ffg_prefix = [userpath filesep 'tools' filesep 'vhlab_mltbx_toolbox' ...
+%		filesep 'directory' filesep 'test_dirs' filesep]; % location of test directories
+%
 %      % finds all files with '.ext' extension.
 %      fileparameters = {'.*\.ext\>'};
+%      filelist = findfilegroups([ffg_prefix 'findfilegroupstest1'],fileparameters);
+%      % list all files to see which subset(s) was(were) selected:
+%      dir(([ffg_prefix 'findfilegroupstest1' filesep '**/*']))
 %
-%      % finds all sets of files 'stimtimes.txt' and 'reference.txt' when these files
+%      % finds all sets of files 'myfile.ext1' and 'myfile.ext2' when these files
 %      % co-occur in the same subdirectory of PARENTDIR
-%      fileparameters = {'stimtimes.txt','reference.txt'}; % finds all sets of files
+%      fileparameters = {'myfile.ext1','myfile.ext2'}; % finds all sets of files
+%      filelist = findfilegroups([ffg_prefix 'findfilegroupstest2'],fileparameters);
+%      dir(([ffg_prefix 'findfilegroupstest2' filesep '**/*']))
 %                    
-%      % finds all sets of files 'stimtimes#.txt' and 'reference#.txt', where # is 
+%      % finds all sets of files 'myfile_#.ext1' and 'myfile_#.ext2', where # is 
 %      % the same string, and when these files co-occur in the same subdirectory.
 %      % For example, if the files 'stimtimes1.txt' and 'reference1.txt' were in the same
 %      % subdirectory, these would be returned together.
-%      fileparameters = {'stimtimes#.txt','reference#.txt'}
+%      fileparameters = {'myfile_#.ext1','myfile_#.ext2'}
+%      filelist = findfilegroups([ffg_prefix 'findfilegroupstest3'],fileparameters);
+%      dir(([ffg_prefix 'findfilegroupstest3' filesep '**/*']))
+%
+%  See also: STRCMP_SUBSTITUTE
 
 SameStringSearchSymbol = '#';
 UseSameStringSearchSymbol = 1;
@@ -55,12 +67,12 @@ filelist = {};
 d = dirstrip(dir(parentdir));
 
 subdirs = find([d.isdir]);
-regularfiles = find([~d.isdir]);
+regularfiles = find(~[d.isdir]);
 
 if ~SearchParentFirst,
-	for i=1:subdirs,
-		filelist = cat(1,filelist,findfilegroups([parentdir filesep d(i)], ...
-			fileparameters, varargin{:});
+	for i=subdirs,
+		filelist = cat(1,filelist,findfilegroups([parentdir filesep d(i).name], ...
+			fileparameters, varargin{:}));
 	end;
 end;
 
@@ -72,15 +84,18 @@ filelist_potential = emptystruct('searchString','filelist');
 
    % in order for a file group to pass, we have to find potential passing matches to the first criterion
 
-s2 = {d(regularfiles).name};
+s2 = {d(regularfiles).name}';
 
 [tf, match_string, searchString] = strcmp_substitution(fileparameters{1}, s2, ...
 	'SubstituteStringSymbol', SameStringSearchSymbol, 'UseSubstiteString',UseSameStringSearchSymbol);
+tf = tf(:);
+match_string = match_string(:);
+searchString = searchString(:);
 
 indexes = find(tf);
-for i=indexes,
-	matchpotential.searchString = searchString{i};
-	matchpotential.filelist = {match_string{i}};
+for i=1:length(indexes),
+	matchpotential.searchString = searchString{indexes(i)};
+	matchpotential.filelist = {match_string{indexes(i)}};
 	filelist_potential(end+1) = matchpotential;
 end;
 
@@ -93,13 +108,13 @@ for k=2:length(fileparameters),
 
 		indexes = find(tf);
 
-		for i=indexes,
+		for i=1:length(indexes),
 			if isempty(filelist_potential(j).searchString),
 				matchpotential.searchString = newSearchString;
 			else,
 				matchpotential.searchString = filelist_potential(j).searchString;
 			end;
-			matchpotential.filelist = cat(1,filelist_potential(j).filelist,{match_string{indexes}});
+			matchpotential.filelist = cat(1,filelist_potential(j).filelist,{match_string{indexes(i)}});
 			new_filelist_potential(end+1) = matchpotential;
 		end;
 	end;
@@ -112,16 +127,21 @@ end;
  % now we have scanned everything, report the file groups
 
 for j=1:length(filelist_potential),
-	filelist{end+1} = filelist_potential(j).filelist;
+	myfilelist = {};
+	for k=1:length(filelist_potential(j).filelist),
+		myfilelist{end+1} = [parentdir filesep filelist_potential(j).filelist{k}];
+	end;
+	filelist{end+1} = myfilelist(:); % columns
 end;
 
  % now search subdirs if we haven't already
 
+filelist = filelist(:); % columns
+
 if SearchParentFirst,
-	for i=1:subdirs,
-		filelist = cat(1,filelist,findfilegroups([parentdir filesep d(i)], ...
-			fileparameters, varargin{:});
+	for i=subdirs,
+		filelist = cat(1,filelist,findfilegroups([parentdir filesep d(i).name], ...
+			fileparameters, varargin{:}));
 	end;
 end;
-
 

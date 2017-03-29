@@ -20,7 +20,7 @@ function dirlist = dirlist_trimdots(dirlist, output_struct)
 %  then the output will be a structure of the same type with the '.' and
 %  '..' removed.
 %
-%  See also: DIR
+%  See also: DIR, DIRSTRIP
 %
 %  Example:
 %    D=dir
@@ -40,13 +40,9 @@ if isstruct(dirlist),
         theparent = [];
         for i=1:length(dirlist),
             if strcmp(dirlist(i).name,'.'), 
-                thisdir = i;
+                thisdir(end+1) = i;
             elseif strcmp(dirlist(i).name,'..'),
-                theparent = i;
-            end;
-
-            if ~isempty(thisdir) & ~isempty(theparent)
-                break; % assume we are done
+                theparent(end+1) = i;
             end;
         end;
 
@@ -55,8 +51,7 @@ if isstruct(dirlist),
         end;
         return;
     end;
-    
-    
+        
 	dirnumbers = find([dirlist.isdir]);
 	dirlist = {dirlist(dirnumbers).name};
 end;
@@ -70,14 +65,14 @@ theparent = [];
 
 for i=1:length(dirlist),
 	if strcmp(dirlist{i},'.'), 
-		thisdir = i;
+		thisdir(end+1) = i;
 	elseif strcmp(dirlist{i},'..'),
-		theparent = i;
+		theparent(end+1) = i;
 	end;
 
-	if ~isempty(thisdir) & ~isempty(theparent)
-		break; % assume we are done
-	end;
+	%if ~isempty(thisdir) & ~isempty(theparent)
+	%	break; % assume we are done
+	%end;
 end;
 
 if ~isempty([thisdir theparent]),
