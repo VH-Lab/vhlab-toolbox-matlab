@@ -54,60 +54,7 @@ if isempty(header),
 	header = read_Intan_RHD2000_header(filename);
 end;
 
-  % get set up to read 
-% how many channels do we have?
-num_amplifier_channels = length(header.amplifier_channels);
-num_aux_input_channels = length(header.aux_input_channels);
-num_supply_voltage_channels = length(header.supply_voltage_channels);
-num_board_adc_channels = length(header.board_adc_channels);
-num_board_dig_in_channels = length(header.board_dig_in_channels);
-num_board_dig_out_channels = length(header.board_dig_out_channels);
-num_temp_sensor_channels = header.num_temp_sensor_channels;
-
-% Determine how many samples the data file contains.
-
-% BLOCK PARAMETERS - these change depending upon which channels were recorded
-   % initially set all block_offsets to 0, then calculate them again later
-
-block_piece    = struct('type','timestamp','block_offset',0,'bytes',60*4,'bytes_per_sample',4,'samples_per_block',60,'numchannels',1,...
-	'interleaved',0,'precision',['60*uint32=>uint32'],'scale',1.0/header.frequency_parameters.amplifier_sample_rate,'shift',0);
-if ((header.fileinfo.data_file_main_version_number == 1 && header.fileinfo.data_file_secondary_version_number >= 2) ...
-	|| (header.fileinfo.data_file_main_version_number > 1))
-	block_piece(1).precision = ['60*int32=>int32'];
-end;
-block_piece(2) = struct('type','amp','block_offset',0,'bytes',60*2*num_amplifier_channels,'bytes_per_sample',2,'samples_per_block',60,'numchannels',num_amplifier_channels,...
-	'interleaved',1,'precision','*uint16=>uint16','scale',0.195,'shift',32768);
-block_piece(3) = struct('type','aux','block_offset',0,'bytes',15*2*num_aux_input_channels,'bytes_per_sample',2,'samples_per_block',15,'numchannels',num_aux_input_channels,...
-	'interleaved',1,'precision','*uint16=>uint16','scale',37.4e-6,'shift',0);
-block_piece(4) = struct('type','supply','block_offset',0,'bytes',1*2*num_supply_voltage_channels,'bytes_per_sample',2,'samples_per_block',1,'numchannels',num_supply_voltage_channels,...
-	'interleaved',1,'precision','*uint16=>uint16','scale',74.8e-6,'shift',0);
-block_piece(5) = struct('type','temp','block_offset',0,'bytes',1*2*(num_temp_sensor_channels>0),'bytes_per_sample',2,'samples_per_block',1,'numchannels',num_temp_sensor_channels,...
-	'interleaved',1,'precision','*int16=>int16','scale',1/100,'shift',0);
-block_piece(6) = struct('type','board_adc','block_offset',0,'bytes',60*2*num_board_adc_channels,'bytes_per_sample',2,'samples_per_block',60,'numchannels',num_board_adc_channels,...
-	'interleaved',1,'precision','*uint16=>uint16','scale',152.59e-6,'shift',32768);
-if header.fileinfo.eval_board_mode~=1,
-	block_piece(6).scale=50.354e-6;
-	block_piece(6).shift = 0;
-end;
-block_piece(7) = struct('type','din','block_offset',0,'bytes',60*2*(num_board_dig_in_channels>0),'bytes_per_sample',2,'samples_per_block',60,'numchannels',uint16(num_board_dig_in_channels>0),...
-	'interleaved',0,'precision',['60*uint16=>uint16'],'scale',1,'shift',0);
-block_piece(8) = struct('type','dout','block_offset',0,'bytes',60*2*(num_board_dig_out_channels>0),'bytes_per_sample',2,'samples_per_block',60,'numchannels',uint16(num_board_dig_out_channels>0),...
-	'interleaved',0,'precision',['60*uint16=>uint16'],'scale',1,'shift',0);
-
-block_offset = 0;
-for i=1:length(block_piece), 
-	block_piece(i).block_offset = block_offset;
-	block_offset = block_offset + block_piece(i).bytes;
-end;
-bytes_per_block = block_offset;
-
-blockinfo = block_piece;
-
-% How many data blocks are in this file?
-bytes_present = header.fileinfo.filesize - header.fileinfo.headersize;
-num_data_blocks = bytes_present / bytes_per_block;
-
-% END of BLOCK PARAMETERS
+[blockinfo, bytes_per_block, bytes_present, num_data_blocks] = Intan_RHD2000_blockinfo(filename, header);
 
 total_samples = 60 * num_data_blocks;
 total_time = total_samples / header.frequency_parameters.amplifier_sample_rate; % in seconds
@@ -160,20 +107,20 @@ end;
 
 data = [];
 
-if block_piece(c).interleaved==0,
-    if ~all(ismember(channel_numbers,[1:block_piece(c).numchannels])),
-        error(['Requested channel(s) ' mat2str(channel_numbers) ' for type ''' block_piece(c).type ''' out of available range ' mat2str([1:block_piece(c).numchannels]) '.']);
+if blockinfo(c).interleaved==0,
+    if ~all(ismember(channel_numbers,[1:blockinfo(c).numchannels])),
+        error(['Requested channel(s) ' mat2str(channel_numbers) ' for type ''' blockinfo(c).type ''' out of available range ' mat2str([1:blockinfo(c).numchannels]) '.']);
     end;
 	% read it all in one fread call!
-	fseek(fid,header.fileinfo.headersize+bytes_per_block*(block0-1)+block_piece(c).block_offset,'bof');
-	data=fread(fid,block_piece(c).samples_per_block*(block1-block0+1),block_piece(c).precision,bytes_per_block-block_piece(c).bytes);
+	fseek(fid,header.fileinfo.headersize+bytes_per_block*(block0-1)+blockinfo(c).block_offset,'bof');
+	data=fread(fid,blockinfo(c).samples_per_block*(block1-block0+1),blockinfo(c).precision,bytes_per_block-blockinfo(c).bytes);
 else,
-    if ~all(ismember(channel_numbers,[1:block_piece(c).numchannels])),
-        error(['Requested channel(s) ' mat2str(channel_numbers) ' for type ''' block_piece(c).type ''' out of available range ' mat2str([1:block_piece(c).numchannels]) '.']);
+    if ~all(ismember(channel_numbers,[1:blockinfo(c).numchannels])),
+        error(['Requested channel(s) ' mat2str(channel_numbers) ' for type ''' blockinfo(c).type ''' out of available range ' mat2str([1:blockinfo(c).numchannels]) '.']);
     end;
 
-	if ~all((channel_numbers>0)&(channel_numbers<=block_piece(c).numchannels)),
-		error(['Requested channel list includes an out-of-range channnel: suitable range is 1 to ' int2str(block_piece(c).numchannels) ', request was ' int2str(channel_numbers) '.']);
+	if ~all((channel_numbers>0)&(channel_numbers<=blockinfo(c).numchannels)),
+		error(['Requested channel list includes an out-of-range channnel: suitable range is 1 to ' int2str(blockinfo(c).numchannels) ', request was ' int2str(channel_numbers) '.']);
 	end;
 
 	[chan_sort,chan_sort_indexes] = sort(channel_numbers);
@@ -183,25 +130,25 @@ else,
 	if ~force_single_channel_read & consecutive_channels_requested,
 			% we want to read samples_per_block * number_channel_samples then skip the rest of the block
 		channels_to_skip_before_reading = chan_sort(1)-1;
-		channels_remaining_after_read = block_piece(c).numchannels - chan_sort(end);
+		channels_remaining_after_read = blockinfo(c).numchannels - chan_sort(end);
 			% skip to right point in file
 
 		skip_point = header.fileinfo.headersize + ... % skip header file
 				bytes_per_block*(block0-1) + ... % skip previous blocks
-                                block_piece(c).block_offset + ... % skip previous elements in this block
-				block_piece(c).bytes_per_sample*block_piece(c).samples_per_block*channels_to_skip_before_reading; % skip to our first channel of interest
+                                blockinfo(c).block_offset + ... % skip previous elements in this block
+				blockinfo(c).bytes_per_sample*blockinfo(c).samples_per_block*channels_to_skip_before_reading; % skip to our first channel of interest
 
 		skip_after_each_read = bytes_per_block + ... % skip a whole block, except
-				(-block_piece(c).bytes) + ... % don't skip the part of the block that has this type of channel data
-				block_piece(c).bytes_per_sample*block_piece(c).samples_per_block*(channels_to_skip_before_reading) + ... % do skip channels before the ones we are reading
-				block_piece(c).bytes_per_sample*block_piece(c).samples_per_block*(channels_remaining_after_read); % do skip channels after the ones we are reading
+				(-blockinfo(c).bytes) + ... % don't skip the part of the block that has this type of channel data
+				blockinfo(c).bytes_per_sample*blockinfo(c).samples_per_block*(channels_to_skip_before_reading) + ... % do skip channels before the ones we are reading
+				blockinfo(c).bytes_per_sample*blockinfo(c).samples_per_block*(channels_remaining_after_read); % do skip channels after the ones we are reading
 
 		fseek(fid,skip_point,'bof');
-		data=fread(fid,length(channel_numbers)*block_piece(c).samples_per_block*(block1-block0+1),[int2str(block_piece(c).samples_per_block*length(channel_numbers)) block_piece(c).precision],...
+		data=fread(fid,length(channel_numbers)*blockinfo(c).samples_per_block*(block1-block0+1),[int2str(blockinfo(c).samples_per_block*length(channel_numbers)) blockinfo(c).precision],...
 			skip_after_each_read);
 
 		% demix the read data
-		data = reshape(data, block_piece(c).samples_per_block, length(channel_numbers), (block1-block0+1));
+		data = reshape(data, blockinfo(c).samples_per_block, length(channel_numbers), (block1-block0+1));
 		data = permute(data,[2 1 3]);
 		data = reshape(data,length(channel_numbers),numel(data)/length(channel_numbers))';
 
@@ -212,20 +159,20 @@ else,
 		data = zeros(s1-s0+1,length(channel_numbers));
 		for i=1:length(channel_numbers),
 			channels_to_skip_before_reading = channel_numbers(i)-1;
-			channels_remaining_after_read = block_piece(c).numchannels - channel_numbers(i);
+			channels_remaining_after_read = blockinfo(c).numchannels - channel_numbers(i);
 
 			skip_point = header.fileinfo.headersize + ... % skip header file
 				bytes_per_block*(block0-1) + ... % skip previous blocks
-                                block_piece(c).block_offset + ... % skip previous elements in this block
-				block_piece(c).bytes_per_sample*block_piece(c).samples_per_block*channels_to_skip_before_reading; % skip to our first channel of interest
+                                blockinfo(c).block_offset + ... % skip previous elements in this block
+				blockinfo(c).bytes_per_sample*blockinfo(c).samples_per_block*channels_to_skip_before_reading; % skip to our first channel of interest
 
 			skip_after_each_read = bytes_per_block + ... % skip a whole block, except
-				(-block_piece(c).bytes) + ... % don't skip the part of the block that has this type of channel data
-				block_piece(c).bytes_per_sample*block_piece(c).samples_per_block*(channels_to_skip_before_reading) + ... % do skip channels before the ones we are reading
-				block_piece(c).bytes_per_sample*block_piece(c).samples_per_block*(channels_remaining_after_read); % do skip channels after the ones we are reading
+				(-blockinfo(c).bytes) + ... % don't skip the part of the block that has this type of channel data
+				blockinfo(c).bytes_per_sample*blockinfo(c).samples_per_block*(channels_to_skip_before_reading) + ... % do skip channels before the ones we are reading
+				blockinfo(c).bytes_per_sample*blockinfo(c).samples_per_block*(channels_remaining_after_read); % do skip channels after the ones we are reading
 
 			fseek(fid,skip_point,'bof');
-			data(:,i)=fread(fid,block_piece(c).samples_per_block*(block1-block0+1),[int2str(block_piece(c).samples_per_block) block_piece(c).precision],...
+			data(:,i)=fread(fid,blockinfo(c).samples_per_block*(block1-block0+1),[int2str(blockinfo(c).samples_per_block) blockinfo(c).precision],...
 				skip_after_each_read)';
 		end;
 	end;
@@ -238,10 +185,10 @@ if block0_s~=0 | block1_~=60,
 	data = data(block0_s:end-(60-block1_s),:);
 end;
 
-if block_piece(c).shift ~=0, 
-	data = double(data) - block_piece(c).shift;
+if blockinfo(c).shift ~=0, 
+	data = double(data) - blockinfo(c).shift;
 end;
 
-if block_piece(c).scale ~= 1, 
-	data = double(data) * block_piece(c).scale;
+if blockinfo(c).scale ~= 1, 
+	data = double(data) * blockinfo(c).scale;
 end;
