@@ -13,12 +13,13 @@ function dirlist = dirlist_trimdots(dirlist, output_struct)
 %  the directory list will be extracted.
 %
 %  The function stops when it has found both '.' and '..'; if these entries
-%  occur more than once they will not be removed.
+%  occur more than once they will not be removed. Also removes '.DS_Store'
+%  (Apple desktop information).
 %
 %  If the argument OUTPUT_STRUCT is present and is 1, and if
 %  DIRLIST_OR_DIRLISTSTRUCT is a structure returned from the function DIR,
 %  then the output will be a structure of the same type with the '.' and
-%  '..' removed.
+%  '..' (and '.DS_Store') removed.
 %
 %  See also: DIR, DIRSTRIP
 %
@@ -38,16 +39,19 @@ if isstruct(dirlist),
     if output_struct,
         thisdir = [];
         theparent = [];
+        garbage = [];
         for i=1:length(dirlist),
             if strcmp(dirlist(i).name,'.'), 
                 thisdir(end+1) = i;
             elseif strcmp(dirlist(i).name,'..'),
                 theparent(end+1) = i;
+            elseif strcmp(dirlist(i).name,'.DS_Store'),
+                garbage(end+1) = i;
             end;
         end;
 
-        if ~isempty([thisdir theparent]),
-            dirlist([thisdir theparent]) = [];
+        if ~isempty([thisdir theparent garbage]),
+            dirlist([thisdir theparent garbage]) = [];
         end;
         return;
     end;
@@ -62,12 +66,15 @@ end;
 
 thisdir = [];
 theparent = [];
+garbage = [];
 
 for i=1:length(dirlist),
 	if strcmp(dirlist{i},'.'), 
 		thisdir(end+1) = i;
 	elseif strcmp(dirlist{i},'..'),
 		theparent(end+1) = i;
+    elseif strcmp(dirlist{i},'.DS_Store'),
+        garbage(end+1) = i;
 	end;
 
 	%if ~isempty(thisdir) & ~isempty(theparent)
@@ -75,6 +82,6 @@ for i=1:length(dirlist),
 	%end;
 end;
 
-if ~isempty([thisdir theparent]),
-	dirlist([thisdir theparent]) = [];
+if ~isempty([thisdir theparent garbage]),
+	dirlist([thisdir theparent garbage]) = [];
 end;

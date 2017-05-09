@@ -3,7 +3,8 @@ function d = dirstrip(ds)
 %  D = DIRSTRIP(DS)
 %
 %  Removes '.' and '..' from a directory structure returned by the function
-%  "DIR".
+%  "DIR". Also removes '.DS_Store' (Apple desktop information) from the
+%  list.
 %
 %  This will return all file names, including regular files. To return only
 %  directories, see DIRLIST_TRIMDOTS.
@@ -11,5 +12,5 @@ function d = dirstrip(ds)
 %  See also: DIR, DIRLIST_TRIMDOTS
 
 g = {ds.name};
-[B,I] = setdiff(g,{'.','..'});
+[B,I] = setdiff(g,{'.','..','.DS_Store'});
 d = ds(I);
