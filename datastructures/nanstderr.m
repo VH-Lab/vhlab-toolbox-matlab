@@ -1,4 +1,4 @@
-function [se] = stderr(data)
+function [se] = nanstderr(data)
 %  STDERR - Standard error of a vector of data
 %
 %  SE = STDERR(DATA);
