@@ -19,6 +19,8 @@ function s = emptystruct(varargin)
 % See also: VAR2STRUCT
 %  
 
+s = struct();
+
 for i=1:length(varargin),
 	eval(['s.' varargin{i} '=1;']);
 end;
