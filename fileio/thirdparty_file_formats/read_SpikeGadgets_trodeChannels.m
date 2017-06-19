@@ -1,4 +1,4 @@
-function [recData, timestamps] = importChannels(filename,NumChannels,channels,samplingRate,headerSize,s0,s1)  
+function [recData, timestamps] = read_SpikeGadgets_trodeChannels(filename,NumChannels,channels,samplingRate,headerSize,s0,s1)  
 
 %[recData, timestamps] = importChannels(filename,NumChannels,channels,samplingRate,headerSize, configExists) )  
 
@@ -78,6 +78,6 @@ recData = recData';
 
 fclose(fid);
 
-
+end
 
 
