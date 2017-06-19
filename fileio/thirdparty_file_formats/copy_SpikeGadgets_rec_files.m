@@ -1,5 +1,5 @@
-function copy_sg_rec_files(filename_in,s0,s1,filename_out)
-%COPY_SG_REC_FILES Shortens .rec files from sample to sample provided in
+function copy_SpikeGadgets_rec_files(filename_in,s0,s1,filename_out)
+%COPY_SSPIKEGADGETS_REC_FILES Shortens .rec files from sample to sample provided in
 %arguments
 
 fid_in = fopen(filename_in,'r');
@@ -28,10 +28,8 @@ fwrite(fid_out,initialConfig);
 fseek(fid_in,(s0-1)*blockSizeBytes,'cof');
 %read until s1
 samples = fread(fid_in,numberOfSamples)';
-
-%fwrite(fid_out,initialConfig);
+%write samples
 fwrite(fid_out,samples);
-%disp(numberOfSamples);
 
 end
 
