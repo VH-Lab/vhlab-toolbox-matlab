@@ -1,6 +1,6 @@
 function [recData, timestamps] = read_SpikeGadgets_trodeChannels(filename,NumChannels,channels,samplingRate,headerSize,s0,s1)  
 
-%[recData, timestamps] = importChannels(filename,NumChannels,channels,samplingRate,headerSize, configExists) )  
+%[recData, timestamps] = read_SpikeGadgets_trodeChannels(filename,NumChannels,channels,samplingRate,headerSize, configExists) )  
 
 %Imports channel data in matlab from the raw data file
 %
