@@ -1,6 +1,6 @@
-function [recData, timestamps] = importAnalogChannels(filename,NumChannels, channels, samplingRate,headerSize,s0,s1, configExists)  
+function [recData, timestamps] = read_SpikeGadgets_analogChannels(filename,NumChannels, channels, samplingRate,headerSize,s0,s1, configExists)  
 
-%[recData, timestamps] = importAnalogChannels(filename,NumChannels, channels, samplingRate,headerSize, configExists) )  
+%[recData, timestamps] = read_SpikeGadgets_analogChannels(filename,NumChannels, channels, samplingRate,headerSize, configExists) )  
 
 %Imports digital channel data in matlab from the raw data file
 %
@@ -24,7 +24,7 @@ end
 
 fid = fopen(filename,'r');
 
-fileconfig = readTrodesFileConfig(filename);
+fileconfig = read_SpikeGadgets_config(filename);
 
 configsize = length(fileconfig.configText)-30;
 
@@ -67,6 +67,7 @@ end
 
 fclose(fid);
 
+end
 
 
 
