@@ -21,16 +21,10 @@ if (nargin < 8)
     configExists = 1;   
 end
 
-
 fid = fopen(filename,'r');
 
-fileconfig = read_SpikeGadgets_config(filename);
-
-configsize = length(fileconfig.configText)-30;
-
-
 if (configExists)
-    junk = fread(fid,1000000,'char');
+    junk = fread(fid,30000,'char');
     configsize = strfind(junk','</Configuration>')+16;
     frewind(fid);
 end
