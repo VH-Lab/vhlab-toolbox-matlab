@@ -1,4 +1,4 @@
-function [out,officialchannels] = readTrodesFileConfig(filename)
+function [out,officialchannels] = read_SpikeGadgets_config(filename)
 %out = readTrodesFileConfig(filename)
 %
 %Reads the configuration section of a Trodes (.rec) file
