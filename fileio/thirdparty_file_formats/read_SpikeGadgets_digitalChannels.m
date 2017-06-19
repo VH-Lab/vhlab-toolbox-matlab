@@ -1,6 +1,6 @@
-function [recData, timestamps] = importDigitalChannels(filename,NumChannels,channels,samplingRate,headerSize,s0,s1, configExists)  
+function [recData, timestamps] = read_SpikeGadgets_digitalChannels(filename,NumChannels,channels,samplingRate,headerSize,s0,s1, configExists)  
 
-%[recData, timestamps] = importDigitalChannels(filename,NumChannels, channels, samplingRate,headerSize, configExists) )  
+%[recData, timestamps] = read_SpikeGadgets_digitalChannels(filename,NumChannels, channels, samplingRate,headerSize, configExists) )  
 
 %Imports digital channel data in matlab from the raw data file
 %
@@ -70,10 +70,9 @@ for i = 1:length(bytesToRead)
              
 end
 
-
-
 fclose(fid);
 
+end
 
 
 
