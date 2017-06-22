@@ -23,8 +23,8 @@ if ~ischar(name),
 	return;
 end;
 
-if length(name)<2,
-	errormsg = [errormsg 'must be longer than one character.'];
+if length(name)<1,
+	errormsg = [errormsg 'must be at least one character.'];
 	return;
 end;
 
