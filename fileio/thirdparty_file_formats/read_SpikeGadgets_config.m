@@ -448,4 +448,3 @@ function [out,officialchannels] = read_SpikeGadgets_config(filename)
           attributes(count).Value = char(attrib.getValue);
        end
     end
-end
