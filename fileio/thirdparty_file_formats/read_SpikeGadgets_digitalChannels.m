@@ -1,5 +1,4 @@
 function [recData, timestamps] = read_SpikeGadgets_digitalChannels(filename,NumChannels,channels,samplingRate,headerSize,s0,s1, configExists)
-
 % [recData, timestamps] = read_SpikeGadgets_digitalChannels(filename,NumChannels, channels, samplingRate,headerSize, configExists) )
 % Imports digital channel data in matlab from the raw data file
 %
