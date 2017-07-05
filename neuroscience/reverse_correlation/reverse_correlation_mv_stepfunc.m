@@ -90,7 +90,7 @@ assign(varargin{:});
  % HERE need a mapping between kerneltimes and lags
 
 dt_signal = signal_t(2) - signal_t(1);
-lags = point2samplelabel(kerneltimes,dt_signal);
+lags = point2samplelabel(kerneltimes,dt_signal,dt_signal);
 
 maxlag = max(abs(lags));
 
