@@ -11,6 +11,8 @@ function tr=round2sample(ti,dt,t0)
 %       DT = 0.001;
 %       TI = 0.00100000001;
 %       TR = ROUND2SAMPLE(TI, DT)   % returns 0.001
+%
+%   See also: POINT2SAMPLELABEL
 
 if nargin<3,
     t0 = 0;

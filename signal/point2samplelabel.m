@@ -17,6 +17,7 @@ function s = point2samplelabel(ti, dt, t0)
 %    T = 0:dt:40;
 %    S = point2samplelabel(T(20),dt)   % returns 20
 %    
+%  See also: ROUND2SAMPLE
 
 if nargin<3, t0 = 0; end;
 
