@@ -73,7 +73,6 @@ switch (header.channelinfo(channel_index).kind),
 		time = chheader.start + ((s0:s1)-1)* chheader.sampleinterval*1e-6;
 
 	case {2,3,4}, % event
-		disp('is an event')
 		total_samples = [];
 		blockinfo = SONGetBlockHeaders(fid,header.channelinfo(channel_index).number);
 		blocktimes = blockinfo(2:3,:)*header.fileinfo.usPerTime*header.fileinfo.dTimeBase;
