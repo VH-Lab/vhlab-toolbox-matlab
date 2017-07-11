@@ -73,8 +73,16 @@ switch (header.channelinfo(channel_index).kind),
 		time = chheader.start + ((s0:s1)-1)* chheader.sampleinterval*1e-6;
 
 	case {2,3,4}, % event
+		blockinfo = SONGetBlockHeaders(fid,header.channelinfo(channel_index).number);
+		blocktimes = block_info(2:3,:)*header.fileinfo.usPerTime*header.fileinfo.dTimeBase;
+		
+		block_start = find(blocktimes(1,:)<=t0 & blocktimes(2,:)>=t0);
+		block_end = find(blocktimes(2,:)<=t1,1,'first');
+		[data]=SONGetEventChannel(fid,header.channelinfo(channel_index).number,...
+			block_start,block_end);
+		data = data(find(data>=t0 & data<=t1));
+
 		fclose(fid);
-		error(['need to implement this channel type.']);
 
 	case {5,7,8}, % marker
 		fclose(fid);
