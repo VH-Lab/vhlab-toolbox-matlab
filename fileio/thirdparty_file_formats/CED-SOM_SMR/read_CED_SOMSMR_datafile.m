@@ -73,25 +73,34 @@ switch (header.channelinfo(channel_index).kind),
 		time = chheader.start + ((s0:s1)-1)* chheader.sampleinterval*1e-6;
 
 	case {2,3,4}, % event
+		disp('is an event')
+		total_samples = [];
 		blockinfo = SONGetBlockHeaders(fid,header.channelinfo(channel_index).number);
-		blocktimes = block_info(2:3,:)*header.fileinfo.usPerTime*header.fileinfo.dTimeBase;
-		
-		block_start = find(blocktimes(1,:)<=t0 & blocktimes(2,:)>=t0);
-		block_end = find(blocktimes(2,:)<=t1,1,'first');
+		blocktimes = blockinfo(2:3,:)*header.fileinfo.usPerTime*header.fileinfo.dTimeBase;
+		total_time = blocktimes(2,end);
+
+		block_start = max([1 find(blocktimes(1,:)<=t0 & blocktimes(2,:)>=t0)]);
+		block_end = min([size(blocktimes,2) find(blocktimes(2,:)<=t1,1,'first')]);
 		[data]=SONGetEventChannel(fid,header.channelinfo(channel_index).number,...
 			block_start,block_end);
 		data = data(find(data>=t0 & data<=t1));
-
-		fclose(fid);
-
+		time = data;
 	case {5,7,8}, % marker
-		fclose(fid);
-		error(['need to implement this channel type.']);
-
+		total_samples = [];
+		blockinfo = SONGetBlockHeaders(fid,header.channelinfo(channel_index).number);
+		blocktimes = blockinfo(2:3,:)*header.fileinfo.usPerTime*header.fileinfo.dTimeBase;
+		total_time = blocktimes(2,end);
+		
+		block_start = max([1 find(blocktimes(1,:)<=t0 & blocktimes(2,:)>=t0)]);
+		block_end = min([size(blocktimes,2) find(blocktimes(2,:)<=t1,1,'first')]);
+		[data]=SONGetMarkerChannel(fid,header.channelinfo(channel_index).number,...
+			block_start,block_end);
+		good_indexes = find(data.timings>=t0 & data.timings<=t1);
+		time = data.timings(good_indexes);
+		data = data.markers(good_indexes);
 	case 6, % wavemark
 		fclose(fid);
-		error(['need to implement this channel type.']);
-
+		error(['need to implement this channel type (wavemark).']);
 	otherwise,
 		fclose(fid);
 		error(['Unknown channel kind: ' int2str(header.channelinfo(channel_index).kind)  '.']);
