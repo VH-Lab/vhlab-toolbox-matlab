@@ -15,7 +15,7 @@ function si = contrastfit2saturationindex(contrast, responses)
 %  If Rmax == R(0), then the measure is undefined and the index that is
 %  returned is NaN.
 %
-%  This index is called MI in Pearce 2007 (JoV)
+%  This index is called MI in Peirce 2007 (JoV)
 
 if max(contrast)>90,  % units could be percent or 0-1
 	hundred = findclosest(contrast,100);
