@@ -22,20 +22,40 @@ NZ = imagesize(3);
 
 [roi2d] = indexes3d - (zdim-1)*(NX * NY);
 [indexes2d] = roi2d(find(roi2d >= 1 & roi2d <= (NX * NY)));
+perimeter2d = {};
 
-if nargout>=2,
+if nargout>=2 & ~isempty(indexes2d),
 
-	imblank = logical(zeros(NX,NY));
-	imblank(indexes2d) = logical(1);
-	perimeter2d = bwboundaries(imblank,'noholes'); % must be a faster way
-	if isempty(perimeter2d), perimeter2d = {}; end;
+	[x_values, y_values] = ind2sub([NX NY],indexes2d);
+	xmin = min(x_values);
+	xmax = max(x_values);
+	ymin = min(y_values);
+	ymax = max(y_values);
+	shifted_indexes2d = sub2ind([xmax-xmin+1 ymax-ymin+1],1+x_values-xmin,1+y_values-ymin);
+
+	imblank = logical(zeros(xmax-xmin+1,ymax-ymin+1));
+	imblank(shifted_indexes2d) = logical(1);
+	perimeter2d = bwboundaries(imblank,'noholes');
+	if isempty(perimeter2d),
+		perimeter2d = {};
+	else,
+		% need to shift by xmin/ymin
+		for i=1:numel(perimeter2d),
+			perimeter2d{i}(:,1) = perimeter2d{i}(:,1) + (xmin-1);
+			perimeter2d{i}(:,2) = perimeter2d{i}(:,2) + (ymin-1);
+		end
+	end;
+
+	
+	%imblank = logical(zeros(NX,NY));
+	%imblank(indexes2d) = logical(1);
+	%perimeter2d = bwboundaries(imblank,'noholes'); % must be a faster way
+	%if isempty(perimeter2d), perimeter2d = {}; end;
 
 	% this doesn't do it, this computes the length of the perimeter
 	%	CC = struct('Connectivity',6,'ImageSize',[NX NY],'NumObjects',1);
 	%	CC.PixelIdxList = {indexes2d};
 	%	perimeter2d = regionprops(CC,'Perimeter');
-else,
-	perimeter2d = [];
 end;
 
 

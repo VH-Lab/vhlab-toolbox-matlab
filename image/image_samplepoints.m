@@ -54,12 +54,11 @@ pts = [];
 
 for i=1:length(image_indexes),
 	indexes_here = find(i3==image_indexes(i));
-	im = imread(imagefile,'index',image_indexes(i));
+	im = imread(imagefile,'index',image_indexes(i),'info',info);
 	point_indexes = sub2ind(singleimagesize, ...
 		repmat(i1(indexes_here),1,dim_per_sample), ...
 		repmat(i2(indexes_here),1,dim_per_sample),...
 		repmat(1:dim_per_sample,length(indexes_here),1));
 	pts=[pts; reshape(im(point_indexes),length(indexes_here),dim_per_sample)];
 end;
-
 

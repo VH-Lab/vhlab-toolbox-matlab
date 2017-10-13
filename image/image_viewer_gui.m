@@ -30,7 +30,13 @@ function out = image_viewer_gui(name,varargin)
 %   ImageVGUIHistAxesParams      | A structure with modifications to default histogram axes
 %                                    parameters (same as above)
 %   ImageVGUISliderParams        | Same for frame-selection slider 
-%   
+%   ImageScaleParams             | A structure with fields 'Min' and 'Max' that indicate the
+%                                |   values to scale each channel of the image. By default,
+%                                |   ImageScaleParams.Min = [ 0 0 0 0] and ImageScaleParams.Max = [ 255 255 255 255 ]
+%   ImageDisplayScaleParams      | A structure with fields 'Min' and 'Max' that indicate the
+%                                |   values to which the image should be scaled for display.
+%                                |   Right now these must be ImageDisplayScaleParams.Min = [0 0 0 0] and 
+%                                |   ImageDisplayScaleParams.Max = [ 255 255 255 255]
 %   
 %   One can also query the internal variables by calling
 %
@@ -41,9 +47,8 @@ function out = image_viewer_gui(name,varargin)
 %   IMAGE_VIEWER_GUI(NAME, 'command', 'Get_Handles')
 %   
 
-	
-
     % IMPROVEMENTS (someday):
+        % SAVE the scaling information
 	%  add zoom / pan / help / file controls
 	%   ImageVGUIZoomButtonParams    | Same for Zoom button
 	%   ImageVGUIPanButtonParams     | Same for Pan button
@@ -53,11 +58,15 @@ function out = image_viewer_gui(name,varargin)
     %    Abstract away the image part, so one can read image streams instead of just imread-capable files
     %    Add the ability to have more than one same-sized image file shown at once, on different channels
 
-
 sizeparams.DefaultHeight = 500;
 sizeparams.DefaultWidth = 500;
 sizeparams.DefaultRowHeight = 35;
 sizeparams.DefaultEdgeSpace = 30;
+
+ImageScaleParams.Min = [0 0 0 0];
+ImageScaleParams.Max = [255 255 255 255];
+ImageDisplayScaleParams.Min = [0 0 0 0];
+ImageDisplayScaleParams.Max = [255 255 255 255];
 
 ImageVGUIAxesParams = [];
 ImageVGUIHistAxesParams = [];
@@ -79,10 +88,10 @@ showhistogram = 1;
 command = [name 'init']; 
 fig = gcf;
 
-
 varlist = {'sizeparams','LowerLeftPoint','UpperRightPoint','imfile','iminfo', 'previousslidervalue',...
 	'imagemodifierfunc','showhistogram','drawcompletionfunc',...
-	'ImageVGUIAxesParams','ImageVGUIHistAxesParams','ImageVGUIZoomButtonParams','ImageVGUIPanButtonParams','ImageVGUISliderParams'};
+	'ImageVGUIAxesParams','ImageVGUIHistAxesParams','ImageVGUIZoomButtonParams','ImageVGUIPanButtonParams','ImageVGUISliderParams',...
+	'ImageScaleParams','ImageDisplayScaleParams'};
 
 assign(varargin{:});
 
@@ -125,7 +134,6 @@ switch lower(command),
 		image_viewer_gui(name,'command',[name 'position_gui']);
 		image_viewer_gui(name,'command',[name 'load_image']);
 		image_viewer_gui(name,'command',[name 'reset_axes_size']);
-	
 	case 'get_vars',
 		handles = image_viewer_gui(name,'command',[name 'get_handles'],'fig',fig);
 		out = get(handles.ImageSlider,'userdata');
@@ -182,9 +190,12 @@ switch lower(command),
 		if ~isempty(ud.imfile),
 			handles = image_viewer_gui(name,'command',[name 'get_handles'],'fig',fig);
 			ud.iminfo = imfinfo(ud.imfile);
-			number_of_frames = length(ud.iminfo);
+			imagerange = image_samplerange(ud.imfile,'imfileinfo',ud.iminfo);
+			ud.ImageScaleParams.Min = imagerange(:,1)';
+			ud.ImageScaleParams.Max = imagerange(:,2)';
 			image_viewer_gui(name,'command',[name 'Set_Vars'],'ud',ud);
 
+			number_of_frames = length(ud.iminfo);
 			% if needed, fix slider to match frames
 			ss=get(handles.ImageSlider,'sliderstep');
 			if sum(abs(ss-(1/number_of_frames)*[1 1]))>1e-13,
@@ -196,7 +207,7 @@ switch lower(command),
 					'value',number_of_frames);
 			end;
 			image_viewer_gui(name,'command',[name 'Draw_Image'],'ud',ud);
-			image_viewer_gui(name,'command',[name 'drawhistogram'],'fig',fig);
+			image_viewer_gui(name,'command',[name 'Draw_Histogram'],'fig',fig);
 		end;
 
 	case 'reset_axes_size', % resets the image view
@@ -207,10 +218,10 @@ switch lower(command),
 			set(handles.ImageAxes,'tag',[name 'ImageAxes']); % seems to get reset by some commands
 			box off;
 		end;
-
 	case 'getslider', % get the slider value
 		handles = image_viewer_gui(name,'command',[name 'get_handles'],'fig',fig);
 		out = round(get(handles.ImageSlider,'value'));
+
 	case 'getslice', % get the slice value
 		handles = image_viewer_gui(name,'command',[name 'get_handles'],'fig',fig);
 		v = round(get(handles.ImageSlider,'value'));
@@ -220,6 +231,7 @@ switch lower(command),
 		if ~isempty(ud.imfile),
 			handles = image_viewer_gui(name,'command',[name 'get_handles'],'fig',fig);
 			v = round(get(handles.ImageSlider,'value'));
+			vars = image_viewer_gui(name,'command',[name 'get_vars'],'fig',fig);
 
 			oldimg = findobj(handles.ImageAxes,'tag','image');
 			if ~isempty(oldimg), delete(oldimg); end;
@@ -230,32 +242,28 @@ switch lower(command),
 			end;
 			currentAx = gca;
 			axes(handles.ImageAxes);
+			im = double(im); % make sure it is a double
+			for i=1:size(im,3),
+				im(:,:,i) = rescale(im(:,:,i),[vars.ImageScaleParams.Min(i) vars.ImageScaleParams.Max(i)],...
+						[vars.ImageDisplayScaleParams.Min(i) vars.ImageDisplayScaleParams.Max(i)]);
+			end;
 			if ~isempty(ud.imagemodifierfunc),
 				im = eval([ud.imagemodifierfunc ';']);
-			else,
-				if size(im,3)==1, % not rgb, is grayscale
-					switch class(im),
-						case 'uint16',
-							im = 256*double(im)/(2^15-1);
-						case 'uint8',
-							im = double(im);
-						case 'logical',
-							im = double(im) * 255;
-						otherwise,
-							im = double(im);
-					end;
-					colormap(gray(256));
-				end;
-			end;
+			end
 			h=image(im);
 			set(h,'tag','image');
 			box off;
 			set(handles.ImageAxes,'tag',[name 'ImageAxes']);
 			axes(currentAx); % make old axes current
+			if size(im,3)==1, % grayscale
+				colormap(gray(256));
+			end
 			image_viewer_gui(name,'command',[name 'movetoback'],'fig',fig);
 			if ~isempty(ud.drawcompletionfunc),
 				eval([ud.drawcompletionfunc ';']);
 			end;
+		else,
+			error(['image not loaded.']);
 		end;
 
 	case 'movetoback', % move image to back
@@ -277,7 +285,7 @@ switch lower(command),
 			image_viewer_gui(name,'command',[name 'Draw_Image'],'fig',fig);
 		end;
 
-	case 'drawhistogram',
+	case 'draw_histogram',
 		if ~isempty(ud.imfile) & ud.showhistogram,
 			handles = image_viewer_gui(name,'command',[name 'get_handles'],'fig',fig);
 			[pts,imsize] = image_samplepoints(ud.imfile,10000,'random','info',ud.iminfo);
@@ -302,7 +310,5 @@ switch lower(command),
 
 	otherwise,
 		disp(['Unknown command ' command ]);
-
 end;
-
 

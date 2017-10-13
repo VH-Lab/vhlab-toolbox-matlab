@@ -82,7 +82,7 @@ switch command,
 		h=image(im); set(h,'userdata',im);
 		title(Title);
 		set(ax,'userdata',refnum,'tag','ImageDisplayAxes');
-		imagedisplay('DisplayImage','refnum',refnum,'fig',gcf);
+		h=imagedisplay('DisplayImage','refnum',refnum,'fig',gcf);
 	case 'DisplayImage',
 		ax = ft(fig,'ImageDisplayAxes',refnum);
 		mn = str2num(get(ft(fig,'MinEdit',refnum),'string'));
