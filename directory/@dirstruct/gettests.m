@@ -1,4 +1,4 @@
-function T = gettests(cksds,name,ref);
+function T = gettests(ds,name,ref);
 
 %  T = GETTESTS(MYDIRSTRUCT,'NAME',REF)
 %
@@ -7,10 +7,10 @@ function T = gettests(cksds,name,ref);
 %
 %  See also:  DIRSTRUCT
 
-g = namerefind(cksds.nameref_str,name,ref);
+g = namerefind(ds.nameref_str,name,ref);
 
 if g>0,
-	T = cksds.nameref_str(g).listofdirs;
+	T = ds.nameref_str(g).listofdirs;
 else,
 	T = [];
 end;
