@@ -189,6 +189,9 @@ switch lower(command),
 	case 'load_image',
 		if ~isempty(ud.imfile),
 			handles = image_viewer_gui(name,'command',[name 'get_handles'],'fig',fig);
+
+			currentsliderpos = get(handles.ImageSlider,'value');
+
 			ud.iminfo = imfinfo(ud.imfile);
 			imagerange = image_samplerange(ud.imfile,'imfileinfo',ud.iminfo);
 			ud.ImageScaleParams.Min = imagerange(:,1)';
@@ -203,8 +206,13 @@ switch lower(command),
 				%disp(['resetting slider']);
 				sliderstep = 1/(number_of_frames-1)*[1 1];
 				if isinf(sliderstep), sliderstep = [0 0]; end;
+				if currentsliderpos <= number_of_frames & currentsliderpos >= 1,
+					newsliderpos = currentsliderpos;
+				else,
+					newsliderpos = number_of_frames;
+				end
 				set(handles.ImageSlider,'sliderstep',sliderstep,'min',1,'max',number_of_frames,...
-					'value',number_of_frames);
+					'value',newsliderpos);
 			end;
 			image_viewer_gui(name,'command',[name 'Draw_Image'],'ud',ud);
 			image_viewer_gui(name,'command',[name 'Draw_Histogram'],'fig',fig);
