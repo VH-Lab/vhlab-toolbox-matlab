@@ -35,7 +35,7 @@ end;
 
 thequestion = spreadsheet{1,question_column};
 
-A = spreadsheet(:,question_column)
+A = spreadsheet(:,question_column);
 
 if isempty(choices),
 	choices = unique(spreadsheet(2:end,question_column)); 
@@ -44,7 +44,7 @@ end;
 results = [];
 
 for i=1:numel(choices),
-	tf = strcmpi(allanswers{i},spreadsheet(2:end,question_column));
+	tf = strcmpi(choices{i},spreadsheet(2:end,question_column));
 	results(i) = sum(tf);
 end;
 	
