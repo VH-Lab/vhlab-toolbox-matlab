@@ -1,16 +1,16 @@
 function [sampleinterval,total_samples,total_time,blockinfo] = read_CED_SOMSMR_sampleinterval(filename,header,channel_number, varargin)
-% READ_CED_SOMSMR_DATAFILE - Reads samples from a CED SOM/SMR file 
+% READ_CED_SOMSMR_SAMPLEINTERVAL - Reads samples from a CED SOM/SMR file 
 %
 %  [DATA,TOTAL_SAMPLES,TOTAL_TIME,BLOCKINFO] = READ_CED_SOMSMR_DATAFILE(FILENAME,
-%     HEADER, CHANNEL_NUMBER, T0, T1);
+%     HEADER, CHANNEL_NUMBER);
 %
 %  Inputs:
 %  Reads the sampleinterval (in seconds) for a given channel from the
 %  Cambridge Electronic Design .SOM or .SMR file FILENAME. The file HEADER
 %  information can be provided in HEADER. If HEADER is empty, then it will
 %  be read from the file.  CHANNEL_NUMBER is the the channel number for which
-%  to return data (ranging from 1 to the number of channels; note that some
-%  channels may not be present in a given recording). 
+%  to return data; it corresponds to the channel number in the Spike2 .SMR file 
+%  (that is, in the Sampling Configuration that was used on Spike2).
 %
 %  Outputs:
 %    SAMPLE_INTERVAL - each column contains samples from an individual channel; if more than

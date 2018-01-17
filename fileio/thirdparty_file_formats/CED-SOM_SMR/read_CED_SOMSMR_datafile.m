@@ -9,8 +9,10 @@ function [data,total_samples,total_time,blockinfo,time] = read_CED_SOMSMR_datafi
 %  The file HEADER information can be provided in HEADER.  If HEADER
 %  is empty, then it will be read from the file.  CHANNEL_NUMBER is the
 %  the channel number for which to return data (ranging from 1 to the number
-%  of channels ). T0 is the time to start reading (the beginning of the recording is 0)
-%  and T1 is the time to stop reading. If T0 is negative, we will start with time 0.
+%  to return data; it corresponds to the channel number in the Spike2 .SMR file 
+%  (that is, in the Sampling Configuration that was used on Spike2).
+%  T0 is the time to start reading (the beginning of the recording is 0) and T1 is
+%  the time to stop reading. If T0 is negative, we will start with time 0.
 %  If T1 is INF, we will use the end time of the whole file.
 %
 %  Outputs:
@@ -23,12 +25,23 @@ function [data,total_samples,total_time,blockinfo,time] = read_CED_SOMSMR_datafi
 %    BLOCKINFO - the output of SONGETBLOCKHEADERS that describes the file blocks
 %    TIME - a vector corresponding to the time of each sample read
 %
+%  Note: at this time, we can only read single channels at a time. If CHANNEL_NUMBER is an array,
+%  there will be an error. If the user need this functionality, please submit an ISSUE on GitHub
+%  (http://github.com/VH-Lab/vhlab_mltbx_toolbox).
+%
 %  See also: READ_CED_SOMSMR_HEADER, READ_CED_SOMSMR_SAMPLEINTERVAL
 %
 
 if isempty(header),
 	header = read_CED_SOMSMR_header(filename);
 end;
+
+if numel(channel_number)>1,
+	error([ ...
+	'Note: at this time, we can only read single channels at a time. If CHANNEL_NUMBER is an array, ' ...
+	'there will be an error. If the user need this functionality, please submit an ISSUE on GitHub ' ...
+	'(http://github.com/VH-Lab/vhlab_mltbx_toolbox).' ]);
+end
 
 channel_index = find([[header.channelinfo.number]==channel_number]);
 
