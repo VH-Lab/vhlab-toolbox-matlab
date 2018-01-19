@@ -62,6 +62,7 @@ switch (header.channelinfo(channel_index).kind),
 
 	case {1,9}, % ADC
 		blockinfo = SONGetBlockHeaders(fid,header.channelinfo(channel_index).number);
+        numblocks = size(blockinfo,2);
 		block_length = blockinfo(5,1); % assume all blocks except last have same length
 				% assume last block has possibly fewer samples but not greater
 
@@ -77,13 +78,21 @@ switch (header.channelinfo(channel_index).kind),
 		start_sample_within_block = mod(s0,block_length);
 		block_stop = 1 + floor(s1/block_length);
 		stop_sample_within_block = mod(s1,block_length);
+        if block_stop > numblocks,
+            block_stop = numblocks;
+            stop_sample_within_block = blockinfo(5,block_stop);
+        end;
+        if stop_sample_within_block > blockinfo(5,block_stop), 
+            stop_sample_within_block = blockinfo(5,block_stop);
+        end;
+        actual_s1 = sum(blockinfo(5,1:block_stop-1)) + stop_sample_within_block;
 		samples_to_trim = blockinfo(5,block_stop) - stop_sample_within_block;
 
 		data = SONGetADCChannel(fid,header.channelinfo(channel_index).number,...
 			block_start,block_stop,'scale');
 		data = data(start_sample_within_block:end-samples_to_trim);
 		if any(size(data)==1), data = data(:); end; % ensure column for single vector
-		time = chheader.start + ((s0:s1)-1)* chheader.sampleinterval*1e-6;
+		time = chheader.start + ((s0:actual_s1)-1)* chheader.sampleinterval*1e-6;
 
 	case {2,3,4}, % event
 		total_samples = [];
