@@ -56,5 +56,4 @@ end
 bin_edges = [bin_min-2*bin_width (bin_low-bin_width):bin_width:(bin_high+bin_width) bin_max+2*bin_width];
 bin_centers = (bin_edges(2:end-2) + bin_edges(3:end-1))/2;
 fullcounts = histc(data(:),bin_edges);
-counts = fullcounts(1:end-1); % remove the last bin that is returned by histc
-
+counts = colvec(fullcounts(2:end-2))'; % remove the last bin that is returned by histc

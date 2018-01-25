@@ -302,7 +302,7 @@ switch lower(command),
 			currentAxes = gca;
 			axes(handles.HistogramAxes);
 			hold off;
-			bar(bin_centers,counts,1);
+            bar(bin_centers,counts,1);
 			hold on;
 			binwidth = bin_centers(2) - bin_centers(1);
 			set(gca,'xlim',[bin_centers(1)-binwidth/2 bin_centers(end)+binwidth/2]);
