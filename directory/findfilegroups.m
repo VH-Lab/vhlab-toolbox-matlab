@@ -28,6 +28,9 @@ function filelist = findfilegroups(parentdir, fileparameters, varargin)
 %  UseLiteralCharacter(1)      | Use the LiteralCharacter
 %  SearchParentFirst(1)        | Should we search the parent before the subdirectories of the
 %                              |    parent? Otherwise, subdirectories are searched first.
+%  SearchParent (1)            | Should we search the parent?
+%  SearchDepth (Inf)           | How many directories 'deep' should we search?
+%                              |   0 means parent only, 1 means one folder in, ...
 %
 %  Examples:
 %
@@ -59,10 +62,14 @@ function filelist = findfilegroups(parentdir, fileparameters, varargin)
 SameStringSearchSymbol = '#';
 UseSameStringSearchSymbol = 1;
 SearchParentFirst = 1;
+SearchDepth = Inf;
+SearchParent = 1;
 
 assign(varargin{:});
 
 filelist = {};
+
+if SearchDepth < 0, return; end; % we're done if we've exceeded search depth
 
 d = dirstrip(dir(parentdir));
 
@@ -72,76 +79,79 @@ regularfiles = find(~[d.isdir]);
 if ~SearchParentFirst,
 	for i=subdirs,
 		filelist = cat(1,filelist,findfilegroups([parentdir filesep d(i).name], ...
-			fileparameters, varargin{:}));
+			fileparameters, varargin{:},'SearchParent',1));
 	end;
 end;
 
- % now look in this directory
+ % now look in this directory, if we are supposed to
 
-   % could be many groups of matches in the directory, find all potential lists
+if SearchParent,
 
-filelist_potential = emptystruct('searchString','filelist');
+	   % could be many groups of matches in the directory, find all potential lists
 
-   % in order for a file group to pass, we have to find potential passing matches to the first criterion
+	filelist_potential = emptystruct('searchString','filelist');
 
-s2 = {d(regularfiles).name}';
+	   % in order for a file group to pass, we have to find potential passing matches to the first criterion
 
-[tf, match_string, searchString] = strcmp_substitution(fileparameters{1}, s2, ...
-	'SubstituteStringSymbol', SameStringSearchSymbol, 'UseSubstiteString',UseSameStringSearchSymbol);
-tf = tf(:);
-match_string = match_string(:);
-searchString = searchString(:);
+	s2 = {d(regularfiles).name}';
 
-indexes = find(tf);
-for i=1:length(indexes),
-	matchpotential.searchString = searchString{indexes(i)};
-	matchpotential.filelist = {match_string{indexes(i)}};
-	filelist_potential(end+1) = matchpotential;
-end;
+	[tf, match_string, searchString] = strcmp_substitution(fileparameters{1}, s2, ...
+		'SubstituteStringSymbol', SameStringSearchSymbol, 'UseSubstiteString',UseSameStringSearchSymbol);
+	tf = tf(:);
+	match_string = match_string(:);
+	searchString = searchString(:);
 
-for k=2:length(fileparameters),
-	new_filelist_potential = emptystruct('searchString','filelist'); % we will add to this list
-	for j=1:length(filelist_potential),
-		[tf,match_string,newSearchString] = strcmp_substitution(fileparameters{k}, s2, ...
-			'SubstituteStringSymbol', SameStringSearchSymbol, 'UseSubstiteString',UseSameStringSearchSymbol,...
-			'SubstituteString',filelist_potential(j).searchString);
+	indexes = find(tf);
+	for i=1:length(indexes),
+		matchpotential.searchString = searchString{indexes(i)};
+		matchpotential.filelist = {match_string{indexes(i)}};
+		filelist_potential(end+1) = matchpotential;
+	end;
 
-		indexes = find(tf);
+	for k=2:length(fileparameters),
+		new_filelist_potential = emptystruct('searchString','filelist'); % we will add to this list
+		for j=1:length(filelist_potential),
+			[tf,match_string,newSearchString] = strcmp_substitution(fileparameters{k}, s2, ...
+				'SubstituteStringSymbol', SameStringSearchSymbol, 'UseSubstiteString',UseSameStringSearchSymbol,...
+				'SubstituteString',filelist_potential(j).searchString);
 
-		for i=1:length(indexes),
-			if isempty(filelist_potential(j).searchString),
-				matchpotential.searchString = newSearchString;
-			else,
-				matchpotential.searchString = filelist_potential(j).searchString;
+			indexes = find(tf);
+
+			for i=1:length(indexes),
+				if isempty(filelist_potential(j).searchString),
+					matchpotential.searchString = newSearchString;
+				else,
+					matchpotential.searchString = filelist_potential(j).searchString;
+				end;
+				matchpotential.filelist = cat(1,filelist_potential(j).filelist,{match_string{indexes(i)}});
+				new_filelist_potential(end+1) = matchpotential;
 			end;
-			matchpotential.filelist = cat(1,filelist_potential(j).filelist,{match_string{indexes(i)}});
-			new_filelist_potential(end+1) = matchpotential;
 		end;
+
+		filelist_potential = new_filelist_potential;
+
+		if isempty(filelist_potential), break; end; % no matches possible anymore
 	end;
 
-	filelist_potential = new_filelist_potential;
+	 % now we have scanned everything, report the file groups
 
-	if isempty(filelist_potential), break; end; % no matches possible anymore
-end;
-
- % now we have scanned everything, report the file groups
-
-for j=1:length(filelist_potential),
-	myfilelist = {};
-	for k=1:length(filelist_potential(j).filelist),
-		myfilelist{end+1} = [parentdir filesep filelist_potential(j).filelist{k}];
+	for j=1:length(filelist_potential),
+		myfilelist = {};
+		for k=1:length(filelist_potential(j).filelist),
+			myfilelist{end+1} = [parentdir filesep filelist_potential(j).filelist{k}];
+		end;
+		filelist{end+1} = myfilelist(:); % columns
 	end;
-	filelist{end+1} = myfilelist(:); % columns
-end;
 
+end
  % now search subdirs if we haven't already
 
 filelist = filelist(:); % columns
 
-if SearchParentFirst,
+if SearchParentFirst,  % now that we've searched the parent, we need to search the subdirs
 	for i=subdirs,
 		filelist = cat(1,filelist,findfilegroups([parentdir filesep d(i).name], ...
-			fileparameters, varargin{:}));
+			fileparameters, varargin{:},'SearchDepth',SearchDepth-1,'SearchParent',1));
 	end;
 end;
 

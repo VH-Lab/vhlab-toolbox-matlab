@@ -12,7 +12,7 @@ d = dir(ds.pathname);
 [y,I]=sort({d.name});
 d = d(I);
 for i=1:length(d),
-	if ~(strcmp(d(i).name,'.')|strcmp(d(i).name,'..')), % ignore these
+	if ~(strcmp(d(i).name,'.')|strcmp(d(i).name,'..')|d(i).name(1)=='.'), % ignore these
 		fname = [ds.pathname fixpath(d(i).name) 'reference.txt'];
 		if exist(fname)&(isempty(intersect(d(i).name,ds.dir_list))),
 			% add directory to list, add namerefs to other list

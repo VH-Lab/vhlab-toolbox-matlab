@@ -35,6 +35,8 @@ for i=1:length(h),
 				for kk=1:length(fnn),
 					same = same & eqlen(getfield(h{i}.fileinfo,fnn{kk}),getfield(h{j}.fileinfo,fnn{kk}));
 				end;
+			elseif strcmp(fn1{k},'spike_triggers'), % not necessary to be the same
+				% do nothing
 			else,
 				same = same & eqlen(getfield(h{i},fn1{k}), getfield(h{j},fn1{k}));
 			end;
