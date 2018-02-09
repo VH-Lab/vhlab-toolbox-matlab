@@ -1,11 +1,11 @@
 function item = celloritem(var, index)
 % CELLORITEM - Returns the ith element of a cell list, or a single item
 %
-%   ITEM = CELLORITEM(VAR, INDEX)
+%   ITEM = CELLORITEM(VAR, [INDEX])
 %
 %  This function examines VAR; if it is a cell list, then it returns
 %  the INDEXth element of VAR. If it is not a cell list, then it returns
-%  VAR.
+%  VAR. If INDEX is not provided, it is assumed to be 1.
 %
 %  This can be used to allow the user the option of providing a cell list or
 %  a single entry.
@@ -18,6 +18,10 @@ function item = celloritem(var, index)
 %           celloritem(mylist1,i),
 %           celloritem(mylist2,i),
 %      end;
+
+if nargin<2,
+    index = 1;
+end;
 
 if iscell(var),
 	item = var{index};
