@@ -77,8 +77,10 @@ for i=1:rois3d_a.NumObjects,
 			rois3d_a.ImageSize);
 		overlap_ab(i,J) = max(ov_ab(:));
 		overlap_ba(J,i) = max(ov_ba(:));
+        progressbar((double(j+(i-1)*rois3d_b.NumObjects))/(rois3d_a.NumObjects*rois3d_b.NumObjects));
 	end;
+    progressbar((double((i)*rois3d_b.NumObjects))/(rois3d_a.NumObjects*rois3d_b.NumObjects));
 
-	progressbar(i/rois3d_a.NumObjects); % update progress bar
+	 % update progress bar
 end
 
