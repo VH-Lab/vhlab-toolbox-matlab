@@ -1,14 +1,13 @@
 function b = isinwhere(rect, units, where)
-
-%  ISINWHERE
+% ISINWHERE 0/1 is a rectangle within another rectangle?
 %
-%    B = ISINWHERE(RECT, UNITS, WHERE)
+% B = ISINWHERE(RECT, UNITS, WHERE)
 %
-%  B is 1 if the rectangle RECT in the units UNITS (either 'normalized' or
-%  'pixels') is in the location structure WHERE.  The figure is assumed to be
-%  WHERE.FIGURE;
+% B is 1 if the rectangle RECT in the units UNITS (either 'normalized' or
+% 'pixels') is in the location structure WHERE.  The figure is assumed to be
+% WHERE.FIGURE;
 % 
-%  For a description of the location structure, see 'help analysis_generic'.
+% For a description of the location structure, see 'help analysis_generic'.
 
 b = 0;
 % make sure in same units

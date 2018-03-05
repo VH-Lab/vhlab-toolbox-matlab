@@ -1,8 +1,7 @@
 function newrect = normalized2pixels(fig, rect)
-
-%  Part of the NeuralAnalysis package
+% NORMALIZED2PIXELS - converts a 'normalized' figure rectangle to raw pixels
 %
-%  NEWRECT = NORMALIZED2PIXELS(FIG,RECT)
+% NEWRECT = NORMALIZED2PIXELS(FIG,RECT)
 %
 %  Converts a 'normalized' rectangle (see help axes for definition) to raw
 %  pixels.

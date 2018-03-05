@@ -1,4 +1,5 @@
 function n = grect2local(r,units,lrect,fig)
+% Normalize a rectangle in units of a local rectangle
 
 %  R = GRECT2LOCAL(RECT, UNITS, LRECT [, FIGURERECT])
 %
