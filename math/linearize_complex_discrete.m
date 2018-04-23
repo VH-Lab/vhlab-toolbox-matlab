@@ -29,6 +29,8 @@ function [y, indexes, set] = linearize_complex_discrete(x, varargin)
 gap = 1;
 epsilon = 1e-10;
 
+assign(varargin{:});
+
 imag_values = unique(imag(x));
 real_values = unique(real(x));
 
