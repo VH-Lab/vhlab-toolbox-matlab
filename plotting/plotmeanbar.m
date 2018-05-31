@@ -27,7 +27,7 @@ usestderr = 1;
 useholdon = 1;
 linewidth = 2;
 linewidth_stderr = 1;
-measure = 'mean(data(:))';
+measure = 'nanmean(data(:))';
 
 assign(varargin{:});
 
