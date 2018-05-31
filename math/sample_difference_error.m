@@ -4,7 +4,7 @@ function [sd, sde] = sample_difference_error(x1, x2, varargin)
 % [SD, SDE] = SAMPLE_DIFFERENCE_ERROR(X1, X2, ...)
 %
 % Computes the mean sample difference SD and the "error" or "uncertainty" in that
-% difference SDE.
+% difference SDE in the means of X2 minus the means of X1.
 % 
 % This function takes name/value pairs that modify the behavior of the function.
 % Parameter (default)            | Description
@@ -21,7 +21,8 @@ function [sd, sde] = sample_difference_error(x1, x2, varargin)
 % bootstrap_confidence ...       | The bootstrap confidence interval to report for SDE
 %     ([cdf('norm',-1,0,1) ...   |   (the default is the percentiles that correspond to
 %       cdf('norm', 1,0,1)])     |    +/-1 standard deviation around the normal
-%                                |    distribution)
+%                                |    distribution). SDE is half of this
+%                                |    confidence interval.
 % meanfunction ('nanmean')       | The mean function to use (could use 'nanmedian')
 %
 
@@ -45,8 +46,8 @@ switch lower(algorithm),
 		Z1 = randi(numel(x1),numel(x1),bootstrap_samples);
 		Z2 = randi(numel(x2),numel(x2),bootstrap_samples);
 		mn1 = feval(meanfunction,x1(Z1),1);
-		mn2 = feval(meanfunction,x1(Z2),1);
-		sde = diff(prctile(mn1-mn2,100*bootstrap_confidence));
+		mn2 = feval(meanfunction,x2(Z2),1);
+		sde = 0.5*diff(prctile(mn1-mn2,100*bootstrap_confidence));
 	otherwise,
 		error(['Unknown algorithm ' lower(algorithm) '.']);
 
