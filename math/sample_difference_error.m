@@ -4,7 +4,7 @@ function [sd, sde] = sample_difference_error(x1, x2, varargin)
 % [SD, SDE] = SAMPLE_DIFFERENCE_ERROR(X1, X2, ...)
 %
 % Computes the mean sample difference SD and the "error" or "uncertainty" in that
-% difference SDE in the means of X2 minus the means of X1.
+% difference SDE in the mean of X2 minus the mean of X1.
 % 
 % This function takes name/value pairs that modify the behavior of the function.
 % Parameter (default)            | Description
@@ -25,6 +25,13 @@ function [sd, sde] = sample_difference_error(x1, x2, varargin)
 %                                |    confidence interval.
 % meanfunction ('nanmean')       | The mean function to use (could use 'nanmedian')
 %
+%
+% Example:
+%    x1 = randn(50,1) + 5;
+%    x2 = randn(50,1) + 0;
+%    [sd,sde]=sample_difference_error(x1,x2),
+%    % show the bootstrap version is similar to standard when data is normally distributed
+%    [sdb,sdeb]=sample_difference_error(x1,x2,'algorithm','bootstrap'), 
 
 
 algorithm = 'assume_normality';
@@ -37,7 +44,7 @@ assign(varargin{:});
 x1 = x1(:); % make a column vector
 x2 = x2(:); % make a column vector
 
-sd = feval(meanfunction,x1,1) - feval(meanfunction,x2,1);
+sd = feval(meanfunction,x2,1) - feval(meanfunction,x1,1);
 
 switch lower(algorithm),
 	case 'assume_normality',
@@ -47,7 +54,7 @@ switch lower(algorithm),
 		Z2 = randi(numel(x2),numel(x2),bootstrap_samples);
 		mn1 = feval(meanfunction,x1(Z1),1);
 		mn2 = feval(meanfunction,x2(Z2),1);
-		sde = 0.5*diff(prctile(mn1-mn2,100*bootstrap_confidence));
+		sde = 0.5*diff(prctile(mn2-mn1,100*bootstrap_confidence));
 	otherwise,
 		error(['Unknown algorithm ' lower(algorithm) '.']);
 
