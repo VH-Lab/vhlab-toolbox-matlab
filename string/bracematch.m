@@ -35,5 +35,5 @@ if isempty(bracedepth),
 	bracedepth = bracelevel(str,braceleft,braceright);
 end;
 
-leveltarget = bracedepth(pos) - 1;
+leveltarget = bracedepth(pos);
 pos_match = pos + find( bracedepth(pos+1:end) == leveltarget, 1, 'first');

@@ -30,11 +30,8 @@ end;
 
 level = 0*str;
 
-level(find(str==braceleft)) = 1;
+level(1+find(str==braceleft)) = 1;
 level(find(str==braceright)) = -1;
 
 level = cumsum(level);
-
-
-
 

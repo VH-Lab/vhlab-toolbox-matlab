@@ -5,8 +5,8 @@ function str = struct2mlstr(thestruct, varargin)
 %
 %  Produces a string representation of a structure that can be passed to
 %  an external program to fully encapsulate the structure.  Character strings
-%  are written directly, integers are written using INT2STR, 
-%  numbers are written using NUM2STR, cells are written using CELL2MLSTR.
+%  are written directly, integers are written using MAT2STR, 
+%  numbers are written using MAT2STR, cells are written using CELL2MLSTR.
 %  Any other objects are written using the function DISP.
 %
 %  The structure is written in the following way:
@@ -27,7 +27,7 @@ function str = struct2mlstr(thestruct, varargin)
 %  The default parameters may be overridden by passing NAME/VALUE
 %  pairs as additional arguments, as in:
 %
-%   STR = STRUCT2STR(THESTRUCT, 'NAME1', VALUE1,...)
+%   STR = STRUCT2MLSTR(THESTRUCT, 'NAME1', VALUE1,...)
 %
 %  Parameters:             | Description
 %  ---------------------------------------------------------------
@@ -36,7 +36,9 @@ function str = struct2mlstr(thestruct, varargin)
 %  varname                 | Variable name, entered before data= line as name=
 %  indent                  | Indentation (default 0)
 %  indentshift             | How much to indent sub-structures (default 5)
-%                      
+%
+%
+%  See also: MLSTR2VAR, CELL2MLSTR, STRUCT2STR
 
 precision = 15;
 indent = 0;
@@ -70,7 +72,7 @@ for i=1:numel(thestruct),
 		if ischar(value),
 			valuestr = char([39 value 39]);
 		elseif isint(value),
-			valuestr = ['[' int2str(value) ']'];
+			valuestr = ['[' mat2str(value) ']'];
 		elseif isnumeric(value),
 			valuestr = [ '[' mat2str(value,precision) ']'];
 		elseif isstruct(value)
@@ -87,3 +89,4 @@ for i=1:numel(thestruct),
 end;
 
 str = [ str repmat(' ',1, indent) '/STRUCT>'];
+

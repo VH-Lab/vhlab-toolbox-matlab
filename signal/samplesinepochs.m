@@ -34,3 +34,4 @@ si = (sample_numbers >= epochstartsamples(epochstart) & sample_numbers < epochst
 sample_indexes = find(si);
 samples_in = sample_numbers(sample_indexes);
 samples_out = sample_numbers(find(~si));
+

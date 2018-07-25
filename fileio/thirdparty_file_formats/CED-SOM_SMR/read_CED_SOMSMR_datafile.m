@@ -27,7 +27,7 @@ function [data,total_samples,total_time,blockinfo,time] = read_CED_SOMSMR_datafi
 %
 %  Note: at this time, we can only read single channels at a time. If CHANNEL_NUMBER is an array,
 %  there will be an error. If the user need this functionality, please submit an ISSUE on GitHub
-%  (http://github.com/VH-Lab/vhlab_mltbx_toolbox).
+%  (http://github.com/VH-Lab/vhlab-toolbox-matlab).
 %
 %  See also: READ_CED_SOMSMR_HEADER, READ_CED_SOMSMR_SAMPLEINTERVAL
 %
@@ -70,7 +70,6 @@ switch (header.channelinfo(channel_index).kind),
 
 		[dummy,chheader] = SONGetADCChannel(fid,header.channelinfo(channel_index).number,1,1);
 		total_time = chheader.sampleinterval*1e-6 * total_samples;
-
 		s0 = point2samplelabel(t0,chheader.sampleinterval*1e-6);
 		s1 = point2samplelabel(t1,chheader.sampleinterval*1e-6);
 

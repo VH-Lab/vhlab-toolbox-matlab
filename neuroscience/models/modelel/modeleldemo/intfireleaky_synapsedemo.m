@@ -17,7 +17,7 @@ steps = 1 / dt; % steps
 varstosave = {  'modelrunstruct.Model_Final_Structure(1).T', ...
 		'modelrunstruct.Model_Final_Structure(1).model.V',...
 		'modelrunstruct.Model_Final_Structure(3).model.G'};
-[modelrun,varsout] = modelelrun_executable(mel,'Steps',steps,'Variables',varstosave);
+[modelrun,varsout] = modelelrun(mel,'Steps',steps,'Variables',varstosave);
 
 spiketimes = modelrun.Model_Final_Structure(1).model.spiketimes;
 

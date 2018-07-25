@@ -5,8 +5,8 @@ function str = cell2mlstr(thecell, varargin)
 %
 %  Produces a string representation of a cellure that can be passed to
 %  an external program to fully encapsulate the cellure.  Character strings
-%  are written directly, integers are written using INT2STR, 
-%  numbers are written using NUM2STR, cells are written using CELL2MLSTR.
+%  are written directly, integers are written using MAT2STR, 
+%  numbers are written using MAT2STR, cells are written using CELL2MLSTR.
 %  Any other objects are written using the function DISP.
 %
 %  The cellure is written in the following way:
@@ -70,7 +70,7 @@ for i=1:numel(thecell),
 	if ischar(value),
 		valuestr = char([39 value 39]);
 	elseif isint(value),
-		valuestr = ['[' int2str(value) ']'];
+		valuestr = ['[' mat2str(value) ']'];
 	elseif isnumeric(value),
 		valuestr = [ '[' mat2str(value,precision) ']'];
 	elseif isstruct(value)
