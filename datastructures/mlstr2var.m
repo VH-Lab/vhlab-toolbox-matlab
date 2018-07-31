@@ -21,8 +21,6 @@ function v = mlstr2var(mlstring)
 %
 % See also: CELL2MLSTR, STRUCT2MLSTR
 
-error('still under construction');
-
 mlstring = strip(mlstring); % remove whitespace
 
 if isempty(mlstring),
@@ -30,12 +28,20 @@ if isempty(mlstring),
 	return;
 end;
 
+hasleading = 1;
+hastrailing = 1;
+
 if mlstring(1)~='<',
-	error(['Could not finding leading ''<'' at ' mlstring(1:10) '...']);
+	hasleading = 0;
 end;
 
 if mlstring(end)~='>',
-	error(['Could not finding trailing ''>'' at '  mlstring(end-10:end) '...']);
+	hastrailing = 0;
+end;
+
+if ~hasleading & ~hastrailing,
+	v = eval(mlstring); % it's just a variable
+	return;
 end;
 
 codingregion = strtrim(mlstring(2:end-1));
@@ -83,7 +89,6 @@ if startsWith(lower(codingregion), lower('STRUCT')) | startsWith(lower(codingreg
 		equalspot = find(parametersregion== '=',1); % find first one
 	end
 
-
 	if structhere,
 		endofdata = strfind(lower(codingregion),lower('/STRUCT'));
 		if isempty(endofdata),
@@ -95,9 +100,9 @@ if startsWith(lower(codingregion), lower('STRUCT')) | startsWith(lower(codingreg
 			error(['Could not find corresponding /CELL> ending CELL.']);
 		end
 	end
-	endofdata = endofdata(end)-1;
+	endofdata = endofdata(end)-1; % should be correct even if these occur within the data
 
-	dataregion = codingregion(datastart+length('data='):endofdata),
+	dataregion = codingregion(datastart+length('data='):endofdata);
 
 	if structhere,
 		v = emptystruct(fieldnames_values{:});
@@ -105,9 +110,32 @@ if startsWith(lower(codingregion), lower('STRUCT')) | startsWith(lower(codingreg
 		v = {};
 	end;
 
-	sizemat,
-	fieldnames_values,
-	
+	isinmatlabstring = ismatlabstring(dataregion);
+	dataregion_meta = dataregion;
+	dataregion_meta(find(isinmatlabstring)) = 'X'; % ignore strings, which might have our metacharacters
+	brace = bracelevel(dataregion_meta,'<','>') >= 1;
+	onsets = 1+find(diff(brace)==1);
+	offsets = find(diff(brace)==-1);
+	if structhere,
+		for i=1:numel(onsets),
+			entrystring = dataregion(onsets(i):offsets(i));
+			entrystring_meta = dataregion_meta(onsets(i):offsets(i));
+			bracelevel(entrystring_meta,'<','>');
+			structlevels = (bracelevel(entrystring_meta,'<','>') >= 1);
+			structonsets = 1+find(diff(structlevels)==1);
+			structoffsets = find(diff(structlevels)==-1);
+			vnew = emptystruct(fieldnames_values{:});
+			for j=1:numel(structonsets),
+				%entrystring(structonsets(j):structoffsets(j))
+				eval(['vnew(1).' fieldnames_values{j} '=mlstr2var(entrystring(structonsets(j):structoffsets(j)));']);
+			end
+		end
+		v(end+1) = vnew;
+	else,
+		for i=1:numel(onsets),
+			v{i} = mlstr2var(dataregion(onsets(i):offsets(i)));
+		end
+	end
 
 	v = reshape(v,sizemat);
 elseif codingregion(1)=='''',
