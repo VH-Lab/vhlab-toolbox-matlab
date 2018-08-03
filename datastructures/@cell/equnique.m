@@ -12,26 +12,25 @@ function out = equnique(in)
 % It performs no sorting, and has no requirement that elements are ordered or sortable.
 %
 % Example:
-%    A=struct('A',5,'B',6);
-%    A = [A A A];
-%    B = equnique(A); % B == A(1)
+%    A={ [1 2] [1] [1] [3 4 5] }
+%    B = equnique(A); % B == A([1 2 4])
 %
 % See also: UNIQUE
 
 n = numel(in);
 
 if n>=1,
-	out = in(1);
+	out = in{1};
 else,
 	out = [];
 end
 
 tf=[];
 for i=1:n,
-	tf(i) = ~eqlen(in(i),out); 
+	tf(i) = ~(eqlen(in{i},out));
 end
 
 if any(tf),
-	out = cat(1,out,equnique(in(find(tf))));
+	out = cat(1,{out},equnique(in(find(tf))));
 end
 
