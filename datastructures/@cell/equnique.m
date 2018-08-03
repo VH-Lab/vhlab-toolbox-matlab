@@ -32,5 +32,7 @@ end
 
 if any(tf),
 	out = cat(1,{out},equnique(in(find(tf))));
+else,
+	out = {out};
 end
 
