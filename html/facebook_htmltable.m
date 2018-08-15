@@ -9,9 +9,8 @@ function str = facebook_htmltable(faceinfo, varargin)
 % This function also takes name/value pairs that modify its behavior:
 % Parameter (default value)    | Description
 % ----------------------------------------------------------------
-% table_width ('100%')         | Table width of the HTML table
 % Ncols (3)                    | Number of columns
-% text_weight ('bold')         | Text weight (or '' for none)
+% imagewidth (400)             | Image width, in pixels
 % 
 %
 % See also: CELLSTR2TEXT, NAMEVALUEPAIR
@@ -24,7 +23,7 @@ assign(varargin{:});
 
 str = {};
 
-str{end+1} = ['<table style="width:' table_width '">'];
+str{end+1} = ['<table id="facebooktable">'];
 
 Nrows = ceil(numel(info)/3);
 
@@ -37,15 +36,8 @@ for n=1:Nrows,
 		if numel(info) >= entry,
 			str{end+1} = ['      <td>'];
 
-			if ~isempty(text_weight),
-				str{end+1} = ['      <' text_weight '>'];
-			end;
-
+			str{end+1} = ['      <img src="' info(entry).imagefile '" alt="' info(entry).name '" width=' int2str(imagewidth) 'px>' ];
 			str{end+1} = ['      ' info(entry).name ];
-
-			if ~isempty(text_weight),
-				str{end+1} = ['      </' text_weight '>'];
-			end
 
 			str{end+1} = ['      </td>'];
 		end
@@ -56,3 +48,4 @@ for n=1:Nrows,
 end
 
 str{end+1} = '</table>';
+
