@@ -11,6 +11,15 @@ function assign (varargin)
 %		assign(varargin{:});
 %	the variable z can be given a non-default value by calling the
 %	function like so: foo(x,y,'z',4);
+%
+%       If the input is a single structure, then the structure is converted
+%       to a set of NAME/VALUE pairs and interpreted as 'VAR1', VAL1, etc,
+%       where VAR1 is the first field name of the input, VAL1 is the value of the field name,
+%       etc.
+
+if isstruct(varargin),
+	varargin = struct2namevaluepair(varargin);
+end;
 
 vars = {varargin{1:2:end}};
 vals = {varargin{2:2:end}};
