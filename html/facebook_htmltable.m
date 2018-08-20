@@ -36,7 +36,7 @@ for n=1:Nrows,
 		if numel(info) >= entry,
 			str{end+1} = ['      <td>'];
 
-			str{end+1} = ['      <img src="' info(entry).imagefile '" alt="' info(entry).name '" width=' int2str(imagewidth) 'px>' ];
+			str{end+1} = ['      <img src="' info(entry).imagefile '" alt="' info(entry).name '" width=' int2str(imagewidth) 'px><p>' ];
 			str{end+1} = ['      ' info(entry).name ];
 
 			str{end+1} = ['      </td>'];
