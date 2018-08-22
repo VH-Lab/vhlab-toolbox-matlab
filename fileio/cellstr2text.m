@@ -10,9 +10,11 @@ function cellstr2text(filename, cs)
 
 fid = fopen(filename,'wt');
 
+newline = sprintf('\n');
+
 if fid>=0,
 	for i=1:numel(cs),
-		fprintf(fid,[cs{i} '\n']);
+		fwrite(fid,[cs{i} newline],'char');
 	end;
 	fclose(fid);
 else,

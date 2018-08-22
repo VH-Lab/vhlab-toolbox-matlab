@@ -10,13 +10,13 @@ function str = facebook_htmltable(faceinfo, varargin)
 % Parameter (default value)    | Description
 % ----------------------------------------------------------------
 % Ncols (3)                    | Number of columns
-% imagewidth (400)             | Image width, in pixels
+% imagewidth (200)             | Image width, in pixels
 % 
 %
 % See also: CELLSTR2TEXT, NAMEVALUEPAIR
 %
 
-table_width = '100%';
+image_width = 200;
 Ncols = 3;
 
 assign(varargin{:});
@@ -25,25 +25,30 @@ str = {};
 
 str{end+1} = ['<table id="facebooktable">'];
 
-Nrows = ceil(numel(info)/3);
+Nrows = ceil(numel(faceinfo)/3);
 
 for n=1:Nrows,
 
-	str{end+1} = ['   <tr>'];
 
-	for c = 1:3,
-		entry = (n-1)*3+c;
-		if numel(info) >= entry,
-			str{end+1} = ['      <td>'];
+	for r=1:2,
+		str{end+1} = ['   <tr>'];
+		for c = 1:3,
+			entry = (n-1)*3+c;
+			if numel(faceinfo) >= entry,
+				str{end+1} = ['      <td>'];
 
-			str{end+1} = ['      <img src="' info(entry).imagefile '" alt="' info(entry).name '" width=' int2str(imagewidth) 'px><p>' ];
-			str{end+1} = ['      ' info(entry).name ];
+				if r==1,
+					str{end+1} = ['      <img src="' faceinfo(entry).imagefile '" alt="' faceinfo(entry).name '" width=' int2str(image_width) 'px>' ];
+				elseif r==2,
+					str{end+1} = ['      ' faceinfo(entry).name ];
+				end
 
-			str{end+1} = ['      </td>'];
+				str{end+1} = ['      </td>'];
+			end
 		end
-	end
 
-	str{end+1} = ['   </tr>'];
+		str{end+1} = ['   </tr>'];
+	end
 
 end
 
