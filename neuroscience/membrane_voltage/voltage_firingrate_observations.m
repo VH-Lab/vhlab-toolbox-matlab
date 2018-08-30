@@ -30,7 +30,9 @@ function [v, fr, stimid] = voltage_firingrate_observations(t, vm, spiketimes, va
 %                                 |    for patch recordings.)
 
 
-error('untested, still in development');
+%error('untested, still in development');
+
+keyboard
 
 binsize = 0.030; 
 fr_smooth = [];
@@ -59,7 +61,7 @@ if isempty(stim_onsetoffsetid),
 	end;
 
 	if ~isempty(vm_baseline_correct),
-		stim_onsetoffsetid = [ t(1)+vm+baseline_correct+dt t(end) 1 ];
+		stim_onsetoffsetid = [ t(1)+baseline_correct+dt t(end) 1 ];
 	else,
 		stim_onsetoffsetid = [ t(1) t(end) 1 ];
 	end
@@ -85,12 +87,8 @@ if ~isempty(vm_baseline_correct),
 		sample_start = point2samplelabel(stim_onsetoffsetid(i,1),dt,t(1));
 		sample_stop = point2samplelabel(stim_onsetoffsetid(i,2),dt,t(1));
 
-		if ~isempty(vm_baseline_correct),
-			t_baseline = sample_start - vm_baseline_correct_samples;
-			baseline = mean(vm(t_baseline:sample_start-1));
-		else,
-			baseline = 0;
-		end
+		t_baseline = sample_start - vm_baseline_correct_samples;
+		baseline = mean(vm(t_baseline:sample_start-1));
 		vm(sample_start:sample_stop) = vm(sample_start:sample_stop) - baseline;
 	end
 end

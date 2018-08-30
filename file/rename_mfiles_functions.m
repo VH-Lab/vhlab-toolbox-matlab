@@ -19,6 +19,7 @@ function rename_mfiles_functions(mfiledirs, editmfiledirs, varargin)
 %
 % See also: NAMEVALUEPAIR
 
+error(['This function does not work yet.']);
 
  % initialize variables
 
