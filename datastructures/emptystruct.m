@@ -2,6 +2,8 @@ function s = emptystruct(varargin)
 % EMPTYSTRUCT - Create a structure with given fieldnames that is empty
 %
 %   S = EMPTYSTRUCT(fieldname1, fieldname2, ...);
+%     or
+%   S = EMPTYSTRUCT({fieldname1, fieldname2, ...});
 %
 % Creates an empty structure with a given list of field names.
 %
@@ -18,6 +20,12 @@ function s = emptystruct(varargin)
 % 
 % See also: VAR2STRUCT
 %  
+
+if iscell(varargin{1}),
+    mycell = varargin{1};
+    s = emptystruct(mycell{:});
+    return;
+end;
 
 s = struct();
 
