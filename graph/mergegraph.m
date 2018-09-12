@@ -81,8 +81,8 @@ upper_right( oldnodes, (newnodes-n1)) = G2( [oldnodes_index], [newnodes_index] )
 indexes.upper_right.G2 = [];
 
 if ~isempty(oldnodes),
-	indexes.upper_right.merged = sub2ind(size(lower_left),(newnodes-n1),oldnodes);
-	indexes.upper_right.G2 =     sub2ind(size(G2),[newnodes_index], [oldnodes_index] );
+	indexes.upper_right.merged = sub2ind(size(upper_right),oldnodes, (newnodes-n1));
+	indexes.upper_right.G2 =     sub2ind(size(G2),[oldnodes_index], [newnodes_index] );
 end
 
 merged_graph = [G1 upper_right ; lower_left lower_right];
