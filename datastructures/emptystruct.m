@@ -21,10 +21,12 @@ function s = emptystruct(varargin)
 % See also: VAR2STRUCT
 %  
 
-if iscell(varargin{1}),
-    mycell = varargin{1};
-    s = emptystruct(mycell{:});
-    return;
+if ~isempty(varargin),
+	if iscell(varargin{1}),
+		mycell = varargin{1};
+		s = emptystruct(mycell{:});
+		return;
+	end;
 end;
 
 s = struct();
