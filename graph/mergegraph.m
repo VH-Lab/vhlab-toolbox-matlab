@@ -20,7 +20,8 @@ function [merged_graph, indexes, numnewnodes] = mergegraph(G1, G2, nodenumbers2_
 % if there are nodes in G1 that are not in G2. So the index values
 % have two fields: 'merged' (the index values of the panel in the merged
 % matrix) and 'G2' (the corresponding index values in G2). 
-% 
+%
+% Any connection that is 'open' will have weight Inf.
 %
 % Note that in performing this merge, the connections among the nodes of
 % G1 are NOT modified. So this function is not a means of providing additional
@@ -34,8 +35,8 @@ function [merged_graph, indexes, numnewnodes] = mergegraph(G1, G2, nodenumbers2_
 %            nodenumbers2_1 = [ 1 4 ];
 %            [G3,indexes,numnewnodes] = mergegraph(G1,G2,nodenumbers2_1);
 %            lower_right = G2(indexes.lower_right);
-%            lower_left = zeros(numnewnodes,size(G1,1));
-%            upper_right = zeros(size(G1,1),numnewnodes);
+%            lower_left = inf(numnewnodes,size(G1,1));
+%            upper_right = inf(size(G1,1),numnewnodes);
 %            lower_left(indexes.lower_left.merged) = G2(indexes.lower_left.G2);
 %            upper_right(indexes.upper_right.merged) = G2(indexes.upper_right.G2);
 %            G4 = [ G1 upper_right; lower_left lower_right ];
@@ -66,16 +67,17 @@ end
 lower_right = G2([newnodes_index],[newnodes_index]);
 indexes.lower_right = sub2ind(size(G2),[newnodes_index],[newnodes_index]);
 
-lower_left = zeros(numel(newnodes),n1);
+lower_left = inf(numel(newnodes),n1);
 lower_left( (newnodes-n1),oldnodes ) = G2( [newnodes_index], [oldnodes_index] );
 
 indexes.lower_left.G2 = [];
+
 if ~isempty(oldnodes),
 	indexes.lower_left.merged = sub2ind(size(lower_left),(newnodes-n1),oldnodes);
 	indexes.lower_left.G2 =     sub2ind(size(G2),[newnodes_index], [oldnodes_index] );
 end;
 
-upper_right = zeros(n1,numel(newnodes));
+upper_right = inf(n1,numel(newnodes));
 upper_right( oldnodes, (newnodes-n1)) = G2( [oldnodes_index], [newnodes_index] );
 
 indexes.upper_right.G2 = [];
