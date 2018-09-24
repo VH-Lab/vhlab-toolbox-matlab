@@ -7,7 +7,7 @@ function b = dropnan(a)
 % all non-NaN entries of A but will exclude NaN entries.
 %
 
-if min(size(A))~=1,
+if min(size(a))~=1,
 	error(['This function requires a vector as input.']);
 end
 
