@@ -3,9 +3,9 @@ function dirname = config_dirname
 %
 %  DIRNAME = CONFIG_DIRNAME
 %
-%  Defines the default location for configuration files for vhlab_mltbx_toolbox.
+%  Defines the default location for configuration files for vhlab-toolbox-matlab.
 %  By default, the location is in a directory called 'vhlab_configuration' that 
-%  is located in the same directory as vhlab_mltbx_toolbox. 
+%  is located in the same directory as vhlab-toolbox-matlab. 
 %
 %  If the DIRNAME does not exist, it is created and added to the current Matlab path.
 
