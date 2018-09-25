@@ -10,7 +10,10 @@ function [v, fr, stimid, timepoints, vm_baselinesubtracted] = voltage_firingrate
 %    VM   is a vector of samples of absolute voltage measurement, should have spikes removed
 %    SPIKETIMES is a vector of spike times (in units of t, should be seconds)
 %
+% V and FR are paired, binned observations of voltage and firing rate,
+% and TIMEPOINTS are the mid-point values of the bins in time.
 % STIMID is a vector containing the stimulus id of each V,FR pair.
+% VM_BASELINESUBTRACTED is the voltage waveform with baseline values subtracted.
 %
 % This function can be modified by additional parameter name/value pairs:
 % Parameter name (default value)  | Description
@@ -30,8 +33,6 @@ function [v, fr, stimid, timepoints, vm_baselinesubtracted] = voltage_firingrate
 %                                 |    (Recommended for sharp electrode recordings, not receommended
 %                                 |    for patch recordings.)
 
-
-%error('untested, still in development');
 
 binsize = 0.030; 
 fr_smooth = [];
@@ -65,6 +66,9 @@ if isempty(stim_onsetoffsetid),
 	else,
 		stim_onsetoffsetid = [ t(1) t(end) 1 ];
 	end
+	median_ISI = 0;
+else,
+	median_ISI = median(diff(stim_onsetoffsetid(:,1)));
 end
 
   % Step 2: prepare the firing rate information, smoothing with Gaussian if needed
@@ -85,11 +89,15 @@ if ~isempty(vm_baseline_correct),
 
 	for i=1:size(stim_onsetoffsetid,1), % for each stimulus
 		sample_start = point2samplelabel(stim_onsetoffsetid(i,1),dt,t(1));
-		sample_stop = point2samplelabel(stim_onsetoffsetid(i,2),dt,t(1));
+		if i<size(stim_onsetoffsetid,1),
+			sample_stop = point2samplelabel(stim_onsetoffsetid(i+1,1)-vm_baseline_correct-dt,dt,t(1));
+		else,
+			sample_stop = numel(vm);
+		end
 
-		t_baseline = sample_start - vm_baseline_correct_samples;
-		baseline = mean(vm(t_baseline:sample_start-1));
-		vm(sample_start:sample_stop) = vm(sample_start:sample_stop) - baseline;
+		s_baseline = sample_start - vm_baseline_correct_samples;
+		baseline = mean(vm(s_baseline:sample_start-1));
+		vm(s_baseline:sample_stop) = vm(s_baseline:sample_stop) - baseline;
 	end
 end
 
@@ -112,7 +120,11 @@ for s = 1:numel(stimids),
 	do = find(stim_onsetoffsetid(:,3)==stimids(s));
 	for o=1:numel(do),
 		sample_start = point2samplelabel(stim_onsetoffsetid(do(o),1),dt,t(1));
-		sample_stop = point2samplelabel(stim_onsetoffsetid(do(o),2),dt,t(1));
+		if do(o)<numel(stimids),
+			sample_stop = point2samplelabel(stim_onsetoffsetid(do(o)+1,1)-dt-vm_baseline_correct,dt,t(1));
+		else,
+			sample_stop = point2samplelabel(stim_onsetoffsetid(do(o),2)+median_ISI,dt,t(1));
+		end
 		t_here = t(sample_start+(bin_samples-1)/2:bin_samples:sample_stop-(bin_samples-1)/2);
 		v_here = vm(sample_start+(bin_samples-1)/2:bin_samples:sample_stop-(bin_samples-1)/2);
 		fr_here = spikes(sample_start+(bin_samples-1)/2:bin_samples:sample_stop-(bin_samples-1)/2);

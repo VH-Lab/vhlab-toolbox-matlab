@@ -1,4 +1,4 @@
-function [h,htext]=plot_stimulus_timeseries(Y, stimon, stimoff, varargin)
+function [h,htext]=plot_stimulus_timeseries(y, stimon, stimoff, varargin)
 % PLOT_STIMULUS_TIMESERIES - plot the occurence of a stimulus or stimuli as a thick bar on a time series plot
 %
 % [H,HTEXT] = plot_stimulus_timeseries(Y, STIMON, STIMOFF, ...)
@@ -15,21 +15,21 @@ function [h,htext]=plot_stimulus_timeseries(Y, stimon, stimoff, varargin)
 %                                    |     STIMON/STIMOFF; if present, will be plotted
 %                                    |     Can also be a cell array of string names
 % linewidth (2)                      | Line size
-% linecolor ([1 1 1])                | Line color
+% linecolor ([0 0 0])                | Line color
 % FontSize (12)                      | Font size for text (if 'stimid' is present)
 % FontWeight ('normal')              | Font weight
-% FontColor([1 1 1])                 | Text default color
+% FontColor([0 0 0])                 | Text default color
 % textycoord (Y+1)                   | Text y coordinate
 % HorizontalAlignment ('center')     | Text horizontal alignment
 % 
 
 stimid = [];
 linewidth = 2;
-linecolor = [ 1 1 1];
+linecolor = [ 0 0 0];
 FontSize = 12;
 FontWeight = 'normal';
-FontColor = [1 1 1];
-textycoord = Y + 1;
+FontColor = [0 0 0];
+textycoord = y + 1;
 HorizontalAlignment = 'center';
 
 assign(varargin{:});
@@ -49,7 +49,7 @@ for i=1:numel(stimon),
 			stimstr = int2str(stimid(i));
 		end
 		htext(end+1) = text(xcoord, textycoord, stimstr);
-		set(htext(end),'fontweight',FontWeight,'fontsize',FontSize,'HorizontalAlignment', HorizontalAlignment, 'color', 'FontColor');
+		set(htext(end),'fontweight',FontWeight,'fontsize',FontSize,'HorizontalAlignment', HorizontalAlignment, 'color', FontColor);
 	end
 end
 
