@@ -1,7 +1,7 @@
-function [v, fr, stimid, timepoints, vm_baselinesubtracted] = voltage_firingrate_observations(t, vm, spiketimes, varargin)
+function [v, fr, stimid, timepoints, vm_baselinesubtracted, exactbintime] = voltage_firingrate_observations(t, vm, spiketimes, varargin)
 % VOLTAGE_FIRINGRATE_OBSERVATIONS - compile a list of voltage measurements and firing rate measurements
 %
-% [V,FR,STIMID,TIMEPOINTS,VM_BASELINESUBECTRACTED] = ...
+% [V,FR,STIMID,TIMEPOINTS,VM_BASELINESUBECTRACTED,EXACTBINTIME] = ...
 %          VOLTAGE_FIRINGRATE_OBSERVATIONS(T, VM, SPIKETIMES, ...)
 %
 % Compiles a list of membrane voltage measurements V and firing rate measurements FR given the
@@ -14,6 +14,7 @@ function [v, fr, stimid, timepoints, vm_baselinesubtracted] = voltage_firingrate
 % and TIMEPOINTS are the mid-point values of the bins in time.
 % STIMID is a vector containing the stimulus id of each V,FR pair.
 % VM_BASELINESUBTRACTED is the voltage waveform with baseline values subtracted.
+% EXACTBINTIME is the time interval of each bin exactly, which varies depending upon the sampling rate of Vm.
 %
 % This function can be modified by additional parameter name/value pairs:
 % Parameter name (default value)  | Description
@@ -53,6 +54,7 @@ timepoints = [];
 dt = t(2)-t(1);
 bin_samples = round(binsize/dt); % size of the bins in terms of samples
 if ~mod(bin_samples,2), bin_samples = bin_samples+1; end; % make sure it is odd
+exactbintime = bin_samples * dt;
 
   % Step 1: check validity of inputs before doing work
 
@@ -123,7 +125,7 @@ for s = 1:numel(stimids),
 		if do(o)<numel(stimids),
 			sample_stop = point2samplelabel(stim_onsetoffsetid(do(o)+1,1)-dt-vm_baseline_correct,dt,t(1));
 		else,
-			sample_stop = point2samplelabel(stim_onsetoffsetid(do(o),2)+median_ISI,dt,t(1));
+			sample_stop = min(point2samplelabel(stim_onsetoffsetid(do(o),2)+median_ISI,dt,t(1)),numel(vm));
 		end
 		t_here = t(sample_start+(bin_samples-1)/2:bin_samples:sample_stop-(bin_samples-1)/2);
 		v_here = vm(sample_start+(bin_samples-1)/2:bin_samples:sample_stop-(bin_samples-1)/2);

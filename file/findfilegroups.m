@@ -35,7 +35,7 @@ function filelist = findfilegroups(parentdir, fileparameters, varargin)
 %  Examples:
 %
 %      ffg_prefix = [userpath filesep 'tools' filesep 'vhlab-toolbox-matlab' ...
-%		filesep 'directory' filesep 'test_dirs' filesep]; % location of test directories
+%		filesep 'file' filesep 'test_dirs' filesep]; % location of test directories
 %
 %      % finds all files with '.ext' extension.
 %      fileparameters = {'.*\.ext\>'};
