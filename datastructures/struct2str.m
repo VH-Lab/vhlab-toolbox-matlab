@@ -34,6 +34,9 @@ function str = struct2str(thestruct, varargin)
 %  precision               | Precision we should use for mat2str (default 15)
 %                          |    (this is the number of digits we should use)
 %                      
+%
+% See also: STRUCT2CHAR, CHAR2STRUCT, MLSTR2VAR
+%
 
   % extra options someone might want to add: 
   %    ignorefields  -- ignore certain field names

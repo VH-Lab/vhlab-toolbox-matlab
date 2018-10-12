@@ -15,9 +15,9 @@ function saveStructArray(fname,gdi,header)
 %
 %   Any existing FILENAME is overwritten.
 %
-%   Originally by Ken Sugino
+%   Originally from Ken Sugino
 %
-%   See also: LOADSTRUCTARRAY, STRUCT
+%   See also: LOADSTRUCTARRAY, STRUCT, TABSTR2STRUCT
 %   
 
 if nargin == 2
@@ -41,8 +41,9 @@ if header == 1
 end
 
 for i=1:length(gdi)
-	s = struct2char(gdi(i));
+	s = struct2tabstr(gdi(i));
 	fprintf(fid,'%s\n',s);
 end
 
 fclose(fid);
+
