@@ -28,8 +28,12 @@ for i=1:length(fn)
 	f = getfield(a,fn{i});
 	if ischar(f)
 		s = [s char(9) f];
-	else
-		s = [s char(9) mat2str(f)];
+    else
+        try,
+    		s = [s char(9) mat2str(f)];
+        catch,
+            error(['field not character or numeric: ' fn{i} ' is ' class(f) '.']);
+        end;
 	end
 end
 

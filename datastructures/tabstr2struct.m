@@ -14,9 +14,9 @@ function a = tabstr2struct(s,fields)
 %   a) If the string happens to have two '/' fields, then it is assumed to be a date and is interpreted as
 %      a string.
 % 
-%   b) If the string should happen to be 'struct', then it is assumed that the
-%      user wants to specify the string 'struct' rather than an empty matlab 
-%      structure (STR2NUM('struct') yields an empty structure).
+%   b) If the string should happen to be correspond to a non-numeric object in Matlab,
+%      we assume the user wants to specify the string rather than an empty matlab 
+%      type (for example, STR2NUM('struct') yields an empty structure).
 %
 % See also: LOADSTRUCTARRAY, SAVESTRUCTARRAY, DLMREAD, DLMWRITE, STRUCT2TABSTR
 %
@@ -35,10 +35,13 @@ for i=1:length(fields)
 
 	if numel(find(t=='/')) > 1, % assume it is a date, pass as string
 		u = []; 
-	elseif strcmp(t,'struct'), % we assume the user wants the string 'struct'
-		u = [];
 	else,
 		u = str2num(t);
+		if ~isempty(u),
+			if ~isnumeric(u),
+				u = [];
+			end
+		end
 	end
 
 	if ~isempty(u)
