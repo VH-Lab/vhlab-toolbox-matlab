@@ -15,3 +15,4 @@ dim = fread(fid,1,'uint8'); % dimensions, limit of 255 dimensions
 sz = fread(fid,dim,'uint32'); % size
 mat = fread(fid, prod(sz), cn);
 mat = reshape(mat,sz(:)');
+mat = feval(cn,mat);

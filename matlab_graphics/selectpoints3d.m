@@ -20,12 +20,12 @@ function inside = selectpoints3d(pts3d)
 %  Example:
 %     pts = randn(30,3);
 %     figure;
-%     plot3(pts(:,1),pts(:,2),pts(:,3),'ko');
+%     plot3(pts(:,1),pts(:,2),pts(:,3),'ko'); drawnow();
 %     % change the view, maybe use the rotate3d tool
 %     inside = selectpoints3d(pts'); % need to transpose to column vectors
 %     hold on;
 %     indexes = find(inside);
-%     plot3(pts(indexes,1),pts(indexes,2),pts(indexes,3),'rs'); % add red x to selected points
+%     plot3(pts(indexes,1),pts(indexes,2),pts(indexes,3),'bs'); % add red x to selected points
 %     % look around with rotate3d tool to make sure it is right
 %
 %

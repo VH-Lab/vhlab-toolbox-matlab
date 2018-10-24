@@ -128,16 +128,17 @@ if startsWith(lower(codingregion), lower('STRUCT')) | startsWith(lower(codingreg
 			for j=1:numel(structonsets),
 				%entrystring(structonsets(j):structoffsets(j))
 				eval(['vnew(1).' fieldnames_values{j} '=mlstr2var(entrystring(structonsets(j):structoffsets(j)));']);
-			end
+            end
+		    v(end+1) = vnew;
 		end
-		v(end+1) = vnew;
+
 	else,
 		for i=1:numel(onsets),
 			v{i} = mlstr2var(dataregion(onsets(i):offsets(i)));
 		end
-	end
-
-	v = reshape(v,sizemat);
+    end
+    
+    v = reshape(v,sizemat);
 elseif codingregion(1)=='''',
 	% import char
 	if codingregion(end)~='''',
