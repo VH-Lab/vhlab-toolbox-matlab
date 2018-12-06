@@ -11,7 +11,8 @@ function writevhlvdatafile(filename, header, data, varargin)
 % DATA should be channel data; each column should contain data from a single channel.
 %
 % If the header file in .vlh format does not exist, then it is written
-% using the information in HEADER and FILENAME.
+% using the information in HEADER and FILENAME. The header field
+% 'Multiplexed' is updated to be 1.
 %
 % One can provide optional name/value pairs:
 % PARAMETER (default value)        | Description
@@ -29,6 +30,8 @@ assign(varargin{:});
 
 [mypath,myname,myext] = fileparts(filename);
 myoutputfile = fullfile(mypath,[myname '.vld']);
+
+header.Multiplexed = 1;
 
 if ~exist(fullfile(mypath,[myname '.vlh']),'file'),
 	writevhlvheaderfile(header,fullfile(mypath,[myname '.vlh']));
