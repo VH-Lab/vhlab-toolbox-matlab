@@ -1,13 +1,53 @@
 classdef dumbjsondb 
 	% DUMBJSONDB - a very simple and slow JSON-based database with optional binary files
-
+	%
+	%
+	%
+	% Example: Create and test a DUMBJSONDB object in the current directory.
+	%      % create a new db
+	%      db = dumbjsondb('new',[pwd filesep 'mydb.json']);
+	%
+	%      % add some new entries
+	%      for i=1:5,
+	%          a.id = 2000+i;
+	%          a.value = i;
+        %          db.add(a);
+	%      end;
+	%     
+	%      % read latest version of all the entries
+	%      ids = db.alldocids;
+	%      for i=1:numel(ids), 
+	%           db.read(ids{i}), % display the entry
+	%      end
+	%      
+	%     % remove an entry
+	%     db.remove(2002);
+	%
+	%     % remove all entries
+	%      ids = db.alldocids;
+	%      for i=1:numel(ids), 
+	%           db.remove(ids{i}) % remove the entry
+	%      end
+	%
+	%      % update 2005 to new version, saving old version
+	%      a.value = 20;
+	%      db.add(a,'Overwrite',2); % will automatically update version number
+	%
+	%      % read first and latest version of all the entries
+	%      ids = db.alldocids;
+	%      for i=1:numel(ids), 
+	%           disp(['0th version:']);
+	%           db.read(ids{i},0), % display the 0th version
+	%           disp(['Latest version:']);
+	%           db.read(ids{i}), % display the entry
+	%      end
+	
 
 	properties (SetAccess=protected, GetAccess=public)
 		paramfilename            % The full pathname of the parameter file
 		dirname                  % The directory name where files are stored (same directory as parameter file)
 		unique_object_id_field   % The field of each object that indicates the unique ID for each database entry
 		hasbinaryfilefield       % The field of each object that indicates whether the entry has a binary file ('' for none)
-		versionfield             % The field of each object that indicates the version ('' for none)
 	end % properties
 
 	methods
@@ -31,15 +71,14 @@ classdef dumbjsondb
 				paramfilename = '';
 				dirname = '.dumbjsondb';
 				unique_object_id_field = 'id';
-				hasbinaryfilefield = 'hasbinaryfile';
-				versionfield = '';
+				hasbinaryfilefield = '';
 
 				if nargin>0,
 					command = varargin{1};
 				end;
 
 				switch lower(command),
-					case 'new',
+					case 'new', % create a new object
 						paramfilename = varargin{2};
 						if nargin>2,
 							try,
@@ -53,7 +92,7 @@ classdef dumbjsondb
 							eval(['dumbjsondb_obj. ' p{i} ' = eval([p{i}]);']);
 						end
 						writeparameters(dumbjsondb_obj);
-					case 'load',
+					case 'load',  % load object from file
 						openfile = varargin{2};
 						dumbjsondb_obj = loadparameters(dumbjsondb_obj, openfile);
 					case '',
@@ -65,6 +104,341 @@ classdef dumbjsondb
 						error(['Invalid command: ' command]); 
 				end
 		end % dumbjsondb()
+
+		function dumbjsondb_obj = add(dumbjsondb_obj, doc_object, varargin)
+			% ADD - add a document to a DUMBJSONDB
+			%
+			% DUMBJSONDB_OBJ = ADD(DUMBJSONDB_OBJ, DOC_OBJECT, ....)
+			%
+			% Add a document to the database DUMBJSONDB_OBJ.
+			%
+			% DOC_OBJECT should be a Matlab object. It will be encoded to a JSON
+			% representation and saved.
+			%
+			% This function also accepts name/value pairs that modify the adding behavior:
+			% Parameter (default)           | Description
+			% ---------------------------------------------------------------------------
+			% 'Overwrite' (1)               | Use 1 to overwrite current version
+			%                               |   0 to return an error instead of overwriting
+			%                               |   2 to add the document as a new version
+			% 'doc_version' (latest)        | Use a specific number to write a specific version
+				Overwrite = 1;
+				[doc_unique_id, doc_binary] = docstats(dumbjsondb_obj, doc_object);
+				doc_version = dumbjsondb_obj.latestdocversion(doc_unique_id);
+				assign(varargin{:});
+
+				% does file already exist?
+				p = dumbjsondb_obj.documentpath();
+				f = dumbjsondb.uniqueid2filename(doc_unique_id, doc_version);
+
+				fileexist = exist([p f],'file');
+
+				we_know_we_have_latest_version = []; % we will assign this below
+
+				can_we_write = 0;
+				if ~fileexist, % we are writing for the first time
+					we_know_we_have_latest_version = 1;
+					can_we_write = 1;
+				else, 
+					if Overwrite==1, %write away, whether it exists or not
+						can_we_write = 1;
+						we_know_we_have_latest_version = 1;
+					elseif Overwrite==0, % do not overwrite
+						versstring = [];
+						if ~isempty(version),
+							versstring = [' and version ' num2str(doc_version) ' '];
+						end
+						error(['Document with document id ' doc_unique_id ' versstring ' already exists, overwrite was not permitted by user request.']);
+					elseif Overwrite==2, % increment version
+						v = dumbjsondb_obj.docversions(doc_unique_id);
+						doc_version = max(v) + 1;
+						can_we_write = 1;
+						we_know_we_have_latest_version = 1;
+					else,
+						error(['Unknown Overwrite mode: ' num2str(Overwrite) '.']);
+					end
+				end
+
+				if can_we_write,
+					writeobject(dumbjsondb_obj, doc_object, doc_unique_id, doc_version, doc_binary, we_know_we_have_latest_version);
+				end
+		end % add()
+
+		function document = read(dumbjsondb_obj, doc_unique_id, doc_version)
+			% READ the JSON document corresponding to a particular document unique id
+			%
+			% DOCUMENT = READ(DUMBJSONDB_OBJ, DOC_UNIQUE_ID[, VERSION])
+			%
+			% Reads and decodes the document corresponding to the document unique id
+			% DOC_UNIQUE_ID.
+			%
+			% If VERSION is provided, then the requested version is read. If it is not
+			% provided, then the latest version is provided. VERSION can be between 0 and
+			% hex2dec('FFFFF').
+			%
+				doc_unique_id = dumbjsondb.fixdocuniqueid(doc_unique_id); % make sure it is a string
+				if nargin<3,
+					doc_version = [];
+				end;
+
+				if isempty(doc_version), % read latest
+					v = dumbjsondb_obj.docversions(doc_unique_id);
+					doc_version = max(v);
+					document = dumbjsondb_obj.read(doc_unique_id,doc_version);
+				else, % read specific version
+					p = dumbjsondb_obj.documentpath();
+					f = dumbjsondb.uniqueid2filename(doc_unique_id, doc_version);
+					if exist([p f],'file'),
+						t = textfile2char([p f]); % dev note: should this go in separate function? maybe
+						document = jsondecode(t);
+					else,
+						document = []; % no such document
+					end;
+				end
+		end % read()
+
+		function doc = remove(dumbjsondb_obj, doc_unique_id, version)
+			% REMOVE or delete the JSON document corresponding to a particular document unique id
+			%
+			% DOC = REMOVE(DUMBJSONDB_OBJ, DOC_UNIQUE_ID, VERSION)
+			%
+			% Removes the document corresponding to the document unique id
+			% DOC_UNIQUE_ID and version VERSION.
+			%
+			% If VERSION is provided, then the requested version is removed. If it is not
+			% provided, or is equal to the string 'all', then ALL versions are deleted.
+			%
+				if nargin<3,
+					version = 'all';
+				end;
+
+				if strcmp(lower(version),'all'),
+					v = dumbjsondb_obj.docversions(doc_unique_id);
+					version = v;
+				end;
+
+				% delete the versions requested
+
+				p = dumbjsondb_obj.documentpath();
+
+				for i=1:numel(version),
+					vfname = dumbjsondb.uniqueid2filename(doc_unique_id,version(i));
+					bfname = dumbjsondb.uniqueid2binaryfilename(doc_unique_id,version(i));
+
+					% delete the object file
+					if exist([p vfname],'file'),
+						delete([p vfname]);
+					end
+					% delete any binary data
+					if exist([p bfname],'file'),
+						delete([p bfname]);
+					end
+				end
+				if strcmp(version,'all'),
+					operation = 'Deleted all versions';
+				else,
+					operation = 'Deleted version';
+				end;
+
+				updatedocmetadata(dumbjsondb_obj, operation, [], doc_unique_id, version);
+		end % remove()
+
+		function doc_unique_id = alldocids(dumbjsondb_obj)
+			% ALLDOCIDS - return all doc unique id numbers for a DUMBJSONDB
+			%
+			% DOC_UNIQUE_ID = ALLDOCIDS(DUMBJSONDB_OBJ)
+			%
+			% Return a cell array of all document unique ID(s) (char strings) for the
+			% DUMBJSONDB object DUMBJSONDB_OBJ.
+			%
+				doc_unique_id = {};
+				d = dir([dumbjsondb_obj.documentpath() 'Object_id_*.txt']);
+				for i=1:numel(d),
+					mystr = sscanf(d(i).name,'Object_id_%s');
+					if ~isempty(mystr),
+						doc_unique_id{end+1} = mystr(1:end-4); % drop '.txt'
+					end;
+				end
+		end % alldocids()
+
+		function v = docversions(dumbjsondb_obj, doc_unique_id)
+			% DOCVERSIONS - find all document versions for a DUMBJSONDB
+			%
+			% V = DOCVERSIONS(DUMBJSONDB_OBJ, DOC_UNIQUE_ID)
+			%
+			% Return all version numbers for a given DUMBJSONDB and a
+			% DOC_UNIQUE_ID.
+			%
+			% Documents without version control that exist have version 0.
+			%
+			% V will be an array of integers with all version numbers. If there are no
+			% documents that match DOC_UNIQUE_ID, then empty is returned.
+			% 
+				v = [];
+				fname = dumbjsondb.uniqueid2filename(doc_unique_id,0);
+				fnamesearch = strrep(fname, '00000', '*');
+				fnamescanf  = strrep(fname, '00000', '%s');
+				p = dumbjsondb_obj.documentpath();
+				d = dir([p fnamesearch]);
+				for i=1:numel(d),
+					mystr = sscanf(d(i).name, fnamescanf);
+					if ~isempty(mystr),
+						v_string = mystr(1:end-5); % drop extension
+						v(end+1) = hex2dec(v_string);
+					end
+				end
+		end % docversions()
+
+		function [L,v] = latestdocversion(dumbjsondb_obj, doc_unique_id)
+			% LATESTDOCVERSION - return most recent documnet version number
+			%
+			% [L, V] = LATESTDOCVERSION(DUMBJSONDB_OBJ, DOC_UNIQUE_ID)
+			%
+			% Return the latest version (L) of the document with the document unique ID equal to 
+			% DOC_UNIQUE_ID. A full array of available version numbers V is also returned.
+			% If there are no versions, L is empty.
+			%
+			% See also: DUMBJSONDB/DOCVERSIONS
+			%
+				v = dumbjsondb_obj.docversions(doc_unique_id);
+				if ~isempty(v),
+					L = max(v);
+				else,
+					L = [];
+				end;
+		end % latestdocversion()
+
+		function [doc_unique_id, docbinaryfile] = docstats(dumbjsondb_obj, document_obj)
+			% DOCSTATS - document stats including document version and whether or not the document has a binary file
+			%
+			% [DOC_UNIQUE_ID, DOCBINARYFILE] = DOCSTATS(DUMBJSONDB_OBJ, DOCUMENT_OBJ)
+			%
+			% Returns several pieces of information about the Matlab structure/object DOCUMENT_OBJ:
+			%
+			% DOC_UNIQUE_ID is the document unique id (specified in the property 'document_unique_id' of
+			%      DUMBJSONDB_OBJ).
+			% DOCBINARYFILE is 1 if and only if DOC has the field specified in property 'hasbinaryfilefield'
+			%      and the value is 1; otherwise DOCBINARYFILE is 0.
+			%
+				doc_unique_id = eval(['document_obj.' dumbjsondb_obj.unique_object_id_field ';']);
+				doc_unique_id = dumbjsondb.fixdocuniqueid(doc_unique_id);
+				docbinaryfile = 0;
+				if ~isempty(dumbjsondb_obj.hasbinaryfilefield),
+					try,
+						docbinaryfile = eval(['document_obj.' dumbjsondb_obj.hasbinaryfilefield ';']);
+					catch,
+						docbinaryfile = 0; % assume no entry means 0
+					end
+				end
+		end %docstats()
+
+	end; % public methods
+
+	methods (Access=protected) % only available to subclasses
+		function writeobject(dumbjsondb_obj, doc_object, doc_unique_id, doc_version, doc_binary, islatest)
+			% WRITEOBJECT - write an object to the database, called by add
+			%
+			% WRITEOBJECT(DUMBJSONDB_OBJ, DOC_OBJECT, DOC_UNIQUE_ID, DOC_VERSION, DOC_BINARY)
+			%
+			% Writes the object data for DOC_OBJECT to disk. DOC_UNIQUE_ID and DOC_VERSION specify
+			% the document unique id and document version, respectively. DOC_BINARY is 1 if the document
+			% should have a binary file. 
+			%
+				doc_unique_id = dumbjsondb.fixdocuniqueid(doc_unique_id);
+
+				% encode the document 
+				js = jsonencodenan(doc_object);
+				
+				% Write a) doc file 
+				%       b) meta data (if necessary)
+				%       c) create a blank binary file if necessary
+				
+				% a) the doc file
+				p = dumbjsondb_obj.documentpath();
+				docfile = dumbjsondb.uniqueid2filename(doc_unique_id, doc_version);
+				str2text([p docfile], js);
+
+				% b) the meta data file
+
+				dumbjsondb_obj.updatedocmetadata('Added new version', doc_object, doc_unique_id, doc_version);
+
+				% c) the binary file
+
+				if doc_binary, % just touch the file and leave it blank
+					fb = dumbjsondb.uniqueid2binaryfilename(doc_unique_id, doc_version);
+					fid=fopen([p f],'w');
+					fclose(fid);
+				end
+		end % writeobject()
+
+		function updatedocmetadata(dumbjsondb_obj, operation, document, doc_unique_id, doc_version)
+			% UPDATEDOCMETADATA - Update the metadata file(s) given that we just wrote or removed a document
+			%
+			% UPDATEDOCMETADATA(DUMBJSONDB_OBJ, OPERATION, DOCUMENT, DOC_UNIQUE_ID, DOC_VERSION)
+			%
+			% Updates the metadata file(s) given that we just wrote or removed a document from the database.
+			% DOCUMENT is the Matlab object that was just written (can be empty if removed), DOC_UNIQUE_ID 
+			% is the document unique ID, DOC_VERSION is the version that was just manupulated.
+			% OPERATION can be one of the following entries:
+			% Value                 | Description
+			% -------------------------------------------------------------------------------------------
+			% 'Added new version'   | Write a new metadata file with the latest version
+			% 'Overwrote version'   | Update the metadata file with the latest version
+			% 'Deleted version'     | Write a new metadata file that contains correct latest version number
+			% 'Deleted all versions'| Remove the metadata file
+			%
+			% In the future, it is expected that subclass databases may override this function to store more
+			% types of metadata to ease or speed searching.
+			%
+				p = dumbjsondb_obj.documentpath();
+				metafile = [p dumbjsondb.uniqueid2metafilename(doc_unique_id)];
+
+				switch(lower(operation)),
+					case lower('Added new version'),
+						% we need to write or update the metadata file with the latest version
+						str2text(metafile,mat2str(doc_version));
+					case lower('Overwrote version'),
+						% we don't need to do anything, but subclasses might
+					case lower('Deleted version'), % need to add the max version
+						v = dumbjsondb_obj.docversions(doc_unique_id);
+						if numel(v)>0, % we have a version
+							str2text(metafile,mat2str(max(v)));
+						else,
+							if exist(metafile,'file'),
+								delete(metafile);
+							end;
+						end;
+					case lower('Deleted all versions'), 
+						% if we know we deleted all versions, then we need to delete the metadata file
+						if exist(metafile,'file'),
+							delete(metafile);
+						end;
+					otherwise, 
+						error(['Unknown request.']);
+				end
+
+		end % updatedocmetadata
+
+		function [p] = documentpath(dumbjsondb_obj)
+			% DOCUMENTPATH - return the document path for a DUMBJSONDB
+			%
+			% P = DOCUMENTPATH(DUMBJSONDB_OBJ)
+			%
+			% Return the the full directory path to a DUMBJSONDB object. Ends in a 
+			% file separator.
+			%
+				p = [dumbjsondb_obj.path() filesep dumbjsondb_obj.dirname filesep];
+		end % documentpath()
+
+		function p = path(dumbjsondb_obj)
+			% PATH - the pathname of the paramfile for a DUMBJSONDB_OBJ
+			%
+			% P = PATH(DUMBJSONDB_OBJ)
+			%
+			% Returns the file path for the parameter file.
+			%
+				p = fileparts(dumbjsondb_obj.paramfilename);
+		end % path()
 
 		function b = writeparameters(dumbjsondb_obj)
 			% WRITEPARAMETERS - write the parameters file and create the document directory
@@ -129,250 +503,72 @@ classdef dumbjsondb
 				end
 		end % loadparameters()
 
-		function dumbjsondb_obj = add(dumbjsondb_obj, doc, varargin)
-			% ADD - add a document to a DUMBJSONDB
-			%
-			% DUMBJSONDB_OBJ = ADD(DUMBJSONDB_OBJ, DOC, ....)
-			%
-			% Add a document to the database DUMBJSONDB_OBJ.
-			%
-			% DOC should be a Matlab object. It will be encoded to a JSON
-			% representation and saved.
-			%
-			% This function also accepts name/value pairs that modify the adding behavior:
-			% Parameter (default)           | Description
-			% ---------------------------------------------------------------------------
-			% 'Overwrite' (1)               | Use 1 to overwrite current version
-			%                               |   0 to return an error instead of overwriting
-			%                               |   2 to add the document as a new version
-				Overwrite = 1;
-				assign(varargin{:});
+	end % methods protected
 
-				if Overwrite==2 & isempty(dumbjson_obj.versionfield),
-					error(['Use of Overwrite==2 not permitted without version field.']);
-				end
-				
-				[doc_unique_id, docversion, docbinaryfile] = docstats(dumbjsondb_obj, doc)
-				% does file already exist?
-				[p,f] = dumbjsondb_obj.resolvedocfilename(doc_unique_id, docversion);
+	methods (Static=true, Access=protected)
 
-				can_we_write = 0;
-				if isempty(f), % 
-					can_we_write = 1;
-				else,
-					if Overwrite==1, %write away, whether it exists or not
-						can_we_write = 1;
-					elseif Overwrite==0, % do not overwrite
-						versstring = [];
-						if ~isempty(version),
-							versstring = [' and version ' num2str(docversion) ' '];
-						end
-						error(['Document with document id ' doc_unique_id ' versstring ' already exists, overwrite was not requested.']);
-					elseif Overwrite==2, % increment version
-						[vf,v] = dumbjsondb_obj.versionfiles(doc_unique_id);
-						docversion = max(v) + 1;
-						eval(['doc.' dumbjsondb_obj.versionfield '=docversion;']);
-						can_we_write = 1;
-						f = dumbjsondb.uniqueid2filename(doc_unique_id, docversion);
-					else,
-						error(['Unknown Overwrite mode: ' num2str(Overwrite) '.']);
-					end
-				end
-
-				if can_we_write,
-					js = jsonencodenan(doc);
-					str2text([p f], js);
-					if docbinaryfile, % just touch the file and leave it blank
-						fb = dumbjsondb.uniqueid2binaryfilename(doc_unique_id, docversion);
-						fid=fopen([p f],'w');
-						fclose(fid);
-					end
-				end
-		end % add()
-
-		function doc = read(dumbjsondb_obj, doc_unique_id, version)
-			% READ the JSON document corresponding to a particular document unique id
+		function f = uniqueid2filenameprefix(doc_unique_id)
+			% UNIQUEID2FILENAMEPREFIX - return the beginning of the file name for document data/metadata
 			%
-			% DOC = READ(DUMBJSONDB_OBJ, DOC_UNIQUE_ID[, VERSION])
+			% F = UNIQUEID2FILENAMEPREFIX(DOC_UNIQUE_ID)
 			%
-			% Reads and decodes the document corresponding to the document unique id
-			% DOC_UNIQUE_ID.
+			% Return the beginning filename for a document given its DOC_UNIQUE_ID.  
+			% The filename contains the the DOC_UNIQUE_ID converted to a valid file name 
+			% using STRING2FILESTRING.
 			%
-			% If VERSION is provided, then the requested version is read. If it is not
-			% provided, then the latest version is provided. VERSION can be between 0 and
-			% hex2dec('FFFFF').
+			% F is therefore ['Object_id_' CONVERTED_DOC_UNIQUE_ID]
 			%
-
+			% See also: DUMBJSONDB/UNIQUEID2FILENAME, DUMBJSONDB/UNIQUEID2BINARYFILENAME, ...
+			%    DUMBJSONDB/UNIQUEID2METAFILENAME, STRING2FILESTRING
+			%
 				doc_unique_id = dumbjsondb.fixdocuniqueid(doc_unique_id);
-				if nargin<3,
-					version = [];
-				end;
+				f = string2filestring(doc_unique_id);
+				f = ['Object_id_' f];
+		end % uniqueid2filenameprefix
 
-				[p,f] = dumbjsondb_obj.resolvedocfilename(doc_unique_id, version);
+		function f = uniqueid2metafilename(doc_unique_id)
+			% UNIQUEID2METAFILENAME - return the meta file name for a document in DUMBJSONDB
+			%
+			% F = UNIQUE2METAFILENAME(DOC_UNIQUE_ID)
+			%
+			% Return the meta filename for a document given its DOC_UNIQUE_ID.  
+			% The filename contains the the DOC_UNIQUE_ID converted to a valid file name 
+			% using STRING2FILESTRING. The file extension is '.txt'.
+			%
+			% F is therefore ['Object_id_' CONVERTED_DOC_UNIQUE_ID '.txt' ];
+			%
+			% See also: DUMBJSONDB/UNIQUEID2FILENAME, DUMBJSONDB/UNIQUEID2BINARYFILENAME, DUMBJSONDB/UNIQUEID2FILENAMEPREFIX
+			%
+				f = [dumbjsondb.uniqueid2filenameprefix(doc_unique_id) '.txt'];
+		end % uniqueid2metafilename()
 
-				if iscell(f),
-					f = f{end}; % latest version
-				end;
-
-				t = textfile2char([p f]);
-				doc = jsondecode(t);
-		end % read()
-
-		function doc = remove(dumbjsondb_obj, doc_unique_id, version)
-			% REMOVE or delete the JSON document corresponding to a particular document unique id
-			%
-			% DOC = REMOVE(DUMBJSONDB_OBJ, DOC_UNIQUE_ID[, VERSION])
-			%
-			% Removes the document corresponding to the document unique id
-			% DOC_UNIQUE_ID.
-			%
-			% If VERSION is provided, then the requested version is removed. If it is not
-			% provided, then ALL versions are deleted.
-			%
-				if nargin<2,
-					version = [];
-				end;
-				[p,f] = dumbjsondb_obj.resolvedocfilename(doc_unique_id,version);
-
-				if ~iscell(f),
-					f = {f};
-				end;
-				for i=1:numel(f),
-					delete([p f{i}]);
-					try,
-						delete([p f{i} '.binary']);
-					end
-				end
-		end % remove()
-
-		function [p,f] = resolvedocfilename(dumbjsondb_obj, doc_unique_id, version)
-			% RESOLVEDOCFILENAME Find the file name of a JSON document corresponding to a particular document unique id
-			%
-			% [P,F] = RESOLVEDOCFILENAME(DUMBJSONDB_OBJ, DOC_UNIQUE_ID[, VERSION])
-			%
-			% Resolves the document file corresponding to the document unique id
-			% DOC_UNIQUE_ID and the path P.
-			%
-			% If VERSION is provided, then the requested version is provided. F is empty is there is
-			% no such version. If VERSION is not provided, then ALL versions are provided and F will
-			% be a cell array of strings.
-			%
-				if nargin<2,
-					version = [];
-				end;
-
-				p = [dumbjsondb_obj.path() filesep dumbjsondb_obj.dirname filesep];
-				if isempty(dumbjsondb_obj.versionfield),
-					if nargin>2,
-						if ~isempty(version),
-							error(['Database does not have version control but specific version was requested.']);
-						end
-					end
-					f = dumbjsondb.uniqueid2filename(doc_unique_id);
-				else,
-					if nargin>2, % specific version requested
-						f = dumbjsondb.uniqueid2filename(doc_unique_id,version);
-					else, % need all versions
-						f = versionfiles(dumbjsondb_obj,doc_unique_id);
-					end
-				end;
-		end % resolvedocfilename()
-
-		function [doc_unique_id, docversion, docbinaryfile] = docstats(dumbjsondb_obj, doc)
-			% DOCSTATS - document stats including document version and whether or not the document has a binary file
-			%
-			% [DOC_UNIQUE_ID, DOCVERSION, DOCBINARYFILE] = DOCSTATS(DUMBJSONDB_OBJ, DOC)
-			%
-			% Returns several pieces of information about the Matlab structure/object DOC:
-			%
-			% DOC_UNIQUE_ID is the document unique id (specified in the property 'document_unique_id' of
-			%      DUMBJSONDB_OBJ).
-			% DOCVERSION is the document version of DOC, or is empty if the 'verisionfield' property of
-			%      DUMBJSONDB_OBJ is empty.
-			% DOCBINARYFILE is 1 if and only if DOC has the field specified in property 'hasbinaryfilefield'
-			%      and the value is 1; otherwise DOCBINARYFILE is 0.
-			%
-				doc_unique_id = eval(['doc.' dumbjsondb_obj.unique_object_id_field ';']);
-				doc_unique_id = dumbjsondb.fixdocuniqueid(doc_unique_id);
-				docversion = [];
-				docbinaryfile = 0;
-				if ~isempty(dumbjsondb_obj.versionfield),
-					try,
-						docversion = eval(['doc.' dumbjsondb_obj.versionfield ';']);
-					catch,
-						docversion = 0;  % assume no entry means 0
-					end
-				end
-				if ~isempty(dumbjsondb_obj.hasbinaryfilefield),
-					try,
-						docbinaryfile = eval(['doc.' dumbjsondb_obj.hasbinaryfilefield ';']);
-					catch,
-						docbinaryfile = 0; % assume no entry means 0
-					end
-				end
-		end %docstats()
-
-		function [vf,v] = versionfiles(dumbjsondb_obj, doc_unique_id)
-			% VERSIONFILES - return all version files for a doc unique id of a DUMBJSONDB object
-			%
-			% [VF,V] = VERSIONS(DUMBJSONDB_OBJ, DOC_UNIQUE_ID)
-			%
-			% Returns all version files VF and version numbers V (integers) that are available for the document
-			% with DOC_UNIQUE_ID. If there is no version control or no versions, empty is returned.
-			%
-				vf = {};
-				v = [];
-				if isempty(dumbjsondb_obj.versionfield), 
-					return;
-				end;
-				f = dumbjsondb.uniqueid2filename(doc_unique_id);
-				p = [dumbjsondb_obj.path() filesep dumbjsondb_obj.dirname filesep];
-				[fn,ext]=fileparts(f);
-				newf = [fn '_v*' ext];
-				d = dir(newf);
-				vf = {d.name};
-				if nargout>1, % only do this if requested
-					for i=1:numel(d),
-						hex = d(i).name(numel(f)+3:numel(f)+3+5);
-						v(end+1) = hex2dec(hex);
-					end
-				end
-		end % versionfiles()
-
-		function p = path(dumbjsondb_obj)
-			% PATH - the pathname of the paramfile for a DUMBJSONDB_OBJ
-			%
-			% P = PATH(DUMBJSONDB_OBJ)
-			%
-			% Returns the file path for the parameter file.
-			%
-				p = fileparts(dumbjsondb_obj.paramfilename);
-		end % path()
-	end % methods
-
-	methods (Static)
 		function f = uniqueid2filename(doc_unique_id, version)
 			% UNIQUEID2FILENAME - return the filename for a document given its unique id
 			%
 			% F = UNIQUEID2FILENAME(DOC_UNIQUE_ID[, VERSION])
 			%
 			% Return the filename for a document given its DOC_UNIQUE_ID.  
-			% The filename is the DOC_UNIQUE_ID converted to a valid file name 
-			% using STRING2FILESTRING. If VERSION is present, then '_v#' is appended,
-			% where '#' is the hexadecimal version with 5 digits. The file extension is '.json'.
+			% The filename contains the the DOC_UNIQUE_ID converted to a valid file name 
+			% using STRING2FILESTRING and the VERSION number  '_v#' is appended, where
+			% '#' is the hexadecimal VERSION with 5 digits. The file extension is '.json'.
 			%
-			% See also: DUMBJSONDB/UNIQUEID2BINARYFILENAME, STRING2FILESTRING
+			% F is therefore ['Object_id_' HEXSTRING_DOC_UNIQUE_ID '_v#####.json'];
 			%
-				f = string2filestring(doc_unique_id);
-				if nargin>1,
-					if ~isempty(version),
-						if version > hex2dec('FFFFF'),
-							error(['Version number requested (' num2str(version) ') is larger than max: ' num2str(hex2dec('FFFFF')) '.']);
-						end
-						f = [f '_v' dec2hex(version,5)];
-					end
+			% If VERSION is not specified, it is assumed to be 0.
+			%
+			% See also: DUMBJSONDB/UNIQUEID2FILENAME, DUMBJSONDB/UNIQUEID2METAFILENAME, DUMBJSONDB/UNIQUEID2FILENAMEPREFIX
+			%
+				f = dumbjsondb.uniqueid2filenameprefix(doc_unique_id);
+				if nargin<2,
+					version = 0;
+				end;
+				if isempty(version),
+					version = 0;
+				end;
+				if version > hex2dec('FFFFF'),
+					error(['Version number requested (' num2str(version) ') is larger than max: ' num2str(hex2dec('FFFFF')) '.']);
 				end
-				f = [f '.json'];
+				f = [f '_v' dec2hex(version,5) '.json'];
 		end % uniqueid2filename()
 
 		function f = uniqueid2binaryfilename(doc_unique_id, version)
