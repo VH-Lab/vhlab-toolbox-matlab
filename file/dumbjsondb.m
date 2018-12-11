@@ -64,7 +64,6 @@ classdef dumbjsondb
 		paramfilename            % The full pathname of the parameter file
 		dirname                  % The directory name where files are stored (same directory as parameter file)
 		unique_object_id_field   % The field of each object that indicates the unique ID for each database entry
-		fidstruct                % A structure with open file identifiers for binary files
 	end % properties
 
 	methods
@@ -95,8 +94,6 @@ classdef dumbjsondb
 				if nargin>0,
 					command = varargin{1};
 				end;
-
-				fidstruct = emptystruct('doc_unique_id','doc_version','binaryfid','binarylockfid');
 
 				switch lower(command),
 					case 'new', % create a new object
@@ -289,6 +286,67 @@ classdef dumbjsondb
 				end;
 		end % openbinaryfile()
 
+		function [docs, doc_versions] = search(dumbjsondb_obj, scope, searchterms)
+			% SEARCH - perform a search of DUMBJSONDB documents
+			%
+			% [DOCS, DOC_VERSIONS] = SEARCH(DUMBJSONDB_OBJ, SCOPE, SEARCHTERMS)
+			%
+			% Performs a search of DUMBJSONDB_OBJ to find matching documents.
+			%
+			% SCOPE is a cell array of name/value pairs that modify the search
+			% scope:
+			% SCOPE parameter (default)    : Description
+			% ----------------------------------------------------------------------
+			% version ('latest')           : Which versions should be searched? Can be
+			%                              :   a specific number, 'latest', or 'all'
+			%
+			% SEARCHTERMS should be {'PARAM1', VALUE1, 'PARAM2', VALUE2, ... }
+			%
+			% The document parameters PARAM1, PARAM2 are examined for matches.
+			% If VALUEN is a string, then a regular expression
+			% is evaluated to determine the match. If valueN is not a string, then the
+			% the items must match exactly.
+			%
+			% DOCS is a cell array of JSON-decoded documents. DOC_VERSIONS is an array of
+			% the corresponding document versions.
+			%
+			% Case is not considered.
+			%
+			% Examples:
+			%      indexes = search(mydb, 'type','nsd_spikedata');
+			%      indexes = search(mydb, 'type','nsd_spike(*.)');
+			%
+			% See also: REGEXPI
+
+				docs = {};
+				doc_versions = [];
+
+				version = 'latest';
+				assign(scope{:});
+
+				docids = dumbjsondb_obj.alldocids();
+
+				for i=1:numel(docids),
+					if strcmpi(version,'latest'),
+						v_here = dumbjsondb_obj.docversions(docids{i});
+						v_here = max(v);
+					elseif strcmpi(version,'all'),
+						v_here = dumbjsondb_obj.docversions(docids{i});
+					else
+						v_here = version;
+					end;
+
+					for j=1:numel(v_here),
+						[doc_here, version_here] = dumbjsondb_obj.read(docids{i},v_here(j));
+
+						
+
+					end;
+
+				end
+
+
+		end % search()
 
 		function doc = remove(dumbjsondb_obj, doc_unique_id, version)
 			% REMOVE or delete the JSON document corresponding to a particular document unique id
