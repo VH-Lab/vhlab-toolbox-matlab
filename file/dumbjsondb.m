@@ -44,29 +44,27 @@ classdef dumbjsondb
 	%     end
 	%
 	%     % add binary information to binary file
-	%     [fid,lockfid] = db.openbinaryfile(2005);
+	%     [fid] = db.openbinaryfile(2005);
 	%     if fid>0,
 	%          fwrite(fid,'this is a test','char');
-	%          [fid,lockfid] = dumbjsondb.closebinaryfile(fid,lockfid);
+	%          [fid] = dumbjsondb.closebinaryfile(fid);
 	%     end
 	%     % read the binary file
-	%     [fid,lockfid] = db.openbinaryfile(2005);
+	%     [fid] = db.openbinaryfile(2005);
 	%     if fid>0,
-	%          fseek(fid,0,'bof');
+	%          fseek(fid,0,'bof'); % go to beginning of file
 	%          output=char(fread(fid,14,'char'))',
-	%          [fid,lockfid] = dumbjsondb.closebinaryfile(fid,lockfid);
+	%          [fid] = dumbjsondb.closebinaryfile(fid);
 	%     end
 	%
 	%     % remove all entries
-	%     ids = db.alldocids;
-	%     for i=1:numel(ids), 
-	%          db.remove(ids{i}) % remove the entry
-	%     end
+	%     db.clear('Yes');
 	
 	properties (SetAccess=protected, GetAccess=public)
 		paramfilename            % The full pathname of the parameter file
 		dirname                  % The directory name where files are stored (same directory as parameter file)
 		unique_object_id_field   % The field of each object that indicates the unique ID for each database entry
+		fidstruct                % A structure with open file identifiers for binary files
 	end % properties
 
 	methods
@@ -97,6 +95,8 @@ classdef dumbjsondb
 				if nargin>0,
 					command = varargin{1};
 				end;
+
+				fidstruct = emptystruct('doc_unique_id','doc_version','binaryfid','binarylockfid');
 
 				switch lower(command),
 					case 'new', % create a new object
@@ -227,10 +227,10 @@ classdef dumbjsondb
 				end
 		end % read()
 
-		function [fid, lockfid, doc_version] = openbinaryfile(dumbjsondb_obj, doc_unique_id, doc_version)
+		function [fid, doc_version] = openbinaryfile(dumbjsondb_obj, doc_unique_id, doc_version)
 			% OPENBINARYFILE - return the FID for the binary file associated with a DUMBJSONDB document
 			%
-			% [FID, LOCKFID, VERSION] = OPENBINARYFILE(DUMBJSONDB_OBJ, DOC_UNIQUE_ID[, DOC_VERSION])
+			% [FID, DOC_VERSION] = OPENBINARYFILE(DUMBJSONDB_OBJ, DOC_UNIQUE_ID[, DOC_VERSION])
 			%
 			% Attempts to obtain the lock and open the binary file associated with
 			% DOC_UNIQUE_ID and DOC_VERSION for reading/writing. If DOC_VERSION is not present,
@@ -238,20 +238,20 @@ classdef dumbjsondb
 			% are opened as such by OPENBINARYFILE. 
 			%
 			% If there is no such file, an error is generated. If the file is locked by another program,
-			% then FID and LOCKFID are -1.
+			% then FID is -1.
 			%
-			% File lock is achieved using CHECKOUT_LOCK_FILE. The LOCKFID is a file ID to an open file
-			% that must be closed and deleted after FID is closed so that other programs can use the file.
-			% This service is performed by CLOSEBINARYFILE.
+			% File lock is achieved using CHECKOUT_LOCK_FILE. The lock file must be closed and deleted
+			% after FID is closed so that other programs can use the file. This service is performed by
+			% CLOSEBINARYFILE.
 			%
 			% Example:
-			%      [fid,lockfid]=mydb.openbinaryfile(doc_unique_id);
-			%      if ~isempty(fid),
+			%      [fid]=mydb.openbinaryfile(doc_unique_id);
+			%      if fid>0,
 			%          try, 
 			%              % do something, e.g., fwrite(fid,'my data','char'); 
-			%              [fid,lockfid] = mydb.closebinaryfile(fid,lockfid);
+			%              [fid] = mydb.closebinaryfile(fid);
 			%          catch, 
-			%              [fid,lockfid] = mydb.closebinaryfile(fid,lockfid);
+			%              [fid] = mydb.closebinaryfile(fid);
 			%              error(['Could not do what I wanted to do.'])
 			%          end
 			%      end
@@ -265,24 +265,27 @@ classdef dumbjsondb
 				if nargin<3,
 					doc_version = [];
 				end;
-				[document,doc_version] = dumbjsondb_obj.read(doc_unique_id, doc_version);
+				[document, doc_version] = dumbjsondb_obj.read(doc_unique_id, doc_version);
+
+				% otherwise, we need to open one
+					
 				f = dumbjsondb.uniqueid2binaryfilename(doc_unique_id, doc_version);
 				p = dumbjsondb_obj.documentpath();
 
 				lockfilename = [p f '-lock'];
 				lockfid = checkout_lock_file(lockfilename);
 				if lockfid > 0,
+					fclose(lockfid);  % we have it, don't need to keep it open
 					fid = fopen([p f], 'a+', 'ieee-be'); % open in read/write mode
 					if fid > 0, % we are okay
-					else % need to close the lock file before reporting error
-						dumbjsondb.closebinaryfile(fid, lockfid);
+					else % need to close and delete the lock file before reporting error
 						fid = -1;
-						lockfid = -1;
-						error(['Could not obtain lock through file name ' lockfilename '.']); 
+						if exist(lockfilename,'file'),
+							delete(lockfilename);
+						end;
 					end;
 				else, % we can't obtain the lock but it's not an error, we have to try again later
 					fid = -1;
-					lockfid = -1;
 				end;
 		end % openbinaryfile()
 
@@ -297,6 +300,8 @@ classdef dumbjsondb
 			%
 			% If VERSION is provided, then the requested version is removed. If it is not
 			% provided, or is equal to the string 'all', then ALL versions are deleted.
+			%
+			% See also: DUMBJSONDB/CLEAR
 			%
 				if nargin<3,
 					version = 'all';
@@ -332,6 +337,31 @@ classdef dumbjsondb
 
 				updatedocmetadata(dumbjsondb_obj, operation, [], doc_unique_id, version);
 		end % remove()
+
+		function clear(dumbjsondb_obj, areyousure)
+			% CLEAR - remove/delete all records from a DUBMJSONDB
+			% 
+			% CLEAR(DUMBJSONDB_OBJ, [AREYOUSURE])
+			%
+			% Removes all documents from the DUMBJSONDB object.
+			% 
+			% Use with care. If AREYOUSURE is 'yes' then the
+			% function will proceed. Otherwise, it will not.
+			%
+			% See also: DUMBJSONDB/REMOVE
+
+				if nargin<2,
+					areyousure = 'no';
+				end;
+				if strcmpi(areyousure,'Yes')
+					ids = dumbjsondb_obj.alldocids;
+					for i=1:numel(ids), 
+						dumbjsondb_obj.remove(ids{i}) % remove the entry
+					end
+				else,
+					disp(['Not clearing because user did not indicate he/she is sure.']);
+				end;
+		end % clear
 
 		function doc_unique_id = alldocids(dumbjsondb_obj)
 			% ALLDOCIDS - return all doc unique id numbers for a DUMBJSONDB
@@ -735,45 +765,43 @@ classdef dumbjsondb
 
 	end; % methods (Static, protected)
 
-	methods (Static) % unprotected
+	methods (Static)
 
-		function [fid,lockfid] = closebinaryfile(fid, lockfid)
+		function fid = closebinaryfile(fid)
 			% CLOSEBINARYFILE - close and unlock the binary file associated with a DUMBJSONDB document
 			%
-			% [FID, LOCKFID] = CLOSEBINARYFILE(FID, LOCKFID)
+			% [FID] = CLOSEBINARYFILE(FID)
 			%
-			% Closes the binary file with file identifier FID and closes and deletes the lock file
-			% with file identifier LOCKFID.
+			% Closes the binary file associated with DUMBJSONDB that has file identifier FID
+			% and closes and deletes the lock file.
 			%
-			% FID and LOCKFID are set to -1 on exit.
+			% FID is set to -1 on exit.
 			%
 			% See also: DUMBJSONDB/OPENBINARYFILE, CHECKOUT_LOCK_FILE
 			%
-				if fid > 0,
-					try, 
-						fclose(fid);
-					end;
-				end;
-				try,
-					lockfilename = fopen(lockfid);
-					% test for valid lockfilename
-					validlockfilename = 0;
-					if numel(lockfilename)>5, 
-						if strcmp(lockfilename(end-4:end),'-lock'),
-							validlockfilename = 1;
-						end;
-					end;
+				[fname,perm] = fopen(fid);
 
-					if validlockfilename,
-						fclose(lockfid);
-						if exist(lockfilename,'file'),
-							delete(lockfilename);
-						end;
-					end;
-				end;
+				if numel(fname)>numel('.binary'),
+					if ~strcmpi(fname(end-6:end),'.binary'),
+						error(['This does not appear to be a DUMBJSONDB binary file: ' fname ]);
+					end
+				elseif isempty(fname),
+					return; % nothing to do, already closed;
+				end
+
+				% Step 1) close the file
+				fclose(fid);
 				fid = -1;
-				lockfid = -1;
+
+				% Step 2) delete the lockfile
+				lockfilename = [fname '-lock'];
+				if exist(lockfilename,'file'),
+					delete(lockfilename);
+				end;
+
 		end % closebinaryfile
+
 	end
+
 
 end % classdef dumbjsondb
