@@ -38,7 +38,9 @@ function str = struct2mlstr(thestruct, varargin)
 %  indentshift             | How much to indent sub-structures (default 5)
 %
 %
-%  See also: MLSTR2VAR, CELL2MLSTR, STRUCT2STR
+%  Consider also: JSONENCODE, JSONDECODE
+%
+%  See also: MLSTR2VAR, CELL2MLSTR, STRUCT2STR, JSONENCODE
 
 precision = 15;
 indent = 0;

@@ -11,21 +11,26 @@ classdef dumbjsondb
 	% each document). 
 	%
 	% Example: Create and test a DUMBJSONDB object in the current directory.
-	%      % create a new db
-	%      db = dumbjsondb('new',[pwd filesep 'mydb.json']);
+	%     % create a new db
+	%     db = dumbjsondb('new',[pwd filesep 'mydb.json']);
 	%
-	%      % add some new entries
-	%      for i=1:5,
-	%          a.id = 2000+i;
-	%          a.value = i;
-        %          db.add(a);
-	%      end;
+	%     % add some new entries
+	%     for i=1:5,
+	%         a.id = 2000+i;
+	%         a.value = i;
+        %         db.add(a);
+	%     end;
 	%     
-	%      % read latest version of all the entries
-	%      ids = db.alldocids;
-	%      for i=1:numel(ids), 
-	%           db.read(ids{i}), % display the entry
-	%      end
+	%     % read latest version of all the entries
+	%     ids = db.alldocids;
+	%     for i=1:numel(ids), 
+	%          db.read(ids{i}), % display the entry
+	%     end
+	%
+	%     % search for a document
+	%     [docs,doc_versions] = db.search({},{'value',5})
+	%     % search for a document that doesn't exist because '5' is a string
+	%     [docs,doc_versions] = db.search({},{'value','5'})
 	%      
 	%     % remove an entry
 	%     db.remove(2002);
@@ -286,10 +291,10 @@ classdef dumbjsondb
 				end;
 		end % openbinaryfile()
 
-		function [docs, doc_versions] = search(dumbjsondb_obj, scope, searchterms)
+		function [docs, doc_versions] = search(dumbjsondb_obj, scope, searchParams)
 			% SEARCH - perform a search of DUMBJSONDB documents
 			%
-			% [DOCS, DOC_VERSIONS] = SEARCH(DUMBJSONDB_OBJ, SCOPE, SEARCHTERMS)
+			% [DOCS, DOC_VERSIONS] = SEARCH(DUMBJSONDB_OBJ, SCOPE, SEARCHPARAMS)
 			%
 			% Performs a search of DUMBJSONDB_OBJ to find matching documents.
 			%
@@ -300,7 +305,7 @@ classdef dumbjsondb
 			% version ('latest')           : Which versions should be searched? Can be
 			%                              :   a specific number, 'latest', or 'all'
 			%
-			% SEARCHTERMS should be {'PARAM1', VALUE1, 'PARAM2', VALUE2, ... }
+			% SEARCHPARAMS should be {'PARAM1', VALUE1, 'PARAM2', VALUE2, ... }
 			%
 			% The document parameters PARAM1, PARAM2 are examined for matches.
 			% If VALUEN is a string, then a regular expression
@@ -329,7 +334,7 @@ classdef dumbjsondb
 				for i=1:numel(docids),
 					if strcmpi(version,'latest'),
 						v_here = dumbjsondb_obj.docversions(docids{i});
-						v_here = max(v);
+						v_here = max(v_here);
 					elseif strcmpi(version,'all'),
 						v_here = dumbjsondb_obj.docversions(docids{i});
 					else
@@ -338,14 +343,13 @@ classdef dumbjsondb
 
 					for j=1:numel(v_here),
 						[doc_here, version_here] = dumbjsondb_obj.read(docids{i},v_here(j));
-
-						
-
+						b = dumbjsondb.ismatch(doc_here, searchParams);
+						if b,
+							docs{end+1} = doc_here;
+							doc_versions(end+1) = version_here;
+						end; 
 					end;
-
 				end
-
-
 		end % search()
 
 		function doc = remove(dumbjsondb_obj, doc_unique_id, version)
@@ -820,6 +824,45 @@ classdef dumbjsondb
 					doc_unique_id = mat2str(doc_unique_id);
 				end;
 		end; % fixdocuniqueid()
+
+		function b = ismatch(document, searchParams)
+			% ISMATCH - is a document a match for the search parameters?
+			%
+			% B = ISMATCH(DOCUMENT, SEARCHPARAMS)
+			%
+			% Examines the fields of DOCUMENT to determine if there is a match.
+				b = 1;
+				for i=1:2:numel(searchParams),
+					hasit = 0;
+					try,
+						value = eval(['document.' searchParams{i} ';']);
+						hasit = 1;
+					end;
+					
+					if hasit,
+						% keep checking for matches
+						if ischar(searchParams{i+1}), % it is a regular expression
+							if ischar(value),
+								test = regexpi(value, searchParams{i+1}, 'forceCellOutput');
+								if isempty(test), % we do not have a match
+									b = 0;
+								end;
+							else, % value isn't even a string
+								b = 0;
+							end;
+						else, % we need an exact match
+							if ~eq(value,searchParams{i+1}),
+								b = 0;
+							end;
+						end;
+					else, % we don't even have the field
+						b = 0;
+					end;
+					if ~b,
+						break;
+					end;
+                                end;
+		end % ismatch()
 
 	end; % methods (Static, protected)
 

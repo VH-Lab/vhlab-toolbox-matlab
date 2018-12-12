@@ -19,7 +19,9 @@ function v = mlstr2var(mlstring)
 % /CELL>
 %
 %
-% See also: CELL2MLSTR, STRUCT2MLSTR
+% Consider also: JSONENCODE, JSONDECODE
+%
+% See also: CELL2MLSTR, STRUCT2MLSTR, JSONDECODE
 
 mlstring = strip(mlstring); % remove whitespace
 
