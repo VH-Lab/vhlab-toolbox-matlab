@@ -83,8 +83,13 @@ classdef dumbjsondb
 			% ----------------------------------------------------------------------------------------
 			% 'Load'                     | Second argument should be full path filename of the saved parameter file
 			% 'New'                      | Second argument should be full path filename of the saved parameter file, 
-			%                            |   arguments 3..N should be name/value pairs that override the default parameters
 			% (None)                     | Creates an empty object.
+			%
+			% This file also accepts additional name/value pairs for arguments 3..end. 
+			% Parameter (default)           | Description
+			% ----------------------------------------------------------------------------------------
+			% dirname ('.dumbjsondb')       | The directory name, relative to the parameter file
+			% unique_object_id_field ('id') | The field name in the database for the unique object identifier 
 			%
 			% See also: DUMBJSONDB, DUMBJSONDB/READ, DUMBJSONDB/REMOVE, DUMBJSONDB/DOCVERSIONS, DUMBJSONDB/ALLDOCIDS
 			%
@@ -106,6 +111,7 @@ classdef dumbjsondb
 						if nargin>2,
 							try,
 								assign(varargin{3:end});
+								who
 							catch,
 								error(['Extra arguments must come in name/value pairs (paramname and then value; see help namevaluepair).']);
 							end
@@ -114,6 +120,7 @@ classdef dumbjsondb
 						for i=1:numel(p),
 							eval(['dumbjsondb_obj. ' p{i} ' = eval([p{i}]);']);
 						end
+						dumbjsondb_obj,
 						writeparameters(dumbjsondb_obj);
 					case 'load',  % load object from file
 						openfile = varargin{2};
