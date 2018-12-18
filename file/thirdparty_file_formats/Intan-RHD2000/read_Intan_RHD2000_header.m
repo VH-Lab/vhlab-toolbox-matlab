@@ -22,11 +22,15 @@ function [header] = read_Intan_RHD2000_header(filename);
 % See also: READ_INTAN_RDH2000_DATAFILE
 %
 
-fid = fopen(filename, 'r');
-[dirname,fname]=fileparts(filename);
-s = dir(filename);
+fid = fopen(filename,'r');
+if fileid_value(fid)<0,
+	error(['Could not open filename ' filename_value(filename) ' for reading (check path, spelling, permissions).']);
+end;
+
+[dirname,fname,ext]=fileparts(filename);
+s = dir([dirname filesep fname ext]);
 if isempty(s),
-    error(['Could not find a file ' filename '; check spelling, permissions, extension']);
+    error(['Could not find a file ' filename_value(filename) '; check spelling, permissions, extension']);
 end;
 filesize = s.bytes;
 % Check 'magic number' at beginning of file to make sure this is an Intan

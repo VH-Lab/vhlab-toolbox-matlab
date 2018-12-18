@@ -99,8 +99,8 @@ c = find(ch);
 % NOW, WE KNOW WHAT TO READ, LET'S READ IT
 
 fid = fopen(filename,'r');
-if fid<0,
-	error(['Could not open filename ' filename ' for reading (check path, spelling, permissions).']);
+if fileid_value(fid)<0,
+	error(['Could not open filename ' filename_value(filename) ' for reading (check path, spelling, permissions).']);
 end;
 
  % now read the data 
