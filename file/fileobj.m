@@ -118,6 +118,225 @@ classdef fileobj < handle
 					fileobj_obj.fid = -1;
 				end;
 		end; %fclose()
+
+		function B = fseek(fileobj_obj, offset, reference)
+			% FSEEK - seek to a location within a FILEOBJ
+			%
+			% B = FSEEK(FILEOBJ_OBJ, OFFSET, REFERENCE)
+			%
+			% Seeks the file to the location OFFSET (in bytes) relative to
+			% REFERENCE. REFERENCE can be 
+			%     'bof' or -1   Beginning of file
+			%     'cof' or  0   Current position in file
+			%     'eof' or  1   End of file
+			%
+			% B is 0 on success and -1 on failure.
+			%
+			% See also: FSEEK, FILEOBJ/FTELL
+				b = -1;
+				if fileobj_obj.fid >=0,
+					b = fseek(fileobj_obj.fid,offset,reference);
+				end
+		end; % fseek
+
+		function location = ftell(fileobj_obj)
+			% FTELL - find current location within a FILEOBJ
+			%
+			% LOCATION = FTELL(FILEOBJ_OBJ)
+			%
+			% Returns the current location (in bytes) relative to the beginning of the
+			% file. If the query fails, -1 is returned.
+			%
+			% See also: FSEEK, FILEOBJ/FSEEK, FTELL
+				location = -1;
+				if fileobj_obj.fid >=0,
+					location = ftell(fileobj_obj.fid);
+				end
+		end; % ftell
+
+		function frewind(fileobj_obj)
+			% FREWIND - 'rewind' a FILEOBJ back to the beginning
+			%
+			% FREWIND(FILEOBJ_OBJ)
+			%
+			% Seeks to the beginning of the file.
+			%
+			% See also: FSEEK, FILEOBJ/FSEEK, FTELL
+
+				if fileobj_obj.fid >=0,
+					frewind(fileobj_obj.fid);
+				end
+		end; % frewind
+
+		function b = feof(fileobj_obj)
+			% FEOF - test to see if a FILEOBJ is at END-OF-FILE
+			%
+			% B = FEOF(FILEOBJ_OBJ)
+			%
+			% Returns 1 if FILEOBJ_OBJ is at its end of file, 0 otherwise.
+			%
+			% See also: FSEEK, FILEOBJ/FSEEK, FTELL
+
+				b = -1;
+				if fileobj_obj.fid >=0,
+					b = feof(fileobj_obj.fid);
+				end
+		end; % feof
+
+		function count = fwrite(fileobj_obj, data, precision, skip, machineformat)
+			% FWRITE - write data to a FILEOBJ
+			%
+			% COUNT = FWRITE(FILEOBJ_OBJ, DATA, [PRECISION], [SKIP], [MACHINEFORMAT])
+			%
+			% Attempts to write DATA elements with resolution PRECISION. If PRECISION is not 
+			% provided, then 'char' is assumed. If SKIP is provided, then SKIP is in number of bytes, unless
+			% PRECISION is in bits, in which case SKIP is in bits. MACHINEFORMAT is the machine format to use.
+			%
+			% See FWRITE for a full description of these input arguments.
+			%
+			% See also: FWRITE
+
+				if nargin<3,
+					precision = 'char';
+				end;
+				if nargin<4,
+					skip = 0;
+				end;
+				if nargin<5,
+					machineformat = fileobj_obj.machineformat;
+				end;
+				
+				count = 0;
+				if fileobj_obj.fid >=0,
+					count = fwrite(fileobj_obj.fid, data, precision, skip, machineformat);
+				end
+		end; % fwrite
+
+		function [data,count] = fread(fileobj_obj, count, precision, skip, machineformat)
+			% FREAD - read data from a FILEOBJ
+			%
+			% COUNT = FWRITE(FILEOBJ_OBJ, COUNT, [PRECISION], [SKIP], [MACHINEFORMAT])
+			%
+			% Attempts to read COUNT elements with resolution PRECISION. If PRECISION is not 
+			% provided, then 'char' is assumed. If SKIP is provided, then SKIP is in number of bytes, unless
+			% PRECISION is in bits, in which case SKIP is in bits. MACHINEFORMAT is the machine format to use.
+			%
+			% See FREAD for a full description of these input arguments.
+			%
+			% See also: FREAD
+
+				if nargin<3,
+					precision = 'char';
+				end;
+				if nargin<4,
+					skip = 0;
+				end;
+				if nargin<5,
+					machineformat = fileobj_obj.machineformat;
+				end;
+				
+				if fileobj_obj.fid >=0,
+					[data,count] = fread(fileobj_obj.fid, count, precision, skip, machineformat);
+				end
+		end; % fread
+
+		function tline = fgetl(fileobj_obj, nchar)
+			% FGETL - get a line from a FILEOBJ
+			%
+			% TLINE = FGETL(FILEOBJ_OBJ)
+			%
+			% Returns the next line (not including NEWLINE character) just like FGETL.
+			%
+			% See also: FGETL
+				tline = '';
+				if fileobj_obj.fid >=0,
+					tline = fgetl(fileobj_obj.fid);
+				end
+		end; % fgetl
+
+		function tline = fgets(fileobj_obj, nchar)
+			% FGETS - get a line from a FILEOBJ
+			%
+			% TLINE = FGETS(FILEOBJ_OBJ, [NCHAR])
+			%
+			% Returns the next line (including NEWLINE character) just like FGETS.
+			%
+			% See also: FGETS
+				tline = '';
+				if fileobj_obj.fid >=0,
+					if nargin<2,
+						tline = fgets(fileobj_obj.fid);
+					else,
+						tline = fgets(fileobj_obj.fid, nchar);
+					end;
+				end;
+		end; % fgets
+
+		function [message,errnum] = ferror(fileobj_obj, command)
+			% FERROR - return the last file error message for FILEOBJ
+			%
+			% [MESSAGE, ERRORNUM] = FERROR(FILEOBJ_OBJ, COMMAND)
+			%
+			% Return the most recent file error MESSAGE and ERRORNUM for
+			% the file associated with FERROR.
+			%
+				message='';
+				errnum=0;
+				if fileobj_obj.fid >= 0,
+					if nargin<2,
+						[message,errnum]=ferror(fileobj_obj.fid);
+					else,
+						[message,errnum]=ferror(fileobj_obj.fid,command);
+					end;
+				end;
+		end; % ferror
+
+		function [a, count] = fscanf(fileobj_obj, format, sizea)
+			% FSCANF - scan data from a FILEOBJ_OBJ
+			%
+			% [A,COUNT] = FSCANF(FID,FORMAT,[SIZEA])
+			%
+			% Call FSCANF (see FSCANF for inputs) for the file associated with
+			% FILEOBJ_OBJ.
+			%
+				a = [];
+				count = 0;
+				if fileobj_obj.fid >= 0,
+					if nargin<3,
+						[a, count] = fscanf(fileobj_obj.fid,format);
+					else,
+						[a, count] = fscanf(fileobj_obj.fid,format,sizea);
+					end;
+				end;
+		% end fscanf()
+
+		function [count] = fprintf(fileobj_obj, varargin)
+			% FPRINTF - print data to a FILEOBJ_OBJ
+			%
+			% [COUNT] = FPRINTF(FID,FORMAT,A, ...)
+			%
+			% Call FPRINTF (see FPRINTF for inputs) for the file associated with
+			% FILEOBJ_OBJ.
+			%
+				count = 0;
+				if fileobj_obj.fid >= 0,
+					count = fscanf(fileobj_obj.fid,varargin{:});
+				end;
+		% end fprintf()
+
+		function delete(fileobj_obj)
+			% DELETE - delete a FILEOBJ_OBJ, closing file first if need be
+			%
+			% DELETE(FILEOBJ_OBJ)
+			%
+			% Deletes the handle FILEOBJ_OBJ. If the file (FILEOBJ_OBJ.fid) is open,
+			% it is closed first.
+			%
+			% See also: HANDLE/DELETE, FILEOBJ/FCLOSE
+
+				fclose(fileobj_obj);
+				delete@handle(fileobj_obj);
+		end % delete()
 	end;
 
 end % classdef
