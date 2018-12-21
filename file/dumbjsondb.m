@@ -285,7 +285,7 @@ classdef dumbjsondb
 				lockfid = checkout_lock_file(lockfilename);
 				if lockfid > 0,
 					fclose(lockfid);  % we have it, don't need to keep it open
-					fid = fopen([p f], 'a+', 'ieee-be'); % open in read/write mode
+					fid = fopen([p f], 'a+', 'ieee-le'); % open in read/write mode, imopse little-endian for cross-platform compatibility
 					if fid > 0, % we are okay
 					else % need to close and delete the lock file before reporting error
 						fid = -1;
@@ -359,10 +359,10 @@ classdef dumbjsondb
 				end
 		end % search()
 
-		function doc = remove(dumbjsondb_obj, doc_unique_id, version)
+		function dumbjsondb_obj = remove(dumbjsondb_obj, doc_unique_id, version)
 			% REMOVE or delete the JSON document corresponding to a particular document unique id
 			%
-			% DOC = REMOVE(DUMBJSONDB_OBJ, DOC_UNIQUE_ID, VERSION)
+			% DUMBJSONDB_OBJ = REMOVE(DUMBJSONDB_OBJ, DOC_UNIQUE_ID, VERSION)
 			%
 			% Removes the document corresponding to the document unique id
 			% DOC_UNIQUE_ID and version VERSION.
@@ -373,6 +373,8 @@ classdef dumbjsondb
 			% See also: DUMBJSONDB/CLEAR
 			%
 				if nargin<3,
+					version = 'all';
+				elseif isempty(version),
 					version = 'all';
 				end;
 
@@ -851,7 +853,7 @@ classdef dumbjsondb
 						if ischar(searchParams{i+1}), % it is a regular expression
 							if ischar(value),
 								test = regexpi(value, searchParams{i+1}, 'forceCellOutput');
-								if isempty(test), % we do not have a match
+								if isempty(test{1}), % we do not have a match
 									b = 0;
 								end;
 							else, % value isn't even a string
@@ -887,26 +889,27 @@ classdef dumbjsondb
 			%
 			% See also: DUMBJSONDB/OPENBINARYFILE, CHECKOUT_LOCK_FILE
 			%
-				[fname,perm] = fopen(fid);
+				if fid>0,
+					[fname,perm] = fopen(fid);
 
-				if numel(fname)>numel('.binary'),
-					if ~strcmpi(fname(end-6:end),'.binary'),
-						error(['This does not appear to be a DUMBJSONDB binary file: ' fname ]);
+					if numel(fname)>numel('.binary'),
+						if ~strcmpi(fname(end-6:end),'.binary'),
+							error(['This does not appear to be a DUMBJSONDB binary file: ' fname ]);
+						end
+					elseif isempty(fname),
+						return; % nothing to do, already closed;
 					end
-				elseif isempty(fname),
-					return; % nothing to do, already closed;
+
+					% Step 1) close the file
+					fclose(fid);
+					fid = -1;
+
+					% Step 2) delete the lockfile
+					lockfilename = [fname '-lock'];
+					if exist(lockfilename,'file'),
+						delete(lockfilename);
+					end;
 				end
-
-				% Step 1) close the file
-				fclose(fid);
-				fid = -1;
-
-				% Step 2) delete the lockfile
-				lockfilename = [fname '-lock'];
-				if exist(lockfilename,'file'),
-					delete(lockfilename);
-				end;
-
 		end % closebinaryfile
 
 	end
