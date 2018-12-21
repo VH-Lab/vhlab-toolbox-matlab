@@ -860,7 +860,7 @@ classdef dumbjsondb
 								b = 0;
 							end;
 						else, % we need an exact match
-							if ~eq(value,searchParams{i+1}),
+							if ~eqlen(value,searchParams{i+1}),
 								b = 0;
 							end;
 						end;
