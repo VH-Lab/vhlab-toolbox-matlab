@@ -11,6 +11,9 @@ function v = vcard2struct(vcardfile)
 %
 % The file will be closed at the conclusion of reading it.
 %
+   % developer note: assumes parameter names are 'type', should read it
+   % need to look ahead to next line
+
 
 v = {};
 
@@ -30,7 +33,27 @@ while ~feof(fid),
 		v_here = struct([]);
 
 		while ~startsWith(lower(nextline),'end:vcard'),
+			% read the next line, which might consist of many file lines
 			nextline = fgetl(fid);
+			% continue to read lines that should be combined
+			linedone = 0;
+			loc = ftell(fid); % remember where we are
+			while linedone==0,
+				if ~feof(fid), % if we don't have EOF then keep going
+					loc = ftell(fid); % remember where we are
+					nextchar = fread(fid,1,'char'); % read a character
+					if nextchar==' ', % we need the line
+						nextnextline = fgetl(fid);
+						nextline = [nextline nextnextline];
+					else, % that line is something new, just go back
+						linedone = 1;
+						fseek(fid,loc,'bof');
+					end;
+				else,
+					linedone = 1;
+				end;
+			end;
+				
 			c = find(nextline==':');
 			d = find(nextline==';');
 			if isempty(c),
@@ -67,12 +90,17 @@ while ~feof(fid),
 					% too long, skip it
 				end;
 				s = struct([]);
-				s(1).type = {};
 				for i=2:numel(here),
 					e = find(here{i}=='=');
 					value = here{i}(e(1)+1:end);
 					value = strrep(value,char(39),char([39 39]));
-					eval(['s.type{i-1}=' ''''  value '''' ';']);
+					param = matlab.lang.makeValidName(here{i}(1:e(1)-1));
+					if isfield(s,param),
+						N = numel(getfield(s,param));
+					else,
+						N = 0;
+					end;
+					eval(['s(1).' param '{N+1}=' ''''  value '''' ';']);
 				end;
 				value = nextline(c(1)+1:end);
 				value = strrep(value,char(39),char([39 39]));
