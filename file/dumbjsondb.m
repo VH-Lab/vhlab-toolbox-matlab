@@ -119,7 +119,6 @@ classdef dumbjsondb
 						for i=1:numel(p),
 							eval(['dumbjsondb_obj. ' p{i} ' = eval([p{i}]);']);
 						end
-						dumbjsondb_obj,
 						writeparameters(dumbjsondb_obj);
 					case 'load',  % load object from file
 						openfile = varargin{2};
@@ -131,7 +130,7 @@ classdef dumbjsondb
 						end
 					otherwise,
 						error(['Invalid command: ' command]); 
-				end
+				end;
 		end % dumbjsondb()
 
 		function dumbjsondb_obj = add(dumbjsondb_obj, doc_object, varargin)
