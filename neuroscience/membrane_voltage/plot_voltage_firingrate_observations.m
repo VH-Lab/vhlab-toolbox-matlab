@@ -99,6 +99,9 @@ h = cat(1,h(:),h_here(:));
 h_here = plot(xlocs_spikes, ylocs_spikes, ['rx'] );
 h = cat(1,h(:),h_here(:));
 
+ylabel('Voltage (mV)');
+xlabel('Time (s)');
+title(['''o'' means no spikes in that bin, ''x'' means spikes in that bin']);
 [newh,newhtext]=plot_stimulus_timeseries(mean(v(inds)),stim_onsetoffsetid(:,1),...
 		stim_onsetoffsetid(:,2),'stimid',stim_onsetoffsetid(:,3));
 

@@ -111,7 +111,6 @@ classdef dumbjsondb
 						if nargin>2,
 							try,
 								assign(varargin{3:end});
-								who
 							catch,
 								error(['Extra arguments must come in name/value pairs (paramname and then value; see help namevaluepair).']);
 							end
