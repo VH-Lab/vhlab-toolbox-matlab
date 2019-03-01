@@ -7,7 +7,8 @@ function [data, total_samples, total_time] = read_Willow_datafile(filename, head
 % this is for data produced with the new 30 kHz gpio firmware
 % FILENAME is a string, the relative path to the H5 Willow file
 % CHANNEL_TYPE = 'time', 'amp', 'aux', 'supply', 'temp', 'din'
-% CHANNEL_NUMBERS is an array of channel numbers, e.g. 1:64
+% CHANNEL_NUMBERS is an array of channel numbers, e.g. 1:64. Available channels in Willow are 1..1024, and all
+% channels are always acquired.
 % T0,T1 is an inclusive time range in seconds, relative to the beginning of the file
 % everything is 1-indexed because matlab
 % channel_type = "adc" is not supported (returns error), because there are no adc converters
