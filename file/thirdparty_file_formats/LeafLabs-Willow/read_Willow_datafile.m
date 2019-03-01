@@ -14,12 +14,12 @@ function [data, total_samples, total_time] = read_Willow_datafile(filename, head
 % channel_type = "dout" is not supported (returns error), as any output pins are rolled into GPIO (din)
 %
 % example usage:
-%  data = read_Willow_datafile('snapshot_30kgpio.h5', 'time', 1, 0, 0.1);
-%  data = read_Willow_datafile('snapshot_30kgpio.h5', 'amp', 129:256, 0, 0.1);
-%  data = read_Willow_datafile('snapshot_30kgpio.h5', 'aux', 1:12, 0, 0.1); % 2khz
-%  data = read_Willow_datafile('snapshot_30kgpio.h5', 'supply', 1:4, 0, 0.1); % 2khz
-%  data = read_Willow_datafile('snapshot_30kgpio.h5', 'temp', 1:4, 0, 0.1); % 2khz
-%  data = read_Willow_datafile('snapshot_30kgpio.h5', 'din', [1,3,7], 0, 0.1);
+%  data = read_Willow_datafile('snapshot_30kgpio.h5', [], 'time', 1, 0, 0.1);
+%  data = read_Willow_datafile('snapshot_30kgpio.h5', [], 'amp', 129:256, 0, 0.1);
+%  data = read_Willow_datafile('snapshot_30kgpio.h5', [], 'aux', 1:12, 0, 0.1); % 2khz
+%  data = read_Willow_datafile('snapshot_30kgpio.h5', [], 'supply', 1:4, 0, 0.1); % 2khz
+%  data = read_Willow_datafile('snapshot_30kgpio.h5', [], 'temp', 1:4, 0, 0.1); % 2khz
+%  data = read_Willow_datafile('snapshot_30kgpio.h5', [], 'din', [1,3,7], 0, 0.1);
 %
 % CKC 20160209
 % SDV 20160211 - minor modifications, added header information
