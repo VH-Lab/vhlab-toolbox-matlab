@@ -29,6 +29,11 @@ function i_out = interval_add(i_in, i_add)
  
  % some error checking
 
+if isempty(i_in),
+	i_out = i_add;
+	return;
+end;
+
 if isempty(i_add),
 	i_out = i_in;
 	return;
