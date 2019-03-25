@@ -9,7 +9,7 @@ function [h,htext] = plot_voltage_firingrate_observations(v, fr, stimid, timepoi
 %      STIMID - stimulus IDs
 %  TIMEPOINTS - Timepoints that are averaged together
 %           T - time points of raw data
-%          VM - voltage measurements
+%          VM - voltage measurements of raw data
 %  SPIKETIMES - time of spiking events
 % 
 % This function can be modified by additional parameter name/value pairs:
@@ -24,11 +24,6 @@ function [h,htext] = plot_voltage_firingrate_observations(v, fr, stimid, timepoi
 %                                 |    where the times are in units of 't' (seconds)
 % dotrialaverage (0)              | If 1, perform a trial-averaging of the spike times
 %                                 |    and voltage waveform
-% vm_baseline_correct ([])        | If non-empty, perform a baseline correction of the
-%                                 |    voltage waveform using this much pre-stimulus 
-%                                 |    time (units of t, should be seconds).
-%                                 |    (Recommended for sharp electrode recordings, not receommended
-%                                 |    for patch recordings.)
 %
 % See also: VOLTAGE_FIRINGRATE_OBSERVATIONS
 
@@ -37,7 +32,6 @@ binsize = 0.030;
 fr_smooth = [];
 stim_onsetoffsetid = [];
 dotrialaverage = 0;
-vm_baseline_correct = [];
 
 assign(varargin{:});
 
@@ -111,6 +105,4 @@ box off
 
 h = cat(1,h(:),newh(:));
 htext = newhtext;
-
-return;
 

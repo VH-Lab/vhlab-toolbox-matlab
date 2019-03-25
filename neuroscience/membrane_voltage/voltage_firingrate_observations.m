@@ -33,6 +33,8 @@ function [v, fr, stimid, timepoints, vm_baselinesubtracted, exactbintime] = volt
 %                                 |    time (units of t, should be seconds).
 %                                 |    (Recommended for sharp electrode recordings, not receommended
 %                                 |    for patch recordings.)
+% vm_baseline_correct_func        | The function to use for correcting baseline (usually 'median' or 'mean').
+%             ('median')
 
 
 binsize = 0.030; 
@@ -40,6 +42,7 @@ fr_smooth = [];
 stim_onsetoffsetid = [];
 dotrialaverage = 0;
 vm_baseline_correct = [];
+vm_baseline_correct_func = 'median';
 
 assign(varargin{:});
 
@@ -71,6 +74,9 @@ if isempty(stim_onsetoffsetid),
 	median_ISI = 0;
 else,
 	median_ISI = median(diff(stim_onsetoffsetid(:,1)));
+	% are all stimuli in the time bounds? If not, jettison them
+	inbounds = find(stim_onsetoffsetid(:,1)-vm_baseline_correct-dt>=t(1) & stim_onsetoffsetid(:,2)<=t(end));
+	stim_onsetoffsetid = stim_onsetoffsetid(inbounds,:);
 end
 
   % Step 2: prepare the firing rate information, smoothing with Gaussian if needed
@@ -92,13 +98,14 @@ if ~isempty(vm_baseline_correct),
 	for i=1:size(stim_onsetoffsetid,1), % for each stimulus
 		sample_start = point2samplelabel(stim_onsetoffsetid(i,1),dt,t(1));
 		if i<size(stim_onsetoffsetid,1),
-			sample_stop = point2samplelabel(stim_onsetoffsetid(i+1,1)-vm_baseline_correct-dt,dt,t(1));
+			% sample_stop should be right before the start of the baselin correction period for the next stimulus
+			sample_stop = point2samplelabel(stim_onsetoffsetid(i+1,1),dt,t(1)) - vm_baseline_correct_samples - 1;
 		else,
 			sample_stop = numel(vm);
 		end
 
 		s_baseline = sample_start - vm_baseline_correct_samples;
-		baseline = mean(vm(s_baseline:sample_start-1));
+		baseline = feval(vm_baseline_correct_func, vm(s_baseline:sample_start-1));
 		vm(s_baseline:sample_stop) = vm(s_baseline:sample_stop) - baseline;
 	end
 end
