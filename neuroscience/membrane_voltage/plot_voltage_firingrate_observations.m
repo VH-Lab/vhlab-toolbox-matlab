@@ -1,4 +1,4 @@
-function [h,htext] = plot_voltage_firingrate_observations(v, fr, stimid, timepoints, vm_baselinesubtracted, t, vm, spiketimes, varargin)
+function [h,htext] = plot_voltage_firingrate_observations(v, fr, stimid, timepoints, vm_baselinesubtracted, t, vm, varargin)
 % PLOT_VOLTAGE_FIRINGRATE_OBSERVATIONS - plot a list of voltage-firing rate observations against real data
 %
 % [H,HTEXT] = PLOT_VOLTAGE_FIRINGRATE_OBSERVATIONS(V, FR, STIMID, TIMEPOINTS, VM_BASELINESUBTRACTED, T, VM, SPIKETIMES, ...)

@@ -1,5 +1,5 @@
 function [slope, threshold, curve, gof,fitinfo ] = linethresholdfit(x,y,varargin)
-% LINETHRESHOLDFIT - Fit a linear function, raised to a power, with a threshold
+% LINETHRESHOLDFIT - Fit a linear function with a threshold
 %
 %  [SLOPE, THRESHOLD, CURVE, GOF, FITINFO] = 
 %      LINETHRESHOLDFIT(X, Y, ...)
