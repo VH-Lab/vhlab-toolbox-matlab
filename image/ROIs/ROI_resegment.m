@@ -23,7 +23,7 @@ function [CC] = ROI_resegment(im, indexesnd, varargin)
 % 'use_bwdist' (0)                     | Should we use the binary distance transform for
 %                                      |   the ROI data (1), or the raw data from IM (0)?
 % 'connectivity'                       | The connectivity to use with the resegment algorithm.
-%   (CONNDEF(NDIMS(IM),'maximal'))     |   (See HELP WATERSHED)
+%   (CONNDEF(NDIMS(IM),'maximal'))     |   (See HELP WATERSHED). If 0 is given, default is used.
 % 'invert' (1)                         | If using raw data, multiply the image by -1
 %
 
@@ -34,6 +34,10 @@ connectivity = conndef(ndims(im),'maximal');
 invert = 1;
 
 assign(varargin{:});
+
+if connectivity == 0,
+	connectivity = conndef(ndims(im),'maximal');
+end
 
  % copy the ROI into a small piece of memory and get the mapping between our cube and the original ROI
 

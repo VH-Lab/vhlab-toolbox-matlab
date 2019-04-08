@@ -28,7 +28,7 @@ if fileid_value(fid)<0,
 end;
 
 [dirname,fname,ext]=fileparts(filename);
-s = dir([dirname filesep fname ext]);
+s = dir(fullfile(dirname,[fname ext]));
 if isempty(s),
     error(['Could not find a file ' filename_value(filename) '; check spelling, permissions, extension']);
 end;
