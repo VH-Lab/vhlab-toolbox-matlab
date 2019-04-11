@@ -8,9 +8,9 @@ function [indexesflared] = ROI_flare_indexes(indexes, imsize, n)
 %
 %  See also: IND2SUB, SUB2IND
 
-indexesflared = indexes;
+indexesflared = indexes(:);
 
-[i, j, k] = ind2sub(imsize,indexes);
+[i, j, k] = ind2sub(imsize,indexes(:));
 
 xrange = [-n:n];
 yrange = [-n:n];
