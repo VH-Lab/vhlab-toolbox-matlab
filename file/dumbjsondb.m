@@ -533,6 +533,9 @@ classdef dumbjsondb
 				
 				% a) the doc file
 				p = dumbjsondb_obj.documentpath();
+                if ~exist(p,'dir'), 
+                    mkdir(p);
+                end;
 				docfile = dumbjsondb.uniqueid2filename(doc_unique_id, doc_version);
 				dumbjsondb.docobject2file(doc_object, [p docfile]);
 
