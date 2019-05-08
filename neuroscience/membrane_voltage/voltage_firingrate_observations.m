@@ -103,7 +103,7 @@ if ~isempty(vm_baseline_correct),
 		else,
 			sample_stop = numel(vm);
 		end
-		sample_stop = point2samplelabel(stim_onsetoffsetid(i,2),dt,t(1));
+		%sample_stop = point2samplelabel(stim_onsetoffsetid(i,2),dt,t(1));
 
 		s_baseline = sample_start - vm_baseline_correct_samples;
 		baseline = feval(vm_baseline_correct_func, vm(s_baseline:sample_start-1));
