@@ -1,7 +1,7 @@
-function b = vhsb_writeheader(fo, varargin)
+function h = vhsb_writeheader(fo, varargin)
 % VHSB_WRITEHEADER - write a VH Lab Series Binary file header
 %
-% B = VHSB_WRITEHEADER(FILE_OBJ_OR_FNAME, 'PARAM1, VALUE1, ...)
+% H = VHSB_WRITEHEADER(FILE_OBJ_OR_FNAME, 'PARAM1, VALUE1, ...)
 %
 % Writes or re-writes the header portion of the FILE_OBJ or filename
 % FILE_OBJ_OR_FNAME according to the parameters provided.
@@ -70,7 +70,11 @@ X_offset = 0;            % 64-bit float offset factor common to all X info
 Y_scale = 1;             % 64-bit float scale factor
 Y_offset = 0;            % 64-bit float offset factor common to all Y info
 
+headersize = 1636;
+
 assign(varargin{:});
+
+h = workspace2struct;
 
  % open file for writing, set machine-type to little-endian
 
