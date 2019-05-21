@@ -46,6 +46,10 @@ b = vhsb_write(fo, x, y, varargin)
 %
 %
 
+if size(x,1)~=size(y,1),
+	error(['X must have the same number of rows as Y (rows correspond to samples; X is NUM_SAMPLESx1, Y is NUM_SAMPLESxY1xY2... ).']);
+end;
+
 use_filelock = 1;
 
 X_start = x(1);
@@ -112,24 +116,31 @@ if use_filelock,
 	end;
 end;
 
-h=vhsb_writeheader(fo,struct2namevaluepair(parameters));
+h = vhsb_writeheader(fo,struct2namevaluepair(parameters));
+
  % vhsb_writeheader will close the file
+
 fo = fopen(fo,'w','ieee-le');
 
-fseek(fo,h.headsize,'bof');
+fseek(fo,h.headersize,'bof');
 
  % write X
 
 X_skip_bytes = prod(Y_dim) * Y_data_size;
 
-fwrite(fo,x,vhsb_sampletype2matlabfwritestring(X_data_type, X_data_size),X_skip_bytes);
+if X_stored,
+	fwrite(fo, x, vhsb_sampletype2matlabfwritestring(X_data_type, X_data_size),X_skip_bytes);
+end;
 
-Y_skip_bytes = X_data_size;
+fseek(fo,h.headersize,'bof');  % rewind back to the beginning of the data
 
-fwrite(fo,reshape(y,1,prod(Y_dim)),vhsb_sampletype2matlabfwritestring(Y_data_type, Y_data_size),Y_skip_bytes);
+Y_skip_bytes = X_data_size * (X_stored==1);
+
+fwrite(fo, permute(y, [2:numel(Y_dim) 1]), vhsb_sampletype2matlabfwritestring(Y_data_type, Y_data_size), Y_skip_bytes);
 
 if use_filelock,
 	fclose(fid);
 	delete(lock_fname);
 end;
-	
+
+

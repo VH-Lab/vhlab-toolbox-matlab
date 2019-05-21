@@ -36,11 +36,18 @@ function h = vhsb_readheader(fo)
 % Y_scale (1)                       | 64-bit float scale factor
 % Y_offset (0)                      | 64-bit float offset factor common to all Y info
 %                                   | 
-% headersize (variable)             | The full header size in bytes
+% headersize (1636)                 | The full header size in bytes
+% num_samples (variable)            | The calculated number of samples in the file.
 
 % skip 200 bytes for future
 
 skip = 200; 
+
+d = dir(filename_value(fo));
+
+if isempty(d),
+	error(['Could not find file ' filename_value(fo) '.']);
+end;
 
 fo = fopen(fo,'r','ieee-le');
 
@@ -105,8 +112,15 @@ X_offset = fread(fo, 1, 'float64');
 Y_scale = fread(fo, 1, 'float64');
 Y_offset = fread(fo, 1, 'float64');
 
+X_skip_bytes = prod(Y_dim) * Y_data_size;
+Y_skip_bytes = X_data_size * (h.X_stored==1);
+sample_size = X_skip_bytes + Y_skip_bytes;
+
+num_samples = d.bytes / sample_size;
+
 h = workspace2struct;
 
-h = rmfield(h,'fo');
+h = rmfield(h,{'fo','d','X_skip_bytes','Y_skip_bytes','sample_size'});
 
 fclose(fo);
+
