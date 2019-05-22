@@ -11,7 +11,7 @@ function filename = filename_value(filename_or_fileobj)
 if isa(filename_or_fileobj,'fileobj'),
 	filename = filename_or_fileobj.fullpathfilename;
 else,
-	filename = filename;
+	filename = filename_or_fileobj;
 end;
 
 

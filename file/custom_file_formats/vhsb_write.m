@@ -1,4 +1,4 @@
-b = vhsb_write(fo, x, y, varargin)
+function b = vhsb_write(fo, x, y, varargin)
 % VHSB_WRITE - write a VHLab series binary file
 %
 % B = VHSB_WRITE(FO, X, Y, ...)
@@ -19,6 +19,7 @@ b = vhsb_write(fo, x, y, varargin)
 % 
 % The function accepts parameters that modify the default functionality
 % as name/value pairs.
+%
 % Parameter (default)                           | Description
 % ------------------------------------------------------------------------------
 % use_filelock (1)                              | Lock the file with CHECKOUT_LOCK_FILE
@@ -44,7 +45,6 @@ b = vhsb_write(fo, x, y, varargin)
 %
 % See also: NAMEVALUEPAIR 
 %
-%
 
 if size(x,1)~=size(y,1),
 	error(['X must have the same number of rows as Y (rows correspond to samples; X is NUM_SAMPLESx1, Y is NUM_SAMPLESxY1xY2... ).']);
@@ -68,7 +68,7 @@ X_scale = 1;
 X_offset = 0;
 Y_scale = 1;
 Y_offset = 0;
-Y_dim = size(y); error('check this');
+Y_dim = size(y);
 
 assign(varargin{:});
 
@@ -116,7 +116,11 @@ if use_filelock,
 	end;
 end;
 
+parameters,
+
 h = vhsb_writeheader(fo,struct2namevaluepair(parameters));
+
+return;
 
  % vhsb_writeheader will close the file
 
@@ -136,11 +140,13 @@ fseek(fo,h.headersize,'bof');  % rewind back to the beginning of the data
 
 Y_skip_bytes = X_data_size * (X_stored==1);
 
-fwrite(fo, permute(y, [2:numel(Y_dim) 1]), vhsb_sampletype2matlabfwritestring(Y_data_type, Y_data_size), Y_skip_bytes);
+fwrite(fo, permute(y, [2:numel(Y_dim) 1]), ...
+		[int2str(prod(Y_dim)) '*' vhsb_sampletype2matlabfwritestring(Y_data_type, Y_data_size)], ...
+		Y_skip_bytes);
 
 if use_filelock,
 	fclose(fid);
 	delete(lock_fname);
 end;
 
-
+b = 1;

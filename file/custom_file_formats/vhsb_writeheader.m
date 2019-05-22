@@ -120,4 +120,6 @@ fwrite(fo, X_offset, 'float64');
 fwrite(fo, Y_scale, 'float64');
 fwrite(fo, Y_offset, 'float64');
 
+ftell,
+
 fclose(fo);
