@@ -26,7 +26,7 @@ function [y,x] = vhsb_read(fo, x0, x1, out_of_bounds_err)
 %         X(i) is the ith sample returned of X, and Y(i,:,:,...) is the ith sample returned of Y
 %    
 
-h = vhsb_readheader(fo);
+h = vhsb_readheader(fo),
 
  % vhsb_readheader will close the file
 

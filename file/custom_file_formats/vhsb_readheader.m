@@ -36,7 +36,7 @@ function h = vhsb_readheader(fo)
 % Y_scale (1)                       | 64-bit float scale factor
 % Y_offset (0)                      | 64-bit float offset factor common to all Y info
 %                                   | 
-% headersize (1636)                 | The full header size in bytes
+% headersize (1836)                 | The full header size in bytes
 % num_samples (variable)            | The calculated number of samples in the file.
 
 % skip 200 bytes for future
@@ -51,7 +51,7 @@ end;
 
 fo = fopen(fo,'r','ieee-le');
 
-headersize = 1636;
+headersize = 1836;
 
 fseek(fo, skip,'bof');
 
@@ -75,11 +75,11 @@ Y_dim = Y_dim(Y_dim>0);
 Y_data_size = fread(fo, 1, 'uint32');
 Y_data_type = fread(fo, 1, 'uint16');
 
-X_stored = fread(fo, 1, 'uint8');
-X_constantinterval = fread(fo, 1, 'uint8');
+X_stored = fread(fo, 1, 'uint8'),
+X_constantinterval = fread(fo, 1, 'uint8'),
 
-X_start = fread(fo, 1, vhsb_sampletype2matlabfwritestring(X_data_type, X_data_size));
-X_constantinterval = fread(fo, 1, vhsb_sampletype2matlabfwritestring(X_data_type, X_data_size));
+X_start =     fread(fo, 1, vhsb_sampletype2matlabfwritestring(X_data_type, X_data_size)),
+X_increment = fread(fo, 1, vhsb_sampletype2matlabfwritestring(X_data_type, X_data_size)),
 
 X_units = char(fread(fo, 256, 'char'));
 double(X_units)
@@ -113,10 +113,10 @@ Y_scale = fread(fo, 1, 'float64');
 Y_offset = fread(fo, 1, 'float64');
 
 X_skip_bytes = prod(Y_dim) * Y_data_size;
-Y_skip_bytes = X_data_size * (h.X_stored==1);
+Y_skip_bytes = X_data_size * (X_stored==1);
 sample_size = X_skip_bytes + Y_skip_bytes;
 
-num_samples = d.bytes / sample_size;
+num_samples = (d.bytes-headersize) / sample_size;
 
 h = workspace2struct;
 

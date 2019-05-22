@@ -53,7 +53,7 @@ end;
 use_filelock = 1;
 
 X_start = x(1);
-X_increment = 0;
+X_increment = median(diff(x));
 X_stored = 1;
 X_constantinterval = 0;
 X_units = '';
@@ -106,7 +106,7 @@ switch Y_data_type,
 end;
 
 parameters = workspace2struct;
-parameters = rmfield(parameters,{'x','y','use_filelock'});
+parameters = rmfield(parameters,{'x','y','use_filelock','varargin','fo'});
 
 if use_filelock,
 	lock_fname = [filename_value(fo) '-lock'];
@@ -118,13 +118,13 @@ end;
 
 parameters,
 
-h = vhsb_writeheader(fo,struct2namevaluepair(parameters));
 
-return;
+
+h = vhsb_writeheader(fo,struct2namevaluepair(parameters));
 
  % vhsb_writeheader will close the file
 
-fo = fopen(fo,'w','ieee-le');
+fo = fopen(fo,'a','ieee-le');
 
 fseek(fo,h.headersize,'bof');
 
@@ -133,7 +133,7 @@ fseek(fo,h.headersize,'bof');
 X_skip_bytes = prod(Y_dim) * Y_data_size;
 
 if X_stored,
-	fwrite(fo, x, vhsb_sampletype2matlabfwritestring(X_data_type, X_data_size),X_skip_bytes);
+	fwrite(fo, x, vhsb_sampletype2matlabfwritestring(X_data_type, X_data_size), X_skip_bytes);
 end;
 
 fseek(fo,h.headersize,'bof');  % rewind back to the beginning of the data
