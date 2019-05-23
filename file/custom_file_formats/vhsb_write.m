@@ -32,9 +32,9 @@ function b = vhsb_write(fo, x, y, varargin)
 %                                               |    not necessarily (0)?
 % X_units ('')                                  | The units of X (a character string, up to 255 characters)
 % Y_units ('')                                  | The units of Y (a character string, up to 255 characters)
-% X_data_size (64)                              | The resolution (in bytes) for X
+% X_data_size (64)                              | The resolution (in bits) for X
 % X_data_type ('float')                         | The data type to be written for X ('char','uint','int','float')
-% Y_data_size (64)                              | The resolution (in bytes) for Y
+% Y_data_size (64)                              | The resolution (in bits) for Y
 % Y_data_type ('float')                         | The data type to be written for Y ('char','uint','int','float')
 % X_usescale (0)                                | Scale the X data before writing to disk (and after reading)?
 % Y_usescale (0)                                | Scale the Y data before writing to disk (and after reading)?
@@ -55,7 +55,7 @@ use_filelock = 1;
 X_start = x(1);
 X_increment = median(diff(x));
 X_stored = 1;
-X_constantinterval = 0;
+X_constantinterval = (max(diff(diff(x)))<1e-7);
 X_units = '';
 Y_units = '';
 X_data_size = 64;
@@ -116,21 +116,19 @@ if use_filelock,
 	end;
 end;
 
-parameters,
-
-
-
-h = vhsb_writeheader(fo,struct2namevaluepair(parameters));
+h = vhsb_writeheader(fo,parameters);
 
  % vhsb_writeheader will close the file
 
-fo = fopen(fo,'a','ieee-le');
+fo = fopen(fo,'r+','ieee-le');
 
 fseek(fo,h.headersize,'bof');
 
  % write X
 
-X_skip_bytes = prod(Y_dim) * Y_data_size;
+X_skip_bytes = prod(Y_dim(2:end)) * Y_data_size/8; % divide by 8 bits per byte
+
+fseek(fo,-X_skip_bytes,'cof');
 
 if X_stored,
 	fwrite(fo, x, vhsb_sampletype2matlabfwritestring(X_data_type, X_data_size), X_skip_bytes);
@@ -138,10 +136,12 @@ end;
 
 fseek(fo,h.headersize,'bof');  % rewind back to the beginning of the data
 
-Y_skip_bytes = X_data_size * (X_stored==1);
+Y_skip_bytes = X_data_size/8 * (X_stored==1); % divide by 8 bits per byte
 
-fwrite(fo, permute(y, [2:numel(Y_dim) 1]), ...
-		[int2str(prod(Y_dim)) '*' vhsb_sampletype2matlabfwritestring(Y_data_type, Y_data_size)], ...
+y2 = permute(y,[2:numel(Y_dim) 1]);
+
+fwrite(fo, y2(:), ...
+		[int2str(prod(Y_dim(2:end))) '*' vhsb_sampletype2matlabfwritestring(Y_data_type, Y_data_size)], ...
 		Y_skip_bytes);
 
 if use_filelock,

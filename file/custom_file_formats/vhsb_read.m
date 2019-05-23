@@ -26,7 +26,7 @@ function [y,x] = vhsb_read(fo, x0, x1, out_of_bounds_err)
 %         X(i) is the ith sample returned of X, and Y(i,:,:,...) is the ith sample returned of Y
 %    
 
-h = vhsb_readheader(fo),
+h = vhsb_readheader(fo);
 
  % vhsb_readheader will close the file
 
@@ -39,13 +39,10 @@ fo = fopen(fo,'r','ieee-le');
 if h.X_constantinterval,
 	s = point2samplelabel([x0 x1], h.X_increment, h.X_start);
 	s(1) = clip(s(1),[1 h.num_samples]);
+	s(2) = clip(s(2),[1 h.num_samples]);
 else, % we have to go fishing for the right sample
 	error(['The condition where X is not a series with a constant interval is not yet implemented.']);
 end;
-
-X_skip_bytes = prod(h.Y_dim) * h.Y_data_size;
-Y_skip_bytes = h.X_data_size * (h.X_stored==1);
-sample_size = X_skip_bytes + Y_skip_bytes;
 
 num_samples_to_read = s(2)-s(1)+1;
 
@@ -53,12 +50,12 @@ if nargout > 1, % only bother to read x if the calling function has asked for it
 	% first, seek to beginning of X data
 	fseek(fo,h.headersize,'bof');
  	% skip S0-1 samples, or s(1)-1 samples
-	fseek(fo,sample_size*(s(1)-1),'cof');
+	fseek(fo,h.sample_size*(s(1)-1),'cof');
 
-	if X_stored, % we should read it from disk
-		x = fread(fo, num_samples_to_read, vhsb_sampletype2matlabfwritestring(X_data_type, X_data_size), X_skip_bytes);
-		if X_usescale,
-			x = (x-X_offset)*X_scale;
+	if h.X_stored, % we should read it from disk
+		x = fread(fo, num_samples_to_read, vhsb_sampletype2matlabfwritestring(h.X_data_type, h.X_data_size), h.X_skip_bytes);
+		if h.X_usescale,
+			x = (x-h.X_offset)*h.X_scale;
 		end;
 	else, % we should create it
 		x = [samplelabel2point(s(1), h.X_increment, h.X_start) : h.X_increment : samplelabel2point(s(2), h.X_increment, h.X_start) ]';
@@ -68,15 +65,17 @@ end;
  % read Y
 
 fseek(fo,h.headersize,'bof');  % rewind back to the beginning of the data
-fseek(fo,sample_size*(s(1)-1) + Y_spike_bytes,'cof'); % skip to our first sample, and then skip all the X values
+fseek(fo,h.sample_size*(s(1)-1) + h.Y_skip_bytes,'cof'); % skip to our first sample, and then skip all the X values
 
-y = fread(fo, prod(h.Ydim)*num_samples_to_read, [int2str(prod(h.Ydim)) '*' vhsb_sampletype2matlabfwritestring(Y_data_type, Y_data_size)], Y_skip_bytes);
+y = fread(fo, prod(h.Y_dim(2:end))*num_samples_to_read, ...
+	[int2str(prod(h.Y_dim(2:end))) '*' vhsb_sampletype2matlabfwritestring(h.Y_data_type, h.Y_data_size)], ...
+	h.Y_skip_bytes);
 
-y = reshape(y, h.Ydim([2:numel(h.Y_dim) 1]));
+y = reshape(y, [h.Y_dim([2:numel(h.Y_dim)]) num_samples_to_read]);
 
 y = permute(y, [numel(h.Y_dim) 1:numel(h.Y_dim)-1]);
 
-if Y_usescale,
-	y = (y-Y_offset)*Y_scale;
+if h.Y_usescale,
+	y = (y-h.Y_offset)*h.Y_scale;
 end;
 

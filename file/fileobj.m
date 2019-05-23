@@ -208,7 +208,7 @@ classdef fileobj < handle
 				if nargin<5,
 					machineformat = fileobj_obj.machineformat;
 				end;
-				
+
 				count = 0;
 				if fileobj_obj.fid >=0,
 					count = fwrite(fileobj_obj.fid, data, precision, skip, machineformat);

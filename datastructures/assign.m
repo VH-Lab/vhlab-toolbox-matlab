@@ -17,8 +17,12 @@ function assign (varargin)
 %       where VAR1 is the first field name of the input, VAL1 is the value of the field name,
 %       etc.
 
-if isstruct(varargin),
-	varargin = struct2namevaluepair(varargin);
+if numel(varargin)==1,
+    if isstruct(varargin{1}),
+        varargin = struct2namevaluepair(varargin{1});
+    elseif iscell(varargin{1}),
+        varargin = varargin{1};
+    end;
 end;
 
 vars = {varargin{1:2:end}};

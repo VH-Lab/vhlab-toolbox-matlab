@@ -14,11 +14,11 @@ function h = vhsb_writeheader(fo, varargin)
 % version (1)                       | 32-bit integer describing version. Only 1 is allowed.
 % machine_format ('little-endian')  | The machine format. The only value allowed is
 %                                   |    'little_endian'.
-% X_data_size (64)                  | 32-bit integer describing the size (in bytes) of each 
+% X_data_size (64)                  | 32-bit integer describing the size (in bits) of each 
 %                                   |    data point in the X series.
 % X_data_type (4)                   | 8-bit unsigned integer describing whether X type is char (1), uint (2), int (3), or float (4)
 % Y_dim ([1 1])                     | 64-bit unsigned integer describing the rows, columns, etc of each Y datum; can be up to 1x100
-% Y_data_size (64)                  | 32-bit integer describing the size (in bytes) of each 
+% Y_data_size (64)                  | 32-bit integer describing the size (in bits) of each 
 %                                   |    sample in the Y series.
 % Y_data_type (4)                   | 8-bit unsigned integer describing whether Y type is char (1), uint (2), int (3), or float (4)
 % X_stored (1)                      | Character 0 or 1 describing whether the X value of the series
@@ -59,8 +59,8 @@ X_constantinterval = 1;  % 0/1 are the X values regularly sampled?
 X_start = 0;             % the value of the first X data
 X_increment = 0;         % the increment value 
 
-X_units = 'Test X Units';            % 256 character string, units after any scaling
-Y_units = 'Test Y Units';            % 256 character string, units after any scaling
+X_units = '';            % 256 character string, units after any scaling
+Y_units = '';            % 256 character string, units after any scaling
 
 X_usescale = 0;          % perform an input/output scale for X? Output will be 64-bit float if so
 Y_usescale = 0;          % perform an input/output scale for Y? Output will be 64-bit float if so
@@ -74,9 +74,11 @@ headersize = 1836;
 
 assign(varargin{:});
 
-varargin{:}
-
-h = workspace2struct,
+h = workspace2struct;
+h = rmfield(h,{'fo','varargin'});
+if isfield(h,'ans'),
+	h = rmfield(h,'ans');
+end;
 
  % open file for writing, set machine-type to little-endian
 
@@ -121,7 +123,5 @@ fwrite(fo, X_offset, 'float64');
 
 fwrite(fo, Y_scale, 'float64');
 fwrite(fo, Y_offset, 'float64');
-
-ftell(fo),
 
 fclose(fo);

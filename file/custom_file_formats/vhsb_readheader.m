@@ -38,6 +38,10 @@ function h = vhsb_readheader(fo)
 %                                   | 
 % headersize (1836)                 | The full header size in bytes
 % num_samples (variable)            | The calculated number of samples in the file.
+% X_skip_bytes (variable)           | Number of bytes to skip over when reading X samples
+% Y_skip_bytes (variable)           | Number of bytes to skip over when reading Y samples
+% sample_size (variable)            | The size of each (x,y) pair of samples in bytes
+% filesize (variable)               | The size of the file in bytes
 
 % skip 200 bytes for future
 
@@ -53,74 +57,59 @@ fo = fopen(fo,'r','ieee-le');
 
 headersize = 1836;
 
-fseek(fo, skip,'bof');
+try,
+	fseek(fo, skip,'bof');
 
-version = fread(fo, 1, 'uint32'),
+	version = fread(fo, 1, 'uint32');
 
-machine_format = char(fread(fo, 256, 'char'));
-i = find(machine_format==sprintf('\n'));
-if ~isempty(i),
-	machine_format = machine_format(1:i-1);
-else,
-	error(['Machine format does not have end-of-line character (\n, 10).']);
-end;
-machine_format = machine_format(:)';
+	machine_format = char(fread(fo, 256, 'char'));
 
-X_data_size = fread(fo, 1, 'uint32'),
-X_data_type = fread(fo, 1, 'uint16'),
+	X_data_size = fread(fo, 1, 'uint32');
+	X_data_type = fread(fo, 1, 'uint16');
 
-Y_dim = fread(fo, 100, 'uint64');
-Y_dim = Y_dim(Y_dim>0);
+	Y_dim = fread(fo, 100, 'uint64')';
+	Y_dim = Y_dim(Y_dim>0);
 
-Y_data_size = fread(fo, 1, 'uint32');
-Y_data_type = fread(fo, 1, 'uint16');
+	Y_data_size = fread(fo, 1, 'uint32');
+	Y_data_type = fread(fo, 1, 'uint16');
 
-X_stored = fread(fo, 1, 'uint8'),
-X_constantinterval = fread(fo, 1, 'uint8'),
+	X_stored = fread(fo, 1, 'uint8');
+	X_constantinterval = fread(fo, 1, 'uint8');
 
-X_start =     fread(fo, 1, vhsb_sampletype2matlabfwritestring(X_data_type, X_data_size)),
-X_increment = fread(fo, 1, vhsb_sampletype2matlabfwritestring(X_data_type, X_data_size)),
+	X_start =     fread(fo, 1, vhsb_sampletype2matlabfwritestring(X_data_type, X_data_size));
+	X_increment = fread(fo, 1, vhsb_sampletype2matlabfwritestring(X_data_type, X_data_size));
 
-X_units = char(fread(fo, 256, 'char'));
-double(X_units)
-i = find(X_units==sprintf('\n'));
-if ~isempty(i),
-	X_units = X_units(1:i-1);
-else,	
+	X_units = char(fread(fo, 256, 'char'));
+	Y_units = char(fread(fo, 256, 'char'));
+
+	X_usescale = fread(fo, 1, 'uint8');
+	Y_usescale = fread(fo, 1, 'uint8');
+
+	X_scale  = fread(fo, 1, 'float64');
+	X_offset = fread(fo, 1, 'float64');
+
+	Y_scale = fread(fo, 1, 'float64');
+	Y_offset = fread(fo, 1, 'float64');
+
+catch,
 	fclose(fo);
-	error(['Did not find end-of-line character (\n, 10) in X_units']);
+	error(['Error reading file ' filename_value(fo) ': ' ferror(fo) '.']);
 end;
-X_units = char(X_units(:)');
 
-Y_units = char(fread(fo, 256, 'char'));
-i = find(Y_units==sprintf('\n'));
-if ~isempty(i),
-	Y_units = Y_units(1:i-1);
-else,	
-	fclose(fo);
-	error(['Did not find end-of-line character (\n, 10) in Y_units']);
-end;
-Y_units = char(Y_units(:)');
-clear i;
+fclose(fo);
 
-X_usescale = fread(fo, 1, 'uint8');
-Y_usescale = fread(fo, 1, 'uint8');
+machine_format = line_n(machine_format(:)',1);
+X_units = line_n(X_units(:)',1);
+Y_units = line_n(Y_units(:)',1);
 
-X_scale  = fread(fo, 1, 'float64');
-X_offset = fread(fo, 1, 'float64');
-
-Y_scale = fread(fo, 1, 'float64');
-Y_offset = fread(fo, 1, 'float64');
-
-X_skip_bytes = prod(Y_dim) * Y_data_size;
-Y_skip_bytes = X_data_size * (X_stored==1);
+X_skip_bytes = prod(Y_dim(2:end)) * Y_data_size/8; % 8 bits per byte
+Y_skip_bytes = X_data_size/8 * (X_stored==1);      % 8 bits per byte
 sample_size = X_skip_bytes + Y_skip_bytes;
 
-num_samples = (d.bytes-headersize) / sample_size;
+filesize = d.bytes;
+num_samples = (filesize-headersize) / sample_size;
 
 h = workspace2struct;
 
-h = rmfield(h,{'fo','d','X_skip_bytes','Y_skip_bytes','sample_size'});
-
-fclose(fo);
+h = rmfield(h,{'fo','d'});
 
