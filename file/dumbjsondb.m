@@ -52,14 +52,14 @@ classdef dumbjsondb
 	%     [fid] = db.openbinaryfile(2005);
 	%     if fid>0,
 	%          fwrite(fid,'this is a test','char');
-	%          [fid] = dumbjsondb.closebinaryfile(fid);
+	%          [fid] = db.closebinaryfile(fid, 2005);
 	%     end
 	%     % read the binary file
 	%     [fid] = db.openbinaryfile(2005);
 	%     if fid>0,
 	%          fseek(fid,0,'bof'); % go to beginning of file
 	%          output=char(fread(fid,14,'char'))',
-	%          [fid] = dumbjsondb.closebinaryfile(fid);
+	%          [fid] = db.closebinaryfile(fid, 2005);
 	%     end
 	%
 	%     % remove all entries
@@ -256,9 +256,9 @@ classdef dumbjsondb
 			%      if fid>0,
 			%          try, 
 			%              % do something, e.g., fwrite(fid,'my data','char'); 
-			%              [fid] = mydb.closebinaryfile(fid);
+			%              [fid] = mydb.closebinaryfile(fid, doc_unique_id);
 			%          catch, 
-			%              [fid] = mydb.closebinaryfile(fid);
+			%              [fid] = mydb.closebinaryfile(fid, doc_unique_id);
 			%              error(['Could not do what I wanted to do.'])
 			%          end
 			%      end
@@ -295,6 +295,58 @@ classdef dumbjsondb
 					fid = -1;
 				end;
 		end % openbinaryfile()
+
+		function fid = closebinaryfile(dumbjsondb_obj, fid, doc_unique_id, doc_version)
+			% CLOSEBINARYFILE - close and unlock the binary file associated with a DUMBJSONDB document
+			%
+			% [FID] = CLOSEBINARYFILE(DUMBJSONDB_OBJ, FID, DOC_UNIQUE_ID, [DOC_VERSION])
+			%
+			% Closes the binary file associated with DUMBJSONDB that has file identifier FID,
+			% DOC_UNIQUE_ID and DOC_VERSION. If DOC_VERSION is not provided, the lastest will be used.
+			% This function closes the file and deletes the lock file.
+			%
+			% FID is set to -1 on exit.
+			%
+			% See also: DUMBJSONDB/OPENBINARYFILE, CHECKOUT_LOCK_FILE
+			%
+
+				% if the file is open, close it
+
+				if fid>0,
+					[fname,perm] = fopen(fid);
+
+					if numel(fname)>numel('.binary'),
+						if ~strcmpi(fname(end-6:end),'.binary'),
+							error(['This does not appear to be a DUMBJSONDB binary file: ' fname ]);
+						end
+					elseif isempty(fname),
+						return; % nothing to do, already closed;
+					end
+
+					% Step 1) close the file
+					fclose(fid);
+					fid = -1;
+
+				end;
+
+				% if the lock file exists, delete it 
+
+				doc_unique_id = dumbjsondb.fixdocuniqueid(doc_unique_id); % make sure it is a string
+
+				if nargin<4,
+					doc_version = [];
+				end;
+				[document, doc_version] = dumbjsondb_obj.read(doc_unique_id, doc_version);
+
+				f = dumbjsondb.uniqueid2binaryfilename(doc_unique_id, doc_version);
+				p = dumbjsondb_obj.documentpath();
+
+				lockfilename = [p f '-lock'];
+				if exist(lockfilename,'file'),
+					delete(lockfilename);
+				end;
+		end % closebinaryfile
+
 
 		function [docs, doc_versions] = search(dumbjsondb_obj, scope, searchParams)
 			% SEARCH - perform a search of DUMBJSONDB documents
@@ -875,45 +927,5 @@ classdef dumbjsondb
 		end % ismatch()
 
 	end; % methods (Static, protected)
-
-	methods (Static)
-
-		function fid = closebinaryfile(fid)
-			% CLOSEBINARYFILE - close and unlock the binary file associated with a DUMBJSONDB document
-			%
-			% [FID] = CLOSEBINARYFILE(FID)
-			%
-			% Closes the binary file associated with DUMBJSONDB that has file identifier FID
-			% and closes and deletes the lock file.
-			%
-			% FID is set to -1 on exit.
-			%
-			% See also: DUMBJSONDB/OPENBINARYFILE, CHECKOUT_LOCK_FILE
-			%
-				if fid>0,
-					[fname,perm] = fopen(fid);
-
-					if numel(fname)>numel('.binary'),
-						if ~strcmpi(fname(end-6:end),'.binary'),
-							error(['This does not appear to be a DUMBJSONDB binary file: ' fname ]);
-						end
-					elseif isempty(fname),
-						return; % nothing to do, already closed;
-					end
-
-					% Step 1) close the file
-					fclose(fid);
-					fid = -1;
-
-					% Step 2) delete the lockfile
-					lockfilename = [fname '-lock'];
-					if exist(lockfilename,'file'),
-						delete(lockfilename);
-					end;
-				end
-		end % closebinaryfile
-
-	end
-
 
 end % classdef dumbjsondb
