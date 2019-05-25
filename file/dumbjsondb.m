@@ -1,4 +1,4 @@
-classdef dumbjsondb 
+classdef dumbjsondb
 	% DUMBJSONDB - a very simple and slow JSON-based database with associated binary files
 	%
 	% DUMBJSONDB implements a very simple JSON-based document database. Each document is
@@ -49,17 +49,17 @@ classdef dumbjsondb
 	%     end
 	%
 	%     % add binary information to binary file
-	%     [fid] = db.openbinaryfile(2005);
+	%     [fid,key] = db.openbinaryfile(2005);
 	%     if fid>0,
 	%          fwrite(fid,'this is a test','char');
-	%          [fid] = db.closebinaryfile(fid, 2005);
+	%          [fid] = db.closebinaryfile(fid, key, 2005);
 	%     end
 	%     % read the binary file
-	%     [fid] = db.openbinaryfile(2005);
+	%     [fid, key] = db.openbinaryfile(2005);
 	%     if fid>0,
 	%          fseek(fid,0,'bof'); % go to beginning of file
 	%          output=char(fread(fid,14,'char'))',
-	%          [fid] = db.closebinaryfile(fid, 2005);
+	%          [fid] = db.closebinaryfile(fid, key, 2005);
 	%     end
 	%
 	%     % remove all entries
@@ -234,10 +234,10 @@ classdef dumbjsondb
 				end
 		end % read()
 
-		function [fid, doc_version] = openbinaryfile(dumbjsondb_obj, doc_unique_id, doc_version)
+		function [fid, key, doc_version] = openbinaryfile(dumbjsondb_obj, doc_unique_id, doc_version)
 			% OPENBINARYFILE - return the FID for the binary file associated with a DUMBJSONDB document
 			%
-			% [FID, DOC_VERSION] = OPENBINARYFILE(DUMBJSONDB_OBJ, DOC_UNIQUE_ID[, DOC_VERSION])
+			% [FID, KEY, DOC_VERSION] = OPENBINARYFILE(DUMBJSONDB_OBJ, DOC_UNIQUE_ID[, DOC_VERSION])
 			%
 			% Attempts to obtain the lock and open the binary file associated with
 			% DOC_UNIQUE_ID and DOC_VERSION for reading/writing. If DOC_VERSION is not present,
@@ -251,14 +251,16 @@ classdef dumbjsondb
 			% after FID is closed so that other programs can use the file. This service is performed by
 			% CLOSEBINARYFILE.
 			%
+			% KEY is a random key that is needed to close the file (releases the lock).
+			%
 			% Example:
-			%      [fid]=mydb.openbinaryfile(doc_unique_id);
+			%      [fid, key]=mydb.openbinaryfile(doc_unique_id);
 			%      if fid>0,
 			%          try, 
 			%              % do something, e.g., fwrite(fid,'my data','char'); 
-			%              [fid] = mydb.closebinaryfile(fid, doc_unique_id);
+			%              [fid] = mydb.closebinaryfile(fid, key, doc_unique_id);
 			%          catch, 
-			%              [fid] = mydb.closebinaryfile(fid, doc_unique_id);
+			%              [fid] = mydb.closebinaryfile(fid, key, doc_unique_id);
 			%              error(['Could not do what I wanted to do.'])
 			%          end
 			%      end
@@ -268,6 +270,7 @@ classdef dumbjsondb
 
 				fid = -1;
 				lockfid = -1;
+				key = -1;
 				doc_unique_id = dumbjsondb.fixdocuniqueid(doc_unique_id); % make sure it is a string
 				if nargin<3,
 					doc_version = [];
@@ -282,8 +285,10 @@ classdef dumbjsondb
 				lockfilename = [p f '-lock'];
 				lockfid = checkout_lock_file(lockfilename);
 				if lockfid > 0,
+					key = ndi_unique_id;
+					fwrite(lockfid,key,'char',0,'ieee-le');
 					fclose(lockfid);  % we have it, don't need to keep it open
-					fid = fopen([p f], 'a+', 'ieee-le'); % open in read/write mode, imopse little-endian for cross-platform compatibility
+					fid = fopen([p f], 'a+', 'ieee-le'); % open in read/write mode, impose little-endian for cross-platform compatibility
 					if fid > 0, % we are okay
 					else % need to close and delete the lock file before reporting error
 						fid = -1;
@@ -296,20 +301,20 @@ classdef dumbjsondb
 				end;
 		end % openbinaryfile()
 
-		function fid = closebinaryfile(dumbjsondb_obj, fid, doc_unique_id, doc_version)
+		function fid = closebinaryfile(dumbjsondb_obj, fid, key, doc_unique_id, doc_version)
 			% CLOSEBINARYFILE - close and unlock the binary file associated with a DUMBJSONDB document
 			%
-			% [FID] = CLOSEBINARYFILE(DUMBJSONDB_OBJ, FID, DOC_UNIQUE_ID, [DOC_VERSION])
+			% [FID] = CLOSEBINARYFILE(DUMBJSONDB_OBJ, FID, KEY, DOC_UNIQUE_ID, [DOC_VERSION])
 			%
 			% Closes the binary file associated with DUMBJSONDB that has file identifier FID,
 			% DOC_UNIQUE_ID and DOC_VERSION. If DOC_VERSION is not provided, the lastest will be used.
-			% This function closes the file and deletes the lock file.
+			% This function closes the file and deletes the lock file. KEY is the key that is returned
+			% by OPENBINARYFILE, and is needed to release the lock on the binary file.
 			%
 			% FID is set to -1 on exit.
 			%
 			% See also: DUMBJSONDB/OPENBINARYFILE, CHECKOUT_LOCK_FILE
 			%
-
 				% if the file is open, close it
 
 				if fid>0,
@@ -320,20 +325,18 @@ classdef dumbjsondb
 							error(['This does not appear to be a DUMBJSONDB binary file: ' fname ]);
 						end
 					elseif isempty(fname),
-						return; % nothing to do, already closed;
+						% nothing to do, already closed;
+					else,
+						fclose(fid);
+						fid = -1;
 					end
-
-					% Step 1) close the file
-					fclose(fid);
-					fid = -1;
-
 				end;
 
 				% if the lock file exists, delete it 
 
 				doc_unique_id = dumbjsondb.fixdocuniqueid(doc_unique_id); % make sure it is a string
 
-				if nargin<4,
+				if nargin<5,
 					doc_version = [];
 				end;
 				[document, doc_version] = dumbjsondb_obj.read(doc_unique_id, doc_version);
@@ -343,10 +346,18 @@ classdef dumbjsondb
 
 				lockfilename = [p f '-lock'];
 				if exist(lockfilename,'file'),
-					delete(lockfilename);
+					lockfid = fopen(lockfilename,'r','ieee-le');
+					if lockfid<0,
+						% failed to open lock file, just stop
+						return;
+					end;
+					keystring = fgets(lockfid);
+					fclose(lockfid);
+					if strcmp(keystring,key),
+						delete(lockfilename);
+					end;
 				end;
 		end % closebinaryfile
-
 
 		function [docs, doc_versions] = search(dumbjsondb_obj, scope, searchParams)
 			% SEARCH - perform a search of DUMBJSONDB documents
@@ -477,7 +488,7 @@ classdef dumbjsondb
 				if strcmpi(areyousure,'Yes')
 					ids = dumbjsondb_obj.alldocids;
 					for i=1:numel(ids), 
-						dumbjsondb_obj.remove(ids{i}) % remove the entry
+						dumbjsondb_obj.remove(ids{i}); % remove the entry
 					end
 				else,
 					disp(['Not clearing because user did not indicate he/she is sure.']);
