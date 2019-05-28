@@ -45,6 +45,10 @@ function [merged_graph, indexes, numnewnodes] = mergegraph(G1, G2, nodenumbers2_
 
 n1 = size(G1,1);
 n2 = size(G2,1);
+nodenumbers2_1 = nodenumbers2_1(:);
+
+if size(G1,1)~=size(G1,2), error(['G1 not square; an adjacency matrix must be square.']); end;
+if size(G2,1)~=size(G2,2), error(['G2 not square; an adjacency matrix must be square.']); end;
 
 newnodes_index = find(nodenumbers2_1>n1);
 oldnodes_index = find(nodenumbers2_1<=n1);
@@ -73,8 +77,10 @@ lower_left( (newnodes-n1),oldnodes ) = G2( [newnodes_index], [oldnodes_index] );
 indexes.lower_left.G2 = [];
 
 if ~isempty(oldnodes),
-	indexes.lower_left.merged = sub2ind(size(lower_left),(newnodes-n1),oldnodes);
-	indexes.lower_left.G2 =     sub2ind(size(G2),[newnodes_index], [oldnodes_index] );
+	[x,y] = meshgrid(newnodes-n1,oldnodes);
+	indexes.lower_left.merged = sub2ind(size(lower_left),x,y);
+	[x2,y2] = meshgrid(newnodes_index,oldnodes_index);
+	indexes.lower_left.G2 =     sub2ind(size(G2),x2,y2);
 end;
 
 upper_right = inf(n1,numel(newnodes));
@@ -83,8 +89,8 @@ upper_right( oldnodes, (newnodes-n1)) = G2( [oldnodes_index], [newnodes_index] )
 indexes.upper_right.G2 = [];
 
 if ~isempty(oldnodes),
-	indexes.upper_right.merged = sub2ind(size(upper_right),oldnodes, (newnodes-n1));
-	indexes.upper_right.G2 =     sub2ind(size(G2),[oldnodes_index], [newnodes_index] );
+	indexes.upper_right.merged = sub2ind(size(upper_right),y, x);
+	indexes.upper_right.G2 =     sub2ind(size(G2),y2, x2);
 end
 
 merged_graph = [G1 upper_right ; lower_left lower_right];
