@@ -62,19 +62,21 @@ oldnodes = nodenumbers2_1(oldnodes_index);
 
 numnewnodes = numel(newnodes);
 
-if ~eqlen(sort(newnodes-n1),1:numnewnodes),
+if ~eqlen(sort(newnodes(:)-n1),(1:numnewnodes)'),
 	error(['New nodes must be in increasing numerical order with no gaps in index values from the existing nodes.']);
 end
 
  % what are the connections from newnodes to the existing nodes?
 
 lower_right = G2([newnodes_index],[newnodes_index]);
-indexes.lower_right = sub2ind(size(G2),[newnodes_index],[newnodes_index]);
+[x_,y_] = meshgrid(newnodes_index,newnodes_index);
+indexes.lower_right = sub2ind(size(G2),x_,y_);
 
 lower_left = inf(numel(newnodes),n1);
 lower_left( (newnodes-n1),oldnodes ) = G2( [newnodes_index], [oldnodes_index] );
 
 indexes.lower_left.G2 = [];
+indexes.lower_left.merged = [];
 
 if ~isempty(oldnodes),
 	[x,y] = meshgrid(newnodes-n1,oldnodes);
@@ -87,6 +89,7 @@ upper_right = inf(n1,numel(newnodes));
 upper_right( oldnodes, (newnodes-n1)) = G2( [oldnodes_index], [newnodes_index] );
 
 indexes.upper_right.G2 = [];
+indexes.upper_right.merged = [];
 
 if ~isempty(oldnodes),
 	indexes.upper_right.merged = sub2ind(size(upper_right),y, x);

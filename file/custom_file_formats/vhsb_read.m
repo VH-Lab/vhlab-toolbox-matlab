@@ -41,7 +41,9 @@ if h.X_constantinterval,
 	s(1) = clip(s(1),[1 h.num_samples]);
 	s(2) = clip(s(2),[1 h.num_samples]);
 else, % we have to go fishing for the right sample
-	error(['The condition where X is not a series with a constant interval is not yet implemented.']);
+	% this needs to be implemented much more efficiently
+	s(1) = clip(-Inf,[1 h.num_samples]);
+	s(2) = clip(Inf,[1 h.num_samples]);
 end;
 
 num_samples_to_read = s(2)-s(1)+1;
@@ -77,5 +79,11 @@ y = permute(y, [numel(h.Y_dim) 1:numel(h.Y_dim)-1]);
 
 if h.Y_usescale,
 	y = (y-h.Y_offset)*h.Y_scale;
+end;
+
+if ~h.X_constantinterval,
+	samples_valid = find(x>=x0 & x<= x1);
+	x = x(samples_valid);
+	y = y(samples_valid,:);
 end;
 
