@@ -52,10 +52,22 @@ end;
 
 use_filelock = 1;
 
-X_start = x(1);
-X_increment = median(diff(x));
+if numel(x)>1,
+	X_start = x(1);
+else,
+	X_start = 0;
+end;
+if numel(x)>2,
+	X_increment = median(diff(x));
+else, 
+	X_increment = 0;
+end;
 X_stored = 1;
-X_constantinterval = (max(diff(diff(x)))<1e-7);
+if numel(x)>3,
+	X_constantinterval = (max(diff(diff(x)))<1e-7);
+else,
+	X_constantinterval = 0;
+end;
 X_units = '';
 Y_units = '';
 X_data_size = 64;
