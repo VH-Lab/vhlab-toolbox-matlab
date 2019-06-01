@@ -152,9 +152,13 @@ Y_skip_bytes = X_data_size/8 * (X_stored==1); % divide by 8 bits per byte
 
 y2 = permute(y,[2:numel(Y_dim) 1]);
 
-fwrite(fo, y2(:), ...
+if numel(y2)>0,
+
+	fwrite(fo, y2(:), ...
 		[int2str(prod(Y_dim(2:end))) '*' vhsb_sampletype2matlabfwritestring(Y_data_type, Y_data_size)], ...
 		Y_skip_bytes);
+
+end;
 
 if use_filelock,
 	fclose(fid);
