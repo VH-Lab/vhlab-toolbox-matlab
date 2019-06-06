@@ -7,9 +7,10 @@ function [tf, match_string, substitute_string] = strcmp_substitution(s1, s2, var
 %  These strings are of the same form if
 %     a) S1 and S2 are identical
 %     b) S2 is a regular expression match of S1 (see REGEXP)
-%     c) S2 matches S1 when the symbol '#' in S1 is replaced by some string in S2. In this case,
-%        SUBSTITUTE_STRING, the string that can replace the SubstituteStringSymbol '#' is also returned.
-%     In any case, the entire matched string MATCH_STRING will be returned.
+%     c) S2 matches S1 when the symbol '#' in S1 is replaced by some string in S2, either as a direct comparison
+%        with STRCMP or a regular expression match with REGEXP. In this case, SUBSTITUTE_STRING, the string that
+%        can replace the SubstituteStringSymbol '#' is also returned.
+%  In any case, the entire matched string MATCH_STRING will be returned.
 %
 %
 %  The function also has the form:
@@ -93,13 +94,17 @@ if UseSubstituteString,
 			s1_ = [s1_(1:(mymatches(i)-1)) SubstituteString s1_(mymatches(i)+1:end)];
 			mymatches(i+1:end) = mymatches(i+1:end) + length(SubstituteString) - 1; % move these guys along
 		end;
-		tf2 = strcmp(s1_,s2(indexes)); % works for arrays, too
+
+		% ok, now we can have either a regular expression match or exact match
+
+		S2 = regexp(s2(indexes),s1_);
+		tf3 = ~cellfun(@isempty,S2);
+		tf2 = strcmp(s1_,s2(indexes)) | tf3; % works for arrays, too
 		indexeshere = find(tf2);
 		tf(indexes(indexeshere)) = 1; % we found a match
 		for j=1:length(indexeshere)
 			substitute_string{indexes(indexeshere(j))} = SubstituteString;
 		end;
-
 	else, % we need to see if there is a string that fits
 		if length(mymatches)>1,
 			error(['Cannot deal with multiple locations for string match: ' s1 '.']);
