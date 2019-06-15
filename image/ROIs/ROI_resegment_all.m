@@ -12,6 +12,7 @@ function [CC, L] = ROI_resegment_all(CC, L, im, varargin)
 % resegment_namevaluepairs ({})       | Name/value pairs to pass to ROI_resegment
 %                                     |   (see HELP ROI_RESEGMENT)
 % rois_to_update ([1:CC.NumObjects])  | Index values of ROIs to update (can be a subset)
+% UseProgressBar (1)                  | Should we use a progress bar? (0/1)
 %
 %
 % Example:
@@ -26,8 +27,13 @@ function [CC, L] = ROI_resegment_all(CC, L, im, varargin)
 
 resegment_namevaluepairs = {};
 rois_to_update = 1:CC.NumObjects;
+UseProgressBar = 1;
 
 assign(varargin{:});
+
+if UseProgressBar,
+    progressbar('Resegmenting progress');
+end;
 
 for i=1:numel(rois_to_update),
 	CCnew = ROI_resegment(im, CC.PixelIdxList{rois_to_update(i)}, resegment_namevaluepairs{:});
@@ -41,5 +47,8 @@ for i=1:numel(rois_to_update),
 			L(CC.PixelIdxList{end}) = numel(CC.PixelIdxList); % update labeled image
 		end
 	end
+	if UseProgressBar,
+		progressbar(i/numel(rois_to_update));
+	end;
 end
 
