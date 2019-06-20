@@ -7,7 +7,7 @@ function stats = stimulus_response_stats(responses, varargin)
 % Field name:                   | Description
 % --------------------------------------------------------------------------------
 % stimid                        | Stimulus id number for each stimulus presentation
-% responses                     | Computed scalar response for each stimulus presentation
+% response                      | Computed scalar response for each stimulus presentation
 % control_response              | Computed scalar response to a control stimulus (could be empty)
 % controlstimnumber             | The stimulus number that was used as the control stimulus for
 %                               |     each stimulus presentation
@@ -18,13 +18,13 @@ function stats = stimulus_response_stats(responses, varargin)
 % Field name:                   | Description:
 % ------------------------------------------------------------------------
 % stimid                        | The stimulus id of each stimulus observed
-% mean_responses                | The mean response of TIMESERIES across stimulus
+% mean                          | The mean response of TIMESERIES across stimulus
 %                               |     presentations [stimid(1) stimid(2) ...]
-% stddev_responses              | The standard deviation of TIMESERIES across stimulus
+% stddev                        | The standard deviation of TIMESERIES across stimulus
 %                               |     presentations [stimid(1) stimid(2) ...]
-% stderr_responses              | The standard error of the mean of TIMESERIES
+% stderr                        | The standard error of the mean of TIMESERIES
 %                               |     across stimulus presentations [stimid(1) stimid(2) ...]
-% individual_responses          | A cell array with the individual responses to each stimulus
+% individual                    | A cell array with the individual responses to each stimulus
 %                               |    individual_responses{i}(j) has the jth response to stimulus with stimid(i)
 % control_mean                  | The mean response of TIMESERIES to the control stimulus, if one is
 %                               |    specified with RESPONSES.parameters.control_stimulus
@@ -32,7 +32,7 @@ function stats = stimulus_response_stats(responses, varargin)
 %                               |    if one is specified with RESPONSES.parameters.control_stimulus
 % control_stderr                | The standard error of the mean of the responses of TIMESERIES to the control stimulus,
 %                               |    if one is specified with RESPONSES.parameters.control_stimulus
-% control_individual_responses  | The individual responses of TIMESERIES to the control stimulus, 
+% control_individual            | The individual responses of TIMESERIES to the control stimulus, 
 %                               |    if one is specified with RESPONSES.parameters.control_stimulus
 %
 % The behavior of the function can be modified by name/value pairs:
@@ -51,83 +51,53 @@ control_normalization = [];
 
 assign(varargin{:});
 
-stimid = unique(responses.stimid);
+stimid = setdiff(unique(responses.stimid),responses.parameters.control_stimid);
 mean_responses = [];
 stddev_responses = [];
 stderr_responses = [];
-individual_responses = {};
+individual = {};
 control_mean = [];
 control_stddev = [];
 control_stderr = [];
-control_individual_responses = [];
+control_individual = {};
+
+if isempty(control_normalization),
+	control_normalization = 0;
+end;
+if ischar(control_normalization),
+	control_normalization = lower(control_normalization);
+end;
 
 for i=1:numel(stimid),
-	examples = find(stim_onsetoffsetid(:,3)==stimid(i));
-	individual_responses{i} = [];
-	for j=1:numel(examples),
-		stimulus_start = findclosest(timestamps,stim_onsetoffsetid(examples(j),1));
-		stimulus_stop  = findclosest(timestamps,stim_onsetoffsetid(examples(j),2));
+	examples = find(responses.stimid==stimid(i));
 
-		if ~isempty(prestimulus_time),
-			prestimulus_start = findclosest(timestamps, stim_onsetoffsetid(examples(j),1)-prestimulus_time);
-		else,
-			prestimulus_here = [];
-		end;
-
-		% now calculate response
-
-		freq_response_here = freq_response;
-		if numel(freq_response)>1,
-			freq_response_here = freq_response_here(stimid(i));
-		end;
-		if freq_response_here==0,
-			response_here = nanmean(timeseries(stimulus_start:stimulus_stop));
-			if ~isempty(prestimulus_time),
-				prestimulus_here = nanmean(timeseries(prestimulus_start:stimulus_start-1));
+	switch control_normalization,
+		case {0,'none'},
+			% do nothing,
+			individual{i} = responses.response(examples);
+			if ~isempty(responses.control_response),
+				control_individual_responses{i} = responses.control_response(examples);
 			end;
-		else,
-			response_here = fourier_coeffs_tf2( timeseries(sample_start:sample_stop), freq_response_here, sample_rate);
-			if ~isempty(prestimulus_time),
-				prestimulus_here = fourier_coeffs_tf2(timeseries(prestimulus_start:stimulus_start-1), freq_response_here, ...
-					sample_rate);
-			end;
-		end;
+		case {1,'subtract'} % subtract
+			individual{i} = responses.response(examples) - responses.control_response(examples);
+		case {2,'fractional'},
+			individual{i} = (responses.response(examples) - responses.control_response(examples))./responses.control_response(examples);
+		case {3,'divide'},
+			individual{i} = responses.response(examples)./responses.control_response(examples);
+	end; % switch
 
-		if ~isempty(prestimulus_normalization),
-			switch prestimulus_normalization,
-				case {0,'none'},
-					% do nothing,
-				case {1,'subtract'} % subtract
-					response_here = response_here - prestimulus_here;
-				case {2,'fractional'},
-					response_here = (response_here - prestimulus_here)./prestimulus_here;
-				case {3,'divide'},
-					response_here = response_here./prestimulus_here;
-			end; % switch
-		end;
+	mean_responses(i) = nanmean(individual{i}(:));
+	stddev_responses(i) = nanstd(individual{i}(:));
+	stderr_responses(i) = nanstderr(individual{i}(:));
 
-		individual_responses{i}(j,1) = response_here;
+	if ~isempty(control_individual),
+		control_mean_responses(i) = nanmean(control_individual{i}(:));
+		control_stddev_responses(i) = nanstd(control_individual{i}(:));
+		control_stderr_responses(i) = nanstderr(control_individual{i}(:));
 	end;
 end
 
-if ~isempty(blank_stimid),  % remove blank stims from list of stimids
-	blankstims = find(ismember(stimid,blank_stimid));
+stats = struct('mean',mean_responses,'stddev',stddev_responses,'stderr',stderr_responses);
 
-	blank_individual_responses = individual_responses(blankstims);
-	blank_individual_responses = cat(1,blank_individual_responses{:}); % make a big column vector
-	individual_responses = individual_responses(~blankstims);
-	stimid = stimid(~blankstims);
-
-	blank_mean = nanmean(blank_individual_responses);
-	blank_stddev = nanstd(blank_individual_responses);
-	blank_stderr = nanstderr(blank_individual_responses);
-
-end;
-
-for i=1:numel(stimid),
-	mean_responses = nanmean(individual_responses{i});
-	stddev_responses = nanstd(individual_responses{i});
-	stderr_responses = nanstderr(individual_responses{i});
-end;
-
+stats = structmerge(stats, var2struct('individual', 'control_mean','control_stddev','control_stderr','control_individual'));
 

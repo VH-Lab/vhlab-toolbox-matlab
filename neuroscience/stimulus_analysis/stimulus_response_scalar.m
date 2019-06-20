@@ -40,7 +40,7 @@ function response = stimulus_response_scalar(timeseries, timestamps, stim_onseto
 %                               |       1) Subtract: Response := Response - PrestimResponse
 %                               |       2) Fractional change Response:= ((Response-PrestimResponse)/PrestimResponse)
 %                               |       3) Divide: Response:= Response ./ PreStimResponse
-% isspike (0)                   | 0/1 Is the signal a spike process? If so, timestamps correspond to spike events.
+% isspike (see right)           | 0/1 Is the signal a spike process? If so, timestamps correspond to spike events.
 % spiketrain_dt (0.001)         | Resolution to use for spike train reconstruction if computing Fourier transform
 %
 
@@ -113,17 +113,21 @@ for i=1:numel(stimid),
 		if ~isspike,
 			response_here = fouriercoeffs_tf2( timeseries(stimulus_samples), freq_response_here, sample_rate);
 		else,
-			train_time = stim_onsetoffsetid(i,1):spiketrain_dt:stim_onsetoffsetid(i,2);
-			spiketrain = (1.0/spiketrain_dt)*spiketimes2bins(timeseries(stimulus_samples),train_time);
-			response_here = fouriercoeffs_tf2( spiketrain, freq_response_here, (1.0/spiketrain_dt));
+			if numel(stimulus_samples)>0,
+				response_here = sum(exp(-sqrt(-1)*2*pi*freq_response_here*(timestamps(stimulus_samples)-stim_onsetoffsetid(i,1))));
+			else,
+				response_here = 0;
+			end;
 		end;
 		if ~isempty(prestimulus_time),
 			if ~isspike,
 				prestimulus_here = fouriercoeffs_tf2(timeseries(prestimulus_samples), freq_response_here, sample_rate);
 			else,
-				pre_train_time = stim_onsetoffsetid(i,1)-prestimulus_time:spiketrain_dt:stim_onsetoffsetid(i,1)-dt;
-				pre_spiketrain = (1.0/spiketrain_dt)*spiketimes2bins(timeseries(prestimulus_samples),pre_train_time);
-				prestimulus_here = fouriercoeffs_tf2(pre_spiketrain, freq_response_here, sample_rate);
+				if numel(prestimulus_samples)>0,
+					prestimulus_here = sum(exp(-sqrt(-1)*2*pi*freq_response_here*(timestamps(prestimulus_samples)-stim_onsetoffsetid(i,1)-prestimulus_time)));
+				else,
+					prestimulus_here = 0;
+				end;
 			end;
 		end;
 	end;
