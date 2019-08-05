@@ -36,7 +36,7 @@ recursive = 0;
 
 assign(varargin{:});
 
-d = dirstrip(dir(dirname)); % trim '.' and '..' and '.DS_store'
+d = dirstrip(dir(dirname)); % trim '.' and '..' and '.DS_store' and '.git'
 
 if ~useOutputDir,
 	outputPath = dirname;
