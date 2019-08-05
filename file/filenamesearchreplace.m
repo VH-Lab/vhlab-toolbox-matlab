@@ -1,5 +1,4 @@
 function filenamesearchreplace(dirname, searchStrs, replaceStrs, varargin)
-%
 % FILENAMESEARCHREPLACE - Seach and replace filenames within a directory
 %
 % FILENAMESEARCHREPLACE(DIRNAME, SEARCHSTRS, REPLACESTRS, ...)
@@ -8,8 +7,6 @@ function filenamesearchreplace(dirname, searchStrs, replaceStrs, varargin)
 % of any string in the cell array of strings SEARCHSTRS. If it finds a match,
 % then it creates a new file with the search string replaced by the
 % corresponding entry in the cell array of strings REPLACESTRS.
-%
-% This function (at present) only operates on regular files, not directories.
 %
 % This function also can be modified by name/value pairs:
 % Parameter (default)      | Description
@@ -21,6 +18,7 @@ function filenamesearchreplace(dirname, searchStrs, replaceStrs, varargin)
 %                          |   (will be created if it doesn't exist)
 % noOp (0)                 | If 1, this will not perform the operation but will
 %                          |   display its intended action
+% recursive (0)            | Should we call this recursively on subdirectories?
 %
 % See also: NAMEVALUEPAIR
 % 
@@ -34,6 +32,7 @@ useOutputDir = 0;
 OutputDirPath = dirname;
 OutputDir = 'subfolder';
 noOp = 0;
+recursive = 0;
 
 assign(varargin{:});
 
@@ -53,32 +52,38 @@ else,
 end
 
 for i=1:numel(d),
-	if ~d(i).isdir, % ignore directories for now
-		tf = cellfun(@(x) contains(d(i).name,x,'IgnoreCase',true), searchStrs);
-		idx = find(tf);
-		if ~isempty(idx),
-			idx = min(idx); % pick the first match
-			newname = strrep(d(i).name,searchStrs{idx},...
-				replaceStrs{idx});
-			oldnamefullpath = [dirname filesep d(i).name];
-			newnamefullpath = [outputPath filesep newname];
+	tf = cellfun(@(x) contains(d(i).name, x,'IgnoreCase',true), searchStrs);
+	idx = find(tf);
+	if ~isempty(idx),
+		idx = min(idx); % pick the first match
+		newname = strrep(d(i).name,searchStrs{idx},...
+			replaceStrs{idx});
+		oldnamefullpath = [dirname filesep d(i).name];
+		newnamefullpath = [outputPath filesep newname];
+		if ~noOp,
+			copyfile(oldnamefullpath, newnamefullpath);
+		else,
+			disp(['Would have copied ' ...
+				oldnamefullpath ' to ' ...
+				newnamefullpath '']);
+		end
+		if deleteOriginals,
 			if ~noOp,
-				copyfile(oldnamefullpath, newnamefullpath);
-			else,
-				disp(['Would have copied ' ...
-					oldnamefullpath ' to ' ...
-					newnamefullpath '']);
-			end
-			if deleteOriginals,
-				if ~noOp,
+				if d(i).isdir, % is a directory
+					rmdir([oldnamefullpath],'s');
+				else, % is regular file
 					delete([oldnamefullpath]);
-				else,
-					disp(['Would have deleted ' ...
-						oldnamefullpath '']);
-				end
+				end;
+			else,
+				disp(['Would have deleted ' ...
+					oldnamefullpath '']);
 			end
 		end
 	end
+	if d(i).isdir, % is a directory
+		if recursive, % is a directory
+			filenamesearchreplace([dirname filesep d(i).name],searchStrs, replaceStrs, varargin{:});
+		end;
+	end
 end;
-
 

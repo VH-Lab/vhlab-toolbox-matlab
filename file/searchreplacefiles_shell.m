@@ -8,11 +8,13 @@ function searchreplacefiles_shell(dirsearch, findstring, replacestring)
 %  strings with REPLACESTRING.
 %
 %  At present, this requires unix (it calls the shell commands 'find' and 'sed').
+%
+%  The function prints its shell command before attempting to run.
 %  
 
 
-command_string = ['find . -type f -name "' dirsearch ...
-	'" | xargs sed -i '''' ''s/' findstring '/' replacestring '/g'];
+command_string = ['LC_ALL=C find . -type f -name ''' dirsearch ...
+	''' -exec  sed -i '''' s/' findstring '/' replacestring '/g {} +']
 
 if isunix,
 	system(command_string);
