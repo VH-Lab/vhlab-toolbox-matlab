@@ -46,12 +46,11 @@ function [Si,inds] = stepfunc(t, steps, ti, outofbounds)
 if nargin<4, ob = NaN; else, ob = outofbounds; end;
 
 inds = fix(interp1([t t(end)+mean(diff(t))], 1:length(t)+1,ti,'linear',NaN));
-inds(find(inds>length(t))) = NaN;
+inds(find(inds>length(steps))) = NaN;
 
 Si = repmat(ob,size(steps,1),length(inds));
 
 [indsofsubinds] = find(~isnan(inds));
 
 Si(:,indsofsubinds) = steps(:,inds(indsofsubinds));
-
 
