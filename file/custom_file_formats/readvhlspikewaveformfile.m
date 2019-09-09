@@ -69,7 +69,7 @@ data_size = 4; % 32 bit floats
 	fseek(fid,header_size+data_size*(my_wave_start-1)*wave_size,'bof'); % move to the right place in the file
 	data_size_to_read = (my_wave_end-my_wave_start+1)*wave_size;
 	waveforms = fread(fid,data_size_to_read,'float32');
-	waves_actually_read = length(waveforms)/(parameters.numchannels*samples_per_channel);
+	waves_actually_read = numel(waveforms)/(parameters.numchannels*samples_per_channel);
 	if abs(waves_actually_read-round(waves_actually_read))>0.0001,
 		error(['Got an odd number of samples for these spikes. Corrupted file perhaps?']);
 	end;
