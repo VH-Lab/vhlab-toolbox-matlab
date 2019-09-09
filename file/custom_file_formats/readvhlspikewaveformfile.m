@@ -61,7 +61,7 @@ parameters.samplingrate= double(fread(fid,1,'float32'));
  % each data points takes 4 bytes; the number of samples is equal to the number of channels
  %       multiplied by the number of samples taken from each channel, which is S1-S0+1
 samples_per_channel = parameters.S1-parameters.S0+1;
-wave_size = parameters.numchannels * samples_per_channel; 
+wave_size = parameters.numchannels * samples_per_channel;
 
 data_size = 4; % 32 bit floats
 

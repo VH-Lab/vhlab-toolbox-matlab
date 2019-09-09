@@ -1,10 +1,10 @@
-function fid = newvhlspikewaveformfile(filename, parameters)
+function fid = newvhlspikewaveformfile(fid_or_filename, parameters)
 % NEWVHLSPIKEWAVEFORMFILE - Create a binary file for storing spike waveforms
 %
-%   FID = NEWVHLSPIKEWAVEFORMFILE(FILENAME, PARAMETERS)
+%   FID = NEWVHLSPIKEWAVEFORMFILE(FID_OR_FILENAME, PARAMETERS)
 %
-%   Creates (and leaves open) a new binary file for storing spike waveforms.
-%   Data is stored as single precision big endian binary.
+%   Creates (or writes to) a binary file for storing spike waveforms.
+%   Data is stored as single precision big endian binary if this function opens the file.
 %
 %   This function creates the header file that include the following
 %   parameters:
@@ -29,10 +29,16 @@ function fid = newvhlspikewaveformfile(filename, parameters)
 %  NOTE: When one is done using the file, it must be closed with FCLOSE(FID).
 %
  
-fid = fopen(filename,'w','b');
+did_this_function_open_the_fid = 0;
 
-if fid<0,
-	error(['Could not open ' filename ' for writing.']);
+if ischar(fid_or_filename),
+	fid = fopen(fid_or_filename,'w','b');
+	if fid<0,
+		error(['Could not open the file ' fid_or_filename '.']);
+	end;
+	did_this_function_open_the_fid = 1;
+else,
+	fid = fid_or_filename;
 end;
 
  % write header
@@ -63,3 +69,8 @@ fwrite(fid,single(parameters.samplingrate),'float32');      % now at 168 bytes
 fwrite(fid,zeros(1,512-168),'uint8');
 
 fseek(fid,512,'bof');
+
+if did_this_function_open_the_fid,
+	fclose(fid); % close it if we opened it
+end;
+
