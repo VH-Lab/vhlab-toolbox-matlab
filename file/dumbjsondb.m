@@ -288,7 +288,7 @@ classdef dumbjsondb
 					key = ndi_unique_id;
 					fwrite(lockfid,key,'char',0,'ieee-le');
 					fclose(lockfid);  % we have it, don't need to keep it open
-					disp(['about to open file ' [p f] ' with permissions a+']);
+					%disp(['about to open file ' [p f] ' with permissions a+']);
 					fid = fopen([p f], 'a+', 'ieee-le'); % open in read/write mode, impose little-endian for cross-platform compatibility
 					if fid > 0, % we are okay
 					else % need to close and delete the lock file before reporting error
