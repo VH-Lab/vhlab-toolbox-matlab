@@ -374,7 +374,8 @@ classdef dumbjsondb
 			% version ('latest')           : Which versions should be searched? Can be
 			%                              :   a specific number, 'latest', or 'all'
 			%
-			% SEARCHPARAMS should be {'PARAM1', VALUE1, 'PARAM2', VALUE2, ... }
+			% SEARCHPARAMS should be either be {'PARAM1', VALUE1, 'PARAM2', VALUE2, ... }
+			%  or a search structure appropriate for FIELDSEARCH.
 			%
 			% The document parameters PARAM1, PARAM2 are examined for matches.
 			% If VALUEN is a string, then a regular expression
@@ -905,6 +906,10 @@ classdef dumbjsondb
 			% B = ISMATCH(DOCUMENT, SEARCHPARAMS)
 			%
 			% Examines the fields of DOCUMENT to determine if there is a match.
+				if isstruct(searchParams),
+					b = fieldsearch(struct(document),searchParams);
+					return;
+				end;
 				b = 1;
 				for i=1:2:numel(searchParams),
 					hasit = 0;
