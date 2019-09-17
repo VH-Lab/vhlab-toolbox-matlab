@@ -1,7 +1,7 @@
-function [v, fr, stimid, timepoints, vm_baselinesubtracted, exactbintime] = voltage_firingrate_observations(t, vm, spiketimes, varargin)
+function [v, fr, stimid, timepoints, vm_baselinesubtracted, exactbintime, subtracted_value] = voltage_firingrate_observations(t, vm, spiketimes, varargin)
 % VOLTAGE_FIRINGRATE_OBSERVATIONS - compile a list of voltage measurements and firing rate measurements
 %
-% [V,FR,STIMID,TIMEPOINTS,VM_BASELINESUBECTRACTED,EXACTBINTIME] = ...
+% [V,FR,STIMID,TIMEPOINTS,VM_BASELINESUBECTRACTED,EXACTBINTIME, SUBTRACTED_VALUE] = ...
 %          VOLTAGE_FIRINGRATE_OBSERVATIONS(T, VM, SPIKETIMES, ...)
 %
 % Compiles a list of membrane voltage measurements V and firing rate measurements FR given the
