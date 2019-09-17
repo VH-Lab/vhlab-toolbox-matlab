@@ -20,6 +20,11 @@ function output = workspace2struct;
 
 varlist = evalin('caller','who');
 
+if numel(varlist)==0,
+	output = emptystruct();
+	return;
+end;
+
 for i=1:length(varlist)
 	myval = evalin('caller',varlist{i});
 	eval(['output.' varlist{i} '=myval;']);
