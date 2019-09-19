@@ -19,57 +19,41 @@ configsize = 0;
 if (nargin < 8)
     configExists = 1;
 end
-%We open file
+% We open file
 fid = fopen(filename,'r');
 
-%Store config text
+% Store config text
 if (configExists)
     junk = fread(fid,30000,'char');
     configsize = strfind(junk','</Configuration>')+16;
 end
 
-headerSizeBytes = str2num(headerSize) * 2; %int16 = 2 bytes
-channelSizeBytes = str2num(NumChannels) * 2; %int16 = 2 bytes
+headerSizeBytes = str2num(headerSize) * 2; % int16 = 2 bytes
+channelSizeBytes = str2num(NumChannels) * 2; % int16 = 2 bytes
 blockSizeBytes = headerSizeBytes + 2 + channelSizeBytes;
 
 if (nargout > 1)
     junk = fread(fid,configsize,'char');
-    %fwrite(fileidshort, junk, 'char'); %%%%
-    %junk = fread(fid,headerSize,'int16');
-    %fwrite(fileidshort,junk,'int16'); %%%%
-    fseek(fid,configsize,'bof'); %seek to configsize length from beginning of file
-    fseek(fid,headerSizeBytes,'cof'); %seek to headerSizeBytes length from current position in file
-    timestamps = (fread(fid,s1-s0+1,'1*uint32=>double',(headerSizeBytes)+(channelSizeBytes))')/samplingRate;
-    %timestamps = double(timestamps)/samplingRate;
-    %frewind(fid);
+    fseek(fid,configsize,'bof'); % seek to configsize length from beginning of file
+    fseek(fid,headerSizeBytes,'cof'); % seek to headerSizeBytes length from current position in file
+    timestamps = (fread(fid,s1-s0+1,'1*uint32=>double',(headerSizeBytes)+(channelSizeBytes))') / samplingRate;
 end
 
 recData = [];
 
 for i = 1:length(channels)
-    %Commented is the previous way of reading the file
+    fseek(fid, configsize, 'bof'); % seek to configsize length from beginning of file
+    fseek(fid, headerSizeBytes, 'cof'); % seek to headerSizeBytes length from current position in file
+    fseek(fid, 4, 'cof'); % timestamp uint32 = 4 bytes
+    fseek(fid, 2*(channels(i) - 1), 'cof'); % int16 = 2 bytes
+    fseek(fid, (s0-1) * blockSizeBytes, 'cof'); % goes to correct s0
 
-    %junk = fread(fid,configsize,'char'); %config
-    %junk = fread(fid,headerSize,'int16'); %header block
-    %junk = fread(fid,1,'uint32'); %timestamp
-    %junk = fread(fid,channels(i)-1,'int16'); %skip ahead to the channel (120 channels, number between 1-120)
-    %fread(fid, s1-s0, '1*int16=>int16', blockSizeBytes);
-    %channelData = fread(fid,[1,inf],'1*int16=>int16',(headerSizeBytes)+2+(channelSizeBytes))'; %This is where you make the sample smaller
-    %frewind(fid);
-
-    fseek(fid, configsize, 'bof'); %seek to configsize length from beginning of file
-    fseek(fid, headerSizeBytes, 'cof'); %seek to headerSizeBytes length from current position in file
-    fseek(fid, 4, 'cof'); %timestamp uint32 = 4 bytes
-    fseek(fid, 2*(channels(i) - 1), 'cof'); %int16 = 2 bytes
-    fseek(fid, (s0-1) * blockSizeBytes, 'cof'); %goes to correct s0
-    %Read actual data for desired size from sample numbers inputed s1-s0+1, skipping block each time
-    channelData = fread(fid, s1-s0+1, '1*int16=>int16', blockSizeBytes)'; %transposed from vertical to horizontal
-
-
-    channelData = double(channelData)*-1; %reverse the sign to make spike point up
-    channelData = channelData * 12780; %convert to uV (for Intan digital chips)
+    % Read actual data for desired size from sample numbers inputed s1-s0+1, skipping block each time
+    channelData = fread(fid, s1-s0+1, '1*int16=>int16', blockSizeBytes)'; % transposed from vertical to horizontal
+    channelData = double(channelData); % spike points down
+    channelData = channelData * 12780; % convert to uV (for Intan digital chips)
     channelData = channelData / 65536;
-    recData = [recData; channelData]; %append in a new row to recData
+    recData = [recData; channelData]; % append in a new row to recData
 
 end
 
