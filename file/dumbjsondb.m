@@ -31,6 +31,8 @@ classdef dumbjsondb
 	%     [docs,doc_versions] = db.search({},{'value',5})
 	%     % search for a document that doesn't exist because '5' is a string
 	%     [docs,doc_versions] = db.search({},{'value','5'})
+	%     % use the struct version of search
+	%     [docs,doc_versions] = db.search({},struct('field','value','operation','greaterthan','param1',1,'param2',[]))
 	%      
 	%     % remove an entry
 	%     db.remove(2002);
