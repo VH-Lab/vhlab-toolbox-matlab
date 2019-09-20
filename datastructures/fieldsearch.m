@@ -65,75 +65,71 @@ end;
 
 b = 0; % now it has to pass
 
-switch(lower(searchstruct.operation))
+[isthere, value] = isfullfield(A,searchstruct.field);
+
+switch(lower(searchstruct.operation)),
 	case 'regexp',
-		if isfield(A,searchstruct.field),
-			value = getfield(A,searchstruct.field);
+		if isthere,
 			if ischar(value), % it has to be a char or string to match
 				test = regexpi(value, searchstruct.param1, 'forceCellOutput');
 				b = ~isempty(test);
 			end;
 		end;
 	case 'exact_string',
-		if isfield(A,searchstruct.field),
-			b = strcmp(getfield(A,searchstruct.field),searchstruct.param1);
+		if isthere,
+			b = strcmp(value,searchstruct.param1);
 		end;
 	case 'contains_string',
-		if isfield(A,searchstruct.field),
+		if isthere,
 			try,
-				b = ~isempty(strfind(getfield(A,searchstruct.field),searchstruct.param1));
+				b = ~isempty(strfind(value,searchstruct.param1));
 			end;
 		end;
 	case 'exact_number',
-		if isfield(A,searchstruct.field),
-			b = eqlen(getfield(A,searchstruct.field),searchstruct.param1);
+		if isthere,
+			b = eqlen(value,searchstruct.param1);
 		end;
 	case 'lessthan',
-		if isfield(A,searchstruct.field),
-			v = getfield(A,searchstruct.field);
+		if isthere,
 			try,
-				b = all(getfield(A,searchstruct.field)<searchstruct.param1);
+				b = all(value<searchstruct.param1);
 			end;
 		end;
 	case 'lessthaneq',
-		if isfield(A,searchstruct.field),
-			v = getfield(A,searchstruct.field);
+		if isthere,
 			try,
-				b = all(getfield(A,searchstruct.field)<=searchstruct.param1);
+				b = all(value<=searchstruct.param1);
 			end;
 		end;
 	case 'greaterthan',
-		if isfield(A,searchstruct.field),
-			v = getfield(A,searchstruct.field);
+		if isthere,
 			try,
-				b = all(getfield(A,searchstruct.field)>searchstruct.param1);
+				b = all(value>searchstruct.param1);
 			end;
 		end;
 	case 'greaterthaneq',
-		if isfield(A,searchstruct.field),
-			v = getfield(A,searchstruct.field);
+		if isthere,
 			try,
-				b = all(getfield(A,searchstruct.field)>=searchstruct.param1);
+				b = all(value>=searchstruct.param1);
 			end;
 		end;
 	case 'hasfield',
-		b = isfield(A,searchstruct.field);
+		b = isthere;
 	case 'hasanysubfield_contains_string',
-		if isfield(A,searchstruct.field),
-			v = getfield(A,searchstruct.field);
-			if ~ (isstruct(v) | iscell(v) ), return; end; % must be a structure or cell
-			for i=1:numel(v),
-				if isstruct(v),
-					item = v(i);
+		if isthere,
+			if ~ (isstruct(value) | iscell(value) ), return; end; % must be a structure or cell
+			for i=1:numel(value),
+				if isstruct(value),
+					item = value(i);
 				else,
-					item = v{i};
+					item = value{i};
 				end;
 				if isstruct(item), % item must be a struct,
-					if isfield(item,searchstruct.param1),
-						v2 = getfield(item,searchstruct.param1);
-						if ischar(v2),
-							b = ~isempty(strfind(v2,searchstruct.param2));
-							if b, break; end;
+					[isthere2,value2] = isfullfield(item,searchstruct.param1);
+					if ischar(value2),
+						b = ~isempty(strfind(value2,searchstruct.param2));
+						if b,
+							break;
 						end;
 					end;
 				end;
@@ -145,7 +141,9 @@ switch(lower(searchstruct.operation))
 		end;
 		for i=1:numel(searchstruct.param1),
 			b = fieldsearch(A,searchstruct.param1(i));
-			if b, break; end;
+			if b,
+				break;
+			end;
 		end;
 	otherwise,
 		error(['Unknown search operation ' searchstruct.operation ]);
