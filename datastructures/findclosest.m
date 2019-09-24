@@ -7,7 +7,7 @@ function [i,nv] = findclosest(arr,v)
 % in absolute value. It returns the index in I and the value
 % in V.  If ARRAY is empty, so are I and V.
 %
-% If there are multiple occurances of VALUE within ARRAY,
+% If there are multiple occurrences of VALUE within ARRAY,
 % only the first is returned in I.
 %
 % See also: FIND
