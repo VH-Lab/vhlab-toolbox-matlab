@@ -26,7 +26,7 @@ function b = fieldsearch(A, searchstruct)
 %     |   'hasanysubfield_contains_string' - Is the field value an array of structs or cell array of structs
 %     |                        such that any has a field named 'param1' with a string that contains the string
 %     |                        in 'param2'?
-%     |   'or'                 - are any of the searchstruct elements specified in 'param1' true?
+%     |   'or'                 - are the searchstruct elements specified in 'param1' OR 'param2' true?
 %     -----------------------|
 % param1                     | Search parameter 1. Meaning depends on 'operation' (see above).
 % param2                     | Search parameter 2. Meaning depends on 'operation' (see above).
@@ -43,9 +43,9 @@ function b = fieldsearch(A, searchstruct)
 %     B = struct('values',A);
 %     b3=fieldsearch(B,struct('field','values','operation','hasanysubfield_contains_string','param1','a','param2','string_test'))
 %
-%     b4=fieldsearch(A,struct('field','','operation','or','param1',...
-%           [ struct('field','b','operation','hasfield','param1','','param2','') ...
-%             struct('field','c','operation','hasfield','param1','','param2','') ],'param2',''))
+%     b4=fieldsearch(A,struct('field','','operation','or', ...
+%         'param1', struct('field','b','operation','hasfield','param1','','param2',''), ...
+%         'param2', struct('field','c','operation','hasfield','param1','','param2','') ))
 %
 
 b = 1; % assume it matches
@@ -136,15 +136,10 @@ switch(lower(searchstruct.operation)),
 			end;
 		end;
 	case 'or',
-		if ~isstruct(searchstruct.param1),
-			error(['In operation ''or'', searchstruct ''param1'' must be an array of structures.']);
+		if ~isstruct(searchstruct.param1) | ~isstruct(searchstruct.param2),
+			error(['In operation ''or'', searchstruct ''param1'' and ''param2'' must be an array of structures.']);
 		end;
-		for i=1:numel(searchstruct.param1),
-			b = fieldsearch(A,searchstruct.param1(i));
-			if b,
-				break;
-			end;
-		end;
+		b = (fieldsearch(A,searchstruct.param1) | fieldsearch(A,searchstruct.param2));
 	otherwise,
 		error(['Unknown search operation ' searchstruct.operation ]);
 end;
