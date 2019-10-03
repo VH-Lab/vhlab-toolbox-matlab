@@ -80,6 +80,10 @@ end;
 for i=1:numel(stimid),
 	% works for both regularly sampled and irregularly sampled time data
 	stimulus_samples = find(timestamps>=stim_onsetoffsetid(i,1) & timestamps<=stim_onsetoffsetid(i,2)); 
+	if (timestamps(end)<stim_onsetoffsetid(i,2) | timestamps(1)>stim_onsetoffsetid(i,1)), % if we are out of bounds
+		response_here(i) = NaN;
+		continue;
+	end;
 
 	if ~isempty(prestimulus_time),
 		prestimulus_samples = find(timestamps>=stim_onsetoffsetid(i,1)-prestimulus_time & timestamps<stim_onsetoffsetid(i,1)); 
