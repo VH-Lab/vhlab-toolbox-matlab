@@ -81,74 +81,77 @@ for i=1:numel(stimid),
 	% works for both regularly sampled and irregularly sampled time data
 	stimulus_samples = find(timestamps>=stim_onsetoffsetid(i,1) & timestamps<=stim_onsetoffsetid(i,2)); 
 	if (timestamps(end)<stim_onsetoffsetid(i,2) | timestamps(1)>stim_onsetoffsetid(i,1)), % if we are out of bounds
-		response_here(i) = NaN;
-		continue;
-	end;
-
-	if ~isempty(prestimulus_time),
-		prestimulus_samples = find(timestamps>=stim_onsetoffsetid(i,1)-prestimulus_time & timestamps<stim_onsetoffsetid(i,1)); 
+		response_here = NaN;
 	else,
-		prestimulus_samples = [];
-	end;
-
-	% now calculate response
-
-	freq_response_here = freq_response;
-	if numel(freq_response)>1,
-		freq_response_here = freq_response_here(stimid(i));
-	end;
-
-	if freq_response_here==0,
-		if ~isspike,
-			response_here = nanmean(timeseries(stimulus_samples));
-		else,
-			response_here = sum(timeseries(stimulus_samples))/diff(stim_onsetoffsetid(i,[1 2]));
-		end;
 		if ~isempty(prestimulus_time),
-			if ~isspike,
-				prestimulus_here = nanmean(timeseries(prestimulus_samples));
-			else,
-				prestimulus_here = sum(timeseries(prestimulus_samples))/diff(stim_onsetoffsetid(i,[1 2]));
-			end;
+			prestimulus_samples = ...
+				find(timestamps>=stim_onsetoffsetid(i,1)-prestimulus_time & timestamps<stim_onsetoffsetid(i,1)); 
 		else,
-			prestimulus_here = [];
+			prestimulus_samples = [];
 		end;
-	else,
-		if ~isspike,
-			response_here = fouriercoeffs_tf2( timeseries(stimulus_samples), freq_response_here, sample_rate);
-		else,
-			if numel(stimulus_samples)>0,
-				response_here = sum(exp(-sqrt(-1)*2*pi*freq_response_here*(timestamps(stimulus_samples)-stim_onsetoffsetid(i,1))));
-			else,
-				response_here = 0;
-			end;
+
+		% now calculate response
+
+		freq_response_here = freq_response;
+		if numel(freq_response)>1,
+			freq_response_here = freq_response_here(stimid(i));
 		end;
-		if ~isempty(prestimulus_time),
+
+		if freq_response_here==0,
 			if ~isspike,
-				prestimulus_here = fouriercoeffs_tf2(timeseries(prestimulus_samples), freq_response_here, sample_rate);
+				response_here = nanmean(timeseries(stimulus_samples));
 			else,
-				if numel(prestimulus_samples)>0,
-					prestimulus_here = sum(exp(-sqrt(-1)*2*pi*freq_response_here*(timestamps(prestimulus_samples)-stim_onsetoffsetid(i,1)-prestimulus_time)));
+				response_here = sum(timeseries(stimulus_samples))/diff(stim_onsetoffsetid(i,[1 2]));
+			end;
+			if ~isempty(prestimulus_time),
+				if ~isspike,
+					prestimulus_here = nanmean(timeseries(prestimulus_samples));
 				else,
-					prestimulus_here = 0;
+					prestimulus_here = sum(timeseries(prestimulus_samples))/diff(stim_onsetoffsetid(i,[1 2]));
+				end;
+			else,
+				prestimulus_here = [];
+			end;
+		else,
+			if ~isspike,
+				response_here = fouriercoeffs_tf2( timeseries(stimulus_samples), freq_response_here, sample_rate);
+			else,
+				if numel(stimulus_samples)>0,
+					response_here = ...
+						sum(exp(-sqrt(-1)*2*pi*freq_response_here*(timestamps(stimulus_samples)-...
+							stim_onsetoffsetid(i,1))));
+				else,
+					response_here = 0;
+				end;
+			end;
+			if ~isempty(prestimulus_time),
+				if ~isspike,
+					prestimulus_here = fouriercoeffs_tf2(timeseries(prestimulus_samples), freq_response_here, sample_rate);
+				else,
+					if numel(prestimulus_samples)>0,
+						prestimulus_here = ...
+							sum(exp(-sqrt(-1)*2*pi*freq_response_here*(timestamps(prestimulus_samples)-...
+								stim_onsetoffsetid(i,1)-prestimulus_time)));
+					else,
+						prestimulus_here = 0;
+					end;
 				end;
 			end;
 		end;
-	end;
 
-	if ~isempty(prestimulus_normalization),
-		switch prestimulus_normalization,
-			case {0,'none'},
-				% do nothing,
-			case {1,'subtract'} % subtract
-				response_here = response_here - prestimulus_here;
-			case {2,'fractional'},
-				response_here = (response_here - prestimulus_here)./prestimulus_here;
-			case {3,'divide'},
-				response_here = response_here./prestimulus_here;
-		end; % switch
+		if ~isempty(prestimulus_normalization),
+			switch prestimulus_normalization,
+				case {0,'none'},
+					% do nothing,
+				case {1,'subtract'} % subtract
+					response_here = response_here - prestimulus_here;
+				case {2,'fractional'},
+					response_here = (response_here - prestimulus_here)./prestimulus_here;
+				case {3,'divide'},
+					response_here = response_here./prestimulus_here;
+			end; % switch
+		end;
 	end;
-
 	response(i) = response_here;
 end
 
