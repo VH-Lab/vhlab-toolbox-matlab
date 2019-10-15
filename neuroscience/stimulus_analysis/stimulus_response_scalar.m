@@ -80,34 +80,57 @@ end;
 for i=1:numel(stimid),
 	% works for both regularly sampled and irregularly sampled time data
 	stimulus_samples = find(timestamps>=stim_onsetoffsetid(i,1) & timestamps<=stim_onsetoffsetid(i,2)); 
-	if (timestamps(end)<stim_onsetoffsetid(i,2) | timestamps(1)>stim_onsetoffsetid(i,1)), % if we are out of bounds
+
+	control_stim_here = [];
+	control_stimulus_samples = [];
+	if ~isempty(controlstimnumber),
+		control_stim_here = controlstimnumber(i);
+		control_stimulus_samples = find(timestamps>=stim_onsetoffsetid(control_stim_here,1) & timestamps<=stim_onsetoffsetid(control_stim_here,2));
+	end;
+
+	outofbounds1 = (timestamps(end)<stim_onsetoffsetid(i,2) | timestamps(1)>stim_onsetoffsetid(i,1)); % stim out of bounds
+	outofbounds2 = 0;
+	if ~isempty(controlstimnumber),
+		outofbounds2 = (timestamps(end)<stim_onsetoffsetid(control_stim_here,2) | timestamps(1)>stim_onsetoffsetid(control_stim_here,1)); % control stim out of bounds
+	end;
+
+	if outofbounds1 | outofbounds2, 
 		response_here = NaN;
+		control_response_here = NaN;
 	else,
+		prestimulus_samples = [];
+		control_prestimulus_samples = [];
+
 		if ~isempty(prestimulus_time),
 			prestimulus_samples = ...
 				find(timestamps>=stim_onsetoffsetid(i,1)-prestimulus_time & timestamps<stim_onsetoffsetid(i,1)); 
-		else,
-			prestimulus_samples = [];
+			if ~isempty(control_response_here),
+				control_prestimulus_samples = find(timestamps>=stim_onsetoffsetid(control_stim_here,1)-prestimulus_time & timestamps<stim_onsetoffsetid(control_stim_here,1)); 
+			end;
 		end;
 
 		% now calculate response
 
 		freq_response_here = freq_response;
 		if numel(freq_response)>1,
-			freq_response_here = freq_response_here(stimid(i));
+			freq_response_here = freq_response(stimid(i));
 		end;
 
 		if freq_response_here==0,
 			if ~isspike,
 				response_here = nanmean(timeseries(stimulus_samples));
+				control_response_here = nanmean(timeseries(control_stimulus_samples));
 			else,
 				response_here = sum(timeseries(stimulus_samples))/diff(stim_onsetoffsetid(i,[1 2]));
+				control_response_here = sum(timeseries(control_stimulus_samples))/diff(stim_onsetoffsetid(i,[1 2]));
 			end;
 			if ~isempty(prestimulus_time),
 				if ~isspike,
 					prestimulus_here = nanmean(timeseries(prestimulus_samples));
+					control_prestimulus_here = nanmean(timeseries(control_prestimulus_samples));
 				else,
 					prestimulus_here = sum(timeseries(prestimulus_samples))/diff(stim_onsetoffsetid(i,[1 2]));
+					control_prestimulus_here = sum(timeseries(control_prestimulus_samples))/diff(stim_onsetoffsetid(i,[1 2]));
 				end;
 			else,
 				prestimulus_here = [];
@@ -115,6 +138,7 @@ for i=1:numel(stimid),
 		else,
 			if ~isspike,
 				response_here = fouriercoeffs_tf2( timeseries(stimulus_samples), freq_response_here, sample_rate);
+				control_response_here = fouriercoeffs_tf2( timeseries(control_stimulus_samples), freq_response_here, sample_rate);
 			else,
 				if numel(stimulus_samples)>0,
 					response_here = ...
@@ -123,10 +147,18 @@ for i=1:numel(stimid),
 				else,
 					response_here = 0;
 				end;
+				if numel(control_stimulus_samples)>0,
+					control_response_here = ...
+						sum(exp(-sqrt(-1)*2*pi*freq_response_here*(timestamps(control_stimulus_samples)-...
+							stim_onsetoffsetid(control_stim_here,1))));
+				else,
+					control_response_here = 0;
+				end;
 			end;
 			if ~isempty(prestimulus_time),
 				if ~isspike,
 					prestimulus_here = fouriercoeffs_tf2(timeseries(prestimulus_samples), freq_response_here, sample_rate);
+					control_prestimulus_here = fouriercoeffs_tf2(timeseries(control_prestimulus_samples), freq_response_here, sample_rate);
 				else,
 					if numel(prestimulus_samples)>0,
 						prestimulus_here = ...
@@ -134,6 +166,13 @@ for i=1:numel(stimid),
 								stim_onsetoffsetid(i,1)-prestimulus_time)));
 					else,
 						prestimulus_here = 0;
+					end;
+					if numel(control_prestimulus_samples)>0,
+						control_prestimulus_here = ...
+							sum(exp(-sqrt(-1)*2*pi*freq_response_here*(timestamps(control_prestimulus_samples)-...
+								stim_onsetoffsetid(control_stim_here,1)-prestimulus_time)));
+					else,
+						control_prestimulus_here = 0;
 					end;
 				end;
 			end;
@@ -145,18 +184,22 @@ for i=1:numel(stimid),
 					% do nothing,
 				case {1,'subtract'} % subtract
 					response_here = response_here - prestimulus_here;
+					control_response_here = control_response_here - control_prestimulus_here;
 				case {2,'fractional'},
 					response_here = (response_here - prestimulus_here)./prestimulus_here;
+					control_response_here = (control_response_here - control_prestimulus_here)./control_prestimulus_here;
 				case {3,'divide'},
 					response_here = response_here./prestimulus_here;
+					control_response_here = control_response_here./control_prestimulus_here;
 			end; % switch
 		end;
 	end;
 	response(i) = response_here;
-end
-
-if ~isempty(controlstimnumber),
-	control_response = response(controlstimnumber);
+	if ~isempty(controlstimnumber),
+		control_response(i) = control_response_here;
+	else,
+		control_response(i) = nan;
+	end;
 end
 
 response = var2struct('stimid','response','control_response','controlstimnumber','parameters');

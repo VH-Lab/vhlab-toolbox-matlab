@@ -38,7 +38,7 @@ mean_stimid = [];
 inbounds = find(stim_onsetoffsetid(:,1)>=timepoints(1) & stim_onsetoffsetid(:,2)<=timepoints(end));
 stim_onsetoffsetid = stim_onsetoffsetid(inbounds,:);
 
-for i=1:size(stim_onsetoffsetid),
+for i=1:size(stim_onsetoffsetid,1),
 	indexes = find( (timepoints >= stim_onsetoffsetid(i,1)) & (timepoints <= stim_onsetoffsetid(i,2)) );
 	vo = voltage_observations(indexes);
 	if ~isempty(pretime),

@@ -63,7 +63,7 @@ exactbintime = bin_samples * dt;
 
 if isempty(stim_onsetoffsetid),
 	if ~dotrialaverage
-		error(['No stimulus data was specified, but trial averaging was requested. These inputs are not conguent.']);
+		error(['No stimulus data was specified, but trial averaging was requested. These inputs are not congruent.']);
 	end;
 
 	if ~isempty(vm_baseline_correct),
@@ -130,7 +130,7 @@ for s = 1:numel(stimids),
 	do = find(stim_onsetoffsetid(:,3)==stimids(s));
 	for o=1:numel(do),
 		sample_start = point2samplelabel(stim_onsetoffsetid(do(o),1),dt,t(1));
-		if do(o)<numel(stimids),
+		if do(o)<size(stim_onsetoffsetid,1),
 			sample_stop = point2samplelabel(stim_onsetoffsetid(do(o)+1,1)-dt-vm_baseline_correct,dt,t(1));
 		else,
 			sample_stop = min(point2samplelabel(stim_onsetoffsetid(do(o),2)+median_ISI,dt,t(1)),numel(vm));
@@ -162,4 +162,12 @@ for s = 1:numel(stimids),
 	end
 end
 
+% now sort by time
+
+[timepoints, sortedindexes] = sort(timepoints);
+v = v(sortedindexes);
+fr = fr(sortedindexes);
+stimid = stimid(sortedindexes);
+
 vm_baselinesubtracted = vm;
+
