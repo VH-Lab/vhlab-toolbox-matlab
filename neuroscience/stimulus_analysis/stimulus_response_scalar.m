@@ -88,10 +88,15 @@ for i=1:numel(stimid),
 		control_stimulus_samples = find(timestamps>=stim_onsetoffsetid(control_stim_here,1) & timestamps<=stim_onsetoffsetid(control_stim_here,2));
 	end;
 
-	outofbounds1 = (timestamps(end)<stim_onsetoffsetid(i,2) | timestamps(1)>stim_onsetoffsetid(i,1)); % stim out of bounds
-	outofbounds2 = 0;
-	if ~isempty(controlstimnumber),
-		outofbounds2 = (timestamps(end)<stim_onsetoffsetid(control_stim_here,2) | timestamps(1)>stim_onsetoffsetid(control_stim_here,1)); % control stim out of bounds
+	if ~isspike,
+		outofbounds1 = (timestamps(end)<stim_onsetoffsetid(i,2) | timestamps(1)>stim_onsetoffsetid(i,1)); % stim out of bounds
+		outofbounds2 = 0;
+		if ~isempty(controlstimnumber),
+			outofbounds2 = (timestamps(end)<stim_onsetoffsetid(control_stim_here,2) | timestamps(1)>stim_onsetoffsetid(control_stim_here,1)); % control stim out of bounds
+		end;
+	else,
+		outofbounds1 = 0; % this calculation does not work for spikes; lack of a spike doesn't mean it wasn't measured
+		outofbounds2 = 0;
 	end;
 
 	if outofbounds1 | outofbounds2, 

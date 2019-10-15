@@ -93,6 +93,7 @@ end
   % Step 3: correct baseline if needed
 
 if ~isempty(vm_baseline_correct),
+	vm_out = nan(size(vm));
 	vm_baseline_correct_samples = max([1 round(vm_baseline_correct/dt)]); % make sure at least one sample
 
 	for i=1:size(stim_onsetoffsetid,1), % for each stimulus
@@ -107,8 +108,9 @@ if ~isempty(vm_baseline_correct),
 
 		s_baseline = sample_start - vm_baseline_correct_samples;
 		baseline = feval(vm_baseline_correct_func, vm(s_baseline:sample_start-1));
-		vm(s_baseline:sample_stop) = vm(s_baseline:sample_stop) - baseline;
+		vm_out(s_baseline:sample_stop) = vm(s_baseline:sample_stop) - baseline;
 	end
+	vm = vm_out;
 end
 
   % Step 4: smooth the data
