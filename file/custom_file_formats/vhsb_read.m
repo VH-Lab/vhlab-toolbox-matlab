@@ -73,17 +73,20 @@ y = fread(fo, prod(h.Y_dim(2:end))*num_samples_to_read, ...
 	[int2str(prod(h.Y_dim(2:end))) '*' vhsb_sampletype2matlabfwritestring(h.Y_data_type, h.Y_data_size)], ...
 	h.Y_skip_bytes);
 
-y = reshape(y, [h.Y_dim([2:numel(h.Y_dim)]) num_samples_to_read]);
+if ~isempty(y),
 
-y = permute(y, [numel(h.Y_dim) 1:numel(h.Y_dim)-1]);
+	y = reshape(y, [h.Y_dim([2:numel(h.Y_dim)]) num_samples_to_read]);
 
-if h.Y_usescale,
-	y = (y-h.Y_offset)*h.Y_scale;
-end;
+	y = permute(y, [numel(h.Y_dim) 1:numel(h.Y_dim)-1]);
 
-if ~h.X_constantinterval,
-	samples_valid = find(x>=x0 & x<= x1);
-	x = x(samples_valid);
-	y = y(samples_valid,:);
+	if h.Y_usescale,
+		y = (y-h.Y_offset)*h.Y_scale;
+	end;
+
+	if ~h.X_constantinterval,
+		samples_valid = find(x>=x0 & x<= x1);
+		x = x(samples_valid);
+		y = y(samples_valid,:);
+	end;
 end;
 
