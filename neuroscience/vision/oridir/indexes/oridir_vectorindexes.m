@@ -42,7 +42,7 @@ vi.tuning_width = nan;
 vi.dir_HotellingT2_p = nan;
 vi.dir_pref = nan;
 vi.dir_circularvariance = nan;
-vi.fir_dotproduct_sig_p = nan;
+vi.dir_dotproduct_sig_p = nan;
 
 hasdirection = 0;
 
