@@ -118,7 +118,12 @@ for i=1:numel(stimid),
 
 		freq_response_here = freq_response;
 		if numel(freq_response)>1,
-			freq_response_here = freq_response(stimid(i));
+			try,
+				freq_response_here = freq_response(stimid(i));
+			catch,
+				freq_response_here = freq_response(1);
+				warning('likely stimulus glitch.');
+			end
 		end;
 
 		if freq_response_here==0,
