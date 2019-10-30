@@ -84,8 +84,11 @@ for i=1:numel(stimid),
 	control_stim_here = [];
 	control_stimulus_samples = [];
 	if ~isempty(controlstimnumber),
-		control_stim_here = controlstimnumber(i);
-		control_stimulus_samples = find(timestamps>=stim_onsetoffsetid(control_stim_here,1) & timestamps<=stim_onsetoffsetid(control_stim_here,2));
+        if ~isnan(controlstimnumber(i)),
+    		control_stim_here = controlstimnumber(i);
+            
+    		control_stimulus_samples = find(timestamps>=stim_onsetoffsetid(control_stim_here,1) & timestamps<=stim_onsetoffsetid(control_stim_here,2));
+        end;
 	end;
 
 	if ~isspike,
@@ -148,7 +151,11 @@ for i=1:numel(stimid),
 		else,
 			if ~isspike,
 				response_here = fouriercoeffs_tf2( timeseries(stimulus_samples), freq_response_here, sample_rate);
-				control_response_here = fouriercoeffs_tf2( timeseries(control_stimulus_samples), freq_response_here, sample_rate);
+                if numel(control_stimulus_samples)>0,
+                    control_response_here = fouriercoeffs_tf2( timeseries(control_stimulus_samples), freq_response_here, sample_rate);
+                else,
+                    control_response_here = 0;
+                end;
 			else,
 				if numel(stimulus_samples)>0,
 					response_here = ...
