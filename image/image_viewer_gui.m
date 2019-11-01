@@ -73,6 +73,11 @@ ImageVGUIHistAxesParams = [];
 ImageVGUIZoomButtonParams = [];
 ImageVGUIPanButtonParams  = [];
 ImageVGUISliderParams = [];
+ImageVGUIScaleMinLabelTextParams = [];
+ImageVGUIScaleMaxLabelTextParams = [];
+ImageVGUIScaleMinEditParams = [];
+ImageVGUIScaleMaxEditParams = [];
+
 
 Units = 'pixels';
 LowerLeftPoint = [0 0];
@@ -91,6 +96,7 @@ fig = gcf;
 varlist = {'sizeparams','LowerLeftPoint','UpperRightPoint','imfile','iminfo', 'previousslidervalue',...
 	'imagemodifierfunc','showhistogram','drawcompletionfunc',...
 	'ImageVGUIAxesParams','ImageVGUIHistAxesParams','ImageVGUIZoomButtonParams','ImageVGUIPanButtonParams','ImageVGUISliderParams',...
+	'ImageVGUIScaleMinLabelTextParams','ImageVGUIScaleMaxLabelTextParams','ImageVGUIScaleMinEditParams','ImageVGUIScaleMaxEditParams',...
 	'ImageScaleParams','ImageDisplayScaleParams'};
 
 assign(varargin{:});
@@ -125,10 +131,15 @@ end;
 switch lower(command),
 	case 'init',
 		uidefs = basicuitools_defs('callbackstr', ['callbacknametag(''image_viewer_gui'',''' name ''');']);
+        uidefs.edit.callback = ['callbacknametag(''image_viewer_gui'',''' name ''');'];
 
 		axes('units','pixels','tag',[name 'HistogramAxes']);
 		axes('units','pixels', 'tag',[name 'ImageAxes']);
 		uicontrol(uidefs.slider,'units','pixels', 'tag',[name 'ImageSlider']);
+        uicontrol(uidefs.txt,'units','pixels','tag',[name 'ImageScaleMinLabelText'],'string','Min:');
+        uicontrol(uidefs.txt,'units','pixels','tag',[name 'ImageScaleMaxLabelText'],'string','Max:');
+        uicontrol(uidefs.edit,'units','pixels','tag',[name 'ImageScaleMinEdit'],'string','[0 0 0 0]');
+        uicontrol(uidefs.edit,'units','pixels','tag',[name 'ImageScaleMaxEdit'],'string','[1 1 1 1]');
 		
 		image_viewer_gui(name,'command',[name 'Set_Vars'],'ud',ud);
 		image_viewer_gui(name,'command',[name 'position_gui']);
@@ -141,7 +152,7 @@ switch lower(command),
 		handles = image_viewer_gui(name,'command',[name 'get_handles'],'fig',fig);
 		set(handles.ImageSlider,'userdata',ud);
 	case 'get_handles',
-		handle_base_names = {'HistogramAxes','ImageSlider','ImageAxes','ImageZoomButton','ImagePanButton'};
+		handle_base_names = {'HistogramAxes','ImageSlider','ImageAxes','ImageScaleMinLabelText','ImageScaleMinEdit','ImageScaleMaxLabelText','ImageScaleMaxEdit','ImageZoomButton','ImagePanButton'};
 		out = [];
 		for i=1:length(handle_base_names),
 			out=setfield(out,handle_base_names{i},findobj(fig,'tag',[name handle_base_names{i}]));
@@ -163,19 +174,24 @@ switch lower(command),
 		target_rect = rect2rect([ud.LowerLeftPoint ud.UpperRightPoint],'lbrt2lbwh');
 
 		handles = image_viewer_gui(name,'command',[name 'get_handles'],'fig',fig);
-		handle_base_names = {'HistogramAxes','ImageSlider','ImageAxes','ImageZoomButton','ImagePanButton'};
+		handle_base_names = {'HistogramAxes','ImageSlider','ImageAxes','ImageScaleMinLabelText','ImageScaleMinEdit','ImageScaleMaxLabelText','ImageScaleMaxEdit','ImageZoomButton','ImagePanButton'};
 		modifiers = {'ImageVGUIHistAxesParams','ImageVGUIAxesParams','ImageVGUISliderParams',...
-			'ImageVGUIZoomButtonParams','ImageVGUIPanButtonParams'};
+			'ImageVGUIScaleMinLabelTextParams','ImageVGUIScaleMaxLabelTextParams','ImageVGUIScaleMinEditParams','ImageVGUIScaleMaxEditParams',...
+		'ImageVGUIZoomButtonParams','ImageVGUIPanButtonParams'};
 
 		positions{1} = { rescale_subrect([ws ws w-2*ws 100],[0 0 w h],target_rect,3) % HistogramAxes
 					rescale_subrect([w-sliderw histheight+2*ws sliderw h-histheight-3*ws],[0 0 w h],target_rect,3)  % slider
 					rescale_subrect([ws+toolarea histheight+2*ws w-2*ws-toolarea-sliderws h-histheight-3*ws],[0 0 w h],target_rect,3) % image axes
+                    rescale_subrect([ws+toolarea histheight+0*ws 50 20],[0 0 w h],target_rect,3) % ImageScaleMinLabelText
+                    rescale_subrect([ws+toolarea+55 histheight+0*ws 100 20],[0 0 w h],target_rect,3) % ImageScaleMinEdit
+                    rescale_subrect([ws+toolarea+155+10 histheight+0*ws 50 20],[0 0 w h],target_rect,3) % ImageScaleMaxLabelText
+                    rescale_subrect([ws+toolarea+210+10 histheight+0*ws 100 20],[0 0 w h],target_rect,3) % ImageScaleMaxEdit
 					};
 		positions{2} = positions{1};
-		visible{1} = {'on','on','on','on','on'};
-		visible{2} = {'off','on','on','on','on'};
+		visible{1} = {'on','on','on','on','on','on','on'};
+		visible{2} = {'off','on','on','on','on','on','on'};
 
-		for i=1:3, % right now, only 3 objects, even though we've sketched other controls
+		for i=1:7, % right now, only 3 objects, even though we've sketched other controls
 			myobj = getfield(handles,handle_base_names{i});
 			eval(['p = struct2namevaluepair(' modifiers{i} ');']);
 			set(myobj,'units','pixels','position',positions{state}{i},'visible',visible{state}{i},p{:});
@@ -273,6 +289,34 @@ switch lower(command),
 		else,
 			error(['image not loaded.']);
 		end;
+		image_viewer_gui(name,'command',[name 'UpdateControls'],'fig',fig);        
+
+	case {'imagescaleminedit','imagescalemaxedit'},
+		handles = image_viewer_gui(name,'command',[name 'get_handles'],'fig',fig);
+		minstr = get(handles.ImageScaleMinEdit,'string');
+		maxstr = get(handles.ImageScaleMaxEdit','string');
+		try,
+		    mins = str2num(minstr);
+		    maxes = str2num(maxstr);
+		catch,
+		    error(['Error in min/max image values.']);
+		end;
+		% now check for errors
+		ud.ImageScaleParams.Min = mins;
+		ud.ImageScaleParams.Max = maxes;
+		image_viewer_gui(name,'command',[name 'Set_Vars'],'ud',ud);
+		image_viewer_gui(name,'command',[name 'Draw_Image'],'fig',fig);
+		image_viewer_gui(name,'command',[name 'Draw_Histogram'],'fig',fig);        
+        
+	case 'updatecontrols',
+		image_viewer_gui(name,'command',[name 'updateImageScaleEdits'],'fig',fig);
+    
+	case 'updateimagescaleedits',
+		handles = image_viewer_gui(name,'command',[name 'get_handles'],'fig',fig);
+		minstr = mat2str(ud.ImageScaleParams.Min);
+		maxstr = mat2str(ud.ImageScaleParams.Max);
+		set(handles.ImageScaleMinEdit,'string',minstr);
+		set(handles.ImageScaleMaxEdit,'string',maxstr);
 
 	case 'movetoback', % move image to back
 		handles = image_viewer_gui(name,'command',[name 'get_handles'],'fig',fig);
@@ -302,7 +346,7 @@ switch lower(command),
 			currentAxes = gca;
 			axes(handles.HistogramAxes);
 			hold off;
-            bar(bin_centers,counts,1);
+			bar(bin_centers,counts,1);
 			hold on;
 			binwidth = bin_centers(2) - bin_centers(1);
 			set(gca,'xlim',[bin_centers(1)-binwidth/2 bin_centers(end)+binwidth/2]);
@@ -310,6 +354,7 @@ switch lower(command),
 			set(handles.HistogramAxes,'tag',[name 'HistogramAxes']);
 			axes(currentAxes); % restore previous axes
 		end;
+		image_viewer_gui(name,'command',[name 'UpdateControls'],'fig',fig);        
 
 	case 'zoomtogglebutton',
 		% future
