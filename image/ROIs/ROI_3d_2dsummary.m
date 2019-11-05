@@ -11,7 +11,7 @@ function CC2 = ROI_3d_2dsummary(CC3)
 CC2 = CC3;
 CC2.ImageSize = CC2.ImageSize([1 2]);
 
-for i=1:numel(CC3.NumObjects),
+for i=1:CC3.NumObjects,
 	[I,J,K] = ind2sub(CC3.ImageSize, CC3.PixelIdxList{i});
 	CC2.PixelIdxList{i} = unique(sub2ind(CC2.ImageSize,I,J));
 end;
