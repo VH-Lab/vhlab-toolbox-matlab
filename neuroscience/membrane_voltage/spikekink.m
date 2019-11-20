@@ -66,7 +66,7 @@ for q=1:length(spike_indexes),
             if peak_ind > 1,
                 vt_slope_fd3 = ((-1*spike_wave(peak_ind-1))+spike_wave(peak_ind)+spike_wave(peak_ind+1))/(2*sample_interval);
             end
-        max_dvdt(end+1,1) = vt_slope_fd3(1)/1000; %adds new max slope value to index
+        max_dvdt(end+1,1) = max_vt_slope; %adds new max slope value to index
         
 		% now look for the best match for the kink, but only search from peak_slope backward
 		search_pad(peak_ind+1:end) = [];
