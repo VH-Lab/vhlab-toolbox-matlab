@@ -59,12 +59,26 @@ distance_max_int = round(distance_max);
 for i=1:num_A,
 	value = round(roi_com_a(i,:)); 
 	values_cell = {};
+
 	for j=1:dim_A, % make sure in bounds; probably unnecessary
-		values_cell{j} = max([value(j)-distance_max_int:value(j)+distance_max_int; ones(1,2*distance_max_int+1)]);
-		values_cell{j} = min([values_cell{j}; repmat(size(La,j),1,2*distance_max_int+1) ]);
+		if j==1, % b/c images are X/Y transposed
+			actualj = 2;
+		elseif j==2,
+			actualj = 1;
+		else,
+			actualj = j;
+		end;
+		values_cell{j} = max([value(actualj)-distance_max_int:value(actualj)+distance_max_int; ones(1,2*distance_max_int+1)]);
+		values_cell{j} = min([values_cell{j}; repmat(size(La,actualj),1,2*distance_max_int+1) ]);
 	end;
 
-	index = sub2ind(size(La),values_cell{:});
+	if dim_A>3,
+		error(['I do not know how to deal with dimensions greater than 3 at this time.']); 
+	end;
+
+	[v1,v2,v3]=meshgrid(values_cell{:});
+
+	index = sub2ind(size(La),v1,v2,v3);
 	potential_overlaps = setdiff(unique(Lb(index)),0);
 
 	distances_here = distance_min+sqrt(sum((repmat(roi_com_a(i,:)',1,numel(potential_overlaps)) ...
