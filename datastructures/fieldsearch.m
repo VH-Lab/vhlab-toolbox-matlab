@@ -25,7 +25,12 @@ function b = fieldsearch(A, searchstruct)
 %     |   'hasfield'           - is the field present? (no role for 'param1' or 'param2')
 %     |   'hasanysubfield_contains_string' - Is the field value an array of structs or cell array of structs
 %     |                        such that any has a field named 'param1' with a string that contains the string
-%     |                        in 'param2'?
+%     |                        in 'param2'? If 'param1' is a cell list, then 'param2' can be a cell list of contained
+%     |                        strings to be matched.
+%     |   'hasanysubfield_exact_string' - Is the field value an array of structs or cell array of structs
+%     |                        such that any has a field named 'param1' with a string that exactly matches the string
+%     |                        in 'param2'? If 'param1' is a cell list, then 'param2' can be a cell list of contained
+%     |                        strings to be matched.
 %     |   'or'                 - are the searchstruct elements specified in 'param1' OR 'param2' true?
 %     -----------------------|
 % param1                     | Search parameter 1. Meaning depends on 'operation' (see above).
@@ -115,7 +120,7 @@ switch(lower(searchstruct.operation)),
 		end;
 	case 'hasfield',
 		b = isthere;
-	case 'hasanysubfield_contains_string',
+	case {'hasanysubfield_contains_string','hasanysubfield_exact_string'},
 		if isthere,
 			if ~ (isstruct(value) | iscell(value) ), return; end; % must be a structure or cell
 			for i=1:numel(value),
@@ -125,13 +130,29 @@ switch(lower(searchstruct.operation)),
 					item = value{i};
 				end;
 				if isstruct(item), % item must be a struct,
-					[isthere2,value2] = isfullfield(item,searchstruct.param1);
-					if ischar(value2),
-						b = ~isempty(strfind(value2,searchstruct.param2));
-						if b,
-							break;
+					if ~iscell(searchstruct.param1),
+						searchstruct.param1 = {searchstruct.param1};
+					end;
+					if ~iscell(searchstruct.param2),
+						searchstruct.param2 = {searchstruct.param2};
+					end;
+					b_ = 1; % does this one match?
+					for k=1:numel(searchstruct.param1),
+						[isthere2,value2] = isfullfield(item,searchstruct.param1{k});
+						if ischar(value2),
+							if strcmp(lower(searchstruct.operation),'hasanysubfield_contains_string'),
+								b_ = b_ & ~isempty(strfind(value2,searchstruct.param2{k}));
+							elseif strcmp(lower(searchstruct.operation),'hasanysubfield_exact_string'),
+								b_ = b_ & strcmp(value2,searchstruct.param2{k});
+							else,
+								error(['Unknown operation; shouldn''t happen.']);
+							end;
 						end;
 					end;
+					b = b_;
+				end;
+				if b, % we found that it matches
+					break;
 				end;
 			end;
 		end;
