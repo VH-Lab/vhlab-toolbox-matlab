@@ -71,6 +71,7 @@ switch (header.channelinfo(channel_index).kind),
 		[dummy,chheader] = SONGetADCChannel(fid,header.channelinfo(channel_index).number,1,1);
 		total_time = chheader.sampleinterval*1e-6 * total_samples;
 		s0 = point2samplelabel(t0,chheader.sampleinterval*1e-6);
+        if s0<=0, s0 = 1; end;
 		s1 = point2samplelabel(t1,chheader.sampleinterval*1e-6);
 
 		block_start = 1 + floor(s0/block_length);
