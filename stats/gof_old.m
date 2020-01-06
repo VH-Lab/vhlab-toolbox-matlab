@@ -1,4 +1,4 @@
-function [gf,vres,vexpl,vnoise] = gof(rawdata, fit)
+function [gf,vres,vexpl,vnoise] = gof_old(rawdata, fit)
 
 % GOF - Goodness of Fit from Zoccolan et al., 2005
 %
@@ -25,7 +25,8 @@ function [gf,vres,vexpl,vnoise] = gof(rawdata, fit)
 
 rawdata = rawdata(setdiff(1:size(rawdata,1),rowstotrim),:);
 
-trials = size(rawdata,1); numgroups = size(rawdata,2);
+trials = size(rawdata,1);
+numgroups = size(rawdata,2);
 
 Sw = sum(sum((rawdata-repmat(mean(rawdata),trials,1)).^2));
 Sb = trials*sum((mean(rawdata)-mean(rawdata(:))).^2);
