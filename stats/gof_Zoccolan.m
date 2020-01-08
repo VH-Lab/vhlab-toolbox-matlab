@@ -1,36 +1,8 @@
-function [gf,vres,vexpl,vnoise] = gof_dicarlo(rawdata, fit, varargin)
+function [gf,vres,vexpl,vnoise] = gof_Zoccolan(rawdata, fit)
 
-% GOF - Goodness of Fit from DiCarlo et al. 
+% GOF_ZOCCOLAN - Goodness of Fit from Zoccolan et al., 2005
 %
-% [GF, VRES, VEXPL, VNOISE] = GOF_DICARLO(RAWDATA, FIT)
-%
-% Computes the "explanable variance" goodness-of-fit in
-% DiCarlo et al. 1988. 
-%
-% Imagine a measured process Y(t) reflects some underlying
-% function F(t) plus noise (due to measurement or process)
-% N(t). Then the sum of squares (Y(t)^2) for all t is
-% (Y(t)^2) = (F(t)^2) + (N(t))^2 + 2*F(t)*N(t). If we further
-% assume that the expected value of N(t) is 0, then on average
-% (Y(t)^2) = F(t)^2 + N(t)^2.
-%
-% Because of the noise N(t), the variation in Y(t) due to this noise
-% is unexplanable by any model. The variation of Y(t) is then
-% VAR(Y,1) == VAR(F,1) + VAR(N,1). 
-%
-% The goodness of fit GF describes how much of this explanable variance
-% of Y (which is the variance of F) is explained by a fit H.
-%
-% Ref: DiCarlo JJ, Johnson KO, Hsaio SS. J Neurosci 1988:
-% Structure of Receptive Fields in Area 3b of Primary Somatosensory Cortex in the Alert Monkey
-%
-% This function accepts name/value pairs that alter its behavior:
-% Parameter (default)        | Description
-% ------------------------------------------------------------------------------------------
-% 
-
-%
-%  [GF,Vres,Vexpl,Vnoise] = GOF(TRIALDATA, FIT)
+%  [GF,Vres,Vexpl,Vnoise] = GOF_ZOCCOLAN(TRIALDATA, FIT)
 %
 % Returns goodness of fit that describes how much of the explainable
 % variation (i.e., that not due to noise across trials) is explained
@@ -48,6 +20,8 @@ function [gf,vres,vexpl,vnoise] = gof_dicarlo(rawdata, fit, varargin)
 % Vnoise is the variance of the noise
 %
 % Ref:  Zoccolan DE, Cox DD, DiCarlo, JJ.  J Neurosci 25:8150-8164 2005.
+
+error('This code is untested; needs to be tested.');
 
 [rowstotrim,cols] = find(isnan(rawdata));
 
