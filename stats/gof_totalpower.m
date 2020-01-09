@@ -23,8 +23,8 @@ s = s(:);
 f = f(:);
 res = s-f;
 
-total_power = mean(s.^2)
-fit_power = mean(f.^2)
+total_power = mean(s.^2);
+fit_power = mean(f.^2);
 res_power = mean(res.^2);
 
 gf = fit_power/total_power;
