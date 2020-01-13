@@ -125,7 +125,10 @@ for i=1:numel(stimid),
 				freq_response_here = freq_response(stimid(i));
 			catch,
 				freq_response_here = freq_response(1);
-				warning('likely stimulus glitch.');
+				warning(['likely stimulus glitch.']);
+                stimid = stimid,
+                freq_response,
+                stimid(i),
 			end
 		end;
 
