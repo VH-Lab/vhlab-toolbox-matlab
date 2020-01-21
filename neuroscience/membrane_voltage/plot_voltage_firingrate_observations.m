@@ -106,3 +106,15 @@ box off
 h = cat(1,h(:),newh(:));
 htext = newhtext;
 
+figure;
+[SI,INDS] = stepfunc(timepoints(:)'-0.5*binsize,fr(:)',t(:)');
+plot(t(:),SI(:),'m');
+xlabel('Time (s)');
+ylabel('Firing rate(spikes/sec)');
+
+figure;
+
+[SI,INDS] = stepfunc(timepoints(:)'-0.5*binsize,v(:)',t(:)');
+plot(t(:),SI(:),'m');
+xlabel('Time (s)');
+ylabel('Membrane potential (V)');
