@@ -34,8 +34,6 @@ function [kink_vm, max_dvdt, kink_index, slope_criterion] = spikekink(spike_wave
 %
 
 slope_criterion = 0.033;
-use_detrend = 1;
-restore_DC = 1;
 search_interval  = 0.004;
 
 assign(varargin{:});
@@ -53,27 +51,25 @@ max_dvdt = [];
 %search_samples = max(1,ceil(abs(search_interval)/sample_interval)); %calculates number of samples to search backwards from peak 
 
 for q=1:length(spike_indexes),
+	% find the max slope and index value where the kink occurs
 
-		% find the max slope and index value where the kink occurs
-
-		search_pad = 3:spike_indexes(q)-1;
+	search_pad = 3:spike_indexes(q)-1;
         %search_pad = ceil((spike_indexes(q)-1)*.5):spike_indexes(q)-1; %searches backwards from peak to 0
-		vt_slope = gradient(spike_wave,sample_interval); %make index of voltage changes between each timepoint
+	vt_slope = gradient(spike_wave,sample_interval); %make index of voltage changes between each timepoint
         [max_vt_slope,peak_ind] = max(vt_slope(search_pad));
-            if peak_ind == 1,
-                vt_slope_fd3 = spike_wave(peak_ind);
-            end
-            if peak_ind > 1,
-                vt_slope_fd3 = ((-1*spike_wave(peak_ind-1))+spike_wave(peak_ind)+spike_wave(peak_ind+1))/(2*sample_interval);
-            end
-        max_dvdt(end+1,1) = max_vt_slope; %adds new max slope value to index
+	if peak_ind == 1,
+		vt_slope_fd3 = spike_wave(peak_ind);
+	end
+	if peak_ind > 1,
+		vt_slope_fd3 = ((-1*spike_wave(peak_ind-1))+spike_wave(peak_ind)+spike_wave(peak_ind+1))/(2*sample_interval);
+	end
+	max_dvdt(end+1,1) = max_vt_slope; %adds new max slope value to index
         
-		% now look for the best match for the kink, but only search from peak_slope backward
-		search_pad(peak_ind+1:end) = [];
-			% find point closest to target slope value
-		[~,th_ind] = min(abs(   (slope_criterion*max_vt_slope)-vt_slope(search_pad,1)    ));
-		kink_index(end+1,1) = search_pad(1,1)+th_ind-1;
-
+	% now look for the best match for the kink, but only search from peak_slope backward
+	search_pad(peak_ind+1:end) = [];
+	% find point closest to target slope value
+	[~,th_ind] = min(abs(   (slope_criterion*max_vt_slope)-vt_slope(search_pad,1)    ));
+	kink_index(end+1,1) = search_pad(1,1)+th_ind-1;
 end
 
 kink_vm = spike_wave(kink_index);
