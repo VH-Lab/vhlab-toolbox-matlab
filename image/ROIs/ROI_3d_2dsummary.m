@@ -13,6 +13,6 @@ CC2.ImageSize = CC2.ImageSize([1 2]);
 
 for i=1:CC3.NumObjects,
 	[I,J,K] = ind2sub(CC3.ImageSize, CC3.PixelIdxList{i});
-	CC2.PixelIdxList{i} = unique(sub2ind(CC2.ImageSize,I,J));
+	CC2.PixelIdxList{i} = colvec(unique(sub2ind(CC2.ImageSize,I,J)));
 end;
 
