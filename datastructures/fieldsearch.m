@@ -139,10 +139,10 @@ switch(lower(searchstruct.operation)),
 					b_ = 1; % does this one match?
 					for k=1:numel(searchstruct.param1),
 						[isthere2,value2] = isfullfield(item,searchstruct.param1{k});
-						if ischar(value2),
+						if ischar(value2) | isempty(value2),
 							if strcmp(lower(searchstruct.operation),'hasanysubfield_contains_string'),
 								b_ = b_ & ~isempty(strfind(value2,searchstruct.param2{k}));
-							elseif strcmp(lower(searchstruct.operation),'hasanysubfield_exact_string'),
+							elseif strcmp(lower(searchstruct.operation),'hasanysubfield_exact_string');
 								b_ = b_ & strcmp(value2,searchstruct.param2{k});
 							else,
 								error(['Unknown operation; shouldn''t happen.']);

@@ -111,6 +111,7 @@ figure;
 plot(t(:),SI(:),'m');
 xlabel('Time (s)');
 ylabel('Firing rate(spikes/sec)');
+title('Firing rate binned');
 
 figure;
 
@@ -118,3 +119,4 @@ figure;
 plot(t(:),SI(:),'m');
 xlabel('Time (s)');
 ylabel('Membrane potential (V)');
+title('Membrane potential binned');
