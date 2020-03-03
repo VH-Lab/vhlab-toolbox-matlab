@@ -27,15 +27,15 @@ function [Y, FX, FY, R, FR] = fouriercoeffs_2d(X, pixelsize)
 %     X = 1 + 0.5 * sin(2*pi*f1*X1);
 %     imagedisplay(X);
 % 
-%     X_ = 1+ 0.5 * sin(2*pi*f2*X2)*sin(2*pi*f3*X1) + X;
+%     X_ = 1+ 0.5 * sin(2*pi*f2*X2+2*pi*f3*X1) + X;
 %     imagedisplay(X_);
 %     [Y,FX,FY,R,FR] = fouriercoeffs_2d(X,0.001);
 %     [Y_,FX_,FY_,R_,FR_] = fouriercoeffs_2d(X_,0.001);
 %     figure; 
-%     plot(FR,abs(R),'m'); % average spatial frequency tuning across all directions
+%     plot(FR,abs(R),'mo'); % average spatial frequency tuning across all directions
 %     hold on; 
-%     plot(FR_,abs(R_),'b');  % average spatial frequency tuning across all directions
-%     xlabel('Spatial frequency ('cycles/unit');
+%     plot(FR_,abs(R_),'bo');  % average spatial frequency tuning across all directions
+%     xlabel('Spatial frequency (cycles/unit)');
 %     ylabel('Magnitude');
 %     
 
@@ -54,16 +54,30 @@ Y = fftshift(Y_);
 
 R2 = FX.^2 + FY.^2;
 
-[u,ia,ic] = unique(R2);
+[u_sorted, sorted_indexes] = sort(R2(:));
+u = unique(u_sorted);
+
+u_sorted(end+1) = Inf;
+sorted_indexes(end+1) = NaN;
+
 R = zeros(1,numel(u));
 FR = zeros(1,numel(u));
 
 progressbar('Performing radial averaging...');
 
-	% there's GOT to be a faster way of doing this
+	% there's GOT to be a faster way of doing this; maybe try using bwlabel
+
+search_start = 1;
 
 for i=1:numel(u),
-	inds = find(R2==u(i));
+	if 0, % this is NOT faster
+		end_local = find(u_sorted(search_start:end) > u(i), 1, 'first');
+		end_run = search_start-1 + end_local;
+		inds = sorted_indexes(search_start:end_run);
+		search_start = end_run+1;
+	else,
+		inds = find(R2(:)==u(i));
+	end;
 	FR(i) = sqrt(u(i));
 	R(i) = mean(Y(inds));
 	if mod(i,1000)==0,
