@@ -19,7 +19,7 @@ if ~b,
 	error(['Not a GIT directory: ' dirname '.']);
 end;
 
-[status,results] = system(['git -C ' dirname ' status ']); 
+[status,results] = system(['git -C "' dirname '" status ']); 
 
 uptodate = 0;
 untracked_present = 0;

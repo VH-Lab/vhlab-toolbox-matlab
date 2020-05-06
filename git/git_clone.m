@@ -24,7 +24,7 @@ if exist([localreponame],'dir'),
 	error([localreponame ' already exists.']);
 end;
 
-[status,results]=system(['git -C ' localparentdir ' clone ' repository]);
+[status,results]=system(['git -C "' localparentdir '" clone ' repository]);
 
 b = (status==0);
 

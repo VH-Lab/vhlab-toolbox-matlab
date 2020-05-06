@@ -15,7 +15,7 @@ if ~git_assert(),
 	error(['Could not locate git on this machine.']);
 end;
 
-[status,results] = system(['git -C ' filepath ' rev-parse HEAD']);
+[status,results] = system(['git -C "' filepath '" rev-parse HEAD']);
 
 if status~=0,
 	error(['Error getting git commit version number for path ' ...
@@ -24,7 +24,7 @@ end;
 
 v = strtrim(results);
 
-[status,results]=system(['git -C ' filepath ' config --get remote.origin.url']);
+[status,results]=system(['git -C "' filepath '" config --get remote.origin.url']);
 
 if status~=0,
 	error(['Error getting git remote origin url for path ' ...

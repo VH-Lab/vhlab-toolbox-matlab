@@ -21,7 +21,7 @@ if ~exist(dirname,'dir'),
 end;
 
 if pull_success, % if we are still going, try to pull
-	[status,results]=system(['git -C ' dirname ' pull']);
+	[status,results]=system(['git -C "' dirname '" pull']);
 
 	pull_success=(status==0);
 end;

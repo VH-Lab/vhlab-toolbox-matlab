@@ -7,7 +7,7 @@ function b = git_isgitdirectory(dirname)
 %
 
 if git_assert,
-	[status,results] = system(['git -C ' dirname ' status']);
+	[status,results] = system(['git -C "' dirname '" status']);
 	b = ((status==0) | (status==1)) & ~isempty(results);
 else,
 	error(['GIT not available on system.']);
