@@ -77,7 +77,9 @@ switch(lower(searchstruct.operation)),
 		if isthere,
 			if ischar(value), % it has to be a char or string to match
 				test = regexpi(value, searchstruct.param1, 'forceCellOutput');
-				b = ~isempty(test);
+				if ~isempty(test),
+					b = ~isempty(test{1});
+				end;
 			end;
 		end;
 	case 'exact_string',
