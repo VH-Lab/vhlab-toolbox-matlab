@@ -287,7 +287,7 @@ classdef dumbjsondb
 				lockfilename = [p f '-lock'];
 				lockfid = checkout_lock_file(lockfilename);
 				if lockfid > 0,
-					key = ndi_unique_id;
+					key = ndi_id.ndi_unique_id;
 					fwrite(lockfid,key,'char',0,'ieee-le');
 					fclose(lockfid);  % we have it, don't need to keep it open
 					%disp(['about to open file ' [p f] ' with permissions a+']);
