@@ -285,19 +285,14 @@ classdef dumbjsondb
 				p = dumbjsondb_obj.documentpath();
 
 				lockfilename = [p f '-lock'];
-				lockfid = checkout_lock_file(lockfilename);
+				[lockfid,key] = checkout_lock_file(lockfilename);
 				if lockfid > 0,
-					key = ndi_id.ndi_unique_id;
-					fwrite(lockfid,key,'char',0,'ieee-le');
-					fclose(lockfid);  % we have it, don't need to keep it open
 					%disp(['about to open file ' [p f] ' with permissions a+']);
 					fid = fopen([p f], 'a+', 'ieee-le'); % open in read/write mode, impose little-endian for cross-platform compatibility
 					if fid > 0, % we are okay
-					else % need to close and delete the lock file before reporting error
+					else, % need to close and delete the lock file before reporting error
 						fid = -1;
-						if exist(lockfilename,'file'),
-							delete(lockfilename);
-						end;
+						release_lock_file(lockfilename,key);
 					end;
 				else, % we can't obtain the lock but it's not an error, we have to try again later
 					fid = -1;
@@ -348,18 +343,7 @@ classdef dumbjsondb
 				p = dumbjsondb_obj.documentpath();
 
 				lockfilename = [p f '-lock'];
-				if exist(lockfilename,'file'),
-					lockfid = fopen(lockfilename,'r','ieee-le');
-					if lockfid<0,
-						% failed to open lock file, just stop
-						return;
-					end;
-					keystring = fgets(lockfid);
-					fclose(lockfid);
-					if strcmp(keystring,key),
-						delete(lockfilename);
-					end;
-				end;
+				release_lock_file(lockfilename,key);
 		end % closebinaryfile
 
 		function [docs, doc_versions] = search(dumbjsondb_obj, scope, searchParams)
