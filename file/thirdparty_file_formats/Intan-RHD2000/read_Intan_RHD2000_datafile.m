@@ -10,7 +10,11 @@ function [data,total_samples,total_time,blockinfo] = read_Intan_RHD2000_datafile
 %  is empty, then it will be read from the file. CHANNEL_TYPE is the
 %  type of channel to be read (use table below). CHANNEL_NUMBERS are the
 %  the channel numbers for which to return data (randing from 1 to the number
-%  of channels of that type sampled). T0 is the time to start reading (the beginning of
+%  of channels of that type sampled). CHANNEL_NUMBERS are from 1...N where
+%  N is the number of channels ENABLED in the recording. 1 is the first channel
+%  enabled, 2 is the 2nd channel enabled, etc. One can examine the header file to
+%  see its correspondance with Intan bank and channel indexes (e.g., the first channel, 1, may be
+%  'amp-A-000'). T0 is the time to start reading (the beginning of
 %  the recording is 0) and T1 is the time to stop reading. If T0 is negative, we will
 %  start with time 0. If T1 is INF, we will use the end time of the whole file.
 %
@@ -84,7 +88,7 @@ if ischar(channel_type),
 		case {'time','timestamp'}, channel_type = 1;
 		case {'amp','amplifier'}, channel_type = 2;
 		case {'aux','aux_in'}, channel_type = 3;
-		case {'suppy'}, channel_type = 4;
+		case {'supply'}, channel_type = 4;
 		case {'temp'}, channel_type = 5;
 		case {'adc'}, channel_type = 6;
 		case {'din','digital_in'}, channel_type = 7;
