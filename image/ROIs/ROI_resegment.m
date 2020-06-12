@@ -25,6 +25,10 @@ function [CC] = ROI_resegment(im, indexesnd, varargin)
 % 'connectivity'                       | The connectivity to use with the resegment algorithm.
 %   (CONNDEF(NDIMS(IM),'maximal'))     |   (See HELP WATERSHED). If 0 is given, default is used.
 % 'invert' (1)                         | If using raw data, multiply the image by -1
+% 'assign_neighbors_to_roi' (1)        | Resegmentation algorithms often leave a 1 pixel border 
+%                                      |   between ROIs. If 'assign_neighbors_to_roi' is 1, then
+%                                      |   these pixels are assigned to their brightest immediately
+%                                      |   neighboring pixels.
 %
 
 resegment_algorithm = 'watershed';
@@ -32,6 +36,7 @@ values_outside_roi = 0;
 use_bwdist = 0;
 connectivity = conndef(ndims(im),'maximal');
 invert = 1;
+assign_neighbors_to_roi = 1;
 
 assign(varargin{:});
 
@@ -60,6 +65,10 @@ end;
  % resegment
 
 eval(['L = ' resegment_algorithm '(cube);']);
+
+if assign_neighbors_to_roi,
+	L = ROI_assignneighbors(L, cube, find(cubeindexes_in_roi));
+end;
 
 CC.Connectivity = connectivity;
 CC.ImageSize = size(im);
