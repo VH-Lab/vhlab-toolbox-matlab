@@ -165,7 +165,7 @@ classdef dumbjsondb
 				f = dumbjsondb.uniqueid2filename(doc_unique_id, doc_version);
 
 				fileexist = exist([p f],'file');
-
+                
 				we_know_we_have_latest_version = []; % we will assign this below
 
 				can_we_write = 0;

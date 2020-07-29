@@ -18,7 +18,7 @@ function [slope, offset, threshold, exponent, curve, gof,fitinfo ] = linepowerth
 % Parameter (default)               | Description
 % ---------------------------------------------------------------------------
 % threshold_start (min(x))               | Iniitial starting point for THRESHOLD fit
-% thresholdrange [(min(x)-1) max(x)+1)]  | THRESHOLD fit range
+% threshold_range [(min(x)-1) max(x)+1)] | THRESHOLD fit range
 % slope_start (from quickregression)     | Initial starting point for SLOPE fit
 % slope_range [-Inf Inf]                 | SLOPE fit range
 % offset_start (from quickregression)    | Initial OFFSET starting point
