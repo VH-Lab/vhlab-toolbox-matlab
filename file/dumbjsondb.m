@@ -750,7 +750,11 @@ classdef dumbjsondb
 			% DOCOBJECT in JSON using JSONENCODENAN.
 			%
 				% encode the document 
-				js = jsonencodenan(doc_object);
+                try,
+    				js = jsonencodenan(doc_object);
+                catch,
+                    error(['Could not generate JSON code from object.']);
+                end;
 				try,
 					str2text([filename], js);
 				catch,
