@@ -201,6 +201,15 @@ switch command,
 
 		varargout{1} = p_struct;
 	case 'RunBt',
+		if ud.HH.samplenumber_current <= 1 | ud.HH.samplenumber_current >= size(ud.HH.S,2) -1,
+			p_struct = nbio140_wholecell('command','GetParameters','fig',fig);
+			ud.HH.step1_time = p_struct.StepTimesEdit(1);
+			ud.HH.step2_time = p_struct.StepTimesEdit(2);
+			ud.HH.step1_value = p_struct.StepValuesEdit(1);
+			ud.HH.step2_value = p_struct.StepValuesEdit(2);
+			ud.HH = ud.HH.setup_current('A',p_struct.SinAmpFEdit(1),'f',p_struct.SinAmpFEdit(2));
+			set(fig,'userdata',ud); % update userdata
+		end;
 		set(findobj(fig,'tag','RunBt'),'userdata',1);
 		nbio140_wholecell('command','Step','fig',fig);
 	case 'Step', % make a step in the simulation
@@ -228,26 +237,35 @@ switch command,
 			% Step 3: update the plot and axes
 
 				ax_v = findobj(fig,'tag','VoltageAxes');
+				axes(ax_v);
 				myline = findobj(ax_v,'tag','VoltagePlot');
 				if ~isempty(myline),
 					set(myline,'xdata',ud.HH.t,'ydata',ud.HH.S(1,:));
+					disp('set voltage value');
 				else,
+					disp('Found no line')
 					axes(ax_v);
+					cla;
 					h=plot(ud.HH.t, ud.HH.S(1,:),'k');
+					box off;
 					set(h,'tag','VoltagePlot');
 				end;
 				axis([ud.HH.t(1) ud.HH.t(end) -0.125 0.3]);
+				set(ax_v,'tag','VoltageAxes');
 
 				ax_i = findobj(fig,'tag','CurrentAxes');
+				axes(ax_i);
 				myline = findobj(ax_i,'tag','CurrentPlot');
 				if ~isempty(myline),
 					set(myline,'xdata',ud.HH.t,'ydata',ud.HH.I);
 				else,
 					axes(ax_i);
 					h=plot(ud.HH.t, ud.HH.I,'k');
+					box off;
 					set(h,'tag','CurrentPlot');
 				end;
 				axis([ud.HH.t(1) ud.HH.t(end) -1e-9 3e-9]);
+				set(ax_i,'tag','CurrentAxes');
 		end;
 		% if we are still running, call Step again
 		if get(findobj(fig,'tag','RunBt'),'userdata'),

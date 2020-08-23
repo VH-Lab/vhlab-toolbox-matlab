@@ -34,7 +34,7 @@ classdef neuronmodelclass
 			Cm = 100e-12;
 			Rm = 10e6;
 			E_leak = -0.070;
-			dt = 1e-4;
+			dt = 1e-6;
 			t_start = -0.1;
 			t_end = 0.75;
 			f=4;
@@ -87,13 +87,13 @@ classdef neuronmodelclass
 				neuronmodel_obj.step2_value;
 
 			% now add sin wave
-			t_shift = t - neuronmodel_obj.t(step1_start_sample);
-			t_shift(step2_start_sample:step2:stop_sample) = -1;
-			neuronmodel_obj.I=neuronmodel_obj.I+A*(t_shift>=0)*sin(2*pi*f*t_shift);
+			t_shift = neuronmodel_obj.t - neuronmodel_obj.t(step1_start_sample);
+			t_shift(step2_start_sample:step2_stop_sample) = -1;
+			neuronmodel_obj.I=neuronmodel_obj.I+A*(t_shift>=0).*sin(2*pi*f*t_shift);
 			
 			% now add randomness
 			neuronmodel_obj.I=neuronmodel_obj.I+...
-				(t_shift>=0)*I_rand*randn(size(neuronmodel_obj.I));
+				(t_shift>=0).*I_rand.*randn(size(neuronmodel_obj.I));
 		end
         
 		function neuronmodel_obj = simulate(neuronmodel_obj)

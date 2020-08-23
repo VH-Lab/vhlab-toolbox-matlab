@@ -20,7 +20,7 @@ classdef HHclass < neuronmodelclass
 	end
     
 	methods
-		function HHobj = HH(varargin)
+		function HHobj = HHclass(varargin)
 			V_initial = -0.065;
 			V_threshold = -0.015;
 			E_Na = 0.045;
@@ -28,7 +28,7 @@ classdef HHclass < neuronmodelclass
 			G_L = 30e-9;
 			G_Na = 12e-6;
 			G_K = 3.6e-6;
-			NA_Inactivation_Enable = 1;
+			Na_Inactivation_Enable = 1;
 			assign(varargin{:});
 
 			HHobj = HHobj@neuronmodelclass(varargin{:});
@@ -46,6 +46,8 @@ classdef HHclass < neuronmodelclass
 			HHobj.G_L = G_L;        
 			HHobj.G_Na = G_Na;   
 			HHobj.G_K = G_K;
+			HHobj.Na_Inactivation_Enable = Na_Inactivation_Enable;
+
 		end
         
 		function dsdt = dsdt(HHobj,S_value)
@@ -84,7 +86,7 @@ classdef HHclass < neuronmodelclass
 			dhdt= (h_inf-h)/tau_h;
 			I_Na = HHobj.G_Na*m*m*m*h*(HHobj.E_Na-Vm); % total sodium current        
 			I_K = HHobj.G_K*n*n*n*n*(HHobj.E_K-Vm); % total potassium current        
-			I_L = HHobj.G_L*(HHobj.V_L-Vm);    % Leak current is straightforward        
+			I_L = HHobj.G_L*(HHobj.E_leak-Vm);    % Leak current is straightforward        
 			Itot = I_L+I_Na+I_K+HHobj.I(HHobj.samplenumber_current); % total current is sum of leak + active channels + applied current
 			dvdt=Itot/HHobj.Cm;
 			dsdt = [dvdt; dmdt; dhdt; dndt];
