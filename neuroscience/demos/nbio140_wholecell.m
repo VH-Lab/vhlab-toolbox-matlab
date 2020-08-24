@@ -52,7 +52,7 @@ else,
 	ud = get(fig,'userdata');
 end;
 
-command,
+%command,
 
 switch command,
 	case 'Main',
@@ -97,7 +97,7 @@ switch command,
 		% TOP
 
 		uicontrol(txt,'position',[5 top-row*1 250 30],'string',ud.windowlabel,'horizontalalignment','left','fontweight','bold', ...
-			'fontsize',16);
+			'fontsize',14);
 
 		% upper-right pop-up menu
 		uicontrol(txt,'position',[right-200 top-row*1 100 30],'string','Exercise:','horizontalalignment','left','fontweight','bold');
