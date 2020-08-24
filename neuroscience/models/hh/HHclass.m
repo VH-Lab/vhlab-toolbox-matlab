@@ -17,6 +17,9 @@ classdef HHclass < neuronmodelclass
 		G_Na;  % sodium conductance (S)
 		G_K;   % potassium conductance (S)
 		Na_Inactivation_Enable;
+		TTX;
+		TEA;
+		mode;
 	end
     
 	methods
@@ -29,12 +32,18 @@ classdef HHclass < neuronmodelclass
 			G_Na = 12e-6;
 			G_K = 3.6e-6;
 			Na_Inactivation_Enable = 1;
+			dt = 1e-5;
+			TTX = 0;
+			TEA = 0;
+			mode = 'Current_clamp';
 			assign(varargin{:});
 
 			HHobj = HHobj@neuronmodelclass(varargin{:});
 			HHobj.V_initial=V_initial;
 			HHobj.S = zeros(4,numel(HHobj.t));
 			HHobj.V_threshold = V_threshold; 
+			HHobj.dt = dt;
+			HHobj.t = HHobj.t_start:HHobj.dt:HHobj.t_end;
 			HHobj.spiketimes = []; % must be initialized to empty
 			HHobj.spikesamples = []; % must be initialized to empty
 			HHobj.S(1,1) = V_initial; %voltage
@@ -47,7 +56,9 @@ classdef HHclass < neuronmodelclass
 			HHobj.G_Na = G_Na;   
 			HHobj.G_K = G_K;
 			HHobj.Na_Inactivation_Enable = Na_Inactivation_Enable;
-
+			HHobj.TTX = TTX;
+			HHobj.TEA = TEA;
+			HHobj.mode = mode;
 		end
         
 		function dsdt = dsdt(HHobj,S_value)
@@ -84,8 +95,18 @@ classdef HHclass < neuronmodelclass
 			dmdt= (m_inf-m)/tau_m;
 			dndt= (n_inf-n)/tau_n;
 			dhdt= (h_inf-h)/tau_h;
-			I_Na = HHobj.G_Na*m*m*m*h*(HHobj.E_Na-Vm); % total sodium current        
-			I_K = HHobj.G_K*n*n*n*n*(HHobj.E_K-Vm); % total potassium current        
+			if HHobj.TTX,
+				I_Na = 0;
+			elseif ~HHobj.Na_Inactivation_Enable,
+				I_Na = HHobj.G_Na*m*m*m*(HHobj.E_Na-Vm); % total sodium current, no inactivation
+			else, % regular case
+				I_Na = HHobj.G_Na*m*m*m*h*(HHobj.E_Na-Vm); % total sodium current        
+			end;
+			if HHobj.TEA,
+				I_K = 0;
+			else,
+				I_K = HHobj.G_K*n*n*n*n*(HHobj.E_K-Vm); % total potassium current
+			end;
 			I_L = HHobj.G_L*(HHobj.E_leak-Vm);    % Leak current is straightforward        
 			Itot = I_L+I_Na+I_K+HHobj.I(HHobj.samplenumber_current); % total current is sum of leak + active channels + applied current
 			dvdt=Itot/HHobj.Cm;

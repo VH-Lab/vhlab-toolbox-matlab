@@ -34,7 +34,7 @@ classdef neuronmodelclass
 			Cm = 100e-12;
 			Rm = 10e6;
 			E_leak = -0.070;
-			dt = 1e-6;
+			dt = 1e-4;
 			t_start = -0.1;
 			t_end = 0.75;
 			f=4;

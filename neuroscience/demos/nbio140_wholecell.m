@@ -4,8 +4,15 @@ function varargout = nbio140_wholecell(varargin)
 %   NBIO140_WHOLECELL()
 %
 %   Brings up a graphical user interface to allow the user to explore a
-%   current clamp/voltage clamp environment with Hodkin-Huxley channels.
+%   current clamp/voltage clamp environment with Hodgkin-Huxley channels.
 %
+
+
+ % TO DO:
+ %   ADD CHANNEL-OPEN GRAPH
+ %   V_Initial value
+ %   VOLTAGE_CLAMP MODE
+ %   SMALLER SIMULATION STEPS (or decide to forget this)
 
   % add number of spikes to cluster info, compute mean waveforms
    
@@ -102,8 +109,8 @@ switch command,
 
 		% cell parameter group, upper left
 		uicontrol(txt,'position',[5 top-row*2 200 30],'string','Cell properties','horizontalalignment','left','fontweight','bold');
-		uicontrol(txt,'position',[5 top-row*3 100 30],'string','[Rm Cm]','horizontalalignment','left');
-		uicontrol(edit,'position',[5+100 top-row*3 paramwidth 30],'string','[33.3e6 100e-12]','tag','RmCmEdit');
+		uicontrol(txt,'position',[5 top-row*3 100 30],'string','[Rl Cm]','horizontalalignment','left');
+		uicontrol(edit,'position',[5+100 top-row*3 paramwidth 30],'string','[33.3e6 100e-12]','tag','RlCmEdit');
 		uicontrol(txt,'position',[5 top-row*4 100 30],'string','[E_l E_Na E_k]','horizontalalignment','left');
 		uicontrol(edit,'position',[5+100 top-row*4 paramwidth 30],'string','[-0.070 0.045 -0.082]','tag','RevEdit');
 		uicontrol(txt,'position',[5 top-row*5 100 30],'string','[GNa Gk]','horizontalalignment','left');
@@ -172,7 +179,7 @@ switch command,
 	case 'GetParameters',
 		p_struct.label = 'Parameters for HH model';
 		tags = {...
-			'RmCmEdit','RevEdit','ChannelConductancesEdit',... % cell parameters group
+			'RlCmEdit','RevEdit','ChannelConductancesEdit',... % cell parameters group
 			'SynRevEdit','AMPA_Syn_Edit','NMDA_Syn_Edit','GABA_Syn_Edit', ... % synapse parameters group
 			'StepValuesEdit','StepTimesEdit','SinAmpFEdit' ... % clamp parameters group
 			};
@@ -217,13 +224,15 @@ switch command,
 
 			% Step 1: set parameters
 				p_struct = nbio140_wholecell('command','GetParameters','fig',fig);
-				ud.HH.G_L = 1/p_struct.RmCmEdit(1);
+				ud.HH.G_L = 1/p_struct.RlCmEdit(1);
 				ud.HH.G_Na = p_struct.ChannelConductancesEdit(1)*(1-p_struct.TTXCB);
 				ud.HH.G_K = p_struct.ChannelConductancesEdit(2)*(1-p_struct.TEACB);
 				ud.HH.E_leak = p_struct.RevEdit(1);
 				ud.HH.E_K = p_struct.RevEdit(3);
 				ud.HH.E_Na = p_struct.RevEdit(2);
 				ud.HH.Na_Inactivation_Enable = p_struct.NAINACTCB;
+				ud.HH.TTX = p_struct.TTX;
+				ud.HH.TEA = p_struct.TEA;
 
 			% Step 2: run 0.05 seconds
 
@@ -241,10 +250,7 @@ switch command,
 				myline = findobj(ax_v,'tag','VoltagePlot');
 				if ~isempty(myline),
 					set(myline,'xdata',ud.HH.t,'ydata',ud.HH.S(1,:));
-					disp('set voltage value');
 				else,
-					disp('Found no line')
-					axes(ax_v);
 					cla;
 					h=plot(ud.HH.t, ud.HH.S(1,:),'k');
 					box off;
@@ -259,7 +265,7 @@ switch command,
 				if ~isempty(myline),
 					set(myline,'xdata',ud.HH.t,'ydata',ud.HH.I);
 				else,
-					axes(ax_i);
+					cla;
 					h=plot(ud.HH.t, ud.HH.I,'k');
 					box off;
 					set(h,'tag','CurrentPlot');
