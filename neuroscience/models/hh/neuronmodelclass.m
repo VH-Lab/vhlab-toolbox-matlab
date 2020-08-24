@@ -16,8 +16,9 @@ classdef neuronmodelclass
 		samplenumber_current;
 		update_method;
 		S;  % state vector, D-dimensions x t where t is timesteps
-		I;  % applied current
+		I;  % current
 		t;  
+		command; % whatever is commanded, current or voltage
 
 		step1_time;       % what time should we make first step?
 		step2_time;       % what time should we make second step?
@@ -25,12 +26,14 @@ classdef neuronmodelclass
 		step2_value;      % what value should we step to second?
 
 		involtageclamp;   % are we in voltage clamp?
+		V_initial;
+
 
 	end
 
 	methods
 		function neuronmodel_obj = neuronmodelclass(varargin)
-		    
+			V_initial = -0.065;
 			Cm = 100e-12;
 			Rm = 10e6;
 			E_leak = -0.070;
@@ -40,6 +43,7 @@ classdef neuronmodelclass
 			f=4;
 			samplenumber_current = 1;
 			update_method = 'Runge Kutta';
+			involtageclamp = 0;
 
 			step1_time = 0;
 			step2_time = 0.500;
@@ -49,6 +53,7 @@ classdef neuronmodelclass
 			assign(varargin{:});
 			t = t_start:dt:t_end;
 			I = zeros(size(t));
+			command = zeros(size(t));
 			S = zeros(size(t));
 			neuronmodel_obj.Cm=Cm;
 			neuronmodel_obj.Rm=Rm;
@@ -62,16 +67,22 @@ classdef neuronmodelclass
 			neuronmodel_obj.S=S;
 			neuronmodel_obj.t=t;
 			neuronmodel_obj.I=I;
+			neuronmodel_obj.command = command;
+			neuronmodel_obj.involtageclamp = involtageclamp;
+			neuronmodel_obj.V_initial = V_initial;
 		end
         
-		function neuronmodel_obj = setup_current(neuronmodel_obj, varargin)
+		function neuronmodel_obj = setup_command(neuronmodel_obj, varargin)
 			I_rand = 0;
 			A = 0; % sinewave amplitude
 			f = neuronmodel_obj.f;
     
 			assign(varargin{:});
 
-			neuronmodel_obj.I = zeros(size(neuronmodel_obj.t));
+			neuronmodel_obj.command = zeros(size(neuronmodel_obj.t));
+			if neuronmodel_obj.involtageclamp,
+				neuronmodel_obj.command = neuronmodel_obj.command + neuronmodel_obj.V_initial;
+			end;
 			step1_start_sample = find(...
 				neuronmodel_obj.t(1:end-1)<=neuronmodel_obj.step1_time & ...
 				neuronmodel_obj.t(2:end)>neuronmodel_obj.step1_time);
@@ -81,42 +92,62 @@ classdef neuronmodelclass
 			step2_start_sample = step1_stop_sample;
 			step2_stop_sample = numel(neuronmodel_obj.t);
 
-			neuronmodel_obj.I(step1_start_sample:step1_stop_sample) = ...
+			neuronmodel_obj.command(step1_start_sample:step1_stop_sample) = ...
 				neuronmodel_obj.step1_value;
-			neuronmodel_obj.I(step2_start_sample:step2_stop_sample) = ...
+			neuronmodel_obj.command(step2_start_sample:step2_stop_sample) = ...
 				neuronmodel_obj.step2_value;
 
 			% now add sin wave
 			t_shift = neuronmodel_obj.t - neuronmodel_obj.t(step1_start_sample);
 			t_shift(step2_start_sample:step2_stop_sample) = -1;
-			neuronmodel_obj.I=neuronmodel_obj.I+A*(t_shift>=0).*sin(2*pi*f*t_shift);
+			neuronmodel_obj.command=neuronmodel_obj.command+A*(t_shift>=0).*sin(2*pi*f*t_shift);
 			
 			% now add randomness
-			neuronmodel_obj.I=neuronmodel_obj.I+...
-				(t_shift>=0).*I_rand.*randn(size(neuronmodel_obj.I));
+			neuronmodel_obj.command=neuronmodel_obj.command+...
+				(t_shift>=0).*I_rand.*randn(size(neuronmodel_obj.command));
 		end
         
 		function neuronmodel_obj = simulate(neuronmodel_obj)
 			% perform a simulation
-            
+
+			if neuronmodel_obj.involtageclamp,
+				neuronmodel_obj.S(1,:) = neuronmodel_obj.command;
+				updatestates = [2:size(neuronmodel_obj.S,1)];
+			else,
+				neuronmodel_obj.I = neuronmodel_obj.command;
+				updatestates = [1:size(neuronmodel_obj.S,1)];
+			end;
+
 			switch(neuronmodel_obj.update_method),
 				case 'Euler',
 					for i = 1:numel(neuronmodel_obj.t)-1
 						neuronmodel_obj.samplenumber_current = i;
-						neuronmodel_obj.S(:,neuronmodel_obj.samplenumber_current+1) = ...
-							neuronmodel_obj.S(:,neuronmodel_obj.samplenumber_current) +...
-							neuronmodel_obj.dsdt(neuronmodel_obj.S(:,neuronmodel_obj.samplenumber_current))*neuronmodel_obj.dt;
+						[dsdt_,Ihere] = neuronmodel_obj.dsdt(neuronmodel_obj.S(:,...
+							neuronmodel_obj.samplenumber_current));
+						newState = neuronmodel_obj.S(:,neuronmodel_obj.samplenumber_current) + ...
+							dsdt_*neuronmodel_obj.dt;
+						neuronmodel_obj.S(updatestates,neuronmodel_obj.samplenumber_current+1) = ...
+							newState(updatestates);
+						if neuronmodel_obj.involtageclamp,
+							neuronmodel_obj.I(neuronmodel_obj.samplenumber_current+1) = -Ihere;
+						end;
 						neuronmodel_obj=neuronmodel_obj.statemodifier();
 					end;
 				case 'Runge Kutta',
 					for i = 1:numel(neuronmodel_obj.t)-1
 						neuronmodel_obj.samplenumber_current = i;
 						y=neuronmodel_obj.S(:,neuronmodel_obj.samplenumber_current);
-						k1=neuronmodel_obj.dt*dsdt(neuronmodel_obj,y)/6;
+						[dsdt_,Ihere] = dsdt(neuronmodel_obj,y);
+						k1=neuronmodel_obj.dt*dsdt_/6;
 						k2=neuronmodel_obj.dt*dsdt(neuronmodel_obj,y+k1/2)/3;
 						k3=neuronmodel_obj.dt*dsdt(neuronmodel_obj,y+k2/2)/3;
 						k4=neuronmodel_obj.dt*dsdt(neuronmodel_obj,y+k3)/6;
-						neuronmodel_obj.S(:,neuronmodel_obj.samplenumber_current+1)=y+k1+k2+k3+k4;
+						newState = y+k1+k2+k3+k4;
+						neuronmodel_obj.S(updatestates,neuronmodel_obj.samplenumber_current+1)= ...
+							newState(updatestates);
+						if neuronmodel_obj.involtageclamp,
+							neuronmodel_obj.I(neuronmodel_obj.samplenumber_current+1) = -Ihere;
+						end;
 						neuronmodel_obj=neuronmodel_obj.statemodifier();
 					end;
 			end;

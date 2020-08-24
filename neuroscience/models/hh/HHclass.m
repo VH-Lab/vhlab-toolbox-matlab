@@ -7,7 +7,6 @@
 classdef HHclass < neuronmodelclass
     
 	properties
-		V_initial;
 		E_Na; % reversal for sodium channels (V)
 		V_threshold; % threshold for spike detection for counting spike times
 		spiketimes;
@@ -19,12 +18,10 @@ classdef HHclass < neuronmodelclass
 		Na_Inactivation_Enable;
 		TTX;
 		TEA;
-		mode;
 	end
     
 	methods
 		function HHobj = HHclass(varargin)
-			V_initial = -0.065;
 			V_threshold = -0.015;
 			E_Na = 0.045;
 			E_K = -0.082; 
@@ -35,18 +32,16 @@ classdef HHclass < neuronmodelclass
 			dt = 1e-5;
 			TTX = 0;
 			TEA = 0;
-			mode = 'Current_clamp';
 			assign(varargin{:});
 
 			HHobj = HHobj@neuronmodelclass(varargin{:});
-			HHobj.V_initial=V_initial;
 			HHobj.S = zeros(4,numel(HHobj.t));
 			HHobj.V_threshold = V_threshold; 
 			HHobj.dt = dt;
 			HHobj.t = HHobj.t_start:HHobj.dt:HHobj.t_end;
 			HHobj.spiketimes = []; % must be initialized to empty
 			HHobj.spikesamples = []; % must be initialized to empty
-			HHobj.S(1,1) = V_initial; %voltage
+			HHobj.S(1,1) = HHobj.V_initial; %voltage
 			HHobj.S(2,1)=0.05; % m initial value , initialize sodium activation
 			HHobj.S(3,1)=0.6; %h, % initalize sodium inactivation
 			HHobj.S(4,1)=0.31; %n, % initialize potassium activation
@@ -58,10 +53,9 @@ classdef HHclass < neuronmodelclass
 			HHobj.Na_Inactivation_Enable = Na_Inactivation_Enable;
 			HHobj.TTX = TTX;
 			HHobj.TEA = TEA;
-			HHobj.mode = mode;
 		end
         
-		function dsdt = dsdt(HHobj,S_value)
+		function [dsdt, Itot] = dsdt(HHobj,S_value)
 			i = HHobj.samplenumber_current;
 			Vm=S_value(1,1);
            		m=S_value(2,1);
@@ -108,7 +102,11 @@ classdef HHclass < neuronmodelclass
 				I_K = HHobj.G_K*n*n*n*n*(HHobj.E_K-Vm); % total potassium current
 			end;
 			I_L = HHobj.G_L*(HHobj.E_leak-Vm);    % Leak current is straightforward        
-			Itot = I_L+I_Na+I_K+HHobj.I(HHobj.samplenumber_current); % total current is sum of leak + active channels + applied current
+			if ~HHobj.involtageclamp,
+				Itot = I_L+I_Na+I_K+HHobj.I(HHobj.samplenumber_current); % total current is sum of leak + active channels + applied current
+			else,
+				Itot = I_L+I_Na+I_K;
+			end;
 			dvdt=Itot/HHobj.Cm;
 			dsdt = [dvdt; dmdt; dhdt; dndt];
 		end
