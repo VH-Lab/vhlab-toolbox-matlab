@@ -21,7 +21,7 @@ function varargout = nbio140_wholecell(varargin)
 command = 'Main';    % internal variable, the command
 fig = '';                 % the figure
 success = 0;
-windowheight =      600;
+windowheight =      525;
 windowwidth =       800;
 windowrowheight =    35;
 HH = HHclass();
@@ -145,7 +145,7 @@ switch command,
 		axis([0 0.5 -5e-9 5e9]);
 		title('Current');
 		ylabel('Im (A)');
-		ax_chan = axes('units','pixels','position',[ax_left top-row*15 ax_width row*4],'tag','ChannelOpenAxes');
+		ax_chan = axes('units','pixels','position',[ax_left top-row*14 ax_width row*3],'tag','ChannelOpenAxes');
 		axis([0 0.5 0 100]);
 		title('Channels open');
 		ylabel('Percent Open');
@@ -180,6 +180,9 @@ switch command,
 
 		uicontrol(button,'position',[skip+rightcol_left top-row*13 100-skip 30],'string','Run','tag','RunBt','userdata',0);
 		uicontrol(button,'position',[skip+rightcol_left+middle+skip top-row*13 100-3*skip 30],'string','Pause','tag','PauseBt','visible','off');
+
+		ch = get(fig,'children');
+		set(ch,'units','normalized');
 
 		set(fig,'userdata',ud);
 
