@@ -31,6 +31,14 @@ windowlabel = 'NBIO140 CELL SIMULATOR';
 
 varlist = {'windowheight','windowwidth','windowrowheight','windowlabel','HH'};
 
+w = which('assign');
+if isempty(w),
+	mypath = which('nbio140_wholecell');
+	parentdir = fileparts(mypath);
+	addpath(genpath(parentdir));
+	clear mex;
+end;
+
 assign(varargin{:});
 
 if isempty(fig),
@@ -101,7 +109,7 @@ switch command,
 
 		% upper-right pop-up menu
 		uicontrol(txt,'position',[right-200 top-row*1 100 30],'string','Exercise:','horizontalalignment','left','fontweight','bold');
-		uicontrol(popup,'position',[right-100 top-row*1 100 30],'string',{'Lab 1','Lab 2','Lab 3'},'value',1,'tag','LabPopup');
+		uicontrol(popup,'position',[right-100 top-row*1 100 30],'string',{'Choose','---','Lab 1','Lab 2','Lab 3'},'value',1,'tag','LabPopup');
 
 		% LEFT: CELL AND SYNAPSE PARAMETERS
 
@@ -331,6 +339,10 @@ switch command,
 		set(findobj(fig,'RunBt','userdata',0));
 	case 'LabPopup',
 		v = get(findobj(fig,'tag','LabPopup'),'value');
+		if v<=2, 
+			set(findobj(fig,'tag','LabPopup'),'value',1);
+			return;
+		end;
 		tags = {...
 			'RlCmEdit','RevEdit','ChannelConductancesEdit','V_initial_Edit',... % cell parameters group
 			'SynRevEdit','AMPA_Syn_Edit','NMDA_Syn_Edit','GABA_Syn_Edit', 'SynTimesEdit', ... % synapse parameters group
@@ -338,17 +350,17 @@ switch command,
 			};
 		value_tags = { 'ClampPopup', 'TEACB', 'TTXCB', 'AMPACB', 'NMDACB', 'GABACB', 'SRCB', 'NAINACTCB' };
 		switch v,
-			case 1, % Lab 1
+			case 1+2, % Lab 1
 				string_values = {'[33.3e6 100e-12]', '[-0.070 0.045 -0.082]', '[12e-6 3.6e-6]', '[-0.073]', ...
 					'[0 -0.090]', '[1 1 1]', '[1 1 1]', '[1 1 1]', '[0 0.25]', ...
 					'[0.5e-9 0]', '[0 0.5]', '[0 4]' };
 				value_values = { 1, 0, 0, 0, 0, 0, 0, 1 };
-			case 2,
+			case 2+2,
 				string_values = {'[33.3e6 100e-12]', '[-0.070 0.045 -0.082]', '[12e-6 3.6e-6]', '[-0.073]', ...
 					'[0 -0.090]', '[1 1 1]', '[1 1 1]', '[1 1 1]', '[0 0.25]', ...
 					'[0.5e-9 0]', '[0 0.5]', '[0 4]' };
 				value_values = { 1, 0, 0, 0, 0, 0, 0, 1 };
-			case 3,
+			case 3+2,
 				string_values = {'[33.3e6 100e-12]', '[-0.070 0.045 -0.082]', '[12e-6 3.6e-6]', '[-0.073]', ...
 					'[0 -0.090]', '[1 1 1]', '[1 1 1]', '[1 1 1]', '[0 0.25]', ...
 					'[1e-9 0]', '[0 0.5]', '[0 4]' };
@@ -361,4 +373,5 @@ switch command,
 		for i=1:numel(value_tags),
 			set(findobj(fig,'tag',value_tags{i}),'value',value_values{i});
 		end;
+		set(findobj(fig,'tag','LabPopup'),'value',1);
 end;

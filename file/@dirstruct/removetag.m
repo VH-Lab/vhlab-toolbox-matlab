@@ -20,14 +20,14 @@ if ~isempty(tags),
 	if length(tf)>0,
 		tags(tf) = [];
 	end;
-	fid = checkout_lock_file(taglockfilename,30,1);
+	[fid,key] = checkout_lock_file(taglockfilename,30,1);
 	if fid>0,
 		if length(tags)==0,
 			delete(tagfilename);
 		else,
 			saveStructArray(tagfilename,tags);
 		end;
-		fclose(fid);
-		delete(taglockfilename);
+		release_lock_file(taglockfilename,key);
 	end;
 end;
+
