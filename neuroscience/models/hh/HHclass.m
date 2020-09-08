@@ -35,10 +35,10 @@ classdef HHclass < neuronmodelclass
 			assign(varargin{:});
 
 			HHobj = HHobj@neuronmodelclass(varargin{:});
-			HHobj.S = zeros(4,numel(HHobj.t));
 			HHobj.V_threshold = V_threshold; 
 			HHobj.dt = dt;
 			HHobj.t = HHobj.t_start:HHobj.dt:HHobj.t_end;
+			HHobj.S = zeros(4,numel(HHobj.t));
 			HHobj.spiketimes = []; % must be initialized to empty
 			HHobj.spikesamples = []; % must be initialized to empty
 			HHobj.S(1,1) = HHobj.V_initial; %voltage
