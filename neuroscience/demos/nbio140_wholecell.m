@@ -9,10 +9,6 @@ function varargout = nbio140_wholecell(varargin)
 
 
  % TO DO:
- %   ADD CHANNEL-OPEN GRAPH
- %   V_Initial value
- %   VOLTAGE_CLAMP MODE
- %   SMALLER SIMULATION STEPS (or decide to forget this)
 
   % add number of spikes to cluster info, compute mean waveforms
    
@@ -25,11 +21,20 @@ windowheight =      525;
 windowwidth =       800;
 windowrowheight =    35;
 HH = HHclass();
+HHsyn = HHsynclass();
 
  % user-specified variables
 windowlabel = 'NBIO140 CELL SIMULATOR';
 
-varlist = {'windowheight','windowwidth','windowrowheight','windowlabel','HH'};
+varlist = {'windowheight','windowwidth','windowrowheight','windowlabel','HH','HHsyn'};
+
+w = which('assign');
+if isempty(w),
+	mypath = which('nbio140_wholecell');
+	parentdir = fileparts(mypath);
+	addpath(genpath(parentdir));
+	clear mex;
+end;
 
 assign(varargin{:});
 
@@ -101,7 +106,7 @@ switch command,
 
 		% upper-right pop-up menu
 		uicontrol(txt,'position',[right-200 top-row*1 100 30],'string','Exercise:','horizontalalignment','left','fontweight','bold');
-		uicontrol(popup,'position',[right-100 top-row*1 100 30],'string',{'Lab 1','Lab 2','Lab 3'},'value',1,'tag','LabPopup');
+		uicontrol(popup,'position',[right-100 top-row*1 100 30],'string',{'Choose','---','Lab 1','Lab 2','Lab 3','Lab 4'},'value',1,'tag','LabPopup');
 
 		% LEFT: CELL AND SYNAPSE PARAMETERS
 
@@ -119,17 +124,21 @@ switch command,
 		uicontrol(edit,'position',[5+100 top-row*6 paramwidth 30],'string','[-0.065]','tag','V_initial_Edit');
 
 		% synapse parameter group, lower left
-		uicontrol(txt,'position',[5 top-row*8 200 30],'string','Synapse properties','horizontalalignment','left','fontweight','bold');
-		uicontrol(txt,'position',[5 top-row*9 100 30],'string','[E_E E_I]','horizontalalignment','left');
-		uicontrol(edit,'position',[5+100 top-row*9 paramwidth 30],'string','[0 -0.090]','tag','SynRevEdit');
-		uicontrol(txt,'position',[5 top-row*10 100 30],'string','AMPA: [P N Q]','horizontalalignment','left');
-		uicontrol(edit,'position',[5+100 top-row*10 paramwidth 30],'string','[1 1 1]','tag','AMPA_Syn_Edit');
-		uicontrol(txt,'position',[5 top-row*11 100 30],'string','NMDA: [P N Q]','horizontalalignment','left');
-		uicontrol(edit,'position',[5+100 top-row*11 paramwidth 30],'string','[1 1 1]','tag','NMDA_Syn_Edit');
-		uicontrol(txt,'position',[5 top-row*12 100 30],'string','GABA: [P N Q]','horizontalalignment','left');
-		uicontrol(edit,'position',[5+100 top-row*12 paramwidth 30],'string','[1 1 1]','tag','GABA_Syn_Edit');
-		uicontrol(txt,'position',[5 top-row*13 100 30],'string','SynTime: [1 2]','horizontalalignment','left');
-		uicontrol(edit,'position',[5+100 top-row*13 paramwidth 30],'string','[0 0.25]','tag','SynTimesEdit');
+		uicontrol(txt,'position',[5 top-row*7 200 30],'string','Synapse properties','horizontalalignment','left','fontweight','bold');
+		uicontrol(txt,'position',[5 top-row*8 100 30],'string','[E_E E_I]','horizontalalignment','left');
+		uicontrol(edit,'position',[5+100 top-row*8 paramwidth 30],'string','[0 -0.090]','tag','SynRevEdit');
+		uicontrol(txt,'position',[5 top-row*9 100 30],'string','GLUT: [P N Q]','horizontalalignment','left');
+		uicontrol(edit,'position',[5+100 top-row*9 paramwidth 30],'string','[0.5 10 12e-10]','tag','GLUT_Syn_Edit');
+		uicontrol(txt,'position',[5 top-row*10 100 30],'string','GABA: [P N Q]','horizontalalignment','left');
+		uicontrol(edit,'position',[5+100 top-row*10 paramwidth 30],'string','[0.5 10 12e-10]','tag','GABA_Syn_Edit');
+		uicontrol(txt,'position',[5 top-row*11 100 30],'string','E1 SynTime: [1 2]','horizontalalignment','left');
+		uicontrol(edit,'position',[5+100 top-row*11 paramwidth 30],'string','[0 2]','tag','ESyn1TimesEdit');
+		uicontrol(txt,'position',[5 top-row*12 100 30],'string','E2 SynTime: [1 2]','horizontalalignment','left');
+		uicontrol(edit,'position',[5+100 top-row*12 paramwidth 30],'string','[2 5]','tag','ESyn2TimesEdit');
+		uicontrol(txt,'position',[5 top-row*13 100 30],'string','I SynTime: [1 2]','horizontalalignment','left');
+		uicontrol(edit,'position',[5+100 top-row*13 paramwidth 30],'string','[2 5]','tag','ISynTimesEdit');
+		uicontrol(txt,'position',[5 top-row*14 100 30],'string','[VR F F_tau]','horizontalalignment','left');
+		uicontrol(edit,'position',[5+100 top-row*14 paramwidth 30],'string','[0.1 0.2 0.150]','tag','SynDynamicsEdit');
 			
 		% AXES, IN CENTER COLUMN
 
@@ -152,7 +161,6 @@ switch command,
 		xlabel('Time (s)');
 		linkaxes([ax_v ax_i ax_chan],'x');
 		
-
 		% RIGHT COLUMN
 		rightcol_left = right - 200;
 		skip = 5;
@@ -190,11 +198,13 @@ switch command,
 		p_struct.label = 'Parameters for HH model';
 		tags = {...
 			'RlCmEdit','RevEdit','ChannelConductancesEdit','V_initial_Edit',... % cell parameters group
-			'SynRevEdit','AMPA_Syn_Edit','NMDA_Syn_Edit','GABA_Syn_Edit', 'SynTimesEdit', ... % synapse parameters group
+			'SynRevEdit','GLUT_Syn_Edit','GABA_Syn_Edit', ... % synapse group 1
+			'ESyn1TimesEdit', 'ESyn2TimesEdit', 'ISynTimesEdit','SynDynamicsEdit', ... % synapse parameters group 2
 			'StepValuesEdit','StepTimesEdit','SinAmpFEdit' ... % clamp parameters group
 			};
 		numels = [2 3 2 1 ...  % number of elements required
-				2 3 3 3 2 ...
+				2 3 3 ...
+				2 2 2 3 ...
 				2 2 2];
 
 		for i=1:numel(tags),
@@ -219,111 +229,165 @@ switch command,
 		varargout{1} = p_struct;
 	case 'RunBt',
 		if ud.HH.samplenumber_current <= 1 | ud.HH.samplenumber_current >= size(ud.HH.S,2) -1,
+			% need to set up
 			p_struct = nbio140_wholecell('command','GetParameters','fig',fig);
-			ud.HH.step1_time = p_struct.StepTimesEdit(1);
-			ud.HH.step2_time = p_struct.StepTimesEdit(2);
-			ud.HH.step1_value = p_struct.StepValuesEdit(1);
-			ud.HH.step2_value = p_struct.StepValuesEdit(2);
-			ud.HH.S(1,1) = p_struct.V_initial_Edit(1);
-			ud.HH = ud.HH.setup_command('A',p_struct.SinAmpFEdit(1),'f',p_struct.SinAmpFEdit(2));
-			ud.HH.involtageclamp = (p_struct.ClampPopup==2);
+			useSyn = 0;
+			if any([p_struct.AMPACB p_struct.NMDACB p_struct.GABACB]),
+				useSyn = 1;
+			end;
+			if useSyn, 
+				HH = ud.HHsyn;
+			else,
+				HH = ud.HH;
+			end;
+			
+			HH.step1_time = p_struct.StepTimesEdit(1);
+			HH.step2_time = p_struct.StepTimesEdit(2);
+			HH.step1_value = p_struct.StepValuesEdit(1);
+			HH.step2_value = p_struct.StepValuesEdit(2);
+			HH.S(1,1) = p_struct.V_initial_Edit(1);
+			HH.V_initial = p_struct.V_initial_Edit(1);
+			HH.involtageclamp = (p_struct.ClampPopup==2);
+			HH = HH.setup_command('A',p_struct.SinAmpFEdit(1),'f',p_struct.SinAmpFEdit(2));
+
+			if useSyn,
+				HH.AMPA = p_struct.AMPACB;
+				HH.NMDA = p_struct.NMDACB;
+				HH.GABA = p_struct.GABACB;
+				HH.SR = p_struct.SRCB;
+				HH.facilitation = p_struct.SynDynamicsEdit(2);
+				HH.facilitation_tau = p_struct.SynDynamicsEdit(3);
+				HH.V_recovery_time = p_struct.SynDynamicsEdit(1);
+				HH.E_ESyn = p_struct.SynRevEdit(1);
+				HH.E_ISyn = p_struct.SynRevEdit(2);
+				HH.GLUT_PNQ = p_struct.GLUT_Syn_Edit; 
+				HH.GABA_PNQ = p_struct.GABA_Syn_Edit;
+
+				HH.ESyn1_times = p_struct.ESyn1TimesEdit; 
+				HH.ESyn2_times = p_struct.ESyn2TimesEdit; 
+				HH.ISyn_times  = p_struct.ISynTimesEdit;  
+				HH = HH.setup_synapses();
+			end;
+				
+			if useSyn,
+				ud.HHsyn = HH;
+			else,
+				ud.HH = HH;
+			end;
 			set(fig,'userdata',ud); % update userdata
 		end;
 		set(findobj(fig,'tag','RunBt'),'userdata',1);
 		nbio140_wholecell('command','Step','fig',fig);
 	case 'Step', % make a step in the simulation
 		if get(findobj(fig,'tag','RunBt'),'userdata'),
+			p_struct = nbio140_wholecell('command','GetParameters','fig',fig);
+			useSyn = 0;
+			if any([p_struct.AMPACB p_struct.NMDACB p_struct.GABACB]),
+				useSyn = 1;
+			end;
+			if useSyn,
+				HH = ud.HHsyn;
+			else,
+				HH = ud.HH;
+			end;
 
 			% Step 1: set parameters
-				p_struct = nbio140_wholecell('command','GetParameters','fig',fig);
-				ud.HH.G_L = 1/p_struct.RlCmEdit(1);
-				ud.HH.G_Na = p_struct.ChannelConductancesEdit(1)*(1-p_struct.TTXCB);
-				ud.HH.G_K = p_struct.ChannelConductancesEdit(2)*(1-p_struct.TEACB);
-				ud.HH.E_leak = p_struct.RevEdit(1);
-				ud.HH.E_K = p_struct.RevEdit(3);
-				ud.HH.E_Na = p_struct.RevEdit(2);
-				ud.HH.Na_Inactivation_Enable = p_struct.NAINACTCB;
-				ud.HH.TTX = p_struct.TTXCB;
-				ud.HH.TEA = p_struct.TEACB;
+			HH.G_L = 1/p_struct.RlCmEdit(1);
+			HH.G_Na = p_struct.ChannelConductancesEdit(1)*(1-p_struct.TTXCB);
+			HH.G_K = p_struct.ChannelConductancesEdit(2)*(1-p_struct.TEACB);
+			HH.E_leak = p_struct.RevEdit(1);
+			HH.E_K = p_struct.RevEdit(3);
+			HH.E_Na = p_struct.RevEdit(2);
+			HH.Na_Inactivation_Enable = p_struct.NAINACTCB;
+			HH.TTX = p_struct.TTXCB;
+			HH.TEA = p_struct.TEACB;
 
-			% Step 2: run 0.05 seconds
+			% Step 2: run simulation
 
-				ud.HH = ud.HH.simulate();
-				set(fig,'userdata',ud);
+			HH = HH.simulate();
+			set(fig,'userdata',ud);
 
-				% in this preliminary mode, cancel the Run
-				set(findobj(fig,'tag','RunBt'),'userdata',0);
+			% in this preliminary mode, cancel the Run
+			set(findobj(fig,'tag','RunBt'),'userdata',0);
 
 			% Step 3: update the plot and axes
 
-				ax_v = findobj(fig,'tag','VoltageAxes');
-				axes(ax_v);
-				myline = findobj(ax_v,'tag','VoltagePlot');
-				if ~isempty(myline),
-					set(myline,'xdata',ud.HH.t,'ydata',ud.HH.S(1,:));
-				else,
-					cla;
-					h=plot(ud.HH.t, ud.HH.S(1,:),'k');
-					box off;
-					set(h,'tag','VoltagePlot');
-				end;
-				axis([ud.HH.t(1) ud.HH.t(end) -0.125 0.1]);
-				title('Voltage');
-				set(ax_v,'tag','VoltageAxes');
-
-				ax_i = findobj(fig,'tag','CurrentAxes');
-				axes(ax_i);
-				myline = findobj(ax_i,'tag','CurrentPlot');
-				if ~isempty(myline),
-					set(myline,'xdata',ud.HH.t,'ydata',ud.HH.I);
-				else,
-					cla;
-					h=plot(ud.HH.t, ud.HH.I,'k');
-					box off;
-					set(h,'tag','CurrentPlot');
-				end;
-				if p_struct.ClampPopup == 1,
-					axis([ud.HH.t(1) ud.HH.t(end) -1e-9 3e-9]);
-				else,
-					axis([ud.HH.t(1) ud.HH.t(end) -100e-9 300e-9]);
-				end;
-				title('Current');
-				set(ax_i,'tag','CurrentAxes');
-
-				ax_c = findobj(fig,'tag','ChannelOpenAxes');
-				axes(ax_c);
-				hold on;
-				names = {'Na_{Open}','K_{Open}','Na_{Inactivated}'};
-				vals = {};
-				if p_struct.NAINACTCB,
-					vals{1} =  100*(ud.HH.mvar() .*ud.HH.mvar() .* ud.HH.mvar() .* ud.HH.hvar());
-				else,
-					vals{1} =  100*(ud.HH.mvar() .*ud.HH.mvar() .* ud.HH.mvar() );
-				end;
-				if p_struct.TTXCB,
-					vals{1} = 0 * vals{1};
-				end;
-				vals{2} = 100 * (power(ud.HH.nvar(),4));
-				if p_struct.TEACB,
-					vals{2} = 0 * vals{2};
-				end;
-				vals{3} = 100 * (1-ud.HH.hvar())*p_struct.NAINACTCB;
-				cols = ['bgm'];
-				for i=1:numel(names),
-					myline = findobj(ax_c,'tag',names{i});
-					if ~isempty(myline),
-						set(myline,'xdata',ud.HH.t, 'ydata', vals{i});
-					else,
-						h=plot(ud.HH.t, vals{i},cols(i));
-						set(h,'tag',names{i});
-					end;
-				end;
+			ax_v = findobj(fig,'tag','VoltageAxes');
+			axes(ax_v);
+			myline = findobj(ax_v,'tag','VoltagePlot');
+			if ~isempty(myline),
+				set(myline,'xdata',HH.t,'ydata',HH.S(1,:));
+			else,
+				cla;
+				h=plot(HH.t, HH.S(1,:),'k');
 				box off;
-				legend(names);
-				axis([ud.HH.t(1) ud.HH.t(end) 0 100]);
-				set(ax_c,'tag','ChannelOpenAxes');
+				set(h,'tag','VoltagePlot');
+			end;
+			axis([HH.t(1) HH.t(end) -0.125 0.1]);
+			set(ax_v,'tag','VoltageAxes');
+			zoom reset;
+			title('Voltage');
 
+			ax_i = findobj(fig,'tag','CurrentAxes');
+			axes(ax_i);
+			myline = findobj(ax_i,'tag','CurrentPlot');
+			if ~isempty(myline),
+				set(myline,'xdata',HH.t,'ydata',HH.I);
+			else,
+				cla;
+				h=plot(HH.t, HH.I,'k');
+				box off;
+				set(h,'tag','CurrentPlot');
+			end;
+			if p_struct.ClampPopup == 1,
+				axis([HH.t(1) HH.t(end) -1e-9 3e-9]);
+			else,
+				axis([HH.t(1) HH.t(end) -100e-9 300e-9]);
+			end;
+			zoom reset;
+			set(ax_i,'tag','CurrentAxes');
+			title('Current');
 
+			ax_c = findobj(fig,'tag','ChannelOpenAxes');
+			axes(ax_c);
+			hold on;
+			names = {'Na_{Open}','K_{Open}','Na_{Inactivated}'};
+			vals = {};
+			if p_struct.NAINACTCB,
+				vals{1} =  100*(HH.mvar() .*HH.mvar() .* HH.mvar() .* HH.hvar());
+			else,
+				vals{1} =  100*(HH.mvar() .*HH.mvar() .* HH.mvar() );
+			end;
+			if p_struct.TTXCB,
+				vals{1} = 0 * vals{1};
+			end;
+			vals{2} = 100 * (power(HH.nvar(),4));
+			if p_struct.TEACB,
+				vals{2} = 0 * vals{2};
+			end;
+			vals{3} = 100 * (1-HH.hvar())*p_struct.NAINACTCB;
+			cols = ['bgm'];
+			for i=1:numel(names),
+				myline = findobj(ax_c,'tag',names{i});
+				if ~isempty(myline),
+					set(myline,'xdata',HH.t, 'ydata', vals{i});
+				else,
+					h=plot(HH.t, vals{i},cols(i));
+					set(h,'tag',names{i});
+				end;
+			end;
+			box off;
+			legend(names);
+			axis([HH.t(1) HH.t(end) 0 100]);
+			set(ax_c,'tag','ChannelOpenAxes');
+			zoom reset;
+			title('Channels open');
+
+			if useSyn,
+				ud.HHsyn = HH;
+			else,
+				ud.HH = HH;
+			end;
 		end;
 		% if we are still running, call Step again
 		if get(findobj(fig,'tag','RunBt'),'userdata'),
@@ -333,28 +397,42 @@ switch command,
 		set(findobj(fig,'RunBt','userdata',0));
 	case 'LabPopup',
 		v = get(findobj(fig,'tag','LabPopup'),'value');
+		if v<=2, 
+			set(findobj(fig,'tag','LabPopup'),'value',1);
+			return;
+		end;
 		tags = {...
 			'RlCmEdit','RevEdit','ChannelConductancesEdit','V_initial_Edit',... % cell parameters group
-			'SynRevEdit','AMPA_Syn_Edit','NMDA_Syn_Edit','GABA_Syn_Edit', 'SynTimesEdit', ... % synapse parameters group
+			'SynRevEdit','GLUT_Syn_Edit','GABA_Syn_Edit', ... % synapse parameter group
+			'ESyn1TimesEdit', 'ESyn2TimesEdit', 'ISynTimesEdit', 'SynDynamicsEdit', ... % synapse parameters group
 			'StepValuesEdit','StepTimesEdit','SinAmpFEdit' ... % clamp parameters group
 			};
 		value_tags = { 'ClampPopup', 'TEACB', 'TTXCB', 'AMPACB', 'NMDACB', 'GABACB', 'SRCB', 'NAINACTCB' };
 		switch v,
-			case 1, % Lab 1
+			case 1+2, % Lab 1
 				string_values = {'[33.3e6 100e-12]', '[-0.075 0.045 -0.082]', '[12e-6 3.6e-6]', '[-0.073]', ...
-					'[0 -0.090]', '[1 1 1]', '[1 1 1]', '[1 1 1]', '[0 0.25]', ...
+					'[0 -0.090]', '[0.5 20 13e-10]', '[0.5 10 30e-10]', ...
+					'[0 5]', '[2 5]', '[2 5]', '[0.1 0.2 0.150]', ...
 					'[0.5e-9 0]', '[0 0.5]', '[0 4]' };
 				value_values = { 1, 0, 0, 0, 0, 0, 0, 1 };
-			case 2,
+			case 2+2,
 				string_values = {'[33.3e6 100e-12]', '[-0.075 0.045 -0.082]', '[12e-6 3.6e-6]', '[-0.073]', ...
-					'[0 -0.090]', '[1 1 1]', '[1 1 1]', '[1 1 1]', '[0 0.25]', ...
+					'[0 -0.090]', '[0.5 20 13e-10]', '[0.5 10 30e-10]', ...
+					'[0 5]', '[2 5]', '[2 5]', '[0.1 0.2 0.150]', ...
 					'[0.5e-9 0]', '[0 0.5]', '[0 4]' };
 				value_values = { 1, 0, 0, 0, 0, 0, 0, 1 };
-			case 3,
+			case 3+2,
 				string_values = {'[33.3e6 100e-12]', '[-0.075 0.045 -0.082]', '[12e-6 3.6e-6]', '[-0.073]', ...
-					'[0 -0.090]', '[1 1 1]', '[1 1 1]', '[1 1 1]', '[0 0.25]', ...
-					'[1e-9 0]', '[0 0.5]', '[0 4]' };
-				value_values = { 1, 0, 0, 0, 0, 0, 0, 1 };
+					'[0 -0.090]', '[0.5 20 13e-10]', '[0.5 10 30e-10]', ...
+					'[0 5]', '[2 5]', '[2 5]', '[0.1 0.2 0.150]', ...
+					'[-1e-9 0]', '[0 0.5]', '[0 4]' };
+				value_values = { 1, 1, 1, 0, 0, 0, 0, 1 };
+			case 4+2,
+				string_values = {'[33.3e6 100e-12]', '[-0.075 0.045 -0.082]', '[12e-6 3.6e-6]', '[-0.073]', ...
+					'[0 -0.090]', '[0.5 20 13e-10]', '[0.5 10 30e-10]', ...
+					'[0 5]', '[2 5]', '[2 5]', '[0.1 0.2 0.150]', ...
+					'[0 0]', '[-0.1 0.5]', '[0 4]' };
+				value_values = { 1, 0, 0, 1, 1, 0, 0, 1 };
 		end;
 
 		for i=1:numel(tags),
@@ -363,4 +441,5 @@ switch command,
 		for i=1:numel(value_tags),
 			set(findobj(fig,'tag',value_tags{i}),'value',value_values{i});
 		end;
+		set(findobj(fig,'tag','LabPopup'),'value',1);
 end;
