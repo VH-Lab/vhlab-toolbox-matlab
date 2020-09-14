@@ -83,19 +83,38 @@ classdef neuronmodelclass
 			if neuronmodel_obj.involtageclamp,
 				neuronmodel_obj.command = neuronmodel_obj.command + neuronmodel_obj.V_initial;
 			end;
-			step1_start_sample = find(...
-				neuronmodel_obj.t(1:end-1)<=neuronmodel_obj.step1_time & ...
-				neuronmodel_obj.t(2:end)>neuronmodel_obj.step1_time);
-			step1_stop_sample = find(...
-				neuronmodel_obj.t(1:end-1)<=neuronmodel_obj.step2_time & ...
-				neuronmodel_obj.t(2:end)>neuronmodel_obj.step2_time);
+
+			if neuronmodel_obj.step1_time <= neuronmodel_obj.t(1),
+				step1_start_sample = 1;
+			elseif neuronmodel_obj.step1_time >= neuronmodel_obj.t(end), 
+				step1_start_sample = numel(neuronmodel_obj.t);
+			else,
+				step1_start_sample = find(...
+					neuronmodel_obj.t(1:end-1)<=neuronmodel_obj.step1_time & ...
+					neuronmodel_obj.t(2:end)>neuronmodel_obj.step1_time);
+			end;
+
+			if neuronmodel_obj.step2_time <= neuronmodel_obj.t(1),
+				step1_stop_sample = 1;
+			elseif neuronmodel_obj.step2_time >= neuronmodel_obj.t(end),
+				step1_stop_sample = numel(neuronmodel_obj.t);
+			else,
+				step1_stop_sample = find(...
+					neuronmodel_obj.t(1:end-1)<=neuronmodel_obj.step2_time & ...
+					neuronmodel_obj.t(2:end)>neuronmodel_obj.step2_time);
+			end;
 			step2_start_sample = step1_stop_sample;
 			step2_stop_sample = numel(neuronmodel_obj.t);
 
-			neuronmodel_obj.command(step1_start_sample:step1_stop_sample) = ...
-				neuronmodel_obj.step1_value;
-			neuronmodel_obj.command(step2_start_sample:step2_stop_sample) = ...
-				neuronmodel_obj.step2_value;
+			if step1_start_sample <= numel(neuronmodel_obj.t),
+				neuronmodel_obj.command(step1_start_sample:step1_stop_sample) = ...
+					neuronmodel_obj.step1_value;
+			end;
+			if step1_stop_sample <= numel(neuronmodel_obj.t),
+				% only apply this if we have a second interval
+				neuronmodel_obj.command(step2_start_sample:step2_stop_sample) = ...
+					neuronmodel_obj.step2_value;
+			end;
 
 			% now add sin wave
 			t_shift = neuronmodel_obj.t - neuronmodel_obj.t(step1_start_sample);

@@ -112,7 +112,7 @@ switch command,
 		uicontrol(txt,'position',[5 top-row*3 100 30],'string','[Rl Cm]','horizontalalignment','left');
 		uicontrol(edit,'position',[5+100 top-row*3 paramwidth 30],'string','[33.3e6 100e-12]','tag','RlCmEdit');
 		uicontrol(txt,'position',[5 top-row*4 100 30],'string','[E_l E_Na E_k]','horizontalalignment','left');
-		uicontrol(edit,'position',[5+100 top-row*4 paramwidth 30],'string','[-0.070 0.045 -0.082]','tag','RevEdit');
+		uicontrol(edit,'position',[5+100 top-row*4 paramwidth 30],'string','[-0.075 0.045 -0.082]','tag','RevEdit');
 		uicontrol(txt,'position',[5 top-row*5 100 30],'string','[GNa Gk]','horizontalalignment','left');
 		uicontrol(edit,'position',[5+100 top-row*5 paramwidth 30],'string','[12e-6 3.6e-6]','tag','ChannelConductancesEdit');
 		uicontrol(txt,'position',[5 top-row*6 100 30],'string','[V_initial]','horizontalalignment','left');
@@ -268,6 +268,7 @@ switch command,
 					set(h,'tag','VoltagePlot');
 				end;
 				axis([ud.HH.t(1) ud.HH.t(end) -0.125 0.1]);
+				title('Voltage');
 				set(ax_v,'tag','VoltageAxes');
 
 				ax_i = findobj(fig,'tag','CurrentAxes');
@@ -286,6 +287,7 @@ switch command,
 				else,
 					axis([ud.HH.t(1) ud.HH.t(end) -100e-9 300e-9]);
 				end;
+				title('Current');
 				set(ax_i,'tag','CurrentAxes');
 
 				ax_c = findobj(fig,'tag','ChannelOpenAxes');
@@ -339,17 +341,17 @@ switch command,
 		value_tags = { 'ClampPopup', 'TEACB', 'TTXCB', 'AMPACB', 'NMDACB', 'GABACB', 'SRCB', 'NAINACTCB' };
 		switch v,
 			case 1, % Lab 1
-				string_values = {'[33.3e6 100e-12]', '[-0.070 0.045 -0.082]', '[12e-6 3.6e-6]', '[-0.073]', ...
+				string_values = {'[33.3e6 100e-12]', '[-0.075 0.045 -0.082]', '[12e-6 3.6e-6]', '[-0.073]', ...
 					'[0 -0.090]', '[1 1 1]', '[1 1 1]', '[1 1 1]', '[0 0.25]', ...
 					'[0.5e-9 0]', '[0 0.5]', '[0 4]' };
 				value_values = { 1, 0, 0, 0, 0, 0, 0, 1 };
 			case 2,
-				string_values = {'[33.3e6 100e-12]', '[-0.070 0.045 -0.082]', '[12e-6 3.6e-6]', '[-0.073]', ...
+				string_values = {'[33.3e6 100e-12]', '[-0.075 0.045 -0.082]', '[12e-6 3.6e-6]', '[-0.073]', ...
 					'[0 -0.090]', '[1 1 1]', '[1 1 1]', '[1 1 1]', '[0 0.25]', ...
 					'[0.5e-9 0]', '[0 0.5]', '[0 4]' };
 				value_values = { 1, 0, 0, 0, 0, 0, 0, 1 };
 			case 3,
-				string_values = {'[33.3e6 100e-12]', '[-0.070 0.045 -0.082]', '[12e-6 3.6e-6]', '[-0.073]', ...
+				string_values = {'[33.3e6 100e-12]', '[-0.075 0.045 -0.082]', '[12e-6 3.6e-6]', '[-0.073]', ...
 					'[0 -0.090]', '[1 1 1]', '[1 1 1]', '[1 1 1]', '[0 0.25]', ...
 					'[1e-9 0]', '[0 0.5]', '[0 4]' };
 				value_values = { 1, 0, 0, 0, 0, 0, 0, 1 };
