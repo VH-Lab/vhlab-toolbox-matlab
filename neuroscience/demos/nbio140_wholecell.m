@@ -295,6 +295,7 @@ switch command,
 			HH.G_L = 1/p_struct.RlCmEdit(1);
 			HH.G_Na = p_struct.ChannelConductancesEdit(1)*(1-p_struct.TTXCB);
 			HH.G_K = p_struct.ChannelConductancesEdit(2)*(1-p_struct.TEACB);
+			HH.Cm = p_struct.RlCmEdit(2);
 			HH.E_leak = p_struct.RevEdit(1);
 			HH.E_K = p_struct.RevEdit(3);
 			HH.E_Na = p_struct.RevEdit(2);
