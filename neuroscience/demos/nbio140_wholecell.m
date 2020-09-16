@@ -114,11 +114,11 @@ switch command,
 
 		% cell parameter group, upper left
 		uicontrol(txt,'position',[5 top-row*2 200 30],'string','Cell properties','horizontalalignment','left','fontweight','bold');
-		uicontrol(txt,'position',[5 top-row*3 100 30],'string','[Rl Cm]','horizontalalignment','left');
+		uicontrol(txt,'position',[5 top-row*3 100 30],'string','[R_L Cm]','horizontalalignment','left');
 		uicontrol(edit,'position',[5+100 top-row*3 paramwidth 30],'string','[33.3e6 100e-12]','tag','RlCmEdit');
-		uicontrol(txt,'position',[5 top-row*4 100 30],'string','[E_l E_Na E_k]','horizontalalignment','left');
+		uicontrol(txt,'position',[5 top-row*4 100 30],'string','[E_L E_Na E_K]','horizontalalignment','left');
 		uicontrol(edit,'position',[5+100 top-row*4 paramwidth 30],'string','[-0.075 0.045 -0.082]','tag','RevEdit');
-		uicontrol(txt,'position',[5 top-row*5 100 30],'string','[GNa Gk]','horizontalalignment','left');
+		uicontrol(txt,'position',[5 top-row*5 100 30],'string','[GNa GK]','horizontalalignment','left');
 		uicontrol(edit,'position',[5+100 top-row*5 paramwidth 30],'string','[12e-6 3.6e-6]','tag','ChannelConductancesEdit');
 		uicontrol(txt,'position',[5 top-row*6 100 30],'string','[V_initial]','horizontalalignment','left');
 		uicontrol(edit,'position',[5+100 top-row*6 paramwidth 30],'string','[-0.065]','tag','V_initial_Edit');
