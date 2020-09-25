@@ -12,20 +12,41 @@ function [b,errormsg] = addline(filename, message)
 % If the operation is successful, B is 1 and ERRORMSG is ''. Otherwise, B is 0 and ERRORMSG describes the error.
 % 
 
-mylockfile = [filename '-lock'];
+fullname = vlt.file.fullfilename(filename);
 
+[b,errormsg] = vlt.file.createpath(fullname);
 
+if ~b,
+	return;
+end;
 
+mylockfile = [fullname '-lock'];
 
-%     % I want to make sure only my program writes to myfile.txt.
-%     % All of my programs that write to myfile.txt will "check out" the
-%     % file by creating myfile.txt-lock.
-%     mylockfile = [userpath filesep 'myfile.txt-lock'];
-%     [lockfid,key] = checkout_lock_file(mylockfile);
-%     if lockfid>0,
-%        % do something
-%        release_lock_file(mylockfile,key);
-%     else,
-%        error(['Never got control of ' mylockfile '; it was busy.']);
-%     end;
+[lockfid,key] = vlt.file.checkout_lock_file(mylockfile);
+
+if lockfid > 0,
+	if ~exist(fullname),
+		fid = fopen(fullname,'w+t');
+	else,
+		fid = fopen(fullname,'a+t');
+	end;
+	if fid<0,
+		b=0;
+		errormsg = ['Could not open the file ' fullname '.'];
+	else,
+		end_of_line = newline();
+		count = fwrite(fid,[message end_of_line],'char');
+		if count ~= numel(message)+numel(end_of_line),
+			b = 0;
+			errormsg = ['Did not write complete data.'];
+		end;
+		fclose(fid);
+	end;
+	
+	vlt.file.release_lock_file(mylockfile,key);
+else,
+	b = 0;
+	errormsg = ['Never got control of ' mylockfile '; it was busy.'];
+end;
+
 

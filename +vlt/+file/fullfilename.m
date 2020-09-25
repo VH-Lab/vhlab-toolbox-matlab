@@ -23,7 +23,7 @@ if nargin<2,
 	usewhich = 1;
 end
 
-[foldername,fname] = fileparts(filename);
+[foldername,fname,ext] = fileparts(filename);
 
 if isempty(foldername),
 	if usewhich, % try to find it somewhere
@@ -31,13 +31,13 @@ if isempty(foldername),
 	end
 
 	if isempty(fullname), % we did not find it above, doesn't exist yet
-		fullname = [pwd filesep filename]; 
+		fullname = [pwd filesep filename ext]; 
 	end
 else, % we have a foldername
 	if vlt.file.isfilepathroot(foldername), % then we already have full filename
 		fullname = filename;
 	else,
-		fullname = [pwd filesep foldername filesep fname]; 
+		fullname = [pwd filesep foldername filesep fname ext]; 
 	end
 end;
 
