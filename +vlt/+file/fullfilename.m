@@ -31,7 +31,7 @@ if isempty(foldername),
 	end
 
 	if isempty(fullname), % we did not find it above, doesn't exist yet
-		fullname = [pwd filesep filename ext]; 
+		fullname = [pwd filesep filename]; 
 	end
 else, % we have a foldername
 	if vlt.file.isfilepathroot(foldername), % then we already have full filename

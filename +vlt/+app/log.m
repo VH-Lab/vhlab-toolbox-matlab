@@ -18,7 +18,13 @@ classdef log < handle
 	%                    If a message priority exceeds verbosity, it will be written to the log
 	%   log_name - The name to preprend to each log message as '[log_name] '.
 	%   log_error_behavior - A string that indicates what the log should do if it cannot write a message to the 
-	%                        log file. Valid values are 'Error', 'Warning', 'WriteToStdOut', 'WriteToStdErr', 'Nothing'
+	%                        log file. Valid values are 'Error', 'Warning', 'Nothing'
+	%
+	% vlt.all.log Methods:
+        %   log - create a log object
+	%   msg - write a message to the log
+	%   seterrorbehavior - set the error behavior of a LOG object
+	%   touch - create the log files if they don't exist
 	%
 
 	properties
@@ -29,9 +35,11 @@ classdef log < handle
 		error_verbosity % A double number that indicates whether or not an error message should be written.
 		debug_verbosity % A double number that indicates whether or not a debugging message should be written.
 		log_name % The name to preprend to each log message as '[log_name] '.
-		log_error_behavior % A string that indicates what the object should do if it cannot write a message to the file
-
 	end; % properties
+	properties (SetAccess=protected,GetAccess=public)
+		log_error_behavior % A string that indicates what the object should do if it cannot write a message to the file
+	end; % protected properties
+
 
 	methods
 		
@@ -40,7 +48,7 @@ classdef log < handle
 			%
 			% LOG_OBJ = LOG(PROPERTY1, VALUE1, ... )
 			%
-			% Creates a new MATAPPTOOLS.LOG object with the properties initiallized with name/value pair
+			% Creates a new vlt.app.log object with the properties initiallized with name/value pair
 			% arguments. If not specified, the default values of the parameters are the following:
 			%
 			% Property                  | Default_value
@@ -52,7 +60,7 @@ classdef log < handle
 			% error_verbosity           | 1.0
 			% debug_verbosity           | 1.0
 			% log_name                  | ''
-			% log_error_behavior        | 'Nothing'
+			% log_error_behavior        | 'warning'
 			%
 				system_logfile = [userpath filesep 'system.log'];
 				error_logfile = [userpath filesep 'error.log'];
@@ -62,18 +70,24 @@ classdef log < handle
 				error_verbosity = 1.0;
 				debug_verbosity = 1.0;
 
-				log_error_behavior = 'Nothing';
+				log_error_behavior = 'warning';
+				log_name = '';
 
 				vlt.data.assign(varargin{:});
 
 				fn = fieldnames(log_obj);
 				for i=1:numel(fn),
-					log_obj = setfield(log_obj,fn{i},eval(fn{i}));
+					if ~strcmp(fn{i},'log_error_behavior'),
+						log_obj = setfield(log_obj,fn{i},eval(fn{i}));
+					end;
 				end;
+				log_obj = log_obj.seterrorbehavior(log_error_behavior);
+
+				log_obj.touch();
 
 		end; % log(), constructor
 
-		function b = msg(log_obj, type,priority,message)
+		function b = msg(log_obj, type, priority,message)
 			% MSG - write a log message to the log
 			%
 			% B = MSG(LOG_OBJ, TYPE, PRIORITY, MESSAGE)
@@ -95,20 +109,72 @@ classdef log < handle
 			%   log_obj.msg('error',1,'Could not find file C:\mydir\abc.txt.');
 			%   log_obj.msg('debug',1,'a=5 here.');
 			%
+				b = 1;
+				errormsg = '';
+
 				timestamp = [char(datetime('now','TimeZone','UTCLeapSeconds'))];
-				themsg = [timestamp ' [' log_obj.logname '] ' upper(type) ' ' message '].
+				themsg = [timestamp ' [' log_obj.log_name '] ' upper(type) ' ' message ];
 				
 				switch upper(type),
 					case 'SYSTEM',
-						[b,errormsg]=vlt.file.addline(log_obj.system_logfile, themsg);
+						if priority >= log_obj.system_verbosity,
+							[b,errormsg]=vlt.file.addline(log_obj.system_logfile, themsg);
+						end;
 					case 'ERROR',
-						[b,errormsg]=vlt.file.addline(log_obj.error_logfile, themsg);
+						if priority >= log_obj.error_verbosity,
+							[b,errormsg]=vlt.file.addline(log_obj.error_logfile, themsg);
+						end;
 					case 'DEBUG',
-						[b,errormsg]=vlt.file.addline(log_obj.debug_logfile, themsg);
+						if priority >= log_obj.debug_verbosity,
+							[b,errormsg]=vlt.file.addline(log_obj.debug_logfile, themsg);
+						end;
 					otherwise,
 						error(['Invalid log type: ' type '; expected SYSTEM, ERROR, or DEBUG']);
 				end;
+				if ~b,
+					switch lower(log_obj.log_error_behavior),
+						case 'nothing',
+
+						case 'warning',
+							warning(errormsg);
+						case 'error',
+							error(errormsg);
+						otherwise,
+							error(['Unknown error behavior: ' log_obj.log_error_behavior '.']);
+					end;
+				end;
 		end; 
+
+		function log_obj = seterrorbehavior(log_obj, log_error_behavior)
+			% SETERRORBEHAVIOR - set the error behavior of a LOG object
+			%
+			% LOG_OBJ = SETERRORBEHAVIOR(LOG_OBJ, LOG_ERROR_BEHAVIOR)
+			%
+			% Assign LOG_ERROR_BEHAVIOR, which can be 'warning', 'error', or 'nothing'.
+			%
+
+				switch lower(log_error_behavior)
+					case {'nothing','warning','error'},
+						log_obj.log_error_behavior = lower(log_error_behavior);
+					otherwise,
+						error(['Unknown error behavior: ' log_error_behavior '.']);
+				end;
+		end;
+
+		function touch(log_obj)
+			% TOUCH - create all log files if they do not already exist
+			%
+			% TOUCH(LOG_OBJ)
+			%
+			% Creates all log files if they do not already exist. If these log files
+			% cannot be created, then an error is generated.
+			%
+				paths = {log_obj.system_logfile, log_obj.error_logfile, log_obj.debug_logfile};
+				for i=1:numel(paths),
+					vlt.file.touch(paths{i});
+				end;
+		end; % touch()
+			
 
 	end; % methods
 
