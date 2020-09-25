@@ -9,3 +9,6 @@ we have permission to redistribute. But this code has evolved since 1999, and it
 possible that something not meant for redistribution or something misattributed is present here.
 If this is the case, please post an issue and it will be corrected.
 
+We are in the process of converting the files here to a package +vlt. The use of the functions
+without vlt.package.filename is deprecated. 
+
