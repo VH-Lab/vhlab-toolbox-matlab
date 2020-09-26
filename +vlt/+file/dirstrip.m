@@ -7,9 +7,9 @@ function d = dirstrip(ds)
 %  from the list.
 %
 %  This will return all file names, including regular files. To return only
-%  directories, see DIRLIST_TRIMDOTS.
+%  directories, see vlt.file.dirlist_trimdots().
 %
-%  See also: DIR, DIRLIST_TRIMDOTS
+%  See also: DIR, vlt.file.dirlist_trimdots()
 
 g = {ds.name};
 [B,I] = setdiff(g,{'.','..','.DS_Store','.git'});

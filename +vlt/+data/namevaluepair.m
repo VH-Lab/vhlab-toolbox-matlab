@@ -13,5 +13,5 @@ function namevaluepair
 % This capability is only available in functions that are built to
 % accept name/value pairs (it is not automatically available in any function).
 %
-% See also: STRUCT2NAMEVALUEAPAIR, VARARGIN, ASSIGN
+% See also: vlt.data.struct2namevaluepair, VARARGIN, vlt.data.assign
  

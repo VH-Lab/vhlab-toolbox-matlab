@@ -21,7 +21,7 @@ function dirlist = dirlist_trimdots(dirlist, output_struct)
 %  then the output will be a structure of the same type with the '.' and
 %  '..' (and '.DS_Store') removed.
 %
-%  See also: DIR, DIRSTRIP
+%  See also: DIR, vlt.file.dirstrip()
 %
 %  Example:
 %    D=dir
@@ -46,6 +46,8 @@ if isstruct(dirlist),
             elseif strcmp(dirlist(i).name,'..'),
                 theparent(end+1) = i;
             elseif strcmp(dirlist(i).name,'.DS_Store'),
+                garbage(end+1) = i;
+            elseif strcmp(dirlist(i).name,'.git'),
                 garbage(end+1) = i;
             end;
         end;
@@ -75,6 +77,8 @@ for i=1:length(dirlist),
 		theparent(end+1) = i;
 	elseif strcmp(dirlist{i},'.DS_Store'),
 		garbage(end+1) = i;
+	elseif strcmp(dirlist{i},'.git'),
+		garbage(end+1) = i;
 	end;
 
 	%if ~isempty(thisdir) & ~isempty(theparent)
@@ -85,3 +89,4 @@ end;
 if ~isempty([thisdir theparent garbage]),
 	dirlist([thisdir theparent garbage]) = [];
 end;
+
