@@ -1,7 +1,7 @@
 function KiCadGerber2OSHPark(dirname)
 % KiCadGerber2OSHPark - Convert KiCad Gerber extensions to OSH Park convention
 %
-% KICADGERBER2OSHPARK(DIRNAME)
+% vlt.pcb.KiCadGerber2OSHPark(DIRNAME)
 %
 % Given a directory name with Gerber files, this function creates a subdirectory
 % 'OSHPark' that has renamed Gerber files whose extensions match that expected 
@@ -25,5 +25,5 @@ replaceCell = {'B.Cu.gbr.GBL' 'B.Mask.gbr.GBS' 'B.SilkS.gbr.GBO' ...
 	'F.Cu.gbr.GTL' 'F.Mask.gbr.GTS' 'F.SilkS.gbr.GTO' ...
 	'Edge.Cuts.gbr.GKO' 'drl.XLN'};
 
-filenamesearchreplace(dirname,searchCell,replaceCell,'useOutputDir',1,...
+vlt.file.filenamesearchreplace(dirname,searchCell,replaceCell,'useOutputDir',1,...
 	'OutputDir', 'OSHPark', 'noOp',0);

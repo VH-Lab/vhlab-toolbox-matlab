@@ -1,7 +1,7 @@
 function callbackstr = figurecommandcallbackstr
 % FIGURECOMMANDCALLBACKSTR - Callback string that calls function in figure tag with uicontrol command
 %
-%  CALLBACKSTR = FIGURECOMMANDCALLBACKSTR
+%  CALLBACKSTR = vlt.ui.figurecommandcallbackstr
 %
 %  Returns a string that is a useful callback for uicontrols in graphical user interfaces.
 %

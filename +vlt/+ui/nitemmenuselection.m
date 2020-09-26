@@ -1,7 +1,7 @@
 function [selected,b,errormsg] = nitemmenuselection(popupmenu_handle, varargin)
 % NITEMNENUSELECTION - control multiple item selection for a popup menu
 %
-% [SELECTED, B, ERRORMSG] = NITEMMENUSELECTION(POPUPMENU_HANDLE, ...)
+% [SELECTED, B, ERRORMSG] = vlt.ui.nitemmenuselection(POPUPMENU_HANDLE, ...)
 %
 % Note that you shouldn't allow any item names to begin with
 % ItemPrefix{:} entries.
@@ -20,14 +20,14 @@ function [selected,b,errormsg] = nitemmenuselection(popupmenu_handle, varargin)
 %   names = {'a','b','c','d'};
 %   fig=figure;
 %   uicontrol('units','normalized','position',[0.1 0.1 0.2 0.5],'tag','mymenu',...
-%       'style','popup','string',names,'callback','nitemmenuselection(gcbo);');
-%   selected=nitemmenuselection(findobj(fig,'tag','mymenu'),'value',[]);
+%       'style','popup','string',names,'callback','vlt.ui.nitemmenuselection(gcbo);');
+%   selected=vlt.ui.nitemmenuselection(findobj(fig,'tag','mymenu'),'value',[]);
 
 
 ItemPrefix = {'x:','y:','z:'};
 value = get(popupmenu_handle,'value');
 
-assign(varargin{:});
+vlt.data.assign(varargin{:});
 
 N = numel(ItemPrefix);
 
@@ -39,7 +39,7 @@ for i=1:N,
 	indexes(find(strncmp(ItemPrefix{i},names,numel(ItemPrefix{i}))))=i;
 end;
 
-order = sortorder(indexes(find(indexes)));
+order = vlt.data.sortorder(indexes(find(indexes)));
 selected = find(indexes);
 selected = selected(order);
 

@@ -1,7 +1,7 @@
 function answers = spreadsheet_multiplechoice(spreadsheet, question, varargin)
 % SPREADSHEET_MULTIPLECHOICE - Return answers to a multiple choice spreadsheet question
 %
-% ANSWERS = SPREADSHEET_MULTIPLECHOICE(SPREADSHEET, QUESTION, ...)
+% ANSWERS = vlt.spreadsheet.spreadsheet_multiplechoice(SPREADSHEET, QUESTION, ...)
 %
 % Returns a structure with responses to a multiple choice "question"
 % in the header row of a spreadsheet. The header row is assumed to be the first
@@ -25,7 +25,7 @@ function answers = spreadsheet_multiplechoice(spreadsheet, question, varargin)
 
 choices = [];
 
-assign(varargin{:});
+vlt.data.assign(varargin{:});
 
 question_column = find(strcmpi(question, spreadsheet(1,:)));
 

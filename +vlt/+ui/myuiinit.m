@@ -15,17 +15,17 @@ function myuiinit
 %   'popup'          | Popup menu control*
 %   'checkbox'       | Checkbox type control*
 %
-%   * indicates that the 'callback' field is set to 'genercallback'
+%   * indicates that the 'callback' field is set to 'vlt.ui.genercallback'
 %   Horizontal alignment of 'txt' and 'edit' controls is set to 'center'
 %   All backgrounds are set to 0.8*[1 1 1] except for 'edit', which
 %   is set to [1 1 1]
 %
-%  See also: UICONTROL, GENERCALLBACK, ASSIGNIN
+%  See also: UICONTROL, vlt.ui.genercallback, ASSIGNIN
 
 button.Units = 'pixels';
 button.BackgroundColor = [0.8 0.8 0.8];
 button.HorizontalAlignment = 'center';
-button.Callback = 'genercallback';
+button.Callback = 'vlt.ui.genercallback';
 
 txt.Units = 'pixels';
 txt.BackgroundColor = [0.8 0.8 0.8];
@@ -40,11 +40,11 @@ uiedit.Style = 'Edit';
 
 popup = txt;
 popup.style = 'popupmenu';
-popup.callback = 'genercallback';
+popup.callback = 'vlt.ui.genercallback';
 
 checkbox = txt;
 checkbox.Style = 'Checkbox';
-checkbox.Callback = 'genercallback';
+checkbox.Callback = 'vlt.ui.genercallback';
 checkbox.fontsize = 10;
 
 assignin('caller','button',button);

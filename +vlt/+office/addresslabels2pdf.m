@@ -1,7 +1,7 @@
 function addresslabels2pdf(labels, varargin)
 % ADDRESSLABELS2PDF - print address labels to a set of PDFs following a template
 %
-% ADDRESSLABELS2PDF(LABELS, ...)
+% vlt.office.addresslabels2pdf(LABELS, ...)
 %
 % This prints address labels LABELS to many pieces of figure 'paper'. 
 % It follows the template described below. LABELS{i}{:} is a cell

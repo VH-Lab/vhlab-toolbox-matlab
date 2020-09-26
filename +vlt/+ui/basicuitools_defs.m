@@ -1,7 +1,7 @@
 function uidefs = basicuitools_defs(varargin)
 % BASICUITOOLS_DEFS - Basic user interface uitools setup
 %
-%  UIDEFS = BASICUITOOLS_DEFS
+%  UIDEFS = vlt.ui.basicuitools_defs
 %
 %  Returns a basic defined set of specifications for the commonly used
 %  user interface controls. 
@@ -21,7 +21,7 @@ function uidefs = basicuitools_defs(varargin)
 %                                   |
 %             
 %  Example:
-%     uidefs = basicuitools_defs;
+%     uidefs = vlt.ui.basicuitools_defs;
 %     
 %  See also: UICONTROL
 %
@@ -39,7 +39,7 @@ frameBackgroundColor = 0.8 * [ 1 1 1 ];
 
 uiUnits = 'pixels';
 
-assign(varargin{:});
+vlt.data.assign(varargin{:});
 
 button.Units = uiUnits;
 button.BackgroundColor = uiBackgroundColor;
@@ -86,5 +86,5 @@ frame = txt;
 frame.BackgroundColor = frameBackgroundColor;
 frame.Style = 'frame';
 
-uidefs = var2struct('button','togglebutton','txt','edit','popup','slider','list','cb','rb','frame');
+uidefs = vlt.data.var2struct('button','togglebutton','txt','edit','popup','slider','list','cb','rb','frame');
 

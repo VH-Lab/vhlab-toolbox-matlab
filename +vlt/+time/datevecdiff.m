@@ -1,7 +1,7 @@
 function d = datevecdiff(v1,v2)
 % DATEVECDIFF - Compute difference in date vectors, in seconds
 %
-%  D = DATEVECDIFF(V1,V2)
+%  D = vlt.time.datevecdiff(V1,V2)
 %
 %  Compute the difference between 2 date vectors, V=V2-V1
 %
@@ -12,7 +12,7 @@ function d = datevecdiff(v1,v2)
 %  Example:
 %     V1=[2013 12 25 0 0 0];
 %     V2=[2014 12 25 0 0 0];
-%     D=datevecdiff(V1,V2)
+%     D=vlt.time.datevecdiff(V1,V2)
 %
 %  See also: NOW, DATEVEC
 

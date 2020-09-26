@@ -1,9 +1,9 @@
 function [i,pt] = findclosestpointclick(pointlist, scale)
 % FINDCLOSESTPOINT - Find the closest point to where a user clicked
 %
-%  [I,PT] = FINDCLOSESTPOINTCLICK(POINTLIST)
+%  [I,PT] = vlt.ui.findclosestpointclick(POINTLIST)
 %    or 
-%  [I,PT] = FINDCLOSESTPOINTCLICK(POINTLIST, SCALE)
+%  [I,PT] = vlt.ui.findclosestpointclick(POINTLIST, SCALE)
 %
 %  Examines the 'CurrentPoint' in the current axes, and sees
 %  which of the points in POINTLIST is closest to the 'CurrentPoint'.
@@ -21,7 +21,7 @@ function [i,pt] = findclosestpointclick(pointlist, scale)
 %  If POINTLIST is in 3-space (3D) then a 3D comparison is made.
 %  If POINTLIST is in 2-space (2D) then a 2D comparison is made.
 % 
-%  See also: FINDCLOSEST, FINDCLOSESTPOINT
+%  See also: vlt.data.findclosest, vlt.data.findclosestpoint
 
 if nargin<2,
 	scale = 1;
@@ -47,6 +47,6 @@ else,
 end;
 
 
-[i]=findclosestpoint(pointlist_use,clicked_pt_use);
+[i]=vlt.data.findclosestpoint(pointlist_use,clicked_pt_use);
 
 pt = pointlist(i,:);
