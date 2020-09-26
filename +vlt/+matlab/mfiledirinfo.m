@@ -16,6 +16,11 @@ function minfo = mfiledirinfo(dirname, varargin)
 %
 % 
 % See also: vlt.matlab.mfileinfo(), vlt.data.namevaluepair()
+%
+% Example:
+%   dirname = '/Users/vanhoosr/Documents/matlab/tools/vhlab-toolbox-matlab';
+%   m=vlt.matlab.mfiledirinfo(dirname);
+%
 
 IgnorePackages = 1;
 IgnoreClassDirs = 1;
