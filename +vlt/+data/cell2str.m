@@ -1,7 +1,7 @@
 function str = cell2str(theCell)
 % CELL2STR - Convert 1-D cells to a string
 %
-%   STR = CELL2STR(THECELL)
+%   STR = vlt.data.cell2str(THECELL)
 %
 % Converts a 1-D cell to a string.
 %

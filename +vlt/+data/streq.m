@@ -1,9 +1,9 @@
 function b = streq(S1,S2,thewc)
 
-% STREQ(S1,S2 [,WC])
+% vlt.data.streq(S1,S2 [,WC])
 %
 %  Returns 1 if S1 and S2 are equal, and 0 otherwise.  The wildcard '*' may be
-%  used in S2, and then STREQ will return 1 if S1 matches the wildcard criteria.
+%  used in S2, and then vlt.data.streq will return 1 if S1 matches the wildcard criteria.
 %  If the user wants to use a different wildcard character other than '*',
 %  a different wildcard character can be given in WC.
 

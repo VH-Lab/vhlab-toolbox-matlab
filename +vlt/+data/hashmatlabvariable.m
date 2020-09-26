@@ -1,7 +1,7 @@
 function h=hashmatlabvariable(d, varargin)
 % HASHMATLABVARIABLE - create a hashed version of a Matlab variable in memory
 %
-% H = HASHMATLABVARIABLE(D)
+% H = vlt.data.hashmatlabvariable(D)
 %
 % Creates a 32-bit hashed value based on the binary data in the variable D.
 % 
@@ -22,7 +22,7 @@ function h=hashmatlabvariable(d, varargin)
 
 algorithm = 'pm_hash/crc';
 
-assign(varargin{:});
+vlt.data.assign(varargin{:});
 
 h = 0;
 

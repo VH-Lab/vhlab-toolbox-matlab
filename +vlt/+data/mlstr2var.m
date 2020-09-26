@@ -1,7 +1,7 @@
 function v = mlstr2var(mlstring)
 % MLSTR2VAR - creates a Matlab variable from markup language strings (STRUCT2MLSTR, CELL2MLSTR)
 %
-% V = MLSTR2VAR(MLSTRING)
+% V = vlt.data.mlstr2var(MLSTRING)
 %
 % Given a markup language string representation of Matlab structures or cells, this 
 % function produces a Matlab variable v.
@@ -21,7 +21,7 @@ function v = mlstr2var(mlstring)
 %
 % Consider also: JSONENCODE, JSONDECODE
 %
-% See also: CELL2MLSTR, STRUCT2MLSTR, JSONDECODE
+% See also: vlt.data.cell2mlstr, vlt.data.struct2mlstr, JSONDECODE
 
 mlstring = strip(mlstring); % remove whitespace
 
@@ -115,18 +115,18 @@ if startsWith(lower(codingregion), lower('STRUCT')) | startsWith(lower(codingreg
 	isinmatlabstring = vlt.string.ismatlabstring(dataregion);
 	dataregion_meta = dataregion;
 	dataregion_meta(find(isinmatlabstring)) = 'X'; % ignore strings, which might have our metacharacters
-	brace = bracelevel(dataregion_meta,'<','>') >= 1;
+	brace = vlt.string.bracelevel(dataregion_meta,'<','>') >= 1;
 	onsets = 1+find(diff(brace)==1);
 	offsets = find(diff(brace)==-1);
 	if structhere,
 		for i=1:numel(onsets),
 			entrystring = dataregion(onsets(i):offsets(i));
 			entrystring_meta = dataregion_meta(onsets(i):offsets(i));
-			bracelevel(entrystring_meta,'<','>');
-			structlevels = (bracelevel(entrystring_meta,'<','>') >= 1);
+			vlt.string.bracelevel(entrystring_meta,'<','>');
+			structlevels = (vlt.string.bracelevel(entrystring_meta,'<','>') >= 1);
 			structonsets = 1+find(diff(structlevels)==1);
 			structoffsets = find(diff(structlevels)==-1);
-			vnew = emptystruct(fieldnames_values{:});
+			vnew = vlt.data.emptystruct(fieldnames_values{:});
 			for j=1:numel(structonsets),
 				%entrystring(structonsets(j):structoffsets(j))
 				eval(['vnew(1).' fieldnames_values{j} '=vlt.data.mlstr2var(entrystring(structonsets(j):structoffsets(j)));']);
@@ -136,7 +136,7 @@ if startsWith(lower(codingregion), lower('STRUCT')) | startsWith(lower(codingreg
 
 	else,
 		for i=1:numel(onsets),
-			v{i} = mlstr2var(dataregion(onsets(i):offsets(i)));
+			v{i} = vlt.data.mlstr2var(dataregion(onsets(i):offsets(i)));
 		end
     end
     
@@ -148,7 +148,7 @@ elseif codingregion(1)=='''',
 	end
 	v = codingregion(2:end-1);
 else,   % it is a matrix
-	v = str2nume(codingregion); % use our version that recognizes empty
+	v = vlt.data.str2nume(codingregion); % use our version that recognizes empty
 end
 
 

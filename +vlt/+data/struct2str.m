@@ -1,7 +1,7 @@
 function str = struct2str(thestruct, varargin)
 % STRUCT2STR - Create a short text string to summarize a structure
 %
-%  STR = STRUCT2STR(THESTRUCT)
+%  STR = vlt.data.struct2str(THESTRUCT)
 %
 %  Produces a string representation of a structure.  Character strings
 %  are written directly, integers are written using INT2STR, and 
@@ -20,7 +20,7 @@ function str = struct2str(thestruct, varargin)
 %  The default parameters may be overridden by passing NAME/VALUE
 %  pairs as additional arguments, as in:
 %
-%   STR = STRUCT2STR(THESTRUCT, 'NAME1', VALUE1,...)
+%   STR = vlt.data.struct2str(THESTRUCT, 'NAME1', VALUE1,...)
 %
 %  Parameters:             | Description
 %  ---------------------------------------------------------------
@@ -35,7 +35,7 @@ function str = struct2str(thestruct, varargin)
 %                          |    (this is the number of digits we should use)
 %                      
 %
-% See also: STRUCT2CHAR, CHAR2STRUCT, MLSTR2VAR
+% See also: STRUCT2CHAR, CHAR2STRUCT, vlt.data.mlstr2var
 %
 
   % extra options someone might want to add: 

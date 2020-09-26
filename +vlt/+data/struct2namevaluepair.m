@@ -1,7 +1,7 @@
 function nv = struct2namevaluepair(thestruct)
 % STRUCT2NAMEVALUEPAIR - Convert a structure to a cell array of name/value pairs
 %
-%  NV = STRUCT2NAMEVALUEPAIR(THESTRUCT)
+%  NV = vlt.data.struct2namevaluepair(THESTRUCT)
 %
 %  Convert a structure to a cell array of name/value pairs. This is useful for
 %  passing name/value pairs to functions that accept them as extra arguments.
@@ -12,11 +12,11 @@ function nv = struct2namevaluepair(thestruct)
 %
 %     myStruct.param1 = 1;
 %     myStruct.param2 = 2;
-%     nv = struct2namevaluepair(myStruct)
+%     nv = vlt.data.struct2namevaluepair(myStruct)
 %        % nv = {'param1', 1, 'param2', 2}
 %
 %
-%  See also: VARARGIN, ASSIGN, STRUCT
+%  See also: VARARGIN, vlt.data.assign, STRUCT
 
 nv = {};
 

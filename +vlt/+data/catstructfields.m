@@ -1,7 +1,7 @@
 function struct_out = catstructfields(struct1, struct2, dimension)
 % CATSTRUCTFIELDS - Concatenate fields from structures with equal fields
 %
-%  STRUCT_OUT = CATSTRUCTFIELDS(STRUCT1,STRUCT2[,DIMENSION])
+%  STRUCT_OUT = vlt.data.catstructfields(STRUCT1,STRUCT2[,DIMENSION])
 %
 %  This function concatenates the contents of the field values of
 %  STRUCT1 and STRUCT2.  STRUCT1 and STRUCT2 must have identical fieldnames.
@@ -14,7 +14,7 @@ function struct_out = catstructfields(struct1, struct2, dimension)
 %    a.field2 = [ 1 2 3];
 %    b.field1 = [ 4 5 6];
 %    b.field2 = [ 4 5 6];
-%    c = catstructfields(a,b);
+%    c = vlt.data.catstructfields(a,b);
 %    c.field1 % is [1 2 3 4 5 6]
 %    c.field2 % is [1 2 3 4 5 6]
 %     
@@ -25,7 +25,7 @@ if nargin<3,
 end;
 
 fn1 = fieldnames(struct1);
-if ~eqlen(fn1,fieldnames(struct2)),
+if ~vlt.data.eqlen(fn1,fieldnames(struct2)),
 	error(['Fieldnames of STRUCT1 and STRUCT2 must match exactly.']);
 end;
 

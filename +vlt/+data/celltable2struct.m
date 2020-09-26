@@ -1,7 +1,7 @@
 function s = celltable2struct(c)
 % CELLTABLE2STRUCT - convert a table stored in a CELL datatype to a structure
 %
-% S = CELLTABLE2STRUCT(C)
+% S = vlt.data.celltable2struct(C)
 %
 % Converts a table stored in the cell matrix C to a structure.
 % It is assumed that the first row of C (C{1}) has structure labels.
@@ -14,8 +14,8 @@ function s = celltable2struct(c)
 % Example:
 %    %Read a tab-seperated-value file with truncated entries (that is,
 %    %where each line ends prematurely if later fields are empty):
-%    o = read_tab_delimited_file(filename);
-%    s = celltable2struct(o);
+%    o = vlt.file.read_tab_delimited_file(filename);
+%    s = vlt.data.celltable2struct(o);
 %
 
 fn = matlab.lang.makeValidName(c{1});

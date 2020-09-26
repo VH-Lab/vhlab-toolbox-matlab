@@ -1,7 +1,7 @@
 function [S_sorted, indexes] = sortstruct(S, varargin)
 % SORTSTRUCT - sort structure by fieldname values
 % 
-% [S_sorted, indexes] = SORTSTRUCT(S, 'sign_fieldname1', 'sign_fieldname2', ...)
+% [S_sorted, indexes] = vlt.data.sortstruct(S, 'sign_fieldname1', 'sign_fieldname2', ...)
 %
 % Sorts the structure S according to the values in successive fieldnames.
 %

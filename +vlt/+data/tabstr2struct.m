@@ -1,7 +1,7 @@
 function a = tabstr2struct(s,fields)
 % TABSTR2STRUCT - convert a tab-separated set of strings to a STRUCT entry
 %
-% A = TABSTR2STRUCT(S, FIELDS)
+% A = vlt.data.tabstr2struct(S, FIELDS)
 %
 % Given a cell array of strings FIELDS of field names, creates a STRUCT
 % array where the values of each field are specified in a tab-delimited string.
@@ -18,12 +18,12 @@ function a = tabstr2struct(s,fields)
 %      we assume the user wants to specify the string rather than an empty matlab 
 %      type (for example, STR2NUM('struct') yields an empty structure).
 %
-% See also: LOADSTRUCTARRAY, SAVESTRUCTARRAY, DLMREAD, DLMWRITE, STRUCT2TABSTR
+% See also: vlt.file.loadStructArray, vlt.file.saveStructArray, DLMREAD, DLMWRITE, vlt.data.struct2tabstr
 %
 % Example:
 %   s = ['5' char(9) 'my string data'];
 %   fn = {'fielda','fieldb'};
-%   a = tabstr2struct(s,fn)
+%   a = vlt.data.tabstr2struct(s,fn)
 % 
 
 a = [];

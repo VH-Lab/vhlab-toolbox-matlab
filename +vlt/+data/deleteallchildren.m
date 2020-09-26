@@ -1,8 +1,8 @@
 function deleteallchildren(h)
 
-% DELETEALLCHILDREN
+% vlt.data.deleteallchildren
 %
-%  DELETEALLCHILDREN(H)
+%  vlt.data.deleteallchildren(H)
 % 
 % Loops over the children of H and, if they are valid handles, deletes them.
 %

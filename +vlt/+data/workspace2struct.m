@@ -1,8 +1,8 @@
 function output = workspace2struct;
 
-% WORKSPACE2STRUCT - Export the current workspace to a structure
+% vlt.data.workspace2struct - Export the current workspace to a structure
 %
-%  OUTPUT = WORKSPACE2STRUCT
+%  OUTPUT = vlt.data.workspace2struct
 %
 %  Saves the local workspace as a structure for easy export.
 %  
@@ -10,7 +10,7 @@ function output = workspace2struct;
 %
 %  Example:
 %     Imagine your workspace has one variable A, equal to 5.
-%     output = workspace2struct
+%     output = vlt.data.workspace2struct
 %
 %       produces
 %
@@ -21,7 +21,7 @@ function output = workspace2struct;
 varlist = evalin('caller','who');
 
 if numel(varlist)==0,
-	output = emptystruct();
+	output = vlt.data.emptystruct();
 	return;
 end;
 

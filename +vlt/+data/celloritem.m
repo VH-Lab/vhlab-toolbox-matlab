@@ -1,7 +1,7 @@
 function item = celloritem(var, index, useindexforvar)
 % CELLORITEM - Returns the ith element of a cell list, or a single item
 %
-%   ITEM = CELLORITEM(VAR, [INDEX], [USEINDEXFORVAR])
+%   ITEM = vlt.data.celloritem(VAR, [INDEX], [USEINDEXFORVAR])
 %
 %  This function examines VAR:
 %    if VAR is a cell list, then it returns the INDEXth element of VAR;

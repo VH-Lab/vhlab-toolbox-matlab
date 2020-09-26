@@ -1,7 +1,7 @@
 function s_out = structmerge(s1, s2, varargin)
 % STRUCTMERGE - Merge struct variables into a common struct
 %
-%  S_OUT = STRUCTMERGE(S1, S2, ...)
+%  S_OUT = vlt.data.structmerge(S1, S2, ...)
 %
 %  Merges the structures S1 and S2 into a common structure S_OUT
 %  such that S_OUT has all of the fields of S1 and S2. When 
@@ -22,7 +22,7 @@ function s_out = structmerge(s1, s2, varargin)
 ErrorIfNewField = 0;
 DoAlphabetical = 1;
 
-assign(varargin{:});
+vlt.data.assign(varargin{:});
 
 f1 = fieldnames(s1);
 f2 = fieldnames(s2);
@@ -30,7 +30,7 @@ f2 = fieldnames(s2);
 if ErrorIfNewField,
 	[c,f1i] = setdiff(f2,f1);
 	if ~isempty(c),
-		error(['Some fields of the second structure are not in the first: ' cell2str(c) '.']);
+		error(['Some fields of the second structure are not in the first: ' vlt.data.cell2str(c) '.']);
 	end;
 end;
 

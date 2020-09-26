@@ -1,7 +1,7 @@
 function S = text2struct(str, varargin)
 % TEXT2STRUCT - Convert a text string to a structure
 %
-%   S = TEXT2STRUCT(STR)
+%   S = vlt.data.text2struct(STR)
 %
 % Given a full, multi-line string, converts to Matlab structures.
 %
@@ -29,7 +29,7 @@ function S = text2struct(str, varargin)
 %        '>' eol ...                     % indicate end of substructure
 %        eol ];                          % blank line ends the structure (not necessary for last structure in list)
 %
-% mystruct = text2struct(str);
+% mystruct = vlt.data.text2struct(str);
 %
 % The function can be modified by the addition of name/value pairs:
 % Name (default):                | Description          

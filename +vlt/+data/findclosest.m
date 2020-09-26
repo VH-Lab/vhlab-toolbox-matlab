@@ -1,7 +1,7 @@
 function [i,nv] = findclosest(arr,v)
 % FINDCLOSEST - Find closest value in an array (using absolute value)
 %
-% [I,V] = FINDCLOSEST(ARRAY,VALUE)
+% [I,V] = vlt.data.findclosest(ARRAY,VALUE)
 %
 % Finds the index to the closest member of ARRAY to VALUE
 % in absolute value. It returns the index in I and the value

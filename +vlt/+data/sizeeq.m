@@ -1,8 +1,8 @@
 function b = sizeeq(x,y)
 
-% SIZEEQ  Determines if size of two variables is same
+% vlt.data.sizeeq  Determines if size of two variables is same
 %   
-%   B = SIZEEQ(X,Y)
+%   B = vlt.data.sizeeq(X,Y)
 %
 %  Returns 1 if the size of X and Y are equal.  Otherwise, returns 0.
 

@@ -1,8 +1,8 @@
 function n=str2nume(str)
 
-%STR2NUME - Str2num that returns empty given an empty input
+%vlt.data.str2nume - Str2num that returns empty given an empty input
 %
-%    N = STR2NUME(STR)
+%    N = vlt.data.str2nume(STR)
 %  Returns [] if STR is empty, otherwise returns STR2NUM(STR).
 
 if isempty(str),

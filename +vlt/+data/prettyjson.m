@@ -1,7 +1,7 @@
 function pretty = prettyjson(json_encoded_object, spacesToIndentEachLevel)
 % PRETTYJSON - use Java JSONObject to produce pretty JSON output
 %
-% PRETTY = PRETTYJSON(JSON_ENCODED_OBJECT, [SPACESTOINDENTEACHLEVEL])
+% PRETTY = vlt.data.prettyjson(JSON_ENCODED_OBJECT, [SPACESTOINDENTEACHLEVEL])
 %
 % Given a JSON-encoded object (that is, a JSON string), this function
 % produces a 'pretty' JSON output that is human-readable (one line per item,

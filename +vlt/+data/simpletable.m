@@ -1,7 +1,7 @@
 function [newsimpletable, newcategorylist] = simpletable(oldsimpletable,oldcategories,this_entry,this_categories)
 % SIMPLETABLE - Simple X/Y numeric table
 %
-%   [NEWSIMPLETABLE,NEWCATEGORYLABELS] = SIMPLETABLE(OLDSIMPLETABLE,...
+%   [NEWSIMPLETABLE,NEWCATEGORYLABELS] = vlt.data.simpletable(OLDSIMPLETABLE,...
 %        OLDCATEGORIES, THIS_ENTRY, THIS_CATEGORIES)
 %
 %   Builds a simple row-based table of data values for specified numerical categories.
@@ -24,7 +24,7 @@ function [newsimpletable, newcategorylist] = simpletable(oldsimpletable,oldcateg
 %       oldsimpletable = [ 1:5 ];
 %       X2 = [ 0:pi/4:2*pi];
 %       Y2 = [ 1:0.5:5 ] + 5;
-%       [newtable,newcats] = simpletable(oldsimpletable,oldcategories,Y2,X2),
+%       [newtable,newcats] = vlt.data.simpletable(oldsimpletable,oldcategories,Y2,X2),
 %
 %   See also: TABLE
 
@@ -41,7 +41,7 @@ if length(this_categories) ~= length(unique(this_categories)),
 	error(['Every entry in THIS_CATEGORIES must be unique.']);
 end;
 
-if ~eqlen(size(this_entry),size(this_categories)),
+if ~vlt.data.eqlen(size(this_entry),size(this_categories)),
 	error(['THIS_ENTRY and THIS_CATEGORIES must be the same size.']);
 end;
 
