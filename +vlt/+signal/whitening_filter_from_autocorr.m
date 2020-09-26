@@ -1,7 +1,7 @@
 function [Rinv,R] = whitening_filter_from_autocorr(autocorr, M)
 % WHITENING_FILTER_FROM_AUTOCORR - Compute whitening filter from inverse covariance matrix from autocorrelation of signal
 %
-%  [RINV, R] = WHITENING_FILTER_FROM_AUTOCORR(AUTOCORR, M)
+%  [RINV, R] = vlt.signal.whitening_filter_from_autocorr(AUTOCORR, M)
 %  
 %  Uses the inverse of the covariance matrix derived from the autocorrelation of a signal
 %  to generate a whitening filter. 

@@ -1,7 +1,7 @@
 function [indexes_up, indexes_down, indexes_peaks ] = theshold_crossings_epochs( input, threshold )
 %THRESHOLD_CROSSINGS_EPOCHS Detect threshold crossing epochs in data and the corresponding peaks
 % 
-%  [INDEXES_UP,INDEXES_DOWN,INDEXES_PEAKS] = THRESHOLD_CROSSINGS_EPOCHS(INPUT, THRESHOLD)
+%  [INDEXES_UP,INDEXES_DOWN,INDEXES_PEAKS] = vlt.signal.threshold_crossings_epochs(INPUT, THRESHOLD)
 %
 %  Finds all places where the data INPUT transitions from below
 %  the threshold THRESHOLD to be equal to or above the threshold
@@ -19,9 +19,9 @@ function [indexes_up, indexes_down, indexes_peaks ] = theshold_crossings_epochs(
 %  Finally, the indexes corresponding to the locations with the largest suprathreshold
 %  values between each UP and DOWN transition are returned in INDEXES_PEAK.
 %
-%  See also: THRESHOLD_CROSSINGS
+%  See also: vlt.signal.threshold_crossings
 
-indexes_up =  threshold_crossings(input,threshold);
+indexes_up =  vlt.signal.threshold_crossings(input,threshold);
 indexes_down= 1+find( input(1:end-1)>=threshold & input(2:end) < threshold); % had to switch '=' sign
 
 if ~isempty(indexes_down) & ~isempty(indexes_up),

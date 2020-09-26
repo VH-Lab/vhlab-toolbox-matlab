@@ -1,7 +1,7 @@
 function out = ztrans_discrete(n, v, z)
 % ZTRANS_DISCRETE Evaluate the discrete Z transform for a value of z
 %
-%  OUT = ZTRANS_DISCRETE(N, V, Z)
+%  OUT = vlt.signal.ztrans_discrete(N, V, Z)
 %
 %  Given an array of sample locations N and an array of
 %  corresponding values V, computes the Z-transform and evaluates

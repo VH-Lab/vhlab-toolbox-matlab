@@ -1,7 +1,7 @@
 function xc = xcorr_discrete(signal1, signal2, N, normstring)
 % XCORR_DISCRETE - Calculate the cross-correlation between two signals without FFT
 %
-%  XC = XCORR_DISCRETE(SIGNAL1, SIGNAL2, N, NORMSTRING)
+%  XC = vlt.signal.xcorr_discrete(SIGNAL1, SIGNAL2, N, NORMSTRING)
 %
 %  Computes the cross-correlation between SIGNAL1 and SIGNAL2 for lags up to N.
 %

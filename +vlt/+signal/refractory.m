@@ -1,7 +1,7 @@
 function [out_times,out_index] = refractory(in_times, refractory_period)
 % REFRACTORY - Impose a refractory period on events
 %
-%  [OUT_TIMES,OUT_INDEXES] = REFRACTORY(IN_TIMES, REFRACTORY_PERIOD)
+%  [OUT_TIMES,OUT_INDEXES] = vlt.signal.refractory(IN_TIMES, REFRACTORY_PERIOD)
 %
 %  This function will remove events from the vector IN_TIMES that occur
 %  more frequently than REFRACTORY_PERIOD.

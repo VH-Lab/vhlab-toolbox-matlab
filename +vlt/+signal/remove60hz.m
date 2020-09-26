@@ -1,7 +1,7 @@
 function data_out = remove60hz(data_in, samplerate, varargin)
 % REMOVE60HZ remove 60Hz noise
 %
-%   DATA_OUT = REMOVE60HZ(DATA_IN, SAMPLERATE)
+%   DATA_OUT = vlt.signal.remove60hz(DATA_IN, SAMPLERATE)
 %
 %   Removes 60Hz noise via filtering with the methods and 
 %   parameters described below. DATA_IN must be a vector.
@@ -70,7 +70,7 @@ R = 0.5;
 Rs = 20;
 ellipsgolay_high = 65;
 
-assign(varargin{:});  % make user modifications
+vlt.data.assign(varargin{:});  % make user modifications
 
 switch(METHOD),
 	case 'sgolay', % Wes's code
@@ -91,7 +91,7 @@ switch(METHOD),
 	case 'ellip+sgolay',
 		[b,a] = ellip(Order,R,Rs,ellipsgolay_high/[0.5*samplerate],'high');
 		data_high = filtfilt(b,a,data_in);
-		data_out = remove60hz(data_in-data_high,samplerate,varargin{:},'METHOD','sgolay');
+		data_out = vlt.signal.remove60hz(data_in-data_high,samplerate,varargin{:},'METHOD','sgolay');
 		data_out = data_out(:) + data_high(:); % make both column vectors
 	otherwise,
 		error(['Unknown filter method ' METHOD '.']);

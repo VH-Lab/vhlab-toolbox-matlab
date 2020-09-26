@@ -1,6 +1,6 @@
 function [corr] = correlation_stepfunc(t1, signal1, corr_times, t2, signal2)
 
-% CORRELATION_STEPFUNC - Perform correlation between a time series and a step function
+% vlt.signal.correlation_stepfunc - Perform correlation between a time series and a step function
 %
 % CORR = CORRELATION(T1, SIGNAL1, CORR_TIMES, T2, SIGNAL2)
 %
@@ -25,7 +25,7 @@ function [corr] = correlation_stepfunc(t1, signal1, corr_times, t2, signal2)
 %      CORR(tau) = sum over all times t in T1: dt*SIGNAL1(t)*SIGNAL2(t-tau)
 %      where TAU assumes all values listed in the vector CORR_TIMES.
 %
-%  See also: XCORR, STEPFUNC, XCORR_STEPFUNC
+%  See also: XCORR, vlt.math.stepfunc, vlt.signal.xcorr_stepfunc
 
    % damn it, there is some tiny error in this that I can't find; this uses
    % less memory but it is slightly off and for reverse correlations with non-white stimuli it
@@ -34,11 +34,11 @@ function [corr] = correlation_stepfunc(t1, signal1, corr_times, t2, signal2)
 corr = zeros(length(corr_times),size(signal2,2));
 dt = t1(2) - t1(1);
 
-corr_times = round2sample(corr_times, dt);
+corr_times = vlt.signal.round2sample(corr_times, dt);
 
 for t=1:length(t1),
 	corr = corr +...
-		 dt*signal1(t)*stepfunc(t2,signal2',round2sample(t1(t)-corr_times,dt),0)'/(t1(end)-t1(1)+dt);
+		 dt*signal1(t)*vlt.math.stepfunc(t2,signal2',vlt.signal.round2sample(t1(t)-corr_times,dt),0)'/(t1(end)-t1(1)+dt);
 end;
 
 return;
@@ -52,7 +52,7 @@ avgs = zeros(length(kerneltimes), size(stim,2), length(spiketimes));
 
 for s=1:length(spiketimes),
 	mydata = stepunc(stimtimes,stim',spiketimes(s)-kerneltimes,0);
-	avgs(:,:,s) = stepfunc(stimtimes,stim',spiketimes(s)-kerneltimes,0)';
+	avgs(:,:,s) = vlt.math.stepfunc(stimtimes,stim',spiketimes(s)-kerneltimes,0)';
 end;
 
 avgstim = mean(avgs,3);

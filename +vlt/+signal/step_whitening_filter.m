@@ -1,7 +1,7 @@
 function [Rinv,R] = step_whitening_filter(alpha, N, M)
 % STEP_WHITENING_FILTER - Compute the optimal FIR filter for Wiener filtering a step 
 %
-%  [RINV,R] = STEP_WHITENING_FILTER(ALPHA, N, M)
+%  [RINV,R] = vlt.signal.step_whitening_filter(ALPHA, N, M)
 %
 %   Computes the inverse of the correlation matrix of a STEP signal for a Wiener filter.
 %
@@ -26,6 +26,6 @@ function [Rinv,R] = step_whitening_filter(alpha, N, M)
 
 n = repmat([0:-1:-M+1]',1,M)+repmat([0:M-1],M,1);
 
-R = step_autocorrelation(2*alpha, N, n); % 2*alpha because the probability the signal has a non-zero value is 2*alpha (alpha for -1, alpha for 1)
+R = vlt.signal.step_autocorrelation(2*alpha, N, n); % 2*alpha because the probability the signal has a non-zero value is 2*alpha (alpha for -1, alpha for 1)
 
 Rinv = inv(R);

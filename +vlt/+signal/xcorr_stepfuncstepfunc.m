@@ -1,7 +1,7 @@
 function [corr,mystepfunc] = xcorr_stepfuncstepfunc(te, t1, signal1, maxlag, t2, signal2)
 % XCORR_STEPFUNC - Perform correlation between a step function and a step function
 %
-% [CORR,LAGS] = XCORR_STEPFUNCSTEPFUNC(TE, T1, SIGNAL1, MAXLAG, T2, SIGNAL2)
+% [CORR,LAGS] = vlt.signal.xcorr_stepfuncstepfunc(TE, T1, SIGNAL1, MAXLAG, T2, SIGNAL2)
 %
 %  Computes the discrete approximation to the correlation
 %   between an N step-function SIGNAL1 that changes values at times T1
@@ -23,14 +23,14 @@ function [corr,mystepfunc] = xcorr_stepfuncstepfunc(te, t1, signal1, maxlag, t2,
 %
 %   (Programmer note: there is a probably a better algorithm for this.)
 %
-%  See also: XCORR, XCORR_STEPFUNC, STEPFUNC, CORRELATION_STEPFUNC
+%  See also: XCORR, vlt.signal.xcorr_stepfunc, vlt.math.stepfunc, vlt.signal.correlation_stepfunc
 
 
 corr = [];
 
 for i=size(signal2,2):-1:1,
-	mystepfunc1 = stepfunc(t1,signal1(:,i)',te,0);
-	mystepfunc2 = stepfunc(t2,signal2(:,i)',te,0);
+	mystepfunc1 = vlt.math.stepfunc(t1,signal1(:,i)',te,0);
+	mystepfunc2 = vlt.math.stepfunc(t2,signal2(:,i)',te,0);
 	[corr(:,i), lags] = xcorr(mystepfunc1(:),mystepfunc2(:),maxlag,'biased');
 end;
 

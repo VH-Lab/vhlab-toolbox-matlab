@@ -1,7 +1,7 @@
 function [newtimes] = decompose_time(timestamps, time_intervals)
 % DECOMPOSE_TIME - Unwrap or desegment a concatenated recording into pieces
 %
-%   NEWTIMES = DECOMPOSE_TIME(TIMESTAMPS, TIME_INTERVALS)
+%   NEWTIMES = vlt.signal.decompose_time(TIMESTAMPS, TIME_INTERVALS)
 %
 %   Decomposes / desegements time stamps that are from a concatenated
 %   recording.
@@ -19,7 +19,7 @@ function [newtimes] = decompose_time(timestamps, time_intervals)
 %       % concaneted record of these recordings would have duration 2
 %       timestamps = [ 0.5 1.5 ]; 
 %       % event at 1.5 really occured at 2.5 units in real time
-%       newtimes = decompose_time(timestamps,[myrecording1;myrecording2])
+%       newtimes = vlt.signal.decompose_time(timestamps,[myrecording1;myrecording2])
 %       
 
 newtimes = [];

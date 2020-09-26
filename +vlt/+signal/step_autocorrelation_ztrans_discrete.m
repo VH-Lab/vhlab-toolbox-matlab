@@ -1,9 +1,9 @@
 function out = step_autocorrelation_ztrans_discrete(alpha, N, z)
 % STEP_AUTOCORRElATION_ZTRANS_DISCRETE Evaluate the z-transform of the step-autocorrelation function
 %
-%  OUT = STEP_AUTOCORRELATION_ZTRANS_DISCRETE(ALPHA, N, Z)
+%  OUT = vlt.signal.step_autocorrelation_ztrans_discrete(ALPHA, N, Z)
 %
-%  Evalutes the STEP_AUTOCORRELATION z-transform for a given
+%  Evalutes the vlt.signal.step_autocorrelation z-transform for a given
 %  value of the pulse height ALPHA and pulse width N (samples),
 %  and a given value of Z.  Z may be an array.
 %

@@ -1,7 +1,7 @@
 function s = point2samplelabel(ti, dt, t0)
 % POINT2SAMPLE - Convert a continuous point to a sample number for regularly sampled data
 %
-%  S = POINT2SAMPLELABEL(TI, DT, [T0])
+%  S = vlt.signal.point2samplelabel(TI, DT, [T0])
 %
 %  Given an array of time values TI, returns the closest sample
 %  for a signal that is regularly sampled at interval DT.
@@ -15,9 +15,9 @@ function s = point2samplelabel(ti, dt, t0)
 %  Example:
 %    dt = 0.001;
 %    T = 0:dt:40;
-%    S = point2samplelabel(T(20),dt)   % returns 20
+%    S = vlt.signal.point2samplelabel(T(20),dt)   % returns 20
 %    
-%  See also: ROUND2SAMPLE
+%  See also: vlt.signal.round2sample
 
 if nargin<3, t0 = 0; end;
 
