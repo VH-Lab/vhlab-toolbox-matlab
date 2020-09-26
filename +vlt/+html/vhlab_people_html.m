@@ -1,7 +1,7 @@
 function vhlab_people_html(dbtable_filename, output_filename)
 % VHLAB_PEOPLE_HTML - Generate the VHLAB people page given a datebase of members
 %
-% VHLAB_PEOPLE_HTML(DBTABLE_FILENAME, OUTPUT_FILENAME)
+% vlt.html.vhlab_people_html(DBTABLE_FILENAME, OUTPUT_FILENAME)
 %
 % Generates the 'people' page for vhlab.org.
 %
@@ -23,7 +23,7 @@ function vhlab_people_html(dbtable_filename, output_filename)
 % Links                    | Any links (current personnel only)
 % imagefile                | Image link to the person's picture
 
-db = loadStructArray(dbtable_filename);
+db = vlt.file.loadStructArray(dbtable_filename);
 
  % postdoc/grad student/staff alum people
 
@@ -31,9 +31,9 @@ g_indexes = find( (strcmpi('GS',{db.Group}) | strcmpi('PD',{db.Group}) | strcmpi
 
 db_g = db(g_indexes);
 
-db_g_order = sortstruct(db_g,'+year','+lastname');
+db_g_order = vlt.data.sortstruct(db_g,'+year','+lastname');
 
-str1 = alumni_htmltable(db_g_order,'addtitle',1);
+str1 = vlt.html.alumni_htmltable(db_g_order,'addtitle',1);
 
  % now undergraduate-type alum people
 
@@ -41,10 +41,10 @@ ug_indexes = find( strcmpi('UG',{db.Group}) & [db.alumni]==1 );
 
 db_ug = db(ug_indexes);
 
-db_ug_order = sortstruct(db_ug,'+year','+lastname');
+db_ug_order = vlt.data.sortstruct(db_ug,'+year','+lastname');
 
-str2 = alumni_htmltable(db_ug_order);
+str2 = vlt.html.alumni_htmltable(db_ug_order);
 
 str = cat(2,str1,str2);
 
-cellstr2text(output_filename, str);
+vlt.file.cellstr2text(output_filename, str);
