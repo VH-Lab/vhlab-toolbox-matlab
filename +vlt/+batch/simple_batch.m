@@ -1,7 +1,7 @@
 function simple_batch(textfile)
 % SIMPLE_BATCH - Run a simple batch
 %
-%   SIMPLE_BATCH(TEXTFILE)
+%   vlt.batch.simple_batch(TEXTFILE)
 %
 %   Runs a simple batch script.
 %
@@ -16,7 +16,7 @@ function simple_batch(textfile)
 %   
 
 while 1,  % while we are not interrupted
-	z = read_tab_delimited_file(textfile);
+	z = vlt.file.read_tab_delimited_file(textfile);
 
 	for i=2:length(z),
 		for j=1:5,
@@ -68,6 +68,6 @@ while 1,  % while we are not interrupted
 	end;
 
 	disp(['Pausing between 10 and 20 seconds']);
-	dowait(10+fix(10*rand));
+	vlt.time.dowait(10+fix(10*rand));
 end;
 
