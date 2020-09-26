@@ -1,8 +1,8 @@
 function newsd = OpenSimpleDaq(sd)
 
-% OPENSIMPLEDAQ - Opens a SimpleDaq device
+% vlt.daq.simpledaq.OpenSimpleDaq - Opens a SimpleDaq device
 %
-%     NEWSD = OPENSIMPLEDAQ(SD)
+%     NEWSD = vlt.daq.simpledaq.OpenSimpleDaq(SD)
 %
 %  Calls the open function for the SimpleDaq device SD.
 %

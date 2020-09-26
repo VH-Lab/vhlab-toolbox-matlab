@@ -1,8 +1,8 @@
 function [data,newsd] = AcquireSimpleDaq(sd)
 
-% ACQUIRESIMPLEDAQ - Acquires a SimpleDaq device
+% vlt.daq.simpledaq.AcquireSimpleDaq - Acquires a SimpleDaq device
 %
-%     [DATA,NEWSD] = ACQUIRESIMPLEDAQ(SD)
+%     [DATA,NEWSD] = vlt.daq.simpledaq.AcquireSimpleDaq(SD)
 %
 %  Calls the acquire function for the SimpleDaq device SD.
 %

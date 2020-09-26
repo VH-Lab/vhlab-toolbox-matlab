@@ -1,8 +1,8 @@
 function newsd = CloseSimpleDaq(sd)
 
-% CLOSESIMPLEDAQ - Closes a SimpleDaq device
+% vlt.daq.simpledaq.CloseSimpleDaq - Closes a SimpleDaq device
 %
-%     NEWSD = CLOSESIMPLEDAQ(SD)
+%     NEWSD = vlt.daq.simpledaq.CloseSimpleDaq(SD)
 %
 %  Calls the close function for the SimpleDaq device SD.
 %
