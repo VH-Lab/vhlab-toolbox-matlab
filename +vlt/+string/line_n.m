@@ -1,7 +1,7 @@
 function [line_n_str, pos, eol_marks]=line_n(str, n, varargin)
 % LINE_N - Get the Nth line of a character string
 %
-%  [LINE_N_STR, POS, EOL_MARKS] = LINE_N(STR, N, ...)
+%  [LINE_N_STR, POS, EOL_MARKS] = vlt.string.line_n(STR, N, ...)
 %
 %  Returns the Nth line of a multiline string STR.
 %  LINE_N_STR is the string contents of the Nth line,
@@ -23,7 +23,7 @@ function [line_n_str, pos, eol_marks]=line_n(str, n, varargin)
 %  eol_marks ([])                 | If it is non-empty, then the program
 %                                 |   skips the search for eol_marks and
 %                                 |   uses the provided variable. This is useful
-%                                 |   if the user is going to call LINE_N
+%                                 |   if the user is going to call vlt.string.line_n
 %                                 |   many times; one can save the search time
 %                                 |   in subsequent calls.   
 %

@@ -1,7 +1,7 @@
 function [pos_match, bravedepth] = bracematch(str,pos,varargin)
 % BRACEMATCH - Match parenthesis in a text string
 %
-%  [POS_MATCH,BRACEDEPTH] = BRACEMATCH(STR, POS)
+%  [POS_MATCH,BRACEDEPTH] = vlt.string.bracematch(STR, POS)
 %
 %  Finds the right parenthesis ')' that matches the left paranthesis
 %  '(' in string STR at position POS.
@@ -14,7 +14,7 @@ function [pos_match, bravedepth] = bracematch(str,pos,varargin)
 %  braceright (')')              | The character to be the right parenthesis
 %                                |   (other examples, ']', '}', '>')
 %  bracedepth ([])               | To save time, if one has computed the
-%                                |   brace level using the function BRACELEVEL,
+%                                |   brace level using the function vlt.string.bracelevel,
 %                                |   one can pass it here. If empty, the
 %                                |   brace level will be recalculated.
 %  Examples:
@@ -22,7 +22,7 @@ function [pos_match, bravedepth] = bracematch(str,pos,varargin)
 %     match1=vlt.string.bracematch(str, 9)
 %     match2=vlt.string.bracematch(str,20)
 %
-%  See also:  BRACELEVEL
+%  See also:  vlt.string.bracelevel
 %
 
 bracedepth = [];

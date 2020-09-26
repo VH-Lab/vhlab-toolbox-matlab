@@ -1,7 +1,7 @@
 function a = str2intseq(str, varargin)
 % STR2INTSEQ - Recover a sequence of integers from a string
 %
-% A = STR2INTSEQ(STR)
+% A = vlt.string.str2intseq(STR)
 %
 % Given a string that specifies a list of integers, with a dash ('-') indicating a run of
 % sequential integers in order, and a comma (',') indicating integers that are not
@@ -15,13 +15,13 @@ function a = str2intseq(str, varargin)
 %
 % Example:
 %     str = '1-3,7,10,12';
-%     a = str2intseq(str);
+%     a = vlt.string.str2intseq(str);
 %     % a == [1 2 3 7 10 12]
 
 sep = ',';
 seq = '-';
 
-assign(varargin{:});
+vlt.data.assign(varargin{:});
 
 a = [];
 

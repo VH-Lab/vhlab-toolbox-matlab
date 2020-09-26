@@ -1,14 +1,14 @@
 function v = version_decode(version_string)
 % VERSION_DECODE - Decode a version string (a.b.c.d) into a number
 %  
-%  V = VERSION_DECODE(VERSION_STRING)
+%  V = vlt.string.version_decode(VERSION_STRING)
 %
 %  Decodes a version string 'a.b.c.d' into a vector of integers
 %  V = [ a b c d ]
 %
 %  Example:
 %      version_string = '5.0.32.100';
-%      v = version_decode(version_string)
+%      v = vlt.string.version_decode(version_string)
 %      % v = [ 5 0 32 100]
 
 v = [];

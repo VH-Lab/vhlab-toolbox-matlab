@@ -1,7 +1,7 @@
 function tf = ismatlabstring(str, startiswithinstring)
 % ISMATLABSTRING - is a character within a Matlab string?
 %
-% TF = ISMATLABSTRING(STR, [STARTISWITHINSTRING])
+% TF = vlt.string.ismatlabstring(STR, [STARTISWITHINSTRING])
 %
 % Returns 0/1 for each character of STR as to whether or not the
 % character is within a Matlab string literal. The quotes are considered
