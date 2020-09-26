@@ -1,7 +1,7 @@
 function y = ranks (x)
 % RANKS - Returns vector of ranks of X adjusted for ties
 %
-% Y = RANKS(X)
+% Y = vlt.stats.ranks(X)
 %
 % If X is a vector, return the (column) vector of ranks of
 % X adjusted for ties.
@@ -17,7 +17,7 @@ function y = ranks (x)
 
 
   if (nargin ~= 1)
-    error ('usage: ranks (x)');
+    error ('usage: vlt.stats.ranks (x)');
   end
 
   y = [];

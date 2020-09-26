@@ -1,7 +1,7 @@
 function [se] = stderr(data)
 %  STDERR - Standard error of a vector of data
 %
-%  SE = STDERR(DATA);
+%  SE = vlt.stats.stderr(DATA);
 %
 %  Computes standard error of each column.
 %

@@ -1,7 +1,7 @@
 function dO= pseudorandomorder(N, trials)
 % PSEUDORANDOMORDER - random order where all stims are represented in each trial
 %    
-%  ORDER = PSEUDORANDOMORDER(STIMS, TRIALREPS)
+%  ORDER = vlt.stats.pseudorandomorder(STIMS, TRIALREPS)
 %
 %  Returns (in ORDER) a random order of stimulus presentation for stimuli numbered 1 to
 %  STIMS.  Each trial (of which there are TRIALREPS) will have exactly 1 

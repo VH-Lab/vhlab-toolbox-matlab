@@ -1,8 +1,8 @@
 function [gf,vres,vexpl,vnoise] = gof_Zoccolan(rawdata, fit)
 
-% GOF_ZOCCOLAN - Goodness of Fit from Zoccolan et al., 2005
+% vlt.stats.gof_Zoccolan - Goodness of Fit from Zoccolan et al., 2005
 %
-%  [GF,Vres,Vexpl,Vnoise] = GOF_ZOCCOLAN(TRIALDATA, FIT)
+%  [GF,Vres,Vexpl,Vnoise] = vlt.stats.gof_Zoccolan(TRIALDATA, FIT)
 %
 % Returns goodness of fit that describes how much of the explainable
 % variation (i.e., that not due to noise across trials) is explained

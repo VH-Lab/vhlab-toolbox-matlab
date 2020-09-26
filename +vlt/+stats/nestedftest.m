@@ -1,7 +1,7 @@
 function [p,F] = nestedftest(SE1, number_params1, SE2, number_params2, num_datapoints)
 % NESTEDFTEST - Compute Nested F test statistic for 2 nested models
 %
-%  [P,F] = NESTEDFTEST(SE1, P1, SE2, P2, NDATA)
+%  [P,F] = vlt.stats.nestedftest(SE1, P1, SE2, P2, NDATA)
 %
 %  Performs a Nested F test for 2 model fits to the same data, where
 %  the first model is "nested" inside the second (that is, the first model

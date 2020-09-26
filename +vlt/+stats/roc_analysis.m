@@ -1,7 +1,7 @@
 function [discrim,TPR,FPR,Xvalues,confusion,sample1CUM,sample2CUM] = roc_analysis(sample1,sample2)
 % ROC_ANALYSIS - Receiver operating characteristics
 %  [DISCRIM,PROB_TRUE_ACCEPT, PROB_FALSE_ACCEPT, XVALUES,...
-%      CONFUSION,SAMPLE1CUM,SAMPLE2CUM]=ROC_ANALYSIS(SAMPLE1,SAMPLE2)
+%      CONFUSION,SAMPLE1CUM,SAMPLE2CUM]=vlt.stats.roc_analysis(SAMPLE1,SAMPLE2)
 %
 %  Performs ROC analysis to see how sensitivity and false positives trade
 %  off if the task is to say which distribution a given value is likely

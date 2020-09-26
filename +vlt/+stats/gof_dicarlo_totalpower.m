@@ -1,7 +1,7 @@
 function [gf, ws] = gof_dicarlo_totalpower(rawdata, fit, numfitparams, varargin)
 % GOF_DICARLO_TOTALPOWER - Goodness of Fit from DiCarlo et al. 1988
 %
-% [GF, WS] = GOF_DICARLO_TOTALPOWER(RAWDATA, FIT, NUMFITPARAMS)
+% [GF, WS] = vlt.stats.gof_dicarlo_totalpower(RAWDATA, FIT, NUMFITPARAMS)
 %
 % Computes an analog to the "explanable variance" goodness-of-fit in
 % DiCarlo et al. 1988, except using the total power of a response and
@@ -34,20 +34,20 @@ function [gf, ws] = gof_dicarlo_totalpower(rawdata, fit, numfitparams, varargin)
 % Parameter (default)        | Description
 % ------------------------------------------------------------------------------------------
 % NoiseEstimation ('median') | How will we estimate the noise? Can be 'median' or 'std'.
-%                            |   If it is 'median', then STD_FROM_MEDIAN(X) is used.
+%                            |   If it is 'median', then vlt.stats.std_from_median(X) is used.
 %                            |   If it is 'STD', then STD(X) is used.
 %
 %
 
 NoiseEstimation = 'median';
 
-assign(varargin{:});
+vlt.data.assign(varargin{:});
 
 res = fit-rawdata;
 
 switch lower(NoiseEstimation),
 	case 'median',
-		sd = std_from_median(res);
+		sd = vlt.stats.std_from_median(res);
 	case 'std',
 		sd = std(res);
 	otherwise,
@@ -67,6 +67,6 @@ fit_explained_power = fit_power - discount*noise_power;  % the amount of variati
 
 gf = fit_explained_power/explainable_power;
 
-ws = rmfield(workspace2struct,{'rawdata','fit','numfitparams'});
+ws = rmfield(vlt.data.workspace2struct,{'rawdata','fit','numfitparams'});
 
 
