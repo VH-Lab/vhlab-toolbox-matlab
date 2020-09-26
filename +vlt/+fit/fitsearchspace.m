@@ -1,7 +1,7 @@
 function x0_vectors = fitsearchspace(lower_bounds, upper_bounds, nspace)
 % FITSEARCHSPACE - return a set of vectors that span a range
 % 
-% X0_VECTORS = FITSEARCHSPACE(LOWER_BOUNDS, UPPER_BOUNDS, NSPACE)
+% X0_VECTORS = vlt.fit.fitearchspace(LOWER_BOUNDS, UPPER_BOUNDS, NSPACE)
 %
 % Given a set of LOWER_BOUNDS = [ m1 m2 ... ] and UPPER_BOUNDS = [n1 n2 ...],
 % this function computes a set of vectors that tile this space in NSPACE
@@ -12,7 +12,7 @@ function x0_vectors = fitsearchspace(lower_bounds, upper_bounds, nspace)
 % See also: LINSPACE, MESHGRID, NDGRID
 %
 % Example:
-%    X0_vectors = fitsearchspace([0 0],[1 1],5)
+%    X0_vectors = vlt.fit.fitearchspace([0 0],[1 1],5)
 %
 
 dim = numel(lower_bounds); % should match upper bounds

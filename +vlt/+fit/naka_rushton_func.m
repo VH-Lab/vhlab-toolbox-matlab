@@ -1,8 +1,8 @@
 function R=naka_rushton_func(c, c50, n, ss)
 
-% NAKA_RUSHTON_FUNC - Evaluate Naka Rushton function
+% vlt.fit.naka_rushton_func - Evaluate Naka Rushton function
 %
-%  R=NAKA_RUSHTON_FUNC (C, C50, N, S)
+%  R=vlt.fit.naka_rushton_func (C, C50, N, S)
 %
 %  Returns Naka Rushton function:  C^N/(C^(N*S)+c50^(N*S))
 %

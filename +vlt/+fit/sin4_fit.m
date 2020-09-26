@@ -1,7 +1,7 @@
 function [fit_values, coeffs] = sin4_fit(x, y, maxfreq, constant)
 % SIN4_FIT - Fit a 4 term sine wave to data
 %
-%   [FITVALUES,COEFFS] = SIN4_FIT(X, Y, MAXFREQUENCY, INCLUDECONSTANT)
+%   [FITVALUES,COEFFS] = vlt.fit.sin4_fit(X, Y, MAXFREQUENCY, INCLUDECONSTANT)
 %
 %  Inputs:
 %    X - A vector of X values

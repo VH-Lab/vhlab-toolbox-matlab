@@ -1,8 +1,8 @@
 function [err,Rfit] = otfit_carandini_err(par,angles,varargin)
 
-% OTFIT_CARANDINI_ERR Computes error of Carandini/Ferster orientation fit
+% vlt.fit.otfit_carandini_err Computes error of Carandini/Ferster orientation fit
 %
-%   [ERR, RFIT]=OTFIT_CARANDINI_ERR(P,ANGLES,VARARGIN) 
+%   [ERR, RFIT]=vlt.fit.otfit_carandini_err(P,ANGLES,VARARGIN) 
 %
 %   This function computes the error of the Carandini/Ferster orientation
 %   RFIT(O)=Rsp+Rp*exp(-(O-Op)^2/2*sig^2)+Rn*(exp(-(O-Op-180)^2)/s*sig^2)
@@ -30,14 +30,14 @@ function [err,Rfit] = otfit_carandini_err(par,angles,varargin)
 %   preferred angle, sig is the width of the tuning, and Rn is the response
 %   180 degrees away from the preferred angle.
 %
-%   See also:  OTFIT_CARANDINI
+%   See also:  vlt.fit.otfit_carandini
 
 data = NaN;
 spontfixed = NaN;
 
 needconvert = 0;
 
-assign(varargin{:});
+vlt.data.assign(varargin{:});
 
 if ~exist('stddev'),
 	stddev = ones(size(data));
@@ -49,7 +49,7 @@ err=0;
 
   % get parameters from fitting inputs
 if needconvert, % do we need to convert for fit?
-	[Rsp,Rp,Op,sig,Rn]=otfit_carandini_conv('TOREALFORFIT',par,varargin{:});
+	[Rsp,Rp,Op,sig,Rn]=vlt.fit.otfit_carandini_conv('TOREALFORFIT',par,varargin{:});
 else,
 	if isnan(spontfixed), % is par 4 or 5 entries?
 		Rsp = par(1); Rp=par(2); Op=par(3); sig=par(4); Rn=par(5);
@@ -73,10 +73,10 @@ end;
                                                                  % REVISION TO ABOVE: If you limit the Rp and Rsp,
                                                                  % then weird behavior disappears, so switching back
                                                                  % to
-                                                                 % ANGDIFF
-Rfit = Rsp+Rp*exp(-angdiff(Op-angles).^2/(2*sig^2))+Rn*exp(-angdiff(180+Op-angles).^2/(2*sig^2));
+                                                                 % vlt.math.angdiff
+Rfit = Rsp+Rp*exp(-vlt.math.angdiff(Op-angles).^2/(2*sig^2))+Rn*exp(-vlt.math.angdiff(180+Op-angles).^2/(2*sig^2));
 %Rfit = Rsp+Rp*exp(-(90-fangles).^2/(2*sig^2))+Rn*exp(-(270-fangles).^2/(2*sig^2));
-%Rfit = Rsp+Rp*exp(-angdiff(90-fangles).^2/(2*sig^2))+Rn*exp(-angdiff(270-fangles).^2/(2*sig^2));
+%Rfit = Rsp+Rp*exp(-vlt.math.angdiff(90-fangles).^2/(2*sig^2))+Rn*exp(-vlt.math.angdiff(270-fangles).^2/(2*sig^2));
 
 
 if ~isnan(data),
@@ -84,6 +84,6 @@ if ~isnan(data),
 	err=err+(sum(sum(abs(d.*d))));
 end;
 
-function D = angdiff(a)
+function D = vlt.math.angdiff(a)
 D=min(abs([a;a+360;a-360]));
 

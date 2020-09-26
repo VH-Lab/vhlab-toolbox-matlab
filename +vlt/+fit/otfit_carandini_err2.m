@@ -1,6 +1,6 @@
 function [err,Rfit] = otfit_carandini_err2(par,angles,varargin)
 
-% OTFIT_CARANDINI_ERR Computes error of Carandini/Ferster orientation fit
+% vlt.fit.otfit_carandini_err Computes error of Carandini/Ferster orientation fit
 %
 %   [ERR, RFIT]=OTFIT_CARANDINI_NEWS_ERR2(P,ANGLES,VARARGIN) 
 %
@@ -29,21 +29,21 @@ function [err,Rfit] = otfit_carandini_err2(par,angles,varargin)
 %   preferred angle, sig is the width of the tuning, and Rn is the response
 %   180 degrees away from the preferred angle.
 %
-%   See also:  OTFIT_CARANDINI
+%   See also:  vlt.fit.otfit_carandini
 
 data = NaN;
 spontfixed = NaN;
 
 needconvert = 0;
 
-assign(varargin{:});
+vlt.data.assign(varargin{:});
 
 err=0;
 
 
   % get parameters from fitting inputs
 if needconvert, % do we need to convert for fit?
-	[Rsp,Rp,Op,sig,Rn,OnOff]=otfit_carandini_conv2('TOREALFORFIT',par,varargin{:});
+	[Rsp,Rp,Op,sig,Rn,OnOff]=vlt.fit.otfit_carandini_conv2('TOREALFORFIT',par,varargin{:});
 else,
 	if isnan(spontfixed), % is par 4 or 5 entries?
 		Rsp = par(1); Rp=par(2); Op=par(3); sig=par(4); Rn=par(5);OnOff=par(6);
@@ -64,8 +64,8 @@ end;
 								 % not at the peak regions which is preferable to the
 								 % no shift case where it can be in the middle of the peak.
 
-Rfit = Rsp+Rp*exp(-angdiff(Op-angles).^2/(2*sig^2))+Rn*exp(-angdiff(OnOff+Op-angles).^2/(2*sig^2));
-%Rfit = Rsp+Rp*exp(-angdiff(90-fangles).^2/(2*sig^2))+Rn*exp(-angdiff(OnOff+90-fangles).^2/(2*sig^2));
+Rfit = Rsp+Rp*exp(-vlt.math.angdiff(Op-angles).^2/(2*sig^2))+Rn*exp(-vlt.math.angdiff(OnOff+Op-angles).^2/(2*sig^2));
+%Rfit = Rsp+Rp*exp(-vlt.math.angdiff(90-fangles).^2/(2*sig^2))+Rn*exp(-vlt.math.angdiff(OnOff+90-fangles).^2/(2*sig^2));
 %Rfit = Rsp+Rp*exp(-(90-fangles).^2/(2*sig^2))+Rn*exp(-(OnOff+90-fangles).^2/(2*sig^2));
 
 if ~isnan(data),

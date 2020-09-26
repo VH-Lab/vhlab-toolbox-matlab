@@ -1,16 +1,16 @@
 function [offset, double_gauss_params, dog_params, R_fit, rsquare] = double_gauss_DoG_fit(theta, sf, R)
 % double_gauss_Dog_fit - Fits a double gaussian modulated by a difference of gaussians to data
 %
-%  [OFFSET, DOUBLE_GAUSS_PARAMS, DOG_PARAMS, RFIT, RSQUARE] = DOUBLE_GAUSS_DOG_FIT(THETA, SF, R)
+%  [OFFSET, DOUBLE_GAUSS_PARAMS, DOG_PARAMS, RFIT, RSQUARE] = vlt.fit.double_gauss_DoG_fit(THETA, SF, R)
 %
 %  (description of inputs/outputs here by Andrea)  
 %
 
-% gauss = fittype('double_gauss_DoG(theta_, sf_, [a b c d e], [0 a2 b2 c2 d2])',...
+% gauss = fittype('vlt.math.double_gauss_DoG(theta_, sf_, [a b c d e], [0 a2 b2 c2 d2])',...
    % 'independent',{'theta_','sf_'},'coefficients',{'a','b','c','d','e','a2','b2','c2','d2'});
 % fo = fitoptions(gauss);
 
-gauss = fittype('double_gauss_DoG(theta_, sf_, a, [0 b c d e], [0 1 b2 c2 d2])',...
+gauss = fittype('vlt.math.double_gauss_DoG(theta_, sf_, a, [0 b c d e], [0 1 b2 c2 d2])',...
     'independent',{'theta_','sf_'},'coefficients',{'a','b','c','d','e','b2','c2','d2'});
 fo = fitoptions(gauss);
 
@@ -38,6 +38,6 @@ offset = values.a;
 double_gauss_params = [0 values.b values.c values.d values.e];
 dog_params = [0 1 values.b2 values.c2 values.d2];
 
-R_fit = double_gauss_DoG(theta,sf,offset,double_gauss_params,dog_params);
+R_fit = vlt.math.double_gauss_DoG(theta,sf,offset,double_gauss_params,dog_params);
 
 rsquare = values_gof.rsquare;

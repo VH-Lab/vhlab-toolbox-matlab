@@ -1,7 +1,7 @@
 function [mu, C, a, mod_amp, mod_sigma, fit_responses] = gaussspotfit_mod(xrange, yrange, x_ctr, y_ctr,radius,response)
 % GAUSSSPOTFIT - Fit a 2d gaussian to data
 %
-%  [MU,C,AMP,MOD_AMP, MOD_SIGMA, SIZES,FIT_RESPONSES] = GAUSSSPOTFIT(XRANGE, YRANGE, X_CTR,Y_CTR,...
+%  [MU,C,AMP,MOD_AMP, MOD_SIGMA, SIZES,FIT_RESPONSES] = vlt.fit.gaussspotfit(XRANGE, YRANGE, X_CTR,Y_CTR,...
 %                       RADIUS,RESPONSE)
 %
 %  Fits a 2d gaussian PDF to responses to circle stimulation at different positions.
@@ -26,7 +26,7 @@ radii = unique(radius);
 
  % use the non surround version for initial guesses
 
-[mu, C, amp_initial] = gaussspotfit(xrange, yrange, x_ctr, y_ctr,radius,response);
+[mu, C, amp_initial] = vlt.fit.gaussspotfit(xrange, yrange, x_ctr, y_ctr,radius,response);
 
  % ellipse_params, 1 column per ellipse; [x_ctr, y_ctr, a, b, and rotation]
 ellipse_params = [x_ctr(:)' ; y_ctr(:)'; radius(:)'; radius(:)'; 0*x_ctr(:)'];
@@ -37,9 +37,9 @@ Upper = [ 1.01*[mu(1); mu(2); C(1); C(2); C(4); amp_initial;]; Inf; 10];
 Lower = [ 0.99*[mu(1); mu(2); C(1); C(2); C(4); amp_initial;]; -Inf;1];
 StartPoint = [ mu(1); mu(2); C(1);C(2);C(4); amp_initial; 0; 1.1];
 
-x = lsqcurvefit(@(x,xdata) mod_ellipse_on_mvnpdf_x0(x,xdata,X,Y),StartPoint,ellipse_params,response,Lower,Upper);
+x = lsqcurvefit(@(x,xdata) vlt.math.mod_ellipse_on_mvnpdf_x0(x,xdata,X,Y),StartPoint,ellipse_params,response,Lower,Upper);
 
-fit_responses = mod_ellipse_on_mvnpdf_x0(x,ellipse_params,X,Y);
+fit_responses = vlt.math.mod_ellipse_on_mvnpdf_x0(x,ellipse_params,X,Y);
 
 mu = [x(1) x(2)];
 C = [x(3) x(4);x(4) x(5)];

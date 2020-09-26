@@ -1,8 +1,8 @@
 function [Rsp,Rp,Ot,sigm,fitcurve,er]=gaussfit(angles,sponthint,maxresphint,otprefhint,widthhint,varargin)
 
-% GAUSSFIT Fits data to a Gaussian
+% vlt.fit.gaussfit Fits data to a Gaussian
 %
-%  [Rsp,Rp,P,sigm,FITCURVE,ERR]=GAUSSFIT(VALUES,...
+%  [Rsp,Rp,P,sigm,FITCURVE,ERR]=vlt.fit.gaussfit(VALUES,...
 %         SPONTHINT, MAXRESPHINT, OTPREFHINT, WIDTHHINT,'DATA',DATA) 
 %
 %  Finds the best fit to the function
@@ -20,13 +20,13 @@ function [Rsp,Rp,Ot,sigm,fitcurve,er]=gaussfit(angles,sponthint,maxresphint,otpr
 %  ERR is the mean squared error.
 
 spontfixed = NaN;
-assign(varargin{:});
+vlt.data.assign(varargin{:});
 
 Po = [sponthint maxresphint otprefhint widthhint maxresphint];
 
 if ~isnan(spontfixed), Po = Po(2:end); end;
 
-[Rsp_,Rp_,Ot_,sigm_]=gaussfit_conv('TOFITTING',Po,varargin{:});
+[Rsp_,Rp_,Ot_,sigm_]=vlt.fit.gaussfit_conv('TOFITTING',Po,varargin{:});
 
 Po = [ Rsp_ Rp_ Ot_ sigm_ ];
 if ~isnan(spontfixed), Po = Po(2:end); end;
@@ -35,9 +35,9 @@ if ~isnan(spontfixed), Po = Po(2:end); end;
 options= optimset('Display','off','MaxFunEvals',10000,'TolX',1e-6);
 %options = foptions;
 %options(1)=0; options(2)=1e-6; options(14)=10000;
-%Pf = fmins('gaussfit_err',Po,options,[],angles,varargin{:},'needconvert',1);
-assign(varargin{:});
-searchArg = '@(x) gaussfit_err(x,angles,';
+%Pf = fmins('vlt.fit.gaussfit_err',Po,options,[],angles,varargin{:},'needconvert',1);
+vlt.data.assign(varargin{:});
+searchArg = '@(x) vlt.fit.gaussfit_err(x,angles,';
 for i=1:2:length(varargin),
 	searchArg = [searchArg '''' varargin{i} ''',' varargin{i} ','];
 end;
@@ -46,10 +46,10 @@ searchArg = [searchArg '''needconvert'',needconvert)'];
 
 Pf = eval(['fminsearch(' searchArg ',Po,options);']);
 
-[Rsp,Rp,Ot,sigm] = gaussfit_conv('TOREAL',Pf,varargin{:});
+[Rsp,Rp,Ot,sigm] = vlt.fit.gaussfit_conv('TOREAL',Pf,varargin{:});
 
-if ~isnan(spontfixed), er = gaussfit_err([Rp Ot sigm],angles,varargin{:});
-else, er = gaussfit_err([Rsp Rp Ot sigm],angles,varargin{:});
+if ~isnan(spontfixed), er = vlt.fit.gaussfit_err([Rp Ot sigm],angles,varargin{:});
+else, er = vlt.fit.gaussfit_err([Rsp Rp Ot sigm],angles,varargin{:});
 end;
 
 fitcurve = [];
@@ -58,5 +58,5 @@ if nargout>4,
 		if strcmp(varargin{i},'data'), break; end;
 	end;
 	varargin = {varargin{setdiff(1:length(varargin),[i i+1])}};
-	[d,fitcurve]=gaussfit_err(Pf,min(angles):max(angles),varargin{:},'needconvert',1);
+	[d,fitcurve]=vlt.fit.gaussfit_err(Pf,min(angles):max(angles),varargin{:},'needconvert',1);
 end;

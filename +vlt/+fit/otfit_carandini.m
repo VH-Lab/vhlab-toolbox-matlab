@@ -1,8 +1,8 @@
 function [Rsp,Rp,Ot,sigm,Rn,fitcurve,er,R2]=otfit_carandini(angles,sponthint,maxresphint,otprefhint,widthhint,varargin)
 
-% OTFIT_CARANDINI Fits orientation curves like Carandini/Ferster 2000
+% vlt.fit.otfit_carandini Fits orientation curves like Carandini/Ferster 2000
 %
-%  [Rsp,Rp,Op,sigm,Rn,FITCURVE,ERR]=OTFIT_CARANDINI(ANGLES,...
+%  [Rsp,Rp,Op,sigm,Rn,FITCURVE,ERR]=vlt.fit.otfit_carandini(ANGLES,...
 %         SPONTHINT, MAXRESPHINT, OTPREFHINT, WIDTHHINT,'DATA',DATA) 
 %
 %  Finds the best fit to the function
@@ -17,13 +17,13 @@ function [Rsp,Rp,Ot,sigm,Rn,fitcurve,er,R2]=otfit_carandini(angles,sponthint,max
 %  FITCURVE is the fit function at 1 degree intervals (0:1:359).
 
 spontfixed = NaN;
-assign(varargin{:});
+vlt.data.assign(varargin{:});
 
 Po = [sponthint maxresphint otprefhint widthhint maxresphint];
 
 if ~isnan(spontfixed), Po = Po(2:end); end;
 
-[Rsp_,Rp_,Ot_,sigm_,Rn_]=otfit_carandini_conv('TOFITTING',Po,varargin{:});
+[Rsp_,Rp_,Ot_,sigm_,Rn_]=vlt.fit.otfit_carandini_conv('TOFITTING',Po,varargin{:});
 
 Po = [ Rsp_ Rp_ Ot_ sigm_ Rn_];
 if ~isnan(spontfixed), Po = Po(2:end); end;
@@ -32,9 +32,9 @@ if ~isnan(spontfixed), Po = Po(2:end); end;
 options= optimset('Display','off','MaxFunEvals',10000,'TolX',1e-6);
 %options = foptions;
 %options(1)=0; options(2)=1e-6; options(14)=10000;
-%Pf = fmins('otfit_carandini_err',Po,options,[],angles,varargin{:},'needconvert',1);
-assign(varargin{:});
-searchArg = '@(x) otfit_carandini_err(x,angles,';
+%Pf = fmins('vlt.fit.otfit_carandini_err',Po,options,[],angles,varargin{:},'needconvert',1);
+vlt.data.assign(varargin{:});
+searchArg = '@(x) vlt.fit.otfit_carandini_err(x,angles,';
 for i=1:2:length(varargin),
 	searchArg = [searchArg '''' varargin{i} ''',' varargin{i} ','];
 end;
@@ -43,10 +43,10 @@ searchArg = [searchArg '''needconvert'',needconvert)'];
 
 Pf = eval(['fminsearch(' searchArg ',Po,options);']);
 
-[Rsp,Rp,Ot,sigm,Rn] = otfit_carandini_conv('TOREAL',Pf,varargin{:});
+[Rsp,Rp,Ot,sigm,Rn] = vlt.fit.otfit_carandini_conv('TOREAL',Pf,varargin{:});
 
-if ~isnan(spontfixed), er = otfit_carandini_err([Rp Ot sigm Rn],angles,varargin{:});
-else, er = otfit_carandini_err([Rsp Rp Ot sigm Rn],angles,varargin{:});
+if ~isnan(spontfixed), er = vlt.fit.otfit_carandini_err([Rp Ot sigm Rn],angles,varargin{:});
+else, er = vlt.fit.otfit_carandini_err([Rsp Rp Ot sigm Rn],angles,varargin{:});
 end;
 
 fitcurve = [];
@@ -55,7 +55,7 @@ if nargout>5,
 		if strcmp(varargin{i},'data'), break; end;
 	end;
 	varargin = {varargin{setdiff(1:length(varargin),[i i+1])}};
-	[d,fitcurve]=otfit_carandini_err(Pf,0:359,varargin{:},'needconvert',1);
+	[d,fitcurve]=vlt.fit.otfit_carandini_err(Pf,0:359,varargin{:},'needconvert',1);
 end;
 
 R2 = 1 - sum(er)/(sum((data-mean(data)).^2));

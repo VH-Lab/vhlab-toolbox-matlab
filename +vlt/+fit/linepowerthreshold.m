@@ -1,16 +1,16 @@
 function [curve] = linepowerthreshold(x,slope,offset,threshold,exponent)
 % LINEPOWERTHRESHOLD - compute linepowerthreshold function for values of x
 %
-%  [CURVE] = LINEPOWERTHRESHOLD(X, SLOPE, OFFSET, THRESHOLD, EXPONENT)
+%  [CURVE] = vlt.fit.linepowerthreshold(X, SLOPE, OFFSET, THRESHOLD, EXPONENT)
 %
 %  Calculates
 %
-%  CURVE = OFFSET + SLOPE * RECTIFY(X - THRESHOLD).^EXPONENT
+%  CURVE = OFFSET + SLOPE * vlt.math.rectify(X - THRESHOLD).^EXPONENT
 %
-% See also: QUICKREGRESSION (simple linear fit), LINEPOWERTHRESHOLDFIT
+% See also: vlt.stats.quickregression (simple linear fit), vlt.fit.linepowerthresholdfit
 %
 % Jason Osik and Steve Van Hooser
 % 
 
-curve = offset + slope * rectify(x(:)-threshold).^exponent;
+curve = offset + slope * vlt.math.rectify(x(:)-threshold).^exponent;
 

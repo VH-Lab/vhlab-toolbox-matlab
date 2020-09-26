@@ -1,8 +1,8 @@
 function [R,Rdiscrete]=naka_rushton_slope(c, c50, n, ss)
 
-% NAKA_RUSHTON_SLOPE - Evaluate slope of Naka Rushton function
+% vlt.fit.naka_rushton_slope - Evaluate slope of Naka Rushton function
 %
-%  R=NAKA_RUSHTON_SLOPE (C, C50, N, S)
+%  R=vlt.fit.naka_rushton_slope (C, C50, N, S)
 %
 %  Returns the derivative of the Naka Rushton
 %     function: d[C^N/(C^(N*S)+c50^(N*S))]/dc.

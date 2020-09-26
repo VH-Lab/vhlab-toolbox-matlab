@@ -2,10 +2,10 @@ function [slope, offset, threshold, exponent, curve, gof,fitinfo ] = linepowerth
 % LINEPOWERTHRESHOLDFIT - Fit a linear function, raised to a power, with a threshold
 %
 %  [SLOPE, OFFSET, THRESHOLD, EXPONENT, CURVE, GOF, FITINFO] = 
-%      LINEPOWERTHRESHOLDFIT(X, Y, ...)
+%      vlt.fit.linepowerthresholdfit(X, Y, ...)
 %
 %  Performs a nonlinear fit to find the best parameters for a function of the form
-%  Y = OFFSET + SLOPE * RECTIFY(X - THRESHOLD).^EXPONENT
+%  Y = OFFSET + SLOPE * vlt.math.rectify(X - THRESHOLD).^EXPONENT
 %
 %  X and Y should be vectors with the same length. SLOPE, OFFSET, THRESHOLD, and
 %  EXPONENT are the best fit values.  CURVE is the fit values of Y for the values of
@@ -19,9 +19,9 @@ function [slope, offset, threshold, exponent, curve, gof,fitinfo ] = linepowerth
 % ---------------------------------------------------------------------------
 % threshold_start (min(x))               | Iniitial starting point for THRESHOLD fit
 % threshold_range [(min(x)-1) max(x)+1)] | THRESHOLD fit range
-% slope_start (from quickregression)     | Initial starting point for SLOPE fit
+% slope_start (from vlt.stats.quickregression)     | Initial starting point for SLOPE fit
 % slope_range [-Inf Inf]                 | SLOPE fit range
-% offset_start (from quickregression)    | Initial OFFSET starting point
+% offset_start (from vlt.stats.quickregression)    | Initial OFFSET starting point
 % offset_range ([-Inf Inf])              | OFFSET parameter range
 % exponent_start (1)                     | Initial EXPONENT start point
 % exponent_range ([-Inf Inf])            | EXPONENT search space
@@ -30,16 +30,16 @@ function [slope, offset, threshold, exponent, curve, gof,fitinfo ] = linepowerth
 %
 % Example:
 %     x = sort(rand(20,1));
-%     y = linepowerthreshold(x,3,0.3,0.5,1);
+%     y = vlt.fit.linepowerthreshold(x,3,0.3,0.5,1);
 %        % limit search to exponents = 1
-%     [slope,offset,t,exponent,thefit]=linepowerthresholdfit(x,y,'exponent_start',1,'exponent_range',[1 1]);
+%     [slope,offset,t,exponent,thefit]=vlt.fit.linepowerthresholdfit(x,y,'exponent_start',1,'exponent_range',[1 1]);
 %     figure;
 %     plot(x,y,'bo');
 %     hold on;
 %     plot(x,thefit,'rx');
 %     box off;
 %     
-% See also: QUICKREGRESSION (simple linear fit), FIT, LINEPOWERTHRESHOLD
+% See also: vlt.stats.quickregression (simple linear fit), FIT, vlt.fit.linepowerthreshold
 %
 % Jason Osik and Steve Van Hooser
 % 
@@ -52,7 +52,7 @@ threshold_range = [ min(x)-1 max(x)+1 ];
 warnstate = warning('query');
 warning off
   % turn off usual REGRESS warnings
-  [slope_start,offset_start]=quickregression(x(:),y(:),0.05); % ALPHA doesn't matter here
+  [slope_start,offset_start]=vlt.stats.quickregression(x(:),y(:),0.05); % ALPHA doesn't matter here
   % restore warning state
 warning(warnstate);
 
@@ -65,7 +65,7 @@ exponent_range = [-Inf Inf];
 weights = [];
 
   % assign user-altered values
-assign(varargin{:});
+vlt.data.assign(varargin{:});
 
 s = fitoptions('Method','NonlinearLeastSquares',...
 	'Lower',[ slope_range(1) offset_range(1) threshold_range(1) exponent_range(1)],...
@@ -73,7 +73,7 @@ s = fitoptions('Method','NonlinearLeastSquares',...
 	'StartPoint', [slope_start offset_start threshold_start exponent_start],...
 	'Weights',weights);
 
-ft = fittype('linepowerthreshold(x,a,b,c,d)','options',s);
+ft = fittype('vlt.fit.linepowerthreshold(x,a,b,c,d)','options',s);
 [cl,gof,fitinfo] = fit(x(:),y(:),ft);
 
 slope = cl.a;
@@ -81,4 +81,4 @@ offset = cl.b;
 threshold = cl.c;
 exponent = cl.d;
 
-curve = linepowerthreshold(x(:),slope,offset,threshold,exponent);
+curve = vlt.fit.linepowerthreshold(x(:),slope,offset,threshold,exponent);

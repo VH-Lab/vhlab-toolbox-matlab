@@ -1,11 +1,11 @@
 function [Rsp,Rp,Op,sig] = gaussfit_conv(direct,par,varargin)
 
-% OTFIT_CARANDINI_CONV Converts between real params and fitting params
+% vlt.fit.otfit_carandini_conv Converts between real params and fitting params
 %
 %   [Rsp,Rp,Op,sig]=GUASSFIT_CONV(DIR,P,VARARGIN)
 %
 %  **This is really an internal function.  Only read if you're interested
-%  in modifying GAUSSFIT.**
+%  in modifying vlt.fit.gaussfit.**
 %  
 %  Converts between the real parameters in the carandini fitting
 %  function and those used by Matlab to find the minimum in the error
@@ -29,7 +29,7 @@ function [Rsp,Rp,Op,sig] = gaussfit_conv(direct,par,varargin)
 %                                                 (default is no restriction)
 %     'data', [obs11 obs12 ...; obs21 .. ;]   Observations to compute error
 %
-%  See also:  GAUSSFIT, GAUSSFIT_ERR, OTFIT_CARANDINI, OTFIT_CARANDINI_ERR
+%  See also:  vlt.fit.gaussfit, vlt.fit.gaussfit_err, vlt.fit.otfit_carandini, vlt.fit.otfit_carandini_err
 
 
 spontfixed = NaN;
@@ -37,7 +37,7 @@ widthint = NaN;
 spontint = NaN;
 data = NaN;
 
-assign(varargin{:});
+vlt.data.assign(varargin{:});
 
 s=0; % shift variable; if Rsp is fixed then only 3 vars to search over
      % need to check to see if parameters actually 3 vars or 4

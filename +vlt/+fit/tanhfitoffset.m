@@ -1,7 +1,7 @@
 function [ fit_curve, params, gof, fitinfo ] = tanhfitoffset( x_,y_ , varargin)
 % TANHFIT - Fit a curve with a hyperbolic tangent tanh
 % 
-% [FIT_CURVE, PARAMS, GOF, FITINFO] = TANHFITOFFSET(X, Y, ...)
+% [FIT_CURVE, PARAMS, GOF, FITINFO] = vlt.fit.tanhfitoffset(X, Y, ...)
 %
 % Finds a, b, c, d such that the error in the equation 
 %
@@ -32,7 +32,7 @@ function [ fit_curve, params, gof, fitinfo ] = tanhfitoffset( x_,y_ , varargin)
 %
 % Jason Osik 2016-2017, modified by SDV 2019
 %
-% See also: FIT, FITTYPE, TANHFIT
+% See also: FIT, FITTYPE, vlt.fit.tanhfit
 %
 
 NPTS_CURVE = 100;
@@ -42,7 +42,7 @@ c_range = [-100 100];
 d_range = [1e-12 Inf];
 startPoint = [0 1 0 1];
 
-assign(varargin{:});
+vlt.data.assign(varargin{:});
 
 x_ = reshape(x_,length(x_),1); % make a column vector
 y_ = reshape(y_,length(y_),1); % make a column vector

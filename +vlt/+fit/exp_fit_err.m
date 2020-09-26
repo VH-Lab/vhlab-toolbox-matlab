@@ -1,7 +1,7 @@
 function [err,fitr]=exp_fit_err(p,T,data)
 %  EXP_FIT_ERR Exponential error function
 %
-%       ERR=EXP_FIT_ERR(P,T,DATA)
+%       ERR=vlt.fit.exp_fit_err(P,T,DATA)
 %       P = [b tau k] 
 %          returns mean squared error of  y = b + k*(1-exp(-T/tau)),
 %       where T is a vector of timevalues to evaluate.

@@ -1,11 +1,11 @@
 function [Rsp,Rp,Op,sig,Rn,OnOff] = otfit_carandini_conv2(direct,par,varargin)
 
-% OTFIT_CARANDINI_CONV Converts between real params and fitting params
+% vlt.fit.otfit_carandini_conv Converts between real params and fitting params
 %
-%   [Rsp,Rp,Op,sig,Rn,OnOff]=OTFIT_CARANDINI_CONV2(DIR,P,VARARGIN)
+%   [Rsp,Rp,Op,sig,Rn,OnOff]=vlt.fit.otfit_carandini_conv2(DIR,P,VARARGIN)
 %
 %  **This is really an internal function.  Only read if you're interested
-%  in modifying OTFIT_CARANDINI2.**
+%  in modifying vlt.fit.otfit_carandini2.**
 %  
 %  Converts between the real parameters in the carandini fitting
 %  function and those used by Matlab to find the minimum in the error
@@ -39,7 +39,7 @@ function [Rsp,Rp,Op,sig,Rn,OnOff] = otfit_carandini_conv2(direct,par,varargin)
 %                                                 (default is no restriction)
 %     'data', [obs11 obs12 ...; obs21 .. ;]   Observations to compute error
 %
-%  See also:  OTFIT_CARANDINI, OTFIT_CARANDINI_ERR
+%  See also:  vlt.fit.otfit_carandini, vlt.fit.otfit_carandini_err
 
 
 spontfixed = NaN;
@@ -50,7 +50,7 @@ Rpint =NaN;
 Rnint = NaN;
 OnOffInt = [179 181];
 
-assign(varargin{:});
+vlt.data.assign(varargin{:});
 
 s=0; % shift variable; if Rsp is fixed then only 4 vars to search over
      % need to check to see if parameters actually 4 vars or 5
