@@ -1,7 +1,7 @@
 function [ctab, value, rgb] = angle2ybgr(angle)
 % ANGLE2YBRG - Determine color by angle 0-360 degrees
 %
-% [CTAB, VALUE, RGB] = ANGLE2YBGR([ANGLE])
+% [CTAB, VALUE, RGB] = vlt.colorspace.angle2ybgr([ANGLE])
 %
 % Returns a color table for angle values 0:1:359. If a specific 
 % ANGLE is given as an input argument, the function will also return
@@ -12,13 +12,13 @@ function [ctab, value, rgb] = angle2ybgr(angle)
 % 90 degrees ([0 1 0]), to blue at 180 degrees ([0 0 1]), to red ([1 0 0]) 
 % at 270 degrees, and back to yellow at 360 degrees/0 degrees.
 %
-% See also: ANGLE2YCGR
+% See also: vlt.colorspace.angle2ycgr
 % 
 % Examples:
-%   ctab = angle2ybgr; % (can serve as a color map for angle data)
+%   ctab = vlt.colorspace.angle2ybgr; % (can serve as a color map for angle data)
 %
 %   angle = 5.5;
-%   [ctab, value, rgb] = angle2ybgr(angle);
+%   [ctab, value, rgb] = vlt.colorspace.angle2ybgr(angle);
 %   
 
 

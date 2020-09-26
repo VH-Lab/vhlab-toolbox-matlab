@@ -1,7 +1,7 @@
 function add_config_file(config_filename, config_basename, varargin)
 % ADD_CONFIG_FILE - Add a default configuration file to the configuration directory
 %
-%  ADD_CONFIG_FILE(CONFIG_FILENAME, CONFIG_BASENAME, ...)
+%  vlt.config.add_config_file(CONFIG_FILENAME, CONFIG_BASENAME, ...)
 %
 %  Makes a copy of the file CONFIG_BASENAME and places it in a file 
 %  called CONFIG_FILENAME. The CONFIG_FILENAME is located in a directory
@@ -16,8 +16,10 @@ function add_config_file(config_filename, config_basename, varargin)
 %    (config_dirname)     |   saved
 
 
-config_dirpath = config_dirname;
+config_dirpath = vlt.config.config_dirname;
 
-copyfile(config_basename, [config_dirpath config_filename]);
+vlt.data.assign(varargin{:});
+
+copyfile(config_basename, [config_dirpath filesep config_filename]);
 
 
