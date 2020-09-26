@@ -1,6 +1,6 @@
 function varargout = getline_3dplane(varargin)
 %GETLINE_3DPLANE Select polyline with mouse.
-%   [X,Y,Z] = GETLINE_3DPLANE(FIG) lets you select a polyline in the
+%   [X,Y,Z] = vlt.matlab.graphics.getline_3dplane(FIG) lets you select a polyline in the
 %   current axes of figure FIG using the mouse.  Coordinates of
 %   the polyline are returned in X and Y and Z.  Use normal button
 %   clicks to add points to the polyline.  A shift-, right-, or
@@ -10,28 +10,28 @@ function varargout = getline_3dplane(varargin)
 %   or DELETE removes the previously selected point from the
 %   polyline.
 %
-%   [X,Y,Z] = GETLINE_3DPLANE(AX) lets you select a polyline in the axes
+%   [X,Y,Z] = vlt.matlab.graphics.getline_3dplane(AX) lets you select a polyline in the axes
 %   specified by the handle AX.
 %
-%   [X,Y,Z] = GETLINE_3DPLANE is the same as [X,Y] = GETLINE_3DPLANE(GCF).
+%   [X,Y,Z] = vlt.matlab.graphics.getline_3dplane is the same as [X,Y] = vlt.matlab.graphics.getline_3dplane(GCF).
 %
-%   [X,Y,Z] = GETLINE_3DPLANE(...,'closed') animates and returns a closed
+%   [X,Y,Z] = vlt.matlab.graphics.getline_3dplane(...,'closed') animates and returns a closed
 %   polygon.
 %
 %   Example
 %   --------
 %       imshow('moon.tif')
-%       [x,y] = getline_3dplane 
+%       [x,y] = vlt.matlab.graphics.getline_3dplane 
 %
 %   See also GETLINE, GETRECT, GETPTS.
 %
 %   Modified from GETLINE by SDV
 
 %   Callback syntaxes:
-%        getline_3dplane('KeyPress')
-%        getline_3dplane('FirstButtonDown')
-%        getline_3dplane('NextButtonDown')
-%        getline_3dplane('ButtonMotion')
+%        vlt.matlab.graphics.getline_3dplane('KeyPress')
+%        vlt.matlab.graphics.getline_3dplane('FirstButtonDown')
+%        vlt.matlab.graphics.getline_3dplane('NextButtonDown')
+%        vlt.matlab.graphics.getline_3dplane('ButtonMotion')
 
 %   Grandfathered syntaxes:
 %   XY = GETLINE(...) returns output as M-by-2 array; first
@@ -53,7 +53,7 @@ zlim('manual');
 if ((nargin >= 1) && (ischar(varargin{end})))
     str = varargin{end};
     if (str(1) == 'c')
-        % getline_3dplane(..., 'closed')
+        % vlt.matlab.graphics.getline_3dplane(..., 'closed')
         GETLINE_ISCLOSED = 1;
         varargin = varargin(1:end-1);
     end
@@ -78,7 +78,7 @@ if (length(varargin) < 1)
 else
     if (~ishghandle(varargin{1}))
         CleanUp(xlimorigmode,ylimorigmode,zlimorigmode);
-        error(message('getline_3dplane'));
+        error(message('vlt.matlab.graphics.getline_3dplane'));
     end
     
     switch get(varargin{1}, 'Type')
@@ -95,7 +95,7 @@ else
 
     otherwise
         CleanUp(xlimorigmode,ylimorigmode,zlimorigmode);
-        error(message('getline_3dplane:expectedFigureOrAxesHandle'));
+        error(message('vlt.matlab.graphics.getline_3dplane:expectedFigureOrAxesHandle'));
     end
 end
 
@@ -105,8 +105,8 @@ state= uisuspend(GETLINE_FIG);
 % Set up initial callbacks for initial stage
 set(GETLINE_FIG, ...
     'Pointer', 'crosshair', ...
-    'WindowButtonDownFcn', 'getline_3dplane(''FirstButtonDown'');',...
-    'KeyPressFcn', 'getline_3dplane(''KeyPress'');');
+    'WindowButtonDownFcn', 'vlt.matlab.graphics.getline_3dplane(''FirstButtonDown'');',...
+    'KeyPressFcn', 'vlt.matlab.graphics.getline_3dplane(''KeyPress'');');
 
 % Bring target figure forward
 figure(GETLINE_FIG);
@@ -160,7 +160,7 @@ else
     z = GETLINE_Z(:);
     % If no points were selected, return rectangular empties.
     % This makes it easier to handle degenerate cases in
-    % functions that call getline_3dplane.
+    % functions that call vlt.matlab.graphics.getline_3dplane.
     if (isempty(x))
         x = zeros(0,1);
     end
@@ -205,13 +205,13 @@ case 'ok'
     
 case 'trap'
     % An error was trapped during the waitfor
-    error(message('getline_3dplane:interruptedMouseSelection'));
+    error(message('vlt.matlab.graphics.getline_3dplane:interruptedMouseSelection'));
     
 case 'unknown'
     % User did something to cause the polyline selection to
     % terminate abnormally.  For example, we would get here
     % if the user closed the figure in the middle of the selection.
-    error(message('getline_3dplane:interruptedMouseSelection'));
+    error(message('vlt.matlab.graphics.getline_3dplane:interruptedMouseSelection'));
 end
 
 %--------------------------------------------------
@@ -240,7 +240,7 @@ case {char(8), char(127)}  % delete and backspace keys
                 'YData', GETLINE_Y,...
                 'ZData', GETLINE_Z);
         set(GETLINE_FIG, 'WindowButtonDownFcn', ...
-                'getline_3dplane(''FirstButtonDown'');', ...
+                'vlt.matlab.graphics.getline_3dplane(''FirstButtonDown'');', ...
                 'WindowButtonMotionFcn', '');
     otherwise
         % remove last point
@@ -310,8 +310,8 @@ if (~strcmp(get(GETLINE_FIG, 'SelectionType'), 'normal'))
     set(GETLINE_H1, 'UserData', 'Completed');
 else
     % Let the motion functions take over.
-    set(GETLINE_FIG, 'WindowButtonMotionFcn', 'getline_3dplane(''ButtonMotion'');', ...
-            'WindowButtonDownFcn', 'getline_3dplane(''NextButtonDown'');');
+    set(GETLINE_FIG, 'WindowButtonMotionFcn', 'vlt.matlab.graphics.getline_3dplane(''ButtonMotion'');', ...
+            'WindowButtonDownFcn', 'vlt.matlab.graphics.getline_3dplane(''NextButtonDown'');');
 end
 
 %--------------------------------------------------

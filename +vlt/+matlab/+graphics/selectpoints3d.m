@@ -1,7 +1,7 @@
 function inside = selectpoints3d(pts3d)
 % SELECTPOINTS3D - Graphically select a bunch of (2D or 3D) points by making a polygon in the current axes view
 %
-%  INSIDE = SELECTPOINTS3D(PTS3D)
+%  INSIDE = vlt.matlab.graphics.selectpoints3d(PTS3D)
 %
 %  Select a subset of points on a (potentially 3D) graph by dragging a polygon.
 %
@@ -22,7 +22,7 @@ function inside = selectpoints3d(pts3d)
 %     figure;
 %     plot3(pts(:,1),pts(:,2),pts(:,3),'ko'); drawnow();
 %     % change the view, maybe use the rotate3d tool
-%     inside = selectpoints3d(pts'); % need to transpose to column vectors
+%     inside = vlt.matlab.graphics.selectpoints3d(pts'); % need to transpose to column vectors
 %     hold on;
 %     indexes = find(inside);
 %     plot3(pts(indexes,1),pts(indexes,2),pts(indexes,3),'bs'); % add red x to selected points
@@ -30,15 +30,15 @@ function inside = selectpoints3d(pts3d)
 %
 %
 
-[x,y,z] = getline_3dplane;
+[x,y,z] = vlt.matlab.graphics.getline_3dplane;
 
-[A] = viewpoint3dto2d( [x(:) y(:) z(:)]' );
+[A] = vlt.matlab.graphics.viewpoint3dto2d( [x(:) y(:) z(:)]' );
 
 if size(pts3d,1) == 2,
 	pts3d = [pts3d; zeros(1,size(pts3d,2))];
 end;
 
-[B] = viewpoint3dto2d( pts3d );
+[B] = vlt.matlab.graphics.viewpoint3dto2d( pts3d );
 
 inside = inpolygon(B(1,:),B(2,:),A(1,:),A(2,:));
 

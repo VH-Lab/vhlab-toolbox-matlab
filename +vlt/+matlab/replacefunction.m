@@ -48,7 +48,7 @@ for f=1:numel(fuse),
 
 	% now show the user
 
-	t = text2cellstr(fuse(f).fullfilename);
+	t = vlt.file.text2cellstr(fuse(f).fullfilename);
 
 	disp(sprintf('\n\n\n\n\n'));
 

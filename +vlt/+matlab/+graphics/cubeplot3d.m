@@ -1,7 +1,7 @@
 function varargout = cubeplot3d(name, varargin)
 % CUBEPLOT3D - Plot 3-dimensional data from many views simultaneously
 %
-% CUBEPLOT3D(NAME, 'data', DATA, ...)
+% vlt.matlab.graphics.cubeplot3d(NAME, 'data', DATA, ...)
 %
 % 
 %
@@ -30,7 +30,7 @@ d3label = 'Time (seconds)';
 varlist = {'data','rect','units','imageGain','imageMean','d3currentbin','d3binwidth','d3binstart','d3binstop',...
 	'd1units','d1label','d2units','d2label','d3units','d3label'};
 
-assign(varargin{:});
+vlt.data.assign(varargin{:});
 
 if strcmp(lower(command),'init'),
 	command = [name 'init'];
@@ -46,7 +46,7 @@ if length(command)>length(name),
 end;
 
 if ~command_extract_success,
-	error(['Command must include plot name (see help cubeplot3d)']);
+	error(['Command must include plot name (see help vlt.matlab.graphics.cubeplot3d)']);
 end;
 
 command,
@@ -58,12 +58,12 @@ if strcmp(lower(command),'init'),
 	end;
 elseif strcmp(lower(command),'set_vars'), % if it is set_vars, leave ud alone, user had to set it
 elseif ~strcmp(lower(command),'get_vars') & ~strcmp(lower(command),'get_handles'), % let the routine below handle it
-	ud = cubeplot3d(name,'command',[name 'Get_Vars'],'fig',fig);
+	ud = vlt.matlab.graphics.cubeplot3d(name,'command',[name 'Get_Vars'],'fig',fig);
 end;
 
 switch lower(command),
 	case 'init',
-		uidefs = basicuitools_defs('callbackstr', ['callbacknametag(''cubeplot3d'',''' name ''');']),
+		uidefs = vlt.ui.basicuitools_defs('callbackstr', ['vlt.ui.callbacknametag(''vlt.matlab.graphics.cubeplot3d'',''' name ''');']),
 
 		target_rect = ud.rect;
 		units = ud.units;
@@ -78,12 +78,12 @@ switch lower(command),
 
 		for i=1:numel(position),
 			if strcmp(units,'pixels'),
-				position{i} = normalized2pixels(fig,position{i});
+				position{i} = vlt.matlab.graphics.normalized2pixels(fig,position{i});
 			end
 			axes('units',units,'position',position{i},'tag',[name position{i}]);
 		end
 
-		cubeplot3d(name,'command',[name 'Set_Vars'],'ud',ud);
+		vlt.matlab.graphics.cubeplot3d(name,'command',[name 'Set_Vars'],'ud',ud);
 
 	case 'get_vars',
 		handles = at_itemeditlist_gui(name,'command',[name 'get_handles'],'fig',fig);

@@ -1,7 +1,7 @@
 function pts2d = viewpoint3dto2d(pts3d, cameramatrix)
 % VIEWPOINT3DTO2D Project a 3D point onto 2D with a given camera matrix
 %
-%  PTS2D = VIEWPOINT3DTO2D(PTS3D, CAMERAMATRIX)
+%  PTS2D = vlt.matlab.graphics.viewpoint3dto2d(PTS3D, CAMERAMATRIX)
 %
 %  Converts a list of 3D points PTS3D into their corresponding
 %  2D projection for the camera matrix CAMERAMATRIX.  The matrix PTS3D should be
@@ -15,7 +15,7 @@ function pts2d = viewpoint3dto2d(pts3d, cameramatrix)
 %  
 %  One can also call:
 %
-%  PTS2D = VIEWPOINT3DTO2D(PTS3D)
+%  PTS2D = vlt.matlab.graphics.viewpoint3dto2d(PTS3D)
 %
 %  which takes the CAMERAMATRIX to be the current VIEW in the current axes.
 %
