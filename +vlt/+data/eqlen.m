@@ -1,4 +1,4 @@
-0function b = eqlen(x,y2
+function b = eqlen(x,y)
 
 %  vlt.data.eqlen  Returns 1 if objects to compare are equal and have same size
 %  
