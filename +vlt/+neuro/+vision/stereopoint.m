@@ -1,8 +1,8 @@
 function [leftOffset,rightOffset]=stereopoint(ViewDist,EyeDist,XOffset,DOffset)
 
-% vlt.neuroscience.vision.stereopoint - Compute shifts for a point in space for making a stereograph
+% vlt.neuro.vision.stereopoint - Compute shifts for a point in space for making a stereograph
 %
-%   [LEFTOFFSET,RIGHTOFFSET]=vlt.neuroscience.vision.stereopoint(VIEWDIST,EYEDIST,XOFFSET,DOFFSET)
+%   [LEFTOFFSET,RIGHTOFFSET]=vlt.neuro.vision.stereopoint(VIEWDIST,EYEDIST,XOFFSET,DOFFSET)
 %
 %
 %   Computes projections onto the two eyes for a point in 3D space.

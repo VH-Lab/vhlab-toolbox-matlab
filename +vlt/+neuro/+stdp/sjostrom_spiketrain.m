@@ -14,7 +14,7 @@ function [pre,post] = sjostrom_spiketrain(deltaT, frequency, N)
 %   Example:
 %     % Generate pre- and post-synaptic spiketrains to pair
 %     %  with 10ms pre-before-post firing at 10Hz, with 60 repetitions
-%     [PRE,POST] = vlt.neuroscience.stdp.sjostrom_spiketrain(0.010, 10, 60)
+%     [PRE,POST] = vlt.neuro.stdp.sjostrom_spiketrain(0.010, 10, 60)
 %
 %    
 

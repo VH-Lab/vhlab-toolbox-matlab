@@ -1,7 +1,7 @@
 function null = fit2null(R)
 % FIT2NULL - calculate the null (anti-preferred) response from a fit to direction
 %
-%  NULL=vlt.neuroscience.vision.oridir.indexes.fit2null(RESPONSE)
+%  NULL=vlt.neuro.vision.oridir.indexes.fit2null(RESPONSE)
 %
 %  Given the RESPONSE of a double gaussian fit, return the response 180 degrees
 %  away from the location with the maximum response.  This is the null
@@ -13,7 +13,7 @@ function null = fit2null(R)
 %  For backwards compatibility, if RESPONSE is a 360x1 vector, a new first
 %  row is added equal to 0:359.
 %
-%  See also: vlt.neuroscience.vision.oridir.indexes.fit2pref, vlt.neuroscience.vision.oridir.indexes.fit2orth
+%  See also: vlt.neuro.vision.oridir.indexes.fit2pref, vlt.neuro.vision.oridir.indexes.fit2orth
 
 if size(R,1)==1,
     R = [0:359; R];

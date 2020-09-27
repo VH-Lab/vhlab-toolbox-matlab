@@ -1,7 +1,7 @@
 function [ministruct] = minidetection(data, si, varargin)
 % MINIDETECTION - Detect minis from noise -- THIS FUNCTION DOESNT WORK YET, STILL IN DEVELOPMENT
 %
-%  MINISTRUCT = vlt.neuroscience.minis.minidetection(DATA, SI, ...)
+%  MINISTRUCT = vlt.neuro.minis.minidetection(DATA, SI, ...)
 %
 %  Finds spontaneous miniature evoked potential/current events in a recorded trace.
 %
@@ -22,7 +22,7 @@ function [ministruct] = minidetection(data, si, varargin)
 %                          |  determine optimal threshold? Default is
 %                          |  'minidetectionsimulation_guassian'
 %                          |  This file must be on the path and it must be the
-%                          |  results of vlt.neuroscience.minis.minidetectionsimulation
+%                          |  results of vlt.neuro.minis.minidetectionsimulation
 %  t_before (-0.020)       | Time before each mini to grab (in seconds, rounded to
 %                          |  nearest sample based on SI)
 %  t_after (0.100)         | Time after each mini to grab (in seconds, rounded to

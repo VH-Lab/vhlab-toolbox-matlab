@@ -1,8 +1,8 @@
 function di = fit2fitdibr(fitparams, blank, resp)
 
-% vlt.neuroscience.vision.oridir.indexes.fit2fitdibr - Direction index from double gaussian fit (blank rectified) 
+% vlt.neuro.vision.oridir.indexes.fit2fitdibr - Direction index from double gaussian fit (blank rectified) 
 %
-%  DSI = vlt.neuroscience.vision.oridir.indexes.fit2fitdibr(FITPARAMS, BLANKRESP)
+%  DSI = vlt.neuro.vision.oridir.indexes.fit2fitdibr(FITPARAMS, BLANKRESP)
 %
 %  Computes the "direction selectivity index", or the fraction of the total response
 %  that is in the preferred direction compared to the opposite direction.
@@ -18,7 +18,7 @@ function di = fit2fitdibr(fitparams, blank, resp)
 %
 %  The DSI is defined as DSI = (Rpref - Rnull) / Rpref
 %
-%  See also: vlt.fit.otfit_carandini, vlt.neuroscience.vision.oridir.indexes.fit2fitoi, vlt.neuroscience.vision.oridir.indexes.fit2fitdibr
+%  See also: vlt.fit.otfit_carandini, vlt.neuro.vision.oridir.indexes.fit2fitoi, vlt.neuro.vision.oridir.indexes.fit2fitdibr
 
 
 

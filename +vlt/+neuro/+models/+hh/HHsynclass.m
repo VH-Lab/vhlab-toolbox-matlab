@@ -2,7 +2,7 @@
   % _An Introductory Course in Computational Neuroscience_ by Paul Miller
 
 
-classdef vlt.neuroscience.models.hh.HHsynclass < vlt.neuroscience.models.hh.neuronmodelclass
+classdef vlt.neuro.models.hh.HHsynclass < vlt.neuro.models.hh.neuronmodelclass
     
 	properties
 		E_Na; % reversal for sodium channels (V)
@@ -38,7 +38,7 @@ classdef vlt.neuroscience.models.hh.HHsynclass < vlt.neuroscience.models.hh.neur
 	end
     
 	methods
-		function HHobj = vlt.neuroscience.models.hh.HHsynclass(varargin)
+		function HHobj = vlt.neuro.models.hh.HHsynclass(varargin)
 			V_threshold = -0.015;
 			E_Na = 0.045;
 			E_K = -0.082; 
@@ -68,7 +68,7 @@ classdef vlt.neuroscience.models.hh.HHsynclass < vlt.neuroscience.models.hh.neur
 			
 			vlt.data.assign(varargin{:});
 
-			HHobj = HHobj@vlt.neuroscience.models.hh.neuronmodelclass(varargin{:});
+			HHobj = HHobj@vlt.neuro.models.hh.neuronmodelclass(varargin{:});
 			HHobj.V_threshold = V_threshold; 
 			HHobj.dt = dt;
 			HHobj.t = HHobj.t_start:HHobj.dt:HHobj.t_end;
@@ -144,7 +144,7 @@ classdef vlt.neuroscience.models.hh.HHsynclass < vlt.neuroscience.models.hh.neur
 				I_AMPA = 0;
 			end;
 			if HHobj.NMDA,
-				I_NMDA = vlt.neuroscience.models.synapses.nmda_voltage_gate(Vm)*HHobj.Total_NMDA_G(i)*(HHobj.E_ESyn - Vm);
+				I_NMDA = vlt.neuro.models.synapses.nmda_voltage_gate(Vm)*HHobj.Total_NMDA_G(i)*(HHobj.E_ESyn - Vm);
 			else,
 				I_NMDA = 0;
 			end;
@@ -211,7 +211,7 @@ classdef vlt.neuroscience.models.hh.HHsynclass < vlt.neuroscience.models.hh.neur
 				P_factor = 1;
 			end;
 
-			[HHobj.Total_AMPA_G,p1] = vlt.neuroscience.models.synapses.probabilistic_release(...
+			[HHobj.Total_AMPA_G,p1] = vlt.neuro.models.synapses.probabilistic_release(...
 				't_start', HHobj.t_start, 't_end', HHobj.t_end, 'dt', HHobj.dt, ...
 				'facilitation_increase', HHobj.facilitation, ...
 				'facilitation_tau', HHobj.facilitation_tau, ...
@@ -222,7 +222,7 @@ classdef vlt.neuroscience.models.hh.HHsynclass < vlt.neuroscience.models.hh.neur
 				'P_A', P_A, 'P_tau1', P_tau1, 'P_B', P_B, 'P_tau2', P_tau2 ...
 				);
 
-			[Total_AMPA_G2,p2] = vlt.neuroscience.models.synapses.probabilistic_release(...
+			[Total_AMPA_G2,p2] = vlt.neuro.models.synapses.probabilistic_release(...
 				't_start', HHobj.t_start, 't_end', HHobj.t_end, 'dt', HHobj.dt, ...
 				'facilitation_increase', HHobj.facilitation, ...
 				'facilitation_tau', HHobj.facilitation_tau, ...
@@ -234,18 +234,18 @@ classdef vlt.neuroscience.models.hh.HHsynclass < vlt.neuroscience.models.hh.neur
 				);
 			HHobj.Total_AMPA_G = HHobj.Total_AMPA_G + Total_AMPA_G2;
 
-			HHobj.Total_NMDA_G = vlt.neuroscience.models.synapses.probabilistic_release(...
+			HHobj.Total_NMDA_G = vlt.neuro.models.synapses.probabilistic_release(...
 				'Released_times', p1.Released_times, ...
 				'Q',HHobj.GLUT_PNQ(3) * 0.50, ... % NMDA will be 50% of AMPA
 				'syn_tau1',0.005, 'syn_tau2', 0.050 ... % NMDA kinetics
 				);
-			HHobj.Total_NMDA_G = HHobj.Total_NMDA_G + vlt.neuroscience.models.synapses.probabilistic_release(...
+			HHobj.Total_NMDA_G = HHobj.Total_NMDA_G + vlt.neuro.models.synapses.probabilistic_release(...
 				'Released_times', p2.Released_times, ...
 				'Q',HHobj.GLUT_PNQ(3) * 0.50, ... % NMDA will be 50% of AMPA
 				'syn_tau1',0.005, 'syn_tau2', 0.050 ... % NMDA kinetics
 				);
 
-			HHobj.Total_GABA_G = vlt.neuroscience.models.synapses.probabilistic_release(...
+			HHobj.Total_GABA_G = vlt.neuro.models.synapses.probabilistic_release(...
 				't_start', HHobj.t_start, 't_end', HHobj.t_end, 'dt', HHobj.dt, ...
 				'presyn_times', HHobj.ISyn_times, ...
 				'N',HHobj.GABA_PNQ(2), 'P', P_factor*HHobj.GABA_PNQ(1), ...

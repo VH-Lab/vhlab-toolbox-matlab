@@ -1,7 +1,7 @@
 function out = directionselectivityNcell_learning_thresh(varargin)
 % DIRECTIONSELECTIVITYNCELL_LEARNING_THRESH
 %
-% OUT = vlt.neuroscience.models.modelel.modeleldemo.directionselectivityNcell_learning_thresh
+% OUT = vlt.neuro.models.modelel.modeleldemo.directionselectivityNcell_learning_thresh
 %
 % Observe an N-input process develop direction selectivity
 %
@@ -51,7 +51,7 @@ classic_stdp = 1;
 N = 1;
 R = 1;
 Gmax_initial = 3e-9 * ones(1,N*R);
-synmeth = 'vlt.neuroscience.models.modelel.synapseel.plasticity_methods.synapseel_stdp';
+synmeth = 'vlt.neuro.models.modelel.synapseel.plasticity_methods.synapseel_stdp';
 dt = 0.0001;
 trials = 100;
 synapseparams = {};
@@ -101,7 +101,7 @@ gmaxes = NaN(N*R,total_trials);
 V_threshold = NaN(1,total_trials);
 
 
-[model_initial,di(1),r_up(1),r_down(1),dummy,dummy] = vlt.neuroscience.models.modelel.modeleldemo.directionselectivityNcelldemo_thresh('dt',dt,...
+[model_initial,di(1),r_up(1),r_down(1),dummy,dummy] = vlt.neuro.models.modelel.modeleldemo.directionselectivityNcelldemo_thresh('dt',dt,...
 	'latency',latency,'lag',lag,'slow',slow,'mask',mask,...
 	'N',N,'R',R,...
 	'isi',isi,'nreps',nreps,...
@@ -110,7 +110,7 @@ V_threshold = NaN(1,total_trials);
 	'V_threshold',V_threshold_initial,'phase',phase,'simdown','initial_simdown'...
 	);
 
-syn_nums = vlt.neuroscience.models.modelel.synapseel.modelelgetsyn(model_initial,[1:N*R],N*R+ones(1,N*R));
+syn_nums = vlt.neuro.models.modelel.synapseel.modelelgetsyn(model_initial,[1:N*R],N*R+ones(1,N*R));
 
 gmaxes(:,1) = [Syn_Gmax_initial]';
 V_threshold(1) = V_threshold_initial;
@@ -143,7 +143,7 @@ for t=2:trialstepsize:total_trials,
 
 	if unidir==1 | (mod(t,2)==0),
 		% run in upward direction
-		[dummy,dummy,r_up(t),dummy,model_current,dummy] = vlt.neuroscience.models.modelel.modeleldemo.directionselectivityNcelldemo_thresh('dt',dt,...
+		[dummy,dummy,r_up(t),dummy,model_current,dummy] = vlt.neuro.models.modelel.modeleldemo.directionselectivityNcelldemo_thresh('dt',dt,...
 		'R', R, 'N', N, 'isi', isi, 'nreps',nreps,...
 		'latency',latency,'lag',lag,'slow',slow,'mask',mask,...
 		'Syn_Gmax_initial',gmaxes(:,t-1)',...
@@ -165,7 +165,7 @@ for t=2:trialstepsize:total_trials,
 
 	% figure out the 'down' spikes
 
-		[dummy,dummy,dummy,r_down(t),dummy,model_current] = vlt.neuroscience.models.modelel.modeleldemo.directionselectivityNcelldemo_thresh('dt',dt,...
+		[dummy,dummy,dummy,r_down(t),dummy,model_current] = vlt.neuro.models.modelel.modeleldemo.directionselectivityNcelldemo_thresh('dt',dt,...
 		'R', R, 'N', N, 'isi', isi, 'nreps',nreps,...
 		'latency',latency','lag',lag,'slow',slow,...
 		'Syn_Gmax_initial',gmaxes(:,t+input_select)', ...
@@ -184,7 +184,7 @@ for t=2:trialstepsize:total_trials,
 		end;
 
 		% test with upward direction to get hypothetical selectivity
-		[dummy,dummy,r_up(t),dummy,model_current,dummy] = vlt.neuroscience.models.modelel.modeleldemo.directionselectivityNcelldemo_thresh('dt',dt,...
+		[dummy,dummy,r_up(t),dummy,model_current,dummy] = vlt.neuro.models.modelel.modeleldemo.directionselectivityNcelldemo_thresh('dt',dt,...
 		'R', R, 'N', N, 'isi', isi, 'slow',slow,'mask',mask,'nreps',nreps,...
 		'latency',latency,'lag',lag,...
 		'Syn_Gmax_initial',gmaxes(:,t)',...
@@ -203,7 +203,7 @@ for t=2:trialstepsize:total_trials,
         out.r_down = r_down;
         out.gmaxes = gmaxes;
         out.V_threshold = V_threshold;
-		vlt.neuroscience.models.modelel.modeleldemo.plotdirectionselectivity4cell_thresh(out);
+		vlt.neuro.models.modelel.modeleldemo.plotdirectionselectivity4cell_thresh(out);
 		drawnow; % make sure it draws before we proceed
 	end;
 end;

@@ -1,7 +1,7 @@
 function varargout = nbio140_wholecell(varargin)
 % NBIO140_WHOLECELL - A gui to simulate a Hodgkin-Huxley recording in voltage clamp/current clamp
 %
-%   vlt.neuroscience.demos.nbio140_wholecell()
+%   vlt.neuro.demos.nbio140_wholecell()
 %
 %   Brings up a graphical user interface to allow the user to explore a
 %   current clamp/voltage clamp environment with Hodgkin-Huxley channels.
@@ -20,8 +20,8 @@ success = 0;
 windowheight =      525;
 windowwidth =       800;
 windowrowheight =    35;
-HH = vlt.neuroscience.models.hh.HHclass();
-HHsyn = vlt.neuroscience.models.hh.HHsynclass();
+HH = vlt.neuro.models.hh.HHclass();
+HHsyn = vlt.neuro.models.hh.HHsynclass();
 
  % user-specified variables
 windowlabel = 'NBIO140 CELL SIMULATOR';
@@ -30,7 +30,7 @@ varlist = {'windowheight','windowwidth','windowrowheight','windowlabel','HH','HH
 
 w = which('vlt.data.assign');
 if isempty(w),
-	mypath = which('vlt.neuroscience.demos.nbio140_wholecell');
+	mypath = which('vlt.neuro.demos.nbio140_wholecell');
 	parentdir = fileparts(mypath);
 	addpath(genpath(parentdir));
 	clear mex;
@@ -39,7 +39,7 @@ end;
 assign(varargin{:});
 
 if isempty(fig),
-	z = findobj(allchild(0),'flat','tag','vlt.neuroscience.demos.nbio140_wholecell');
+	z = findobj(allchild(0),'flat','tag','vlt.neuro.demos.nbio140_wholecell');
 	if isempty(z),
 		fig = figure('name',windowlabel,'NumberTitle','off','Color',[0.8 0.8 0.8]); % we need to make a new figure
 	else,
@@ -62,7 +62,7 @@ end;
 switch command,
 	case 'Main',
 		set(fig,'userdata',ud);
-		vlt.neuroscience.demos.nbio140_wholecell('command','NewWindow','fig',fig);
+		vlt.neuro.demos.nbio140_wholecell('command','NewWindow','fig',fig);
 	case 'NewWindow',
 		% control object defaults
 
@@ -97,7 +97,7 @@ switch command,
 		top = ud.windowheight;
 		row = ud.windowrowheight;
 
-		set(fig,'position',[50 50 right top],'tag','vlt.neuroscience.demos.nbio140_wholecell');
+		set(fig,'position',[50 50 right top],'tag','vlt.neuro.demos.nbio140_wholecell');
 
 		% TOP
 
@@ -230,7 +230,7 @@ switch command,
 	case 'RunBt',
 		if ud.HH.samplenumber_current <= 1 | ud.HH.samplenumber_current >= size(ud.HH.S,2) -1,
 			% need to set up
-			p_struct = vlt.neuroscience.demos.nbio140_wholecell('command','GetParameters','fig',fig);
+			p_struct = vlt.neuro.demos.nbio140_wholecell('command','GetParameters','fig',fig);
 			useSyn = 0;
 			if any([p_struct.AMPACB p_struct.NMDACB p_struct.GABACB]),
 				useSyn = 1;
@@ -277,10 +277,10 @@ switch command,
 			set(fig,'userdata',ud); % update userdata
 		end;
 		set(findobj(fig,'tag','RunBt'),'userdata',1);
-		vlt.neuroscience.demos.nbio140_wholecell('command','Step','fig',fig);
+		vlt.neuro.demos.nbio140_wholecell('command','Step','fig',fig);
 	case 'Step', % make a step in the simulation
 		if get(findobj(fig,'tag','RunBt'),'userdata'),
-			p_struct = vlt.neuroscience.demos.nbio140_wholecell('command','GetParameters','fig',fig);
+			p_struct = vlt.neuro.demos.nbio140_wholecell('command','GetParameters','fig',fig);
 			useSyn = 0;
 			if any([p_struct.AMPACB p_struct.NMDACB p_struct.GABACB]),
 				useSyn = 1;
@@ -392,7 +392,7 @@ switch command,
 		end;
 		% if we are still running, call Step again
 		if get(findobj(fig,'tag','RunBt'),'userdata'),
-			vlt.neuroscience.demos.nbio140_wholecell('command','Step','fig',fig);
+			vlt.neuro.demos.nbio140_wholecell('command','Step','fig',fig);
 		end;
 	case 'PauseBt',
 		set(findobj(fig,'RunBt','userdata',0));

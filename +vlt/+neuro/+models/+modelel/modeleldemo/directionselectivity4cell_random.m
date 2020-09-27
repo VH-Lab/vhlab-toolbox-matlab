@@ -1,13 +1,13 @@
 function out = directionselectivity4cell_random(varargin)
 % DIRECTIONSELECTIVITY4CELL_RANDOM
 %
-% OUT = vlt.neuroscience.models.modelel.modeleldemo.directionselectivity4cell_random
+% OUT = vlt.neuro.models.modelel.modeleldemo.directionselectivity4cell_random
 %
 % Randomly choose weights for a 4-input single layer network and
 % calculate direction selectivity
 %
 % One can also adjust the parameters using: 
-% OUT = vlt.neuroscience.models.modelel.modeleldemo.directionselectivity4cell_random(PARAM1NAME, PARAM1VALUE, ...)
+% OUT = vlt.neuro.models.modelel.modeleldemo.directionselectivity4cell_random(PARAM1NAME, PARAM1VALUE, ...)
 %   
 % The following parameters are adjustable (default value in ()):
 % ---------------------------------------------------------------------
@@ -65,7 +65,7 @@ for t=1:trials,
 
 	intfireparams = cat(2,intfireparams, {'V_threshold',theT});
 
-	[dummy,dummy,r_up(t),r_down(t),model_current] = vlt.neuroscience.models.modelel.modeleldemo.directionselectivity4celldemo('dt',dt,...
+	[dummy,dummy,r_up(t),r_down(t),model_current] = vlt.neuro.models.modelel.modeleldemo.directionselectivity4celldemo('dt',dt,...
 		'latency',latency,'lag',lag,...
 		'Syn_Gmax_initial',theGmaxes,...
 		'plotit',0,'synapseparams',synapseparams,'intfireparams',intfireparams);
@@ -88,7 +88,7 @@ for t=1:trials,
 		out.r_down = r_down;
 		out.gmaxes = gmaxes;
 		out.T = T;
-		vlt.neuroscience.models.modelel.modeleldemo.plotdirectionselectivity4cell(out);
+		vlt.neuro.models.modelel.modeleldemo.plotdirectionselectivity4cell(out);
 		drawnow; % make sure it draws before we proceed
 	end;
 end;

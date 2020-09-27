@@ -1,8 +1,8 @@
 function syncurrs = depression_model_comp(spiketimes,a0,f,ftau,d,dtau)
 
-%  vlt.neuroscience.models.synapses.depression_model_comp-Computes synaptic currents for Varela depression model
+%  vlt.neuro.models.synapses.depression_model_comp-Computes synaptic currents for Varela depression model
 %
-%    SYNCURRS = vlt.neuroscience.models.synapses.depression_model_comp(SPIKETIMES,A0,F,FTAU,D,DTAU)
+%    SYNCURRS = vlt.neuro.models.synapses.depression_model_comp(SPIKETIMES,A0,F,FTAU,D,DTAU)
 %
 %  Computes synaptic currents for a facilitating and/or depressing synapse.
 %  Presynaptic spike times are given in SPIKETIMES, and the unfacilitated,

@@ -7,7 +7,7 @@ function ltpi_test
 pre = [0 4.9 5];
 post =  [0 1 2 3 4];
 
-non_integrated = vlt.neuroscience.stdp.ltpi_apply(pre,post,'T1',10);
+non_integrated = vlt.neuro.stdp.ltpi_apply(pre,post,'T1',10);
 
 integrated = 0;
 for t=0:1e-4:10,

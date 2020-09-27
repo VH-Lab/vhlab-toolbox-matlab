@@ -1,7 +1,7 @@
 function [correlated_train,actualcorrelation] = spiketrain_timingcorrelated(input_train, c)
 % SPIKETRAIN_TIMINGCORRELATED - Make spike train that is correlated in spike timing with an input spike train
 %
-%   [CORRELATED_TRAIN, CORR] = vlt.neuroscience.spiketrains.spiketrain_timingcorrelated(INPUT_TRAIN, C)
+%   [CORRELATED_TRAIN, CORR] = vlt.neuro.spiketrains.spiketrain_timingcorrelated(INPUT_TRAIN, C)
 %
 %  Creates a spike train that is correlated with the spike train INPUT_TRAIN.
 %  INPUT_TRAIN should be a list of spike times in seconds.
@@ -16,7 +16,7 @@ resolution = 0.001;  % 1ms resolution
 
 bins = input_train(1):resolution:input_train(end);
 
-input_train_bins = vlt.neuroscience.spiketrains.spiketimes2bins(input_train,bins);
+input_train_bins = vlt.neuro.spiketrains.spiketimes2bins(input_train,bins);
 
 correlated_train = input_train;
 
@@ -42,7 +42,7 @@ while actual_correlation > c,
 	newspiketimes = [];
 	while length(newspiketimes)~=length(inds_to_move),
 		newspikes = vlt.math.generate_random_data(N,'Uniform',input_train(1),input_train(end));
-		newspiketimes = bins(find(vlt.neuroscience.spiketrains.spiketimes2bins(newspikes,bins))); % might be more than 1 spike per bin in some cases
+		newspiketimes = bins(find(vlt.neuro.spiketrains.spiketimes2bins(newspikes,bins))); % might be more than 1 spike per bin in some cases
 		if length(newspiketimes)<N,  % if we had bin collisions just do the whole thing again
 			%this is lame, should just replace spikes that collided
 			newspiketimes = [];
@@ -50,7 +50,7 @@ while actual_correlation > c,
 	end;
 	correlated_train(inds_to_move(1:length(newspiketimes))) = newspiketimes;
 
-	correlated_train_bins = vlt.neuroscience.spiketrains.spiketimes2bins(correlated_train,bins);
+	correlated_train_bins = vlt.neuro.spiketrains.spiketimes2bins(correlated_train,bins);
 	correlated_train = bins(find(correlated_train_bins))+0.1*resolution;  % reassign any slightly off times to be right on the bin times
 	corr = (correlated_train_bins.*input_train_bins)>0;
 	correlated_spikes_times = bins(find(corr))+0.1*resolution;
@@ -66,7 +66,7 @@ while actual_correlation > c,
 	actual_correlation = sum(corr)/length(input_train);
 	loops = loops + 1;
 	if loops>100,
-		disp(['vlt.neuroscience.spiketrains.spiketrain_timingcorrelated seems to be in an endless loop']);
+		disp(['vlt.neuro.spiketrains.spiketrain_timingcorrelated seems to be in an endless loop']);
 		keyboard;
 	end;
 end;

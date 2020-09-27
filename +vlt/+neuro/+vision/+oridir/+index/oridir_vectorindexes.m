@@ -1,7 +1,7 @@
 function vi = oridir_vectorindexes(respstruct)
 % ORIDIR_VECTORINDEX - compute orientation/direction vector indexes
 %
-% VI = vlt.neuroscience.vision.oridir.indexes.oridir_vectorindexes(RESPSTRUCT)
+% VI = vlt.neuro.vision.oridir.indexes.oridir_vectorindexes(RESPSTRUCT)
 %
 % Computes orientation/direction index vector values from a response structure RESP.
 %
@@ -23,7 +23,7 @@ function vi = oridir_vectorindexes(respstruct)
 % ot_pref                         |   Angle preference in orientation space
 % ot_circularvariance             |   Magnitude of response in orientation space (see Ringach et al. 2002)
 % ot_index                        |   Orientation index ( (pref-orth)/pref) )
-% tuning_width                    |   Vector tuning width (see help vlt.neuroscience.vision.oridir.indexes.compute_tuningwidth)
+% tuning_width                    |   Vector tuning width (see help vlt.neuro.vision.oridir.indexes.compute_tuningwidth)
 % dir_HotellingT2_p               |   Hotelling's T^2 test of direction vector data
 % dir_pref                        |   Angle preference in direction space
 % dir_circularvariance            |   Direction index in vector space
@@ -97,17 +97,17 @@ if size(allresps,1)>0,
 		vi.dir_pref = mod(180/pi*angle(mean(vecdirresp)),360);
 		%vecdirmag = abs(mean(vecdirresp));
 		%vecdirind = abs(mean(vecdirresp))/maxresp;
-		vi.dir_dotproduct_sig_p = vlt.neuroscience.vision.oridir.indexes.compute_directionsignificancedotproduct(angles,allresps);
+		vi.dir_dotproduct_sig_p = vlt.neuro.vision.oridir.indexes.compute_directionsignificancedotproduct(angles,allresps);
 	end;
 end;
 
-vi.ot_circularvariance = vlt.neuroscience.vision.oridir.indexes.compute_circularvariance(tuneangles,tuneresps);
-vi_ot_index = vlt.neuroscience.vision.oridir.indexes.compute_orientationindex(tuneangles,tuneresps);
-vi.tuning_width = vlt.neuroscience.vision.oridir.indexes.compute_tuningwidth(tuneangles,tuneresps);
+vi.ot_circularvariance = vlt.neuro.vision.oridir.indexes.compute_circularvariance(tuneangles,tuneresps);
+vi_ot_index = vlt.neuro.vision.oridir.indexes.compute_orientationindex(tuneangles,tuneresps);
+vi.tuning_width = vlt.neuro.vision.oridir.indexes.compute_tuningwidth(tuneangles,tuneresps);
 
 if hasdirection,
-	vi.dir_circularvariance = vlt.neuroscience.vision.oridir.indexes.compute_dircircularvariance(tuneangles,tuneresps);
-	vi.dir_index = vlt.neuroscience.vision.oridir.indexes.compute_directionindex(angles,resp(2,:));
+	vi.dir_circularvariance = vlt.neuro.vision.oridir.indexes.compute_dircircularvariance(tuneangles,tuneresps);
+	vi.dir_index = vlt.neuro.vision.oridir.indexes.compute_directionindex(angles,resp(2,:));
 end;
 
 

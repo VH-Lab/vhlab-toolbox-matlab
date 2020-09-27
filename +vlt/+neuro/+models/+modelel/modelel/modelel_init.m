@@ -1,9 +1,9 @@
 function [modelel] = modelel_init(varargin)
 % MODELEL_INIT - Initialize a model element
 %
-%   MODELEL= vlt.neuroscience.models.modelel.modelel.modelel_init
+%   MODELEL= vlt.neuro.models.modelel.modelel.modelel_init
 %       or
-%   MODELEL = vlt.neuroscience.models.modelel.modelel.modelel_init(PARAM1NAME, PARAM1VALUE, ...)
+%   MODELEL = vlt.neuro.models.modelel.modelel.modelel_init(PARAM1NAME, PARAM1VALUE, ...)
 %
 %   Creates a MODELEL structure. A default model is created unless
 %   parameters are modified by passing name, value pairs. This framework

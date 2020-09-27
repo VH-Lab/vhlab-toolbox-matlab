@@ -1,14 +1,14 @@
 function [Pxx, Fxx, bandvalues, bands] = spiketrain_powerspectrum_window(spike_train, interval, varargin);
 % SPIKETRAIN_POWERSPECTRUM_WINDOW - calculate the power spectrum of a spike train using a sliding window
 %
-%  [Pxx,Fxx, BANDVALUES, BANDS] = vlt.neuroscience.spiketrains.spiketrain_powerspectrum_window(SPIKETRAIN,...
+%  [Pxx,Fxx, BANDVALUES, BANDS] = vlt.neuro.spiketrains.spiketrain_powerspectrum_window(SPIKETRAIN,...
 %         [START WINDOWSIZE STEP STOP], ...)
 %
 %  Returns the power spectrum Pxx at different frequencies Fxx.  The power spectrum is
 %  calculated from time START to STOP using sliding windows of size WINDOWSIZE.  The
 %  window is advanced STEP units each time.
 %
-%  The power spectrum is calculated by calling the function vlt.neuroscience.spiketrains.spiketrain_powerspectrum.
+%  The power spectrum is calculated by calling the function vlt.neuro.spiketrains.spiketrain_powerspectrum.
 %
 %  One can modify the default parameters by adding name/value pairs to the function:
 %  Parameter (default value)  :  Description
@@ -25,7 +25,7 @@ function [Pxx, Fxx, bandvalues, bands] = spiketrain_powerspectrum_window(spike_t
 % 0.1-4 Hz, theta 4-8, alpha 8-12, beta 12-30
 %  
 %
-%  See also: vlt.neuroscience.spiketrains.spiketrain_powerspectrum
+%  See also: vlt.neuro.spiketrains.spiketrain_powerspectrum
 %
 %  
 
@@ -51,7 +51,7 @@ bandinds = [];
 
 for i=1:length(start_times),
 	z = spike_train(find(spike_train>=start_times(i) & spike_train <= stop_times(i)));
-	[Pxx_here, dummy, Fxx] = vlt.neuroscience.spiketrains.spiketrain_powerspectrum(z,BINSIZE,'NFFT',NFFT);
+	[Pxx_here, dummy, Fxx] = vlt.neuro.spiketrains.spiketrain_powerspectrum(z,BINSIZE,'NFFT',NFFT);
 	Pxx(:,i) = Pxx_here;
 	if i==1,
 		for j=1:size(bands,1),

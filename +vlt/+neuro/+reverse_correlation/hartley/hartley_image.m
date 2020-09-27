@@ -1,6 +1,6 @@
 function IM = hartley_image(kx, ky, M)
 % HARTLEY_IMAGE - A Hartley image function
-%  IM = vlt.neuroscience.reverse_correlation.hartley.hartley_image(KX, KY, M)
+%  IM = vlt.neuro.reverse_correlation.hartley.hartley_image(KX, KY, M)
 %
 %  Returns the Hartley image defined by the equation
 %

@@ -5,7 +5,7 @@ function [intfireleakyel] = intfireleakyel_init(varargin)
 %         or
 %   INTFIRELEAKYEL = INTFIRELEAKYel_INIT('param1name',param1value,...);
 %
-%   Returns a MODELEL structure (see vlt.neuroscience.models.modelel.modelel.modelel_init) for a
+%   Returns a MODELEL structure (see vlt.neuro.models.modelel.modelel.modelel_init) for a
 %   leaky integrate and fire neuron. One can modify the default parameters
 %   of both the INTFIRE structure and the inherited parameters in
 %   MODELEL by passing name/value pairs as input arguments. The parameters in the
@@ -50,5 +50,5 @@ intfire=struct('Ie',Ie,'V_leak',V_leak,'Rm',Rm,'Taum',Taum,'Area',Area,...
 		'synapse_list',synapse_list,'spiketimes',spiketimes,'V_spike',V_spike,...
 		'type',type);
 
-intfireleakyel = vlt.neuroscience.models.modelel.modelel.modelel_init('model',intfire,varargin{:});
+intfireleakyel = vlt.neuro.models.modelel.modelel.modelel_init('model',intfire,varargin{:});
 

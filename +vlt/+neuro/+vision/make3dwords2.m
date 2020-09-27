@@ -21,7 +21,7 @@ inc = 0;
 for w=-1:0.1:1,
 	dX = 0*w*3; % cm offset
 	dD = 10*w; % cm more distant
-	[lo,ro]=vlt.neuroscience.vision.stereopoint(V,dE,dX,dD),
+	[lo,ro]=vlt.neuro.vision.stereopoint(V,dE,dX,dD),
 	
 	r = 1*50*(rand-0.5);
 	text(r+pix_per_cm*lo,inc,'3D text','color',[0.8 0 0]);

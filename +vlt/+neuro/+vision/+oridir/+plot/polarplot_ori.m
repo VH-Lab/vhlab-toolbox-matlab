@@ -1,7 +1,7 @@
 function [hh,outputs]=polarplot_ori(angles, responses, varargin)
 % POLARPLOT_ORI - Produces a polar plot of orientation responses
 %
-%  [H,OUTPUTS]=vlt.neuroscience.vision.oridir.plot.polarplot_ori(ANGLES, RESPONSES, ...)
+%  [H,OUTPUTS]=vlt.neuro.vision.oridir.plot.polarplot_ori(ANGLES, RESPONSES, ...)
 %
 %  Produces a polar plot (using the third party library MMPOLAR)
 %  of orientation responses in orientation space. The plot handle is
@@ -24,7 +24,7 @@ function [hh,outputs]=polarplot_ori(angles, responses, varargin)
 %                            :     preference)
 %  'style'                   : 'compass' or 'cartesian', default 'compass'
 %
-%  See also: vlt.neuroscience.vision.oridir.dirspace2orispace, MMPOLAR, vlt.neuroscience.vision.oridir.plot.polarplot_dir
+%  See also: vlt.neuro.vision.oridir.dirspace2orispace, MMPOLAR, vlt.neuro.vision.oridir.plot.polarplot_dir
 %
 
 showmeanvector = 0;
@@ -43,7 +43,7 @@ hh=mmpolar(2*vlt.math.deg2rad(angles([1:end 1])),responses([1:end 1]),...  % con
 outputs.meanvector = sum(responses(:).*exp(sqrt(-1)*2*mod(vlt.math.deg2rad(angles(:)),pi)));
 outputs.vectormag = abs(outputs.meanvector);
 outputs.vectorpref = vlt.math.rad2deg(mod(angle(outputs.meanvector)/2,pi));
-outputs.circularvariance = vlt.neuroscience.vision.oridir.indexes.compute_circularvariance(angles(:)',responses(:)');
+outputs.circularvariance = vlt.neuro.vision.oridir.indexes.compute_circularvariance(angles(:)',responses(:)');
 outputs.h_meanvector = [];
 outputs.h_circularvariance = [];
 

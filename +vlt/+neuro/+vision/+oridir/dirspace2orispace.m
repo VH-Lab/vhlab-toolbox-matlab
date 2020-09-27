@@ -1,7 +1,7 @@
 function [angles_ori, responses_ori] = dirspace2orispace(angles, responses)
 % DIRSPACE2ORISPACE - Converts direction responses to orientation responses
 %
-%  [ANGLES_ORI,RESPONSES_ORI] = vlt.neuroscience.vision.oridir.dirspace2orispace(ANGLES, RESPONSES)
+%  [ANGLES_ORI,RESPONSES_ORI] = vlt.neuro.vision.oridir.dirspace2orispace(ANGLES, RESPONSES)
 %
 %  Converts direction responses and angles of stimulation into orientation space.
 %

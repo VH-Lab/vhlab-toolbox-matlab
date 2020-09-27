@@ -1,13 +1,13 @@
 function out=modelel_importvariables(filename, modelelstruct, vars)
 % MODELEL_IMPORTVARIABLES - Import variable values from the external C modelel simulator
 %
-%  OUT = vlt.neuroscience.models.modelel.modelelrun.modelel_importvariables(FILENAME, MODELELSTRUCT, VARS)
+%  OUT = vlt.neuro.models.modelel.modelelrun.modelel_importvariables(FILENAME, MODELELSTRUCT, VARS)
 %
 %  Returns the values of the output variables that were requested.
 %  Reads these values from the file FILENAME.  VARS are the 
 %  Matlab variable names that were requested.
 %
-%  See also: vlt.neuroscience.models.modelel.modelelrun.modelelrun
+%  See also: vlt.neuro.models.modelel.modelelrun.modelelrun
 %
 
 M = importdata(filename, ';' ,1);

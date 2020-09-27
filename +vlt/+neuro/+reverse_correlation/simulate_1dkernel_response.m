@@ -1,8 +1,8 @@
 function [R,t] = simulate_1dkernel_response(D, Dx,Dt, stim, stimx, stimt)
 
-% vlt.neuroscience.reverse_correlation.simulate_1dkernel_response -- Simulate response of a linear kernel
+% vlt.neuro.reverse_correlation.simulate_1dkernel_response -- Simulate response of a linear kernel
 %
-%   R = vlt.neuroscience.reverse_correlation.simulate_1dkernel_response(D,DX,DT,STIM,STIMX,STIMT)
+%   R = vlt.neuro.reverse_correlation.simulate_1dkernel_response(D,DX,DT,STIM,STIMX,STIMT)
 %
 %   Simulates the responses of a 1D (in space) kernel D to a stimulus
 %   STIM.  DX is the spatial positions of the kernel, DT is the temporal

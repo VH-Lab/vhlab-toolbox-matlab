@@ -23,9 +23,9 @@ for s=1:length(shifts),
 			% simulate each scenario NumSims times
 			W_here = [];
 			for n=1:NumSims,
-				pre = vlt.neuroscience.spiketrains.spiketrain_poisson_n(lambda(l),N,tres);
-				post = vlt.neuroscience.spiketrains.spiketrain_timingcorrelated(pre+shifts(s),corrs(c));
-				W_here(n) = vlt.neuroscience.stdp.stdp_triplet_apply(pre,post);
+				pre = vlt.neuro.spiketrains.spiketrain_poisson_n(lambda(l),N,tres);
+				post = vlt.neuro.spiketrains.spiketrain_timingcorrelated(pre+shifts(s),corrs(c));
+				W_here(n) = vlt.neuro.stdp.stdp_triplet_apply(pre,post);
 			end;
 			W(s,l,c) = mean(W_here);
 			Werr(s,l,c) = vlt.stats.stderr(W_here(:));

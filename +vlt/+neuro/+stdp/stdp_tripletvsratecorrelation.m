@@ -31,7 +31,7 @@ for s=1:length(shifts),
 			for n=1:NumSims,
 				pre = preshift+T(find(rand(size(T))<(tres*lambda(l)*sin(2*pi*freqs(f)*T))));
 				post = postshift+T(find(rand(size(T))<(tres*lambda(l)*sin(2*pi*freqs(f)*T))));
-				W_here(n) = vlt.neuroscience.stdp.stdp_triplet_apply(pre,post);
+				W_here(n) = vlt.neuro.stdp.stdp_triplet_apply(pre,post);
 			end;
 			W(s,f,l) = mean(W_here);
 			Werr(s,f,l) = vlt.stats.stderr(W_here(:));

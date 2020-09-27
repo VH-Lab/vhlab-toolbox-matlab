@@ -1,6 +1,6 @@
 function DirRFModel_example3
 
-%  vlt.neuroscience.reverse_correlation.demos.DirRFModel_example3 - Using reverse correlation to reconstruct linear kernel in response to noise
+%  vlt.neuro.reverse_correlation.demos.DirRFModel_example3 - Using reverse correlation to reconstruct linear kernel in response to noise
 
 % STEP 1 - Create a hand-picked kernel
 
@@ -8,18 +8,18 @@ function DirRFModel_example3
 
 SpFreq = 1; TFreq = 4; Left = 1; Right = -1;
 
-D = vlt.neuroscience.reverse_correlation.createdirkernel(Dx,Dt,SpFreq,0,TFreq,Left,[3 2],[0.1 0.001 0.2],0.03); % assume mV output
+D = vlt.neuro.reverse_correlation.createdirkernel(Dx,Dt,SpFreq,0,TFreq,Left,[3 2],[0.1 0.001 0.2],0.03); % assume mV output
 
 % STEP 2 - Create a random stimulus
 
 Stimx = [0:0.1:10]; Stimt = [0:0.01:150];
-stim_random = vlt.neuroscience.reverse_correlation.stim1d_random(Stimx,Stimt,[1 0 -1],[0.1 0*0.8 0.1]);
+stim_random = vlt.neuro.reverse_correlation.stim1d_random(Stimx,Stimt,[1 0 -1],[0.1 0*0.8 0.1]);
 
 disp(['Setup complete, now simulating']);
 
 % STEP 3 - Simulate the response
 
-[R_random,sim_time] = vlt.neuroscience.reverse_correlation.simulate_1dkernel_response(D, Dx,Dt, stim_random, Stimx, Stimt);
+[R_random,sim_time] = vlt.neuro.reverse_correlation.simulate_1dkernel_response(D, Dx,Dt, stim_random, Stimx, Stimt);
 
 Rspikerate_random = 0.1*vlt.math.rectify(R_random*1000).^3;  % non-linear spike function
 
@@ -38,7 +38,7 @@ disp(['Average spike rate was ' num2str(sum(Rspikes_random)/Stimt(end)) ' Hz.'])
 disp(['Now computing reverse correlation']);
 
 kerneltimes = Dt;
-computed_kernel = vlt.neuroscience.reverse_correlation.spike_triggered_average_stepfunc(sim_time_spikes(find(Rspikes_random)),kerneltimes,Stimt,stim_random);
+computed_kernel = vlt.neuro.reverse_correlation.spike_triggered_average_stepfunc(sim_time_spikes(find(Rspikes_random)),kerneltimes,Stimt,stim_random);
 
 figure;
 

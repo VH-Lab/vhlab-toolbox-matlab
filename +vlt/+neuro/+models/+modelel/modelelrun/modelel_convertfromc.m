@@ -1,7 +1,7 @@
 function modelelstruct = modelel_convertfromc(desc_str)
 % MODELEL_CONVERTFROMC - Convert the text string output of the executable file to a Matlab modelel
 %
-%   MODELELSTRUCT = vlt.neuroscience.models.modelel.modelelrun.modelel_convertfromc(DESC_STR)
+%   MODELELSTRUCT = vlt.neuro.models.modelel.modelelrun.modelel_convertfromc(DESC_STR)
 %
 %   Given a full, multi-line string, converts to Matlab structures.
 %

@@ -1,18 +1,18 @@
 function [modelrunstruct,varsout] = modelrun(modelel, varargin)
 % MODELELRUN - Run a set of model elements modelel
 %
-%  MODELELRUNSTRUCT = vlt.neuroscience.models.modelel.modelelrun.modelelrun(MODELEL)
+%  MODELELRUNSTRUCT = vlt.neuro.models.modelel.modelelrun.modelelrun(MODELEL)
 %
 %  Runs a model that is composed of a list of modelel. The default parameters
 %  of the model can be altered by calling the form:
 %
-%  MODELELRUNSTRUCT = vlt.neuroscience.models.modelel.modelelrun.modelelrun(MODELEL, PARAM1NAME, PARAM1VALUE, ...)
+%  MODELELRUNSTRUCT = vlt.neuro.models.modelel.modelelrun.modelelrun(MODELEL, PARAM1NAME, PARAM1VALUE, ...)
 %
 %  If a second output variable is provided, then the variables that are
 %  stored to disk (if Directory isn't empty) are also returned in VARS.
 %  The values are long doubles in a NUMBER_OF_VARIABLES by NUMBER_OF_STEPS
 %  array.
-%  [MODELELRUNSTRUCT,VARS] = vlt.neuroscience.models.modelel.modelelrun.modelelrun(MODELEL, PARAM1NAME, PARAM1VALUE, ...)
+%  [MODELELRUNSTRUCT,VARS] = vlt.neuro.models.modelel.modelelrun.modelelrun(MODELEL, PARAM1NAME, PARAM1VALUE, ...)
 %  
 % MODELRUN structure elements/model parameters (defaults in parenthesis):
 % -------------------------------------------------------------------
@@ -75,7 +75,7 @@ modelrunstruct = struct('RandomSeed',RandomSeed,...
 			'Verbose', Verbose);
 
 if UseExecutable,
-	modelel_out = vlt.neuroscience.models.modelel.modelelrun.modelel_convertforc(modelrunstruct.Model_Initial_Structure, Variables);
+	modelel_out = vlt.neuro.models.modelel.modelelrun.modelel_convertforc(modelrunstruct.Model_Initial_Structure, Variables);
 	base_matlab_dir = vlt.path.pathstr2cellarray(userpath);
 	modelel_out_string = vlt.data.struct2mlstr(modelel_out);
 	% write text output file here
@@ -103,7 +103,7 @@ end;
 
 for n=1:modelrunstruct.Steps,
 	if mod(n,modelrunstruct.Verbose)==0,
-		disp(['vlt.neuroscience.models.modelel.modelelrun.modelelrun: currently on step ' int2str(n) ' of ' int2str(modelrunstruct.Steps) '.']);
+		disp(['vlt.neuro.models.modelel.modelelrun.modelelrun: currently on step ' int2str(n) ' of ' int2str(modelrunstruct.Steps) '.']);
 	end;
 	currentmodel = modelrunstruct.Model_Final_Structure;
 	for i=1:length(modelrunstruct.Model_Final_Structure),

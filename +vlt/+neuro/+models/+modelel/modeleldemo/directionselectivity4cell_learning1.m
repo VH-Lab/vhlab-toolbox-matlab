@@ -1,12 +1,12 @@
 function out = directionselectivity4cell_learning1(varargin)
 % DIRECTIONSELECTIVITY4CELL_LEARNING1
 %
-% OUT = vlt.neuroscience.models.modelel.modeleldemo.directionselectivity4cell_learning1
+% OUT = vlt.neuro.models.modelel.modeleldemo.directionselectivity4cell_learning1
 %
 % Observe a 4-input process develop and then lose direction selectivity
 %
 % One can also adjust the parameters using: 
-% OUT = vlt.neuroscience.models.modelel.modeleldemo.directionselectivity4cell_learning1(PARAM1NAME, PARAM1VALUE, ...)
+% OUT = vlt.neuro.models.modelel.modeleldemo.directionselectivity4cell_learning1(PARAM1NAME, PARAM1VALUE, ...)
 %   
 % The following parameters are adjustable (default value in ()):
 % ---------------------------------------------------------------------
@@ -33,7 +33,7 @@ Gmax_max = 5e-9;
 Gmax_min = 0;
 classic_stdp = 1;
 Gmax_initial = 3e-9 * ones(1,4);
-synmeth = 'vlt.neuroscience.models.modelel.synapseel.plasticity_methods.synapseel_stdp';
+synmeth = 'vlt.neuro.models.modelel.synapseel.plasticity_methods.synapseel_stdp';
 dt = 0.0001;
 trials = 100;
 synapseparams = {};
@@ -61,11 +61,11 @@ r_up = zeros(1,trials);
 r_down = zeros(1,trials);
 gmaxes = zeros(4,trials);
 
-[model_initial,di(1),r_up(1),r_down(1)] = vlt.neuroscience.models.modelel.modeleldemo.directionselectivity4celldemo('dt',dt,...
+[model_initial,di(1),r_up(1),r_down(1)] = vlt.neuro.models.modelel.modeleldemo.directionselectivity4celldemo('dt',dt,...
 	'latency',latency,'lag',lag,...
 	'Syn_Gmax_initial',Syn_Gmax_initial, 'plotit',0,'synapseparams',synapseparams,'intfireparams',intfireparams);
 
-syn_nums = vlt.neuroscience.models.modelel.synapseel.modelelgetsyn(model_initial,[1 2 3 4],[5 5 5 5]);
+syn_nums = vlt.neuro.models.modelel.synapseel.modelelgetsyn(model_initial,[1 2 3 4],[5 5 5 5]);
 
 gmaxes(:,1) = [Syn_Gmax_initial]';
 
@@ -74,7 +74,7 @@ global model_current
 for t=2:trials,
 	disp(['Running trial ' int2str(t) ' of ' int2str(trials) '.']);
 	% run in upward direction
-	[dummy,dummy,r_up(t),dummy,model_current] = vlt.neuroscience.models.modelel.modeleldemo.directionselectivity4celldemo('dt',dt,...
+	[dummy,dummy,r_up(t),dummy,model_current] = vlt.neuro.models.modelel.modeleldemo.directionselectivity4celldemo('dt',dt,...
 		'latency',latency,'lag',lag,...
 		'Syn_Gmax_initial',gmaxes(:,t-1)',...
 		'plasticity_params',synp,'plasticity_method',synmeth,...
@@ -88,7 +88,7 @@ for t=2:trials,
 
 	% figure out the 'down' spikes
 
-	[dummy,dummy,dummy,r_down(t)] = vlt.neuroscience.models.modelel.modeleldemo.directionselectivity4celldemo('dt',dt,'latency',latency','lag',lag,...
+	[dummy,dummy,dummy,r_down(t)] = vlt.neuro.models.modelel.modeleldemo.directionselectivity4celldemo('dt',dt,'latency',latency','lag',lag,...
 		'Syn_Gmax_initial',gmaxes(:,t)', 'plotit',0, 'simup', 0,'synapseparams',synapseparams,'intfireparams',intfireparams);
 
 	di = (r_up - r_down)./(r_up+r_down);
@@ -99,7 +99,7 @@ for t=2:trials,
 		out.r_up = r_up;
 		out.r_down = r_down;
 		out.gmaxes = gmaxes;
-		vlt.neuroscience.models.modelel.modeleldemo.plotdirectionselectivity4cell(out);
+		vlt.neuro.models.modelel.modeleldemo.plotdirectionselectivity4cell(out);
 		drawnow; % make sure it draws before we proceed
 	end;
 end;

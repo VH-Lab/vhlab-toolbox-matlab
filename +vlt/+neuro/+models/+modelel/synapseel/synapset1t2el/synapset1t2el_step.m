@@ -1,12 +1,12 @@
 function [synapset1t2el] = synapset1t2el_step(synapset1t2el, modelstruct)
 % SYNAPSET1T2EL_STEP - Calculate the conductance at a list of synapses
 %
-%  SYNAPSET1T2EL = vlt.neuroscience.models.modelel.synapseel.synapset1t2el.synapset1t2el_step(SYNAPSET1T2EL, MODELSTRUCT)
+%  SYNAPSET1T2EL = vlt.neuro.models.modelel.synapseel.synapset1t2el.synapset1t2el_step(SYNAPSET1T2EL, MODELSTRUCT)
 %
 % Given a model synapse SYNAPSET1T2EL, and the full model structure
 % MODELSTRUCT, updates the conductance field.
 %
-% See also: vlt.neuroscience.models.modelel.synapseel.synapset1t2el.synapset1t2el_init
+% See also: vlt.neuro.models.modelel.synapseel.synapset1t2el.synapset1t2el_init
 
 
  % which spikes to include?

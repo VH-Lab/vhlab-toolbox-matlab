@@ -1,6 +1,6 @@
 function [nMLEFit,nHSTD, gain, T] = slowdenoise(spiketimets, stimettimets, stimids, actualR, t0, t1, dt, tFilter, f)
 % SLOWDENOISE - Remove slow gain changes from spike train
-%   [RATE, GAIN, T] = vlt.neuroscience.mledenoise.archived_code.slowdenoise(SPIKETIMES, STIMTIMES, STIMIDS, T0, T1, DT, TFILTER, F)
+%   [RATE, GAIN, T] = vlt.neuro.mledenoise.archived_code.slowdenoise(SPIKETIMES, STIMTIMES, STIMIDS, T0, T1, DT, TFILTER, F)
 %
 %      STIMTIMES - An S x 2 matrix where S is the number of stims,
 %               and the first column is the onset timet for each stim, and 
@@ -71,24 +71,24 @@ x0 = [0; mF'];
 
 fixA = sinparams(1:3:12)';
 
-[x fval] = vlt.neuroscience.mledenoise.archived_code.MLE_Pois(t,dt,spiketimets,stimulitimets,sinparams,fixA,1,x0,smoothness);
+[x fval] = vlt.neuro.mledenoise.archived_code.MLE_Pois(t,dt,spiketimets,stimulitimets,sinparams,fixA,1,x0,smoothness);
 
 for zz = 1:10
 	x0 = fixA;
 	fixF = x;
 	if F==0,
-		[x fval] = vlt.neuroscience.mledenoise.archived_code.MLE_Pois(t,dt,spiketimets,stimulitimets,sinparams,fixF,0,x0,smoothness);
+		[x fval] = vlt.neuro.mledenoise.archived_code.MLE_Pois(t,dt,spiketimets,stimulitimets,sinparams,fixF,0,x0,smoothness);
 	else,
-		[x fval] = vlt.neuroscience.mledenoise.archived_code.MLE_Gauss(t,dt,F1Magnitude,stimulitimets,sinparams,fixF,0,x0,smoothness);
+		[x fval] = vlt.neuro.mledenoise.archived_code.MLE_Gauss(t,dt,F1Magnitude,stimulitimets,sinparams,fixF,0,x0,smoothness);
 	end;
 	mle(zz,1) = fval;
 
 	x0 = fixF;
 	fixA = x;
 	if F==0,
-		[x fval] = vlt.neuroscience.mledenoise.archived_code.MLE_Pois(t,dt,spiketimets,stimulitimets,sinparams,fixA,1,x0,smoothness);
+		[x fval] = vlt.neuro.mledenoise.archived_code.MLE_Pois(t,dt,spiketimets,stimulitimets,sinparams,fixA,1,x0,smoothness);
 	else,
-		[x fval] = vlt.neuroscience.mledenoise.archived_code.MLE_Gauss(t,dt,F1Magnitude,stimulitimets,sinparams,fixA,1,x0,smoothness);
+		[x fval] = vlt.neuro.mledenoise.archived_code.MLE_Gauss(t,dt,F1Magnitude,stimulitimets,sinparams,fixA,1,x0,smoothness);
 	end;
 	mle(zz,2) = fval;
 end

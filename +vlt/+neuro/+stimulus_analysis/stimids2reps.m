@@ -1,10 +1,10 @@
 function [reps, isregular] = stimids2reps(stimids, numstims)
 % STIMIDS2REPS - Label each stimulus id with the repetition number for a regular stimulus sequence
 %
-%  [REPS, ISREGULAR] = vlt.neuroscience.stimulus_analysis.stimids2reps(STIMIDS, NUMSTIMS)
+%  [REPS, ISREGULAR] = vlt.neuro.stimulus_analysis.stimids2reps(STIMIDS, NUMSTIMS)
 %
 %  Given a list of STIMIDS that indicate an order of presentation,
-%  and given that STIMIDS range from 1..NUMSTIMS, vlt.neuroscience.stimulus_analysis.stimids2reps returns a label
+%  and given that STIMIDS range from 1..NUMSTIMS, vlt.neuro.stimulus_analysis.stimids2reps returns a label
 %  REPS, the same size as STIMIDS, that indicates the repetition
 %  number if the stimuli were to be presented in a regular order. 
 %  Regular order means that all stimuli 1...NUMSTIMS are shown in some order once,
@@ -15,7 +15,7 @@ function [reps, isregular] = stimids2reps(stimids, numstims)
 %  (that is, if a sequence ended early it can still be regular).
 %
 % Example:
-%    [reps,isregular] = vlt.neuroscience.stimulus_analysis.stimids2reps([1 2 3 1 2 3],3)
+%    [reps,isregular] = vlt.neuro.stimulus_analysis.stimids2reps([1 2 3 1 2 3],3)
 %       % reps = [1 1 1 2 2 2]
 %       % isregular = 1
 %

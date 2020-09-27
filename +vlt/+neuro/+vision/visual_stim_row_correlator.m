@@ -1,7 +1,7 @@
 function next_frame = visual_stim_row_correlator(frame_data, correlator,sign)
 % VISUAL_STIM_ROW_CORRELATOR - Compute the next visual stimulus frame for a given correlator
 %
-%  NEXT_FRAME = vlt.neuroscience.vision.visual_stim_row_correlator(FRAME_DATA, CORRELATOR, SIGN)
+%  NEXT_FRAME = vlt.neuro.vision.visual_stim_row_correlator(FRAME_DATA, CORRELATOR, SIGN)
 %
 %  Given a frame of visual stimulus data that consists of -1's and 1s
 %  (FRAME_DATA), then a new frame (NEXT_FRAME) of -1's and 1s is created
@@ -29,7 +29,7 @@ function next_frame = visual_stim_row_correlator(frame_data, correlator,sign)
 %      corelator_sign = 1;
 %      row_data = [ 1 1 -1 1 -1 -1 1 1]; % made up data
 %      for i=1:10,
-%         row_data(i+1,:) = vlt.neuroscience.vision.visual_stim_row_correlator(row_data(i,:),correlator,correlator_sign);
+%         row_data(i+1,:) = vlt.neuro.vision.visual_stim_row_correlator(row_data(i,:),correlator,correlator_sign);
 %      end;
 %      row_data,
 %    

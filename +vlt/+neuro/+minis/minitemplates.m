@@ -1,6 +1,6 @@
 function [mt,t,params] = minitemplates(varargin)
 %
-%  [MT,T,PARAMS] = vlt.neuroscience.minis.minitemplates(...)
+%  [MT,T,PARAMS] = vlt.neuro.minis.minitemplates(...)
 %
 %  Returns several rows of mini EPSC templates, ranging in amplitude from
 %  0.1 to 1 in amplitude, and with a range of tau onsets and offsets.

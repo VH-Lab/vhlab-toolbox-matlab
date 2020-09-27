@@ -1,7 +1,7 @@
 function [response] = descramble_pseudorandom(stim_responses, stim_values)
 % DESCRAMBLE_PSEUDORANDOM - Descramble responses to pseduorandomly varied stimuli
 %
-%   [RESPONSE_CURVE] = vlt.neuroscience.stimulus_analysis.descramble_pseudorandom(STIM_RESPONSES, STIMVALUES)
+%   [RESPONSE_CURVE] = vlt.neuro.stimulus_analysis.descramble_pseudorandom(STIM_RESPONSES, STIMVALUES)
 %
 %  Descrambles responses to pseudorandomly varied stimuli.
 %

@@ -1,7 +1,7 @@
 function [rmg,cvalue] = contrastfit2relativemaximumgain(contrast, responses)
 % CONTRASTFIT2RELATIVEMAXIMUMGAIN - Compute relative maximum gain
 %
-%   [RMG,CVALUE] = vlt.neuroscience.vision.contrast.indexes.contrastfit2relativemaximumgain(CONTRAST, RESPONSE)
+%   [RMG,CVALUE] = vlt.neuro.vision.contrast.indexes.contrastfit2relativemaximumgain(CONTRAST, RESPONSE)
 %
 %  Given contrast in 1 percent steps in CONTRAST, this function
 %  computes the relative maximum gain that is defined as:

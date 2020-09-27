@@ -1,7 +1,7 @@
 function model = modelelsynconn(model, inds, W, protosyn)
 % MODELELSYNCONN - Make synaptic connections among modelel elements
 %
-%   MODEL = vlt.neuroscience.models.modelel.synapseel.modelelsynconn(MODEL, INDS, W, PROTOSYN)
+%   MODEL = vlt.neuro.models.modelel.synapseel.modelelsynconn(MODEL, INDS, W, PROTOSYN)
 %
 %   PROTOSYN can be a prototpe synapse or the number of a modelel element
 %   in MODEL that should serve as a prototype synapse.

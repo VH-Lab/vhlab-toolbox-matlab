@@ -1,7 +1,7 @@
 function ll = loglikelihood_spikerate(bin_rates, bin_sizes, spikerates, sigma)
 % LOGLIKELIHOOD_SPIKERATE - Compute the log likelihood of seeing spike rates
 %
-%  LL = vlt.neuroscience.spiketrains.loglikelihood_spikerate(BIN_RATES, BIN_DURATIONS, SPIKERATES, SIGMA)
+%  LL = vlt.neuro.spiketrains.loglikelihood_spikerate(BIN_RATES, BIN_DURATIONS, SPIKERATES, SIGMA)
 %
 %  Computes the log likelihood of observing SPIKECOUNTS(i) in 
 %  bins of length BIN_DURATION(i) with firing rates BIN_RATES(i).

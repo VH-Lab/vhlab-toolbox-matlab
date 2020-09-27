@@ -1,7 +1,7 @@
 function rate = spiketrain2rate(spiketrain, dt, blur, varargin)
 % SPIKETRAIN2RATE - compute a 'blurred' spike rate from 0/1 spike train
 %
-% RATE = vlt.neuroscience.spiketrains.spiketrain2rate(SPIKETRAIN, DT, BLUR, ...)
+% RATE = vlt.neuro.spiketrains.spiketrain2rate(SPIKETRAIN, DT, BLUR, ...)
 %
 % Given a vector of 0/1 binned SPIKETRAIN data and the sampling interval DT
 % of the SPIKETRAIN, estimate a RATE of the spiking process by blurring with
@@ -12,16 +12,16 @@ function rate = spiketrain2rate(spiketrain, dt, blur, varargin)
 % -----------------------------------------------------------------------------
 % BlurFunc ('gaussian')      | The blur function to use. Default is 'gaussian'.
 %
-% See also: vlt.data.namevaluepair, vlt.neuroscience.spiketrains.spiketimes2bins
+% See also: vlt.data.namevaluepair, vlt.neuro.spiketrains.spiketimes2bins
 %
 %
 % Example:
 %   dt = 0.001; t_start = 0; t_end = 50/2;
 %   maxrate = 50; tFreq = 2; phase = 0; rate_offset = 20;
-%   ST = vlt.neuroscience.spiketrains.spiketrain_sinusoidal(maxrate,tFreq,phase,rate_offset,t_start,t_end,dt); % 50 cycles at 2Hz
+%   ST = vlt.neuro.spiketrains.spiketrain_sinusoidal(maxrate,tFreq,phase,rate_offset,t_start,t_end,dt); % 50 cycles at 2Hz
 %   T = t_start:dt:t_end;
-%   SC = vlt.neuroscience.spiketrains.spiketimes2bins(ST,T);
-%   R = vlt.neuroscience.spiketrains.spiketrain2rate(SC,dt,0.005);
+%   SC = vlt.neuro.spiketrains.spiketimes2bins(ST,T);
+%   R = vlt.neuro.spiketrains.spiketrain2rate(SC,dt,0.005);
 %   figure;
 %   subplot(2,1,1);
 %   plot(T,R);

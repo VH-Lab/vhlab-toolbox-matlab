@@ -1,7 +1,7 @@
 function c50 = contrastfit2c50(contrast, responses)
 % CONTRASTFIT2C50- Compute Half maximum
 %
-%   C50 = vlt.neuroscience.vision.contrast.indexes.contrastfit2c50(CONTRAST, RESPONSE)
+%   C50 = vlt.neuro.vision.contrast.indexes.contrastfit2c50(CONTRAST, RESPONSE)
 %
 %  Given contrast in 1 percent steps in CONTRAST, this function
 %  computes the half maximum value that is defined as:

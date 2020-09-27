@@ -24,18 +24,18 @@ for i=1:3,
 	
 	figure(trainfig);
 	subplot(3,1,i);
-	pre = vlt.neuroscience.spiketrains.spiketrain_poisson_n(lambda(l),N,tres);
-	post = vlt.neuroscience.spiketrains.spiketrain_timingcorrelated(pre+shifts(s),corrs(c));
-	vlt.neuroscience.spiketrains.spiketimes_plot(pre,'color',[0 0 1]);
+	pre = vlt.neuro.spiketrains.spiketrain_poisson_n(lambda(l),N,tres);
+	post = vlt.neuro.spiketrains.spiketrain_timingcorrelated(pre+shifts(s),corrs(c));
+	vlt.neuro.spiketrains.spiketimes_plot(pre,'color',[0 0 1]);
 	hold on;
-	vlt.neuroscience.spiketrains.spiketimes_plot(post,'color',[0 1 0],'hashcenter',-0.5);
+	vlt.neuro.spiketrains.spiketimes_plot(post,'color',[0 1 0],'hashcenter',-0.5);
 	box off;
 	axis([0 10 -1 1])
 	set(gca,'ytick',[]);
 
 	figure(corrfig);
 	subplot(2,2,i);
-	[corr,lags] = vlt.neuroscience.spiketrains.spiketimes_correlation(pre,post,0.005,0.1);
+	[corr,lags] = vlt.neuro.spiketrains.spiketimes_correlation(pre,post,0.005,0.1);
 	corr = 100 * corr / length(pre);
 	bar(lags,corr,'k');
 	box off;
@@ -59,18 +59,18 @@ for i=1:3,
 	
 	figure(trainfig);
 	subplot(3,1,i);
-	pre = vlt.neuroscience.spiketrains.spiketrain_poisson_n(lambda(l),N,tres);
-	post = vlt.neuroscience.spiketrains.spiketrain_timingcorrelated(pre+shifts(s),corrs(c));
-	vlt.neuroscience.spiketrains.spiketimes_plot(pre,'color',[0 0 1]);
+	pre = vlt.neuro.spiketrains.spiketrain_poisson_n(lambda(l),N,tres);
+	post = vlt.neuro.spiketrains.spiketrain_timingcorrelated(pre+shifts(s),corrs(c));
+	vlt.neuro.spiketrains.spiketimes_plot(pre,'color',[0 0 1]);
 	hold on;
-	vlt.neuroscience.spiketrains.spiketimes_plot(post,'color',[0 1 0],'hashcenter',-0.5);
+	vlt.neuro.spiketrains.spiketimes_plot(post,'color',[0 1 0],'hashcenter',-0.5);
 	box off;
 	axis([0 10 -1 1])
 	set(gca,'ytick',[]);
 
 	figure(corrfig);
 	subplot(2,2,i);
-	[corr,lags] = vlt.neuroscience.spiketrains.spiketimes_correlation(pre,post,0.005,0.1);
+	[corr,lags] = vlt.neuro.spiketrains.spiketimes_correlation(pre,post,0.005,0.1);
 	corr = 100 * corr / length(pre);
 	bar(lags,corr,'k');
 	box off;
@@ -109,16 +109,16 @@ for i=1:3,
 	subplot(3,1,i);
 	pre = preshift+T(find(rand(size(T))<(tres*lambda(l)*sin(2*pi*freqs(f)*T))));
 	post = postshift+T(find(rand(size(T))<(tres*lambda(l)*sin(2*pi*freqs(f)*T))));
-	vlt.neuroscience.spiketrains.spiketimes_plot(pre,'color',[0 0 1]);
+	vlt.neuro.spiketrains.spiketimes_plot(pre,'color',[0 0 1]);
 	hold on;
-	vlt.neuroscience.spiketrains.spiketimes_plot(post,'color',[0 1 0],'hashcenter',-0.5);
+	vlt.neuro.spiketrains.spiketimes_plot(post,'color',[0 1 0],'hashcenter',-0.5);
 	box off;
 	axis([0 10 -1 1])
 	set(gca,'ytick',[]);
 
 	figure(corrfig);
 	subplot(2,2,i);
-	[corr,lags] = vlt.neuroscience.spiketrains.spiketimes_correlation(pre,post,0.005,0.1);
+	[corr,lags] = vlt.neuro.spiketrains.spiketimes_correlation(pre,post,0.005,0.1);
 	corr = 100 * corr / length(pre);
 	bar(lags,corr,'k');
 	box off;
@@ -150,16 +150,16 @@ for i=1:3,
 	subplot(3,1,i);
 	pre = preshift+T(find(rand(size(T))<(tres*lambda(l)*sin(2*pi*freqs(f)*T))));
 	post = postshift+T(find(rand(size(T))<(tres*lambda(l)*sin(2*pi*freqs(f)*T))));
-	vlt.neuroscience.spiketrains.spiketimes_plot(pre,'color',[0 0 1]);
+	vlt.neuro.spiketrains.spiketimes_plot(pre,'color',[0 0 1]);
 	hold on;
-	vlt.neuroscience.spiketrains.spiketimes_plot(post,'color',[0 1 0],'hashcenter',-0.5);
+	vlt.neuro.spiketrains.spiketimes_plot(post,'color',[0 1 0],'hashcenter',-0.5);
 	box off;
 	axis([0 10 -1 1])
 	set(gca,'ytick',[]);
 
 	figure(corrfig);
 	subplot(2,2,i);
-	[corr,lags] = vlt.neuroscience.spiketrains.spiketimes_correlation(pre,post,0.005,0.1);
+	[corr,lags] = vlt.neuro.spiketrains.spiketimes_correlation(pre,post,0.005,0.1);
 	corr = 100 * corr / length(pre);
 	bar(lags,corr,'k');
 	box off;

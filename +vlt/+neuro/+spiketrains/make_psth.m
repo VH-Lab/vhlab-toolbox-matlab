@@ -1,8 +1,8 @@
 function [N,X, rast,vals] = make_psth(spikedata, triggers, interv, res, normalize);
 
-%  [N,X, RAST] = vlt.neuroscience.spiketrains.make_psth(SPIKEDATA, TRIGGERS, INTERV, RES, NORMALIZE, RASTTYPE)
+%  [N,X, RAST] = vlt.neuro.spiketrains.make_psth(SPIKEDATA, TRIGGERS, INTERV, RES, NORMALIZE, RASTTYPE)
 %
-%      vlt.neuroscience.spiketrains.make_psth gives a peri-stimulus time histogram.  The bins of the
+%      vlt.neuro.spiketrains.make_psth gives a peri-stimulus time histogram.  The bins of the
 %  histogram are given in X, while the values in each bin are given in N.
 %  Rasters are also returned in the sparse matrix RAST; each trial has a
 %  separate row.  The function takes as arguments SPIKEDATA, a spikedata

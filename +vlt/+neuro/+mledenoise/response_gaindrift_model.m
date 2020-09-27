@@ -1,7 +1,7 @@
 function r = response_gaindrift_model(t, dt, stimlist, SPs, g_params, s_i_parameters)
 % RESPONSE_GAINDRIFT_MODEL - Computes the response of the gain drift model
 %
-%  R=vlt.neuroscience.mledenoise.response_gaindrift_model(STIM_TIMES, STIM_DURATION, STIMLIST,...
+%  R=vlt.neuro.mledenoise.response_gaindrift_model(STIM_TIMES, STIM_DURATION, STIMLIST,...
 %      SINPARAMS, G_PARAMS, S_I_PARAMS);
 %
 %   This function assumes that the response to a neural spike train in response to stimuli

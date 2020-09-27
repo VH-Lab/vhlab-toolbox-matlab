@@ -1,7 +1,7 @@
 function weight = stdp_apply(spiketimes_pre, spiketimes_post, varargin)
 % STDP_APPLY Spike-timing dependent-plasticity for calculating changes in synaptic weights
 %
-%    WEIGHT = vlt.neuroscience.stdp.stdp_apply(SPIKETIMES_PRE, SPIKETIMES_POST)
+%    WEIGHT = vlt.neuro.stdp.stdp_apply(SPIKETIMES_PRE, SPIKETIMES_POST)
 %
 %  Calculates the change in synaptic weight due to the classic
 %  SPIKE-TIMING-DEPENDENT-PLASTICITY model curve provided in
@@ -24,7 +24,7 @@ function weight = stdp_apply(spiketimes_pre, spiketimes_post, varargin)
 %  The parameters of the synapse can be varied by providing additional 
 %  inputs as name, value pairs. The names and values that are default are
 %  shown here. For example,
-%    WEIGHT = vlt.neuroscience.stdp.stdp_apply(SPIKETIMES_PRE, SPIKETIMES_POST, 'tau_plus',0.050)
+%    WEIGHT = vlt.neuro.stdp.stdp_apply(SPIKETIMES_PRE, SPIKETIMES_POST, 'tau_plus',0.050)
 %
 %  Parameter name:               | default value
 %  ------------------------------|-----------------------------

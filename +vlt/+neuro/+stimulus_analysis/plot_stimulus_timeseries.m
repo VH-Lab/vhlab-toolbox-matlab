@@ -1,7 +1,7 @@
 function [h,htext]=plot_stimulus_timeseries(y, stimon, stimoff, varargin)
 % PLOT_STIMULUS_TIMESERIES - plot the occurence of a stimulus or stimuli as a thick bar on a time series plot
 %
-% [H,HTEXT] = vlt.neuroscience.stimulus_analysis.plot_stimulus_timeseries(Y, STIMON, STIMOFF, ...)
+% [H,HTEXT] = vlt.neuro.stimulus_analysis.plot_stimulus_timeseries(Y, STIMON, STIMOFF, ...)
 %
 % Uses a thick horizontal bar to indicate the presentation time of a set of stimuli.
 % STIMON should be a vector containing all stimulus ON times.

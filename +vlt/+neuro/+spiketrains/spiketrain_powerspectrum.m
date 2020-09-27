@@ -1,7 +1,7 @@
 function [Pxx,Pxxc,F] = spiketrain_powerspectrum(spiketimes, sample_interval, varargin)
 % SPIKETRAIN_POWERSPECTRUM - Compute power spectrum of a spiketrain using pmtm
 %
-%  [Pxx,Pxxc,F] = vlt.neuroscience.spiketrains.spiketrain_powerspectrum(SPIKETIMES, TIME_RESOLUTION)
+%  [Pxx,Pxxc,F] = vlt.neuro.spiketrains.spiketrain_powerspectrum(SPIKETIMES, TIME_RESOLUTION)
 %
 %  Use the Tomson Multi-Taper method (see help pmtm) to calculate the 
 %  power spectrum of a list of SPIKETIMES, sampled with time resolution
@@ -20,7 +20,7 @@ function [Pxx,Pxxc,F] = spiketrain_powerspectrum(spiketimes, sample_interval, va
 %    t = 0:dt:100;  % 100 seconds long
 %    rate = 10*vlt.math.rectify(cos(2*pi*0.5*t)*dt); % 
 %    spiketimes = t(find(rand(size(rate))<rate)); 
-%    [Pxx,Pxxc,F] = vlt.neuroscience.spiketrains.spiketrain_powerspectrum(spiketimes,0.01);
+%    [Pxx,Pxxc,F] = vlt.neuro.spiketrains.spiketrain_powerspectrum(spiketimes,0.01);
 %    figure;
 %    loglog(F,Pxx); 
 %    hold on;
@@ -44,7 +44,7 @@ end;
 if isempty(timebins), timebins = 0:sample_interval:30; end;
 if length(timebins)<2, timebins = (0:sample_interval:30) + spiketimes(1); end;
 if timebins(end)-timebins(1)<30, timebins = (0:sample_interval:30) + spiketimes(1); end;
-spikebins = vlt.neuroscience.spiketrains.spiketimes2bins(spiketimes,timebins);
+spikebins = vlt.neuro.spiketrains.spiketimes2bins(spiketimes,timebins);
 [Pxx,Pxxc,F] = pmtm(spikebins,[],[NFFT],1/sample_interval,'adapt','onesided');
 
 %[Pxx,F] = pwelch(spikebins,[],[],[],1/sample_interval);

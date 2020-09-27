@@ -2,7 +2,7 @@ function [spiketimes, r, t, stim_on_times, stim_off_times, stimids, g] =  gaindr
 % GAINDRIFTEXAMPLE - Create an artificial stimulus response where gain varies
 %
 %  [SPIKETIMES, R, T, STIM_ON_TIMES, STIM_OFF_TIMES, STIM_NUMBERS, G] = ...
-%          vlt.neuroscience.mledenoise.gaindriftexample
+%          vlt.neuro.mledenoise.gaindriftexample
 %
 %  Creates a spike train that with the following rate:
 %
@@ -23,7 +23,7 @@ function [spiketimes, r, t, stim_on_times, stim_off_times, stimids, g] =  gaindr
 %  Alternatively, one may use:
 %
 %  [SPIKETIMES, STIM_ON_TIMES, STIM_OFF_TIMES, STIM_NUMBERS] = ...
-%          vlt.neuroscience.mledenoise.gaindriftexample('PROPERTY1',VALUE1,...);
+%          vlt.neuro.mledenoise.gaindriftexample('PROPERTY1',VALUE1,...);
 %
 %  can be used to alter the parameters used to create the model as follows:
 %
@@ -48,7 +48,7 @@ function [spiketimes, r, t, stim_on_times, stim_off_times, stimids, g] =  gaindr
 %
 %  Example:
 %
-%     [spiketimes,r,t,stimon,stimoff,stimids,g]=vlt.neuroscience.mledenoise.gaindriftexample;
+%     [spiketimes,r,t,stimon,stimoff,stimids,g]=vlt.neuro.mledenoise.gaindriftexample;
 %     figure;
 %     plot(t,r);
 %     hold on;

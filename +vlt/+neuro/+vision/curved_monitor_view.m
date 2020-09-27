@@ -1,7 +1,7 @@
 function system=curved_monitor_view(monitor_diag, aspectratio, radius, viewing_distance)
 % CURVED_MONITOR_VIEW - Given the dimensions of a curved monitor, calculate the viewing angle of the animal
 %
-% SYSTEM = vlt.neuroscience.vision.curved_monitor_view(MONITOR_DIAG, ASPECTRATIO, RADIUS, VIEWING_DISTANCE)
+% SYSTEM = vlt.neuro.vision.curved_monitor_view(MONITOR_DIAG, ASPECTRATIO, RADIUS, VIEWING_DISTANCE)
 %
 % MONITOR_DIAG should be the diagonal monitor size (usually what is specified,
 % multiply by 2.54 to get cm from inches).

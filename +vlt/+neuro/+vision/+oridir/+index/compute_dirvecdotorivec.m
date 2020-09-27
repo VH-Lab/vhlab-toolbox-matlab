@@ -1,7 +1,7 @@
 function di = compute_dirvecdotorivec( angles, rates )
 % COMPUTE_DIRVECDOTORIVEC - Direction index based on dot product with computed orientation vector
 %
-%     DI = vlt.neuroscience.vision.oridir.indexes.compute_dirvecdotorivec( ANGLES, RATES )
+%     DI = vlt.neuro.vision.oridir.indexes.compute_dirvecdotorivec( ANGLES, RATES )
 %
 %     Takes ANGLES in degrees, and RATES is the response to each angle
 %     in a row vector.

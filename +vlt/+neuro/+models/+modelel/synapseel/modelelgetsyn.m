@@ -1,7 +1,7 @@
 function syn_nums = modelelgetsyn(modelel, prelist, postlist)
 % MODELELGETSYN - Return element number of synapses among particular neurons
 %
-%  SYN_NUMS = vlt.neuroscience.models.modelel.synapseel.modelelgetsyn(MODELEL, PRELIST, POSTLIST)
+%  SYN_NUMS = vlt.neuro.models.modelel.synapseel.modelelgetsyn(MODELEL, PRELIST, POSTLIST)
 %
 %  Return the model elements that correspond to synapses between elements
 %  PRELIST and POSTLIST.  SYN_NUMS(i) will be the synapse between 

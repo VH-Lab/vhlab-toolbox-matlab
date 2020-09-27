@@ -1,7 +1,7 @@
 function [corr,lags] = spiketimes_correlation(train1,train2, binsize, maxlag)
 % SPIKETIMES_CORRELATION - Compute correlation of 2 spike trains
 %
-%   [CORR, LAGS] = vlt.neuroscience.spiketrains.spiketimes_correlation(TRAIN1,TRAIN2,BINSIZE, MAXLAG)
+%   [CORR, LAGS] = vlt.neuro.spiketrains.spiketimes_correlation(TRAIN1,TRAIN2,BINSIZE, MAXLAG)
 %
 %  Computes the raw correlation between 2 spike trains that are specified by
 %  the spike times of TRAIN1 and TRAIN2 at the lags requested from -MAXLAG to MAXLAG.
@@ -18,7 +18,7 @@ function [corr,lags] = spiketimes_correlation(train1,train2, binsize, maxlag)
 %  Example:
 %     train1 = [ 0 0.010 0.020];
 %     train2 = [ 0 0.010 0.020 0.022];
-%     [corr,lags] = vlt.neuroscience.spiketrains.spiketimes_correlation(train1,train2,0.001,0.010);
+%     [corr,lags] = vlt.neuro.spiketrains.spiketimes_correlation(train1,train2,0.001,0.010);
 %     figure;
 %     bar(lags,corr);
 %     xlabel('Time lags');
@@ -31,8 +31,8 @@ function [corr,lags] = spiketimes_correlation(train1,train2, binsize, maxlag)
 
 bins = min(min(train1),min(train2)):binsize:max(max(train1),max(train2));
 
-train1_bins = vlt.neuroscience.spiketrains.spiketimes2bins(train1,bins);
-train2_bins = vlt.neuroscience.spiketrains.spiketimes2bins(train2,bins);
+train1_bins = vlt.neuro.spiketrains.spiketimes2bins(train1,bins);
+train2_bins = vlt.neuro.spiketrains.spiketimes2bins(train2,bins);
 
 [corr,lags] = xcorr(train2_bins,train1_bins,round(maxlag/binsize));
 

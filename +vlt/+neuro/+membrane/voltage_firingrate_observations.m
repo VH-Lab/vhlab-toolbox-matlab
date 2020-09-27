@@ -81,7 +81,7 @@ end
 
   % Step 2: prepare the firing rate information, smoothing with Gaussian if needed
 
-spikes = vlt.neuroscience.spiketrains.spiketimes2bins(spiketimes,t);
+spikes = vlt.neuro.spiketrains.spiketimes2bins(spiketimes,t);
 spikes = spikes(:)'; % ensure row vector
 gaussian_samples = round(fr_smooth/dt);  % size of gaussian blur sigma, in samples rather than in units of time
 if ~isempty(fr_smooth),

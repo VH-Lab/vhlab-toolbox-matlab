@@ -1,13 +1,13 @@
 function [isi] = interspikeinterval(spiketimes, bins)
 % INTERSPIKEINTERVAL - Calculate interspike interval distribution for spiketrain
 %
-%  ISI = vlt.neuroscience.spiketrains.interspikeinterval(SPIKETIMES, BINS)
+%  ISI = vlt.neuro.spiketrains.interspikeinterval(SPIKETIMES, BINS)
 %
 %  Calculates the distribution of interspike intervals for the list of
 %  spikes SPIKETIMES. SPIKETIMES should be in the same time units as BINS.
 %
 %  If the function is called without a BINS argument:
-%  ISI = vlt.neuroscience.spiketrains.interspikeinterval(SPIKETIMES)
+%  ISI = vlt.neuro.spiketrains.interspikeinterval(SPIKETIMES)
 %     then BINS is taken to be [0:0.001:0.100]
 %     (that is, 1ms bins from 0 to 0.100 seconds)
 %    
@@ -20,7 +20,7 @@ function [isi] = interspikeinterval(spiketimes, bins)
 %    spikebin_indexes = find(spikebins); % find locations of spikes
 %    spiketimes = t(spikebin_indexes); % get the corresponding time values
 %    bins = 0:0.001:0.1;
-%    ISI = vlt.neuroscience.spiketrains.interspikeinterval(spiketimes,bins);
+%    ISI = vlt.neuro.spiketrains.interspikeinterval(spiketimes,bins);
 %    % plot as a fraction of total
 %    bar(bins+0.001/2,ISI/sum(ISI));
 %

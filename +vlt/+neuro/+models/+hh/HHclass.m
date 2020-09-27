@@ -4,7 +4,7 @@
   % _An Introductory Course in Computational Neuroscience_ by Paul Miller
 
 
-classdef vlt.neuroscience.models.hh.HHclass < vlt.neuroscience.models.hh.neuronmodelclass
+classdef vlt.neuro.models.hh.HHclass < vlt.neuro.models.hh.neuronmodelclass
     
 	properties
 		E_Na; % reversal for sodium channels (V)
@@ -21,7 +21,7 @@ classdef vlt.neuroscience.models.hh.HHclass < vlt.neuroscience.models.hh.neuronm
 	end
     
 	methods
-		function HHobj = vlt.neuroscience.models.hh.HHclass(varargin)
+		function HHobj = vlt.neuro.models.hh.HHclass(varargin)
 			V_threshold = -0.015;
 			E_Na = 0.045;
 			E_K = -0.082; 
@@ -34,7 +34,7 @@ classdef vlt.neuroscience.models.hh.HHclass < vlt.neuroscience.models.hh.neuronm
 			TEA = 0;
 			vlt.data.assign(varargin{:});
 
-			HHobj = HHobj@vlt.neuroscience.models.hh.neuronmodelclass(varargin{:});
+			HHobj = HHobj@vlt.neuro.models.hh.neuronmodelclass(varargin{:});
 			HHobj.V_threshold = V_threshold; 
 			HHobj.dt = dt;
 			HHobj.t = HHobj.t_start:HHobj.dt:HHobj.t_end;

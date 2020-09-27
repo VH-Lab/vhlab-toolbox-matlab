@@ -1,7 +1,7 @@
 function spike_counts = spiketimes2bins(spiketimes, times)
 % SPIKETIMES2BINS - Convert a list of spike times to discrete time bins
 %
-%   SPIKE_COUNTS = vlt.neuroscience.spiketrains.spiketimes2bins(SPIKETIMES, TIMES)
+%   SPIKE_COUNTS = vlt.neuro.spiketrains.spiketimes2bins(SPIKETIMES, TIMES)
 %
 %   Takes a list of spike times (in units of TIMES) and calculates the
 %   number of spikes that fall within time bins TIMES(i) - TIMES(i+1).
@@ -20,7 +20,7 @@ function spike_counts = spiketimes2bins(spiketimes, times)
 %     spike_indexes = find(S); % find which bins have spikes
 %     spiketimes = T(spike_indexes);  % get the time of those bins
 %
-%     S2 = vlt.neuroscience.spiketrains.spiketimes2bins(spiketimes,T); % convert back
+%     S2 = vlt.neuro.spiketrains.spiketimes2bins(spiketimes,T); % convert back
 %
 %     all(S==S2)    % are these vectors equal? Yes!
  

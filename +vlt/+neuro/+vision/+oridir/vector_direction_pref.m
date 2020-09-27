@@ -2,7 +2,7 @@ function [pref_resp, null_resp, dir_pref, ori_pref] = vector_direction_pref(angl
 % VECTOR_DIRECTION_PREF - Determine dir preference/response w/ vector methods
 %
 %  [PREF_RESP, NULL_RESP, DIR_PREF, ORI_PREF] = ...
-%       vlt.neuroscience.vision.oridir.vector_direction_pref(ANGLES, RESPONSES, [BLANK])
+%       vlt.neuro.vision.oridir.vector_direction_pref(ANGLES, RESPONSES, [BLANK])
 %
 %  Calculates the preferred response PREF_RESP and the null response
 %  NULL_RESP with vector methods.

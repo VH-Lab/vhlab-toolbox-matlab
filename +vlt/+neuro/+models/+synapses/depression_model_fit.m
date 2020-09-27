@@ -12,7 +12,7 @@ function [a0,f,ftau,d,dtau,err]=depression_model_fit(spiketimes,data,forder,dord
 %  best solution.
 %
 %  See Varela, Sen, Gibson, Fost, Abbott, and Nelson, J. Neuroscience 17:7926-40
-%  (1997) and 'help vlt.neuroscience.models.synapses.depression_model_comp' for details of the model and parameters.
+%  (1997) and 'help vlt.neuro.models.synapses.depression_model_comp' for details of the model and parameters.
 %  ERR is the squared error over the whole data.
 %
 
@@ -23,7 +23,7 @@ numattempts = 10; if nargin>4, numattempts = numatt; end;
  err=[];xi={};ex={};out={};
  for i=1:numattempts,
    xo=[data(1) rand(1,forder)/10 rand(1,forder) rand(1,dorder) rand(1,dorder)];
-   [xi{i},err(i),ex{i},out{i}]=fminsearch('vlt.neuroscience.models.synapses.depression_model_err',xo,optims,...
+   [xi{i},err(i),ex{i},out{i}]=fminsearch('vlt.neuro.models.synapses.depression_model_err',xo,optims,...
    			spiketimes,data,forder,dorder);
  end;
  [m,i]=min(err); x = xi{i}; err = err(i); % choose x with minumum error
@@ -34,6 +34,6 @@ numattempts = 10; if nargin>4, numattempts = numatt; end;
 
  %this function used to be computed with the following old routines:
  %options=foptions; options(1)=0; options(2)=1e-6;options(14)=10000000;
- %[x,options] = fmins('vlt.neuroscience.models.synapses.depression_model_err',xo,options,[],spiketimes,data,forder,dorder);
+ %[x,options] = fmins('vlt.neuro.models.synapses.depression_model_err',xo,options,[],spiketimes,data,forder,dorder);
  %options(10),
- %err = vlt.neuroscience.models.synapses.depression_model_err(x,spiketimes,data,forder,dorder);
+ %err = vlt.neuro.models.synapses.depression_model_err(x,spiketimes,data,forder,dorder);

@@ -1,8 +1,8 @@
 function D = createdirkernel(x, t, spFreq, spPhase, Tf, dir, space_gauss, time_de, ABSNORM)
 
-% vlt.neuroscience.reverse_correlation.createdirkernel - Create a model direction-selective kernel
+% vlt.neuro.reverse_correlation.createdirkernel - Create a model direction-selective kernel
 %
-%  D = vlt.neuroscience.reverse_correlation.createdirkernel(X, T, SPFREQ, SPHASE, TF, DIR, SPACE_GAUSS, TIME_DE, ABSNORM)
+%  D = vlt.neuro.reverse_correlation.createdirkernel(X, T, SPFREQ, SPHASE, TF, DIR, SPACE_GAUSS, TIME_DE, ABSNORM)
 %
 %  Creates a model direction-selective kernel
 %

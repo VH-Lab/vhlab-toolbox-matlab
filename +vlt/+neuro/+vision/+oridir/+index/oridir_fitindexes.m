@@ -1,7 +1,7 @@
 function fi = oridir_fitindexes(respstruct)
 % ORIDIR_FITINDEXES - compute orientation/direction fits, index values
 %
-% FI = vlt.neuroscience.vision.oridir.indexes.oridir_fitindexes(RESPSTRUCT)
+% FI = vlt.neuro.vision.oridir.indexes.oridir_fitindexes(RESPSTRUCT)
 %
 % Computes orientation/direction index fit values from a response structure RESPSTRUCT.
 %
@@ -82,16 +82,16 @@ end;
 
 fi.fit_parameters = [ Rsp Rp Ot sigm Rn];
 fi.fit = [0:359; vlt.data.rowvec(fitcurve)];
-fi.ot_index = vlt.neuroscience.vision.oridir.indexes.fit2fitoi(fi.fit);
+fi.ot_index = vlt.neuro.vision.oridir.indexes.fit2fitoi(fi.fit);
 fi.ot_index_rectified = min(vlt.math.rectify(fi.ot_index),1);
-fi.ot_index_diffsum = vlt.neuroscience.vision.oridir.indexes.fit2fitoidiffsum(fi.fit);
+fi.ot_index_diffsum = vlt.neuro.vision.oridir.indexes.fit2fitoidiffsum(fi.fit);
 fi.ot_index_diffsum_rectified = min(vlt.math.rectify(fi.ot_index_diffsum),1);
 
 fi.dirpref = Ot;
 
-fi.dir_index = vlt.neuroscience.vision.oridir.indexes.fit2fitdi(fi.fit);
+fi.dir_index = vlt.neuro.vision.oridir.indexes.fit2fitdi(fi.fit);
 fi.dir_index_rectified = min(vlt.math.rectify(fi.dir_index),1);
-fi.dir_index_diffsum = vlt.neuroscience.vision.oridir.indexes.fit2fitdidiffsum(fi.fit);
+fi.dir_index_diffsum = vlt.neuro.vision.oridir.indexes.fit2fitdidiffsum(fi.fit);
 fi.dir_index_diffsum_rectified = min(vlt.math.rectify(fi.dir_index_diffsum),1);
 
 fi.tuning_width = sigm*sqrt(log(4));

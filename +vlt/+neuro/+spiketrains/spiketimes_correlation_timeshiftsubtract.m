@@ -2,17 +2,17 @@ function [Xcorr_actual, Xcorr_shifted, Xcorr_percentile, bins] = spiketimes_corr
 % SPIKETIMES_CORRELATION_TIMESHIFTSUBTRACT - Correlation that subtracts correlation not due to precise times
 %
 %  [XCORR_ACTUAL, XCORR_SHIFTED, XCORR_PERCENTILE, LAGS] = 
-%    vlt.neuroscience.spiketrains.spiketimes_correlation_timeshiftsubtract(TRAIN1, TRAIN2, BINSIZE,...
+%    vlt.neuro.spiketrains.spiketimes_correlation_timeshiftsubtract(TRAIN1, TRAIN2, BINSIZE,...
 %    MAXLAG, SHIFT, TRIALS)
 %
 %  Computes both the standard spike train correlation (XCORR_ACTUAL) between
-%  TRAIN1 and TRAIN2, lists of spike times, using vlt.neuroscience.spiketrains.spiketimes_correlation, and
+%  TRAIN1 and TRAIN2, lists of spike times, using vlt.neuro.spiketrains.spiketimes_correlation, and
 %  computes an estimate of the amount of this correlation that is due to slow
 %  covarying spike rates with a time scale of SHIFT.
 %
 %  BINSIZE is the resolution (e.g., 0.002 for 2ms bins), and MAXLAG is the
 %  maximum lag between the two trains TRAIN1 and TRAIN2 that will be computed.
-%  (See help vlt.neuroscience.spiketrains.spiketimes_correlation)
+%  (See help vlt.neuro.spiketrains.spiketimes_correlation)
 %
 %  The estimate of the amount of correlation that is due to slow covarying
 %  spike rates is computed over TRIALS trials (e.g., 100), during which
@@ -23,7 +23,7 @@ function [Xcorr_actual, Xcorr_shifted, Xcorr_percentile, bins] = spiketimes_corr
 %  row of XCORR_PERCENTILE is the N-1th percentile of the distribution.
 %
 
-[xcorr_actual,bins] = vlt.neuroscience.spiketrains.spiketimes_correlation(train1,train2,binsize,maxlag);
+[xcorr_actual,bins] = vlt.neuro.spiketrains.spiketimes_correlation(train1,train2,binsize,maxlag);
 
 xcorr_estimate = [];
 
@@ -31,7 +31,7 @@ xcorr_estimate = [];
 for t = 1:trials,
 	train1_ = train1 + shift*rand(size(train1));
 	train2_ = train2 + shift*rand(size(train2));
-	xcorr_estimate(t,:) = vlt.neuroscience.spiketrains.spiketimes_correlation(train1_,train2_,binsize,maxlag);
+	xcorr_estimate(t,:) = vlt.neuro.spiketrains.spiketimes_correlation(train1_,train2_,binsize,maxlag);
 end;
 
 Xcorr_shifted = mean(xcorr_estimate);

@@ -1,7 +1,7 @@
 function [ x, fval ] = MLE_PoisGauss(t,dt,responses_observed,SPs,stimlist,model,fixparam,g_params,s_i_parameters,smoothness)
 %MLE_PoisGauss - Calculate maximum likelihood of gain and average stimulus responses given raw responses
 %   
-%   [PARAMS,FVAL] = vlt.neuroscience.mledenoise.MLE_PoisGauss(STIM_CENTER_TIMES, STIM_DURATIONS, RESPONSES_OBSERVED, ...
+%   [PARAMS,FVAL] = vlt.neuro.mledenoise.MLE_PoisGauss(STIM_CENTER_TIMES, STIM_DURATIONS, RESPONSES_OBSERVED, ...
 %         SP, STIMLIST, MODEL, FIXPARAM, G_PARAMS, S_I_PARAMS, SMOOTHNESS);
 %
 %  Inputs:
@@ -56,14 +56,14 @@ function y = nestedfun(x0)
 		g_params_value = x0;
 	end;
 
-	r_estimated = vlt.neuroscience.mledenoise.response_gaindrift_model(t,dt,stimlist,SPs,g_params_value,stim_responses_i);
+	r_estimated = vlt.neuro.mledenoise.response_gaindrift_model(t,dt,stimlist,SPs,g_params_value,stim_responses_i);
 	%figure(100);
 	%plot(t,r_estimated,'b'); 
 	%pause(1);
 	if strcmp(model,'Poisson'),
-		y = -vlt.neuroscience.spiketrains.loglikelihood_spiketrain(r_estimated, dt, responses_observed);
+		y = -vlt.neuro.spiketrains.loglikelihood_spiketrain(r_estimated, dt, responses_observed);
 	else,
-		y = -vlt.neuroscience.spiketrains.loglikelihood_spikerate(r_estimated, dt, responses_observed, 1);
+		y = -vlt.neuro.spiketrains.loglikelihood_spikerate(r_estimated, dt, responses_observed, 1);
 	end;
 
 
@@ -80,7 +80,7 @@ function [c, ceq] = mycon(x)
 	c = abs(deriv2) - smoothness;  % constrain 2nd derivative to be less than smoothness
 end % function
         
-end % vlt.neuroscience.mledenoise.archived_code.MLE_Pois
+end % vlt.neuro.mledenoise.archived_code.MLE_Pois
 
 
 

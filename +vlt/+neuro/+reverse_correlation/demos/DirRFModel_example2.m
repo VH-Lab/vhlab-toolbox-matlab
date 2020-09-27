@@ -1,8 +1,8 @@
 function DirRFModel_example2
 
-% vlt.neuroscience.reverse_correlation.demos.DirRFModel_example2 -
+% vlt.neuro.reverse_correlation.demos.DirRFModel_example2 -
 %     Generating a firing rate with hand-picked kernel, then Reconstructing the linear kernel from that firing rate.
-%    (Note that there are no spikes generated here, that is vlt.neuroscience.reverse_correlation.demos.DirRFModel_example3)
+%    (Note that there are no spikes generated here, that is vlt.neuro.reverse_correlation.demos.DirRFModel_example3)
 
 % STEP 1  - Generate a hand-picked kernel
 
@@ -14,14 +14,14 @@ dt = 0.001; % our time resolution for our kernel, both for computing response an
 SpFreq = 1; TFreq = 4; Left = 1; Right = -1; Stim_Center_Position = 3;
 
   % make the kernel
-D = vlt.neuroscience.reverse_correlation.createdirkernel(Dx,Dt,SpFreq,0,TFreq,Left,[Stim_Center_Position 2],[0.1 0.001 0.2],0.100);
+D = vlt.neuro.reverse_correlation.createdirkernel(Dx,Dt,SpFreq,0,TFreq,Left,[Stim_Center_Position 2],[0.1 0.001 0.2],0.100);
   % D has units of Volts / (unit contrast * unit time * unit space)
 
 % STEP 2 - Generate a noise stimulus
 
    % alpha is probability of seeing -100% or 100% contrast instead of 0% contrast
 alpha = 0.4;
-stim_random = vlt.neuroscience.reverse_correlation.stim1d_random(Stimx,Stimt,100*[1 0 -1],[alpha 1-2*alpha alpha]);
+stim_random = vlt.neuro.reverse_correlation.stim1d_random(Stimx,Stimt,100*[1 0 -1],[alpha 1-2*alpha alpha]);
 
 % STEP 3 - Specify the time coordinates of the kernel we will (re)construct
 
@@ -31,7 +31,7 @@ disp(['Setup complete, now simulating']);
 
 % STEP 4 - simulate the response of the hand-picked kernel to the random stimulus
 
-[R_random,sim_time] = vlt.neuroscience.reverse_correlation.simulate_1dkernel_response(D, Dx,Dt, stim_random, Stimx, Stimt); 
+[R_random,sim_time] = vlt.neuro.reverse_correlation.simulate_1dkernel_response(D, Dx,Dt, stim_random, Stimx, Stimt); 
 Rspikerate_random = 50*vlt.math.rectify(R_random);  % assume units of Hz, 1Hz/mV
 
 % STEP 5 - compute the reverse correlation kernel
@@ -44,7 +44,7 @@ stim_autocorrelation = vlt.signal.step_autocorrelation((100*100)*alpha, N, 0:len
    % stim_autocorrelation has units of contrast squared
 
 [computed_kernel, computed_kernel_unfiltered, correlation_stimulus_response, correlation_stimulus_stimulus] = ...
-		vlt.neuroscience.reverse_correlation.reverse_correlation_mv_stepfunc(R_random,sim_time,kerneltimes,Stimt,stim_random,...
+		vlt.neuro.reverse_correlation.reverse_correlation_mv_stepfunc(R_random,sim_time,kerneltimes,Stimt,stim_random,...
 		'dt',dt,'dx',Stimx(2)-Stimx(1), 'xc_stimstim',stim_autocorrelation);
    % correlation_stimulus_response has units of Volts * contrast
    % computed kernel has units of D: Volts / [unit time * unit space / unit contrast]

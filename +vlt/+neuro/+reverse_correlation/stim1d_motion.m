@@ -1,8 +1,8 @@
 function stim=stim1d_motion(x, t, spFreq, spPhase, Tf, dir)
 
-% vlt.neuroscience.reverse_correlation.stim1d_motion -- Creates a 1-D (space) motion stimulus for model computation
+% vlt.neuro.reverse_correlation.stim1d_motion -- Creates a 1-D (space) motion stimulus for model computation
 %
-%   STIM=vlt.neuroscience.reverse_correlation.stim1d_motion(X, T, SPFREQ, SPPHASE, TF, DIR)
+%   STIM=vlt.neuro.reverse_correlation.stim1d_motion(X, T, SPFREQ, SPPHASE, TF, DIR)
 %
 %   Creates a discrete 1-D (in space) motion stimulus that can be fed to
 %   a 1-d spatial model
@@ -21,7 +21,7 @@ function stim=stim1d_motion(x, t, spFreq, spPhase, Tf, dir)
 %    Each row of the returned stimulus represents the stimulus at 1 value
 %    of time; time is represented across the columns.
 %       
-%    Example: stim = vlt.neuroscience.reverse_correlation.stim1d_motion([0:0.1:10],[0:0.01:2],0.1,0,4,1);
+%    Example: stim = vlt.neuro.reverse_correlation.stim1d_motion([0:0.1:10],[0:0.01:2],0.1,0,4,1);
 %
 
 

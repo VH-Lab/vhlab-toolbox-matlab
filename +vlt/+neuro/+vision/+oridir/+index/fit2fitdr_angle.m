@@ -1,8 +1,8 @@
 function tdr = fit2fitdr_angle(fitparams, blank, theangle)
 
-% vlt.neuroscience.vision.oridir.indexes.fit2fitdr_angle - Direction ratio (fraction of response in certain direction) from double gaussian fit
+% vlt.neuro.vision.oridir.indexes.fit2fitdr_angle - Direction ratio (fraction of response in certain direction) from double gaussian fit
 %
-%  TDR = vlt.neuroscience.vision.oridir.indexes.fit2fitdr_angle(FITPARAMS, BLANKRESP, THEANGLE)
+%  TDR = vlt.neuro.vision.oridir.indexes.fit2fitdr_angle(FITPARAMS, BLANKRESP, THEANGLE)
 %
 %  Computes the "direction ratio", or the fraction of the total response
 %  that is in the given angle compared to the opposite angle.
@@ -19,7 +19,7 @@ function tdr = fit2fitdr_angle(fitparams, blank, theangle)
 %  The formula is TDR = Resp(THEANGLE)/ 
 %                        (Resp(THEANGLE)+Resp(THEANGLE+180))
 %
-%  See also: vlt.fit.otfit_carandini, vlt.neuroscience.vision.oridir.indexes.fit2fitoi, vlt.neuroscience.vision.oridir.indexes.fit2fitdibr
+%  See also: vlt.fit.otfit_carandini, vlt.neuro.vision.oridir.indexes.fit2fitoi, vlt.neuro.vision.oridir.indexes.fit2fitdibr
 
 
 angs = 0:359;

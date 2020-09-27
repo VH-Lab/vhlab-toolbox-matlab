@@ -1,8 +1,8 @@
 function stim=stim1d_random(x, t, values, dist)
 
-% vlt.neuroscience.reverse_correlation.stim1d_random -- Creates a 1-D (space) random stimulus for model computation
+% vlt.neuro.reverse_correlation.stim1d_random -- Creates a 1-D (space) random stimulus for model computation
 %
-%   STIM=vlt.neuroscience.reverse_correlation.stim1d_motion(X, T, VALUES, DISTRIBUTION)
+%   STIM=vlt.neuro.reverse_correlation.stim1d_motion(X, T, VALUES, DISTRIBUTION)
 %
 %   Creates a discrete 1-D (in space) random stimulus that can be fed to
 %   a 1-d spatial model
@@ -20,7 +20,7 @@ function stim=stim1d_random(x, t, values, dist)
 %    Each row of the returned stimulus represents the stimulus at 1 value
 %    of time; time is represented across the columns.
 %       
-%    Example: stim = vlt.neuroscience.reverse_correlation.stim1d_random([0:0.1:10],[0:0.1:300],[1 0 -1],[0.1 0.8 0.1]);
+%    Example: stim = vlt.neuro.reverse_correlation.stim1d_random([0:0.1:10],[0:0.1:300],[1 0 -1],[0.1 0.8 0.1]);
 %
 
  % generate random data

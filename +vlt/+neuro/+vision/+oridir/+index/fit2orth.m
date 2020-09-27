@@ -1,7 +1,7 @@
 function orth = fit2orth(R)
 % FIT2ORTH - calculate the orthogonal response from a fit to direction
 %
-%  ORTH=vlt.neuroscience.vision.oridir.indexes.fit2orth(RESPONSE)
+%  ORTH=vlt.neuro.vision.oridir.indexes.fit2orth(RESPONSE)
 %
 %  Given the RESPONSE of a double gaussian fit, return the response 90 degrees
 %  away from the location with the maximum response.  This is the
@@ -14,7 +14,7 @@ function orth = fit2orth(R)
 %  For backwards compatibility, if RESPONSE is a 360x1 vector, a new first
 %  row is added equal to 0:359.
 %
-%  See also: vlt.neuroscience.vision.oridir.indexes.fit2pref, vlt.neuroscience.vision.oridir.indexes.fit2null
+%  See also: vlt.neuro.vision.oridir.indexes.fit2pref, vlt.neuro.vision.oridir.indexes.fit2null
 
 if size(R,1)==1,
     R = [0:359; R];

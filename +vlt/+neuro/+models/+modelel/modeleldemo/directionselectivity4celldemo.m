@@ -1,15 +1,15 @@
 function [mel, di, r_up, r_down, modelrun_up, modelrun_down] = directionselectivity4celldemo(varargin)
 % DIRECTIONSELECTIVITY4CELLDEMO - Demo of a 4 input, single layer direction-selective output cell
 %
-%  [MODELEL, DI, R_UP, R_DOWN] = vlt.neuroscience.models.modelel.modeleldemo.directionselectivity4celldemo
+%  [MODELEL, DI, R_UP, R_DOWN] = vlt.neuro.models.modelel.modeleldemo.directionselectivity4celldemo
 %
-%  Enter "TYPE vlt.neuroscience.models.modelel.modeleldemo.directionselectivity4celldemo" to see the code.
+%  Enter "TYPE vlt.neuro.models.modelel.modeleldemo.directionselectivity4celldemo" to see the code.
 %  Input cells: 1-4
 %  Cells 1 and 2 are at position 1, cells 3 and 4 are at position 2. Cells 1 and 3 fire instantly,
 %  while cells 2 and 4 have a latency.
 %
 %  One can modify the default parameters by passing name/value pairs to the function like this
-%  [MODELEL, DI, UP, DOWN] = vlt.neuroscience.models.modelel.modeleldemo.directionselectivity4celldemo(PARAM1NAME, PARAM1VALUE, ...)
+%  [MODELEL, DI, UP, DOWN] = vlt.neuro.models.modelel.modeleldemo.directionselectivity4celldemo(PARAM1NAME, PARAM1VALUE, ...)
 %
 %  Default parameters are as follows:
 %  ----------------------------------------------------------------------
@@ -24,8 +24,8 @@ function [mel, di, r_up, r_down, modelrun_up, modelrun_down] = directionselectiv
 %  simit (1)                      |  0/1 Actually do simulation (1) or just build model(0)?
 %  simup (1)                      |  0/1 Actually simulate upward direction (1)?
 %  simdown (1)                    |  0/1 Actually simulate downward direction (1)?
-%  intfireparams                  |  {'name1','value1'} parameter list to pass to vlt.neuroscience.models.modelel.neuronmodelel.intfiremodels.intfireleakyel_init
-%  synapseparams                  |  {'name1','value1'} parameter list to pass to vlt.neuroscience.models.modelel.synapseel.synapset1t2el.synapset1t2el_init
+%  intfireparams                  |  {'name1','value1'} parameter list to pass to vlt.neuro.models.modelel.neuronmodelel.intfiremodels.intfireleakyel_init
+%  synapseparams                  |  {'name1','value1'} parameter list to pass to vlt.neuro.models.modelel.synapseel.synapset1t2el.synapset1t2el_init
 %
 %
 %  Outputs:
@@ -36,12 +36,12 @@ function [mel, di, r_up, r_down, modelrun_up, modelrun_down] = directionselectiv
 %
 %  Examples:
 %     % a totally non-direction-selective model
-%     [mel,di,rup,rdown]=vlt.neuroscience.models.modelel.modeleldemo.directionselectivity4celldemo;
+%     [mel,di,rup,rdown]=vlt.neuro.models.modelel.modeleldemo.directionselectivity4celldemo;
 %
 %     % a direction-selective model
-%     [mel,di,rup,rdown]=vlt.neuroscience.models.modelel.modeleldemo.directionselectivity4celldemo('Syn_Gmax_initial',[0 4 4 0]*1e-9);
+%     [mel,di,rup,rdown]=vlt.neuro.models.modelel.modeleldemo.directionselectivity4celldemo('Syn_Gmax_initial',[0 4 4 0]*1e-9);
 %  
-%  See also: vlt.neuroscience.models.modelel.modeleldemo.intfireleaky_synapsedemo
+%  See also: vlt.neuro.models.modelel.modeleldemo.intfireleaky_synapsedemo
 %  
 
 dt = 1e-4;
@@ -75,16 +75,16 @@ cell3u = cell1u + lag;
 cell4u = cell3u + latency; 
 
  % create a prototype synapse
-protosyn = vlt.neuroscience.models.modelel.synapseel.synapset1t2el.synapset1t2el_init('plasticity_params',plasticity_params,...
+protosyn = vlt.neuro.models.modelel.synapseel.synapset1t2el.synapset1t2el_init('plasticity_params',plasticity_params,...
 			'plasticity_method',plasticity_method,synapseparams{:});
 
-mel(1) = vlt.neuroscience.models.modelel.neuronmodelel.spiketimelistel.spiketimelistel_init('name','cell1','spiketimes',cell1u);
-mel(2) = vlt.neuroscience.models.modelel.neuronmodelel.spiketimelistel.spiketimelistel_init('name','cell2','spiketimes',cell2u);
-mel(3) = vlt.neuroscience.models.modelel.neuronmodelel.spiketimelistel.spiketimelistel_init('name','cell3','spiketimes',cell3u);
-mel(4) = vlt.neuroscience.models.modelel.neuronmodelel.spiketimelistel.spiketimelistel_init('name','cell4','spiketimes',cell4u);
-mel(5) = vlt.neuroscience.models.modelel.neuronmodelel.intfiremodels.intfireleakyel_init('name','output',intfireparams{:});
+mel(1) = vlt.neuro.models.modelel.neuronmodelel.spiketimelistel.spiketimelistel_init('name','cell1','spiketimes',cell1u);
+mel(2) = vlt.neuro.models.modelel.neuronmodelel.spiketimelistel.spiketimelistel_init('name','cell2','spiketimes',cell2u);
+mel(3) = vlt.neuro.models.modelel.neuronmodelel.spiketimelistel.spiketimelistel_init('name','cell3','spiketimes',cell3u);
+mel(4) = vlt.neuro.models.modelel.neuronmodelel.spiketimelistel.spiketimelistel_init('name','cell4','spiketimes',cell4u);
+mel(5) = vlt.neuro.models.modelel.neuronmodelel.intfiremodels.intfireleakyel_init('name','output',intfireparams{:});
 
-mel = vlt.neuroscience.models.modelel.synapseel.modelelsynconn(mel,1:5,[nan(5,4) [Syn_Gmax_initial'; NaN] ], protosyn);
+mel = vlt.neuro.models.modelel.synapseel.modelelsynconn(mel,1:5,[nan(5,4) [Syn_Gmax_initial'; NaN] ], protosyn);
 
 if ~simit,
 	return;
@@ -95,7 +95,7 @@ varstosave = { 'modelrunstruct.Model_Final_Structure(5).T',...
 			'modelrunstruct.Model_Final_Structure(5).model.V' };
 
 if simup,
-	[modelrun_up,varsout_up] = vlt.neuroscience.models.modelel.modelelrun.modelelrun(mel,'Steps',timesteps,'Variables',varstosave);
+	[modelrun_up,varsout_up] = vlt.neuro.models.modelel.modelelrun.modelelrun(mel,'Steps',timesteps,'Variables',varstosave);
 	cell5u = modelrun_up.Model_Final_Structure(5).model.spiketimes;
 	r_up = length(cell5u);
 else,
@@ -115,7 +115,7 @@ mel(4).model.spiketimes = cell4d;
 
   % simulate down here, extract output
 if simdown,
-	[modelrun_down,varsout_down] = vlt.neuroscience.models.modelel.modelelrun.modelelrun(mel,'Steps',timesteps,'Variables',varstosave);
+	[modelrun_down,varsout_down] = vlt.neuro.models.modelel.modelelrun.modelelrun(mel,'Steps',timesteps,'Variables',varstosave);
 	cell5d = modelrun_down.Model_Final_Structure(5).model.spiketimes;
 	r_down = length(cell5d);
 else,

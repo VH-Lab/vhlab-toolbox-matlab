@@ -3,8 +3,8 @@
 recompute = 0;
 
 if recompute,
-	[Wt,Wt_err,shifts_t,lambda_t,corrs_t] = vlt.neuroscience.stdp.stdp_tripletvscorrelation;
-	[Wr,Wr_err,shifts_r,freqs_r,lambda_r] = vlt.neuroscience.stdp.stdp_tripletvsratecorrelation;
+	[Wt,Wt_err,shifts_t,lambda_t,corrs_t] = vlt.neuro.stdp.stdp_tripletvscorrelation;
+	[Wr,Wr_err,shifts_r,freqs_r,lambda_r] = vlt.neuro.stdp.stdp_tripletvsratecorrelation;
 end;
 
 

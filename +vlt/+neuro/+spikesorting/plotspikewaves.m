@@ -1,7 +1,7 @@
 function [h]=plotspikewaves(waves, indexes, varargin)
 % PLOTSPIKEWAVES - Plot spike waveforms to the current axes
 %
-%   H=vlt.neuroscience.spikesorting.plotspikewaves(WAVES, [INDEXES], ...)
+%   H=vlt.neuro.spikesorting.plotspikewaves(WAVES, [INDEXES], ...)
 %
 % Inputs:
 %  WAVES: A NumSamples x NumChannels x NumSpikes list of spike

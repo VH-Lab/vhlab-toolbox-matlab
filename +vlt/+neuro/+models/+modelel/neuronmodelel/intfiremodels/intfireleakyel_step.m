@@ -1,7 +1,7 @@
 function [intfiremodelel] = intfireleakyel_step(intfiremodelel, modelstruct)
 % INTFIRELEAKYEL_STEP - Compute a time step of an integrate and fire neuron modelel
 %
-%   INTFIRE = vlt.neuroscience.models.modelel.neuronmodelel.intfiremodels.intfireleakyel_step(INTFIREMODELEL, MODELSTRUCT)
+%   INTFIRE = vlt.neuro.models.modelel.neuronmodelel.intfiremodels.intfireleakyel_step(INTFIREMODELEL, MODELSTRUCT)
 %
 %   Given a model leaky integrate and fire neurons in INTFIRE,
 %   and a full list of model elements MODELSTRUCT, calculate the voltage

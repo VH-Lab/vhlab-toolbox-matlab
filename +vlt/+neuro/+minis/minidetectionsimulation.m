@@ -1,7 +1,7 @@
 function [opt_threshold, detector, conv_scale, stats]=minidetectionsimulation(varargin)
 % MINIDETECTIONSIMULATION
 %
-%  [OPT_THRESHOLD, DETECTOR, CONV_SCALE, STATS] = vlt.neuroscience.minis.minidetectionsimulation
+%  [OPT_THRESHOLD, DETECTOR, CONV_SCALE, STATS] = vlt.neuro.minis.minidetectionsimulation
 %
 %  Solves, through simulation, the optimum threshold for detecting miniature 
 %  excitatory or inhibitory post-synaptic potentials or currents.
@@ -53,7 +53,7 @@ plotit = 0;
 vlt.data.assign(varargin{:});
 
 
-[mt,t,params] = vlt.neuroscience.minis.minitemplates('Max_Amplitude',3,'Amplitude_Steps',1,'Tau_Onsets',Tau_Onset,'Tau_Offsets',Tau_Offset,'dt',dt);
+[mt,t,params] = vlt.neuro.minis.minitemplates('Max_Amplitude',3,'Amplitude_Steps',1,'Tau_Onsets',Tau_Onset,'Tau_Offsets',Tau_Offset,'dt',dt);
 
 T = Simulation_Duration; % duration of simulation
 
@@ -69,7 +69,7 @@ events(myevent_samples) = 1;
 D = randn(num_samples,1);
 events_here = events;
 for j=1:length(myevent_samples),
-	noisytemplate=vlt.neuroscience.minis.minitemplates('dt',dt,'Amplitude_Steps',1,...
+	noisytemplate=vlt.neuro.minis.minitemplates('dt',dt,'Amplitude_Steps',1,...
 			'Max_Amplitude',params.Amplitude*1.5*rand,...
 			'Tau_Onsets',params.Tau_Onset*(1+noise_fraction*randn),...
 			'Tau_Offsets',params.Tau_Offset*(1+noise_fraction*randn));

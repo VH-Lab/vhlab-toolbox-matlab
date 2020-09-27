@@ -1,7 +1,7 @@
 function g = nmda_voltage_gate(v)
 % NMDA_VOLTAGE_GATE - voltage gate for NMDA channels, dependent on Mg block
 %
-% G = vlt.neuroscience.models.synapses.nmda_voltage_gate(V)
+% G = vlt.neuro.models.synapses.nmda_voltage_gate(V)
 % 
 % Returns a simulated gating variable based on the NMDA voltage dependence as
 % measured from Mayar, Westbrook, and Guthrie 1984.

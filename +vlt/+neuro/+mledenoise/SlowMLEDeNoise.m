@@ -1,7 +1,7 @@
 function [s_i_current, g_current, sinparams,mle,responses_observed, stimlist, responses_s_i, smooth_time, smooth_spikerate, sinfit_smooth_spikerate] = SlowMLEDeNoise(stim_onsets, stim_offsets, stimvalues, spike_times, varargin)
 % SlowMLEDeNoise -- Estimate underlying stimulus response assuming a slow background drift in gain
 %
-%   [RESPONSES, SIN_WEIGHTS] = vlt.neuroscience.mledenoise.SlowMLEDeNoise(STIM_ONSETS, STIMOFFSETS, STIMVALUES, ...
+%   [RESPONSES, SIN_WEIGHTS] = vlt.neuro.mledenoise.SlowMLEDeNoise(STIM_ONSETS, STIMOFFSETS, STIMVALUES, ...
 %	SPIKE_TIMES, [PARAM1, VALUE1, ...]);
 %      
 %        (see additional output arguments below)
@@ -69,7 +69,7 @@ function [s_i_current, g_current, sinparams,mle,responses_observed, stimlist, re
 %
 %   [RESPONSES, SIN_WEIGHT, FIT_SIN4, MLE, RESPONSE_OBSERVED,...
 %       STIMLIST, RESPONSES_S_I, SMOOTH_TIME, SMOOTH_SPIKERATE, SINFIT_SMOOTH_SPIKERATE]...
-%           = vlt.neuroscience.mledenoise.SlowMLEDeNoise(STIM_ONSETS, STIMOFFSETS, STIMVALUES, ...
+%           = vlt.neuro.mledenoise.SlowMLEDeNoise(STIM_ONSETS, STIMOFFSETS, STIMVALUES, ...
 %	          SPIKE_TIMES, [PARAM1, VALUE1, ...]);
 %
 %   FIT_SIN4 is a set of 13 coefficients to a 4th order sinusoidal fit (see vlt.fit.sin4_fit), 
@@ -82,8 +82,8 @@ function [s_i_current, g_current, sinparams,mle,responses_observed, stimlist, re
 %   RESPONSES_S_I are the responses (r(t)*g(t)) for each stimulus in STIMLIST
 %   
 %
-%  Examples:  see vlt.neuroscience.mledenoise.testSlowMLE and vlt.neuroscience.mledenoise.testSlowMLE_modulation
-%          ('type vlt.neuroscience.mledenoise.testSlowMLE'  and 'type vlt.neuroscience.mledenoise.testSlowMLE_modulation')
+%  Examples:  see vlt.neuro.mledenoise.testSlowMLE and vlt.neuro.mledenoise.testSlowMLE_modulation
+%          ('type vlt.neuro.mledenoise.testSlowMLE'  and 'type vlt.neuro.mledenoise.testSlowMLE_modulation')
 %  
 %  See also:  FIT_SIN4
 
@@ -115,14 +115,14 @@ end;
  %              smoothed with a box filter with window size tFilter
 
 smooth_time = (min(stim_onsets)-prerecordtime):sin_dt:(max(stim_offsets)+postrecordtime);
-smooth_spikecounts = vlt.neuroscience.spiketrains.spiketimes2bins(spike_times,smooth_time);
+smooth_spikecounts = vlt.neuro.spiketrains.spiketimes2bins(spike_times,smooth_time);
 PillBox = ones(1,tFilter*(1/sin_dt));
 PillBox = PillBox/sum(PillBox);
 smooth_spikerate = conv(smooth_spikecounts,PillBox,'same')*(1/sin_dt); % smooth and divide by delta t to make it a rate
  % now fit a sinewave to the smoothed rate
 
 if verbose,
-	disp(['vlt.neuroscience.mledenoise.SlowMLEDeNoise: about to perform vlt.fit.sin4_fit']);
+	disp(['vlt.neuro.mledenoise.SlowMLEDeNoise: about to perform vlt.fit.sin4_fit']);
 	verbfig = figure;
 	plot(smooth_time,smooth_spikerate,'r','linewidth',2,'DisplayName','Smooth Spikerate');
 	xlabel('Time(s)');
@@ -131,7 +131,7 @@ end;
 
 [sinfit_smooth_spikerate,sinparams] = vlt.fit.sin4_fit(smooth_time,smooth_spikerate,maxFrequency,0);
 
-if verbose, disp(['vlt.neuroscience.mledenoise.SlowMLEDeNoise: vlt.fit.sin4_fit done']); end;
+if verbose, disp(['vlt.neuro.mledenoise.SlowMLEDeNoise: vlt.fit.sin4_fit done']); end;
 
 if verbose, 
 	figure(verbfig);
@@ -185,20 +185,20 @@ else
 	responses_observed = responses_s_i;
 end;
 
-if verbose, disp(['vlt.neuroscience.mledenoise.SlowMLEDeNoise: about to fit']); end;
+if verbose, disp(['vlt.neuro.mledenoise.SlowMLEDeNoise: about to fit']); end;
 
 
   % optionally, could include showfitting code at part 1 below
-[s_i_current, fval] = vlt.neuroscience.mledenoise.MLE_PoisGauss(stim_center_times,stim_durations,responses_observed,...
+[s_i_current, fval] = vlt.neuro.mledenoise.MLE_PoisGauss(stim_center_times,stim_durations,responses_observed,...
 	sinparams, stimlist, model,find_s, g_current,s_i_initial,mlesmoothness * stim_step * stim_step);
 mle(1,1) = fval;
   % could include part 2 debugging code here
 for zz = 1:numIterations,
-	if verbose, disp(['vlt.neuroscience.mledenoise.SlowMLEDeNoise: beginning iteration ' num2str(zz) ]); end;
-	[g_current,fval]=vlt.neuroscience.mledenoise.MLE_PoisGauss(stim_center_times,stim_durations,responses_observed,...
+	if verbose, disp(['vlt.neuro.mledenoise.SlowMLEDeNoise: beginning iteration ' num2str(zz) ]); end;
+	[g_current,fval]=vlt.neuro.mledenoise.MLE_PoisGauss(stim_center_times,stim_durations,responses_observed,...
 		sinparams,stimlist,model,find_g,g_current,s_i_current,mlesmoothness);
 	mle(zz+1,1) = fval;
-	[s_i_current,fval]=vlt.neuroscience.mledenoise.MLE_PoisGauss(stim_center_times,stim_durations,responses_observed,...
+	[s_i_current,fval]=vlt.neuro.mledenoise.MLE_PoisGauss(stim_center_times,stim_durations,responses_observed,...
 		sinparams,stimlist,model,find_s,g_current,s_i_current,mlesmoothness);
 	mle(zz+1,2) = fval;
 	% part 3 here, optionally
@@ -232,26 +232,26 @@ end;
 			fig = figure;
 			h1 = plot(stim_center_times, responses_s_i,'b');
 			hold on;
-			RR = vlt.neuroscience.mledenoise.response_gaindrift_model(stim_center_times,stim_durations,stimlist, sinparams,g_current,s_i_initial);
+			RR = vlt.neuro.mledenoise.response_gaindrift_model(stim_center_times,stim_durations,stimlist, sinparams,g_current,s_i_initial);
 			h2 = plot(stim_center_times, RR,'color',colors(1+mod(plotind,size(colors,1)),:));
 			plotind = plotind + 1;
 			pause(1); drawnow;
-			mle(1,3) = -vlt.neuroscience.spiketrains.loglikelihood_spiketrain(RR,stim_durations,spikecounts_observed);
+			mle(1,3) = -vlt.neuro.spiketrains.loglikelihood_spiketrain(RR,stim_durations,spikecounts_observed);
 		end;
   %% part 2
 		if showfitting,
-				RR = vlt.neuroscience.mledenoise.response_gaindrift_model(stim_center_times,stim_durations,stimlist,sinparams,g_current,s_i_current);
+				RR = vlt.neuro.mledenoise.response_gaindrift_model(stim_center_times,stim_durations,stimlist,sinparams,g_current,s_i_current);
 				h2 = plot(stim_center_times, RR,'color',colors(1+mod(plotind,size(colors,1)),:));
 				plotind = plotind + 1;
 				pause(1); drawnow;
-				mle(1,2) = -vlt.neuroscience.spiketrains.loglikelihood_spiketrain(RR,stim_durations,spikecounts_observed);
+				mle(1,2) = -vlt.neuro.spiketrains.loglikelihood_spiketrain(RR,stim_durations,spikecounts_observed);
 		end;
 			if showfitting,
-				RR = vlt.neuroscience.mledenoise.response_gaindrift_model(stim_center_times,stim_durations,stimlist,sinparams,g_current,s_i_current);
+				RR = vlt.neuro.mledenoise.response_gaindrift_model(stim_center_times,stim_durations,stimlist,sinparams,g_current,s_i_current);
 				h2 = plot(stim_center_times, RR,'color',colors(1+mod(plotind,size(colors,1)),:));
 				plotind = plotind + 1;
 				pause(1); drawnow;
-				mle(zz+1,3) = -vlt.neuroscience.spiketrains.loglikelihood_spiketrain(RR,stim_durations,spikecounts_observed);
+				mle(zz+1,3) = -vlt.neuro.spiketrains.loglikelihood_spiketrain(RR,stim_durations,spikecounts_observed);
 			end;
 
 
@@ -461,7 +461,7 @@ x0 = [0; mF0'];
 
 fixA = sinparams(1:3:12)';
 
-[x fval] = vlt.neuroscience.mledenoise.archived_code.MLE_Pois(t,dt,spiketimes,stimulitimes,sinparams,fixA,1,x0,smoothness);
+[x fval] = vlt.neuro.mledenoise.archived_code.MLE_Pois(t,dt,spiketimes,stimulitimes,sinparams,fixA,1,x0,smoothness);
 
 for zz = 1:10;
         
@@ -469,7 +469,7 @@ for zz = 1:10;
 
     fixF = x;
     
-    [x fval] = vlt.neuroscience.mledenoise.archived_code.MLE_Pois(t,dt,spiketimes,stimulitimes,sinparams,fixF,0,x0,smoothness);
+    [x fval] = vlt.neuro.mledenoise.archived_code.MLE_Pois(t,dt,spiketimes,stimulitimes,sinparams,fixF,0,x0,smoothness);
 
     mle(zz,1) = fval;
 
@@ -477,7 +477,7 @@ for zz = 1:10;
 
     fixA = x;
     
-    [x fval] = vlt.neuroscience.mledenoise.archived_code.MLE_Pois(t,dt,spiketimes,stimulitimes,sinparams,fixA,1,x0,smoothness);
+    [x fval] = vlt.neuro.mledenoise.archived_code.MLE_Pois(t,dt,spiketimes,stimulitimes,sinparams,fixA,1,x0,smoothness);
 
     mle(zz,2) = fval;
 
@@ -619,7 +619,7 @@ x0 = [0; mF1'];
 
 fixA = sinparams(1:3:12)';
 
-[x fval] = vlt.neuroscience.mledenoise.archived_code.MLE_Gauss(t,dt,F1Magnitude,stimulitimes,sinparams,fixA,1,x0,smoothness);
+[x fval] = vlt.neuro.mledenoise.archived_code.MLE_Gauss(t,dt,F1Magnitude,stimulitimes,sinparams,fixA,1,x0,smoothness);
 
 for zz = 1:10;
         
@@ -627,7 +627,7 @@ for zz = 1:10;
 
     fixF = x;
     
-    [x fval] = vlt.neuroscience.mledenoise.archived_code.MLE_Gauss(t,dt,F1Magnitude,stimulitimes,sinparams,fixF,0,x0,smoothness);
+    [x fval] = vlt.neuro.mledenoise.archived_code.MLE_Gauss(t,dt,F1Magnitude,stimulitimes,sinparams,fixF,0,x0,smoothness);
 
     mle(zz,1) = fval;
 
@@ -635,7 +635,7 @@ for zz = 1:10;
 
     fixA = x;
     
-    [x fval] = vlt.neuroscience.mledenoise.archived_code.MLE_Gauss(t,dt,F1Magnitude,stimulitimes,sinparams,fixA,1,x0,smoothness);
+    [x fval] = vlt.neuro.mledenoise.archived_code.MLE_Gauss(t,dt,F1Magnitude,stimulitimes,sinparams,fixA,1,x0,smoothness);
 
     mle(zz,2) = fval;
 

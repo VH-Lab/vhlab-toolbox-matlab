@@ -1,7 +1,7 @@
 function diindfit = fit2fitdidiffsum(R, blank)
 % FIT2FITDIDIFFSUM - direction selectivity index (DSI) from double gaussian fit of direction tuning curve
 %
-%  DIIND = vlt.neuroscience.vision.oridir.indexes.fit2fitdidiffsum(R)
+%  DIIND = vlt.neuro.vision.oridir.indexes.fit2fitdidiffsum(R)
 %
 %    Calculates the direction selectivity index (DSI) from a double gaussian fit
 %    of a direction tuning curve.
@@ -13,7 +13,7 @@ function diindfit = fit2fitdidiffsum(R, blank)
 %    fit (e.g., [0:359] is the most common for 1 degree steps between 0 and 359), and
 %    the second row is the response of the fit for each angle.
 %  
-%    See also: vlt.fit.otfit_carandini, vlt.neuroscience.vision.oridir.indexes.fit2fitoi, vlt.neuroscience.vision.oridir.indexes.fit2fitdibr, vlt.neuroscience.vision.oridir.indexes.fit2fitdi
+%    See also: vlt.fit.otfit_carandini, vlt.neuro.vision.oridir.indexes.fit2fitoi, vlt.neuro.vision.oridir.indexes.fit2fitdibr, vlt.neuro.vision.oridir.indexes.fit2fitdi
 
 
   % the second input argument, 'blank', is left in place purely for backwards compatibility with other code

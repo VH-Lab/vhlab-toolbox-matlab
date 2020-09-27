@@ -1,7 +1,7 @@
 function weight = ltpi_apply(spiketimes_pre, spiketimes_post, varargin)
 % LTPI_APPLY Spike-timing dependent-plasticity for calculating changes in synaptic weights
 %
-%    WEIGHT = vlt.neuroscience.stdp.ltpi_apply(SPIKETIMES_PRE, SPIKETIMES_POST)
+%    WEIGHT = vlt.neuro.stdp.ltpi_apply(SPIKETIMES_PRE, SPIKETIMES_POST)
 %
 %  Calculates the change in synaptic weight due to the "veto" long 
 %  term potentiation of inhibition rule based on the experimental
@@ -37,7 +37,7 @@ function weight = ltpi_apply(spiketimes_pre, spiketimes_post, varargin)
 %  The parameters of the synapse can be varied by providing additional 
 %  inputs as name, value pairs. The names and values that are default are
 %  shown here. For example,
-%    WEIGHT = vlt.neuroscience.stdp.ltpi_apply(SPIKETIMES_PRE, SPIKETIMES_POST, 'tau_plus',0.050)
+%    WEIGHT = vlt.neuro.stdp.ltpi_apply(SPIKETIMES_PRE, SPIKETIMES_POST, 'tau_plus',0.050)
 %
 %  Parameter name:               | default value
 %  ------------------------------|-----------------------------

@@ -1,7 +1,7 @@
 function response = stimulus_response_scalar(timeseries, timestamps, stim_onsetoffsetid, varargin)
 % STIMULUS_RESPONSE_SUMMARY - compute stimulus responses to stimuli
 % 
-% RESPONSE = vlt.neuroscience.stimulus_analysis.stimulus_response_scalar(TIMESERIES, TIMESTAMPS, STIM_ONSETOFFSETID, ...)
+% RESPONSE = vlt.neuro.stimulus_analysis.stimulus_response_scalar(TIMESERIES, TIMESTAMPS, STIM_ONSETOFFSETID, ...)
 %
 % Inputs:
 %   TIMESERIES is a 1xT array of the data values of the thing exhibiting the response, such as
@@ -69,7 +69,7 @@ if numel(timestamps)>1,
 end;
 
 
-controlstimnumber = vlt.neuroscience.stimulus_analysis.findcontrolstimulus(stimid, control_stimid);
+controlstimnumber = vlt.neuro.stimulus_analysis.findcontrolstimulus(stimid, control_stimid);
 
 if ~isempty(prestimulus_normalization),
 	if ischar(prestimulus_normalization),

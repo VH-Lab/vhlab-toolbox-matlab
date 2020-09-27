@@ -1,20 +1,20 @@
 function tau = intfireleaky_SynMemTau(intfireel, synapseel)
 % INTFIRELEAKY_SynMemTau - Empirically determine combined tau of synapse and membrane
 %
-%   TAU= vlt.neuroscience.models.modelel.modeleldemo.intfireleaky_GsynAP(INTFIREEL, SYNAPSEEL)
+%   TAU= vlt.neuro.models.modelel.modeleldemo.intfireleaky_GsynAP(INTFIREEL, SYNAPSEEL)
 %
 %   Determine time it takes for a subthreshold input to return to 1/exp(1) of baseline 
 %   value. 
 %
 %   If INTFIREEL and SYNAPSEEL are empty, defaults will be used.
 %  
-%   See also: vlt.neuroscience.models.modelel.neuronmodelel.intfiremodels.intfireleakyel_init, SYNAPSEEL_INIT 
+%   See also: vlt.neuro.models.modelel.neuronmodelel.intfiremodels.intfireleakyel_init, SYNAPSEEL_INIT 
 
 if isempty(intfireel),
-	intfireel = vlt.neuroscience.models.modelel.neuronmodelel.intfiremodels.intfireleakyel_init;
+	intfireel = vlt.neuro.models.modelel.neuronmodelel.intfiremodels.intfireleakyel_init;
 end;
 if isempty(synapseel),
-	synapseel = vlt.neuroscience.models.modelel.synapseel.synapset1t2el.synapset1t2el_init;
+	synapseel = vlt.neuro.models.modelel.synapseel.synapset1t2el.synapset1t2el_init;
 end;
 
 dt = synapseel.dT;
@@ -26,13 +26,13 @@ synapseel.model.post = 1;
 synapseel.model.pre= 3;
 synapseel.model.Gmax = 100e-15; % tiny tiny conductance
 intfireel.model.synapse_list = 2;
-spiketimelistel = vlt.neuroscience.models.modelel.neuronmodelel.spiketimelistel.spiketimelistel_init('name','pre','spiketimes',dt);
+spiketimelistel = vlt.neuro.models.modelel.neuronmodelel.spiketimelistel.spiketimelistel_init('name','pre','spiketimes',dt);
 model = [intfireel;synapseel;spiketimelistel];
 
 varstosave = {'modelrunstruct.Model_Final_Structure(1).T',...
 		'modelrunstruct.Model_Final_Structure(1).model.V'};
 
-[modelrun,varsout] = vlt.neuroscience.models.modelel.modelelrun.modelelrun(model,'Steps',timesteps,'Variables',varstosave);
+[modelrun,varsout] = vlt.neuro.models.modelel.modelelrun.modelelrun(model,'Steps',timesteps,'Variables',varstosave);
 
 mn = min(varsout(2,:));
 mx = max(varsout(2,:));

@@ -1,7 +1,7 @@
 function oi = compute_orientationindex( angles, rates )
 
-% vlt.neuroscience.vision.oridir.indexes.compute_orientationindex
-%     DI = vlt.neuroscience.vision.oridir.indexes.compute_orientationindex( ANGLES, RATES )
+% vlt.neuro.vision.oridir.indexes.compute_orientationindex
+%     DI = vlt.neuro.vision.oridir.indexes.compute_orientationindex( ANGLES, RATES )
 %
 %     Takes ANGLES in degrees
 %

@@ -1,6 +1,6 @@
 function DirRFModel_example3
 
-%  vlt.neuroscience.reverse_correlation.demos.DirRFModel_example3 - Using reverse correlation to reconstruct linear kernel in response to noise
+%  vlt.neuro.reverse_correlation.demos.DirRFModel_example3 - Using reverse correlation to reconstruct linear kernel in response to noise
 
 % STEP 1 - Create a hand-picked kernel
 
@@ -11,14 +11,14 @@ Dx = [ 0:0.1:10 ]; Dt = [ 0:dt_kernel:1];      % time values for the kernel
 SpFreq = 1; TFreq = 4; Left = 1; Right = -1; Stim_Center_Position = 3;
 
  % make the kernel
-D = vlt.neuroscience.reverse_correlation.createdirkernel(Dx,Dt,SpFreq,0,TFreq,Left,[Stim_Center_Position 2],[0.1 0.001 0.2],0.03); % assume V output
+D = vlt.neuro.reverse_correlation.createdirkernel(Dx,Dt,SpFreq,0,TFreq,Left,[Stim_Center_Position 2],[0.1 0.001 0.2],0.03); % assume V output
  % D has units of Volts / (unit contrast * unit time * unit space)
 
 % STEP 2 - Create a random stimulus
 
    % alpha is probability of seeing -100% or 100% contrast instead of 0% contrast
 alpha = 0.5;
-stim_random = vlt.neuroscience.reverse_correlation.stim1d_random(Stimx,Stimt,100*[1 0 -1],[alpha 1-2*alpha alpha]);
+stim_random = vlt.neuro.reverse_correlation.stim1d_random(Stimx,Stimt,100*[1 0 -1],[alpha 1-2*alpha alpha]);
 
 % STEP 3 - Specify the time coordinates of the kernel we will (re)construct
 
@@ -28,7 +28,7 @@ disp(['Setup complete, now simulating']);
 
 % STEP 4 - simulate the response of the hand-picked kernel to the random stimulus
 
-[R_random,sim_time] = vlt.neuroscience.reverse_correlation.simulate_1dkernel_response(D, Dx,Dt, stim_random, Stimx, Stimt);
+[R_random,sim_time] = vlt.neuro.reverse_correlation.simulate_1dkernel_response(D, Dx,Dt, stim_random, Stimx, Stimt);
   % R_random is a voltage signal; we now create a spike-rate signal from R_random
 Rspikerate_random = 5*vlt.math.rectify(R_random*10);  % non-linear spike function (rectification)
   % we now generate spike times from the spike rate signal
@@ -53,7 +53,7 @@ kerneltimes = Dt;
 
 spiketimes = sim_time_spikes(find(Rspikes_random));
 [computed_kernel, computed_kernel_unfiltered, xc_stimsignal, xc_stimstim] = ...
-	vlt.neuroscience.reverse_correlation.reverse_correlation_stepfunc(spiketimes,sim_time_spikes,kerneltimes,Stimt,stim_random,...
+	vlt.neuro.reverse_correlation.reverse_correlation_stepfunc(spiketimes,sim_time_spikes,kerneltimes,Stimt,stim_random,...
 	'dt',dt_kernel,'dx',Stimx(2)-Stimx(1));% ,'xc_stimstim',stim_autocorrelation);
 
  % as of now, this is best kernel; whitening blows it up

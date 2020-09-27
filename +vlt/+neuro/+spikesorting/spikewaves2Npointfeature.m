@@ -1,7 +1,7 @@
 function features = spikewaves2Npointfeature(waves, samplelist)
 % SPIKEWAVES2NPOINTFEATURE - Select samples from spike waves
 %
-%   FEATURES = vlt.neuroscience.spikesorting.spikewaves2Npointfeature(WAVES, SAMPLELIST)
+%   FEATURES = vlt.neuro.spikesorting.spikewaves2Npointfeature(WAVES, SAMPLELIST)
 %
 %  Creates a set of "features" of the spike waveform WAVES by
 %  grabbing samples at the locations SAMPLELIST.

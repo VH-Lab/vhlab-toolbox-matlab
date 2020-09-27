@@ -1,6 +1,6 @@
 function [response] = spikeresponse(stimtimes_on, stimtimes_off, stim_values, spiketimes)
 %
-%  [RESPONSE_CURVE] = vlt.neuroscience.spiketrains.spikeresponse(STIMTIMES_ON, STIMTIMES_OFF, STIM_VALUES, SPIKETIMES)
+%  [RESPONSE_CURVE] = vlt.neuro.spiketrains.spikeresponse(STIMTIMES_ON, STIMTIMES_OFF, STIM_VALUES, SPIKETIMES)
 %
 %  Return a response curve of responses to the presentation
 %  of multiple stimuli. The onset time of each stimulus should
@@ -32,15 +32,15 @@ function [response] = spikeresponse(stimtimes_on, stimtimes_off, stim_values, sp
 %                    |     number in vector inds{stimid})
 %
 %  Test example:
-%    % Step 1, use vlt.neuroscience.mledenoise.gaindriftexample.m to generate spike responses.
-%    %  See help vlt.neuroscience.mledenoise.gaindriftexample for a description of the spike responses it generates.
-%    [spiketimes,r,t,stimon,stimoff,stimids,g]=vlt.neuroscience.mledenoise.gaindriftexample('gain_amplitude',0,'gain_offset',1);
-%    % Step 2, use vlt.neuroscience.spiketrains.spikeresponse to calculate the actual responses
-%    response_curve = vlt.neuroscience.spiketrains.spikeresponse(stimon,stimoff,stimids,spiketimes);
-%    % see if the average spikes are equal to what we expect from vlt.neuroscience.mledenoise.gaindriftexample's help
+%    % Step 1, use vlt.neuro.mledenoise.gaindriftexample.m to generate spike responses.
+%    %  See help vlt.neuro.mledenoise.gaindriftexample for a description of the spike responses it generates.
+%    [spiketimes,r,t,stimon,stimoff,stimids,g]=vlt.neuro.mledenoise.gaindriftexample('gain_amplitude',0,'gain_offset',1);
+%    % Step 2, use vlt.neuro.spiketrains.spikeresponse to calculate the actual responses
+%    response_curve = vlt.neuro.spiketrains.spikeresponse(stimon,stimoff,stimids,spiketimes);
+%    % see if the average spikes are equal to what we expect from vlt.neuro.mledenoise.gaindriftexample's help
 %    response_curve.curve(2,:),
 %    
-%  See also: vlt.neuroscience.spiketrains.spikeresponse_tf
+%  See also: vlt.neuro.spiketrains.spikeresponse_tf
 
 stimvaluelist = unique(stim_values);
 

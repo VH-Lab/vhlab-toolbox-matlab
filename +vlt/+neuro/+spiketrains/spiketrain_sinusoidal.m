@@ -1,7 +1,7 @@
 function spiketimes = spiketrain_sinusoidal(maxrate, frequency, phase, rate_offset, t_start, t_end, dt)
 % SPIKETRAIN_SINUSOIDAL - Create a spike train with a sinusoidal rate
 %
-%  SPIKETIMES = vlt.neuroscience.spiketrains.spiketrain_sinusoidal(MAXRATE, FREQUENCY,...
+%  SPIKETIMES = vlt.neuro.spiketrains.spiketrain_sinusoidal(MAXRATE, FREQUENCY,...
 %      PHASE, RATE_OFFSET, T_START, T_END, DT)
 %
 %  On top of a background spike rate of RATE_OFFSET, create a
@@ -17,10 +17,10 @@ function spiketimes = spiketrain_sinusoidal(maxrate, frequency, phase, rate_offs
 %    dt = 0.001; t_start = 0; t_end = 50/4; % 50 cycles at 4Hz
 %    %Generate a spike train with modulation rate of 4Hz and amplitude of 20Hz on
 %    %a background of 50Hz rate
-%    ST =vlt.neuroscience.spiketrains.spiketrain_sinusoidal(20,4,0,50,t_start,t_end,dt);
+%    ST =vlt.neuro.spiketrains.spiketrain_sinusoidal(20,4,0,50,t_start,t_end,dt);
 %    % convert back to bins
 %    T = t_start:dt:t_end; % time bins
-%    SC = vlt.neuroscience.spiketrains.spiketimes2bins(ST,T);
+%    SC = vlt.neuro.spiketrains.spiketimes2bins(ST,T);
 %    % convert spikes to be instantaneous rates
 %    SCr = SC/dt;
 %    [fc,freqs] = vlt.math.fouriercoeffs(SCr,dt);

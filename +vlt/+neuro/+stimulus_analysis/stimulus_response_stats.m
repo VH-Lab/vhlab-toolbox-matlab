@@ -1,9 +1,9 @@
 function stats = stimulus_response_stats(responses, varargin)
 % STIMULUS_RESPONSE_SUMMARY - compute a stimulus response summary for timeseries data
 % 
-% STATS = vlt.neuroscience.stimulus_analysis.stimulus_response_stats(RESPONSES,...)
+% STATS = vlt.neuro.stimulus_analysis.stimulus_response_stats(RESPONSES,...)
 %
-% RESPONSES is a structure returned from vlt.neuroscience.stimulus_analysis.stimulus_response_scalar that has fields
+% RESPONSES is a structure returned from vlt.neuro.stimulus_analysis.stimulus_response_scalar that has fields
 % Field name:                   | Description
 % --------------------------------------------------------------------------------
 % stimid                        | Stimulus id number for each stimulus presentation
@@ -12,7 +12,7 @@ function stats = stimulus_response_stats(responses, varargin)
 % controlstimnumber             | The stimulus number that was used as the control stimulus for
 %                               |     each stimulus presentation
 % parameters                    | A structure of parameters used in the computation
-%                               |     (see HELP vlt.neuroscience.stimulus_analysis.stimulus_response_scalar)  
+%                               |     (see HELP vlt.neuro.stimulus_analysis.stimulus_response_scalar)  
 % 
 % Computes a structure STATS with fields:
 % Field name:                   | Description:

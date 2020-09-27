@@ -1,6 +1,6 @@
 function [centeredspikes] = centerspikes_neg(spikeshapes, center_range)
 % CENTERSPIKES_NEG Center negative-going spike waveforms based on minimum
-%  [CENTEREDSPIKES] = vlt.neuroscience.spikesorting.centerspikes_neg(SPIKESHAPES, CENTER_RANGE)
+%  [CENTEREDSPIKES] = vlt.neuro.spikesorting.centerspikes_neg(SPIKESHAPES, CENTER_RANGE)
 %
 %  Inputs: SPIKESHAPES: an NxMxD vector where N is the number of spikes, M is the number of
 %           samples that comprise each spike waveform, and D is dimensions (i.e., number of

@@ -1,6 +1,6 @@
 function [response] = spikeresponse_tf(stimtimes_on, stimtimes_off, stim_values, spiketimes, binsize, frequency)
 %
-%  [RESPONSE_CURVE] = vlt.neuroscience.spiketrains.spikeresponse_tf(STIMTIMES_ON, STIMTIMES_OFF, STIM_VALUES,
+%  [RESPONSE_CURVE] = vlt.neuro.spiketrains.spikeresponse_tf(STIMTIMES_ON, STIMTIMES_OFF, STIM_VALUES,
 %         SPIKETIMES, BINSIZE, FREQUENCY)
 %
 %  Return a response curve of responses to the presentation
@@ -36,15 +36,15 @@ function [response] = spikeresponse_tf(stimtimes_on, stimtimes_off, stim_values,
 %                    |     in inds (first column is stimid, second column is entry
 %                    |     number in vector inds{stimid})
 %
-%    %  See help vlt.neuroscience.mledenoise.gaindriftexample for a description of the spike responses it generates.
-%    [spiketimes,r,t,stimon,stimoff,stimids,g]=vlt.neuroscience.mledenoise.gaindriftexample('gain_amplitude',0,'gain_offset',1,...
+%    %  See help vlt.neuro.mledenoise.gaindriftexample for a description of the spike responses it generates.
+%    [spiketimes,r,t,stimon,stimoff,stimids,g]=vlt.neuro.mledenoise.gaindriftexample('gain_amplitude',0,'gain_offset',1,...
 %		'response_tf',4);
-%    % Step 2, use vlt.neuroscience.spiketrains.spikeresponse to calculate the actual responses
-%    response_curve = vlt.neuroscience.spiketrains.spikeresponse_tf(stimon,stimoff,stimids,spiketimes,0.001,4);
-%    % see if the average spikes are equal to what we expect from vlt.neuroscience.mledenoise.gaindriftexample's help
+%    % Step 2, use vlt.neuro.spiketrains.spikeresponse to calculate the actual responses
+%    response_curve = vlt.neuro.spiketrains.spikeresponse_tf(stimon,stimoff,stimids,spiketimes,0.001,4);
+%    % see if the average spikes are equal to what we expect from vlt.neuro.mledenoise.gaindriftexample's help
 %    abs(response_curve.curve(2,:)),
 %
-%  See also: vlt.neuroscience.spiketrains.spikeresponse
+%  See also: vlt.neuro.spiketrains.spikeresponse
 %  
 
 stimvaluelist = unique(stim_values);
@@ -70,7 +70,7 @@ for i=1:length(stimtimes_on),
         end;
 	dt = stimtimes_off(i) - stimtimes_on(i);
 	T = 0:binsize:dt;
-	spikecounts = vlt.neuroscience.spiketrains.spiketimes2bins(spiketimes-stimtimes_on(i),T);
+	spikecounts = vlt.neuro.spiketrains.spiketimes2bins(spiketimes-stimtimes_on(i),T);
 	if frequency==0, 
 		f = sum(spikecounts)/dt;
 	else,

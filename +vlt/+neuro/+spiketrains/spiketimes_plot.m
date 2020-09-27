@@ -1,14 +1,14 @@
 function [h] = spiketimes_plot(spiketimes, varargin)
 % SPIKETIMES_PLOT - Plot a spike train as a bunch of hash ticks
 %
-%    H = vlt.neuroscience.spiketrains.spiketimes_plot(SPIKETIMES)
+%    H = vlt.neuro.spiketrains.spiketimes_plot(SPIKETIMES)
 %
 %    Plot a spiketrain (with spike times SPIKETIMES) on the current
 %    axes as a series of hash ticks.
 %
 %    One can also modify the plot using the following options passed
 %    as name/value pairs
-%    (for example, h=vlt.neuroscience.spiketrains.spiketimes_plot(spiketimes,'color',[1 0 0]) plots in
+%    (for example, h=vlt.neuro.spiketrains.spiketimes_plot(spiketimes,'color',[1 0 0]) plots in
 %    red):
 %
 %    Parameter (default)  |  Description

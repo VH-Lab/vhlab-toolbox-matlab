@@ -1,7 +1,7 @@
 function [spikeshapesup, Tup] = oversamplespikes(spikeshapes, upsamplefactor, t)
 % OVERSAMPLESPIKES - Oversample spike waveforms using spline interpolation
 %
-%  [SPIKESHAPESUP,TUP] = vlt.neuroscience.spikesorting.oversamplespikes(SPIKESHAPES, UPSAMPLEFACTOR, [T])
+%  [SPIKESHAPESUP,TUP] = vlt.neuro.spikesorting.oversamplespikes(SPIKESHAPES, UPSAMPLEFACTOR, [T])
 %
 %  Inputs: SPIKESHAPES: an NxMxD matrix of spikes shapes; N is the number of
 %             spikes, M is the number of samples per spike, and D is the number

@@ -1,7 +1,7 @@
 function synapseel = synapseel_stdp(synapseel, modelstruct)
 % SYNAPSEEL_CLASSICSTDP - Apply classic stdp to a SYNAPSEEL synapse
 %
-%   SYNAPSEEL = vlt.neuroscience.models.modelel.synapseel.plasticity_methods.synapseel_stdp(SYNAPSEEL, MODELSTRUCT)
+%   SYNAPSEEL = vlt.neuro.models.modelel.synapseel.plasticity_methods.synapseel_stdp(SYNAPSEEL, MODELSTRUCT)
 %
 %   Apply stdp to a SYNAPSEEL object.
 %
@@ -14,7 +14,7 @@ function synapseel = synapseel_stdp(synapseel, modelstruct)
 %                        |    (that is, a floor value). Use -Inf for none.
 %   classic_stdp         |  0/1 should we use classic stdp or triplet stdp?
 %   params               |  {'name1,'value1',...} parameters to pass along to 
-%                        |     vlt.neuroscience.stdp.stdp_apply or vlt.neuroscience.stdp.stdp_triplet_apply (optional)
+%                        |     vlt.neuro.stdp.stdp_apply or vlt.neuro.stdp.stdp_triplet_apply (optional)
 %       
 %   
 %
@@ -22,8 +22,8 @@ function synapseel = synapseel_stdp(synapseel, modelstruct)
 
 eps = 1e-10; % epsilon, for math rounding
 
-prespike = vlt.neuroscience.models.modelel.neuronmodelel.isspiking(modelstruct(synapseel.model.pre));
-postspike = vlt.neuroscience.models.modelel.neuronmodelel.isspiking(modelstruct(synapseel.model.post));
+prespike = vlt.neuro.models.modelel.neuronmodelel.isspiking(modelstruct(synapseel.model.pre));
+postspike = vlt.neuro.models.modelel.neuronmodelel.isspiking(modelstruct(synapseel.model.post));
 
 if ~isfield(synapseel.model.plasticity_params,'params'),
 	synapseel.model.plasticity_params.params = {};
@@ -44,7 +44,7 @@ if prespike|postspike,
 	if isempty(tpost_exclude), tpost_exclude = 1+length(modelstruct(synapseel.model.post).model.spiketimes); end;
 
 	if synapseel.model.plasticity_params.classic_stdp,
-		dW = vlt.neuroscience.stdp.stdp_apply( modelstruct(synapseel.model.pre).model.spiketimes(1:tpre_exclude-1),...
+		dW = vlt.neuro.stdp.stdp_apply( modelstruct(synapseel.model.pre).model.spiketimes(1:tpre_exclude-1),...
 			 modelstruct(synapseel.model.post).model.spiketimes(1:tpost_exclude-1),...
 			'T0',Tnow-eps,synapseel.model.plasticity_params.params{:});
 		%if postspike,
@@ -54,7 +54,7 @@ if prespike|postspike,
 		%	end;
 		%end;
 	else,
-		dW = vlt.neuroscience.stdp.stdp_triplet_apply( modelstruct(synapseel.model.pre).model.spiketimes(1:tpre_exclude-1),...
+		dW = vlt.neuro.stdp.stdp_triplet_apply( modelstruct(synapseel.model.pre).model.spiketimes(1:tpre_exclude-1),...
 			 modelstruct(synapseel.model.post).model.spiketimes(1:tpost_exclude-1),...
 			'T0',Tnow-eps,synapseel.model.plasticity_params.params{:});
 	end;

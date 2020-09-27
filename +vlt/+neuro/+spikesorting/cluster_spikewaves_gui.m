@@ -1,7 +1,7 @@
 function varargout = cluster_spikewaves_gui(varargin)
 % CLUSTER_SPIKEWAVES_GUI - Cluster spikewaves into groups with manual checking
 %
-%   [CLUSTERIDS,CLUSTERINFO] = vlt.neuroscience.spikesorting.cluster_spikewaves_gui('WAVES', WAVES, ...
+%   [CLUSTERIDS,CLUSTERINFO] = vlt.neuro.spikesorting.cluster_spikewaves_gui('WAVES', WAVES, ...
 %      'WAVEPARAMETERS', WAVEPARAMETERS, ...)
 %
 %   Brings up a graphical user interface to allow the user to divide the
@@ -66,8 +66,8 @@ function varargout = cluster_spikewaves_gui(varargin)
 command = 'Main';    % internal variable, the command
 fig = '';                 % the figure
 success = 0;
-features = struct('name','2points','code','ud.F=transpose(vlt.neuroscience.spikesorting.spikewaves2Npointfeature(ud.waves,ud.spikewaves2NpointfeatureSampleList));','FeatureText','2 points');
-features(2) = struct('name','pca3','code','ud.F=transpose(vlt.neuroscience.spikesorting.spikewaves2pca(ud.waves,3,ud.spikewaves2pcaRange));','FeatureText','range [-S0 S1]');
+features = struct('name','2points','code','ud.F=transpose(vlt.neuro.spikesorting.spikewaves2Npointfeature(ud.waves,ud.spikewaves2NpointfeatureSampleList));','FeatureText','2 points');
+features(2) = struct('name','pca3','code','ud.F=transpose(vlt.neuro.spikesorting.spikewaves2pca(ud.waves,3,ud.spikewaves2pcaRange));','FeatureText','range [-S0 S1]');
 algorithms(1) = struct('name','KlustaKwik','code','ud.clusterids=klustakwik_cluster(ud.F,ud.clusters(1),ud.clusters(2),10,0);','ClusterSizeEdit','[2 4]','AlgorithmSizeTxt','# clusters [min max]');
 algorithms(2) = struct('name','KMeans','code','ud.clusterids=kmeans(ud.F,ud.clusters);','ClusterSizeEdit','5','AlgorithmSizeTxt','# clusters:');
 windowheight = 800;
@@ -205,7 +205,7 @@ switch command,
 
 		set(fig,'userdata',ud);
 
-		vlt.neuroscience.spikesorting.cluster_spikewaves_gui('command','NewWindow','fig',fig);
+		vlt.neuro.spikesorting.cluster_spikewaves_gui('command','NewWindow','fig',fig);
 		if ~EnableClusterEditing,
 			disablelist = {'MoveTo1Menu','MoveTo1Txt','ClusterAllBt','MergeTxt',...
 					'MergeBt','Merge1Menu','Merge2Menu','AlgorithmTxt','AlgorithmMenu',...
@@ -215,13 +215,13 @@ switch command,
 			end;
 		end;
 		if isempty(ud.clusterinfo),
-			vlt.neuroscience.spikesorting.cluster_spikewaves_gui('command','InitClusterInfo','fig',fig);
+			vlt.neuro.spikesorting.cluster_spikewaves_gui('command','InitClusterInfo','fig',fig);
 		end;
-		vlt.neuroscience.spikesorting.cluster_spikewaves_gui('command','FeatureMenu','fig',fig);
-		vlt.neuroscience.spikesorting.cluster_spikewaves_gui('command','EnableDisableEpochItems','fig',fig);
+		vlt.neuro.spikesorting.cluster_spikewaves_gui('command','FeatureMenu','fig',fig);
+		vlt.neuro.spikesorting.cluster_spikewaves_gui('command','EnableDisableEpochItems','fig',fig);
 		drawnow;
 		if ClusterRightAway,
-			vlt.neuroscience.spikesorting.cluster_spikewaves_gui('command','ClusterAllBt','fig',fig);
+			vlt.neuro.spikesorting.cluster_spikewaves_gui('command','ClusterAllBt','fig',fig);
 		end;
 		if ~ud.IsModal, 
 			return;
@@ -266,7 +266,7 @@ switch command,
 		top = ud.windowheight;
 		row = ud.windowrowheight;
 
-                set(fig,'position',[50 50 right top],'tag','vlt.neuroscience.spikesorting.cluster_spikewaves_gui');
+                set(fig,'position',[50 50 right top],'tag','vlt.neuro.spikesorting.cluster_spikewaves_gui');
 
 		uicontrol(button,'position',[5 top-row*1 100 30],'string','DONE','fontweight','bold','tag','DoneBt');
 		uicontrol(button,'position',[5+100+10 top-row*1 100 30],'string','Cancel','fontweight','bold','tag','CancelBt');
@@ -332,7 +332,7 @@ switch command,
 
 		set(fig,'userdata',ud);
 	case 'ShowInitialClustersBt',
-		vlt.neuroscience.spikesorting.cluster_spikewaves_gui('waves',ud.waves,'waveparameters',ud.waveparameters,'clusterids',ud.clusterids_initial,'clusterinfo',ud.clusterinfo_initial,...
+		vlt.neuro.spikesorting.cluster_spikewaves_gui('waves',ud.waves,'waveparameters',ud.waveparameters,'clusterids',ud.clusterids_initial,'clusterinfo',ud.clusterinfo_initial,...
 			'IsModal',0,'FigureName',[ud.FigureName ' - initial clusters'],'EnableClusterEditing',0,'AskBeforeDone',0,'ForceQualityAssessment',0,...
 			'MarkerSize',ud.MarkerSize,'RandomSubset',ud.RandomSubset,'RandomSubsetSize',ud.RandomSubsetSize,'EpochNames',ud.EpochNames,'EpochStartSamples',ud.EpochStartSamples);
 	case 'FeatureEdit',
@@ -353,7 +353,7 @@ switch command,
 			errordlg(['Error in setting spikewaves2NpointfeatureSampleList']);
 			error(['Error in setting spikewaves2NpointfeatureSampleList']);
 		end;
-		if good, vlt.neuroscience.spikesorting.cluster_spikewaves_gui('command','FeatureMenu','fig',fig); end;
+		if good, vlt.neuro.spikesorting.cluster_spikewaves_gui('command','FeatureMenu','fig',fig); end;
 	case 'FeatureMenu',
 		% really nothing to do here
 		f = get(findobj(fig,'tag','FeatureMenu'),'value');
@@ -375,7 +375,7 @@ switch command,
 				error(['Error in calculating features: ' lasterr ] ,'Cluster error');
 			end;
 			set(fig,'userdata',ud);
-			vlt.neuroscience.spikesorting.cluster_spikewaves_gui('command','Draw','fig',fig);
+			vlt.neuro.spikesorting.cluster_spikewaves_gui('command','Draw','fig',fig);
 		end;
 	case 'ClusterAllBt',
 		v = get(findobj(fig,'tag','AlgorithmMenu'),'value');
@@ -397,10 +397,10 @@ switch command,
 		end;
 		if good,
 			set(fig,'userdata',ud);
-			vlt.neuroscience.spikesorting.cluster_spikewaves_gui('command','ReOrderMinToMax','fig',fig);
-			vlt.neuroscience.spikesorting.cluster_spikewaves_gui('command','InitClusterInfo','fig',fig);
-			vlt.neuroscience.spikesorting.cluster_spikewaves_gui('command','MakeClusters1toN','fig',fig);
-			vlt.neuroscience.spikesorting.cluster_spikewaves_gui('command','Draw','fig',fig);
+			vlt.neuro.spikesorting.cluster_spikewaves_gui('command','ReOrderMinToMax','fig',fig);
+			vlt.neuro.spikesorting.cluster_spikewaves_gui('command','InitClusterInfo','fig',fig);
+			vlt.neuro.spikesorting.cluster_spikewaves_gui('command','MakeClusters1toN','fig',fig);
+			vlt.neuro.spikesorting.cluster_spikewaves_gui('command','Draw','fig',fig);
 		end;
 	case 'ClusterVisibleBt',
 		v = get(findobj(fig,'tag','AlgorithmMenu'),'value');
@@ -415,7 +415,7 @@ switch command,
 		if good,
 			z = find(ud.algorithms(v).code=='=');
 			z2 = findstr(ud.algorithms(v).code,'ud.F');
-			indexes = vlt.neuroscience.spikesorting.cluster_spikewaves_gui('command','FindVisibleSpikes','fig',fig);
+			indexes = vlt.neuro.spikesorting.cluster_spikewaves_gui('command','FindVisibleSpikes','fig',fig);
 
 %algorithms(1) = struct('name','KlustaKwik','code','ud.clusterids=klustakwik_cluster(ud.F,ud.clusters(1),ud.clusters(2),10,0);','ClusterSizeEdit','[2 4]','AlgorithmSizeTxt','# clusters [min max]');
 %algorithms(2) = struct('name','KMeans','code','ud.clusterids=kmeans(ud.F,ud.clusters);','ClusterSizeEdit','5','AlgorithmSizeTxt','# clusters:');
@@ -431,9 +431,9 @@ switch command,
 		end;
 		if good,
 			set(fig,'userdata',ud);
-			vlt.neuroscience.spikesorting.cluster_spikewaves_gui('command','ReOrderMinToMax','fig',fig);
-			vlt.neuroscience.spikesorting.cluster_spikewaves_gui('command','InitClusterInfo','fig',fig);
-			vlt.neuroscience.spikesorting.cluster_spikewaves_gui('command','MakeClusters1toN','fig',fig);
+			vlt.neuro.spikesorting.cluster_spikewaves_gui('command','ReOrderMinToMax','fig',fig);
+			vlt.neuro.spikesorting.cluster_spikewaves_gui('command','InitClusterInfo','fig',fig);
+			vlt.neuro.spikesorting.cluster_spikewaves_gui('command','MakeClusters1toN','fig',fig);
 		end;
 	case 'ReOrderMinToMax',
 		clusters = unique(ud.clusterids);
@@ -467,7 +467,7 @@ switch command,
 			end;
 		end;
 		set(fig,'userdata',ud);
-		vlt.neuroscience.spikesorting.cluster_spikewaves_gui('command','UpdateMergeQualityMenu','fig',fig);
+		vlt.neuro.spikesorting.cluster_spikewaves_gui('command','UpdateMergeQualityMenu','fig',fig);
 	case 'InitClusterInfoExtra',
 		clusterinfo=struct('number',[],'qualitylabel','','numberofspikes',[],'meanshape',[]);
 		clusters = unique(ud.clusterids);
@@ -484,7 +484,7 @@ switch command,
 					'EpochStart',ud.EpochNames{1},'EpochStop',ud.EpochNames{end});
 		end;
 		set(fig,'userdata',ud);
-		vlt.neuroscience.spikesorting.cluster_spikewaves_gui('command','UpdateMergeQualityMenu','fig',fig);
+		vlt.neuro.spikesorting.cluster_spikewaves_gui('command','UpdateMergeQualityMenu','fig',fig);
 	case 'MakeClusters1toN',
 		clusters = unique(ud.clusterids);
 		if isnan(clusters(end)), clusters = clusters(1:find(isnan(clusters),1,'first')); end;  % take only 1 NaN from unique
@@ -509,7 +509,7 @@ switch command,
 		set(findobj(fig,'tag','OtherActionMenu'),'value',1);
 		commands = {'','','MoveTo1Menu','','SelectSpikesToAddFeatureAxes','SelectSpikesToExcludeFeatureAxes','ExcludeAllVisibleSpikes','NotPresentIntoNewCluster'};
 		if ~isempty(commands{v}), 
-			vlt.neuroscience.spikesorting.cluster_spikewaves_gui('command',commands{v},'fig',fig);
+			vlt.neuro.spikesorting.cluster_spikewaves_gui('command',commands{v},'fig',fig);
 		end;
 	case 'SplitCluster', % requires input 'indexes', 'parentcluster' 
 		% creates a new cluster using the spikes with indexes 'indexes', from the parent cluster 'parentcluster'
@@ -532,9 +532,9 @@ switch command,
 			ud.clusterinfo(parentcluster).meanshape = nanmean(ud.waves(:,:,oldindexes),3);
 		end;
 		set(fig,'userdata',ud);
-		vlt.neuroscience.spikesorting.cluster_spikewaves_gui('command','MakeClusters1toN','fig',fig); % possible we emptied one
-		vlt.neuroscience.spikesorting.cluster_spikewaves_gui('command','UpdateMergeQualityMenu','fig',fig);
-		vlt.neuroscience.spikesorting.cluster_spikewaves_gui('command','Draw','fig',fig);
+		vlt.neuro.spikesorting.cluster_spikewaves_gui('command','MakeClusters1toN','fig',fig); % possible we emptied one
+		vlt.neuro.spikesorting.cluster_spikewaves_gui('command','UpdateMergeQualityMenu','fig',fig);
+		vlt.neuro.spikesorting.cluster_spikewaves_gui('command','Draw','fig',fig);
 	case 'CurrentSelectedCluster',  
 		clusters = unique(ud.clusterids);
 		mm1 = findobj(fig,'tag','Merge1Menu');
@@ -543,25 +543,25 @@ switch command,
 		value = str2num(st{v});
 		varargout{1} = value;
 	case 'SelectSpikesToAddFeatureAxes',
-		currentSelectedCluster = vlt.neuroscience.spikesorting.cluster_spikewaves_gui('command','CurrentSelectedCluster','fig',fig);
+		currentSelectedCluster = vlt.neuro.spikesorting.cluster_spikewaves_gui('command','CurrentSelectedCluster','fig',fig);
 		axes(findobj(fig,'tag','FeatureAxes'));
-		indexes = vlt.neuroscience.spikesorting.cluster_spikewaves_gui('command','FindVisibleSpikes','fig',fig);
+		indexes = vlt.neuro.spikesorting.cluster_spikewaves_gui('command','FindVisibleSpikes','fig',fig);
 		inside = vlt.matlab.graphics.selectpoints3d(ud.F(indexes,:)');
 		z = find(inside); % who is inside the selection region?
 		%oldclusterids = ud.clusterids(indexes(z));  % no need, MakeClusters1toN covers this
 		ud.clusterids(indexes(z)) = currentSelectedCluster;
 		set(fig,'userdata',ud);
-		vlt.neuroscience.spikesorting.cluster_spikewaves_gui('command','MakeClusters1toN','fig',fig);
-		vlt.neuroscience.spikesorting.cluster_spikewaves_gui('command','UpdateMergeQualityMenu','fig',fig);
-		vlt.neuroscience.spikesorting.cluster_spikewaves_gui('command','Draw','fig',fig);
+		vlt.neuro.spikesorting.cluster_spikewaves_gui('command','MakeClusters1toN','fig',fig);
+		vlt.neuro.spikesorting.cluster_spikewaves_gui('command','UpdateMergeQualityMenu','fig',fig);
+		vlt.neuro.spikesorting.cluster_spikewaves_gui('command','Draw','fig',fig);
 	case 'SelectSpikesToExcludeFeatureAxes', 
-		currentSelectedCluster = vlt.neuroscience.spikesorting.cluster_spikewaves_gui('command','CurrentSelectedCluster','fig',fig);
+		currentSelectedCluster = vlt.neuro.spikesorting.cluster_spikewaves_gui('command','CurrentSelectedCluster','fig',fig);
 		if isnan(currentSelectedCluster),
 			errordlg(['Cannot exclude from NaN cluster']);
 			return;
 		end;
 		axes(findobj(fig,'tag','FeatureAxes'));
-		indexes = vlt.neuroscience.spikesorting.cluster_spikewaves_gui('command','FindVisibleSpikes','fig',fig);
+		indexes = vlt.neuro.spikesorting.cluster_spikewaves_gui('command','FindVisibleSpikes','fig',fig);
 		z = find(ud.clusterids(indexes)==currentSelectedCluster);
 		indexes = indexes(z); % subset that belong to this cluster
 		if isempty(indexes),
@@ -571,21 +571,21 @@ switch command,
 		inside = vlt.matlab.graphics.selectpoints3d(ud.F(indexes,:)');
 		z = find(inside); % who is inside the selection region?
 		indexes = indexes(z); 
-		vlt.neuroscience.spikesorting.cluster_spikewaves_gui('command','SplitCluster','fig',fig,'parentcluster',currentSelectedCluster,'indexes',indexes);
+		vlt.neuro.spikesorting.cluster_spikewaves_gui('command','SplitCluster','fig',fig,'parentcluster',currentSelectedCluster,'indexes',indexes);
 	case 'ExcludeAllVisibleSpikes',
-		parentcluster = vlt.neuroscience.spikesorting.cluster_spikewaves_gui('command','CurrentSelectedCluster','fig',fig);
-		indexes = vlt.neuroscience.spikesorting.cluster_spikewaves_gui('command','FindVisibleSpikes','fig',fig);
+		parentcluster = vlt.neuro.spikesorting.cluster_spikewaves_gui('command','CurrentSelectedCluster','fig',fig);
+		indexes = vlt.neuro.spikesorting.cluster_spikewaves_gui('command','FindVisibleSpikes','fig',fig);
 		if ~isnan(parentcluster),
 			% select the subset of visible spikes that belong to the parent cluster
 			z = find(ud.clusterids(indexes)==parentcluster);
 			indexes = indexes(z); 
-			vlt.neuroscience.spikesorting.cluster_spikewaves_gui('command','SplitCluster','fig',fig,'parentcluster',parentcluster,'indexes',indexes);
+			vlt.neuro.spikesorting.cluster_spikewaves_gui('command','SplitCluster','fig',fig,'parentcluster',parentcluster,'indexes',indexes);
 		else,
 			errordlg(['Cannot split NaN cluster']);
 		end;
 	case 'NotPresentIntoNewCluster',
-		parentcluster = vlt.neuroscience.spikesorting.cluster_spikewaves_gui('command','CurrentSelectedCluster','fig',fig);
-		indexes = vlt.neuroscience.spikesorting.cluster_spikewaves_gui('command','FindVisibleSpikes','fig',fig);
+		parentcluster = vlt.neuro.spikesorting.cluster_spikewaves_gui('command','CurrentSelectedCluster','fig',fig);
+		indexes = vlt.neuro.spikesorting.cluster_spikewaves_gui('command','FindVisibleSpikes','fig',fig);
 		indexes = indexes(find(indexes==parentcluster));
 		[inds_present,dummy,inds_notpresent] = vlt.signal.samplesinepochs(indexes, ud.EpochStartSamples, ...
 			find(strcmp(ud.clusterinfo(parentcluster).EpochStart,ud.EpochNames)) , ...
@@ -594,7 +594,7 @@ switch command,
 			errordlg(['No spikes are labeled as "Not present".']);
 			return;
 		end;
-		vlt.neuroscience.spikesorting.cluster_spikewaves_gui('command','SplitCluster','fig',fig,'parentcluster',parentcluster,'indexes',inds_notpresent);
+		vlt.neuro.spikesorting.cluster_spikewaves_gui('command','SplitCluster','fig',fig,'parentcluster',parentcluster,'indexes',inds_notpresent);
 	case 'UpdateMergeQualityMenu',  % update the labels in the Merge/Quality/Epoch menus
 		clusters = unique(ud.clusterids);
 		if isnan(clusters(end)), clusters = clusters(1:find(isnan(clusters),1,'first')); end;  % take only 1 NaN from unique
@@ -607,7 +607,7 @@ switch command,
 		set(findobj(fig,'tag','MoveTo1Menu'),'string',mergemenustring,'value',1);
 		set(findobj(fig,'tag','EpochsStartMenu'),'string',ud.EpochNames);
 		set(findobj(fig,'tag','EpochsStopMenu'),'string',ud.EpochNames);
-		vlt.neuroscience.spikesorting.cluster_spikewaves_gui('command','Merge1Menu','fig',fig);
+		vlt.neuro.spikesorting.cluster_spikewaves_gui('command','Merge1Menu','fig',fig);
 	case 'MoveTo1Menu',
 		% need to move this cluster number to position 1; everything gets moved down by 1
 		clusters = unique(ud.clusterids);
@@ -627,8 +627,8 @@ switch command,
 			ud.clusterinfo(i).number = int2str(clusters(i));
 		end;
 		set(fig,'userdata',ud);
-		vlt.neuroscience.spikesorting.cluster_spikewaves_gui('command','UpdateMergeQualityMenu','fig',fig);
-		vlt.neuroscience.spikesorting.cluster_spikewaves_gui('command','Draw','fig',fig);
+		vlt.neuro.spikesorting.cluster_spikewaves_gui('command','UpdateMergeQualityMenu','fig',fig);
+		vlt.neuro.spikesorting.cluster_spikewaves_gui('command','Draw','fig',fig);
 	case 'Merge1Menu',  % Set Merge1Menu value
 		mm1 = findobj(fig,'tag','Merge1Menu');
 		st = get(mm1,'string');
@@ -641,7 +641,7 @@ switch command,
 		if isempty(mm2str), mm2str = {' '}; end;
 		mm2 = findobj(fig,'tag','Merge2Menu');
 		set(mm2,'string',mm2str,'value',1);
-		vlt.neuroscience.spikesorting.cluster_spikewaves_gui('command','ClusterPropertyMenu','fig',fig);
+		vlt.neuro.spikesorting.cluster_spikewaves_gui('command','ClusterPropertyMenu','fig',fig);
 	case 'MergeBt',
 		mm1 = findobj(fig,'tag','Merge1Menu');
 		mm2 = findobj(fig,'tag','Merge2Menu');
@@ -679,9 +679,9 @@ switch command,
 		ud.clusterinfo(loc1).number_of_spikes = length(newinds);
 		ud.clusterinfo(loc1).meanshape = nanmean(ud.waves(:,:,newinds),3);
 		set(fig,'userdata',ud);
-		vlt.neuroscience.spikesorting.cluster_spikewaves_gui('command','MakeClusters1toN','fig',fig);
-		vlt.neuroscience.spikesorting.cluster_spikewaves_gui('command','UpdateMergeQualityMenu','fig',fig);
-		vlt.neuroscience.spikesorting.cluster_spikewaves_gui('command','Draw','fig',fig);
+		vlt.neuro.spikesorting.cluster_spikewaves_gui('command','MakeClusters1toN','fig',fig);
+		vlt.neuro.spikesorting.cluster_spikewaves_gui('command','UpdateMergeQualityMenu','fig',fig);
+		vlt.neuro.spikesorting.cluster_spikewaves_gui('command','Draw','fig',fig);
 	case 'ClusterPropertyMenu',
 		v = get(findobj(fig,'tag','Merge1Menu'),'value'); % formerly ClusterProperyMenu
 		str = get(findobj(fig,'tag','QualityMenu'),'string');
@@ -695,14 +695,14 @@ switch command,
 		end;
 		if isempty(v2)&~isempty(ud.clusterinfo), error(['Could not find quality label ' ud.clusterinfo(v).qualitylabel '; this situation really should not happen.']); end;
 		set(findobj(fig,'tag','QualityMenu'),'value',v2);
-		vlt.neuroscience.spikesorting.cluster_spikewaves_gui('command','UpdateEpochMenus','fig',fig);
+		vlt.neuro.spikesorting.cluster_spikewaves_gui('command','UpdateEpochMenus','fig',fig);
 	case 'QualityMenu',
 		v2 = get(findobj(fig,'tag','QualityMenu'),'value');
 		str2 = get(findobj(fig,'tag','QualityMenu'),'string');
 		v = get(findobj(fig,'tag','Merge1Menu'),'value'); % formerly ClusterPropertyMenu
 		ud.clusterinfo(v).qualitylabel = str2{v2};
 		set(fig,'userdata',ud);
-		vlt.neuroscience.spikesorting.cluster_spikewaves_gui('command','RelabelSpikes','fig',fig);
+		vlt.neuro.spikesorting.cluster_spikewaves_gui('command','RelabelSpikes','fig',fig);
 	case 'UpdateEpochMenus', % Update the display of the Epoch menus to match the cluster info
 		v = get(findobj(fig,'tag','Merge1Menu'),'value'); % which cluster number are we on? % formerly ClusterPropertyMenu
 		str = get(findobj(fig,'tag','EpochsStartMenu'),'string');
@@ -717,9 +717,9 @@ switch command,
 		ud.clusterinfo(v).EpochStart = ud.EpochNames{vstart};
 		ud.clusterinfo(v).EpochStop = ud.EpochNames{vstop};
 		set(fig,'userdata',ud);
-		vlt.neuroscience.spikesorting.cluster_spikewaves_gui('command','Draw','fig',fig);
+		vlt.neuro.spikesorting.cluster_spikewaves_gui('command','Draw','fig',fig);
 	case {'ViewEpochsStartMenu','ViewEpochsStopMenu'},
-		vlt.neuroscience.spikesorting.cluster_spikewaves_gui('command','Draw','fig',fig);
+		vlt.neuro.spikesorting.cluster_spikewaves_gui('command','Draw','fig',fig);
 	case 'AlgorithmMenu',
 		v = get(findobj(fig,'tag','AlgorithmMenu'),'value');
 		set(findobj(fig,'tag','AlgorithmSizeTxt'),'string',ud.algorithms(v).AlgorithmSizeTxt);
@@ -736,7 +736,7 @@ switch command,
 		MarkerSizeString = get(findobj(fig,'tag','MarkerSizeEdit'),'string');
 		ud.MarkerSize = str2num(MarkerSizeString);
 		set(fig,'userdata',ud);
-		vlt.neuroscience.spikesorting.cluster_spikewaves_gui('command','DrawFeatures','fig',fig);
+		vlt.neuro.spikesorting.cluster_spikewaves_gui('command','DrawFeatures','fig',fig);
 	case {'RandomSubsetSizeEdit', 'RandomSubsetCB'},
 		RandomSubsetSizeString = get(findobj(fig,'tag','RandomSubsetSizeEdit'),'string');
 		try,
@@ -747,7 +747,7 @@ switch command,
 		end;
 		ud.RandomSubset = get(findobj(fig,'tag','RandomSubsetCB'),'value');
 		set(fig,'userdata',ud);
-		vlt.neuroscience.spikesorting.cluster_spikewaves_gui('command','DrawSpikes','fig',fig);
+		vlt.neuro.spikesorting.cluster_spikewaves_gui('command','DrawSpikes','fig',fig);
 	case 'AxesEdit', % user modified axes values or we want to initiate same command
 		% we assume that there is a drawing right now that needs to be preserved
 		FixedAxesCB = get(findobj(fig,'tag','FixedAxesCB'),'value');
@@ -760,7 +760,7 @@ switch command,
 			catch,
 				% reset to something that will not produce an error
 				errordlg(['Error in Fixed Axes text field; check for syntax errors or xmin>=xmax, ymin>=ymax, etc;  resetting']);
-				vlt.neuroscience.spikesorting.cluster_spikewaves_gui('command','AxesAutoBt','fig',fig); % repair the damage
+				vlt.neuro.spikesorting.cluster_spikewaves_gui('command','AxesAutoBt','fig',fig); % repair the damage
 			end;
 		end;
 		FixedAxesValues = axis;
@@ -781,9 +781,9 @@ switch command,
 		varargout{1} = inds_visible; 
 		varargout{2} = inds_notvisible;
 	case 'Draw',
-		vlt.neuroscience.spikesorting.cluster_spikewaves_gui('command','DrawFeatures','fig',fig);
-		vlt.neuroscience.spikesorting.cluster_spikewaves_gui('command','DrawSpikes','fig',fig);
-		vlt.neuroscience.spikesorting.cluster_spikewaves_gui('command','UpdateMergeQualityMenu','fig',fig);
+		vlt.neuro.spikesorting.cluster_spikewaves_gui('command','DrawFeatures','fig',fig);
+		vlt.neuro.spikesorting.cluster_spikewaves_gui('command','DrawSpikes','fig',fig);
+		vlt.neuro.spikesorting.cluster_spikewaves_gui('command','UpdateMergeQualityMenu','fig',fig);
 	case 'DrawFeatures',
 		axes(findobj(fig,'tag','FeatureAxes'));
 		cla;
@@ -806,7 +806,7 @@ switch command,
 				thecolor = ud.UnclassifiedColor;
 			end;
 			% only examine 'visible' spikes
-			[inds_visible,inds_invisible] = vlt.neuroscience.spikesorting.cluster_spikewaves_gui('command','FindVisibleSpikes','fig',fig,'indexes',inds);
+			[inds_visible,inds_invisible] = vlt.neuro.spikesorting.cluster_spikewaves_gui('command','FindVisibleSpikes','fig',fig,'indexes',inds);
 			inds = inds_visible; 
 			% and also restrict for spikes that are 'present' in the cluster
 			[inds_present,dummy,inds_notpresent] = vlt.signal.samplesinepochs(inds, ud.EpochStartSamples, ...
@@ -834,7 +834,7 @@ switch command,
 		box off; % good taste
 		MarkerSizeString = int2str(ud.MarkerSize);
 		set(findobj(fig,'tag','MarkerSizeEdit'),'string',MarkerSizeString);
-		vlt.neuroscience.spikesorting.cluster_spikewaves_gui('command','AxesEdit','fig',fig); % adjust axis if necessary
+		vlt.neuro.spikesorting.cluster_spikewaves_gui('command','AxesEdit','fig',fig); % adjust axis if necessary
 		drawnow;
 	case 'DrawSpikes',
 		oldaxes = findobj(fig,'-regexp','tag','SpikeAxes*');
@@ -846,7 +846,7 @@ switch command,
 			cluster_id_numbers(end+1) = str2num(ud.clusterinfo(i).number);
 		end;
 
-		[inds_visible,inds_invisible] = vlt.neuroscience.spikesorting.cluster_spikewaves_gui('command','FindVisibleSpikes','fig',fig);
+		[inds_visible,inds_invisible] = vlt.neuro.spikesorting.cluster_spikewaves_gui('command','FindVisibleSpikes','fig',fig);
 
 		% column boundaries
 
@@ -877,7 +877,7 @@ switch command,
 				thecolor = ud.UnclassifiedColor;
 			end;
 			% restrict viewing to 'visible' spikes
-			[inds_visible,inds_invisible] = vlt.neuroscience.spikesorting.cluster_spikewaves_gui('command','FindVisibleSpikes','fig',fig,'indexes',inds);
+			[inds_visible,inds_invisible] = vlt.neuro.spikesorting.cluster_spikewaves_gui('command','FindVisibleSpikes','fig',fig,'indexes',inds);
 			inds = inds_visible;
 			% restrict viewing to 'visible' spikes when the cluster is 'good'/'present'
 			inds_present = vlt.signal.samplesinepochs(inds, ud.EpochStartSamples, ...
@@ -890,7 +890,7 @@ switch command,
 			else,
 				ax{currentrow,2} = axes('units','pixels','position',[middle_edge+10 axesrows(currentrow+1) ax_width ax_height],'tag',['SpikeAxes' int2str(i)]);
 			end;
-			vlt.neuroscience.spikesorting.plotspikewaves(ud.waves(:,:,inds),1:length(inds),'ColorOrder',thecolor,'RandomSubset',ud.RandomSubset,'RandomSubsetSize',ud.RandomSubsetSize);
+			vlt.neuro.spikesorting.plotspikewaves(ud.waves(:,:,inds),1:length(inds),'ColorOrder',thecolor,'RandomSubset',ud.RandomSubset,'RandomSubsetSize',ud.RandomSubsetSize);
 			box off;
 			axis off;
 			A = [A ; axis ];
@@ -912,7 +912,7 @@ switch command,
 			plot(ud.spikewaves2pcaRange(1)*[1 1],[min(A(:,3)) max(A(:,4))],'--','color',[0.0 0.0 0.5]);
 			plot(ud.spikewaves2pcaRange(2)*[1 1],[min(A(:,3)) max(A(:,4))],'--','color',[0.0 0.0 0.5]);
 		end;
-		vlt.neuroscience.spikesorting.cluster_spikewaves_gui('command','RelabelSpikes','fig',fig);
+		vlt.neuro.spikesorting.cluster_spikewaves_gui('command','RelabelSpikes','fig',fig);
 	case 'RelabelSpikes',
 		for i=1:length(ud.clusterinfo),
 			axes(findobj(fig,'tag',['SpikeAxes' int2str(i)]));

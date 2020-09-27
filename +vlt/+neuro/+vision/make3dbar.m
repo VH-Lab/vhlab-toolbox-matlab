@@ -23,8 +23,8 @@ for OFF=([25 75 100 125 150]+25),
 d = D(inc);
 inc = inc + 1;
 
-[loR,roR]=vlt.neuroscience.vision.stereopoint(V,e,wR,d);
-[loL,roL]=vlt.neuroscience.vision.stereopoint(V,e,wL,d);
+[loR,roR]=vlt.neuro.vision.stereopoint(V,e,wR,d);
+[loL,roL]=vlt.neuro.vision.stereopoint(V,e,wL,d);
 
 loR = OFF+pix_per_cm*loR;
 roR = OFF+pix_per_cm*roR;

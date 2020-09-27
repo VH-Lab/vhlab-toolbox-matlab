@@ -1,8 +1,8 @@
 function avgstim = reverse_correlation_stepfunc(spiketimes, kerneltimes, stimtimes, stim)
 
-% vlt.neuroscience.reverse_correlation.reverse_correlation_stepfunc - Performs RC between spike times and step function stimulus
+% vlt.neuro.reverse_correlation.reverse_correlation_stepfunc - Performs RC between spike times and step function stimulus
 %
-% AVG_STIM = vlt.neuroscience.reverse_correlation.reverse_correlation_stepfunc(SPIKETIMES, STIM_OFFSETS, STIMTIMES, STIM)
+% AVG_STIM = vlt.neuro.reverse_correlation.reverse_correlation_stepfunc(SPIKETIMES, STIM_OFFSETS, STIMTIMES, STIM)
 %
 %   This function performs reverse correlation (AKA the spike triggered average, STA,
 %   AKA the stimulus that was present (on average) at the time of a spike)
@@ -20,7 +20,7 @@ function avgstim = reverse_correlation_stepfunc(spiketimes, kerneltimes, stimtim
 %
 %   See Dayan and Abbott (2005), Chapters 1-2
 %  
-%  See also:  vlt.math.stepfunc, vlt.neuroscience.reverse_correlation.demos.DirRFModel_example3
+%  See also:  vlt.math.stepfunc, vlt.neuro.reverse_correlation.demos.DirRFModel_example3
 
    % KERNELTIMES corresponds to STIM_OFFSETS in the docs
 

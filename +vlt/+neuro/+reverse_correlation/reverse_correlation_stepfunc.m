@@ -2,7 +2,7 @@ function [rev_corr, rev_corr_raw, xc_stimsignal, xc_stimstim] = reverse_correlat
 % REVERSE_CORRELATION_STEPFUNC - Performs RC between a spike train and step function stimulus
 %
 % [REV_CORR, REV_CORR_RAW, XC_STIMSIGNAL, XC_STIMSTIM] = ...
-%        vlt.neuroscience.reverse_correlation.reverse_correlation_stepfunc(SPIKETIMES, SIGNAL_T, STIM_OFFSETS, STIMTIMES, STIM)
+%        vlt.neuro.reverse_correlation.reverse_correlation_stepfunc(SPIKETIMES, SIGNAL_T, STIM_OFFSETS, STIMTIMES, STIM)
 %
 %   This function performs reverse correlation between a spike train with spikes at SPIKETIMES
 %   and a stimulus STIM to obtain the best linear filter (FIR Wiener filter) that can be used to reconstruct
@@ -42,7 +42,7 @@ function [rev_corr, rev_corr_raw, xc_stimsignal, xc_stimstim] = reverse_correlat
 %         units('STIM')^2
 %
 %   Note: IF you have a theoretically-determined autocorrelation function for your stimulus,
-%         it is highly recommended that you pass it to vlt.neuroscience.reverse_correlation.reverse_correlation_mv_stepfunc as a
+%         it is highly recommended that you pass it to vlt.neuro.reverse_correlation.reverse_correlation_mv_stepfunc as a
 %         name/value pair ('xc_stimstim', myxc). This will reduce the likelihood of an unstable/garbage
 %         solution.
 %
@@ -68,7 +68,7 @@ function [rev_corr, rev_corr_raw, xc_stimsignal, xc_stimstim] = reverse_correlat
 %   dx (1)                     | Resolution of kernel in columns
 %   dt (1)                     | Resolution of kernel in time
 %
-%  See also:  vlt.math.stepfunc, vlt.neuroscience.reverse_correlation.demos.DirRFModel_example2, FIRWIENER
+%  See also:  vlt.math.stepfunc, vlt.neuro.reverse_correlation.demos.DirRFModel_example2, FIRWIENER
 
 DoMedFilter = 1;
 MedFilterWidth = 3;
@@ -86,7 +86,7 @@ vlt.data.assign(varargin{:});
 
 % Step 1: compute the correlation of the SIGNAL and the STIMULUS
 
-xc_stimsignal = vlt.neuroscience.reverse_correlation.spike_triggered_average_stepfunc(spiketimes,kerneltimes,stimtimes,stim);
+xc_stimsignal = vlt.neuro.reverse_correlation.spike_triggered_average_stepfunc(spiketimes,kerneltimes,stimtimes,stim);
 
 % Step 2: compute the autocorrelation of the stimulus, if necessary
 

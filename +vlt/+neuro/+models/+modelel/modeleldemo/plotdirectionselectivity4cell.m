@@ -1,15 +1,15 @@
 function plotdirectionselectivity4cell(out)
 % PLOTDIRECTIONSELECTIVITY4CELL - Plot the output of the 4 cell simulation
 %
-%    vlt.neuroscience.models.modelel.modeleldemo.plotdirectionselectivity4cell(OUT)
+%    vlt.neuro.models.modelel.modeleldemo.plotdirectionselectivity4cell(OUT)
 %
-%  Plots the output of vlt.neuroscience.models.modelel.modeleldemo.directionselectivity4cell_learning1
+%  Plots the output of vlt.neuro.models.modelel.modeleldemo.directionselectivity4cell_learning1
 %  to the current figure.  Note that the current figure is cleared
 %  before plotting.
 %
 %  If SIMENDPOINT is 1, then the endpoint condition is simulated.
 %
-%  See also: vlt.neuroscience.models.modelel.modeleldemo.directionselectivity4cell_learning1
+%  See also: vlt.neuro.models.modelel.modeleldemo.directionselectivity4cell_learning1
 
 clf;
 

@@ -1,7 +1,7 @@
 function varargout=simpleodedemo(varargin)
 % SIMPLEODEDEMO - A simple demonstration of a first order, ordinary differential equation
 %
-%  vlt.neuroscience.models.ode.simpleodedemo - Popups up a window that allows the user to watch
+%  vlt.neuro.models.ode.simpleodedemo - Popups up a window that allows the user to watch
 %  the operation of a simple ode.  The equation simulated is the following:
 %
 %  tau * d r(t)/dt = -(r(t)-C)+I
@@ -29,7 +29,7 @@ else,
 end;
 
 if isempty(fig),
-	z = findobj(allchild(0),'flat','tag','vlt.neuroscience.models.ode.simpleodedemo');
+	z = findobj(allchild(0),'flat','tag','vlt.neuro.models.ode.simpleodedemo');
 	if isempty(z),
 		fig = figure;
 	else,
@@ -51,7 +51,7 @@ end;
 switch command, % now process the command
 	case 'Main',
 		set(fig,'userdata',ud);
-		vlt.neuroscience.models.ode.simpleodedemo('command','NewWindow','fig',fig);
+		vlt.neuro.models.ode.simpleodedemo('command','NewWindow','fig',fig);
 	case 'NewWindow',
 		vlt.ui.myuiinit;
 		right = ud.windowwidth;
@@ -66,7 +66,7 @@ switch command, % now process the command
 		uicontrol(txt,'position',[50 top-100 right-50 75],'string','tau d r(t)/dt = -(r(t)-C)+I',...
 			'fontweight','bold','fontsize',16);
 
-		set(fig,'position',[50 50 right top],'tag','vlt.neuroscience.models.ode.simpleodedemo','name','simpleodedemo',...
+		set(fig,'position',[50 50 right top],'tag','vlt.neuro.models.ode.simpleodedemo','name','simpleodedemo',...
 			'numbertitle','off');
 		axes('units','pixels','position',[axleft 50 leftright_divider-axleft 180],'tag','rateAx');
 		axes('units','pixels','position',[axleft 205+50 leftright_divider-axleft 180],'tag','inputAx');
@@ -112,7 +112,7 @@ switch command, % now process the command
 		varargout{6}=str2num(get(findobj(fig,'tag','dTEdit'),'string'));       % dT
 		varargout{7}=str2num(get(findobj(fig,'tag','DurationEdit'),'string')); % Duration
 	case 'SimulateBt',
-		[r0,tau,C,I,Itype,dT,Duration] = vlt.neuroscience.models.ode.simpleodedemo('command','GetVars','fig',fig);
+		[r0,tau,C,I,Itype,dT,Duration] = vlt.neuro.models.ode.simpleodedemo('command','GetVars','fig',fig);
 		t = 0;
 		r = r0;
 		Inp = I;

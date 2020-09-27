@@ -1,7 +1,7 @@
 function [hp,hr] = plot_psth(N,X,rast,triglength,ratioPSTH,PSTHclear, ...
               theAxes, theTitle, y_label)
 
-%  [H] = vlt.neuroscience.spiketrains.plot_psth(N,X,rast,ratioPSTH,PSTHclear,theAxes)
+%  [H] = vlt.neuro.spiketrains.plot_psth(N,X,rast,ratioPSTH,PSTHclear,theAxes)
 
 axes(theAxes);
 

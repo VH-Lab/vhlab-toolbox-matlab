@@ -33,30 +33,30 @@ function [timeseries, timestamps, stimonsetoffsetid] = generate_test_stimulus_re
 % Example:
 %   % continuous signal example
 %   figure;
-%   [timeseries, timestamps, stimonsetoffsetid] = vlt.neuroscience.stimulus_analysis.generate_test_stimulus_responses('reps',10);
+%   [timeseries, timestamps, stimonsetoffsetid] = vlt.neuro.stimulus_analysis.generate_test_stimulus_responses('reps',10);
 %   plot(timestamps,timeseries,'k-');
 %   hold on;
-%   vlt.neuroscience.stimulus_analysis.plot_stimulus_timeseries(3, stimonsetoffsetid(:,1), stimonsetoffsetid(:,2), 'stimid', stimonsetoffsetid(:,3));
+%   vlt.neuro.stimulus_analysis.plot_stimulus_timeseries(3, stimonsetoffsetid(:,1), stimonsetoffsetid(:,2), 'stimid', stimonsetoffsetid(:,3));
 %   axis([timestamps(1) timestamps(end) -2 3+2]);
 %   ylabel('Activity');
 %   xlabel('Time (s)');
-%   R=vlt.neuroscience.stimulus_analysis.stimulus_response_scalar(timeseries, timestamps, stimonsetoffsetid, 'control_stimid', 11, 'freq_response', 1);
-%   S=vlt.neuroscience.stimulus_analysis.stimulus_response_stats(R,'control_normalization','subtract');
+%   R=vlt.neuro.stimulus_analysis.stimulus_response_scalar(timeseries, timestamps, stimonsetoffsetid, 'control_stimid', 11, 'freq_response', 1);
+%   S=vlt.neuro.stimulus_analysis.stimulus_response_stats(R,'control_normalization','subtract');
 %   figure;
 %   vlt.plot.myerrorbar(1:10,abs(S.mean),S.stderr,S.stderr);  % F1 response is complex, convert to magnitude
 %   xlabel('Stim ID');
 %   ylabel('F1 response');
 %
 %   % spike example
-%   [timeseries, timestamps, stimonsetoffsetid] = vlt.neuroscience.stimulus_analysis.generate_test_stimulus_responses('PoissonProcess',1,'reps',10);
-%   vlt.neuroscience.spiketrains.spiketimes_plot(timestamps);
+%   [timeseries, timestamps, stimonsetoffsetid] = vlt.neuro.stimulus_analysis.generate_test_stimulus_responses('PoissonProcess',1,'reps',10);
+%   vlt.neuro.spiketrains.spiketimes_plot(timestamps);
 %   hold on;
-%   vlt.neuroscience.stimulus_analysis.plot_stimulus_timeseries(3, stimonsetoffsetid(:,1), stimonsetoffsetid(:,2), 'stimid', stimonsetoffsetid(:,3));
+%   vlt.neuro.stimulus_analysis.plot_stimulus_timeseries(3, stimonsetoffsetid(:,1), stimonsetoffsetid(:,2), 'stimid', stimonsetoffsetid(:,3));
 %   axis([timestamps(1) timestamps(end) -2 3+2]);
 %   ylabel('Activity');
 %   xlabel('Time (s)');
-%   R=vlt.neuroscience.stimulus_analysis.stimulus_response_scalar(timeseries, timestamps, stimonsetoffsetid, 'control_stimid', 11, 'freq_response', 1,'isspike',1);
-%   S=vlt.neuroscience.stimulus_analysis.stimulus_response_stats(R,'control_normalization','subtract');
+%   R=vlt.neuro.stimulus_analysis.stimulus_response_scalar(timeseries, timestamps, stimonsetoffsetid, 'control_stimid', 11, 'freq_response', 1,'isspike',1);
+%   S=vlt.neuro.stimulus_analysis.stimulus_response_stats(R,'control_normalization','subtract');
 %   figure;
 %   vlt.plot.myerrorbar(1:10,abs(S.mean),S.stderr,S.stderr);  % F1 response is complex, convert to magnitude
 %   xlabel('Stim ID');

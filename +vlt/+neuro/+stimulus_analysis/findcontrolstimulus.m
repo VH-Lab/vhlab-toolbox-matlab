@@ -1,7 +1,7 @@
 function [controlstimnumber] = findcontrolstimulus(stimid, controlstimid)
 % FINDCONTROLSTIMULUS - find the corresponding 'control' stimulus for a set of stimuli
 %
-% CONTROLSTIMNUMBER = vlt.neuroscience.stimulus_analysis.findcontrolstimulus(STIMID, CONTROLSTIMID)
+% CONTROLSTIMNUMBER = vlt.neuro.stimulus_analysis.findcontrolstimulus(STIMID, CONTROLSTIMID)
 %
 % Given an array of STIMID values that indicate stimulus presentation, and an array of
 % CONTROLSTIMID value(s) that indicate the identification number of a 'control' stimulus
@@ -19,11 +19,11 @@ function [controlstimnumber] = findcontrolstimulus(stimid, controlstimid)
 %
 % CONTROLSTIMNUMBER will always be returned as a column vector.
 %
-% See also: vlt.neuroscience.stimulus_analysis.stimids2reps
+% See also: vlt.neuro.stimulus_analysis.stimids2reps
 %
 % Example:
 %   stimid = [ 1 2 3 1 2 3 1 2 3 1 2 3 1 2 3 ];
-%   cs=vlt.neuroscience.stimulus_analysis.findcontrolstimulus(stimid,3)'
+%   cs=vlt.neuro.stimulus_analysis.findcontrolstimulus(stimid,3)'
 %      % cs == [ 3 3 3 6 6 6 9 9 9 12 12 12 15 15 15 ]
 %
 
@@ -34,7 +34,7 @@ end;
 
 numstims = max(stimid);
 
-[reps,isregular] = vlt.neuroscience.stimulus_analysis.stimids2reps(stimid,numstims);
+[reps,isregular] = vlt.neuro.stimulus_analysis.stimids2reps(stimid,numstims);
 
 controlstimnumber = [];
 

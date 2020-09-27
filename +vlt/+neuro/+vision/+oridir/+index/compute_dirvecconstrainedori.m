@@ -17,7 +17,7 @@ angles_oneway =  angles_rotated < 180;
 angles_otherway = angles_rotated>=180;
 
 if 0~=(sum(angles_oneway) + sum(angles_otherway) - length(angles_rotated)),
-	disp(['vlt.neuroscience.vision.oridir.indexes.compute_dirvecconstrainedori error: it happened; we did not divide direction space evenly.']);
+	disp(['vlt.neuro.vision.oridir.indexes.compute_dirvecconstrainedori error: it happened; we did not divide direction space evenly.']);
 	keyboard;
 end;
 

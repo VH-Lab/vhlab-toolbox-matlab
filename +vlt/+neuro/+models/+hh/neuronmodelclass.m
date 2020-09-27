@@ -2,7 +2,7 @@
 % developed by Steve Van Hooser and Ishaan Khurana
 
 
-classdef vlt.neuroscience.models.hh.neuronmodelclass
+classdef vlt.neuro.models.hh.neuronmodelclass
     
 	properties
 
@@ -32,7 +32,7 @@ classdef vlt.neuroscience.models.hh.neuronmodelclass
 	end
 
 	methods
-		function neuronmodel_obj = vlt.neuroscience.models.hh.neuronmodelclass(varargin)
+		function neuronmodel_obj = vlt.neuro.models.hh.neuronmodelclass(varargin)
 			V_initial = -0.065;
 			Cm = 100e-12;
 			Rm = 10e6;

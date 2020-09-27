@@ -1,7 +1,7 @@
 function [newcurve] = rotatedircurve(angles, responses, pref_angle_assignment, anchor_responses)
 % ROTATEDIRCURVE - rotate a direction curve so that it's highest value is at a defined place
 %
-%  NEWCURVE = vlt.neuroscience.vision.oridir.rotatedircurve(ANGLES, RESPONSES, PREF_ANGLE_ASSIGNMENT)
+%  NEWCURVE = vlt.neuro.vision.oridir.rotatedircurve(ANGLES, RESPONSES, PREF_ANGLE_ASSIGNMENT)
 %  
 %  Rotates the direction tuning curve measured at angles ANGLES and 
 %  with responses RESPONSES so that the maximum response is at PREF_ANGLE_ASSIGNMENT.
@@ -13,7 +13,7 @@ function [newcurve] = rotatedircurve(angles, responses, pref_angle_assignment, a
 %
 %  The function also has a form:
 %
-%  NEWCURVE = vlt.neuroscience.vision.oridir.rotatedircurve(ANGLES, RESPONSES, PREF_ANGLE_ASSIGNMENT, ANCHOR_RESPONSES)
+%  NEWCURVE = vlt.neuro.vision.oridir.rotatedircurve(ANGLES, RESPONSES, PREF_ANGLE_ASSIGNMENT, ANCHOR_RESPONSES)
 % 
 %  That will shift the curve RESPONSES based on the responses of a different curve
 %  ANCHOR_RESPONSES. This is useful, for example, for shifting the surround tuning

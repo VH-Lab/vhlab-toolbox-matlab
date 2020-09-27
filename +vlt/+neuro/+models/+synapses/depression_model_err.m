@@ -1,6 +1,6 @@
 function err=depression_model_err(x,spiketimes,data,forder,dorder)
 
-%  vlt.neuroscience.models.synapses.depression_model_err - Depression model error function
+%  vlt.neuro.models.synapses.depression_model_err - Depression model error function
 
  % extract parameters
 a0=x(1);
@@ -9,5 +9,5 @@ d=x(2+2*forder:1+2*forder+dorder); d = abs(d./(d+1));
 dtau=abs(x(2+2*forder+dorder:1+2*(forder+dorder)));
 
  % calculate error
-moddat = vlt.neuroscience.models.synapses.depression_model_comp(spiketimes,a0,f,ftau,d,dtau);
+moddat = vlt.neuro.models.synapses.depression_model_comp(spiketimes,a0,f,ftau,d,dtau);
 err = sum(sum((data-moddat).*(data-moddat)));

@@ -1,8 +1,8 @@
 function [CI,ncells] = calc_cluster_index(cell_pts, roi_pts, scale, inj_size, windsize, windstep, area_thresh, fract_cells,indexvalues,difffunc, randfunc )
 
-% vlt.neuroscience.anatomy.calc_cluster_index - Calculate cluster index from Ruthazer and Stryker
+% vlt.neuro.anatomy.calc_cluster_index - Calculate cluster index from Ruthazer and Stryker
 %
-%   CI = vlt.neuroscience.anatomy.calc_cluster_index(CELL_PTS, ROI_PTS, SCALE, INJ_SIZE, WINDSIZE,
+%   CI = vlt.neuro.anatomy.calc_cluster_index(CELL_PTS, ROI_PTS, SCALE, INJ_SIZE, WINDSIZE,
 %           WINDSTEP, AREA_THRESH, FRACT_CELLS, [INDEXVALUES FUNC RANDFUNC])
 %
 %  Calculates the cluster index as described by Ruthazer and Stryker

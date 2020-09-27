@@ -1,14 +1,14 @@
 function out = directionselectivityNcell_learning2(varargin)
 % DIRECTIONSELECTIVITYNCELL_LEARNING2
 %
-% OUT = vlt.neuroscience.models.modelel.modeleldemo.directionselectivityNcell_learning2
+% OUT = vlt.neuro.models.modelel.modeleldemo.directionselectivityNcell_learning2
 %
 % Observe an N-input process develop direction selectivity
 %
 % There is a single feed-forward inhibitory neuron
 %
 % One can also adjust the parameters using: 
-% OUT = vlt.neuroscience.models.modelel.modeleldemo.directionselectivity4cell_learning1(PARAM1NAME, PARAM1VALUE, ...)
+% OUT = vlt.neuro.models.modelel.modeleldemo.directionselectivity4cell_learning1(PARAM1NAME, PARAM1VALUE, ...)
 %   
 % The following parameters are adjustable (default value in ()):
 % ---------------------------------------------------------------------
@@ -54,7 +54,7 @@ N = 1;
 R = 1;
 Gmax_initial = 3e-9 * ones(1,N*R);
 Gmax_initial_inhib = 3e-9 * ones(1,N*R);
-synmeth = 'vlt.neuroscience.models.modelel.synapseel.plasticity_methods.synapseel_stdp';
+synmeth = 'vlt.neuro.models.modelel.synapseel.plasticity_methods.synapseel_stdp';
 dt = 0.0001;
 trials = 100;
 synapseparams = {};
@@ -113,7 +113,7 @@ ctx_inhib = NaN(1,total_trials);
 inhib_r_up = NaN(1,total_trials);
 inhib_r_down = NaN(1,total_trials);
 
-[model_initial,di(1),r_up(1),r_down(1),dummy,dummy,inhib_r_up(1),inhib_r_down(1)] = vlt.neuroscience.models.modelel.modeleldemo.directionselectivityNcelldemo_inhib('dt',dt,...
+[model_initial,di(1),r_up(1),r_down(1),dummy,dummy,inhib_r_up(1),inhib_r_down(1)] = vlt.neuro.models.modelel.modeleldemo.directionselectivityNcelldemo_inhib('dt',dt,...
 	'latency',latency,'lag',lag,'slow',slow,'mask',mask,...
 	'N',N,'R',R,...
 	'isi',isi,'nreps',nreps,...
@@ -123,8 +123,8 @@ inhib_r_down = NaN(1,total_trials);
 	'ISyn_Gmax_initial',ISyn_Gmax_initial,'phase',phase,'simdown','initial_simdown'...
 	);
 
-syn_nums = vlt.neuroscience.models.modelel.synapseel.modelelgetsyn(model_initial,[1:N*R],N*R+ones(1,N*R));
-inhibsyn_nums = vlt.neuroscience.models.modelel.synapseel.modelelgetsyn(model_initial,[1:N*R],N*R+1+ones(1,N*R));
+syn_nums = vlt.neuro.models.modelel.synapseel.modelelgetsyn(model_initial,[1:N*R],N*R+ones(1,N*R));
+inhibsyn_nums = vlt.neuro.models.modelel.synapseel.modelelgetsyn(model_initial,[1:N*R],N*R+1+ones(1,N*R));
 
 gmaxes(:,1) = [Syn_Gmax_initial]';
 inhib_gmaxes(:,1) = [Syn_Gmax_initial_inhib]';
@@ -158,7 +158,7 @@ for t=2:trialstepsize:total_trials,
 
 	if unidir==1 | (mod(t,2)==0),
 		% run in upward direction
-		[dummy,dummy,r_up(t),dummy,model_current,dummy,inhib_r_up(t)] = vlt.neuroscience.models.modelel.modeleldemo.directionselectivityNcelldemo_inhib('dt',dt,...
+		[dummy,dummy,r_up(t),dummy,model_current,dummy,inhib_r_up(t)] = vlt.neuro.models.modelel.modeleldemo.directionselectivityNcelldemo_inhib('dt',dt,...
 		'R', R, 'N', N, 'isi', isi, 'nreps',nreps,...
 		'latency',latency,'lag',lag,'slow',slow,'mask',mask,...
 		'Syn_Gmax_initial',gmaxes(:,t-1)',...
@@ -183,7 +183,7 @@ for t=2:trialstepsize:total_trials,
 
 	% figure out the 'down' spikes
 
-		[dummy,dummy,dummy,r_down(t),dummy,model_current,dummy,inhib_r_down(t)] = vlt.neuroscience.models.modelel.modeleldemo.directionselectivityNcelldemo_inhib('dt',dt,...
+		[dummy,dummy,dummy,r_down(t),dummy,model_current,dummy,inhib_r_down(t)] = vlt.neuro.models.modelel.modeleldemo.directionselectivityNcelldemo_inhib('dt',dt,...
 		'R', R, 'N', N, 'isi', isi, 'nreps',nreps,...
 		'latency',latency','lag',lag,'slow',slow,...
 		'Syn_Gmax_initial',gmaxes(:,t+input_select)', ...
@@ -205,7 +205,7 @@ for t=2:trialstepsize:total_trials,
 		end;
 
 		% test with upward direction to get hypothetical selectivity
-		[dummy,dummy,r_up(t),dummy,model_current,dummy,inhib_r_up(t)] = vlt.neuroscience.models.modelel.modeleldemo.directionselectivityNcelldemo_inhib('dt',dt,...
+		[dummy,dummy,r_up(t),dummy,model_current,dummy,inhib_r_up(t)] = vlt.neuro.models.modelel.modeleldemo.directionselectivityNcelldemo_inhib('dt',dt,...
 		'R', R, 'N', N, 'isi', isi, 'slow',slow,'mask',mask,'nreps',nreps,...
 		'latency',latency,'lag',lag,...
 		'Syn_Gmax_initial',gmaxes(:,t)',...
@@ -229,7 +229,7 @@ for t=2:trialstepsize:total_trials,
 		out.ctx_inhib = ctx_inhib;
 		out.inhib_r_up = inhib_r_up;
 		out.inhib_r_down = inhib_r_down;
-		vlt.neuroscience.models.modelel.modeleldemo.plotdirectionselectivity4cell(out);
+		vlt.neuro.models.modelel.modeleldemo.plotdirectionselectivity4cell(out);
 		drawnow; % make sure it draws before we proceed
 	end;
 end;

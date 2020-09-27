@@ -1,7 +1,7 @@
 function response = stimulus_response_summary(timeseries, timestamps, stim_onsetoffsetid, varargin)
 % STIMULUS_RESPONSE_SUMMARY - compute a stimulus response summary for timeseries data
 % 
-% RESPONSE = vlt.neuroscience.stimulus_analysis.stimulus_response_summary(TIMESERIES, TIMESTAMPS, STIM_ONSETOFFSETID, ...)
+% RESPONSE = vlt.neuro.stimulus_analysis.stimulus_response_summary(TIMESERIES, TIMESTAMPS, STIM_ONSETOFFSETID, ...)
 %
 % STIM_ONSETOFFSETID is a variable that describes the stimulus history. Each row should
 % contain [stim_onset_time stim_offset_time stimid] where the times are in units of TIMESTAMPS (s).

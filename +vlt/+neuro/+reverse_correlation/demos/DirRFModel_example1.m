@@ -1,6 +1,6 @@
 function DirRFModel_example1
 
-% vlt.neuroscience.reverse_correlation.demos.DirRFModel_example1 - Direction selective responses from a hand-picked kernel
+% vlt.neuro.reverse_correlation.demos.DirRFModel_example1 - Direction selective responses from a hand-picked kernel
 %
 
  % define parameters for kernel/stimuli
@@ -14,14 +14,14 @@ SpFreq = 1; TFreq = 4; Left = 1; Right = -1;
 
 % create a grating that will give a maximum response to 0.050, which we'll pretend is mW
 
-D = vlt.neuroscience.reverse_correlation.createdirkernel(Dx,Dt,SpFreq,0,TFreq,Left,[3 2],[0.1 0.001 0.2],0.050); % pretend mV
-stim_left = vlt.neuroscience.reverse_correlation.stim1d_motion(Stimx,Stimt,SpFreq,0,TFreq,Left);
-stim_right = vlt.neuroscience.reverse_correlation.stim1d_motion(Stimx,Stimt,SpFreq,0,TFreq,Right);
+D = vlt.neuro.reverse_correlation.createdirkernel(Dx,Dt,SpFreq,0,TFreq,Left,[3 2],[0.1 0.001 0.2],0.050); % pretend mV
+stim_left = vlt.neuro.reverse_correlation.stim1d_motion(Stimx,Stimt,SpFreq,0,TFreq,Left);
+stim_right = vlt.neuro.reverse_correlation.stim1d_motion(Stimx,Stimt,SpFreq,0,TFreq,Right);
 
 disp(['Setup complete, now simulating']);
 
-[R_left,sim_time] = vlt.neuroscience.reverse_correlation.simulate_1dkernel_response(D, Dx,Dt, stim_left, Stimx, Stimt);
-[R_right,sim_time] = vlt.neuroscience.reverse_correlation.simulate_1dkernel_response(D, Dx,Dt, stim_right, Stimx, Stimt);
+[R_left,sim_time] = vlt.neuro.reverse_correlation.simulate_1dkernel_response(D, Dx,Dt, stim_left, Stimx, Stimt);
+[R_right,sim_time] = vlt.neuro.reverse_correlation.simulate_1dkernel_response(D, Dx,Dt, stim_right, Stimx, Stimt);
 
 disp(['Linear component simulated, now generating firing rates']);
 

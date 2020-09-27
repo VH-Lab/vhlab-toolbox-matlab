@@ -1,7 +1,7 @@
 function modelelout = modelel_convertforc(modelel, variables)
 % MODELEL_CONVERTFORC - Convert a modelel structure into a format that can be parsed by the C++ implementation
 %
-%  MODELELOUT = vlt.neuroscience.models.modelel.modelelrun.modelel_convertforc(MODELEL, VARS)
+%  MODELELOUT = vlt.neuro.models.modelel.modelelrun.modelel_convertforc(MODELEL, VARS)
 %
 %  Converts the structure representation that is used for
 %  MATLAB (see help MODELEL) into a format suitable for
@@ -33,7 +33,7 @@ for i=1:length(modelel),
 end;
 
 for i=1:length(variables),
-	[el,str] = vlt.neuroscience.models.modelel.modelelrun.modelel_runvarname2log(variables{i});
+	[el,str] = vlt.neuro.models.modelel.modelelrun.modelel_runvarname2log(variables{i});
 	if isempty(modelelout(el).logged),
 		modelelout(el).logged = str;
 	else,
