@@ -27,8 +27,8 @@ dirstrings_to_exclude = {'.git', 'archived_code'};
 
 vlt.data.assign(varargin{:});
 
-mfiledirlist = vlt.paths.pathstr2cellarray(genpath(mfiledirs));
-editmfiledirlist = vlt.paths.pathstr2cellarray(genpath(editmfiledirs));
+mfiledirlist = vlt.path.pathstr2cellarray(genpath(mfiledirs));
+editmfiledirlist = vlt.path.pathstr2cellarray(genpath(editmfiledirs));
 
  % remove excluded directories
 

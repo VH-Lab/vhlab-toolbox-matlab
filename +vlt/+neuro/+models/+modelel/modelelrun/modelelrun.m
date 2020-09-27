@@ -76,7 +76,7 @@ modelrunstruct = struct('RandomSeed',RandomSeed,...
 
 if UseExecutable,
 	modelel_out = vlt.neuroscience.models.modelel.modelelrun.modelel_convertforc(modelrunstruct.Model_Initial_Structure, Variables);
-	base_matlab_dir = vlt.pathpathstr2cellarray(userpath);
+	base_matlab_dir = vlt.path.pathstr2cellarray(userpath);
 	modelel_out_string = vlt.data.struct2mlstr(modelel_out);
 	% write text output file here
 	infile = [base_matlab_dir{1} filesep 'Modelel_model.txt'],

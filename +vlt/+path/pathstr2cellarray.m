@@ -1,15 +1,15 @@
 function path_cellstr = pathstr2cellarray(thepathstr, theseparator)
 % PATHSTR2CELLARRAY - Convert a path string to a cell list of strings
 %
-%   PATH_CELLSTR = vlt.pathpathstr2cellarray
+%   PATH_CELLSTR = vlt.path.pathstr2cellarray
 %
 %   Converts the current path string to a cell list of strings in
 %   PATH_CELLSTR.  
 %
 %   One can also use the constructions:
-%       PATH_CELLSTR = vlt.pathpathstr2cellarray(PATHSTR)
+%       PATH_CELLSTR = vlt.path.pathstr2cellarray(PATHSTR)
 %         to specify a path string other than the current PATH, or
-%       PATH_CELLSTR = vlt.pathpathstr2cellarray(PATHSTR, SEPARATOR)
+%       PATH_CELLSTR = vlt.path.pathstr2cellarray(PATHSTR, SEPARATOR)
 %         to use a path separator other than the current PATHSEP.
 %    
 %   Example:  Remove all paths that have 'VH_matlab_code' in them
