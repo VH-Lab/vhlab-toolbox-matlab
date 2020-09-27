@@ -24,7 +24,7 @@ function s = emptystruct(varargin)
 if ~isempty(varargin),
 	if iscell(varargin{1}),
 		mycell = varargin{1};
-		s = vlt.file.emptystruct(mycell{:});
+		s = vlt.data.emptystruct(mycell{:});
 		return;
 	end;
 end;
