@@ -1,7 +1,7 @@
 function h=plotbargraphwithdata(data, varargin)
 % PLOTMEANBAR - Plot a bar graph indicating mean, standard error, and raw data
 %
-% H = PLOTBARGRAPHWITHDATA(DATA, ...)
+% H = vlt.plot.plotbargraphwithdata(DATA, ...)
 %
 % Plots a bar graph with height equals to the mean value of the the mean value
 % of each dataset in the cell array DATA{i}. The standard error of the mean is
@@ -43,7 +43,7 @@ symbol = 'o';
 xoffset = 0.2;
 measure = 'nanmean(data{i}(:))';
 
-assign(varargin{:});
+vlt.data.assign(varargin{:});
 
 if isempty(data), h = []; return; end;
 
@@ -58,7 +58,7 @@ stderrs = [];
 
 for i=1:numel(data),
 	mns(i) = eval(measure);
-	stderrs(i) = nanstderr(data{i}(:));
+	stderrs(i) = vlt.data.nanstderr(data{i}(:));
 end;
 
 hb = bar(xloc,mns);
@@ -66,7 +66,7 @@ set(hb,'facecolor',barcolor);
 hold on;
 
 if usestderr,
-	he = myerrorbar(xloc-xoffset,mns,stderrs,stderrs);
+	he = vlt.plot.myerrorbar(xloc-xoffset,mns,stderrs,stderrs);
 	set(he, 'color',stderrcolor,'linewidth',linewidth_stderr);
 	delete(he(2));
 	he = he(1);

@@ -1,6 +1,6 @@
 function [counts,bin_centers, bin_edges, fullcounts] = autohistogram(data)
 %AUTOHISTOGRAM - Choose bins based on Freedman-Diaconis' choice
-%  [COUNTS,BIN_CENTERS, BIN_EDGES, FULLCOUNTS] = AUTOHISTOGRAM(DATA)
+%  [COUNTS,BIN_CENTERS, BIN_EDGES, FULLCOUNTS] = vlt.plot.autohistogram(DATA)
 %     Automatically chooses bin sizes based on Freedman-Diaconis' choice,
 %        defined to be
 %        WIDTH = 2*IQR(DATA)/CUBE ROOT OF NUMBER OF DATAPOINTS
@@ -56,4 +56,4 @@ end
 bin_edges = [bin_min-2*bin_width (bin_low-bin_width):bin_width:(bin_high+bin_width) bin_max+2*bin_width];
 bin_centers = (bin_edges(2:end-2) + bin_edges(3:end-1))/2;
 fullcounts = histc(data(:),bin_edges);
-counts = colvec(fullcounts(2:end-2))'; % remove the last bin that is returned by histc
+counts = vlt.data.colvec(fullcounts(2:end-2))'; % remove the last bin that is returned by histc

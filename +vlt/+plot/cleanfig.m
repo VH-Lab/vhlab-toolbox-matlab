@@ -1,8 +1,8 @@
 function cleanfig(fignum, units)
 
-%  CLEANFIG - Cleans a figure for saving in guide
+%  vlt.plot.cleanfig - Cleans a figure for saving in guide
 %
-%  CLEANFIG(FIGNUM, UNITS)
+%  vlt.plot.cleanfig(FIGNUM, UNITS)
 %
 %  Cleans all string entries from 'edit' and 'popup' uitools,
 %  and sets units of all uitools to UNITS.

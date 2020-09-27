@@ -1,11 +1,11 @@
 function [x,y] = intline(x1, x2, y1, y2)
 %INTLINE Integer-coordinate line drawing algorithm.
-%   [X, Y] = INTLINE(X1, X2, Y1, Y2) computes an
+%   [X, Y] = vlt.plot.intline(X1, X2, Y1, Y2) computes an
 %   approximation to the line segment joining (X1, Y1) and
 %   (X2, Y2) with integer coordinates.  X1, X2, Y1, and Y2
-%   should be integers.  INTLINE is reversible; that is,
-%   INTLINE(X1, X2, Y1, Y2) produces the same results as
-%   FLIPUD(INTLINE(X2, X1, Y2, Y1)).
+%   should be integers.  vlt.plot.intline is reversible; that is,
+%   vlt.plot.intline(X1, X2, Y1, Y2) produces the same results as
+%   FLIPUD(vlt.plot.intline(X2, X1, Y2, Y1)).
 
 %   Copyright 1993-2003 The MathWorks, Inc.  
 %   $Revision: 5.11.4.2 $  $Date: 2004/08/10 01:45:22 $

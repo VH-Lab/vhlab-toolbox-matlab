@@ -1,7 +1,7 @@
 function h=plotmeanbar(data, varargin)
 % PLOTMEANBAR - Plot a horizontal bar indicating mean (or standard error) of a dataset
 %
-% H = PLOTMEANBAR(DATA, ...)
+% H = vlt.plot.plotmeanbar(DATA, ...)
 %
 % Plots the mean value of data as a horizontal bar, and, optionally, a
 % vertical bar indicating the standard error.  Returns a handle(s) H to the plot.
@@ -29,7 +29,7 @@ linewidth = 2;
 linewidth_stderr = 1;
 measure = 'nanmean(data(:))';
 
-assign(varargin{:});
+vlt.data.assign(varargin{:});
 
 if isempty(data), h = []; return; end;
 
@@ -42,7 +42,7 @@ end;
 h = plot(xloc,d_mean*[1 1],'color',color,'linewidth',linewidth);
 
 if usestderr,
-	d_stderr = nanstderr(data(:));
+	d_stderr = vlt.data.nanstderr(data(:));
 
 	h(end+1) = errorbar(mean(xloc),d_mean,d_stderr,d_stderr,'color',color,'linewidth',linewidth_stderr);
 end;

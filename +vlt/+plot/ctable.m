@@ -1,8 +1,8 @@
 function ct = ctable(cmap, sz)
 
-%  CTABLE  Creates a color table from a colormap.
+%  vlt.plot.ctable  Creates a color table from a colormap.
 %
-%  CT = CTABLE(CMAP [, SZ])
+%  CT = vlt.plot.ctable(CMAP [, SZ])
 %
 %  Returns a color table matrix from the colormap CMAP.  The color table is
 %  3xSZ, and if size is not specified SZ is assumed to be 256.  Each entry

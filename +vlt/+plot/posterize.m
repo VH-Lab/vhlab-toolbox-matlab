@@ -1,8 +1,8 @@
 function posterize(fignum, varargin)
 
-% POSTERIZE - Change plot characteristics appropriate for posters
+% vlt.plot.posterize - Change plot characteristics appropriate for posters
 %
-%  POSTERIZE(FIGNUM, ...)
+%  vlt.plot.posterize(FIGNUM, ...)
 %
 %  Changes plot characteristics appropriate for a poster.  By default:
 %  '_axes_fontsize' is set to 10
@@ -21,11 +21,11 @@ function posterize(fignum, varargin)
 %
 %  Examples:
 %
-%  POSTERIZE(FIGNUM,'linewidth',2) will set the value of
+%  vlt.plot.posterize(FIGNUM,'linewidth',2) will set the value of
 %    the field 'linewidth' to 2 in all handles that possess it.
-%  POSTERIZE(FIGNUM,'_axes_fontsize',20) sets the value of the field
+%  vlt.plot.posterize(FIGNUM,'_axes_fontsize',20) sets the value of the field
 %    'fontsize' in all handles of type 'axes'.
-%  POSTERIZE(FIGNUM,'_axes_xlabel_fontsize',13) sets the value of the field
+%  vlt.plot.posterize(FIGNUM,'_axes_xlabel_fontsize',13) sets the value of the field
 %    'fontsize' in all handles called 'xlabel' in objects of type 'axes'
 
 
@@ -35,7 +35,7 @@ myvarargin = {'_axes_fontsize',10, '_axes_xlabel_fontsize', 13, '_axes_ylabel_fo
 myvarargin = cat(2,myvarargin,varargin);
 
 if mod(length(varargin),2)~=0,
-	error(['Extra arguments to POSTERIZE must be in pairs.']);
+	error(['Extra arguments to vlt.plot.posterize must be in pairs.']);
 end;
 
 for i=1:2:length(myvarargin),
