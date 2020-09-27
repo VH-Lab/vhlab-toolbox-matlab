@@ -1,7 +1,7 @@
 function logp_of_data = poisson_vm_fr(vm, fr, deltaT, ratefunc, ratefuncparams)
 % POISSON_VM_FR - calculate log likelihood of seeing Vm/Fr pairs given model
 %
-% LOGP_OF_DATA = vlt.neuroscience.membrane_voltage.poisson_vm_fr(VM, FR, DELTAT, RATEFUNC, RATEFUNCPARAMS, ...)
+% LOGP_OF_DATA = vlt.neuro.membrane.poisson_vm_fr(VM, FR, DELTAT, RATEFUNC, RATEFUNCPARAMS, ...)
 %
 % Calculate the log likelihood of observing a given set of binned membrane voltage
 % measurements (VM) and corresponding binned firing rates (FR) in bins size DELTAT.
@@ -9,7 +9,7 @@ function logp_of_data = poisson_vm_fr(vm, fr, deltaT, ratefunc, ratefuncparams)
 % determined by RATEFUNC(VM, ...) * DELTAT. RATEFUNCPARAMS are additional parameters
 % to be passed to RATEFUNC, so that the call to RATEFUNC is RATEFUNC(VM, RATEFUNCPARAMS{:});
 %
-% See also: vlt.neuroscience.membrane_voltage.mle_poisson_vm_fr
+% See also: vlt.neuro.membrane.mle_poisson_vm_fr
 
 
 rates = feval(ratefunc,vm(:),ratefuncparams{:}) * deltaT;

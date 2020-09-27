@@ -1,7 +1,7 @@
 function [params] = mle_normal_vm_fr(vm, fr, deltaT, varargin)
 % MLE_NORMAL_VM_FR - use maximum likelihood analysis to compute Poisson rate model of voltage -> firing rate
 % 
-% PARAMS = vlt.neuroscience.membrane_voltage.mle_normal_vm_fr(VM, FR, DELTAT,  ...)
+% PARAMS = vlt.neuro.membrane.mle_normal_vm_fr(VM, FR, DELTAT,  ...)
 %
 % Estimate the parameters of a Normal rate function for fitting spike counts in bins and
 % voltage values in bins.
@@ -33,7 +33,7 @@ function [params] = mle_normal_vm_fr(vm, fr, deltaT, varargin)
 % Example: (simple test, without voltage dependence)
 %   deltaT = 0.030; % 30 ms bins
 %   fr = icdf('Normal',rand(500,1),2,1); % generate rates, rate of 2, standard deviation of 1
-%   p_out =vlt.neuroscience.membrane_voltage.mle_normal_vm_fr(0*fr,fr,deltaT,'fit_function','Normal')  
+%   p_out =vlt.neuro.membrane.mle_normal_vm_fr(0*fr,fr,deltaT,'fit_function','Normal')  
 %   p_out_matlab = mle(fr,'distribution','Normal' ) % they match
 
 fit_function = 'linearthreshold';
@@ -46,17 +46,17 @@ switch lower(fit_function),
 		lower_bounds = [0 min(0.1/deltaT,0.1*std(fr))];
 		upper_bounds = [10*max(fr) 10/deltaT];
 		rateFunc = 'vlt.fit.linepowerthreshold';
-		fitfun = @(x) -vlt.neuroscience.membrane_voltage.normal_vm_fr(vm,fr,deltaT,rateFunc, {1 x(1) 0 1}, x(2));
+		fitfun = @(x) -vlt.neuro.membrane.normal_vm_fr(vm,fr,deltaT,rateFunc, {1 x(1) 0 1}, x(2));
 	case 'linearthreshold',
 		lower_bounds = [0 0 min(0.1/deltaT,0.1*std(fr))];
 		upper_bounds = [10*max(fr)/max(vm) max(vm) 10/deltaT] ;
 		rateFunc = 'vlt.fit.linepowerthreshold';
-		fitfun = @(x) -vlt.neuroscience.membrane_voltage.normal_vm_fr(vm,fr,deltaT,rateFunc, {x(1) eps x(2) 1}, x(3));
+		fitfun = @(x) -vlt.neuro.membrane.normal_vm_fr(vm,fr,deltaT,rateFunc, {x(1) eps x(2) 1}, x(3));
 	case 'vlt.fit.linepowerthreshold',
 		lower_bounds = [0 0 0.5 min(0.1/deltaT,0.1*std(fr))];
 		upper_bounds = [10*max(fr)/max(vm) max(vm) 5 10/deltaT] ;
 		rateFunc = 'vlt.fit.linepowerthreshold';
-		fitfun = @(x) -vlt.neuroscience.membrane_voltage.normal_vm_fr(vm,fr,deltaT,rateFunc, {x(1) eps x(2) x(3)}, x(4));
+		fitfun = @(x) -vlt.neuro.membrane.normal_vm_fr(vm,fr,deltaT,rateFunc, {x(1) eps x(2) x(3)}, x(4));
 	otherwise,
 		error(['Unknown fit function']);
 end;

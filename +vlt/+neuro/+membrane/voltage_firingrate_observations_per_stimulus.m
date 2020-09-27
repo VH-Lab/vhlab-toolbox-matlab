@@ -1,7 +1,7 @@
 function [mean_v, mean_fr, mean_stimid, stimpres, vmobsperstim, frobsperstim] = voltage_firingrate_observations_per_stimulus(voltage_observations, firingrate_observations, timepoints, stim_onsetoffsetid, varargin)
 % VOLTAGE_FIRINGRATE_OBSERVATIONS - calculate voltage and firing rate observations for a stimulus (mean, mean at a frequency)
 %
-% [MEAN_V, MEAN_FR, STIMID, STIMPRES, VMOPSPERSTIM, FROBSPERSTIM] = vlt.neuroscience.membrane_voltage.voltage_firingrate_observations_per_stimulus(...
+% [MEAN_V, MEAN_FR, STIMID, STIMPRES, VMOPSPERSTIM, FROBSPERSTIM] = vlt.neuro.membrane.voltage_firingrate_observations_per_stimulus(...
 %        VM, SPIKERATE, TIME, STIM_ONSETOFFSETID, ...)
 %
 % Calculates the mean response across each stimulus presentation described in STIM_ONSETOFFSETID for both voltage (VM)

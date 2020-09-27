@@ -1,6 +1,6 @@
 function [spikewave_Vtrim, firstNZpt,spikepeak_trim_loc, lastNZpt] = spikewavetrimmer(spikewave, spikepeak_loc)
 % SPIKEWAVETRIMMER - remove the zero padding from spikewave and yield the time preceding spike peaks
-% [SPIKEWAVE_VTRIM] = vlt.neuroscience.membrane_voltage.spikewavetrimmer(SPIKEWAVE, SPIKEPEAK_LOC)
+% [SPIKEWAVE_VTRIM] = vlt.neuro.membrane.spikewavetrimmer(SPIKEWAVE, SPIKEPEAK_LOC)
 %
 % Inputs:        
 % SPIKEWAVE          | 1D vector containing values for voltage at every

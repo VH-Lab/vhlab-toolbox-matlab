@@ -1,8 +1,8 @@
 function [FWHM,hm_presk_loc,hm_postsk_loc,V_hm, prespk_WHM,postsk_WHM] = spikeFWHM(spikewaves, V_spikepeak, spikepeak_loc, kink_vm, kink_index, samplerate, timevector)
 
-% vlt.neuroscience.membrane_voltage.spikeFWHM - find the full-width, half-maximum range in single spike waveforms
+% vlt.neuro.membrane.spikeFWHM - find the full-width, half-maximum range in single spike waveforms
 %
-% [FWHM] = vlt.neuroscience.membrane_voltage.spikeFWHM(SPIKEWAVES, V_SPIKEPEAK, SPIKEPEAK_LOC,V_INITIATION,SAMPLERATE)
+% [FWHM] = vlt.neuro.membrane.spikeFWHM(SPIKEWAVES, V_SPIKEPEAK, SPIKEPEAK_LOC,V_INITIATION,SAMPLERATE)
 %
 % Inputs: 
 % SPIKEWAVES      | 1D vector containing voltage values for each spikewave
@@ -10,7 +10,7 @@ function [FWHM,hm_presk_loc,hm_postsk_loc,V_hm, prespk_WHM,postsk_WHM] = spikeFW
 %                 | spike wave (units V)
 % SPIKEPEAK_LOC   | Position value of each spike peak
 % KINK_VM         | Value where action potential begins, calculated
-%                 | by sister function vlt.neuroscience.membrane_voltage.spikekink (units V)
+%                 | by sister function vlt.neuro.membrane.spikekink (units V)
 % SAMPLERATE      | Rate of sampling for each epoch (units Hz), given by ndi_app_spikeextractor 
 %                  
 % Outputs:

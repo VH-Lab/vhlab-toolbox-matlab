@@ -1,11 +1,11 @@
 function [h,htext] = plot_voltage_firingrate_observations(v, fr, stimid, timepoints, vm_baselinesubtracted, t, vm, varargin)
 % PLOT_VOLTAGE_FIRINGRATE_OBSERVATIONS - plot a list of voltage-firing rate observations against real data
 %
-% [H,HTEXT] = vlt.neuroscience.membrane_voltage.plot_voltage_firingrate_observations(V, FR, STIMID, TIMEPOINTS, VM_BASELINESUBTRACTED, T, VM, SPIKETIMES, ...)
+% [H,HTEXT] = vlt.neuro.membrane.plot_voltage_firingrate_observations(V, FR, STIMID, TIMEPOINTS, VM_BASELINESUBTRACTED, T, VM, SPIKETIMES, ...)
 %
 % Given inputs:
-%           V - voltage observations returned from vlt.neuroscience.membrane_voltage.voltage_firingrate_observations
-%          FR - firing rate observations returned from vlt.neuroscience.membrane_voltage.voltage_firingrate_observations
+%           V - voltage observations returned from vlt.neuro.membrane.voltage_firingrate_observations
+%          FR - firing rate observations returned from vlt.neuro.membrane.voltage_firingrate_observations
 %      STIMID - stimulus IDs
 %  TIMEPOINTS - Timepoints that are averaged together
 %           T - time points of raw data
@@ -25,7 +25,7 @@ function [h,htext] = plot_voltage_firingrate_observations(v, fr, stimid, timepoi
 % dotrialaverage (0)              | If 1, perform a trial-averaging of the spike times
 %                                 |    and voltage waveform
 %
-% See also: vlt.neuroscience.membrane_voltage.voltage_firingrate_observations
+% See also: vlt.neuro.membrane.voltage_firingrate_observations
 
 
 binsize = 0.030; 

@@ -2,7 +2,7 @@ function [v, fr, stimid, timepoints, vm_baselinesubtracted, exactbintime, subtra
 % VOLTAGE_FIRINGRATE_OBSERVATIONS - compile a list of voltage measurements and firing rate measurements
 %
 % [V,FR,STIMID,TIMEPOINTS,VM_BASELINESUBECTRACTED,EXACTBINTIME, SUBTRACTED_VALUE] = ...
-%          vlt.neuroscience.membrane_voltage.voltage_firingrate_observations(T, VM, SPIKETIMES, ...)
+%          vlt.neuro.membrane.voltage_firingrate_observations(T, VM, SPIKETIMES, ...)
 %
 % Compiles a list of membrane voltage measurements V and firing rate measurements FR given the
 % following inputs: 

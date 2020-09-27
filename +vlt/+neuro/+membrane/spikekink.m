@@ -1,7 +1,7 @@
 function [kink_vm, max_dvdt, kink_index, slope_criterion] = spikekink(spike_wave, t_vec, spike_indexes, varargin)
 % SPIKEKINK - find the "kink" inflection point in spike waveforms, and maximum dv/dt after Azouz and Gray 1999
 %
-% [KINK_VM, MAX_DVDT, KINK_INDEX_] = vlt.neuroscience.membrane_voltage.spikekink(SPIKE_TRACE, T, SPIKE_INDEXES, ...)
+% [KINK_VM, MAX_DVDT, KINK_INDEX_] = vlt.neuro.membrane.spikekink(SPIKE_TRACE, T, SPIKE_INDEXES, ...)
 %
 % Inputs:        
 % SPIKE_WAVE      | 1D vector containing values for voltage at every

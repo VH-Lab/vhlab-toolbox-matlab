@@ -1,7 +1,7 @@
 function [params] = mle_poisson_vm_fr(vm, fr, deltaT, varargin)
 % MLE_POISSON_VM_FR - use maximum likelihood analysis to compute Poisson rate model of voltage -> firing rate
 % 
-% PARAMS = vlt.neuroscience.membrane_voltage.mle_poisson_vm_fr(VM, FR, DELTAT,  ...)
+% PARAMS = vlt.neuro.membrane.mle_poisson_vm_fr(VM, FR, DELTAT,  ...)
 %
 % Estimate the parameters of a Poisson rate function for fitting spike counts in bins and
 % voltage values in bins.
@@ -34,7 +34,7 @@ function [params] = mle_poisson_vm_fr(vm, fr, deltaT, varargin)
 %   deltaT = 0.030; % 30 ms bins
 %   n = icdf('Poisson',rand(500,1),2); % generate spike counts in bins, rate of 2
 %   fr = n / deltaT; % convert to rates
-%   p_out =vlt.neuroscience.membrane_voltage.mle_poisson_vm_fr(0*fr,fr,deltaT,'fit_function','Poisson')  
+%   p_out =vlt.neuro.membrane.mle_poisson_vm_fr(0*fr,fr,deltaT,'fit_function','Poisson')  
 %   p_out_matlab = mle(round(fr*deltaT),'distribution','Poisson' ) / deltaT % they match
 
 fit_function = 'linearthreshold';
@@ -47,17 +47,17 @@ switch lower(fit_function),
 		lower_bounds = 0;
 		upper_bounds = [10*max(fr)];
 		rateFunc = 'vlt.fit.linepowerthreshold';
-		fitfun = @(x) -vlt.neuroscience.membrane_voltage.poisson_vm_fr(vm,fr,deltaT,rateFunc, {1 x(1) 0 1});
+		fitfun = @(x) -vlt.neuro.membrane.poisson_vm_fr(vm,fr,deltaT,rateFunc, {1 x(1) 0 1});
 	case 'linearthreshold',
 		lower_bounds = [0 0];
 		upper_bounds = [10*max(fr)/max(vm) max(vm)] ;
 		rateFunc = 'vlt.fit.linepowerthreshold';
-		fitfun = @(x) -vlt.neuroscience.membrane_voltage.poisson_vm_fr(vm,fr,deltaT,rateFunc, {x(1) eps x(2) 1});
+		fitfun = @(x) -vlt.neuro.membrane.poisson_vm_fr(vm,fr,deltaT,rateFunc, {x(1) eps x(2) 1});
 	case 'vlt.fit.linepowerthreshold',
 		lower_bounds = [0 0 0.5];
 		upper_bounds = [10*max(fr)/max(vm) max(vm) 5] ;
 		rateFunc = 'vlt.fit.linepowerthreshold';
-		fitfun = @(x) -vlt.neuroscience.membrane_voltage.poisson_vm_fr(vm,fr,deltaT,rateFunc, {x(1) eps x(2) x(3)});
+		fitfun = @(x) -vlt.neuro.membrane.poisson_vm_fr(vm,fr,deltaT,rateFunc, {x(1) eps x(2) x(3)});
 	otherwise,
 		error(['Unknown fit function']);
 end;

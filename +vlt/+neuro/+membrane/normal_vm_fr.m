@@ -1,7 +1,7 @@
 function logp_of_data = normal_vm_fr(vm, fr, deltaT, ratefunc, ratefuncparams, sigma)
 % NORMAL_VM_FR - calculate log likelihood of seeing Vm/Fr pairs given model
 %
-% LOGP_OF_DATA = vlt.neuroscience.membrane_voltage.normal_vm_fr(VM, FR, DELTAT, RATEFUNC, RATEFUNCPARAMS, SIGMA, ...)
+% LOGP_OF_DATA = vlt.neuro.membrane.normal_vm_fr(VM, FR, DELTAT, RATEFUNC, RATEFUNCPARAMS, SIGMA, ...)
 %
 % Calculate the log likelihood of observing a given set of binned membrane voltage
 % measurements (VM) and corresponding binned firing rates (FR) in bins size DELTAT.
@@ -10,7 +10,7 @@ function logp_of_data = normal_vm_fr(vm, fr, deltaT, ratefunc, ratefuncparams, s
 % constant and passed above. RATEFUNCPARAMS are additional parameters to be passed
 % to RATEFUNC, so that the call to RATEFUNC is RATEFUNC(VM, RATEFUNCPARAMS{:});
 %
-% See also: vlt.neuroscience.membrane_voltage.mle_normal_vm_fr, vlt.neuroscience.membrane_voltage.poisson_vm_fr, vlt.neuroscience.membrane_voltage.mle_poisson_vm_fr
+% See also: vlt.neuro.membrane.mle_normal_vm_fr, vlt.neuro.membrane.poisson_vm_fr, vlt.neuro.membrane.mle_poisson_vm_fr
 
 expected_rates = feval(ratefunc,vm(:),ratefuncparams{:});
 

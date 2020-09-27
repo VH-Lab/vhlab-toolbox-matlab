@@ -1,7 +1,7 @@
 function [vmns,t,spiketimes] = vmnospikes(vm,si,varargin)
 % VMNOSPIKES - Return underlying voltage with spikes removed
 %
-%  [VMNS,T,SPIKETIMES] = vlt.neuroscience.membrane_voltage.vmnospikes(VM, SI)
+%  [VMNS,T,SPIKETIMES] = vlt.neuro.membrane.vmnospikes(VM, SI)
 %
 %  Removes spikes from the trace VM with sample interval SI.
 %  Optionally, one can re-sample at a higher SI (lower sampling rate).
