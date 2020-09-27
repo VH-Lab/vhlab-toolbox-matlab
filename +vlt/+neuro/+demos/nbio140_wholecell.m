@@ -10,8 +10,6 @@ function varargout = nbio140_wholecell(varargin)
 
  % TO DO:
 
-  % add number of spikes to cluster info, compute mean waveforms
-   
  % internal variables, for the function only
 
 command = 'Main';    % internal variable, the command
