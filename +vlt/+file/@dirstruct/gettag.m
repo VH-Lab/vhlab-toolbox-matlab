@@ -10,14 +10,14 @@ function tag = gettag(ds,dir)
 %  with fields 'name' and 'value'.  They are located in a text file
 %  within the directory DIR with the filename 'tags.txt'.
 %  
-%  See also: ADDTAG, LOADSTRUCTARRAY
+%  See also: ADDTAG, vlt.file.loadStructArray
 %  
 
 wholedir = [getpathname(ds) filesep dir];
 tagfilename = [wholedir filesep 'tags.txt'];
 
 if exist(tagfilename,'file')==2,
-	tag = loadStructArray(tagfilename);
+	tag = vlt.file.loadStructArray(tagfilename);
 else,
 	tag = struct('tagname','','value','');
 	tag = tag([]);

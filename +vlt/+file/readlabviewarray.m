@@ -1,8 +1,8 @@
 function A = readlabviewarray(fname, datasize, machineformat)
 
-% READLABVIEWARRAY - Reads a LabView array into Matlab
+% vlt.file.readlabviewarray - Reads a LabView array into Matlab
 %
-%  A = READLABVIEWARRAY(FNAME, DATASIZE, MACHINEFORMAT)
+%  A = vlt.file.readlabviewarray(FNAME, DATASIZE, MACHINEFORMAT)
 %
 %  Reads in values from a LabView array file.
 %

@@ -1,7 +1,7 @@
 function filenamesearchreplace(dirname, searchStrs, replaceStrs, varargin)
 % FILENAMESEARCHREPLACE - Seach and replace filenames within a directory
 %
-% FILENAMESEARCHREPLACE(DIRNAME, SEARCHSTRS, REPLACESTRS, ...)
+% vlt.file.filenamesearchreplace(DIRNAME, SEARCHSTRS, REPLACESTRS, ...)
 %
 % This function searches all files in the directory DIRNAME for matches
 % of any string in the cell array of strings SEARCHSTRS. If it finds a match,
@@ -20,10 +20,10 @@ function filenamesearchreplace(dirname, searchStrs, replaceStrs, varargin)
 %                          |   display its intended action
 % recursive (0)            | Should we call this recursively on subdirectories?
 %
-% See also: NAMEVALUEPAIR
+% See also: vlt.data.namevaluepair
 % 
 % Example: Suppose mydirname has a file '.ext1'.
-%     filenamesearchreplace(mydirname,{'.ext1'},{'.ext2'}, 'deleteOriginals', 1)
+%     vlt.file.filenamesearchreplace(mydirname,{'.ext1'},{'.ext2'}, 'deleteOriginals', 1)
 %     % renames any files with '.ext1' to have '.ext2', deleting old files
 %
 

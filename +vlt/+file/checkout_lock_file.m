@@ -1,13 +1,13 @@
 function [fid,key] = checkout_lock_file(filename, checkloops, throwerror, expiration)
 % CHECKOUT_LOCK_FILE Try to establish control of a lock file
 %
-%  [FID,KEY] = CHECKOUT_LOCK_FILE(FILENAME)
+%  [FID,KEY] = vlt.file.checkout_lock_file(FILENAME)
 %
 %  This function tries to check out the file FILENAME so that different
 %  programs do not perform some operation at the same time. This is a quick
 %  and dirty semaphore implementation (see Wikipedia if unfamilar with 
 %  semaphores). The LOCKFILE will also EXPIRE in 1 hour unless otherwise specified
-%  below. A KEY is returned, which is necessary to pass to to RELEASE_LOCK_FILE.
+%  below. A KEY is returned, which is necessary to pass to to vlt.file.release_lock_file.
 %
 %  This function tries to create an empty file called FILENAME. If the file is
 %  NOT already present and the creation successful, the
@@ -21,11 +21,11 @@ function [fid,key] = checkout_lock_file(filename, checkloops, throwerror, expira
 %  
 %
 %  IMPORTANT: RESPONSIBLE CLEANUP: It is important that if the program that
-%  calls CHECKOUT_LOCK_FILE is able to create the file (that is, FID>0),
-%  then it should call RELEASE_LOCK_FILE to remove the lock file.
+%  calls vlt.file.checkout_lock_file is able to create the file (that is, FID>0),
+%  then it should call vlt.file.release_lock_file to remove the lock file.
 %  
 %  IMPORANT: FILE CLOSURE: If 2 output arguments are given (that is, KEY is
-%  examined), then the lock file is closed before CHECKOUT_LOCK_FILE exits.
+%  examined), then the lock file is closed before vlt.file.checkout_lock_file exits.
 %  If KEY is not requested in output, then the FID is left open for 
 %  backwards compatibility.
 %
@@ -37,20 +37,20 @@ function [fid,key] = checkout_lock_file(filename, checkloops, throwerror, expira
 %
 %  The function can be called with additional output arguments:
 %  
-%  [FID,KEY] = CHECKOUT_LOCK_FILE(FILENAME, CHECKLOOPS)
+%  [FID,KEY] = vlt.file.checkout_lock_file(FILENAME, CHECKLOOPS)
 %
 %  Alters the number of times the function will check (at 1 second
 %  intervals) to see if FILENAME has disappeared.
 %
-%  [FID,KEY] = CHECKOUT_LOCK_FILE(FILENAME, CHECKLOOPS, THROWERROR)
+%  [FID,KEY] = vlt.file.checkout_lock_file(FILENAME, CHECKLOOPS, THROWERROR)
 %
 %  If THROWERROR is 1, the function will return an error instead of
 %  returning FID<0.
 %
-%  [FID,KEY] = CHECKOUT_LOCK_FILE(FILENAME, CHECKLOOPS, THROWERROR, EXPIRATION_SECONDS)
+%  [FID,KEY] = vlt.file.checkout_lock_file(FILENAME, CHECKLOOPS, THROWERROR, EXPIRATION_SECONDS)
 %
 %  This mode allows one to specifically set the expiration time in seconds.
-%  CHECKOUT_LOCK_FILE will examine the file for the expiration time and 
+%  vlt.file.checkout_lock_file will examine the file for the expiration time and 
 %  ignore and remove the lock file if it is "expired". By default, EXPIRATION_SECONDS
 %  is 3600.
 %
@@ -68,7 +68,7 @@ function [fid,key] = checkout_lock_file(filename, checkloops, throwerror, expira
 %     end;
 %   
 %
-%  See also: RELEASE_LOCK_FILE, FOPEN, DELETE
+%  See also: vlt.file.release_lock_file, FOPEN, DELETE
 
 loops = 30;
 makeanerror = 0;

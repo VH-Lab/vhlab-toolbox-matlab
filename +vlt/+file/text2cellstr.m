@@ -1,7 +1,7 @@
 function c = text2cellstr(filename)
 % TEXT2CELLSTR - Read a cell array of strings from a text file
 %
-%  C = TEXT2CELLSTR(FILENAME)
+%  C = vlt.file.text2cellstr(FILENAME)
 %
 %  Reads a text file and imports each line as an entry 
 %  in a cell array of strings.

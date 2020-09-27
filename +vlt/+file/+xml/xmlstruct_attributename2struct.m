@@ -1,10 +1,10 @@
 function thestruct = xmlstruct_attributename2struct(xmlstruct_input)
 %  XMLSTRUCT_ATTRIBUTE2STRUCT Convert an XMLSTRUCT Name/Attribute/Data structure to Matlab structure
 %  
-%  THESTRUCT = XMLSTRUCT_ATTRIBUTENAME2STRUCT(XMLSTRUCT_INPUT)
+%  THESTRUCT = vlt.file.xml.xmlstruct_attributename2struct(XMLSTRUCT_INPUT)
 %
 %  Creates a Matlab structure based on a Matlab XML structure XMLSTRUCT_INPUT
-%  such as that returnd by PARSEXML.
+%  such as that returnd by vlt.file.xml.parseXML.
 %
 %  This function loops through all ATTRIBUTES of each entry of XMLSTRUCT_INPUT,
 %  and creates a field in the structure THESTRUCT with the name of the attribute
@@ -12,7 +12,7 @@ function thestruct = xmlstruct_attributename2struct(xmlstruct_input)
 %  there is a single child in the 'Children' field, the 'Data' field of the single
 %  child will be used.
 %
-%  See also: PARSEXML
+%  See also: vlt.file.xml.parseXML
 %
 
 thestruct = struct;

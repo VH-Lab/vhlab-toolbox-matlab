@@ -28,7 +28,7 @@ classdef fileobj < handle
 				fid = -1;
 				fullpathfilename = '';
 
-				assign(varargin{:});
+				vlt.data.assign(varargin{:});
 
 				fileobj_obj = fileobj_obj.setproperties('fullpathfilename',fullpathfilename,'fid',fid,...
 						'permission',permission,'machineformat',machineformat);
@@ -52,7 +52,7 @@ classdef fileobj < handle
 					eval([fn{i} '=getfield(fileobj_obj,fn{i});']);
 				end;
 
-				assign(varargin{:});
+				vlt.data.assign(varargin{:});
 
 				% check for accuracy would be a good idea
 
@@ -97,7 +97,7 @@ classdef fileobj < handle
 					filename = fileobj_obj.fullpathfilename;
 				end;
 			
-				filename = fullfilename(filename);
+				filename = vlt.file.fullfilename(filename);
 				fileobj_obj = fileobj_obj.setproperties('fullpathfilename',filename,...
 					'permission',permission,'machineformat',machineformat);
 				

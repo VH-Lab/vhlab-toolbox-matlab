@@ -1,7 +1,7 @@
 function backupname = filebackup(fname,varargin)
 % FILEBACKUP - Create a backup of a file
 %
-%  BACKUPNAME = FILEBACKUP(FNAME)
+%  BACKUPNAME = vlt.file.filebackup(FNAME)
 %
 %  Creates a backup file of the file named FNAME (full path). The
 %  new file is named [FNAME '_bkupNNN' EXT], where NNN is a number.
@@ -21,14 +21,14 @@ function backupname = filebackup(fname,varargin)
 %
 %  Example:  
 %     fname = 'C:\Users\me\mytest.txt';
-%     backupname=filebackup(fname); % will be 'C:\Users\me\mytest_bkup001.txt'
+%     backupname=vlt.file.filebackup(fname); % will be 'C:\Users\me\mytest_bkup001.txt'
 %
 
 DeleteOrig = 0;
 Digits = 3;
 ErrorIfDigitsExceeded = 1;
 
-assign(varargin{:});
+vlt.data.assign(varargin{:});
 
 if ~exist(fname,'file'),
 	error(['No file ' fname ' to backup.']);

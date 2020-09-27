@@ -1,9 +1,9 @@
 function newpath = linpath2mac(pathname)
 
-%  LINPATH2MAC
+%  vlt.file.linpath2mac
 %    Converts a Linux pathname to a Macintosh pathname.
 %  
-%  NEWPATH = LINPATH2MAC(PATHNAME)
+%  NEWPATH = vlt.file.linpath2mac(PATHNAME)
 %
 %  Replaces all '/' characters with ':' characters.
 

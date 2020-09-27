@@ -1,7 +1,7 @@
 function combinepdf(mergefile, file1, varargin)
 % COMBINEPDF - Merge PDF (portable document format) files on Mac OS X
 %
-%  COMBINEPDF(MERGEFILENAME, FILE1, FILE2, ...)
+%  vlt.file.combinepdf(MERGEFILENAME, FILE1, FILE2, ...)
 %
 %  On Mac OS X, this function calls the command line tool
 %  /System/Library/Automator/Combine PDF Pages.action/Contents/Resources/join.py

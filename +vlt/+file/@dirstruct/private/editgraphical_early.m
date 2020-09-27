@@ -94,16 +94,16 @@ switch command,
 		v = get(ft(fig,'dirlist'),'value');
 		dirs = get(ft(fig,'dirlist'),'string'); mydir = dirs{v};  % should be only one by enable/disable
 		a = struct('name',answer{1},'ref',fix(str2num(answer{2})),'type',answer{3});
-		g = loadStructArray([fixpath(getpathname(ud.ds)) mydir filesep 'reference.txt']);
+		g = vlt.file.loadStructArray([vlt.file.fixpath(getpathname(ud.ds)) mydir filesep 'reference.txt']);
 		g(end+1) = a;
-		saveStructArray([fixpath(getpathname(ud.ds)) mydir filesep 'reference.txt'],g);
+		vlt.file.saveStructArray([vlt.file.fixpath(getpathname(ud.ds)) mydir filesep 'reference.txt'],g);
 		editgraphical(ud.ds,'UpdateBt',fig);
 	case 'EditRefBt',
 		v = get(ft(fig,'dirlist'),'value');
 		dirs = get(ft(fig,'dirlist'),'string'); mydir = dirs{v};
 		v_ = get(ft(fig,'reflist'),'value');
 		refstrs = get(ft(fig,'reflist'),'string');
-		g = loadStructArray([fixpath(getpathname(ud.ds)) mydir filesep 'reference.txt']);
+		g = vlt.file.loadStructArray([vlt.file.fixpath(getpathname(ud.ds)) mydir filesep 'reference.txt']);
 		if strcmp(refstrs{v_},[g(v_).name ' | ' num2str(g(v_).ref)]), % check to make sure the same
 			prompt={'Name','Reference (integer)','Type (e.g., prairietp, singleEC, singleIC, etc)'};
 			name = 'Edit reference item'; numlines = 1;
@@ -112,7 +112,7 @@ switch command,
 			if ~isempty(answer),
 				a = struct('name',answer{1},'ref',fix(str2num(answer{2})),'type',answer{3});
 				g(v_) = a;
-				saveStructArray([fixpath(getpathname(ud.ds)) mydir filesep 'reference.txt'],g);
+				vlt.file.saveStructArray([vlt.file.fixpath(getpathname(ud.ds)) mydir filesep 'reference.txt'],g);
 				editgraphical(ud.ds,'UpdateBt',fig);
 			end;
 		else, errordlg(['Could not edit...information appears to have changed on disk.  Try Update first.']);
@@ -125,10 +125,10 @@ switch command,
 			dirs = get(ft(fig,'dirlist'),'string'); mydir = dirs{v};
 			v_ = get(ft(fig,'reflist'),'value');
 			refstrs = get(ft(fig,'reflist'),'string');
-			g = loadStructArray([fixpath(getpathname(ud.ds)) mydir filesep 'reference.txt']);
+			g = vlt.file.loadStructArray([vlt.file.fixpath(getpathname(ud.ds)) mydir filesep 'reference.txt']);
 			if strcmp(refstrs{v_},[g(v_).name ' | ' num2str(g(v_).ref)]), % check to make sure the same
 				g = g([1:v_-1 v-1:length(g)]);
-				saveStructArray([fixpath(getpathname(ud.ds)) mydir filesep 'reference.txt'],g);
+				vlt.file.saveStructArray([vlt.file.fixpath(getpathname(ud.ds)) mydir filesep 'reference.txt'],g);
 			else,
 				errordlg(['Could not delete...information appears to have changed on disk.  Try Update first.']);
 			end;
@@ -139,7 +139,7 @@ switch command,
 		dirs = get(ft(fig,'dirlist'),'string'); mydir = dirs{v};
 		v_ = get(ft(fig,'reflist'),'value');
 		refstrs = get(ft(fig,'reflist'),'string');
-		g = loadStructArray([fixpath(getpathname(ud.ds)) mydir filesep 'reference.txt']);
+		g = vlt.file.loadStructArray([vlt.file.fixpath(getpathname(ud.ds)) mydir filesep 'reference.txt']);
 		if strcmp(refstrs{v_},[g(v_).name ' | ' num2str(g(v_).ref)]), % check to make sure the same
 			T = gettests(ud.ds,g(v_).name,g(v_).ref);
 			v = [];
@@ -160,7 +160,7 @@ switch command,
 			try,
 				mkdir(getpathname(ud.ds),answer{1});
 				a = struct('name','','ref','','type',''); a = a([]);
-				saveStructArray([getpathname(ud.ds) filesep answer{1} filesep 'reference.txt'],a);
+				vlt.file.saveStructArray([getpathname(ud.ds) filesep answer{1} filesep 'reference.txt'],a);
 			catch,
 				errordlg(['Could not create directory: ' lasterr '.']);
 			end;
@@ -169,7 +169,7 @@ switch command,
 	case 'HideDirBt',
 		v = get(ft(fig,'dirlist'),'value');
 		dirs = get(ft(fig,'dirlist'),'string');
-		path = fixpath(getpathname(ud.ds));
+		path = vlt.file.fixpath(getpathname(ud.ds));
 		for i=1:length(v),
 			movefile([path dirs{v(i)} filesep 'reference.txt'],...
 				[path dirs{v(i)} filesep 'referencebkup.txt']);
@@ -182,7 +182,7 @@ switch command,
 			buttonname = questdlg('Are you sure you want to delete the selected directories?','Are you sure?',...
 				'Yes','Cancel','Yes');
 			if strcmp(buttonname,'Yes'),
-				path = fixpath(getpathname(ud.ds));
+				path = vlt.file.fixpath(getpathname(ud.ds));
 				for i=1:length(v),
 					try, rmdir([path dirs{v(i)}],'s'); end;
 				end;
@@ -287,7 +287,7 @@ switch command,
 			try, mx=str2num(get(ft(fig,'ColorMaxEdit'),'string'));
 			catch, errordlg(['Syntax error in colormax.']); mx=0;
 			end;
-			ud.previewim=image(rescale((ud.previewimage{v}),[mn mx],[0 255]));
+			ud.previewim=image(vlt.math.rescale((ud.previewimage{v}),[mn mx],[0 255]));
 			colormap(gray(256));
 			set(gca,'tag','tpaxes');
 			ch = get(gca,'children');
@@ -418,7 +418,7 @@ switch command,
 			newslice = emptyslicerec;
 			newslice.dirname = dirlist{s};
 			numFrames = 50;
-			pvimg=previewprairieview([fixpath(getpathname(ud.ds)) filesep newslice.dirname],...
+			pvimg=previewprairieview([vlt.file.fixpath(getpathname(ud.ds)) filesep newslice.dirname],...
 				numFrames,1);
 			ud.previewimage = cat(1,ud.previewimage,{pvimg});
 			ud.slicelist = [ud.slicelist newslice];
@@ -525,7 +525,7 @@ switch command,
 	case {'AnalyzeParamBt','AnalyzeStimBt'},
 		dirname = get(ft(fig,'stimdirnameEdit'),'string');
 		refdirname = getrefdirname(ud,dirname);
-		fulldirname = [fixpath(getpathname(ud.ds)) dirname];
+		fulldirname = [vlt.file.fixpath(getpathname(ud.ds)) dirname];
 		if strcmp(command,'AnalyzeParamBt'), paramname = get(ft(fig,'stimparamnameEdit'),'string');
 		else, paramname = []; end;
 		trialsstr = get(ft(fig,'trialsEdit'),'string');
@@ -537,7 +537,7 @@ switch command,
 		blankIDstr = get(ft(fig,'BlankIDEdit'),'string');
 		if ~isempty(blankIDstr), blankID = eval(blankIDstr); else, blankID = []; end;
 		[listofcells,listofcellnames]=getcurrentcells(ud,refdirname);
-		fname = stackname; scratchname = fixpath(getscratchdirectory(ud.ds,1));
+		fname = stackname; scratchname = vlt.file.fixpath(getscratchdirectory(ud.ds,1));
 		needtorun = 1;
 		rawfilename = [scratchname fname '_' dirname '_raw'];
 		if exist(rawfilename)==2,
@@ -559,7 +559,7 @@ switch command,
 	case 'checkDriftBt',
 		dirname = get(ft(fig,'stimdirnameEdit'),'string');
 		refdirname = getrefdirname(ud,dirname);
-		fulldirname = [fixpath(getpathname(ud.ds)) dirname];
+		fulldirname = [vlt.file.fixpath(getpathname(ud.ds)) dirname];
 		trialsstr = get(ft(fig,'trialsEdit'),'string');
 		if ~isempty(trialsstr), trialslist = eval(trialsstr); else, trialslist = []; end;
 		timeintstr = get(ft(fig,'timeintEdit'),'string');
@@ -578,7 +578,7 @@ switch command,
 	case 'movieBt',
 		dirname = get(ft(fig,'stimdirnameEdit'),'string');
 		refdirname = getrefdirname(ud,dirname);
-		fulldirname = [fixpath(getpathname(ud.ds)) dirname];
+		fulldirname = [vlt.file.fixpath(getpathname(ud.ds)) dirname];
 		trialsstr = get(ft(fig,'trialsEdit'),'string');
 		if ~isempty(trialsstr), trialslist = eval(trialsstr); else, trialslist = []; end;
 		stimstr = get(ft(fig,'movieStimsEdit'),'string');
@@ -586,13 +586,13 @@ switch command,
 		dF = get(ft(fig,'moviedFCB'),'value'); sorted=get(ft(fig,'movieSortCB'),'value');
 		movfname = get(ft(fig,'movieFileEdit'),'string');
 		fprintf('Preparing movie...will take several seconds...\n');
-		M=prairieviewmovie(fulldirname,trialslist,stimlist,dF,sorted,8,[fixpath(getpathname(ud.ds)) movfname]);
+		M=prairieviewmovie(fulldirname,trialslist,stimlist,dF,sorted,8,[vlt.file.fixpath(getpathname(ud.ds)) movfname]);
 	case 'QuickMapBt',
 		dirname = get(ft(fig,'stimdirnameEdit'),'string');
 		refdirname = getrefdirname(ud,dirname);
-		fulldirname = [fixpath(getpathname(ud.ds)) dirname];
+		fulldirname = [vlt.file.fixpath(getpathname(ud.ds)) dirname];
 		fname = stackname;
-		scratchname = fixpath(getscratchdirectory(ud.ds,1));
+		scratchname = vlt.file.fixpath(getscratchdirectory(ud.ds,1));
 		try,
 			g=load([scratchname fname '_' dirname],'resps','listofcells','listofcellnames',...
 			'dirname','refdirname','-mat');
@@ -608,9 +608,9 @@ switch command,
 	case 'QuickPSTHBt',
 		dirname = get(ft(fig,'stimdirnameEdit'),'string');
 		refdirname = getrefdirname(ud,dirname);
-		fulldirname = [fixpath(getpathname(ud.ds)) dirname];
+		fulldirname = [vlt.file.fixpath(getpathname(ud.ds)) dirname];
 		[listofcells,listofcellnames]=getcurrentcells(ud,refdirname);
-		fname = stackname; scratchname = fixpath(getscratchdirectory(ud.ds,1));
+		fname = stackname; scratchname = vlt.file.fixpath(getscratchdirectory(ud.ds,1));
 		needtorun = 1;
 		rawfilename = [scratchname fname '_' dirname '_raw'];
 		if exist(rawfilename)==2,
@@ -632,7 +632,7 @@ switch command,
 	case 'baselineBt',
 		dirname = get(ft(fig,'stimdirnameEdit'),'string');
 		refdirname = getrefdirname(ud,dirname);
-		fulldirname = [fixpath(getpathname(ud.ds)) dirname];
+		fulldirname = [vlt.file.fixpath(getpathname(ud.ds)) dirname];
 		[listofcells,listofcellnames]=getcurrentcells(ud,refdirname);
 		tpfile = load([fulldirname filesep 'twophotontimes.txt'],'-ascii'),
 		fprintf('Analyzing...will take a few seconds...\n');
@@ -649,8 +649,8 @@ switch command,
 	case 'correctDriftBt',
 		dirname = get(ft(fig,'stimdirnameEdit'),'string');
 		refdirname = getrefdirname(ud,dirname);
-		fulldirname = [fixpath(getpathname(ud.ds)) dirname];
-		fullrefdirname = [fixpath(getpathname(ud.ds)) refdirname];
+		fulldirname = [vlt.file.fixpath(getpathname(ud.ds)) dirname];
+		fullrefdirname = [vlt.file.fixpath(getpathname(ud.ds)) refdirname];
 		[dr,t]=prairieviewdriftcheck(fulldirname,[-6:2:6],[-6:2:6],fullrefdirname,[-100:10:100],[-100:10:100],10,5,1,1);
 	case 'ImageMathBt',
 		str = get(ft(fig,'ImageMathEdit'),'string');
@@ -660,14 +660,14 @@ switch command,
 		op = str(op_loc);
 		stim1 = str2num(str(1:op_loc-1)); stim2 = str2num(str(op_loc+1:end));
 		dirname = get(ft(fig,'stimdirnameEdit'),'string');
-		fulldirname = [fixpath(getpathname(ud.ds)) dirname];
+		fulldirname = [vlt.file.fixpath(getpathname(ud.ds)) dirname];
 		fprintf('Analyzing...will take a few seconds...\n');
 		[r,im1,im2]=prairieviewimagemath(fulldirname,stim1,stim2,op,1,[dirname ' | ' str]);
-        	imagedisplay(im1,'Title',int2str(stim1)); imagedisplay(im2,'Title',int2str(stim2));
+        	vlt.plot.imagedisplay(im1,'Title',int2str(stim1)); vlt.plot.imagedisplay(im2,'Title',int2str(stim2));
 	case 'singleCondBt',
 		dirname = get(ft(fig,'stimdirnameEdit'),'string');
 		refdirname = getrefdirname(ud,dirname);
-		fulldirname = [fixpath(getpathname(ud.ds)) dirname];
+		fulldirname = [vlt.file.fixpath(getpathname(ud.ds)) dirname];
 		trialsstr = get(ft(fig,'trialsEdit'),'string');
 		if ~isempty(trialsstr), trialslist = eval(trialsstr); else, trialslist = []; end;
 		timeintstr = get(ft(fig,'timeintEdit'),'string');
@@ -690,7 +690,7 @@ switch command,
 		end;
 	case 'saveBt',
 		fname = stackname;
-		scratchname = fixpath(getscratchdirectory(ud.ds,1));
+		scratchname = vlt.file.fixpath(getscratchdirectory(ud.ds,1));
 		celllist = ud.celllist; slicelist = ud.slicelist; previewimage = ud.previewimage;
 		if exist([scratchname fname '.stack']),
 			answer = questdlg('File exists...overwrite?',...
@@ -704,7 +704,7 @@ switch command,
 		end;
 	case 'loadBt',
 		fname = stackname;
-		scratchname = fixpath(getscratchdirectory(ud.ds,1));
+		scratchname = vlt.file.fixpath(getscratchdirectory(ud.ds,1));
 		if exist([scratchname fname '.stack']),
 			figure(fig);
 			clf;

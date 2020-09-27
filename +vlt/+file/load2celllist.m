@@ -1,8 +1,8 @@
 function [objs,objnames] = load2celllist(filename,varargin)
 
-% LOAD2CELLLIST - Loads saved objects to a cell list
+% vlt.file.load2celllist - Loads saved objects to a cell list
 %
-%  [OBJS,OBJNAMES] = LOAD2CELLLIST(FILENAME, ...)
+%  [OBJS,OBJNAMES] = vlt.file.load2celllist(FILENAME, ...)
 %
 %  Loads objects from a Matlab file FILENAME into a cell list.
 %  Additional arguments are passed on to the Matlab LOAD command.
@@ -11,7 +11,7 @@ function [objs,objnames] = load2celllist(filename,varargin)
 %  criteria
 %
 %  Example:
-%      [myobjs,mynames]=LOAD2CELLLIST('myfile','cell*','-mat');
+%      [myobjs,mynames]=vlt.file.load2celllist('myfile','cell*','-mat');
 %  
 %      If the file 'myfile' contains two variables named 'cell1'
 %      and 'cell2', then

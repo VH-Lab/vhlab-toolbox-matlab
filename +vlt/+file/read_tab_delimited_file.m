@@ -1,6 +1,6 @@
 function out = read_tab_delimited_file(fname)
 
-% READ_TAB_DELIMITED_FILE - Reads data from a tab-delimited file; tries to sort string/number data
+% vlt.file.read_tab_delimited_file - Reads data from a tab-delimited file; tries to sort string/number data
 %
 %
 %   OUTPUT = READ_TAB_DELIMTED_FILE(FILENAME)

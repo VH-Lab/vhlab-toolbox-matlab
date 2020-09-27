@@ -1,7 +1,7 @@
 function newfilestring = filesepconversion(filestring, orig_filesep, new_filesep)
 % FILESEPCONVERSION - convert from one FILESEP platform to another
 % 
-% NEWFILESTRING = FILESEPCONVERSION(FILESTRING, ORIG_FILESEP, NEW_FILESEP)
+% NEWFILESTRING = vlt.file.filesepconversion(FILESTRING, ORIG_FILESEP, NEW_FILESEP)
 %
 % Converts a file string from one filepath convention to another.
 %

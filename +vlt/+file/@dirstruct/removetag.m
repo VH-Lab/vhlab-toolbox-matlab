@@ -8,7 +8,7 @@ function removetag(ds, dir, tagname)
 %  named THEDIRSTRUCT.  DIR should just be the name of the
 %  directory within THEDIRSTRUCT's path.
 %
-%  See also: ADDTAG, GETTAG, SAVESTRUCTARRAY
+%  See also: ADDTAG, GETTAG, vlt.file.saveStructArray
 
 wholedir = [getpathname(ds) filesep dir];
 tagfilename = [wholedir filesep 'tags.txt'];
@@ -20,14 +20,14 @@ if ~isempty(tags),
 	if length(tf)>0,
 		tags(tf) = [];
 	end;
-	[fid,key] = checkout_lock_file(taglockfilename,30,1);
+	[fid,key] = vlt.file.checkout_lock_file(taglockfilename,30,1);
 	if fid>0,
 		if length(tags)==0,
 			delete(tagfilename);
 		else,
-			saveStructArray(tagfilename,tags);
+			vlt.file.saveStructArray(tagfilename,tags);
 		end;
-		release_lock_file(taglockfilename,key);
+		vlt.file.release_lock_file(taglockfilename,key);
 	end;
 end;
 

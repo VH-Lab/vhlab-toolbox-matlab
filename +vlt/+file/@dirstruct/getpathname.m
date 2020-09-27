@@ -4,4 +4,4 @@ function p = getpathname(cksds)
 %
 %  Returns the pathname associated with THEDIRSTRUCT.
 
-p = fixpath(fixtilde(cksds.pathname));
+p = vlt.file.fixpath(vlt.file.fixtilde(cksds.pathname));

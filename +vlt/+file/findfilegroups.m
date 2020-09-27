@@ -1,7 +1,7 @@
 function filelist = findfilegroups(parentdir, fileparameters, varargin)
 % FINDFILEGROUPS - Find a group of files based on parameters
 %
-%  FILELIST = FINDFILEGROUPS(PARENTDIR, FILEPARAMETERS, ...)
+%  FILELIST = vlt.file.findfilegroups(PARENTDIR, FILEPARAMETERS, ...)
 %
 %  Finds groups of files based on parameters.
 %

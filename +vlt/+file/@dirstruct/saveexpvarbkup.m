@@ -44,7 +44,7 @@ if exist(fn)==2,
 	openedlock = 0;
 	loops = 0;
 	while (exist(fnlock,'file')==2)&loops<30,
-		dowait(rand); loops = loops + 1;
+		vlt.time.dowait(rand); loops = loops + 1;
 	end;
 	if loops==30, error(['Could not save ' name ' to file ' fn ': file is locked by the existence of experiment-lock file in analysis directory']); end;
    	fid0=fopen(fnlock,'w'); if fid0>0, openedlock = 1; end;
@@ -53,5 +53,5 @@ if exist(fn)==2,
 		if openedlock, delete(fnlock); end;
 		error(['Could not save ' name ' to file ' fn '.']);
 	end;
-	if openedlock, fclose(fid0); delete(fixtilde(fnlock)); end;
+	if openedlock, fclose(fid0); delete(vlt.file.fixtilde(fnlock)); end;
 end;

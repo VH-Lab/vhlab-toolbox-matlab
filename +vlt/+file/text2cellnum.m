@@ -1,12 +1,12 @@
 function c = text2cellnum(filename)
 % TEXT2CELLNUM - Read each row of a text file as numeric data to produce array of cells
 %
-%  C = TEXT2CELLNUM(FILENAME)
+%  C = vlt.file.text2cellnum(FILENAME)
 %
 %  Reads a text file and imports each line as a numeric matrix entry 
 %  in a cell array.
 %  
-%  See also: FGETL, TEXT2CELLSTR, STR2NUM
+%  See also: FGETL, vlt.file.text2cellstr, STR2NUM
 
 
 c = vlt.file.text2cellstr(filename);

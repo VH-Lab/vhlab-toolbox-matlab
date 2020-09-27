@@ -1,7 +1,7 @@
 function testfile_uint16_bin
 % TESTFILE_UINT16.BIN - binary file with uint16 values from 0...32000.
 %
-%   TESTFILE_UINT16_BIN
+%   vlt.file.testfiles.testfile_uint16_bin
 %
 %   This is documentation for the file 'testfile_uint16.bin' that is on
 %   the VHTOOLS path.  This is a binary file with uint16 values in little endian
@@ -9,7 +9,7 @@ function testfile_uint16_bin
 %   useful for debugging file routines.
 %
 %   The code for creating the file is commented in the .m file
-%   TESTFILE_UINT16_BIN.m
+%   vlt.file.testfiles.testfile_uint16_bin.m
 %
 %   See also: FREAD, UINT16
 %

@@ -43,7 +43,7 @@ for i=list,
 		int2str(cksds.nameref_list(i).ref) '.']); end;
 	assignin('base',ext2str,ex2);
    end;
-end; if ~isempty(newlist), dowait(5); end;
+end; if ~isempty(newlist), vlt.time.dowait(5); end;
 end;
 
 % perform extraction
@@ -53,7 +53,7 @@ newlist = 1:length(cksds.dir_str);
 while ~isempty(newlist),
 list = newlist; newlist = [];
 for i=list,
-  acqinfo = loadStructArray([cksds.pathname cksds.dir_str(i).dirname ...
+  acqinfo = vlt.file.loadStructArray([cksds.pathname cksds.dir_str(i).dirname ...
 		'/acqParams_out']);
   for j=1:length(cksds.dir_str(i).listofnamerefs),
    nameref=cksds.dir_str(i).listofnamerefs(j);
@@ -74,7 +74,7 @@ for i=list,
 	assignin('base',ext1str,ex1);
    end;  % add secondaries later
  end;
-end; if ~isempty(newlist), dowait(5); end;
+end; if ~isempty(newlist), vlt.time.dowait(5); end;
 end;
   
 
@@ -104,7 +104,7 @@ for i=list,
 		int2str(cksds.nameref_list(i).ref) '.']); end;
 	assignin('base',ext2str,ex2);
    end;
-end; if ~isempty(newlist), dowait(5); end;
+end; if ~isempty(newlist), vlt.time.dowait(5); end;
 end;
 
 newcksds = cksds; status = 1;

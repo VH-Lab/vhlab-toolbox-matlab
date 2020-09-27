@@ -1,7 +1,7 @@
 function [b,d] = filediff(file1, file2)
 % FILEDIFF - return the output of the system tool 'diff'
 %
-% [B,D] = FILEDIFF(FILE1,FILE2)
+% [B,D] = vlt.file.filediff(FILE1,FILE2)
 %
 % Returns the output of the system tool ['diff file1 file2]', if 'diff' exists.
 % B is 0 if the files do not differ, and 1 if they do differ.

@@ -1,13 +1,13 @@
 function mat = readplainmat(fid)
 % READPLAINMAT - read a simple binary matrix from disk
 % 
-% MAT = READPLAINMAT(FID)
+% MAT = vlt.file.readplainmat(FID)
 %
-% Reads a basic matrix written by WRITEPLAINMAT.
-% See WRITEPLAINMAT for details of the file format.
+% Reads a basic matrix written by vlt.file.writeplainmat.
+% See vlt.file.writeplainmat for details of the file format.
 % FID should be an open FID (see FOPEN).
 %
-% For example, see WRITEPLAINMAT.
+% For example, see vlt.file.writeplainmat.
 
 
 cn = fgetl(fid);

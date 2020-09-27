@@ -1,7 +1,7 @@
 function p = drivepath(varargin)
 % DRIVEPATH - What is the default name of the directory that contains drives / media / volumes ?
 % 
-%  P = DRIVEPATH
+%  P = vlt.file.drivepath
 %
 %  Returns the name of the default name of the directory that contains drives or media or volumes
 %  on this operating system.

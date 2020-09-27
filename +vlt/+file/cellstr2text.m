@@ -1,7 +1,7 @@
 function cellstr2text(filename, cs)
 % CELLSTR2TEXT - Write a cell string to a text file
 %
-%   CELLSTR2TEXT(FILENAME, CS)
+%   vlt.file.cellstr2text(FILENAME, CS)
 %
 %  Writes the cell array of strings CS to the new text file FILENAME.
 %
