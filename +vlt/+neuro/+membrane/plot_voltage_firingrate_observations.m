@@ -96,7 +96,7 @@ h = cat(1,h(:),h_here(:));
 ylabel('Voltage (mV)');
 xlabel('Time (s)');
 title(['''o'' means no spikes in that bin, ''x'' means spikes in that bin']);
-[newh,newhtext]=vlt.neuro.stimulus_analysis.plot_stimulus_timeseries(mean(v(inds)),stim_onsetoffsetid(:,1),...
+[newh,newhtext]=vlt.neuro.stimulus.plot_stimulus_timeseries(mean(v(inds)),stim_onsetoffsetid(:,1),...
 		stim_onsetoffsetid(:,2),'stimid',stim_onsetoffsetid(:,3));
 
 h(end+1) = plot(t,vm_baselinesubtracted,'g-');
