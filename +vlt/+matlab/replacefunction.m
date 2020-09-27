@@ -61,7 +61,7 @@ for f=1:numel(fuse),
 	disp(sprintf('\n\n'));
 
 	t{fuse(f).line}
-	reply = input(['Should we replace ' fuse(f).name ' with ' replacement_str '? ([Y]es/[N]o/[W]rite Note/[Q]uit):'],'s');
+	reply = input([int2str(f) '/' int2str(numel(fuse)) ':Should we replace ' fuse(f).name ' with ' replacement_str '? ([Y]es/[N]o/[W]rite Note/[Q]uit):'],'s');
 
 	switch lower(reply),
 		case 'y',
