@@ -1,8 +1,8 @@
-function k = inside(z,w,eps);
+function k = insideorborder(z,w,eps);
 
-%vlt.math.inside Points inside a polygonal region in the plane.
-%   k = vlt.math.inside(z,w,eps) is a vector of indices.
-%   The points z(k) are strictly inside the region defined by w.
+%vlt.math.insideorborder Points inside a polygonal region in the plane.
+%   k = vlt.math.insideborder(z,w,eps) is a vector of indices.
+%   The points z(k) are inside the region defined by w.
 %   Here, z is a complex vector of points in the plane, and
 %   w is a complex vector of points definining the vertices of a
 %   polygonal region in the plane.  The region should be "starlike"
@@ -15,8 +15,6 @@ function k = inside(z,w,eps);
 %
 %   On border adaptation includes points on the border, within 
 %   eps.
-%
-%   Copyright (c) 1984-98 by The MathWorks, Inc.
 %
 %   Developer note: This is a modified old Matlab function that has been replaced
 %   by INPOLYGON. Here for backwards compatibility

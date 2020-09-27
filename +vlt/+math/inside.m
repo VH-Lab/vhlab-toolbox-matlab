@@ -1,6 +1,6 @@
 function k = inside(z,w);
 
-%vlt.math.inside Points vlt.math.inside a polygonal region in the plane.
+%vlt.math.inside Points inside a polygonal region in the plane.
 %   k = vlt.math.inside(z,w) is a vector of indices.
 %   The points z(k) are strictly inside the region defined by w.
 %   Here, z is a complex vector of points in the plane, and
