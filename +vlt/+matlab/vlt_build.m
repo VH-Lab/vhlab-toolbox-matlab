@@ -5,6 +5,20 @@ dirname = ['/Users/vanhoosr/Documents/matlab/tools/vhlab-toolbox-matlab'];
 
 m=vlt.matlab.mfiledirinfo(dirname);
 
+dontinclude_str = {'modelel'};
+dontinclude_index = [];
+
+for i=1:numel(m),
+	for j=1:numel(dontinclude_str),
+		if ~isempty(strfind(m(i).fullfile,dontinclude_str{j})),
+			dontinclude_index(end+1) = i;
+			break;
+		end;
+	end;
+end;
+
+m = m(setdiff(1:numel(m),dontinclude_index));
+
 rt = vlt.matlab.packagenamereplacementtable(m,'/Users/vanhoosr/Documents/matlab/tools/vhlab-toolbox-matlab','vlt');
 
 search_replace = { ...
