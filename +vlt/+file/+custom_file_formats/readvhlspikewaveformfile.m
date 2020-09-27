@@ -1,9 +1,9 @@
 function [waveforms, parameters] = readvhlspikewaveformfile(file_or_fid, wave_start, wave_end)
 % READVHLSPIKEWAVEFORMFILE - Read spike waveforms from binary file
 %
-%  [WAVEFORMS, HEADER] = READVHLSPIKEWAVEFORMFILE(FID_OR_FILENAME)
+%  [WAVEFORMS, HEADER] = vlt.file.custom_file_formats.readvhlspikewaveformfile(FID_OR_FILENAME)
 %    or 
-%  [WAVEFORMS, HEADER] = READVHLSPIKEWAVEFORMFILE(FID_OR_FILENAME,...
+%  [WAVEFORMS, HEADER] = vlt.file.custom_file_formats.readvhlspikewaveformfile(FID_OR_FILENAME,...
 %     WAVE_START,WAVE_END)
 %
 %  Attempts to read spikewaves from WAVE_START to WAVE_END from the binary file

@@ -1,7 +1,7 @@
 function writevhlvheaderfile(headerstruct, filename)
 % WRITEVHLVHEADERFILE - Write a VHLV header file
 %
-%   WRITEVHLVHEADERFILE(HEADERSTRUCT, FILENAME)
+%   vlt.file.custom_file_formats.writevhlvheaderfile(HEADERSTRUCT, FILENAME)
 %
 %  Writes a header file for the VH LabView Multichannel
 %  binary file format. Should have an extension of '.vlh'.

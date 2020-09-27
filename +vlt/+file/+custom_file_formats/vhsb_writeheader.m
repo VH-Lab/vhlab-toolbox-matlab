@@ -1,7 +1,7 @@
 function h = vhsb_writeheader(fo, varargin)
 % VHSB_WRITEHEADER - write a VH Lab Series Binary file header
 %
-% H = VHSB_WRITEHEADER(FILE_OBJ_OR_FNAME, 'PARAM1, VALUE1, ...)
+% H = vlt.file.custom_file_formats.vhsb_writeheader(FILE_OBJ_OR_FNAME, 'PARAM1, VALUE1, ...)
 %
 % Writes or re-writes the header portion of the FILE_OBJ or filename
 % FILE_OBJ_OR_FNAME according to the parameters provided.
@@ -72,9 +72,9 @@ Y_offset = 0;            % 64-bit float offset factor common to all Y info
 
 headersize = 1836;
 
-assign(varargin{:});
+vlt.data.assign(varargin{:});
 
-h = workspace2struct;
+h = vlt.data.workspace2struct;
 h = rmfield(h,{'fo','varargin'});
 if isfield(h,'ans'),
 	h = rmfield(h,'ans');
@@ -109,8 +109,8 @@ fwrite(fo, Y_data_type, 'uint16');
 fwrite(fo, X_stored, 'uint8');
 fwrite(fo, X_constantinterval, 'uint8');
 
-fwrite(fo, X_start,     vhsb_sampletype2matlabfwritestring(X_data_type, X_data_size));
-fwrite(fo, X_increment, vhsb_sampletype2matlabfwritestring(X_data_type, X_data_size));
+fwrite(fo, X_start,     vlt.file.custom_file_formats.vhsb_sampletype2matlabfwritestring(X_data_type, X_data_size));
+fwrite(fo, X_increment, vlt.file.custom_file_formats.vhsb_sampletype2matlabfwritestring(X_data_type, X_data_size));
 
 fwrite(fo, [X_units(:)' sprintf('\n') repmat(sprintf('\0'), 1, 256-(numel(X_units)+1)) ], 'char');
 fwrite(fo, [Y_units(:)' sprintf('\n') repmat(sprintf('\0'), 1, 256-(numel(Y_units)+1)) ], 'char');

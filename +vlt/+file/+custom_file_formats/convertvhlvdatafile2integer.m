@@ -1,13 +1,13 @@
 function convertvhlvdatafile2integer(myfilename, headerstruct, outputfilename, scale, newoutputprecision)
 % CONVERTVHLVDATAFILE2INTEGER - Convert a VH LabView file to binary integer format
 %
-%  CONVERTVHLVDATAFILE2INTEGER(OLDFILENAME, HEADERSTRUCT, OUTPUTFILENAME, SCALE, PRECISION)
+%  vlt.file.custom_file_formats.convertvhlvdatafile2integer(OLDFILENAME, HEADERSTRUCT, OUTPUTFILENAME, SCALE, PRECISION)
 %
 %  This function reads data from the multichannel VHLab LabView binary
 %  data file format and writes a new file with precision PRECISION,
 %  where PRECISION is 'int32' or 'int16'.
 %  HEADERSTRUCT is the header structure as returned from 
-%  READVHLVHEADERFILE (or use empty, [], to open a file of the same name
+%  vlt.file.custom_file_formats.readvhlvheaderfile (or use empty, [], to open a file of the same name
 %  as OLDFILENAME with extension 'vlh').
 %  
 %  OUTPUTFILENAME is the name of the new file to be written; a new header
@@ -17,14 +17,14 @@ function convertvhlvdatafile2integer(myfilename, headerstruct, outputfilename, s
 %  The output file will be saved with channel multiplexing.
 %
 %  Example:
-%       convertvhlvdatafile2integer('vhlvanaloginput.vld',[],'vhlvanaloginput_int.vld',10,'int16');
+%       vlt.file.custom_file_formats.convertvhlvdatafile2integer('vhlvanaloginput.vld',[],'vhlvanaloginput_int.vld',10,'int16');
 %     
 
 multiplexed = 0;
 
 if isempty(headerstruct),
         [mypath,myname,myext] = fileparts(myfilename);
-        headerstruct=readvhlvheaderfile(fullfile(mypath,[myname '.vlh']));
+        headerstruct=vlt.file.custom_file_formats.readvhlvheaderfile(fullfile(mypath,[myname '.vlh']));
 end;
 
 if isfield(headerstruct,'precision'),
@@ -77,7 +77,7 @@ newheaderstruct = headerstruct;
 newheaderstruct.Scale = scale;
 newheaderstruct.precision = newoutputprecision;
 newheaderstruct.Multiplexed = 1;
-writevhlvheaderfile(newheaderstruct,fullfile(mypath,[myname '.vlh']));
+vlt.file.custom_file_formats.writevhlvheaderfile(newheaderstruct,fullfile(mypath,[myname '.vlh']));
 
 switch newheaderstruct.precision,
 	case 'int16',

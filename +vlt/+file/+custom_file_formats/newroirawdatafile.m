@@ -4,7 +4,7 @@ function fid = newroirawdatafile(filename, parameters)
 %    **********NOT COMPLETE YET!!!!!!!!!!!************
 %
 %
-%   FID = NEWROIRAWDATAFILE(FILENAME, PARAMETERS)
+%   FID = vlt.file.custom_file_formats.newroirawdatafile(FILENAME, PARAMETERS)
 %
 %   Creates (and leaves open) a new binary file for storing raw data that is
 %   extracted from images.  Optionally, one can also store the image index values
@@ -36,7 +36,7 @@ function fid = newroirawdatafile(filename, parameters)
 %    the N values of these pixels (N values of type parameters.precision)
 %
 %  The resulting FID (file identifier) can be used to write waveforms to the
-%  file with the function ADDROIRAWDATAFILE(FID, roinum, framenum, indexes, pixelvalues, precision)
+%  file with the function vlt.file.custom_file_formats.addroirawdatafile(FID, roinum, framenum, indexes, pixelvalues, precision)
 %
 %  NOTE: When one is done using the file, it must be closed with FCLOSE(FID).
 %

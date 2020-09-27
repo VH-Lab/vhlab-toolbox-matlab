@@ -8,7 +8,7 @@ function s = vhsb_sampletype2matlabfwritestring(data_type, data_size)
 % appropriate for passing to FREAD or FWRITE.
 %
 % Example:
-%   s = vhsb_sampletype2matlabfwritestring(4, 64)
+%   s = vlt.file.custom_file_formats.vhsb_sampletype2matlabfwritestring(4, 64)
 %     % s = 'float64'
 % 
 

@@ -1,12 +1,12 @@
 function [T,D,tot_sam,tot_time] = readvhlvdatafile(myfilename, headerstruct, channelnums, t0, t1)
 % READVHLVDATAFILE - Read LabView data from the VH Lab format
 %
-%  [T,D,TOTAL_SAMPLES,TOTAL_TIME] = READVHLVDATAFILE(FILENAME, HEADERSTRUCT, CHANNELNUMS, T0, T1)
+%  [T,D,TOTAL_SAMPLES,TOTAL_TIME] = vlt.file.custom_file_formats.readvhlvdatafile(FILENAME, HEADERSTRUCT, CHANNELNUMS, T0, T1)
 %
 %  This function reads data from the multichannel VHLab LabView binary
 %  data file format. FILENAME is the name of the file to open, 
 %  HEADERSTRUCT is the header structure as returned from 
-%  READVHLVHEADERFILE, CHANNELNUMS are the channel numbers to read, where
+%  vlt.file.custom_file_formats.readvhlvheaderfile, CHANNELNUMS are the channel numbers to read, where
 %  0 is the first channel in the list that was acquired in LabView, 1 is
 %  the second channel, etc.  See the HEADERSTRUCT to learn the mapping between
 %  the channel list and the inputs of the device (such as ai0, ai1, ... ports
@@ -27,10 +27,10 @@ function [T,D,tot_sam,tot_time] = readvhlvdatafile(myfilename, headerstruct, cha
 %  and so on.
 %
 %  Example:
-%     myheader = readvhlvheaderfile('vhlvanaloginput.vlh');
+%     myheader = vlt.file.custom_file_formats.readvhlvheaderfile('vhlvanaloginput.vlh');
 %
 %     % read from 0 to 5 seconds on the first channel acquired
-%     [T,D] = readvhlvdatafile('vhlvanaloginput.vld',myheader,1,0,5);
+%     [T,D] = vlt.file.custom_file_formats.readvhlvdatafile('vhlvanaloginput.vld',myheader,1,0,5);
 %     figure;
 %     plot(T,D);
 %     xlabel('Time(s)');
@@ -41,7 +41,7 @@ multiplexed = 0;
 
 if isempty(headerstruct),
 	[mypath,myname,myext] = fileparts(myfilename);
-	headerstruct=readvhlvheaderfile(fullfile(mypath,[myname '.vlh']));
+	headerstruct=vlt.file.custom_file_formats.readvhlvheaderfile(fullfile(mypath,[myname '.vlh']));
 end;
 
 if any(channelnums<1) | any(channelnums>headerstruct.NumChans),

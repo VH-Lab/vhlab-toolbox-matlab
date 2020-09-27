@@ -1,7 +1,7 @@
 function mystruct = readvhlvheaderfile(myfilename)
 % READVHLVHEADERFILE - Read VHLV header file format
 %
-%  HEADERSTRUCT = READVHLVHEADERFILE(MYFILENAME)
+%  HEADERSTRUCT = vlt.file.custom_file_formats.readvhlvheaderfile(MYFILENAME)
 %
 %   Reads the header file format for the VHLAB LabView
 %   multichannel acquisition system.
@@ -20,10 +20,10 @@ function mystruct = readvhlvheaderfile(myfilename)
 %   For example, if ChannelString is '/dev/ai0', then there is just 1 channel
 %   and it corresponds to analog input 0 on the acquisition device.
 %
-%   Use READVHLVDATAFILE to read the data.
+%   Use vlt.file.custom_file_formats.readvhlvdatafile to read the data.
 %
 %   Example:
-%     headerstruct = readvhlvheaderfile('vhlvanaloginput.vlh')
+%     headerstruct = vlt.file.custom_file_formats.readvhlvheaderfile('vhlvanaloginput.vlh')
 %
 %     headerstruct = 
 %         ChannelString: [1x26 char]
@@ -33,7 +33,7 @@ function mystruct = readvhlvheaderfile(myfilename)
 %           Multiplexed: 0
 %
 %
-%  See also STRUCT, READVHLVDATAFILE
+%  See also STRUCT, vlt.file.custom_file_formats.readvhlvdatafile
 %
 
  % step 1) create an empty field

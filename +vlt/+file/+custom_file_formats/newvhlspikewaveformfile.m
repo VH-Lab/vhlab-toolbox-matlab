@@ -1,7 +1,7 @@
 function fid = newvhlspikewaveformfile(fid_or_filename, parameters)
 % NEWVHLSPIKEWAVEFORMFILE - Create a binary file for storing spike waveforms
 %
-%   FID = NEWVHLSPIKEWAVEFORMFILE(FID_OR_FILENAME, PARAMETERS)
+%   FID = vlt.file.custom_file_formats.newvhlspikewaveformfile(FID_OR_FILENAME, PARAMETERS)
 %
 %   Creates (or writes to) a binary file for storing spike waveforms.
 %   Data is stored as single precision big endian binary if this function opens the file.

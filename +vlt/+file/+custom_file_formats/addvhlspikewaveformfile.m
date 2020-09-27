@@ -1,7 +1,7 @@
 function addvhlspikewaveformfile(fid_or_filename, waveforms)
 %  ADDVHLSPIKEWAVEFORMFILE - Add waveforms to a VHL spike waveform file
 %
-%    ADDVHLSPIKEWAVEFORMFILE(FID_OR_FILENAME, WAVEFORMS)
+%    vlt.file.custom_file_formats.addvhlspikewaveformfile(FID_OR_FILENAME, WAVEFORMS)
 %
 %  Add waveform data to a VHL spike waveform file.
 %
@@ -18,7 +18,7 @@ function addvhlspikewaveformfile(fid_or_filename, waveforms)
 %  WAVEFORMS should be a matrix of size:
 %       NUM_SAMPLES x NUM_CHANNELS X NUM_WAVEFORMS. 
 %
-%  See also:  NEWVHLSPIKEWAVEFORMFILE
+%  See also:  vlt.file.custom_file_formats.newvhlspikewaveformfile
 %  
 
 did_this_function_open_the_fid = 0;

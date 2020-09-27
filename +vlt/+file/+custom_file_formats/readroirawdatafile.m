@@ -3,9 +3,9 @@ function [waveforms, parameters] = readroirawdatafile(file_or_fid, roi_start, ro
 %
 %    ******NOT FUNCTIONAL YET**********
 %
-%  [ROIDATA, HEADER] = READROIRAWDATAFILE(FID_OR_FILENAME)
+%  [ROIDATA, HEADER] = vlt.file.custom_file_formats.readroirawdatafile(FID_OR_FILENAME)
 %    or 
-%  [ROIDATA, HEADER] = READROIRAWDATAFILE(FID_OR_FILENAME,...
+%  [ROIDATA, HEADER] = vlt.file.custom_file_formats.readroirawdatafile(FID_OR_FILENAME,...
 %     ROI_START,ROI_END)
 %
 %  Attempts to read spikewaves from ROI_START to ROI_END from the binary file

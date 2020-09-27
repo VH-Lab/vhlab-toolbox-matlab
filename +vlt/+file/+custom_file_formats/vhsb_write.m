@@ -1,7 +1,7 @@
 function b = vhsb_write(fo, x, y, varargin)
 % VHSB_WRITE - write a VHLab series binary file
 %
-% B = VHSB_WRITE(FO, X, Y, ...)
+% B = vlt.file.custom_file_formats.vhsb_write(FO, X, Y, ...)
 %
 % Write series data to a VH series binary file.
 %
@@ -22,7 +22,7 @@ function b = vhsb_write(fo, x, y, varargin)
 %
 % Parameter (default)                           | Description
 % ------------------------------------------------------------------------------
-% use_filelock (1)                              | Lock the file with CHECKOUT_LOCK_FILE
+% use_filelock (1)                              | Lock the file with vlt.file.checkout_lock_file
 % X_start (X(1))                                | The value of X in the first sample
 % X_increment (0)                               | The increment between subsequent values of X
 %                                               |    (needs only be non-zero if X_constantinterval is 1)
@@ -43,7 +43,7 @@ function b = vhsb_write(fo, x, y, varargin)
 % Y_scale (1)                                   | The Y scale factor to use
 % Y_offset (0)                                  | The Y offset to use (Ydisk = Y/Y_scale + X_offset)
 %
-% See also: NAMEVALUEPAIR 
+% See also: vlt.data.namevaluepair 
 %
 
 if size(x,1)~=size(y,1),
@@ -82,7 +82,7 @@ Y_scale = 1;
 Y_offset = 0;
 Y_dim = size(y);
 
-assign(varargin{:});
+vlt.data.assign(varargin{:});
 
 if X_usescale,
 	x = x/X_scale + X_offset;
@@ -117,20 +117,20 @@ switch Y_data_type,
 		error(['Unknown datatype ' Y_data_type '.']);
 end;
 
-parameters = workspace2struct;
+parameters = vlt.data.workspace2struct;
 parameters = rmfield(parameters,{'x','y','use_filelock','varargin','fo'});
 
 if use_filelock,
-	lock_fname = [filename_value(fo) '-lock'];
-	fid = checkout_lock_file(lock_fname);
+	lock_fname = [vlt.file.filename_value(fo) '-lock'];
+	fid = vlt.file.checkout_lock_file(lock_fname);
 	if fid<0,
 		error(['Could not get lock for file ' lock_fname '.']);
 	end;
 end;
 
-h = vhsb_writeheader(fo,parameters);
+h = vlt.file.custom_file_formats.vhsb_writeheader(fo,parameters);
 
- % vhsb_writeheader will close the file
+ % vlt.file.custom_file_formats.vhsb_writeheader will close the file
 
 fo = fopen(fo,'r+','ieee-le');
 
@@ -143,7 +143,7 @@ X_skip_bytes = prod(Y_dim(2:end)) * Y_data_size/8; % divide by 8 bits per byte
 fseek(fo,-X_skip_bytes,'cof');
 
 if X_stored,
-	fwrite(fo, x, vhsb_sampletype2matlabfwritestring(X_data_type, X_data_size), X_skip_bytes);
+	fwrite(fo, x, vlt.file.custom_file_formats.vhsb_sampletype2matlabfwritestring(X_data_type, X_data_size), X_skip_bytes);
 end;
 
 fseek(fo,h.headersize,'bof');  % rewind back to the beginning of the data
@@ -155,7 +155,7 @@ y2 = permute(y,[2:numel(Y_dim) 1]);
 if numel(y2)>0,
 
 	fwrite(fo, y2(:), ...
-		[int2str(prod(Y_dim(2:end))) '*' vhsb_sampletype2matlabfwritestring(Y_data_type, Y_data_size)], ...
+		[int2str(prod(Y_dim(2:end))) '*' vlt.file.custom_file_formats.vhsb_sampletype2matlabfwritestring(Y_data_type, Y_data_size)], ...
 		Y_skip_bytes);
 
 end;

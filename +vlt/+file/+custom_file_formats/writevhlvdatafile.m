@@ -1,7 +1,7 @@
 function writevhlvdatafile(filename, header, data, varargin)
 % WRITEVLHVDATAFILE - Write data to a VHLVDATAFILE 
 %  
-% WRITEVHLVDATAFILE(FILENAME, HEADER, DATA)
+% vlt.file.custom_file_formats.writevhlvdatafile(FILENAME, HEADER, DATA)
 %
 % Write a VHLVDATAFILE file to filename FILENAME, in Multiplex format.
 %
@@ -21,12 +21,12 @@ function writevhlvdatafile(filename, header, data, varargin)
 %                                  |  0 - no, create a new file
 %                                  |  1 - yes, add to the end of the file
 %
-% See also: READVHLVDATAFILE
+% See also: vlt.file.custom_file_formats.readvhlvdatafile
 %
  
 append = 0;
 
-assign(varargin{:});
+vlt.data.assign(varargin{:});
 
 [mypath,myname,myext] = fileparts(filename);
 myoutputfile = fullfile(mypath,[myname '.vld']);
@@ -34,7 +34,7 @@ myoutputfile = fullfile(mypath,[myname '.vld']);
 header.Multiplexed = 1;
 
 if ~exist(fullfile(mypath,[myname '.vlh']),'file'),
-	writevhlvheaderfile(header,fullfile(mypath,[myname '.vlh']));
+	vlt.file.custom_file_formats.writevhlvheaderfile(header,fullfile(mypath,[myname '.vlh']));
 end;
 
 write_string = 'w';

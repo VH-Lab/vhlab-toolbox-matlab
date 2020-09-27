@@ -1,9 +1,9 @@
 function h = vhsb_readheader(fo)
 % VHSB_READHEADER - read a VH Lab Series Binary file header
 %
-% H = VHSB_WRITEHEADER(FILE_OBJ_OR_FNAME, ...)
+% H = vlt.file.custom_file_formats.vhsb_writeheader(FILE_OBJ_OR_FNAME, ...)
 %
-% Reads the header portion of the FILEOBJ or filename FILE_OBJ_OR_FNAME.
+% Reads the header portion of the vlt.file.fileobj or filename FILE_OBJ_OR_FNAME.
 % At the conclusion of reading, the FILEOBJ or file is closed.
 %
 % This function returns a structure with the following fields (default in parentheses):
@@ -47,10 +47,10 @@ function h = vhsb_readheader(fo)
 
 skip = 200; 
 
-d = dir(filename_value(fo));
+d = dir(vlt.file.filename_value(fo));
 
 if isempty(d),
-	error(['Could not find file ' filename_value(fo) '.']);
+	error(['Could not find file ' vlt.file.filename_value(fo) '.']);
 end;
 
 fo = fopen(fo,'r','ieee-le');
@@ -76,8 +76,8 @@ try,
 	X_stored = fread(fo, 1, 'uint8');
 	X_constantinterval = fread(fo, 1, 'uint8');
 
-	X_start =     fread(fo, 1, vhsb_sampletype2matlabfwritestring(X_data_type, X_data_size));
-	X_increment = fread(fo, 1, vhsb_sampletype2matlabfwritestring(X_data_type, X_data_size));
+	X_start =     fread(fo, 1, vlt.file.custom_file_formats.vhsb_sampletype2matlabfwritestring(X_data_type, X_data_size));
+	X_increment = fread(fo, 1, vlt.file.custom_file_formats.vhsb_sampletype2matlabfwritestring(X_data_type, X_data_size));
 
 	X_units = char(fread(fo, 256, 'char'));
 	Y_units = char(fread(fo, 256, 'char'));
@@ -93,14 +93,14 @@ try,
 
 catch,
 	fclose(fo);
-	error(['Error reading file ' filename_value(fo) ': ' ferror(fo) '.']);
+	error(['Error reading file ' vlt.file.filename_value(fo) ': ' ferror(fo) '.']);
 end;
 
 fclose(fo);
 
-machine_format = line_n(machine_format(:)',1);
-X_units = line_n(X_units(:)',1);
-Y_units = line_n(Y_units(:)',1);
+machine_format = vlt.string.line_n(machine_format(:)',1);
+X_units = vlt.string.line_n(X_units(:)',1);
+Y_units = vlt.string.line_n(Y_units(:)',1);
 
 X_skip_bytes = prod(Y_dim(2:end)) * Y_data_size/8; % 8 bits per byte
 Y_skip_bytes = X_data_size/8 * (X_stored==1);      % 8 bits per byte
@@ -109,7 +109,7 @@ sample_size = X_skip_bytes + Y_skip_bytes;
 filesize = d.bytes;
 num_samples = (filesize-headersize) / sample_size;
 
-h = workspace2struct;
+h = vlt.data.workspace2struct;
 
 h = rmfield(h,{'fo','d'});
 
