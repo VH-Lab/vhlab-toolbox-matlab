@@ -1,7 +1,7 @@
 function [sd, sde] = sample_difference_error(x1, x2, varargin)
 % SAMPLE_DIFFERENCE_ERROR - calculate the uncertainty in the difference between 2 samples
 %
-% [SD, SDE] = SAMPLE_DIFFERENCE_ERROR(X1, X2, ...)
+% [SD, SDE] = vlt.math.sample_difference_error(X1, X2, ...)
 %
 % Computes the mean sample difference SD and the "error" or "uncertainty" in that
 % difference SDE in the mean of X2 minus the mean of X1.
@@ -29,9 +29,9 @@ function [sd, sde] = sample_difference_error(x1, x2, varargin)
 % Example:
 %    x1 = randn(50,1) + 5;
 %    x2 = randn(50,1) + 0;
-%    [sd,sde]=sample_difference_error(x1,x2),
+%    [sd,sde]=vlt.math.sample_difference_error(x1,x2),
 %    % show the bootstrap version is similar to standard when data is normally distributed
-%    [sdb,sdeb]=sample_difference_error(x1,x2,'algorithm','bootstrap'), 
+%    [sdb,sdeb]=vlt.math.sample_difference_error(x1,x2,'algorithm','bootstrap'), 
 
 
 algorithm = 'assume_normality';
@@ -39,7 +39,7 @@ bootstrap_samples = 10000;
 bootstrap_confidence = [ cdf('norm',-1,0,1) cdf('norm',1,0,1) ];
 meanfunction = 'nanmean';
 
-assign(varargin{:});
+vlt.data.assign(varargin{:});
 
 x1 = x1(:); % make a column vector
 x2 = x2(:); % make a column vector
@@ -48,7 +48,7 @@ sd = feval(meanfunction,x2,1) - feval(meanfunction,x1,1);
 
 switch lower(algorithm),
 	case 'assume_normality',
-		sde = sqrt(nanstderr(x1).^2+nanstderr(x2).^2);
+		sde = sqrt(vlt.data.nanstderr(x1).^2+vlt.data.nanstderr(x2).^2);
 	case 'bootstrap',
 		Z1 = randi(numel(x1),numel(x1),bootstrap_samples);
 		Z2 = randi(numel(x2),numel(x2),bootstrap_samples);

@@ -1,7 +1,7 @@
 function Y = ellipse_on_mvnpdf(xmesh, ymesh, ellipse_params, mu, sigma)
 % ELLIPSE_ON_MVNPDF - Calcluate 'response' of an ellipse (or elliptical aperture) on multivariate normal
 %
-%  Y=ELLIPSE_ON_MVNPDF(XMESH,YMESH,ELLIPSE_PARAMS,MU,SIGMA)
+%  Y=vlt.math.ellipse_on_mvnpdf(XMESH,YMESH,ELLIPSE_PARAMS,MU,SIGMA)
 %
 %  Computes the overlap of an ellipse (or an elliptical aperature) on a
 %  multivariate normal distribution.
@@ -24,7 +24,7 @@ function Y = ellipse_on_mvnpdf(xmesh, ymesh, ellipse_params, mu, sigma)
 %  Outputs:
 %    Y - The response, in a column vector, for each ellipse
 %
-%  See also: INSIDE_ELLIPSE, MVNPDF
+%  See also: vlt.image.inside_ellipse, MVNPDF
 
 Y = zeros(size(ellipse_params,2),1);
 
@@ -41,17 +41,17 @@ catch,
 end
 
   % normalize by dXdY
-area = meshgridarea(xmesh,ymesh);
+area = vlt.math.meshgridarea(xmesh,ymesh);
 mv = mv.*area;
 
 for i=1:size(ellipse_params,2),
-	stimulus = inside_ellipse(xmesh,ymesh,...
+	stimulus = vlt.image.inside_ellipse(xmesh,ymesh,...
 				ellipse_params(1,i),ellipse_params(2,i),...
 				ellipse_params(3,i),ellipse_params(4,i),...
 				ellipse_params(5,i));
 	if ellipse_params(6,i)<0, 
 		% it is an aperture
-		bigstimulus = inside_ellipse(xmesh,ymesh,...
+		bigstimulus = vlt.image.inside_ellipse(xmesh,ymesh,...
 				ellipse_params(1,i),ellipse_params(2,i),...
 				-ellipse_params(6,i),-ellipse_params(6,i),...
 				ellipse_params(5,i));

@@ -1,10 +1,10 @@
 function [fc, freqs] = fouriercoeffs(data,si)
 
-%  FOURIERCOEFFS - find Fourier coefficients for data
+%  vlt.math.fouriercoeffs - find Fourier coefficients for data
 %
 %  Uses FFT to compute the Fourier coefficients for a vector of data.
 %
-%  [FC,FREQS]=FOURIERCOEFFS(DATA,SI)
+%  [FC,FREQS]=vlt.math.fouriercoeffs(DATA,SI)
 %
 %  where DATA is a vector of data and SI is the sampling interval (in seconds),
 %  returns FC the Fourier coefficients and FREQS, the frequency of

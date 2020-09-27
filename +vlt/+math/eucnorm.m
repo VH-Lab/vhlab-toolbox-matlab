@@ -1,7 +1,7 @@
 function [d] = eucnorm(x)
 % EUCNORM(X)
 %
-%   d = EUCNORM(X)
+%   d = vlt.math.eucnorm(X)
 %
 %  Returns the Euclidean norm for each column in X.
 %

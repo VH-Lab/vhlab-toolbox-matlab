@@ -1,6 +1,6 @@
 function r = rot2d(theta)
 
-% ROT2D(THETA) 2D rotation matrix
+% vlt.math.rot2d(THETA) 2D rotation matrix
 %
 %  Returns the 2D rotation matrix:
 %

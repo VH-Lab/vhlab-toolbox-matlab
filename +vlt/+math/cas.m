@@ -1,6 +1,6 @@
 function y = cas(x)
 % CAS - Cosine(x) plus sin(x)
-%   Y = CAS(X)
+%   Y = vlt.math.cas(X)
 %
 %  Returns the abbreviated CAS function where
 %  CAS(X) = SIN(X) + COS(X)

@@ -1,7 +1,7 @@
 function r_out = rect2rect(r_in, direction)
 % RECT2RECT - Convert among rectangle formats, eg [left bottom width height]->[left top right bottom]
 %
-%   R_OUT = RECT2RECT(R_IN, DIRECTION)
+%   R_OUT = vlt.math.rect2rect(R_IN, DIRECTION)
 %
 %   Converts rectangle R_IN to R_OUT according to format specified in DIRECTION.
 %
@@ -18,7 +18,7 @@ function r_out = rect2rect(r_in, direction)
 direction = lower(strtrim(direction));
 two=find(direction=='2');
 if isempty(two),
-	error(['Unknown string input to RECT2RECT: ' direction '.']);
+	error(['Unknown string input to vlt.math.rect2rect: ' direction '.']);
 end;
 
 from=direction(1:two-1);

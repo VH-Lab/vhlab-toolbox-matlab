@@ -1,7 +1,7 @@
 function [v, zi]=autocorr_step_zeros(z,N,alpha)
 % AUTOCORR_STEP_ZEROS - Evaluate z-transform of autocorrelation using zeros
 %
-%  [V, ZI] = AUTOCORR_STEP_ZEROS(z,N,alpha)
+%  [V, ZI] = vlt.math.identity_tests.autocorr_step_zeros(z,N,alpha)
 %
 %  Evalutes the z-transform of the autocorrelation using the functions zeros
 %  (This is for test purposes only)

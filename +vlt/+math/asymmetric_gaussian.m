@@ -1,7 +1,7 @@
 function y = asymmetric_gaussian(x, a, b, c, d, e)
 % ASYMMETRIC_GAUSSIAN - Compute an assymmetric gaussian curve
 %
-%   Y = ASYMMETRIC_GAUSSIAN(X, a, b, c, d, e)
+%   Y = vlt.math.asymmetric_gaussian(X, a, b, c, d, e)
 %
 %   where X are the values of X at which to evaluate the function,
 %   and a b c d e are the parameters of the function:

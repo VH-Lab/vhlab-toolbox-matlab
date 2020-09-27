@@ -1,6 +1,6 @@
 function [ data ] = generate_random_data(N, distribution, varargin)
 %GENERATE_RANDOM_DATA Produce data from different distributions
-%   DATA=GENERATE_RANDOM_DATA(N, DIST, PARAM1, PARAM2, ...)
+%   DATA=vlt.math.generate_random_data(N, DIST, PARAM1, PARAM2, ...)
 %
 % Generates data from different distributions.
 %

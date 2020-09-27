@@ -1,6 +1,6 @@
 function r = rot3d(theta, ax)
 % ROT3D - Rotation in 3d space
-%   R = ROT3D(THETA, AXIS)
+%   R = vlt.math.rot3d(THETA, AXIS)
 %
 %  Performs a 3d rotation about one of the 3-dimensional axes.
 %  If AXIS == 1, the rotation is performed about the X axis (dimension 1).
@@ -11,9 +11,9 @@ function r = rot3d(theta, ax)
 %
 %  
 %
-%  See also: ROT2D
+%  See also: vlt.math.rot2d
 
-rr = rot2d(theta);
+rr = vlt.math.rot2d(theta);
 
 if ax==1,
 	r = [1 0 0; [0;0] rr];

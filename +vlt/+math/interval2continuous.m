@@ -1,7 +1,7 @@
 function [data,t] = interval2continuous(ts,dp,tres)
 % INTERVAL2CONTINUOUS - transform a discrete interval to continuous time at timesteps
 %
-% [DATA,T] = interval2continuous(TIMESTAMPS,DATAPOINTS,TRES)
+% [DATA,T] = vlt.math.interval2continuous(TIMESTAMPS,DATAPOINTS,TRES)
 %
 % Transforms a discrete interval function to continuous time.  The function
 % is expressed as a set of TIMESTAMPS and values (DATAPOINTS), where the
@@ -10,9 +10,9 @@ function [data,t] = interval2continuous(ts,dp,tres)
 % continuously with sample difference TRES.  The data and sample times are
 % returned in DATA and T, respectively.
 %
-% Note: The function STEPFUNC does the same thing and is easier to understand.
+% Note: The function vlt.math.stepfunc does the same thing and is easier to understand.
 %
-% See also:  STEPFUNC
+% See also:  vlt.math.stepfunc
 
 t = ts(1):tres:ts(end);
 data = zeros(size(t));

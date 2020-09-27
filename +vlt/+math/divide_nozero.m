@@ -1,8 +1,8 @@
 function z = divide_nozero(x,y)
 
-%  DIVIDE_NOZERO - performs division such that 0/0 = 0
+%  vlt.math.divide_nozero - performs division such that 0/0 = 0
 %
-%  Z = DIVIDE_NOZERO(X,Y)
+%  Z = vlt.math.divide_nozero(X,Y)
 %
 %  Performs an element-by-element divison of X and Y in the usual
 %  way except that 0/0 is 0 instead of NaN.  n/0, where n is any

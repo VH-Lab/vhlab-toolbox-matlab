@@ -1,7 +1,7 @@
 function varargout = cluster_points_gui(varargin)
 % CLUSTER_POINTS_GUI - Cluster points into groups with manual checking
 %
-%   [CLUSTERIDS,CLUSTERINFO] = CLUSTER_POINTS_GUI('POINTS', POINTS)
+%   [CLUSTERIDS,CLUSTERINFO] = vlt.math.cluster_points_gui('POINTS', POINTS)
 %
 %   Brings up a graphical user interface to allow the user to cluster
 %   POINTS (a structure with field names and 1-D values) using several algorithms.
@@ -73,7 +73,7 @@ varlist = {'success','features','algorithms','points',...
 	'ForceQualityAssessment','EnableClusterEditing',...
 	'AskBeforeDone','MarkerSize','clusterids_initial','clusterinfo_initial','FigureName','IsModal'};
 
-assign(varargin{:});
+vlt.data.assign(varargin{:});
 
 features = fieldnames(points);
 
@@ -83,7 +83,7 @@ end;
 
 if isempty(points),
 	emptypoints = 1;
-elseif eqlen(points,-1),
+elseif vlt.data.eqlen(points,-1),
 	emptypoints = 0;
 	points = [];
 else,
@@ -134,7 +134,7 @@ switch command,
 
 		set(fig,'userdata',ud);
 
-		cluster_points_gui('command','NewWindow','fig',fig);
+		vlt.math.cluster_points_gui('command','NewWindow','fig',fig);
 		if ~EnableClusterEditing,
 			disablelist = {'MoveTo1Menu','MoveTo1Txt','ClusterAllBt','MergeTxt',...
 					'MergeBt','Merge1Menu','Merge2Menu','AlgorithmTxt','AlgorithmMenu',...
@@ -144,12 +144,12 @@ switch command,
 			end;
 		end;
 		if isempty(ud.clusterinfo),
-			cluster_points_gui('command','InitClusterInfo','fig',fig);
+			vlt.math.cluster_points_gui('command','InitClusterInfo','fig',fig);
 		end;
-		cluster_points_gui('command','FeatureMenu','fig',fig);
+		vlt.math.cluster_points_gui('command','FeatureMenu','fig',fig);
 		drawnow;
 		if ClusterRightAway,
-			cluster_points_gui('command','ClusterAllBt','fig',fig);
+			vlt.math.cluster_points_gui('command','ClusterAllBt','fig',fig);
 		end;
 		if ~ud.IsModal, 
 			return;
@@ -194,7 +194,7 @@ switch command,
 		top = ud.windowheight;
 		row = ud.windowrowheight;
 
-                set(fig,'position',[50 50 right top],'tag','cluster_points_gui');
+                set(fig,'position',[50 50 right top],'tag','vlt.math.cluster_points_gui');
 
 		uicontrol(button,'position',[5 top-row*1 100 30],'string','DONE','fontweight','bold','tag','DoneBt');
 		uicontrol(button,'position',[5+100+10 top-row*1 100 30],'string','Cancel','fontweight','bold','tag','CancelBt');
@@ -250,7 +250,7 @@ switch command,
 
 		set(fig,'userdata',ud);
 	case 'ShowInitialClustersBt',
-		cluster_points_gui('points',ud.points,'clusterids',ud.clusterids_initial,'clusterinfo',ud.clusterinfo_initial,...
+		vlt.math.cluster_points_gui('points',ud.points,'clusterids',ud.clusterids_initial,'clusterinfo',ud.clusterinfo_initial,...
 			'IsModal',0,'FigureName',[ud.FigureName ' - initial clusters'],'EnableClusterEditing',0,'AskBeforeDone',0,'ForceQualityAssessment',0,...
 			'MarkerSize',ud.MarkerSize,'RandomSubset',ud.RandomSubset,'RandomSubsetSize',ud.RandomSubsetSize);
 	case 'FeatureEdit',
@@ -270,22 +270,22 @@ switch command,
 			errordlg(['Error in setting spikewaves2NpointfeatureSampleList']);
 			error(['Error in setting spikewaves2NpointfeatureSampleList']);
 		end;
-		if good, cluster_points_gui('command','FeatureMenu','fig',fig); end;
+		if good, vlt.math.cluster_points_gui('command','FeatureMenu','fig',fig); end;
 	case 'FeatureMenu',
-		nitemmenuselection(findobj(fig,'tag','FeatureMenu'),'ItemPrefix',{'x:','y:','z:'});
-		selected = nitemmenuselection(findobj(fig,'tag','FeatureMenu'),'ItemPrefix',{'x:','y:','z:'},'value',[]);
+		vlt.ui.nitemmenuselection(findobj(fig,'tag','FeatureMenu'),'ItemPrefix',{'x:','y:','z:'});
+		selected = vlt.ui.nitemmenuselection(findobj(fig,'tag','FeatureMenu'),'ItemPrefix',{'x:','y:','z:'},'value',[]);
 		if numel(selected)>0,
 			ud.F = [];
 			fn = fieldnames(ud.points);
 			for i=1:numel(selected),
-				eval(['c=colvec([ud.points.' fn{selected(i)} ']);' ]); 
+				eval(['c=vlt.data.colvec([ud.points.' fn{selected(i)} ']);' ]); 
 				ud.F = cat(2,ud.F,c);
 			end;
 		else,
 			ud.F = [];
 		end;
 		set(fig,'userdata',ud);
-		cluster_points_gui('command','Draw','fig',fig);
+		vlt.math.cluster_points_gui('command','Draw','fig',fig);
 	case 'ClusterAllBt',
 		v = get(findobj(fig,'tag','AlgorithmMenu'),'value');
 		cluster_number_string = get(findobj(fig,'tag','ClusterSizeEdit'),'string');
@@ -306,10 +306,10 @@ switch command,
 		end;
 		if good,
 			set(fig,'userdata',ud);
-			cluster_points_gui('command','ReOrderMinToMax','fig',fig);
-			cluster_points_gui('command','InitClusterInfo','fig',fig);
-			cluster_points_gui('command','MakeClusters1toN','fig',fig);
-			cluster_points_gui('command','Draw','fig',fig);
+			vlt.math.cluster_points_gui('command','ReOrderMinToMax','fig',fig);
+			vlt.math.cluster_points_gui('command','InitClusterInfo','fig',fig);
+			vlt.math.cluster_points_gui('command','MakeClusters1toN','fig',fig);
+			vlt.math.cluster_points_gui('command','Draw','fig',fig);
 		end;
 	case 'ClusterVisibleBt',
 		v = get(findobj(fig,'tag','AlgorithmMenu'),'value');
@@ -324,7 +324,7 @@ switch command,
 		if good,
 			z = find(ud.algorithms(v).code=='=');
 			z2 = findstr(ud.algorithms(v).code,'ud.F');
-			indexes = cluster_points_gui('command','FindVisiblePoints','fig',fig);
+			indexes = vlt.math.cluster_points_gui('command','FindVisiblePoints','fig',fig);
 			string_to_eval = [ud.algorithms(v).code(1:z-1) '(visiblespikes)' ud.algorithms(v).code(z) ...
 					'max(ud.clusterids)+1+' ud.algorithms(v).code(z+1:z2+4) '(indexes,:)' ud.algorithms(v).code(z2+5:end)];
 			try,
@@ -336,9 +336,9 @@ switch command,
 		end;
 		if good,
 			set(fig,'userdata',ud);
-			cluster_points_gui('command','ReOrderMinToMax','fig',fig);
-			cluster_points_gui('command','InitClusterInfo','fig',fig);
-			cluster_points_gui('command','MakeClusters1toN','fig',fig);
+			vlt.math.cluster_points_gui('command','ReOrderMinToMax','fig',fig);
+			vlt.math.cluster_points_gui('command','InitClusterInfo','fig',fig);
+			vlt.math.cluster_points_gui('command','MakeClusters1toN','fig',fig);
 		end;
 	case 'ReOrderMinToMax',
 		clusters = unique(ud.clusterids);
@@ -372,7 +372,7 @@ switch command,
 			end;
 		end;
 		set(fig,'userdata',ud);
-		cluster_points_gui('command','UpdateMergeQualityMenu','fig',fig);
+		vlt.math.cluster_points_gui('command','UpdateMergeQualityMenu','fig',fig);
 	case 'InitClusterInfoExtra',
 		clusterinfo=struct('number',[],'qualitylabel','','number_of_points',[]);
 		clusters = unique(ud.clusterids);
@@ -388,7 +388,7 @@ switch command,
 					'number_of_points',length(indshere));
 		end;
 		set(fig,'userdata',ud);
-		cluster_points_gui('command','UpdateMergeQualityMenu','fig',fig);
+		vlt.math.cluster_points_gui('command','UpdateMergeQualityMenu','fig',fig);
 	case 'MakeClusters1toN',
 		clusters = unique(ud.clusterids);
 		if isnan(clusters(end)), clusters = clusters(1:find(isnan(clusters),1,'first')); end;  % take only 1 NaN from unique
@@ -413,7 +413,7 @@ switch command,
 		set(findobj(fig,'tag','OtherActionMenu'),'value',1);
 		commands = {'','','MoveTo1Menu','','SelectSpikesToAddFeatureAxes','SelectSpikesToExcludeFeatureAxes','ExcludeAllVisibleSpikes','NotPresentIntoNewCluster'};
 		if ~isempty(commands{v}), 
-			cluster_points_gui('command',commands{v},'fig',fig);
+			vlt.math.cluster_points_gui('command',commands{v},'fig',fig);
 		end;
 	case 'SplitCluster', % requires input 'indexes', 'parentcluster' 
 		% creates a new cluster using the spikes with indexes 'indexes', from the parent cluster 'parentcluster'
@@ -434,9 +434,9 @@ switch command,
 			ud.clusterinfo(parentcluster).number_of_points = length(oldindexes); % POSSIBLE NAN handling wrong
 		end;
 		set(fig,'userdata',ud);
-		cluster_points_gui('command','MakeClusters1toN','fig',fig); % possible we emptied one
-		cluster_points_gui('command','UpdateMergeQualityMenu','fig',fig);
-		cluster_points_gui('command','Draw','fig',fig);
+		vlt.math.cluster_points_gui('command','MakeClusters1toN','fig',fig); % possible we emptied one
+		vlt.math.cluster_points_gui('command','UpdateMergeQualityMenu','fig',fig);
+		vlt.math.cluster_points_gui('command','Draw','fig',fig);
 	case 'CurrentSelectedCluster',  
 		clusters = unique(ud.clusterids);
 		mm1 = findobj(fig,'tag','Merge1Menu');
@@ -445,35 +445,35 @@ switch command,
 		value = str2num(st{v});
 		varargout{1} = value;
 	case 'SelectSpikesToAddFeatureAxes',
-		currentSelectedCluster = cluster_points_gui('command','CurrentSelectedCluster','fig',fig);
+		currentSelectedCluster = vlt.math.cluster_points_gui('command','CurrentSelectedCluster','fig',fig);
 		axes(findobj(fig,'tag','FeatureAxes'));
-		indexes = cluster_points_gui('command','FindVisiblePoints','fig',fig);
-		inside = selectpoints3d(ud.F(indexes,:)');
+		indexes = vlt.math.cluster_points_gui('command','FindVisiblePoints','fig',fig);
+		inside = vlt.matlab.graphics.selectpoints3d(ud.F(indexes,:)');
 		z = find(inside); % who is inside the selection region?
 		%oldclusterids = ud.clusterids(indexes(z));  % no need, MakeClusters1toN covers this
 		ud.clusterids(indexes(z)) = currentSelectedCluster;
 		set(fig,'userdata',ud);
-		cluster_points_gui('command','MakeClusters1toN','fig',fig);
-		cluster_points_gui('command','UpdateMergeQualityMenu','fig',fig);
-		cluster_points_gui('command','Draw','fig',fig);
+		vlt.math.cluster_points_gui('command','MakeClusters1toN','fig',fig);
+		vlt.math.cluster_points_gui('command','UpdateMergeQualityMenu','fig',fig);
+		vlt.math.cluster_points_gui('command','Draw','fig',fig);
 	case 'SelectSpikesToExcludeFeatureAxes', 
-		currentSelectedCluster = cluster_points_gui('command','CurrentSelectedCluster','fig',fig);
+		currentSelectedCluster = vlt.math.cluster_points_gui('command','CurrentSelectedCluster','fig',fig);
 		if isnan(currentSelectedCluster),
 			errordlg(['Cannot exclude from NaN cluster']);
 			return;
 		end;
 		axes(findobj(fig,'tag','FeatureAxes'));
-		indexes = cluster_points_gui('command','FindVisiblePoints','fig',fig);
+		indexes = vlt.math.cluster_points_gui('command','FindVisiblePoints','fig',fig);
 		z = find(ud.clusterids(indexes)==currentSelectedCluster);
 		indexes = indexes(z); % subset that belong to this cluster
 		if isempty(indexes),
 			errordlg(['No visible spikes here to exclude']);
 			return;
 		end;
-		inside = selectpoints3d(ud.F(indexes,:)');
+		inside = vlt.matlab.graphics.selectpoints3d(ud.F(indexes,:)');
 		z = find(inside); % who is inside the selection region?
 		indexes = indexes(z); 
-		cluster_points_gui('command','SplitCluster','fig',fig,'parentcluster',currentSelectedCluster,'indexes',indexes);
+		vlt.math.cluster_points_gui('command','SplitCluster','fig',fig,'parentcluster',currentSelectedCluster,'indexes',indexes);
 	case 'FindVisiblePoints',
 		if exist('indexes')~=1,
 			indexes = 1:numel(ud.points);
@@ -481,15 +481,15 @@ switch command,
 		varargout{1} = indexes;
 		varargout{2} = [];
 	case 'NotPresentIntoNewCluster',
-		parentcluster = cluster_points_gui('command','CurrentSelectedCluster','fig',fig);
-		indexes = cluster_points_gui('command','FindVisiblePoints','fig',fig);
+		parentcluster = vlt.math.cluster_points_gui('command','CurrentSelectedCluster','fig',fig);
+		indexes = vlt.math.cluster_points_gui('command','FindVisiblePoints','fig',fig);
 		indexes = indexes(find(indexes==parentcluster));
 		inds_notpresent = [];
 		if isempty(inds_notpresent),
 			errordlg(['No pointsare labeled as "Not present".']);
 			return;
 		end;
-		cluster_points_gui('command','SplitCluster','fig',fig,'parentcluster',parentcluster,'indexes',inds_notpresent);
+		vlt.math.cluster_points_gui('command','SplitCluster','fig',fig,'parentcluster',parentcluster,'indexes',inds_notpresent);
 	case 'UpdateMergeQualityMenu',  % update the labels in the Merge/Quality menus
 		clusters = unique(ud.clusterids);
 		if isnan(clusters(end)), clusters = clusters(1:find(isnan(clusters),1,'first')); end;  % take only 1 NaN from unique
@@ -499,7 +499,7 @@ switch command,
 		end;
 		set(findobj(fig,'tag','Merge1Menu'),'string',mergemenustring,'value',1);
 		set(findobj(fig,'tag','MoveTo1Menu'),'string',mergemenustring,'value',1);
-		cluster_points_gui('command','Merge1Menu','fig',fig);
+		vlt.math.cluster_points_gui('command','Merge1Menu','fig',fig);
 	case 'MoveTo1Menu',
 		% need to move this cluster number to position 1; everything gets moved down by 1
 		clusters = unique(ud.clusterids);
@@ -519,8 +519,8 @@ switch command,
 			ud.clusterinfo(i).number = int2str(clusters(i));
 		end;
 		set(fig,'userdata',ud);
-		cluster_points_gui('command','UpdateMergeQualityMenu','fig',fig);
-		cluster_points_gui('command','Draw','fig',fig);
+		vlt.math.cluster_points_gui('command','UpdateMergeQualityMenu','fig',fig);
+		vlt.math.cluster_points_gui('command','Draw','fig',fig);
 	case 'Merge1Menu',  % Set Merge1Menu value
 		mm1 = findobj(fig,'tag','Merge1Menu');
 		st = get(mm1,'string');
@@ -533,7 +533,7 @@ switch command,
 		if isempty(mm2str), mm2str = {' '}; end;
 		mm2 = findobj(fig,'tag','Merge2Menu');
 		set(mm2,'string',mm2str,'value',1);
-		cluster_points_gui('command','ClusterPropertyMenu','fig',fig);
+		vlt.math.cluster_points_gui('command','ClusterPropertyMenu','fig',fig);
 	case 'MergeBt',
 		mm1 = findobj(fig,'tag','Merge1Menu');
 		mm2 = findobj(fig,'tag','Merge2Menu');
@@ -570,9 +570,9 @@ switch command,
 		newinds = find(ud.clusterids==value1);
 		ud.clusterinfo(loc1).number_of_points = length(newinds);
 		set(fig,'userdata',ud);
-		cluster_points_gui('command','MakeClusters1toN','fig',fig);
-		cluster_points_gui('command','UpdateMergeQualityMenu','fig',fig);
-		cluster_points_gui('command','Draw','fig',fig);
+		vlt.math.cluster_points_gui('command','MakeClusters1toN','fig',fig);
+		vlt.math.cluster_points_gui('command','UpdateMergeQualityMenu','fig',fig);
+		vlt.math.cluster_points_gui('command','Draw','fig',fig);
 	case 'ClusterPropertyMenu',
 		v = get(findobj(fig,'tag','Merge1Menu'),'value'); % formerly ClusterProperyMenu
 		str = get(findobj(fig,'tag','QualityMenu'),'string');
@@ -592,7 +592,7 @@ switch command,
 		v = get(findobj(fig,'tag','Merge1Menu'),'value'); % formerly ClusterPropertyMenu
 		ud.clusterinfo(v).qualitylabel = str2{v2};
 		set(fig,'userdata',ud);
-		cluster_points_gui('command','RelabelSpikes','fig',fig);
+		vlt.math.cluster_points_gui('command','RelabelSpikes','fig',fig);
 	case 'AlgorithmMenu',
 		v = get(findobj(fig,'tag','AlgorithmMenu'),'value');
 		set(findobj(fig,'tag','AlgorithmSizeTxt'),'string',ud.algorithms(v).AlgorithmSizeTxt);
@@ -603,7 +603,7 @@ switch command,
 		MarkerSizeString = get(findobj(fig,'tag','MarkerSizeEdit'),'string');
 		ud.MarkerSize = str2num(MarkerSizeString);
 		set(fig,'userdata',ud);
-		cluster_points_gui('command','DrawFeatures','fig',fig);
+		vlt.math.cluster_points_gui('command','DrawFeatures','fig',fig);
 	case {'RandomSubsetSizeEdit', 'RandomSubsetCB'},
 		RandomSubsetSizeString = get(findobj(fig,'tag','RandomSubsetSizeEdit'),'string');
 		try,
@@ -626,7 +626,7 @@ switch command,
 			catch,
 				% reset to something that will not produce an error
 				errordlg(['Error in Fixed Axes text field; check for syntax errors or xmin>=xmax, ymin>=ymax, etc;  resetting']);
-				cluster_points_gui('command','AxesAutoBt','fig',fig); % repair the damage
+				vlt.math.cluster_points_gui('command','AxesAutoBt','fig',fig); % repair the damage
 			end;
 		end;
 		FixedAxesValues = axis;
@@ -637,8 +637,8 @@ switch command,
 		FixedAxesValues = axis;
 		set(findobj(fig,'tag','AxesEdit'),'string',mat2str(FixedAxesValues));
 	case 'Draw',
-		cluster_points_gui('command','DrawFeatures','fig',fig);
-		cluster_points_gui('command','UpdateMergeQualityMenu','fig',fig);
+		vlt.math.cluster_points_gui('command','DrawFeatures','fig',fig);
+		vlt.math.cluster_points_gui('command','UpdateMergeQualityMenu','fig',fig);
 	case 'DrawFeatures',
 		axes(findobj(fig,'tag','FeatureAxes'));
 		cla;
@@ -663,9 +663,9 @@ switch command,
 			end;
 
 			axisnames = get(findobj(fig,'tag','FeatureMenu'),'string');
-			selection = nitemmenuselection(findobj(fig,'tag','FeatureMenu'),'value',[]);
+			selection = vlt.ui.nitemmenuselection(findobj(fig,'tag','FeatureMenu'),'value',[]);
 			% only examine 'visible' spikes
-			[inds_visible,inds_invisible] = cluster_points_gui('command','FindVisiblePoints','fig',fig,'indexes',inds);
+			[inds_visible,inds_invisible] = vlt.math.cluster_points_gui('command','FindVisiblePoints','fig',fig,'indexes',inds);
 			inds = inds_visible;
 			if numel(inds)>0 & ~isempty(ud.F),
 				if dim>=3,
@@ -687,7 +687,7 @@ switch command,
 		box off; % good taste
 		MarkerSizeString = int2str(ud.MarkerSize);
 		set(findobj(fig,'tag','MarkerSizeEdit'),'string',MarkerSizeString);
-		cluster_points_gui('command','AxesEdit','fig',fig); % adjust axis if necessary
+		vlt.math.cluster_points_gui('command','AxesEdit','fig',fig); % adjust axis if necessary
 		drawnow;
 	case 'RelabelSpikes',
 		for i=1:length(ud.clusterinfo),

@@ -1,8 +1,8 @@
 function d = rad2deg(r)
 
-%  RAD2DEG
+%  vlt.math.rad2deg
 %
-%  D = RAD2DEG(R)
+%  D = vlt.math.rad2deg(R)
 %
 %  Converts radians to degrees
 %

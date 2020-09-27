@@ -1,8 +1,8 @@
 function X = normalizebounds(data, lowerbound, upperbound)
 
-% NORMALIZEBOUNDS - Normalize data to lower, upper bound
+% vlt.math.normalizebounds - Normalize data to lower, upper bound
 %
-%  X = NORMALIZEBOUNDS(DATA, LOWERBOUND, UPPERBOUND)
+%  X = vlt.math.normalizebounds(DATA, LOWERBOUND, UPPERBOUND)
 %
 % Normalizes the data as follows
 %   X = (DATA-LOWERBOUND)/(UPPERBOUND-LOWERBOUND)

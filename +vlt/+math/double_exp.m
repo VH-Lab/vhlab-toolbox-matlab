@@ -1,8 +1,8 @@
 function g = double_exp(t, tau1, tau2)
 
-% DOUBLE_EXP - Double exponential
+% vlt.math.double_exp - Double exponential
 %
-%  G = DOUBLE_EXP(T, TAU1, TAU2)
+%  G = vlt.math.double_exp(T, TAU1, TAU2)
 %
 %    Returns ((TAU1*TAU2)/(TAU1-TAU2)) * (EXP(-T/TAU1)-EXP(-T/TAU2))
 %

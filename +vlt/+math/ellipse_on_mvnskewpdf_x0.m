@@ -1,7 +1,7 @@
 function Y = ellipse_on_mvnskewpdf_x0(x0, ellipse_params, xmesh,ymesh)
 % ELLIPSE_ON_MVNPDF_X0 - Calcluate 'response' of an ellipse on multivariate normal
 %
-%  Y=ELLIPSE_ON_MVNSKEWPDF_X0(X,ELLIPSE_PARAMS,XMESH,YMESH)
+%  Y=vlt.math.ellipse_on_mvnskewpdf_x0(X,ELLIPSE_PARAMS,XMESH,YMESH)
 %
 %  Computes the overlap of an ellipse on a multivariate normal distribution.
 %
@@ -23,11 +23,11 @@ function Y = ellipse_on_mvnskewpdf_x0(x0, ellipse_params, xmesh,ymesh)
 %  Outputs:
 %    Y - The response, in a column vector, for each ellipse
 %
-%  See also: INSIDE_ELLIPSE, MVNSKEWPDF
+%  See also: vlt.image.inside_ellipse, vlt.math.mvnskewpdf
 
 mu = [x0(1) x0(2)];
 sigma = [x0(3) x0(4) ; x0(4) x0(5)];
 alpha = [x0(7); x0(8)];
 
-Y = x0(6)*ellipse_on_mvnskewpdf(xmesh,ymesh,ellipse_params,mu,sigma,alpha);
+Y = x0(6)*vlt.math.ellipse_on_mvnskewpdf(xmesh,ymesh,ellipse_params,mu,sigma,alpha);
 

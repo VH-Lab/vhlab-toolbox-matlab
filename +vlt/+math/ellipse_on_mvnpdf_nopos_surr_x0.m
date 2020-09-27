@@ -26,7 +26,7 @@ function Y = ellipse_on_mvnpdf_noposition_surr_x0(x0, ellipse_params, xmesh,ymes
 %  Outputs:
 %    Y - The response, in a column vector, for each ellipse
 %
-%  See also: INSIDE_ELLIPSE, MVNPDF
+%  See also: vlt.image.inside_ellipse, MVNPDF
 
 mu = [0 0];
 sigma = [x0(1) 0 ; 0 x0(1)];
@@ -35,7 +35,7 @@ if size(ellipse_params,1)<6,
 	ellipse_params(6,:) = 0;
 end;
 
-Y = x0(2)*ellipse_on_mvnpdf(xmesh,ymesh,ellipse_params,mu,sigma);
+Y = x0(2)*vlt.math.ellipse_on_mvnpdf(xmesh,ymesh,ellipse_params,mu,sigma);
 
 R = max(max(ellipse_params([3 4],:)));
 
