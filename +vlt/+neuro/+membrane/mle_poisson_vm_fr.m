@@ -10,15 +10,15 @@ function [params] = mle_poisson_vm_fr(vm, fr, deltaT, varargin)
 % FR should be measurements of firing rate (N_SPIKES/DELTAT)
 %
 % It returns the free PARAMS for each fit function type.
-% For 'linearthreshold', PARAMS is [slope threshold] (see help vlt.fit.linepowerthreshold)
+% For 'vlt.fit.linepowerthreshold', PARAMS is [slope threshold] (see help vlt.fit.linepowerthreshold)
 % For 'vlt.fit.linepowerthreshold', PARAMS is [slope threshold exponent]
 % For 'Poisson', PARAMS is [rate]
 %
 % This function also accepts name/value pairs that alter its behavior:
 % Parameters (default)              | Description
 % -----------------------------------------------------------------
-% fit_function ('linearthreshold')  | Uses function 'linearthreshold'
-%                                   |  that has form R(v) = vlt.math.rectify(V-V0)
+% fit_function                      | Uses function 'vlt.fit.linearpowerthreshold'
+%   ('vlt.fit.linepowerthreshold')  | that has form R(v) = vlt.math.rectify(V-V0)
 %                                   | The name of any function that takes X, Y
 %                                   | as inputs and then name/value pairs can be used
 % fit_function_params               | Cell array of name/value pairs for the fit function.
@@ -37,7 +37,7 @@ function [params] = mle_poisson_vm_fr(vm, fr, deltaT, varargin)
 %   p_out =vlt.neuro.membrane.mle_poisson_vm_fr(0*fr,fr,deltaT,'fit_function','Poisson')  
 %   p_out_matlab = mle(round(fr*deltaT),'distribution','Poisson' ) / deltaT % they match
 
-fit_function = 'linearthreshold';
+fit_function = 'vlt.fit.linepowerthreshold';
 nspace = 5;
 
 vlt.data.assign(varargin{:});
@@ -48,7 +48,7 @@ switch lower(fit_function),
 		upper_bounds = [10*max(fr)];
 		rateFunc = 'vlt.fit.linepowerthreshold';
 		fitfun = @(x) -vlt.neuro.membrane.poisson_vm_fr(vm,fr,deltaT,rateFunc, {1 x(1) 0 1});
-	case 'linearthreshold',
+	case 'vlt.fit.linearthreshold',
 		lower_bounds = [0 0];
 		upper_bounds = [10*max(fr)/max(vm) max(vm)] ;
 		rateFunc = 'vlt.fit.linepowerthreshold';
