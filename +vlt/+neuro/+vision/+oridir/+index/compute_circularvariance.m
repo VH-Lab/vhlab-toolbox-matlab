@@ -1,7 +1,7 @@
 function cv = compute_circularvariance( angles, rates )
 
-% vlt.neuro.vision.oridir.indexes.compute_circularvariance
-%     CV = vlt.neuro.vision.oridir.indexes.compute_circularvariance( ANGLES, RATES )
+% vlt.neuro.vision.oridir.index.compute_circularvariance
+%     CV = vlt.neuro.vision.oridir.index.compute_circularvariance( ANGLES, RATES )
 %
 %     Takes ANGLES in degrees.  ANGLES and RATES should be
 %     row vectors.

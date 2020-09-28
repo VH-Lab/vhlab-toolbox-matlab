@@ -1,7 +1,7 @@
 function tuningwidth = compute_tuningwidth( angles, rates )
 
-% vlt.neuro.vision.oridir.indexes.compute_tuningwidth
-%     TUNINGWIDTH = vlt.neuro.vision.oridir.indexes.compute_tuningwidth( ANGLES, RATES )
+% vlt.neuro.vision.oridir.index.compute_tuningwidth
+%     TUNINGWIDTH = vlt.neuro.vision.oridir.index.compute_tuningwidth( ANGLES, RATES )
 %
 %     Takes ANGLES in degrees
 %

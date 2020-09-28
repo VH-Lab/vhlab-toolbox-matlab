@@ -44,8 +44,8 @@ outputs.meanvector = sum(responses(:).*exp(sqrt(-1)*mod(vlt.math.deg2rad(angles(
 outputs.vectormag = abs(outputs.meanvector);
 %outputs.vectorpref = vlt.math.cartesian2compass(vlt.math.rad2deg(mod(angle(outputs.meanvector),2*pi)),0); no, the plotting function mmpolar will plot it properly
 outputs.vectorpref = vlt.math.rad2deg(mod(angle(outputs.meanvector),2*pi));
-outputs.dircircularvariance = vlt.neuro.vision.oridir.indexes.compute_dircircularvariance(angles(:)',responses(:)');
-[outputs.dvco_di,outputs.dvco_pref,outputs.dvco_vec] = vlt.neuro.vision.oridir.indexes.compute_dirvecconstrainedori(angles(:)',responses(:)');
+outputs.dircircularvariance = vlt.neurovision.oridir.index.compute_dircircularvariance(angles(:)',responses(:)');
+[outputs.dvco_di,outputs.dvco_pref,outputs.dvco_vec] = vlt.neurovision.oridir.index.compute_dirvecconstrainedori(angles(:)',responses(:)');
 outputs.h_meanvector = [];
 outputs.h_circularvariance = [];
 

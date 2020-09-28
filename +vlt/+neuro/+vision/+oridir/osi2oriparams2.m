@@ -24,7 +24,7 @@ function [rsp,rp,op,sigma,rn] = osi2oriparams2(osi, varargin)
 %          desired_index(end+1) = i;
 %          [rsp,rp,op,sigma,rn] = vlt.neuro.vision.oridir.osi2oriparams2(i);
 %          [dummy,shape] = vlt.fit.otfit_carandini_err([rsp rp op sigma rn],[0:22.5:360-22.5]);
-%          actual_index(end+1) = vlt.neuro.vision.oridir.indexes.compute_orientationindex(0:22.5:360-22.5,shape);
+%          actual_index(end+1) = vlt.neurovision.oridir.index.compute_orientationindex(0:22.5:360-22.5,shape);
 %       end;
 %       [desired_index' actual_index']
 %

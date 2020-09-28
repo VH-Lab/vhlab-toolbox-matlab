@@ -21,7 +21,7 @@ function [rsp,rp,op,sigma,rn] = dsi2dirparams(dsi, varargin)
 %          desired_index(end+1) = i;
 %          [rsp,rp,op,sigma,rn] = vlt.neuro.vision.oridir.dsi2dirparams(i);
 %          [dummy,shape] = vlt.fit.otfit_carandini_err([rsp rp op sigma rn],[0:22.5:360-22.5]);
-%          actual_index(end+1) = vlt.neuro.vision.oridir.indexes.compute_directionindex(0:22.5:360-22.5,shape);
+%          actual_index(end+1) = vlt.neurovision.oridir.index.compute_directionindex(0:22.5:360-22.5,shape);
 %       end;
 %       [desired_index' actual_index']
 %

@@ -87,6 +87,3 @@ if ~isnan(data),
 	err=err+(sum(sum(abs(d.*d))));
 end;
 
-function D = vlt.math.angdiff(a)
-D=min(abs([a;a+360;a-360]));
-

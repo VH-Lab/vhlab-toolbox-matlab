@@ -1,7 +1,7 @@
 function pref = fit2pref(R)
 % FIT2PREF - calculate the preferred response from a fit to direction
 %
-%  PREF=vlt.neuro.vision.oridir.indexes.fit2pref(RESPONSE)
+%  PREF=vlt.neuro.vision.oridir.index.fit2pref(RESPONSE)
 %
 %  Given the RESPONSE of a double gaussian fit, find the maximum response.  
 %
@@ -13,7 +13,7 @@ function pref = fit2pref(R)
 %
 %  The largest response is returned in PREF.
 %
-%  See also: vlt.neuro.vision.oridir.indexes.fit2null, vlt.neuro.vision.oridir.indexes.fit2orth
+%  See also: vlt.neuro.vision.oridir.index.fit2null, vlt.neuro.vision.oridir.index.fit2orth
 
 if size(R,1)==1,
     R = [0:359; R];

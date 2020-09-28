@@ -1,7 +1,7 @@
 function oiindfit = fit2fitoidiffsum(R, blank)
 % FIT2FITOI - Calculate orientation index from a double gaussian fit of direction tuning curve
 %
-%  OIIND = vlt.neuro.vision.oridir.indexes.fit2fitoidiffsum(R)
+%  OIIND = vlt.neuro.vision.oridir.index.fit2fitoidiffsum(R)
 %
 %    Calculates the orientation selectivity index (OSI) from a double gaussian fit
 %    of a direction tuning curve.
@@ -15,7 +15,7 @@ function oiindfit = fit2fitoidiffsum(R, blank)
 %    fit (e.g., [0:359] is the most common for 1 degree steps between 0 and 359), and
 %    the second row is the response of the fit for each angle.
 %
-%    See also: vlt.fit.otfit_carandini, vlt.neuro.vision.oridir.indexes.fit2fitoi, vlt.neuro.vision.oridir.indexes.fit2fitdibr, vlt.neuro.vision.oridir.indexes.fit2fitdidiffsum
+%    See also: vlt.fit.otfit_carandini, vlt.neuro.vision.oridir.index.fit2fitoi, vlt.neuro.vision.oridir.index.fit2fitdibr, vlt.neuro.vision.oridir.index.fit2fitdidiffsum
 
 
   % the second input argument, 'blank', is left in place purely for backwards compatibility with other code

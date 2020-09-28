@@ -43,7 +43,7 @@ hh=mmpolar(2*vlt.math.deg2rad(angles([1:end 1])),responses([1:end 1]),...  % con
 outputs.meanvector = sum(responses(:).*exp(sqrt(-1)*2*mod(vlt.math.deg2rad(angles(:)),pi)));
 outputs.vectormag = abs(outputs.meanvector);
 outputs.vectorpref = vlt.math.rad2deg(mod(angle(outputs.meanvector)/2,pi));
-outputs.circularvariance = vlt.neuro.vision.oridir.indexes.compute_circularvariance(angles(:)',responses(:)');
+outputs.circularvariance = vlt.neurovision.oridir.index.compute_circularvariance(angles(:)',responses(:)');
 outputs.h_meanvector = [];
 outputs.h_circularvariance = [];
 

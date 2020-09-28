@@ -1,7 +1,7 @@
 function vector = compute_orientationvector( angles, rates )
 
-% vlt.neuro.vision.oridir.indexes.compute_orientationvector
-%     VECTOR = vlt.neuro.vision.oridir.indexes.compute_orientationvector( ANGLES, RATES )
+% vlt.neuro.vision.oridir.index.compute_orientationvector
+%     VECTOR = vlt.neuro.vision.oridir.index.compute_orientationvector( ANGLES, RATES )
 %
 %     Takes ANGLES in degrees and returns the orientation vector:
 %
