@@ -10,7 +10,7 @@ function [offset, double_gauss_params, dog_params, R_fit, rsquare] = double_gaus
    % 'independent',{'theta_','sf_'},'coefficients',{'a','b','c','d','e','a2','b2','c2','d2'});
 % fo = fitoptions(gauss);
 
-gauss = fittype('vlt.math.double_gauss_DoG(theta_, sf_, a, [0 b c d e], [0 1 b2 c2 d2])',...
+gauss = fittype(@(a,b,c,d,e,b2,c2,d2,theta_,sf_) vlt.math.double_gauss_DoG(theta_, sf_, a, [0 b c d e], [0 1 b2 c2 d2]),...
     'independent',{'theta_','sf_'},'coefficients',{'a','b','c','d','e','b2','c2','d2'});
 fo = fitoptions(gauss);
 

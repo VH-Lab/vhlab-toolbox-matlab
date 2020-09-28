@@ -12,5 +12,5 @@ function [curve] = linepowerthreshold(x,slope,offset,threshold,exponent)
 % Jason Osik and Steve Van Hooser
 % 
 
-curve = offset + slope * rectify(x(:)-threshold).^exponent;
+curve = offset + slope * vlt.math.rectify(x(:)-threshold).^exponent;
 

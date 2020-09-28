@@ -61,7 +61,7 @@ s = fitoptions('Method','NonlinearLeastSquares',...
 	'Upper',[ slope_range(2) threshold_range(2)],...
 	'StartPoint', [slope_start threshold_start]);
 
-ft = fittype('vlt.fit.linepowerthreshold(x,a,0,b,1)','options',s);
+ft = fittype(@(a,b,x) vlt.fit.linepowerthreshold(x,a,0,b,1),'options',s);
 [cl,gof,fitinfo] = fit(x(:),y(:),ft);
 
 slope = cl.a;
