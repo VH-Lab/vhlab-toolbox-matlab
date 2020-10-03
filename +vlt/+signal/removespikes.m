@@ -1,7 +1,7 @@
 function data_out = removespikes(data, T, spiketimes, varargin)
 % REMOVESPIKES - Remove spikes from voltage trace w/ linear interpolation
 %
-%   DATA_OUT = REMOVESPIKES(DATA, T, SPIKETIMES, ...)
+%   DATA_OUT = vlt.signal.removespikes(DATA, T, SPIKETIMES, ...)
 %
 %   Inputs:
 %     DATA - The voltage data values (time series data) (must be bigger than
@@ -19,7 +19,7 @@ function data_out = removespikes(data, T, spiketimes, varargin)
 %     One can provide additional inputs to this function with name/value
 %     pairs. For example, to change the time T0 before each spike that is 
 %     removed or the time T1 after each spike that is removed, use:
-%   DATA_OUT = REMOVESPIKES(DATA, T, SPIKETIMES, 'T0', t0, 'T1', t1)
+%   DATA_OUT = vlt.signal.removespikes(DATA, T, SPIKETIMES, 'T0', t0, 'T1', t1)
 %
 %   Parameters that can be modified:
 %   Name (default value):            | Meaning
@@ -50,7 +50,7 @@ SPIKE_BEGINNING_END_METHOD = 1;
 t0 = 0.003;
 t1 = 0.005;
 
-assign(varargin{:});
+vlt.data.assign(varargin{:});
 
  % start editing here
 

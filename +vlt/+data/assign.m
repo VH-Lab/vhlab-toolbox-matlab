@@ -1,14 +1,14 @@
 function assign (varargin)
 % assign - make a list of assignments (matlab 5 or higher)
 %
-%	ASSIGN('VAR1', VAL1, 'VAR2', VAL2, ...) makes the assignments 
+%	vlt.data.assign('VAR1', VAL1, 'VAR2', VAL2, ...) makes the assignments 
 %	VAR1 = VAL1; VAR2 = VAL2; ... in the caller's workspace.
 %
 %	This is most useful when passing in an option list to a
 %	function.  Thus in the function which starts:
 %		function foo(x,y,varargin)
 %		z = 0;
-%		assign(varargin{:});
+%		vlt.data.assign(varargin{:});
 %	the variable z can be given a non-default value by calling the
 %	function like so: foo(x,y,'z',4);
 %
@@ -19,7 +19,7 @@ function assign (varargin)
 
 if numel(varargin)==1,
     if isstruct(varargin{1}),
-        varargin = struct2namevaluepair(varargin{1});
+        varargin = vlt.data.struct2namevaluepair(varargin{1});
     elseif iscell(varargin{1}),
         varargin = varargin{1};
     end;

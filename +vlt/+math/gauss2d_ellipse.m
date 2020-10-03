@@ -1,7 +1,7 @@
 function ellipse_out = gauss2d_ellipse(mu, C, N)
 % GAUSS2D_ELLIPSE Compute a fullwidth at half-weight ellipse from a 2d gaussian
 %
-%  ELLIPSE_OUT = GAUSS2D_ELLIPSE(MU, C, [N])
+%  ELLIPSE_OUT = vlt.math.gauss2d_ellipse(MU, C, [N])
 %
 %  Given a 2-d multivariate normal that is described with a mean MU
 %  and covariance matrix C, return the size of the major and minor 
@@ -61,4 +61,4 @@ plot_ellipse = R*[ellipse_x_r; ellipse_y_r] + repmat([mu(1); mu(2)], [1, N]);
 major = max(a,b);
 minor = min(a,b);
 
-ellipse_out = var2struct('plot_ellipse','a','b','major','minor');
+ellipse_out = vlt.data.var2struct('plot_ellipse','a','b','major','minor');

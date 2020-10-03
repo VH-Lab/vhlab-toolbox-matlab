@@ -1,7 +1,7 @@
 function [gfNP,N,p] = gof_dicarlo_totalpower_biastest
 % GOF_DICARLO_TOTALPOWER_BIASTEST
 %
-% The total power measure derived in GOF_DICARLO_TOTALPOWER has a bias that
+% The total power measure derived in vlt.stats.gof_dicarlo_totalpower has a bias that
 % is explored here. One needs to read the code.
 %
 % Note that this function is named for a related measure in an appendix of a 1988 paper:
@@ -28,10 +28,10 @@ for m=1:numel(p),
 			data = mymean + mystd * randn(n,1);
 			params = polyfit([1:n]',data(:),p(m));
 			myfit = polyval(params,data);
-			gf_raw(s) = gof_dicarlo_totalpower(data,myfit,1);
+			gf_raw(s) = vlt.stats.gof_dicarlo_totalpower(data,myfit,1);
 		end;
 		gfNP(i,m) = mean(gf_raw(:));
-		gfNPstderr(i,m) = stderr(gf_raw(:));
+		gfNPstderr(i,m) = vlt.stats.stderr(gf_raw(:));
 	end;
 end;
 

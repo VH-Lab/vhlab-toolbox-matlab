@@ -1,7 +1,7 @@
 function output = var2struct(varargin)
 % VAR2STRUCT - Export variable(s) to a structure
 %
-%  OUTPUT = VAR2STRUCT('NAME1', 'NAME2', ...)
+%  OUTPUT = vlt.data.var2struct('NAME1', 'NAME2', ...)
 %
 %  Saves local workspace variables as a structure.
 %  
@@ -10,7 +10,7 @@ function output = var2struct(varargin)
 %  Example:
 %     Imagine your workspace has 3 variables, A=5, B=6, C=7;
 %    
-%     output = var2struct('a','b')
+%     output = vlt.data.var2struct('a','b')
 %
 %       produces
 %

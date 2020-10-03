@@ -25,7 +25,7 @@ function [ds] = dirstruct(pathname)
 if nargin==0, % blank constructor
 	pathname = '';
 else,
-	pathname = fixpath(pathname); % add a '/' if necessary
+	pathname = vlt.file.fixpath(pathname); % add a '/' if necessary
 	if exist(pathname)~=7, error(['''' pathname ''' does not exist.']); end;
 end;
 

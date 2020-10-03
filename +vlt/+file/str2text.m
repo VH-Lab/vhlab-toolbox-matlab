@@ -1,7 +1,7 @@
 function str2text(filename, str)
 % STR2TEXT - Write a string to a text file
 %
-%   STR2TEXT(FILENAME, str)
+%   vlt.file.str2text(FILENAME, str)
 %
 %  Writes the strings to the new text file FILENAME.
 %

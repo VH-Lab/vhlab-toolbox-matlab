@@ -1,7 +1,7 @@
 function b = matrow2cell(a)
 % MATROW2CELL - Convert a matrix to a cell array with each row as a cell
 % 
-% B = MATROW2CELL(A)
+% B = vlt.data.matrow2cell(A)
 %
 % Given a matrix A, a cell array B is created such that the entries of 
 % B{i} are the ith rows of A.

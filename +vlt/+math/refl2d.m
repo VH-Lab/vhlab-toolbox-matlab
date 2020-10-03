@@ -1,8 +1,8 @@
 function r = refl2d(theta)
 
-% REFL2D - 2D reflection matrix
+% vlt.math.refl2d - 2D reflection matrix
 %
-%   R = REFL2D(THETA)
+%   R = vlt.math.refl2d(THETA)
 %
 %   Returns R = [cos(2*THETA) sin(2*THETA) ; sin(2*THETA) -cos(2*THETA) ];
 

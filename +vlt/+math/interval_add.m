@@ -1,7 +1,7 @@
 function i_out = interval_add(i_in, i_add)
 % INTERVAL_ADD - add intervals 
 % 
-% I_OUT = INTERVAL_ADD(I_IN, I_ADD)
+% I_OUT = vlt.math.interval_add(I_IN, I_ADD)
 %
 % Given a matrix of intervals I_IN = [T1_0 T1_1; T2_0 T2_1 ; ... ] 
 % where T is increasing (that is, where T(i)_0 > T(i-1)_0 and Ti_0<Ti_1 for all i),
@@ -9,9 +9,9 @@ function i_out = interval_add(i_in, i_add)
 % I_IN can be empty.
 %
 % Examples:
-%    i_out = interval_add([0 3],[3 6])  % yields [ 0 6]
-%    i_out = interval_add([0 2],[3 4])  % yields [ 0 2; 3 4]
-%    i_out = interval_add([0 10],[0 2]) % yields [ 0 10]
+%    i_out = vlt.math.interval_add([0 3],[3 6])  % yields [ 0 6]
+%    i_out = vlt.math.interval_add([0 2],[3 4])  % yields [ 0 2; 3 4]
+%    i_out = vlt.math.interval_add([0 10],[0 2]) % yields [ 0 10]
 %
 
  % let's start out assuming we can operate on the intervals in order; we probably can

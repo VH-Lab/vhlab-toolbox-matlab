@@ -1,7 +1,7 @@
 function level = bracelevel(str, braceleft, braceright)
 % BRACELEVEL - Determine the enclosure depth level for text within braces
 %
-%  LEVEL = BRACELEVEL(STR)
+%  LEVEL = vlt.string.bracelevel(STR)
 %
 %  For the string STR, returns an equally long array of numbers
 %  LEVEL that indicates the enclosure depth. The enclosure depth
@@ -9,7 +9,7 @@ function level = bracelevel(str, braceleft, braceright)
 %
 %  One can also call:
 %  
-%  LEVEL = BRACELEVEL(STR, BRACELEFT, BRACERIGHT)
+%  LEVEL = vlt.string.bracelevel(STR, BRACELEFT, BRACERIGHT)
 %
 %  And specify the LEFTBRACE and RIGHTBRACE characters.
 %

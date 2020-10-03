@@ -1,7 +1,7 @@
 function fullname = fullfilename(filename, usewhich)
 % FULLFILENAME - return the full path file name of a file
 %
-% FULLNAME = FULLFILENAME(FILENAME, [USEWHICH])
+% FULLNAME = vlt.file.fullfilename(FILENAME, [USEWHICH])
 %
 % Given either a full file name (with path) or just a filename
 % (without path), returns the full path filename FULLNAME.

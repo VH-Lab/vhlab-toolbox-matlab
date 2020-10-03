@@ -1,7 +1,7 @@
 function b = fieldsearch(A, searchstruct)
 % FIELDSEARCH - Search a structure to determine if it matches a search structure
 %
-% B = FIELDSEARCH(A, SEARCHSTRUCT)
+% B = vlt.data.fieldsearch(A, SEARCHSTRUCT)
 %
 % Determines if a structure A matches the search structure SEARCHSTRUCT.
 %

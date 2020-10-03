@@ -1,7 +1,7 @@
 function searchreplacefiles_shell(dirsearch, findstring, replacestring)
 % SEARCHREPLACEFILES_SHELL - search and replace text in all files in a directory search
 %
-%  SEARCHREPLACEFILES_SHELL(DIRSEARCH, FINDSTRING, REPLACESTRING)
+%  vlt.file.searchreplacefiles_shell(DIRSEARCH, FINDSTRING, REPLACESTRING)
 %
 %  Searches all of the files in the string DIRSEARCH (examples: '*.m', 
 %  or '*/*.m') for occurrances of the string FINDSTRING and replaces those

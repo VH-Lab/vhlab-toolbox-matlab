@@ -1,10 +1,10 @@
 function [y,units_str,desc_str] = optics_table(wavelengths, filename)
 % OPTICS_TABLE - Look up values from a table based on wavelength in nm
 %
-%  [Y,UNITS_STR,DESC_STR] = OPTICS_TABLE(WAVELENGTHS, FILENAME)
+%  [Y,UNITS_STR,DESC_STR] = vlt.optics.optics_tables.optics_table(WAVELENGTHS, FILENAME)
 %
 %  Reads in a table from the text file FILENAME.  If no path is provided,
-%  it is assume that FILENAME sits in the same directory as OPTICS_TABLE.  
+%  it is assume that FILENAME sits in the same directory as vlt.optics.optics_tables.optics_table.  
 % 
 %  The table should have 2 or more columns.  The first column is assumed to
 %  have the wavelengths in units of nanometers, and columns 2-N have the
@@ -23,7 +23,7 @@ function [y,units_str,desc_str] = optics_table(wavelengths, filename)
 %  Example:  Read in the intensity emissions from the NP510 projector:
 %
 %     WAVES = [380:770]';
-%     [NP510,NP510_units,NP510_desc]=optics_table(WAVES,'NP510.txt');
+%     [NP510,NP510_units,NP510_desc]=vlt.optics.optics_tables.optics_table(WAVES,'NP510.txt');
 %
 %     figure;
 %     plot(WAVES,NP510(:,1),'r');
@@ -41,7 +41,7 @@ desc_str = '';
 [pathstr, fname, ext] = fileparts(filename);
 
 if isempty(pathstr),
-	thisdir = which('optics_table');
+	thisdir = which('vlt.optics.optics_tables.optics_table');
 	pi = find(thisdir==filesep);
 	thisdir= [thisdir(1:pi(end)-1) filesep];
 

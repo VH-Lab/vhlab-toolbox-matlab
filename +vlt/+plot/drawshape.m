@@ -1,14 +1,14 @@
 function output = drawshape(shape, meshx, meshy)
 
-% DRAWSHAPE -- Draw a simple shape in an image or as a vector plot
+% vlt.plot.drawshape -- Draw a simple shape in an image or as a vector plot
 %
 %
-%  H = DRAWSHAPE(SHAPE)
+%  H = vlt.plot.drawshape(SHAPE)
 %
 %     Draws a shape using plots in current axes (vector mode).
 %  H is a list of handles to the plots.
 %
-%  INDS = DRAWSHAPE(SHAPE, MESHX, MESHY)
+%  INDS = vlt.plot.drawshape(SHAPE, MESHX, MESHY)
 %
 %     Returns a set of indexes that will make SHAPE on a bitmap with
 %  coordinate system MESHX x MESHY.  (See 'help mesh'.)
@@ -150,19 +150,19 @@ case 'arrow',
 	if vectorgraphics,
 		l1 = struct('shape','rect','posxy',shape.posxy,'sizexy',[shape.length 0],'linethickness',shape.linethickness,...
 			'linecolor',shape.linecolor','fillcolor',[],'orientation',shape.direction);
-		h = [h drawshape(l1)];
+		h = [h vlt.plot.drawshape(l1)];
 		theta = -shape.direction*pi/180;
 		endpoint = ([shape.length; 0]' * [cos(theta) -sin(theta); sin(theta) cos(theta)])+shape.posxy;
 		theta1 = (-theta+(shape.headangle)*pi/180);
 		head1 = endpoint + [-1 1].*([shape.headlength; 0]' * [cos(theta1) -sin(theta1); sin(theta1) cos(theta1)]);
 		l2 = struct('shape','rect','posxy',head1,'sizexy',[shape.headlength 0],'linethickness',shape.linethickness,...
 			'linecolor',shape.linecolor','fillcolor',[],'orientation',theta1*180/pi);
-		h = [h drawshape(l2)]; 
+		h = [h vlt.plot.drawshape(l2)]; 
 		theta2 = (-theta-(shape.headangle)*pi/180);
 		head2 = endpoint + [-1 1].*([shape.headlength; 0]' * [cos(theta2) -sin(theta2); sin(theta2) cos(theta2)]);
 		l3 = struct('shape','rect','posxy',head2,'sizexy',[shape.headlength 0],'linethickness',shape.linethickness,...
 			'linecolor',shape.linecolor','fillcolor',[],'orientation',theta2*180/pi);
-		h=[h drawshape(l3)];
+		h=[h vlt.plot.drawshape(l3)];
 	else,
 		thetahead = shape.headangle*pi/180;
 		th = shape.linethickness;

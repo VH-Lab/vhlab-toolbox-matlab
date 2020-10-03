@@ -1,8 +1,8 @@
 function writelabviewarray(fname, A, datasize, machineformat)
 
-% WRITELABVIEWARRAY - Write a LabView array into Matlab
+% vlt.file.writelabviewarray - Write a LabView array into Matlab
 %
-%  WRITELABVIEWARRAY(FNAME, A, DATASIZE, MACHINEFORMAT)
+%  vlt.file.writelabviewarray(FNAME, A, DATASIZE, MACHINEFORMAT)
 %
 %  Write values in matrix A to a LabView array file.
 %

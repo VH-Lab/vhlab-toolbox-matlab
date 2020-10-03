@@ -1,11 +1,11 @@
 function D = angdiffwrapsign(a,wrap)
 % ANGDIFFWRAPSIGN - Angular difference in 0..WRAP
 %
-%  D = ANGDIFFWRAPSIGN(A,WRAP)
+%  D = vlt.math.angdiffwrapsign(A,WRAP)
 %
-%  Similar to ANGDIFFWRAP except sign is preserved.
+%  Similar to vlt.math.angdiffwrap except sign is preserved.
 %  
-%  See also: ANGDIGG, ANGDIFFWRAP, DANGDIFFWRAP
+%  See also: ANGDIGG, vlt.math.angdiffwrap, vlt.math.dangdiffwrap
 
 
 IND = find(a<wrap/2);

@@ -1,12 +1,12 @@
 function str = cell2mlstr(thecell, varargin)
 % CELL2MLSTR - Create a text string to fully characterize a cellure
 %
-%  STR = CELL2MLSTR(THECELL)
+%  STR = vlt.data.cell2mlstr(THECELL)
 %
 %  Produces a string representation of a cellure that can be passed to
 %  an external program to fully encapsulate the cellure.  Character strings
 %  are written directly, integers are written using MAT2STR, 
-%  numbers are written using MAT2STR, cells are written using CELL2MLSTR.
+%  numbers are written using MAT2STR, cells are written using vlt.data.cell2mlstr.
 %  Any other objects are written using the function DISP.
 %
 %  The cellure is written in the following way:
@@ -26,7 +26,7 @@ function str = cell2mlstr(thecell, varargin)
 %  The default parameters may be overridden by passing NAME/VALUE
 %  pairs as additional arguments, as in:
 %
-%   STR = CELL2STR(THECELL, 'NAME1', VALUE1,...)
+%   STR = vlt.data.cell2str(THECELL, 'NAME1', VALUE1,...)
 %
 %
 %  Parameters:             | Description
@@ -39,7 +39,7 @@ function str = cell2mlstr(thecell, varargin)
 %                      
 %  Example:
 %      A = {'test', 5, [3 4 5]}
-%      cell2mlstr(A)
+%      vlt.data.cell2mlstr(A)
 % 
 
 precision = 15;

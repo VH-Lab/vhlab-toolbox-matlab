@@ -1,6 +1,6 @@
 function [Xvalues,sampleCDF1,minCDF,maxCDF,pvalue] = KS_CDF_CONF(x1, alpha)
 %KS_CDF_CONF Kolmogorov-Smirnov confidence interval for a data set.
-%   [Xvalues,sampleCDF,minCDF,maxCDF] = KS_CDF_CONF(X1,ALPHA)
+%   [Xvalues,sampleCDF,minCDF,maxCDF] = vlt.stats.ks_cdf_conf(X1,ALPHA)
 %   performs a Kolmogorov-Smirnov (K-S) test to determine the confidence
 %   interval for independent random samples X1.
 %   ALPHA is the desired significance level (default = 0.05); 

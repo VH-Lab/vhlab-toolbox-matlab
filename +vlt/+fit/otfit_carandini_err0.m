@@ -1,6 +1,6 @@
 function [err,Rfit] = otfit_carandini_err0(par,angles,varargin)
 
-% OTFIT_CARANDINI_ERR0 Computes error of Carandini/Ferster orientation fit
+% vlt.fit.otfit_carandini_err0 Computes error of Carandini/Ferster orientation fit
 %
 %   [ERR, RFIT]=OTFIT_CARANDINI_NEWS_ERR0(P,ANGLES,VARARGIN) 
 %
@@ -30,14 +30,14 @@ function [err,Rfit] = otfit_carandini_err0(par,angles,varargin)
 %   preferred angle, sig is the width of the tuning, and Rp is the response
 %   180 degrees away from the preferred angle.
 %
-%   See also:  OTFIT_CARANDINI0
+%   See also:  vlt.fit.otfit_carandini0
 
 data = NaN;
 spontfixed = NaN;
 
 needconvert = 0;
 
-assign(varargin{:});
+vlt.data.assign(varargin{:});
 
 if ~exist('stddev'),
 	stddev = ones(size(data));
@@ -49,7 +49,7 @@ err=0;
 
   % get parameters from fitting inputs
 if needconvert, % do we need to convert for fit?
-	[Rsp,Rp,Op,sig]=otfit_carandini_conv0('TOREALFORFIT',par,varargin{:});
+	[Rsp,Rp,Op,sig]=vlt.fit.otfit_carandini_conv0('TOREALFORFIT',par,varargin{:});
 else,
 	if isnan(spontfixed), % is par 3 or 4 entries?
 		Rsp = par(1); Rp=par(2); Op=par(3); sig=par(4);
@@ -72,11 +72,11 @@ end;
 
                                                                  % REVISION TO ABOVE: If you limit the Rp and Rsp,
                                                                  % then weird behavior disappears, so switching back
-                                                                 % to ANGDIFF
+                                                                 % to vlt.math.angdiff
 
-Rfit = Rsp+Rp*exp(-angdiff(Op-angles).^2/(2*sig^2))+Rp*exp(-angdiff(180+Op-angles).^2/(2*sig^2));
+Rfit = Rsp+Rp*exp(-vlt.math.angdiff(Op-angles).^2/(2*sig^2))+Rp*exp(-vlt.math.angdiff(180+Op-angles).^2/(2*sig^2));
 %Rfit = Rsp+Rp*exp(-(90-fangles).^2/(2*sig^2))+Rp*exp(-(270-fangles).^2/(2*sig^2));
-%Rfit = Rsp+Rp*exp(-angdiff(90-fangles).^2/(2*sig^2))+Rp*exp(-angdiff(270-fangles).^2/(2*sig^2));
+%Rfit = Rsp+Rp*exp(-vlt.math.angdiff(90-fangles).^2/(2*sig^2))+Rp*exp(-vlt.math.angdiff(270-fangles).^2/(2*sig^2));
 
 
 
@@ -84,7 +84,4 @@ if ~isnan(data),
 	d = (data-repmat(Rfit,size(data,1),1))./stddev;
 	err=err+(sum(sum(abs(d.*d))));
 end;
-
-function D = angdiff(a)
-D=min(abs([a;a+360;a-360]));
 

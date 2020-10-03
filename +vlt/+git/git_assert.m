@@ -1,7 +1,7 @@
 function b = git_assert
 % GIT_ASSERT - do we have command line git on this machine?
 %
-% B = GIT_ASSERT
+% B = vlt.git.git_assert
 %
 % Tests for presence of 'git' using SYSTEM.
 %

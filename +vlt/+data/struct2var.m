@@ -1,7 +1,7 @@
 function struct2var(s) 
 % STRUCT2VAR - Assign variables to the fieldnames and data values of a structure
 %
-%  STRUCT2VAR(S)
+%  vlt.data.struct2var(S)
 %
 %  Assigns variables to have the name of all the fieldnames of structure S
 %  with values equal to the corresponding value in structure S.
@@ -12,11 +12,11 @@ function struct2var(s)
 %     s.a = 5;
 %     s.b = 6;
 %
-%     struct2var(s);
+%     vlt.data.struct2var(s);
 %     a   % now a=5
 %     b   % now b=6
 %
-%  See also: VAR2STRUCT
+%  See also: vlt.data.var2struct
 
 
 fn = fieldnames(s);

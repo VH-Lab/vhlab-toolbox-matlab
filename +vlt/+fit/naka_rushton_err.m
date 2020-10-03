@@ -1,7 +1,7 @@
 function err=naka_rushton_err(p,c,data)
 %  NAKA_RUSHTON_ERR Naka-Rushton function helper function for fitting
 %
-%       ERR=NAKA_RUSHTON_ERR(P,C,DATA)
+%       ERR=vlt.fit.naka_rushton_err(P,C,DATA)
 %       P = [rm b] 
 %          returns mean squared error of  p(1)*c./(p(2)+c) with data 
 %       P = [rm b n]
@@ -28,7 +28,7 @@ switch length(p)
   fitr = rm * c.^(n) ./ (c50^(s*n)+c.^(s*n));
   err=p(3)^2+p(2)^2; % exponent and c50 should be small 
  otherwise
-  disp('Not enough parameters in NAKA_RUSHTON_ERR');
+  disp('Not enough parameters in vlt.fit.naka_rushton_err');
 end
 d = (data-repmat(fitr,size(data,1),1));
 err=err+sum(sum(d.*d));

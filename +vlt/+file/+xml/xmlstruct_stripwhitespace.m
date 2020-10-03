@@ -4,10 +4,10 @@ function xml_struct = xmlstruct_stripwhitespacetext(xml_struct)
 %  XML_STRUCT = XMLSTRUCT_STRIPWHITESPACETEXT(XML_STRUCT)
 %
 %  Recursively searches XML_STRUCT, an XML node tree returned from
-%  PARSEXML, and strips out all nodes with name '#text'. These seem to 
+%  vlt.file.xml.parseXML, and strips out all nodes with name '#text'. These seem to 
 %  correspond to whitespace.
 %
-%  See also: PARSEXML
+%  See also: vlt.file.xml.parseXML
 %  
 
 exclude = find(strcmp( {xml_struct.Name}, '#text' )); % find all '#text'
@@ -28,7 +28,7 @@ xml_struct = xml_struct(include);
 for i=1:length(xml_struct),
 	if ~isempty(xml_struct(i).Children),
 		xml_struct(i).Children = ...
-				xmlstruct_stripwhitespace(xml_struct(i).Children);
+				vlt.file.xml.xmlstruct_stripwhitespace(xml_struct(i).Children);
 	end;
 end;
 

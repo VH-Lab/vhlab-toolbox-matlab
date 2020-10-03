@@ -1,7 +1,7 @@
 function writeplainmat(fid, mat)
 % WRITEPLAINVECTOR - write a simple binary matrix to disk
 %
-% WRITEPLAINMAT(FID, MAT)
+% vlt.file.writeplainmat(FID, MAT)
 %
 % Writes a basic matrix to disk such that it can be read easily. 
 % FID should be a Matlab file identifier (see FOPEN). 
@@ -23,10 +23,10 @@ function writeplainmat(fid, mat)
 % Example: 
 %   data = rand(3,7),
 %   fid = fopen('myfile.dat','w','b'); % write, big-endian
-%   writeplainmat(fid,data);
+%   vlt.file.writeplainmat(fid,data);
 %   fclose(fid);
 %   fid = fopen('myfile.dat','r','b'); % read, big-endian
-%   mydata = readplainmat(fid);
+%   mydata = vlt.file.readplainmat(fid);
 %   fclose(fid); 
 %   mydata, % display mydata
 %   data-mydata, % display the difference

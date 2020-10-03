@@ -1,8 +1,8 @@
 function h = imagedisplay(im, varargin)
 
-%  IMAGEDISPLAY - Display an image and allow user to adjust 
+%  vlt.plot.imagedisplay - Display an image and allow user to adjust 
 %
-%  H = IMAGEDISPLAY(IMAGE, [...] )
+%  H = vlt.plot.imagedisplay(IMAGE, [...] )
 %
 %  Displays the image IMAGE in the current figure.  There are
 %  buttons provided for adjusting the image scale, including
@@ -31,7 +31,7 @@ if (size(im,1)==size(im,2))&size(im,1)==1, % then we have a callback object
 	fig = get(im,'parent');
 elseif isa(im,'char'),
 	command = im;
-	assign(varargin{:});  % refnum AND fig MUST BE GIVEN AS ARGUMENT HERE
+	vlt.data.assign(varargin{:});  % refnum AND fig MUST BE GIVEN AS ARGUMENT HERE
 else,
 	command = 'NewWindow';
 	InitialScale = [ min(min(im)) max(max(im))];
@@ -41,7 +41,7 @@ else,
 	ScaleEdits = 1;
 	Title = '';
 	fig = 0;
-	assign(varargin{:});
+	vlt.data.assign(varargin{:});
 	if fig==0, fig = figure; end;
 end;
 
@@ -56,7 +56,7 @@ switch command,
 		button.fontsize = 10; button.fontweight = 'normal';
 		button.units = Units; button.BackgroundColor = [ 0.8 0.8 0.8];
 		txt = button; txt.Style = 'text';
-		button.callback = 'imagedisplay(gcbo);';
+		button.callback = 'vlt.plot.imagedisplay(gcbo);';
 		edit = button; edit.horizontalalignment='center'; edit.backgroundColor=[1 1 1];
 		edit.style = 'Edit';
 		btwid = Position(3)*0.2;
@@ -82,7 +82,7 @@ switch command,
 		h=image(im); set(h,'userdata',im);
 		title(Title);
 		set(ax,'userdata',refnum,'tag','ImageDisplayAxes');
-		h=imagedisplay('DisplayImage','refnum',refnum,'fig',gcf);
+		h=vlt.plot.imagedisplay('DisplayImage','refnum',refnum,'fig',gcf);
 	case 'DisplayImage',
 		ax = ft(fig,'ImageDisplayAxes',refnum);
 		mn = str2num(get(ft(fig,'MinEdit',refnum),'string'));
@@ -99,7 +99,7 @@ switch command,
 			end;
 			if ~isempty(rawdata),  % if we got it
 				delete(ch(i));
-				h=image(rescale(rawdata,[mn mx],[0 255]));
+				h=image(vlt.math.rescale(rawdata,[mn mx],[0 255]));
 				axis equal;
 				set(h,'userdata',rawdata);
 				set(ax,'userdata',refnum,'tag','ImageDisplayAxes');
@@ -110,9 +110,9 @@ switch command,
 			colormap(gray(256));
 		end;
 	case 'MinEdit',
-		imagedisplay('DisplayImage','refnum',refnum,'fig',gcbf);
+		vlt.plot.imagedisplay('DisplayImage','refnum',refnum,'fig',gcbf);
 	case 'MaxEdit',
-		imagedisplay('DisplayImage','refnum',refnum,'fig',gcbf);
+		vlt.plot.imagedisplay('DisplayImage','refnum',refnum,'fig',gcbf);
 	case 'AutoScaleBt',
 		ax = ft(fig,'ImageDisplayAxes',refnum);
 		if ~isempty(ax),
@@ -133,7 +133,7 @@ switch command,
 			end;
 			colormap(gray(256));
 		end;
-		imagedisplay('DisplayImage','refnum',refnum,'fig',gcbf);
+		vlt.plot.imagedisplay('DisplayImage','refnum',refnum,'fig',gcbf);
 end;
 
 function h=ft(fig,name,ref)

@@ -13,10 +13,10 @@ p = getpathname(cksds);
 
 if ~exist([p thedir]),
 	error(['Directory ' p thedir ' does not exist.']);
-elseif ~exist([p fixpath(thedir) 'stims.mat']),
+elseif ~exist([p vlt.file.fixpath(thedir) 'stims.mat']),
 	error(['No stims in directory ' p thedir '.']);
 else,
-	g = load([p fixpath(thedir) 'stims.mat']);
+	g = load([p vlt.file.fixpath(thedir) 'stims.mat']);
 	saveScript = g.saveScript;
 	MTI = g.MTI2;
 end;

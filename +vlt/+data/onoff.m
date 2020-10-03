@@ -1,8 +1,8 @@
 function str = onoff(b)
 
-% ONOFF  - Returns 'on' or 'off'
+% vlt.data.onoff  - Returns 'on' or 'off'
 %
-% STR = ONOFF(B)
+% STR = vlt.data.onoff(B)
 %
 % If B<=0, STR = 'off', else, STR = 'on'
 %

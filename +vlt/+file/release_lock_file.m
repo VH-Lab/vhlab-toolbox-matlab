@@ -1,10 +1,10 @@
 function [b] = release_lock_file(fid_or_filename, key)
 % RELEASE_LOCK_FILE - release a lock file with the key
 %
-% B = RELEASE_LOCK_FILE(FID_OR_FILENAME, KEY)
+% B = vlt.file.release_lock_file(FID_OR_FILENAME, KEY)
 %
 % Release a lock file given its FID or its FILENAME and the
-% correct KEY that was issued by the function CHECKOUT_LOCK_FILE.
+% correct KEY that was issued by the function vlt.file.checkout_lock_file.
 % Removes the file if the key matches.
 %
 % B is 1 if the lockfile is either not present or if it was removed
@@ -15,9 +15,9 @@ function [b] = release_lock_file(fid_or_filename, key)
 % An error is triggered if the lock file does not have the expected contents
 % (an expiration time and a key).
 %
-% See also: CHECKOUT_LOCK_FILE
+% See also: vlt.file.checkout_lock_file
 % 
-% For an example, see CHECKOUT_LOCK_FILE
+% For an example, see vlt.file.checkout_lock_file
 % 
 
 if isnumeric(fid_or_filename),
@@ -39,7 +39,7 @@ end;
 C = vlt.file.text2cellstr(filename);
 
 if numel(C)~=2,
-	error([filename ' does not appear to be a lock file created by CHECKOUT_LOCK_FILE.']);
+	error([filename ' does not appear to be a lock file created by vlt.file.checkout_lock_file.']);
 end;
 
 if strcmp(strtrim(C{2}),key), 

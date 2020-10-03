@@ -21,7 +21,7 @@ b = [ 1 0.8 -0.4 0.1];
 L = 4;
 NewNoise = 0;
 
-assign(varargin{:});
+vlt.data.assign(varargin{:});
 
 N = 10000; % number of points
 x = randn(1,N);

@@ -53,7 +53,7 @@ for n=1:numel(t),
 			% now, we have to eliminate the case where minfo.name is part of a larger word
 			part_of_word = 0;
 			if index(i)>1,
-				if isstrprop(t{n}(index(i)-1),'alphanum') | strcmp(t{n}(index(i)-1),'_'),
+				if isstrprop(t{n}(index(i)-1),'alphanum') | strcmp(t{n}(index(i)-1),'_') | strcmp(t{n}(index(i)-1),'.'),
 					part_of_word = 1;
 				end;
 			end;

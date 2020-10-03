@@ -1,8 +1,8 @@
 function [err,Rfit] = gaussfit_err(par,angles,varargin)
 
-% GAUSSFIT_ERR Computes error of gaussian fit
+% vlt.fit.gaussfit_err Computes error of gaussian fit
 %
-%   [ERR, RFIT]=GAUSSFIT_ERR(P,ANGLES,VARARGIN) 
+%   [ERR, RFIT]=vlt.fit.gaussfit_err(P,ANGLES,VARARGIN) 
 %
 %   This function computes the error of the Carandini/Ferster orientation
 %   RFIT(O)=Rsp+Rp*exp(-(O-Op)^2/2*sig^2)+Rn*(exp(-(O-Op-180)^2)/s*sig^2)
@@ -26,21 +26,21 @@ function [err,Rfit] = gaussfit_err(par,angles,varargin)
 %   preferred angle, sig is the width of the tuning, and Rn is the response
 %   180 degrees away from the preferred angle.
 %
-%   See also:  GAUSSFIT OTFIT_CARANDINI
+%   See also:  vlt.fit.gaussfit vlt.fit.otfit_carandini
 
 data = NaN;
 spontfixed = NaN;
 
 needconvert = 0;
 
-assign(varargin{:});
+vlt.data.assign(varargin{:});
 
 err=0;
 
 
   % get parameters from fitting inputs
 if needconvert, % do we need to convert for fit?
-	[Rsp,Rp,Op,sig]=gaussfit_conv('TOREALFORFIT',par,varargin{:});
+	[Rsp,Rp,Op,sig]=vlt.fit.gaussfit_conv('TOREALFORFIT',par,varargin{:});
 else,
 	if isnan(spontfixed), % is par 3 or 4 entries?
 		Rsp = par(1); Rp=par(2); Op=par(3); sig=par(4);

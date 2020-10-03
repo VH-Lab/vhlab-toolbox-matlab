@@ -1,6 +1,6 @@
 function d = dirstrip(ds)
 
-%  D = DIRSTRIP(DS)
+%  D = vlt.file.dirstrip(DS)
 %
 %  Removes '.' and '..' from a directory structure returned by the function
 %  "DIR". Also removes '.DS_Store' (Apple desktop information) and '.git' (GitHub)

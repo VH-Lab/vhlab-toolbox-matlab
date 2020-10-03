@@ -1,7 +1,7 @@
 function s = dlg2struct(windowname, fn, descriptions, defaults)
 % DLG2STRUCT - Have a user fill in a structure with values
 %
-%   S = DLG2STRUCT(WINDOWNAME, FN, DESCRIPTIONS, DEFAULTS)
+%   S = vlt.ui.dlg2struct(WINDOWNAME, FN, DESCRIPTIONS, DEFAULTS)
 %
 %   Prompts a user to fill in a structure with INPUTDLG.
 %   The fieldnames of the structure should be in the cell
@@ -23,7 +23,7 @@ function s = dlg2struct(windowname, fn, descriptions, defaults)
 %      mystruct.a = 5;
 %      mystruct.b = 1;
 %      desc = {'Favorite number (1-10)', '2nd favorite number (1-10)'};
-%      s = dlg2struct('Favorite numbers',fieldnames(mystruct),desc,mystruct);
+%      s = vlt.ui.dlg2struct('Favorite numbers',fieldnames(mystruct),desc,mystruct);
 %
 
 s = [];

@@ -9,7 +9,7 @@ function b = isempty_cell(thecell)
 %  Example:
 %
 %     A = {'test', [] ; [] 'more text'}
-%     B = isempty_cell(A)
+%     B = vlt.data.isempty_cell(A)
 %
 %     B =
 %           0     1

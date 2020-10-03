@@ -1,7 +1,7 @@
 function t=jsonencodenan(obj)
 % JSONENCODENAN - encode a JSON object allowing Nan/Infinity
 %
-% T = JSONENCODENAN(OBJ)
+% T = vlt.data.jsonencodenan(OBJ)
 %
 % Encodes the Matlab variable OBJ into a JSON object in a manner that 
 % allows the use of NaN and -Inf and Inf.

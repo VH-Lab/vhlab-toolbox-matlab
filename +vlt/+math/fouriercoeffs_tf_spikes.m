@@ -1,7 +1,7 @@
 function f = fouriercoeffs_tf_spikes(spiketimes, tf, duration)
 % FOURIERCOEFFS_TF_SPIKES  Fourier Transform of a spike train at a particular frequency.
 %  
-%  F = FOURIERCOEFFS_TF_SPIKES(SPIKETIMES, TF, DURATION)
+%  F = vlt.math.fouriercoeffs_tf_spikes(SPIKETIMES, TF, DURATION)
 %     This function returns the normalized fourier coefficient of 
 %     a spike train that is defined by an array of SPIKETIMES with a 
 %     duration DURATION.

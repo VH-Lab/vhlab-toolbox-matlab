@@ -1,7 +1,7 @@
 function [h,datapoints] = median_within_between_plot(data, experiment_indexes, labels, varargin)
 % MEDIAN_WITHIN_BETWEEN_PLOT - Plot an index for many experiments, different conditions
 %
-%  [H,DATAPOINTS]=MEDIAN_WITHIN_BETWEEN_PLOT(DATA, EXPERIMENT_INDEXES, LABELS)
+%  [H,DATAPOINTS]=vlt.plot.median_within_between_plot(DATA, EXPERIMENT_INDEXES, LABELS)
 %
 %  Plots index values from individual experiments that are grouped into different
 %  experimental conditions.  For each condition, indexes from individual animals
@@ -51,7 +51,7 @@ function [h,datapoints] = median_within_between_plot(data, experiment_indexes, l
 %  subtract1 (0)                 |  Plot 1-data instead of data?
 %  dorescale (0)                 |  Should we rescale the data?
 %  rescalefrom ([-1 1])          |  If dorescale==1, then rescale from this interval
-%  rescaleto ([-1 1])            |        ... to this interval (see help rescale)
+%  rescaleto ([-1 1])            |        ... to this interval (see help vlt.math.rescale)
 %
 %  See also: NANMEDIAN
 
@@ -74,10 +74,10 @@ dorescale = 0;
 rescalefrom = [-1 1];
 rescaleto = [-1 1];
 
-assign(varargin{:});
+vlt.data.assign(varargin{:});
 
 if ~iscell(data),
-    [data,experiment_indexes] = conditiongroup2cell(data,experiment_indexes(:,1),experiment_indexes(:,2));
+    [data,experiment_indexes] = vlt.data.conditiongroup2cell(data,experiment_indexes(:,1),experiment_indexes(:,2));
 end;
 
 datapoints.experiment = [];
@@ -97,7 +97,7 @@ end;
 
 if dorescale,
 	for i=1:length(data),
-		data{i} = rescale(data{i},rescalefrom,rescaleto);
+		data{i} = vlt.math.rescale(data{i},rescalefrom,rescaleto);
 	end;
 end;
 

@@ -1,7 +1,7 @@
 function fileList = getAllFiles(dirName)
 % GETALLFILES - Get all files (including those in subdirectories) of a given directory
 %
-%   FILELIST = GETALLFILES(DIRNAME)
+%   FILELIST = vlt.file.getAllFiles(DIRNAME)
 %
 % Returns the full path file names of all files under the directory DIRNAME.
 % Files '.' and '..' are not returned.
@@ -24,7 +24,7 @@ function fileList = getAllFiles(dirName)
 							 %#   that are not '.' or '..'
 	for iDir = find(validIndex)                  %# Loop over valid subdirectories
 		nextDir = fullfile(dirName,subDirs{iDir});    %# Get the subdirectory path
-		fileList = [fileList; getAllFiles(nextDir)];  %# Recursively call getAllFiles
+		fileList = [fileList; vlt.file.getAllFiles(nextDir)];  %# Recursively call vlt.file.getAllFiles
 	end
 
 end

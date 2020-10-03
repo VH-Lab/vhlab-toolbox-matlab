@@ -1,9 +1,9 @@
 function [STATS,h] = manova(X,g,al)
 
-% MANOVA - Multivariate Analysis of Variance
+% vlt.stats.manova - Multivariate Analysis of Variance
 %
-%  [STATS,H] = MANOVA(X,G), or
-%  [STATS,H] = MANOVA(X,G,ALPHA)
+%  [STATS,H] = vlt.stats.manova(X,G), or
+%  [STATS,H] = vlt.stats.manova(X,G,ALPHA)
 %
 %  Determines whether the means of groups of multivariate data points are the
 %  same, using Wilks' criterion.  Each N-dimensional data point is a row in X,

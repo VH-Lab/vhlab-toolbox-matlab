@@ -1,7 +1,7 @@
 function h=plotoribox(x,y,ori,width,height,revy,varargin)
 % PLOTORIBOX - Plot an oriented box (as a patch) on a graph 
 % 
-%   H = PLOTORIBOX(X,Y,ORI,WIDTH,HEIGHT,REVY)
+%   H = vlt.plot.plotoribox(X,Y,ORI,WIDTH,HEIGHT,REVY)
 %
 %   Plots an oriented bar centered on the position X, Y with
 %   orientation ORI (in degrees, in compass coordinates; that is,
@@ -27,7 +27,7 @@ coords = [ -height -width; height -width ; height width; -height width; -height 
 if revy, coords(:,2) = -coords(:,2); end;
 
 col = [ 0 0 0 ];
-assign(varargin{:});
+vlt.data.assign(varargin{:});
 
 %h=plot(coords(:,1)+x,coords(:,2)+y,varargin{:});
 h=patch(coords(:,1)+x,coords(:,2)+y,col);

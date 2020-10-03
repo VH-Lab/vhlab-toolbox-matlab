@@ -1,7 +1,7 @@
 function b = floorfloor(x)
 % FLOORFLOOR  Rounds (i,i+1] to i
 %
-% B = FLOORFLOOR(X)
+% B = vlt.math.floorfloor(X)
 % 
 
 C = floor(x);

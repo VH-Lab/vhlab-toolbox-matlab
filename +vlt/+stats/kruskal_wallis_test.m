@@ -2,7 +2,7 @@ function [pval, k, df] = kruskal_wallis_test(varargin)
 %  KRUSKAL_WALLIS_TEST - Kruskal-Wallis one-factor analysis of variance
 %  Perform a Kruskal-Wallis one-factor "analysis of variance".
 %
-%  [PVAL,K,DF]=KRUSKAL_WALLIS_TEST(X1, ..., XK)
+%  [PVAL,K,DF]=vlt.stats.kruskal_wallis_test(X1, ..., XK)
 %
 %  Suppose a variable is observed for @var{k} > 1 different groups, and
 %  let X1, ..., XK be the corresponding data vectors.
@@ -23,7 +23,7 @@ pval = []; k = []; df = [];
 m = nargin;
 
 size(varargin);
-if m<2, error('[pval,k,df] = kruskal_wallis_test(x1,...)'); end;
+if m<2, error('[pval,k,df] = vlt.stats.kruskal_wallis_test(x1,...)'); end;
 
 n = [];
 p = [];
@@ -31,13 +31,13 @@ p = [];
 for i=1:m,
 	x = varargin{i};
 	if size(x,1)~=1&size(x,2)~=1,
-		error('kruskal_wallis_test: all arguments must be vectors');
+		error('vlt.stats.kruskal_wallis_test: all arguments must be vectors');
 	end;
 	l = length(x);
 	n(end+1) = l;
 	p = cat(2,p,reshape(x,1,l));
 end;
-r = ranks2(p);
+r = vlt.stats.ranks2(p);
 
 k = 0;
 j = 0;

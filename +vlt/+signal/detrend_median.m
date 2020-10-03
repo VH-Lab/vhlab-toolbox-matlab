@@ -1,7 +1,7 @@
 function d = detrend_median(s,si,t)
 %DETREND_MEDIAN - Remove a median trend from data
 %
-%  D = DETREND_MEDIAN(S, SI, T)
+%  D = vlt.signal.detrend_median(S, SI, T)
 %
 %  Removes the result of a sliding median function of duration T
 %  from the sampled data S with sampling interval SI. The number of
@@ -9,13 +9,13 @@ function d = detrend_median(s,si,t)
 %  the nearest whole sample. The answer is returned in D. The median
 %  is sampled at intervals equal to 1/10 the windowsize.
 % 
-% See also: DETREND, SLIDINGWINDOWFUNC
+% See also: DETREND, vlt.math.slidingwindowfunc
 %
 
 windowsize = round(t/si); % window size
 
 X = 1:length(s);
-[r,x] = slidingwindowfunc(X,s,1,windowsize/10,length(s),windowsize,'median',0);
+[r,x] = vlt.math.slidingwindowfunc(X,s,1,windowsize/10,length(s),windowsize,'median',0);
 r_ = interp1(x,r,X,'linear');
 d = s(:)-r_(:);
 

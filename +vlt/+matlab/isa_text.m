@@ -1,7 +1,7 @@
 function [b,superclasses_inclusive] = isa_text(classname_a, classname_b)
 % ISA_TEXT - examines whether a class is a subclass of another class type
 %
-% [B,SUBCLASSES_INCLUSIVE] = ISA_TEXT(CLASSNAME_A, CLASSNAME_B)
+% [B,SUBCLASSES_INCLUSIVE] = vlt.matlab.isa_text(CLASSNAME_A, CLASSNAME_B)
 %
 % Returns B as true if CLASSNAME_A is equal to CLASSNAME_B or if CLASSNAME_B is 
 % among the superclasses of CLASSNAME_A. SUPERCLASSES_INCLUSIVE is a cell array of

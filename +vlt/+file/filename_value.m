@@ -1,10 +1,10 @@
 function filename = filename_value(filename_or_fileobj)
 %FILENAME_VALUE - return the string of a filename whether it is a filename or inside a FILEOBJ
 %
-% FILENAME = FILENAME_VALUE(FILENAME_OR_FILEOBJ)
+% FILENAME = vlt.file.filename_value(FILENAME_OR_FILEOBJ)
 %
-% Given a value which may be a FILENAME or a FILEOBJ object, return either the FILENAME or
-% the FULLPATHFILENAME field of the FILEOBJ object.
+% Given a value which may be a FILENAME or a vlt.file.fileobj object, return either the FILENAME or
+% the FULLPATHFILENAME field of the vlt.file.fileobj object.
 %
 %
 

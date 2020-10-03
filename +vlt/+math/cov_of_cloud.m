@@ -1,7 +1,7 @@
 function [c,pts] = cov_of_cloud(std1, std2, rotation, numpoints)
 % COV_OF_CLOUD - generate a cloud of gaussian points and compute covariance matrix
 %
-% [C,PTS] = COV_OF_CLOUD(STD1, STD2, ROTATION, NUMPOINTS)
+% [C,PTS] = vlt.math.cov_of_cloud(STD1, STD2, ROTATION, NUMPOINTS)
 %
 % Sometimes you just want to generate a cloud of gaussian points, rotate them,
 % and compute the covariance matrix. You know you should be able to directly
@@ -10,7 +10,7 @@ function [c,pts] = cov_of_cloud(std1, std2, rotation, numpoints)
 %
 % Example:
 %
-%  [c,pts] = COV_OF_CLOUD(2,0.04,1,1000);
+%  [c,pts] = vlt.math.cov_of_cloud(2,0.04,1,1000);
 %  figure;
 %  subplot(2,2,1);
 %  plot(pts(:,1),pts(:,2),'o');
@@ -26,6 +26,6 @@ function [c,pts] = cov_of_cloud(std1, std2, rotation, numpoints)
 %
 
 pts = [ randn(numpoints,1)*std1 randn(numpoints,1)*std2 ];
-pts = pts * rot2d(deg2rad(rotation));
+pts = pts * vlt.math.rot2d(vlt.math.deg2rad(rotation));
 c = cov(pts);
 

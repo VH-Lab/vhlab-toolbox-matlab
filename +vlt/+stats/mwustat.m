@@ -1,6 +1,6 @@
 function [u,z,P,thesign] = mwustat(data1,data2)
 % [u,z,P] = mwustat(data1,data2)
-% mwustat.m: given vectors data1 and data2, the Mann-Whitney U statistic is
+% vlt.stats.mwustat.m: given vectors data1 and data2, the Mann-Whitney U statistic is
 % returned along with the significance statistic Z.  The Z value should be
 % compared to T(alpha,infinity) for samples larger than 40 data points,
 % otherwise The U value should be compared to a table of the U distribution.

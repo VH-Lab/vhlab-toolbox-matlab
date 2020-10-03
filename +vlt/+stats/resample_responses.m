@@ -1,8 +1,8 @@
 function data2fit = resample_responses(trialdata, mode, niter)
 
-% RESAMPLE_RESPONSES - Resample responses for montecarlo simulations
+% vlt.stats.resample_responses - Resample responses for montecarlo simulations
 %
-%  NEWRESPS = RESAMPLE_RESPONSES(TRIALDATA, MODE, REPS)
+%  NEWRESPS = vlt.stats.resample_responses(TRIALDATA, MODE, REPS)
 %
 %  Generates a simulated set of responses.
 %

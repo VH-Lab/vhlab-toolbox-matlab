@@ -1,12 +1,12 @@
 function b = isfilepathroot(filepath)
 % ISFILEPATHATROOT - determine if a file path is at the root or not
 %
-% B = ISFILEPATHROOT(FILEPATH)
+% B = vlt.file.isfilepathroot(FILEPATH)
 %
 % Determines if a FILEPATH is at the root of a drive or not.
-% For computers for which ISPC is true, ISFILEPATHROOT is true
+% For computers for which ISPC is true, vlt.file.isfilepathroot is true
 % if the FILEPATH begins with either '/' or '$:\'.
-% For computers for which ISUNIX is true, ISFILEPATHROOT is true
+% For computers for which ISUNIX is true, vlt.file.isfilepathroot is true
 % if the FILEPATH is '/'.
 %
 % Note that the file path does not have to exist to specify a valid

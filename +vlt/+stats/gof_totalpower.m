@@ -1,7 +1,7 @@
 function [gf, total_power, fit_power, res_power, res] = gof_totalpower(s, f)
 % GOF_TOTALPOWER - Simple computation of how much 'power' of a signal is accounted for by a fit
 %
-% [GF, TOTAL_POWER, FIT_POWER, RES_POWER, RES] = GOF_TOTALPOWER(S, F)
+% [GF, TOTAL_POWER, FIT_POWER, RES_POWER, RES] = vlt.stats.gof_totalpower(S, F)
 %
 % Computes the amount of total power of a signal, the total power of
 % a F of S, and the fraction of the total power that is described

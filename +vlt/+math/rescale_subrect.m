@@ -1,7 +1,7 @@
 function [newrect] = rescale_subrect(subrect, original_rect, scaled_rect, format)
 % RESCALE_SUBRECT - resize a rectangle within a larger rectangle according to a scale and shift
 %
-%  [NEWRECT] = RESCALE_SUBRECT(SUBRECT, ORIGINAL_RECT, SCALED_RECT, [FORMAT])
+%  [NEWRECT] = vlt.math.rescale_subrect(SUBRECT, ORIGINAL_RECT, SCALED_RECT, [FORMAT])
 %
 %  This function rescales a rectangle SUBRECT, whose coordinates are located with
 %  respect to ORIGINAL_RECT. The same transformation that would be required to scale and
@@ -13,7 +13,7 @@ function [newrect] = rescale_subrect(subrect, original_rect, scaled_rect, format
 %  FORMAT == 3 means [left bottom width height]
 %  FORMAT == 4 means [left top width height]
 %
-%  See also: RESCALE, RECT2RECT
+%  See also: vlt.math.rescale, vlt.math.rect2rect
 
 forms = ['ltrb' ; 'lbrt'; 'lbwh'; 'ltwh' ];
 
@@ -22,17 +22,17 @@ if nargin<4,
 end;
 
  % convert to ltrb
-subrect = rect2rect(subrect,[forms(format,:) '2' forms(1,:)]);
-original_rect = rect2rect(original_rect,[forms(format,:) '2' forms(1,:)]);
-scaled_rect = rect2rect(scaled_rect,[forms(format,:) '2' forms(1,:)]);
+subrect = vlt.math.rect2rect(subrect,[forms(format,:) '2' forms(1,:)]);
+original_rect = vlt.math.rect2rect(original_rect,[forms(format,:) '2' forms(1,:)]);
+scaled_rect = vlt.math.rect2rect(scaled_rect,[forms(format,:) '2' forms(1,:)]);
 
-newvalues = [ rescale(subrect([1 3]),original_rect([1 3]),scaled_rect([1 3]),'noclip') ...
-		rescale(subrect([2 4]),original_rect([2 4]),scaled_rect([2 4]),'noclip') ];
+newvalues = [ vlt.math.rescale(subrect([1 3]),original_rect([1 3]),scaled_rect([1 3]),'noclip') ...
+		vlt.math.rescale(subrect([2 4]),original_rect([2 4]),scaled_rect([2 4]),'noclip') ];
 
 newrect = newvalues([1 3 2 4]);
 
  % convert back
 
-newrect = rect2rect(newrect,[forms(1,:) '2' forms(format,:)]);
+newrect = vlt.math.rect2rect(newrect,[forms(1,:) '2' forms(format,:)]);
 
 

@@ -1,7 +1,7 @@
 function b = isurl(inputstring)
 % ISURL - Does this string point to a URL?
 %
-% B = ISURL(INPUTSTRING)
+% B = vlt.file.isurl(INPUTSTRING)
 %
 % Returns 1 if the string contains '://'. Returns 0 otherwise.
 %

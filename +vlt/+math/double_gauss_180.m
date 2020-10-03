@@ -19,5 +19,5 @@ Op = parameters(3);
 sig = parameters(4);
 Rn = parameters(5);
 
-dg = Rsp+Rp*exp(-angdiff(Op-x).^2/(2*sig^2))+Rn*exp(-angdiff(180+Op-x).^2/(2*sig^2));
+dg = Rsp+Rp*exp(-vlt.math.angdiff(Op-x).^2/(2*sig^2))+Rn*exp(-vlt.math.angdiff(180+Op-x).^2/(2*sig^2));
 dg = reshape(dg, size(x));

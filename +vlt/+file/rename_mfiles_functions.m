@@ -1,7 +1,7 @@
 function rename_mfiles_functions(mfiledirs, editmfiledirs, varargin)
 % RENAME_MFILES_FUNCTIONS - Rename mfiles and function names
 %
-% RENAME_MFILES_FUNCTIONS(MFILEDIRS, EDITMFILEDIRS, ...)
+% vlt.file.rename_mfiles_functions(MFILEDIRS, EDITMFILEDIRS, ...)
 %
 % This function traverses the directory (and all subdirectories) MFILEDIRS and identifies all
 % .m files. If any file name renaming parameters (see below) are specified, then the .m files 
@@ -17,7 +17,7 @@ function rename_mfiles_functions(mfiledirs, editmfiledirs, varargin)
 %     {'.git','archived_code'}  | 
 % 
 %
-% See also: NAMEVALUEPAIR
+% See also: vlt.data.namevaluepair
 
 error(['This function does not work yet.']);
 
@@ -27,8 +27,8 @@ dirstrings_to_exclude = {'.git', 'archived_code'};
 
 vlt.data.assign(varargin{:});
 
-mfiledirlist = vlt.paths.pathstr2cellarray(genpath(mfiledirs));
-editmfiledirlist = vlt.paths.pathstr2cellarray(genpath(editmfiledirs));
+mfiledirlist = vlt.path.pathstr2cellarray(genpath(mfiledirs));
+editmfiledirlist = vlt.path.pathstr2cellarray(genpath(editmfiledirs));
 
  % remove excluded directories
 

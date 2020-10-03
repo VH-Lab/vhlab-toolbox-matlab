@@ -7,5 +7,5 @@ len = size(data,1);
 
 newdat = repmat(a,len,1).*(data - repmat(c,len,1));
 
-STAT = manova(newdat,g); err = STAT.ratio,
+STAT = vlt.stats.manova(newdat,g); err = STAT.ratio,
 input('test')

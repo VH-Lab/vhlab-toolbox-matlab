@@ -1,7 +1,7 @@
 function c=conditional(test,a,b)
 % CONDITIONAL - Return A or B depending on result of a true/false test
 %
-%   C = CONDITIONAL(TEST,A,B)
+%   C = vlt.data.conditional(TEST,A,B)
 %
 %   If TEST is >0, then C = A. Otherwise, C = B. 
 %

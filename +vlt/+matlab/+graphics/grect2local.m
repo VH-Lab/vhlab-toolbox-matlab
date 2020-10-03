@@ -1,7 +1,7 @@
 function n = grect2local(r,units,lrect,fig)
 % Normalize a rectangle in units of a local rectangle
 
-%  R = GRECT2LOCAL(RECT, UNITS, LRECT [, FIGURERECT])
+%  R = vlt.matlab.graphics.grect2local(RECT, UNITS, LRECT [, FIGURERECT])
 %
 %    Takes a rectangle RECT, which is normalized to be in [(0,0), ... (1,1)],
 %  and computes new values returned in R so RECT is normalized within LRECT,
@@ -16,5 +16,5 @@ w=lrect(3)-lrect(1); h=lrect(4)-lrect(2);
 n = [lrect(1)+w*r(1) lrect(2)+h*r(2) r(3)*w r(4)*h];
 
 if strcmp(units,'pixels'),
-   n=normalized2pixels(fig,n);
+   n=vlt.matlab.graphics.normalized2pixels(fig,n);
 end;

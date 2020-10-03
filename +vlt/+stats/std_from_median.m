@@ -1,14 +1,14 @@
 function [sd] = std_from_median(x, varargin)
 % STD_FROM_MEDIAN - calculate standard deviation of gaussian process from median
 %
-% SD = STD_FROM_MEDIAN(X, ...)
+% SD = vlt.stats.std_from_median(X, ...)
 %
 % Estimates the standard deviation SD of a gaussian process that generated
 % samples X using the median method.
 %
 % SD = MEDIAN(ABS(X),...)/0.6745
 %
-% Any additional arguments to STD_FROM_MEDIAN are passed to MEDIAN, so
+% Any additional arguments to vlt.stats.std_from_median are passed to MEDIAN, so
 % that the median can be taken across rows, columns, or other dimensions
 % (see HELP MEDIAN).
 %

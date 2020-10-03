@@ -57,7 +57,7 @@ if exist(fn_sev)==2,
 	openedlock_sev = 0;
 	loops_sev = 0;
 	while (exist(fnlock_sev,'file')==2)&loops_sev<30,
-		dowait(rand); loops_sev = loops_sev + 1;
+		vlt.time.dowait(rand); loops_sev = loops_sev + 1;
 	end;
 	if loops_sev==30,
 		error(['Could not save ' name_sev{1} ' to file ' fn_sev ': file is locked by the existence of experiment-lock file in analysis directory.\nThis could mean the program crashed (and you need to delete experiment-lock) or another Matlab process is writing to the files (wait for it to finish).']);
@@ -71,5 +71,5 @@ if exist(fn_sev)==2,
 		if openedlock_sev, delete(fnlock_sev); end;
 		error(['Could not save variables to file ' fn_sev ': ' lasterr '.']);
 	end;
-	if openedlock_sev, fclose(fid0_sev); delete(fixtilde(fnlock_sev)); end;
+	if openedlock_sev, fclose(fid0_sev); delete(vlt.file.fixtilde(fnlock_sev)); end;
 end;

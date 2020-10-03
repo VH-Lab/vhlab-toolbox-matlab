@@ -1,7 +1,7 @@
 function str = trimws(mystring)
 % TRIMWS - Trim leading whitespace from a string
 %
-%   NEWSTR = TRIMWS(STR)
+%   NEWSTR = vlt.string.trimws(STR)
 %
 %   Trims leading spaces from a string.
 %  
@@ -10,7 +10,7 @@ function str = trimws(mystring)
 %   compatibility.  I recommend simply using STRTRIM rather than this function, as it
 %   will probably be removed in a future release.
 %
-%   The only difference between STRTRIM and TRIMWS is that TRIMWS only operates on
+%   The only difference between STRTRIM and vlt.string.trimws is that vlt.string.trimws only operates on
 %   leading spaces, whereas STRTRIM removes trailing whitespace and also operates on
 %   any whitespace character as defined by the function ISSPACE.
 %

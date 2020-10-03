@@ -1,7 +1,7 @@
 function a = loadStructArray(fname,fields)
 % LOADSTRUCTARRAY - load a struct array from a tab-delimited file
 %
-% A = LOADSTRUCTARRAY(FNAME [, FIELDS])
+% A = vlt.file.loadStructArray(FNAME [, FIELDS])
 %
 % Reads tab-delimited text from the file FNAME to create an array of
 % Matlab STRUCT objects. If FIELDS is not provided, then the field names
@@ -14,7 +14,7 @@ function a = loadStructArray(fname,fields)
 %
 % Each subsequent row contains the values for each entry in the STRUCT array.
 %
-% See also: SAVESTRUCTARRAY, TABSTR2STRUCT
+% See also: vlt.file.saveStructArray, vlt.data.tabstr2struct
 % 
 
 [fid,msg] = fopen(fname, 'rt');

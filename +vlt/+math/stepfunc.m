@@ -1,8 +1,8 @@
 function [Si,inds] = stepfunc(t, steps, ti, outofbounds)
 
-% STEPFUNC - Evaluate a discrete step function at many times
+% vlt.math.stepfunc - Evaluate a discrete step function at many times
 %
-%  [SI,INDS] = STEPFUNC(T, STEPS, TI [,OUTOFBOUNDS])
+%  [SI,INDS] = vlt.math.stepfunc(T, STEPS, TI [,OUTOFBOUNDS])
 %
 %   Returns the value of a step function that takes values
 %       STEPS(i) between the times T(i) and T(i+1).
@@ -25,7 +25,7 @@ function [Si,inds] = stepfunc(t, steps, ti, outofbounds)
 %      S = [ 0 1 2 3 4 5 6 7 8 9 10]; % steps
 %      t = [ 0:0.1:1 ] ; % steps each 0.1 seconds
 %      ti = [ 0:0.001:1 ];
-%      Si = stepfunc(t,S,ti); 
+%      Si = vlt.math.stepfunc(t,S,ti); 
 %      figure;
 %      plot(ti,Si);  % plots at high temporal resolution
 %      xlabel('X-axis');
@@ -35,7 +35,7 @@ function [Si,inds] = stepfunc(t, steps, ti, outofbounds)
 %      S = [ 0 1 2 3 4 5 6 7 8 9 10]; % steps
 %      t = [ 0:0.1:1 ] ; % steps each 0.1 seconds
 %      ti= [ 0 0.05 0.9 1.1];
-%      [Si,inds] = stepfunc(t,S,ti)
+%      [Si,inds] = vlt.math.stepfunc(t,S,ti)
 %
 %       gives 
 %

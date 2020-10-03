@@ -1,8 +1,8 @@
 function pos = center_of_mass(points, weights)
 
-% CENTER_OF_MASS Compute center of mass of points
+% vlt.math.center_of_mass Compute center of mass of points
 %
-%  POS = CENTER_OF_MASS(POINTS, [WEIGHTS])
+%  POS = vlt.math.center_of_mass(POINTS, [WEIGHTS])
 %
 %  Computes the center of mass of a group of points.  Each row should
 %  contain a separate point in N-space.  If a weights vector is provided,

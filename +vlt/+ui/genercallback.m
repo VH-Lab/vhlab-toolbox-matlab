@@ -1,6 +1,6 @@
 function genercallback
 
-%  GENERCALLBACK - Generic callback function for user interfaces
+%  vlt.ui.genercallback - Generic callback function for user interfaces
 %
 %  Attempts to call a function with the same name as the 'Tag' field in the
 %  figure handle with the callback object as the argument.

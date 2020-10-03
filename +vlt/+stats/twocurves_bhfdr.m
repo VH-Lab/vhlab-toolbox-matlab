@@ -1,7 +1,7 @@
 function [adjusted_p, raw_p] = twocurves_bhfdr(curve1_examples, curve2_examples)
 % TWOCURVES_BHFDR - compare significance between 2 curves using the Benjamini-Hochberg false discovery rejection
 %
-% [ADJUSTED_P, RAW_P] = TWOCURVES_BHFDR(CURVE1_EXAMPLES, CURVE2_EXAMPLES)
+% [ADJUSTED_P, RAW_P] = vlt.stats.twocurves_bhfdr(CURVE1_EXAMPLES, CURVE2_EXAMPLES)
 %
 % Given two data sets (CURVEN_EXAMPLES, which trace out a curve with each curve observation in a column vector),
 % this function calculates RAW_P, the raw, uncorrected p value of a TTEST2 between the curves, and the adjusted

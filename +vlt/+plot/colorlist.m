@@ -1,7 +1,7 @@
 function c = colorlist(N, varargin)
 % COLORLIST - Grab a color or group of colors from a list
 %
-%   C = COLORLIST
+%   C = vlt.plot.colorlist
 %
 %      Returns an Nx3 list of colors. By default, this function
 %  returns the normal 7 colors that Matlab uses as the default
@@ -9,7 +9,7 @@ function c = colorlist(N, varargin)
 %  
 %     or
 %
-%   C = COLORLIST(N)
+%   C = vlt.plot.colorlist(N)
 % 
 %      Returns a 1x3 color chosen from the color list. The Nth
 %  entry is chosen. If N is greater than the number of colors in the
@@ -39,7 +39,7 @@ ColorList = [         0    0.4470    0.7410
     0.6350    0.0780    0.1840];
 DoNotWrap = 0;
 
-assign(varargin{:});  % add any user-specified parameters
+vlt.data.assign(varargin{:});  % add any user-specified parameters
 
 if nargin==0,
 	c = ColorList;

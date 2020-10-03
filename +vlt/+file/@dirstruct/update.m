@@ -13,10 +13,10 @@ d = dir(ds.pathname);
 d = d(I);
 for i=1:length(d),
 	if ~(strcmp(d(i).name,'.')|strcmp(d(i).name,'..')|d(i).name(1)=='.'), % ignore these
-		fname = [ds.pathname fixpath(d(i).name) 'reference.txt'];
+		fname = [ds.pathname vlt.file.fixpath(d(i).name) 'reference.txt'];
 		if exist(fname)&(isempty(intersect(d(i).name,ds.dir_list))),
 			% add directory to list, add namerefs to other list
-			a= loadStructArray(fname);
+			a= vlt.file.loadStructArray(fname);
 			%disp(['Loaded ' d(i).name filesep 'acqParams_out']);
 			n = { a(:).name }; r = { a(:).ref }; t = { a(:).type };
 			if ~isempty(n),

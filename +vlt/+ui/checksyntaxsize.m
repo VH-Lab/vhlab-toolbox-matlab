@@ -1,9 +1,9 @@
 function [b,vals] = checksyntaxsize(thefig,taglist,sizelist,errormsg,...
   varnamelist)
 
-%  CHECKSYNTAXSIZE - Checks syntax and size of uitools string arguments
+%  vlt.ui.checksyntaxsize - Checks syntax and size of uitools string arguments
 %
-%  [B,VALS] = CHECKSYNTAXSIZE(THEFIG,TAGLIST,SIZELIST,[ERRORMSG, VARNAMELIST])
+%  [B,VALS] = vlt.ui.checksyntaxsize(THEFIG,TAGLIST,SIZELIST,[ERRORMSG, VARNAMELIST])
 %
 %  Examines strings of user interface tools in figure THEFIG.  TAGLIST is
 %  a cell list of 'Tag' fields to look at, and SIZELIST is a cell list
@@ -31,7 +31,7 @@ for i=1:length(taglist),
       if errormessage, errordlg(['Syntax error in ' varlist{i}]); end;
       break;
    end;
-   if (~isempty(sizelist{i}))&(~eqlen(size(v),sizelist{i})),
+   if (~isempty(sizelist{i}))&(~vlt.data.eqlen(size(v),sizelist{i})),
       b=0;vals={};
       if errormessage,
            errordlg(['Size error in ' varlist{i} ' ; ' ...

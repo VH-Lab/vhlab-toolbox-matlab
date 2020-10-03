@@ -20,7 +20,7 @@ if exist(cksds.pathname)~=7, p = [];
 else, f = find(cksds.pathname==filesep);
       if length(f)==1, expf=cksds.pathname([1:f-1 f+1:length(cksds.pathname)]);
       else, expf=cksds.pathname((f(end-1)+1):(f(end)-1)); end;
-      str=fixpath([cksds.pathname 'analysis']); p = [str 'experiment'];
+      str=vlt.file.fixpath([cksds.pathname 'analysis']); p = [str 'experiment'];
 	if nargin==2&createit==1,
 		if exist(p)~=2,
 			if exist(str)~=7,

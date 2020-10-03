@@ -1,7 +1,7 @@
 function h=arrowplot(x,y, theta, scale, varargin)
 % ARROWPLOT - Make a plot of arrow shapes, like quiver
 %
-%  H=ARROWPLOT(X,Y,THETA,SCALE, ...)
+%  H=vlt.plot.arrowplot(X,Y,THETA,SCALE, ...)
 %
 %  Plots arrows at positions X and Y with directions
 %  THETA (in DEGREES) and scale SCALE, according to the
@@ -22,7 +22,7 @@ function h=arrowplot(x,y, theta, scale, varargin)
 %  headangle (30)           : Angle of arrowhead sweep back
 %  headlength (0.5)         : Size of arrowhead length
 %  
-%  See also: DRAWSHAPE
+%  See also: vlt.plot.drawshape
 %
 
 
@@ -33,7 +33,7 @@ linecolor = [0 0 0];
 headangle = 30;
 headlength = 0.5;
 
-assign(varargin{:});
+vlt.data.assign(varargin{:});
 
 h = [];
 
@@ -46,11 +46,11 @@ tshape.headlength = headlength;
 
  % some quick error checking
 
-if ~eqlen(size(x),size(y)),
+if ~vlt.data.eqlen(size(x),size(y)),
 	error(['X and Y must have identical sizes']);
-elseif ~eqlen(size(x),size(theta)),
+elseif ~vlt.data.eqlen(size(x),size(theta)),
 	error(['X and Y and THETA must have identical sizes']);
-elseif ~eqlen(size(x),size(scale)),
+elseif ~vlt.data.eqlen(size(x),size(scale)),
 	size(theta), size(x), size(scale),
 	error(['X and Y and THETA and SCALE must have identical sizes']);
 end;
@@ -64,7 +64,7 @@ for i=1:numel(x),
 	myshape.headlength = myshape.headlength * scale(i);
 	myshape.direction = theta(i);
 
-	h = cat(2,h,drawshape(myshape));
+	h = cat(2,h,vlt.plot.drawshape(myshape));
 
 	hold on; % make sure we hold on to plot multiple arrows
 end;

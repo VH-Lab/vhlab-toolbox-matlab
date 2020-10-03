@@ -2,10 +2,10 @@ function [slope, threshold, curve, gof,fitinfo ] = linethresholdfit(x,y,varargin
 % LINETHRESHOLDFIT - Fit a linear function with a threshold
 %
 %  [SLOPE, THRESHOLD, CURVE, GOF, FITINFO] = 
-%      LINETHRESHOLDFIT(X, Y, ...)
+%      vlt.fit.linethresholdfit(X, Y, ...)
 %
 %  Performs a nonlinear fit to find the best parameters for a function of the form
-%  Y = SLOPE * RECTIFY(X - THRESHOLD)
+%  Y = SLOPE * vlt.math.rectify(X - THRESHOLD)
 %
 %  X and Y should be vectors with the same length. SLOPE and THRESHOLD are the
 %  best fit values.  CURVE is the fit values of Y for the values of
@@ -19,22 +19,22 @@ function [slope, threshold, curve, gof,fitinfo ] = linethresholdfit(x,y,varargin
 % ---------------------------------------------------------------------------
 % threshold_start (min(x))               | Iniitial starting point for THRESHOLD fit
 % thresholdrange [(min(x)-1) max(x)+1)]  | THRESHOLD fit range
-% slope_start (from quickregression)     | Initial starting point for SLOPE fit
+% slope_start (from vlt.stats.quickregression)     | Initial starting point for SLOPE fit
 % slope_range [-Inf Inf]                 | SLOPE fit range
 % 
 %
 % Example:
 %     x = sort(rand(20,1));
-%     y = linepowerthreshold(x,3,0,0.5,1);
+%     y = vlt.fit.linepowerthreshold(x,3,0,0.5,1);
 %        % limit search to exponents = 1
-%     [slope,t,thefit]=linethresholdfit(x,y);
+%     [slope,t,thefit]=vlt.fit.linethresholdfit(x,y);
 %     figure;
 %     plot(x,y,'bo');
 %     hold on;
 %     plot(x,thefit,'rx-');
 %     box off;
 %     
-% See also: QUICKREGRESSION (simple linear fit), FIT, LINEPOWERTHRESHOLD, LINEPOWERTHRESHOLDFIT
+% See also: vlt.stats.quickregression (simple linear fit), FIT, vlt.fit.linepowerthreshold, vlt.fit.linepowerthresholdfit
 %
 % Jason Osik and Steve Van Hooser
 % 
@@ -47,24 +47,24 @@ threshold_range = [ min(x)-1 max(x)+1 ];
 warnstate = warning('query');
 warning off
   % turn off usual REGRESS warnings
-  [slope_start,offset_start]=quickregression(x(:),y(:),0.05); % ALPHA doesn't matter here
+  [slope_start,offset_start]=vlt.stats.quickregression(x(:),y(:),0.05); % ALPHA doesn't matter here
   % restore warning state
 warning(warnstate);
 
 slope_range = [-Inf Inf];
 
   % assign user-altered values
-assign(varargin{:});
+vlt.data.assign(varargin{:});
 
 s = fitoptions('Method','NonlinearLeastSquares',...
 	'Lower',[ slope_range(1) threshold_range(1)],...
 	'Upper',[ slope_range(2) threshold_range(2)],...
 	'StartPoint', [slope_start threshold_start]);
 
-ft = fittype('linepowerthreshold(x,a,0,b,1)','options',s);
+ft = fittype(@(a,b,x) vlt.fit.linepowerthreshold(x,a,0,b,1),'options',s);
 [cl,gof,fitinfo] = fit(x(:),y(:),ft);
 
 slope = cl.a;
 threshold = cl.b;
 
-curve = linepowerthreshold(x(:),slope,0,threshold,1);
+curve = vlt.fit.linepowerthreshold(x(:),slope,0,threshold,1);

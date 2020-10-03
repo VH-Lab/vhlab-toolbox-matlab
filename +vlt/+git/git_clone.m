@@ -1,7 +1,7 @@
 function b = git_clone(repository, localparentdir)
 % GIT_CLONE - clone a git repository onto the local computer
 %
-% B = GIT_CLONE(REPOSITORY, LOCALPARENTDIR)
+% B = vlt.git.git_clone(REPOSITORY, LOCALPARENTDIR)
 %
 % Clones a git repository REPOSITORY into the local directory
 % LOCALPARENTDIR.

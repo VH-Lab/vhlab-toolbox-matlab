@@ -1,11 +1,11 @@
 function D = angdiff(a,wrap)
 
-% ANGDIFF - Angular difference in 0..WRAP
+% vlt.math.angdiff - Angular difference in 0..WRAP
 %
-%  D = ANGDIFF(A,WRAP)
+%  D = vlt.math.angdiff(A,WRAP)
 %
 %  Returns min([A;A+WRAP;A-WRAP]);
-%  See also: ANGDIFF, ANGDIFFWRAPSIGN, DANGDIFFWRAP
+%  See also: vlt.math.angdiff, vlt.math.angdiffwrapsign, vlt.math.dangdiffwrap
 
 
 if min(size(a))==1,

@@ -1,7 +1,7 @@
 function [v,tz]=fulltimestamp2datevec(fulltimestamp_str)
 % FULLTIMESTAMP2DATEVEC - Convert full time stamp yyyy-mm-ddTHH:MM:SS-TIMEZONE, to a date vector
 %
-% [V,TZ] = FULLTIMESTAMP2DATEVEC(FULLTIMESTAMP_STR)
+% [V,TZ] = vlt.time.fulltimestamp2datevec(FULLTIMESTAMP_STR)
 %
 % Converts a full time stamp in the format
 %   yyyy-mm-ddTHH:MM:SSTIMEZONE
@@ -14,7 +14,7 @@ function [v,tz]=fulltimestamp2datevec(fulltimestamp_str)
 %
 %  Example: 
 %    fulltimestamp_str = '2013-11-27T10:35:35.0695379-05:00';
-%    [V,TZ]=fulltimestamp2datevec(fulltimestamp_str)
+%    [V,TZ]=vlt.time.fulltimestamp2datevec(fulltimestamp_str)
 %     
 %  See also: DATEVEC, DATESTRING
 

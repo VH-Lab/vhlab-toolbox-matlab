@@ -1,7 +1,7 @@
 function h = plotshade(x,y,shadeline,color,locationstring)
 % PLOTSHADE - Make a plot with region above or below a line shaded
 %
-%  H = PLOTSHADE(X,Y,SHADELINE,COLOR,LOCATIONSTRING)
+%  H = vlt.plot.plotshade(X,Y,SHADELINE,COLOR,LOCATIONSTRING)
 %
 %  Creates a Matlab PATCH object that colors the area of a plot that lies
 %  above or below the line Y=SHADELINE, using color COLOR (RGB triple, where
@@ -16,7 +16,7 @@ function h = plotshade(x,y,shadeline,color,locationstring)
 %  LOCATIONSTRING should be 'above' or 'below' (assumed 'below' if it
 %  is not provided).
 %
-%  Note that PLOTSHADE does not plot the original points x/y. If that
+%  Note that vlt.plot.plotshade does not plot the original points x/y. If that
 %  is desired, the user should plot the line in a separate step.
 %  
 %
@@ -27,7 +27,7 @@ function h = plotshade(x,y,shadeline,color,locationstring)
 %    figure;
 %    plot(x,y,'k-');
 %    hold on;
-%    plotshade(x,y,shadeline);
+%    vlt.plot.plotshade(x,y,shadeline);
 %
 
 if nargin<3,
@@ -43,9 +43,9 @@ if nargin<5,
 end;
 
 if strcmp(lower(locationstring),'below'),
-	z = -rectify(-y+shadeline)+shadeline;
+	z = -vlt.math.rectify(-y+shadeline)+shadeline;
 elseif strcmp(lower(locationstring),'above'),
-	z = rectify(y-shadeline)+shadeline;
+	z = vlt.math.rectify(y-shadeline)+shadeline;
 else,
 	error(['Unrecognized shadeline option ' locationstring '.']);
 end;

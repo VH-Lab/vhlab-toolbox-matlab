@@ -1,7 +1,7 @@
 function out = equnique(in)
 % EQUNIQUE - Return unique elements of an arbitrary class using EQ
 %
-% OUT = EQUNIQUE(IN)
+% OUT = vlt.data.equnique(IN)
 %
 % Returns the unique elements of an object array IN as a column OUT.
 % 
@@ -14,7 +14,7 @@ function out = equnique(in)
 % Example:
 %    A=struct('A',5,'B',6);
 %    A = [A A A];
-%    B = equnique(A); % B == A(1)
+%    B = vlt.data.equnique(A); % B == A(1)
 %
 % See also: UNIQUE
 

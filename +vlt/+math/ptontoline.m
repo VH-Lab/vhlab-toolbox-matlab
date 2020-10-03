@@ -1,12 +1,12 @@
 function [xlyl,bs] = ptontoline(xy,m,b)
 % PTONTOLINE - calculate distance of point onto nearest point on line (2D)
 %
-% [XLYL, BS] = PTONTOLINE(XY, M, B)
+% [XLYL, BS] = vlt.math.ptontoline(XY, M, B)
 %
 % XLYL is the distance in X and Y. BS of offset of the line that joins the point to
 % the specified line M and B.
 % 
-% See also: PTS2LINE 
+% See also: vlt.math.pts2line 
 
 if isinf(m),
 	xlyl = [b*ones(size(xy,1),1) xy(:,2)];

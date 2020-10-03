@@ -1,7 +1,7 @@
 function c = string2cell(string, separator, varargin)
 % STRING2CELL = Convert a delimited list to a cell array of strings
 %
-%  C = STRING2CELL(STRING, SEPARATOR)
+%  C = vlt.data.string2cell(STRING, SEPARATOR)
 %
 %  Converts a separator-delimited string list to a cell array of strings.
 %
@@ -10,7 +10,7 @@ function c = string2cell(string, separator, varargin)
 %  SEPARATOR is the character that separates the items, such as ',' or ';'.
 %
 %  Additional parameters can be provided as name/value pairs:
-%  STRING2CELL(STRING, SEPARATOR, 'NAME', VALUE)
+%  vlt.data.string2cell(STRING, SEPARATOR, 'NAME', VALUE)
 %
 %  Parameter name:           | Description:
 %  --------------------------|-----------------------------------------
@@ -19,7 +19,7 @@ function c = string2cell(string, separator, varargin)
 %
 %  Example:
 %     string = 't00001, t00002, t00003, t00004';
-%     c = string2cell(string,',');
+%     c = vlt.data.string2cell(string,',');
 %     c % display c, equals {'t00001','t00002','t00003','t00004'}
 %  
 %

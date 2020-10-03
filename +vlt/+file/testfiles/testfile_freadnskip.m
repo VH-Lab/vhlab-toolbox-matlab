@@ -1,12 +1,12 @@
 function data = testfile_freadnskip;
 % TESTFILE_FREADNSKIP - Demonstrates how to use FREAD with SKIP to read in arbitrary data
 %
-%  DATA = TESTFILE_FREADNSKIP;
+%  DATA = vlt.file.testfiles.testfile_freadnskip;
 %
 %  Opens the file 'testfile_uint16.bin' for reading, and then reads in 2 
 %  unsigned 16 bit integers, skips 5, and repeats, for 10 bouts.
 %  
-%  To read the code, use 'type testfile_freadnskip'
+%  To read the code, use 'type vlt.file.testfiles.testfile_freadnskip'
 %
 
 fid = fopen('testfile_uint16.bin');

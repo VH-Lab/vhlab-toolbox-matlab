@@ -1,7 +1,7 @@
 function [v,remote] = git_repo_version(filepath)
 % GIT_REPO_VERSION - return commit number and remote location of repository
 %
-% [V, REMOTE] = GIT_REPO_VERSION(FILEPATH)
+% [V, REMOTE] = vlt.git.git_repo_version(FILEPATH)
 %
 % Uses command line 'git' to query the commit verison number (V) and
 % the path of the REMOTE repository. If either query fails, an error
@@ -11,7 +11,7 @@ function [v,remote] = git_repo_version(filepath)
 v = [];
 remote = [];
 
-if ~git_assert(),
+if ~vlt.git.git_assert(),
 	error(['Could not locate git on this machine.']);
 end;
 

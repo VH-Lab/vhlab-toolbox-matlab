@@ -1,8 +1,8 @@
 function value = getXMLNodeText(xDoc, listitem, subitem, isnumber)
 
-% getXMLNodeText - Read Node Text from XML
+% vlt.file.xml.getXMLNodeText - Read Node Text from XML
 %
-%  VALUES = GETXMLNODETEXT(XDOC, LISTITEM, SUBITEM, ISNUMBER)
+%  VALUES = vlt.file.xml.getXMLNodeText(XDOC, LISTITEM, SUBITEM, ISNUMBER)
 %
 %  Returns node text from the XML document XDOC.  XDOC can
 %  be read from a file with the Matlab command XMLREAD.

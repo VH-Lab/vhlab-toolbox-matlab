@@ -1,18 +1,18 @@
 function y = colvec(x)
 % COLVEC - return a matrix reshaped as a column vector
 %
-%  Y = COLVEC(X)
+%  Y = vlt.data.colvec(X)
 %
 %  Returns the contents of the matrix X as a column vector Y that is 1xM,
 %  where M is the product of all the sizes of the dimensions of X
 %  (M = PROD(SIZE(X))).
 % 
-%  COLVEC is equivalent to Y = X(:);
+%  vlt.data.colvec is equivalent to Y = X(:);
 %
 %  This function is useful for addressing all of the elements of a matrix
 %  as a vector when X is a subset of another matrix.
 %
-%  See also: ROWVEC
+%  See also: vlt.data.rowvec
 %
 %  Example: 
 %    A = rand(5,5)

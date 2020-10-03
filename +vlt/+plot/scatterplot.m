@@ -1,7 +1,7 @@
 function scatterplot(X, varargin);
 % SCATTERPLOT -- plot data points
 %
-%	SCATTERPLOT (X) draws a scatter plot with a dot for each row
+%	vlt.plot.scatterplot (X) draws a scatter plot with a dot for each row
 %	in X.  If X has more than two columns then each dimension is
 %	plotted against each other one to form a triangular set of
 %	subplots in the current figure.
@@ -40,12 +40,12 @@ markeredgecolor = 'auto';
 markerfacecolor = 'none';
 markersize  = 1;
 
-assign(varargin{:});
+vlt.data.assign(varargin{:});
 
 if length(projection) == 2
   d1 = projection(1);
   d2 = projection(2);
-  classes = unique(class)'; % changed from uniq() sdv
+  classes = unique(class)'; % changed from vlt.data.uniq() sdv
   for c = classes,
 
     
@@ -100,7 +100,7 @@ else
   for x = 1:np-1
     for y = x+1:np
       subplot (np-1, np-1, (np-1)*(y-2) + x)
-      scatterplot (X, varargin{:}, 'projection', projection([x,y]));
+      vlt.plot.scatterplot (X, varargin{:}, 'projection', projection([x,y]));
       if x == 1
 	ylabel(num2str(y));
       end

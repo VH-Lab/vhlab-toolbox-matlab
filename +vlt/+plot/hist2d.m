@@ -8,14 +8,14 @@
 %   mYX = rand(100,2);
 %   vXEdge = linspace(0,1,10);
 %   vYEdge = linspace(0,1,20);
-%   mHist2d = hist2d(mYX,vYEdge,vXEdge);
+%   mHist2d = vlt.plot.hist2d(mYX,vYEdge,vXEdge);
 %
 %   nXBins = length(vXEdge);
 %   nYBins = length(vYEdge);
 %   vXLabel = 0.5*(vXEdge(1:(nXBins-1))+vXEdge(2:nXBins));
 %   vYLabel = 0.5*(vYEdge(1:(nYBins-1))+vYEdge(2:nYBins));
 %   pcolor(vXLabel, vYLabel,mHist2d); colorbar
-function mHist = hist2d (mX, vYEdge, vXEdge)
+function mHist = vlt.plot.hist2d (mX, vYEdge, vXEdge)
 nCol = size(mX, 2);
 if nCol < 2
     error ('mX has less than two columns')
@@ -44,7 +44,7 @@ for iRow = 1:nRow
         
         if (nFound ~= nCol)
             disp([nFound nCol])
-            error ('hist2d error: Size Error')
+            error ('vlt.plot.hist2d error: Size Error')
         end
         
         [nRowFound, nColFound] = size (vFound);
@@ -57,7 +57,7 @@ for iRow = 1:nRow
         elseif nColFound == nCol
             mHist(iRow, :)= vFound(1:nFound);
         else
-            error ('hist2d error: Size Error')
+            error ('vlt.plot.hist2d error: Size Error')
         end
     end
     

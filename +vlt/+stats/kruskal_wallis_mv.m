@@ -3,7 +3,7 @@ function [pval,kw,df] = kruskal_wallis_mv(varargin)
 %  Perform a Kruskal-Wallis one-factor 'analysis of variance' for multivariate
 %  data.
 %  
-%  [PVAL,KW,DF] = KRUSKAL_WALLIS_MV(X1, ..., XK)
+%  [PVAL,KW,DF] = vlt.stats.kruskal_wallis_mv(X1, ..., XK)
 %
 %  Returns the probability (PVAL) of the null hypothesis that the
 %  distributions of X1, ..., XK are equal.  The multivariate points Xi should
@@ -23,7 +23,7 @@ pval = [];
 K = nargin;
 N = zeros(1,K);
 
-if K<2, error('[pval] = kruskal_wallis_mv(x1,...)'); end;
+if K<2, error('[pval] = vlt.stats.kruskal_wallis_mv(x1,...)'); end;
 
 p = []; G = []; data = [];
 

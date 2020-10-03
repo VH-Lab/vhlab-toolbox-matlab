@@ -1,8 +1,8 @@
 function [X,Y] = cumhist(data, xrange, delta)
 
-% CUMHIST - Make data for a cumulative histogram plot
+% vlt.plot.cumhist - Make data for a cumulative histogram plot
 %
-%   [X,Y]=CUMHIST(DATA,XRANGE,PERCENT_DELTA)
+%   [X,Y]=vlt.plot.cumhist(DATA,XRANGE,PERCENT_DELTA)
 %
 %    Generates X and Y variables suitable for plotting with
 %    the plot function. Y values are generated for percentages
@@ -15,7 +15,7 @@ function [X,Y] = cumhist(data, xrange, delta)
 %      xrange = [-4 4];
 %      percent_delta = 0.1; % use steps of 0.1%
 %
-%      [X,Y] = cumhist(r,xrange,percent_delta);
+%      [X,Y] = vlt.plot.cumhist(r,xrange,percent_delta);
 %      figure;
 %      plot(X,Y,'k-');
 %      hold on;

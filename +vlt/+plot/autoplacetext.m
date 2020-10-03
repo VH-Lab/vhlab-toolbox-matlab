@@ -1,7 +1,7 @@
 function h = autoplacetext(textstring, varargin)
 % AUTOPLACETEXT - Automatically place text within the current axes
 %
-%  H = AUTOPLACETEXT(TEXTSTRING)
+%  H = vlt.plot.autoplacetext(TEXTSTRING)
 %
 %  At the present time, this function places the text string 
 %  TEXTSTRING (which can be a simple string, or a cell list of 

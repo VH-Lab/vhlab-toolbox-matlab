@@ -1,7 +1,7 @@
 function b = git_install(dirname, repository)
 % GIT_PULL - pull changes to a git repository
 %
-% B = GIT_PULL(DIRNAME, REPOSITORY)
+% B = vlt.git.git_pull(DIRNAME, REPOSITORY)
 %
 % 'Install' is our term for forcing the local directory DIRNAME to match the
 % remote REPOSITORY, either by cloning or pulling the latest changes. Any files
@@ -12,7 +12,7 @@ function b = git_install(dirname, repository)
 % If the DIRNAME exists and has no local changes, the directory is updated by
 % pulling.
 %
-% Note: if you have any local changes, GIT_INSTALL will totally remove them.
+% Note: if you have any local changes, vlt.git.git_install will totally remove them.
 %
 % B is 1 if the operation is successful.
 %
@@ -28,13 +28,13 @@ end;
 status_good = 0;
 if ~must_clone,
 	try,
-		[uptodate,changes,untrackedfiles] = git_status(dirname);
+		[uptodate,changes,untrackedfiles] = vlt.git.git_status(dirname);
 		status_good = ~changes & ~untrackedfiles;
 	end;
 end;
 
 if status_good, % we can pull without difficulty
-	b=git_pull(dirname);
+	b=vlt.git.git_pull(dirname);
 else,
 	must_clone = 1;
 end;
@@ -43,6 +43,6 @@ if must_clone,
 	if exist(dirname,'dir'), 
 		rmdir(dirname,'s');
 	end;
-	b=git_clone(repository,localparentdir);
+	b=vlt.git.git_clone(repository,localparentdir);
 end;
 

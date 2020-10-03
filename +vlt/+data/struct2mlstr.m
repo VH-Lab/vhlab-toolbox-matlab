@@ -1,12 +1,12 @@
 function str = struct2mlstr(thestruct, varargin)
 % STRUCT2MLSTR - Create a text string to fully characterize a structure
 %
-%  STR = STRUCT2MLSTR(THESTRUCT)
+%  STR = vlt.data.struct2mlstr(THESTRUCT)
 %
 %  Produces a string representation of a structure that can be passed to
 %  an external program to fully encapsulate the structure.  Character strings
 %  are written directly, integers are written using MAT2STR, 
-%  numbers are written using MAT2STR, cells are written using CELL2MLSTR.
+%  numbers are written using MAT2STR, cells are written using vlt.data.cell2mlstr.
 %  Any other objects are written using the function DISP.
 %
 %  The structure is written in the following way:
@@ -27,7 +27,7 @@ function str = struct2mlstr(thestruct, varargin)
 %  The default parameters may be overridden by passing NAME/VALUE
 %  pairs as additional arguments, as in:
 %
-%   STR = STRUCT2MLSTR(THESTRUCT, 'NAME1', VALUE1,...)
+%   STR = vlt.data.struct2mlstr(THESTRUCT, 'NAME1', VALUE1,...)
 %
 %  Parameters:             | Description
 %  ---------------------------------------------------------------
@@ -40,7 +40,7 @@ function str = struct2mlstr(thestruct, varargin)
 %
 %  Consider also: JSONENCODE, JSONDECODE
 %
-%  See also: MLSTR2VAR, CELL2MLSTR, STRUCT2STR, JSONENCODE
+%  See also: vlt.data.mlstr2var, vlt.data.cell2mlstr, vlt.data.struct2str, JSONENCODE
 
 precision = 15;
 indent = 0;
@@ -64,7 +64,7 @@ if ~isempty(varname),
 end;
 
 
-str = ['<STRUCT size=' sizestr varstr ' fields=' cell2str(fn) ' data=' sprintf('\n')];
+str = ['<STRUCT size=' sizestr varstr ' fields=' vlt.data.cell2str(fn) ' data=' sprintf('\n')];
 
 for i=1:numel(thestruct),
 	str = cat(2,str,repmat(' ',1,indent+indentshift),'<');

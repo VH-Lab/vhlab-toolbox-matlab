@@ -1,7 +1,7 @@
 function b = git_pull(dirname)
 % GIT_PULL - pull changes to a git repository
 %
-% B = GIT_PULL(DIRNAME)
+% B = vlt.git.git_pull(DIRNAME)
 %
 % Pulls the remote changes to a GIT repository into the local directory
 % DIRNAME.

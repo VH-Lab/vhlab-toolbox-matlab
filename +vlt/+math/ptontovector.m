@@ -1,7 +1,7 @@
 function [d,cpt] = ptontovector(offset, vector_dir, pt, varargin)
 % PTONTOVECTOR - Find distance between point and a vector
 %
-% [D, CPT] = PTONTOVECTOR(OFFSET, VECTOR_DIR, PT)
+% [D, CPT] = vlt.math.ptontovector(OFFSET, VECTOR_DIR, PT)
 %
 % Calculates the Euclidean distance D between a vector that is specified
 % by the line
@@ -24,7 +24,7 @@ vector_dir = vector_dir(:);
 pt = pt(:);
 
 segment = 0;
-assign(varargin{:});
+vlt.data.assign(varargin{:});
 
 if norm(vector_dir)==0,
 	error(['Directional vector VECTOR_DIR must have some length.']);

@@ -1,11 +1,11 @@
 function newimage = drawbarinimage(image, color,center, siz, thickness, orientation)
 
-% DRAWBARINIMAGE - Draw bar in image
+% vlt.plot.drawbarinimage - Draw bar in image
 %
 %  Draws a bar of a particular orientation and size in
 %  an image at the location specified.
 %
-%  NEWIMAGE=DRAWBARINIMAGE(IMAGE,COLOR,CENTER,...
+%  NEWIMAGE=vlt.plot.drawbarinimage(IMAGE,COLOR,CENTER,...
 %      SIZE,THICKNESS, ORIENTATION)
 %
 %  Draws a bar of color COLOR in an image IMAGE.  The bar will

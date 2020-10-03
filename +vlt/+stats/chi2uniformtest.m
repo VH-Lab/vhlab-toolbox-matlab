@@ -1,7 +1,7 @@
 function [p,v,df] = chi2uniformtest(D)
 % CHI2UNIFORMTEST - Test for uniformity of distribution of data in bins
 %
-%  [P,V,DF] = CHI2UNIFORMTEST(D)
+%  [P,V,DF] = vlt.stats.chi2uniformtest(D)
 %
 %  For data classified in discrete bins D(1), D(2), this returns the
 %  probability of the null hypothesis that the "true" number of data

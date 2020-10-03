@@ -1,7 +1,7 @@
 function matchaxes(axeslist, xmin, xmax, ymin, ymax)
 % MATCHAXES - Set the axis limits on a set of axes to the same value
 %
-%  MATCHAXES(AXESLIST, XMIN, XMAX, YMIN, YMAX)
+%  vlt.plot.matchaxes(AXESLIST, XMIN, XMAX, YMIN, YMAX)
 %
 %  For a list of axes handles AXESHANDLES, this function sets them all
 %  to the same AXIS values.  If XMIN, XMAX, YMIN, YMAX are numerical values
@@ -21,7 +21,7 @@ function matchaxes(axeslist, xmin, xmax, ymin, ymax)
 %  called.
 %
 %  If XMIN==XMAX or YMIN==YMAX (for example, if the data points all have one value)
-%  then MATCHAXES subtracts 1 from the minimum and adds 1 to the maximum to avoid an 
+%  then vlt.plot.matchaxes subtracts 1 from the minimum and adds 1 to the maximum to avoid an 
 %  error, and a warning is given.
 %
 %  Example: Rescale 2 axes so the Y axes are matched (from 0 to 1) and the X
@@ -30,7 +30,7 @@ function matchaxes(axeslist, xmin, xmax, ymin, ymax)
 %     myaxes1 = gca;
 %     % click in the second axes
 %     myaxes2 = gca;
-%     matchaxes([myaxes1 myaxes2],'axis','axis',0,1);
+%     vlt.plot.matchaxes([myaxes1 myaxes2],'axis','axis',0,1);
 %
 %  See also: AXES, AXIS
 
@@ -68,7 +68,7 @@ for v=1:length(varnames),
 		else,
 			error(['Unknown string input ' varval '.']);
 		end;
-		assign(varnames{v},varval);
+		vlt.data.assign(varnames{v},varval);
 		if varval==initial(v),
 			error(['Could not find data to constrain ' varnames{v} '.']);
 		end;

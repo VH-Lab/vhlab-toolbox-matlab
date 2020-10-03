@@ -1,7 +1,7 @@
 function tr=round2sample(ti,dt,t0)
 % ROUND2SAMPLE - Round a continuous point to the nearest sampled value for a regularly sampled signal
 % 
-%   TR = ROUND2SAMPLE(TI,DT[, T0])
+%   TR = vlt.signal.round2sample(TI,DT[, T0])
 %
 %   Given a signal sampled at regular intervals DT, and given a set of time points TI,
 %   calculates the closest sample times TR that are multiples of DT.
@@ -10,12 +10,12 @@ function tr=round2sample(ti,dt,t0)
 %   Example:
 %       DT = 0.001;
 %       TI = 0.00100000001;
-%       TR = ROUND2SAMPLE(TI, DT)   % returns 0.001
+%       TR = vlt.signal.round2sample(TI, DT)   % returns 0.001
 %
-%   See also: POINT2SAMPLELABEL
+%   See also: vlt.signal.point2samplelabel
 
 if nargin<3,
     t0 = 0;
 end
 
-tr = t0+(point2samplelabel(ti,dt,t0)-1) * dt;
+tr = t0+(vlt.signal.point2samplelabel(ti,dt,t0)-1) * dt;

@@ -1,7 +1,7 @@
 function [merged_graph, indexes, numnewnodes] = mergegraph(G1, G2, nodenumbers2_1)
 % MERGEGRAPH - merge adjacency matrixes of 2 graphs
 %
-% [MERGED_GRAPH, INDEXES, NUMNEWNODES] = MERGEGRAPH(G1, G2, NODENUMBERS2_1)
+% [MERGED_GRAPH, INDEXES, NUMNEWNODES] = vlt.graph.mergegraph(G1, G2, NODENUMBERS2_1)
 %
 % Creates a merged graph from two overlapping adjacency matrixes
 % G1 and G2. G#(i,j) is the weight of the connection from node
@@ -33,7 +33,7 @@ function [merged_graph, indexes, numnewnodes] = mergegraph(G1, G2, nodenumbers2_
 %            G1 = [ 1 1 1 ; 0 1 0; 0 0 1 ]; 
 %            G2 = [ 1 1 ; 0 1 ];
 %            nodenumbers2_1 = [ 1 4 ];
-%            [G3,indexes,numnewnodes] = mergegraph(G1,G2,nodenumbers2_1);
+%            [G3,indexes,numnewnodes] = vlt.graph.mergegraph(G1,G2,nodenumbers2_1);
 %            lower_right = G2(indexes.lower_right);
 %            lower_left = inf(numnewnodes,size(G1,1));
 %            upper_right = inf(size(G1,1),numnewnodes);
@@ -62,7 +62,7 @@ oldnodes = nodenumbers2_1(oldnodes_index);
 
 numnewnodes = numel(newnodes);
 
-if ~eqlen(sort(newnodes(:)-n1),(1:numnewnodes)'),
+if ~vlt.data.eqlen(sort(newnodes(:)-n1),(1:numnewnodes)'),
 	error(['New nodes must be in increasing numerical order with no gaps in index values from the existing nodes.']);
 end
 

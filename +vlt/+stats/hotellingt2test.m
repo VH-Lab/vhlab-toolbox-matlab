@@ -1,9 +1,9 @@
 function [H,P]=hotellingt2test(X,mu,alpha)
 
-% HOTELLINGT2TEST - Hotelling T^2 test for multivariate samples
+% vlt.stats.hotellingt2test - Hotelling T^2 test for multivariate samples
 %
-%  [H,P] = HOTELLINGT2TEST(X,MU)
-%  [H,P] = HOTELLINGT2TEST(X,MU,ALPHA)
+%  [H,P] = vlt.stats.hotellingt2test(X,MU)
+%  [H,P] = vlt.stats.hotellingt2test(X,MU,ALPHA)
 %
 %  Performs Hotelling's T^2 test on multivariate samples X to determine
 %  if the data have mean MU.  X should be a NxP matrix with N observations

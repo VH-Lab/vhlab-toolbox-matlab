@@ -1,7 +1,7 @@
 function [ index_values ] = theshold_crossings( input, threshold )
 %THRESHOLD_CROSSINGS Detect threshold crossings in data
 % 
-%  INDEX_VALUES = THRESHOLD_CROSSINGS(INPUT, THRESHOLD)
+%  INDEX_VALUES = vlt.signal.threshold_crossings(INPUT, THRESHOLD)
 %
 %  Finds all places where the data INPUT transitions from below
 %  the threshold THRESHOLD to be equal to or above the threshold

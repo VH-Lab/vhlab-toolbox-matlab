@@ -1,7 +1,7 @@
 function event_samples = dotdisc(data, dots);
 %DOTDISC - Dot discriminator, an advanced window discriminator
 %
-%  EVENT_SAMPLES = DOTDISC(DATA, DOTS)
+%  EVENT_SAMPLES = vlt.signal.dotdisc(DATA, DOTS)
 %
 %  Detect events with "dots", a form of advanced window
 %  discrimination.

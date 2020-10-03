@@ -2,7 +2,7 @@ function theStruct = parseXML(filename)
 % PARSEXML Convert XML file to a MATLAB structure.
 %  From MATHWORKS documentation (I believe)
 %
-%  THESTRUCT = PARSEXML(FILENAME)
+%  THESTRUCT = vlt.file.xml.parseXML(FILENAME)
 %
 %  Converts an XML file that is read with the
 %  MATLAB function XMLREAD into a Matlab structure.

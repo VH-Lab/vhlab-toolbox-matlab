@@ -1,21 +1,21 @@
 function [rm,b,n,s] = naka_rushton(c,data);
 % NAKA_RUSHTON Naka-Rushton fit (for contrast curves)
 %
-%  [RM,B] = NAKA_RUSHTON(C,DATA)
+%  [RM,B] = vlt.fit.naka_rushton(C,DATA)
 %
 %  Finds the best fit to the Naka-Rushton function
 %    R(c) = Rm*c/(b+c)
 %  where C is contrast (0-1), Rm is the maximum response, and b is the
 %  half-maximum contrast.
 %
-%  [RM,B,N] = NAKA_RUSHTON(C,DATA)
+%  [RM,B,N] = vlt.fit.naka_rushton(C,DATA)
 %
 %  Finds the best fit to the Naka-Rushton function
 %    R(c) = Rm*c^n/(b+c^n)
 %  where C is contrast (0-1), Rm is the maximum response, and b is the
 %  half-maximum contrast.
 %
-%  [RM,B,N,S] = NAKA_RUSHTON(C,DATA)
+%  [RM,B,N,S] = vlt.fit.naka_rushton(C,DATA)
 %
 %  Finds the best fit to the Naka-Rushton function
 %    R(c) = Rm*c^n/(b^(s*n)+c^(s*n))
@@ -43,9 +43,9 @@ if nargout==4,
 	xo(4)=1; % saturation component (s)
 end;
 options= optimset('Display','off','MaxFunEvals',10000,'TolX',1e-6);
-[x] = fminsearch(@(x) naka_rushton_err(x,c,data),xo,options);
+[x] = fminsearch(@(x) vlt.fit.naka_rushton_err(x,c,data),xo,options);
 %options=foptions; options(1)=0; options(2)=1e-6;
-%[x] = fmins('naka_rushton_err',xo,options,[],c,data);
+%[x] = fmins('vlt.fit.naka_rushton_err',xo,options,[],c,data);
 rm=x(1);
 b=x(2);
 if nargout>=3

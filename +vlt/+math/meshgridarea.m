@@ -1,7 +1,7 @@
 function area = meshgridarea(xmesh, ymesh)
 % AREA = MESHGRIDAREA - Compute the area of each element of a meshgrid
 %
-%   AREA = MESHGRIDAREA(XMESH, YMESH)
+%   AREA = vlt.math.meshgridarea(XMESH, YMESH)
 %
 % Computes the area for a mesh grid with points XMESH YMESH.
 %

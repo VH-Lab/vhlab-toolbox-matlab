@@ -1,7 +1,7 @@
 function ax_h = supersubplot(fig, m, n, p)
 % SUPERSUBPLOT - Organize axes across multiple figures
 %
-%  AX_H=SUPERSUBPLOT(FIG, M, N, P)
+%  AX_H=vlt.plot.supersubplot(FIG, M, N, P)
 %
 %  Returns a set of axes that can be arranged across multiple
 %  figures.
@@ -18,7 +18,7 @@ function ax_h = supersubplot(fig, m, n, p)
 %
 %  Example:
 %       fig = figure;
-%       ax = supersubplot(fig,3,3,12);
+%       ax = vlt.plot.supersubplot(fig,3,3,12);
 %       % will return a subplot in position 3
 %       % on a second figure
 %    

@@ -1,6 +1,6 @@
 function cdf = kolmogorov_smirnov_cdf(x,tol)
 
-% KOLMOGOROV_SMIRNOV_CDF (X, TOL)
+% vlt.stats.kolmogorov_smirnov_cdf (X, TOL)
 % Return the CDF at X of the Kolmogorov-Smirnov distribution,
 %	        Inf
 %	Q(x) =  SUM    (-1)^k exp(-2 k^2 x^2)
@@ -18,7 +18,7 @@ if nargin==1, tol = eps; end;
 
 [nr, nc] = size (x);
 if (min (nr, nc) == 0)
-	error ('kolmogorov_smirnov_cdf: x must not be empty');
+	error ('vlt.stats.kolmogorov_smirnov_cdf: x must not be empty');
 end
 
 n   = nr * nc;

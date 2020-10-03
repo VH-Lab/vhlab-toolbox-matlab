@@ -9,7 +9,7 @@ function [theta, sf, R, offset, double_gauss_params, dog_params] = example_doubl
 % theta_range = [ 0:22.5:360-22.5 ];
 % sf_range = [ 0.01 0.02 0.05 0.08 0.1 0.2 0.5 1.2 1.5 1.8];
 % [theta, sf] = meshgrid(theta_range, sf_range);
-% R = double_gauss_DoG(theta, sf, double_gauss_params, dog_params);
+% R = vlt.math.double_gauss_DoG(theta, sf, double_gauss_params, dog_params);
 
 error('check for completion.');
 
@@ -22,5 +22,5 @@ sf_range = [ 0.01 0.02 0.05 0.08 0.1 0.2 0.5 1.2 1.5 1.8];
 
 [theta, sf] = meshgrid(theta_range, sf_range);
 
-R = double_gauss_DoG(theta, sf, offset, double_gauss_params, dog_params);
+R = vlt.math.double_gauss_DoG(theta, sf, offset, double_gauss_params, dog_params);
 

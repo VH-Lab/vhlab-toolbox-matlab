@@ -1,6 +1,6 @@
 function [d] = filterwaveform(data, parameters)
 
-%  [D] = FILTERWAVEFORM(DATA, PARAMETERS)
+%  [D] = vlt.signal.filterwaveform(DATA, PARAMETERS)
 %
 %      Filters a one-dimensional waveform.  PARAMETERS is a struct containing
 %      the following fields:

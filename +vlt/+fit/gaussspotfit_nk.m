@@ -1,7 +1,7 @@
 function [mu, C, a, c50, N, fit_responses] = gaussspotfit(xrange, yrange, x_ctr, y_ctr,radius,response)
 % GAUSSSPOTFIT - Fit a 2d gaussian to data
 %
-%  [MU,C,AMP,C50, N, FIT_RESPONSES] = GAUSSSPOTFIT_NK(XRANGE, YRANGE, X_CTR,Y_CTR,...
+%  [MU,C,AMP,C50, N, FIT_RESPONSES] = vlt.fit.gaussspotfit_nk(XRANGE, YRANGE, X_CTR,Y_CTR,...
 %                       RADIUS,RESPONSE)
 %
 %  Fits a 2d gaussian PDF to responses to circle stimulation at different positions, with
@@ -41,9 +41,9 @@ Upper = [ max(xrange); max(yrange); 10*max(radii)^2; 10*(max(radii)^2); 10*max(r
 Lower = [ min(xrange); min(yrange); 0; -10*(max(radii)^2); 0; 0 ; 1 ; 0.5];
 StartPoint = [ mu(1); mu(2); C(1);C(2);C(4); max(amp_initial); 1; max(amp_initial)/3];
 
-x = lsqcurvefit(@(x,xdata) ellipse_on_mvnpdf_nk_x0(x,xdata,X,Y),StartPoint,ellipse_params,response,Lower,Upper);
+x = lsqcurvefit(@(x,xdata) vlt.math.ellipse_on_mvnpdf_nk_x0(x,xdata,X,Y),StartPoint,ellipse_params,response,Lower,Upper);
 
-fit_responses = ellipse_on_mvnpdf_nk_x0(x,ellipse_params,X,Y);
+fit_responses = vlt.math.ellipse_on_mvnpdf_nk_x0(x,ellipse_params,X,Y);
 
 mu = [x(1) x(2)];
 C = [x(3) x(4);x(4) x(5)];

@@ -1,7 +1,7 @@
 function [uptodate, changes, untracked_present] = git_status(dirname)
 % GIT_STATUS - return git working tree status
 %
-% [UPTODATE, CHANGES, UNTRACKED_PRESENT] = GIT_STATUS(DIRNAME)
+% [UPTODATE, CHANGES, UNTRACKED_PRESENT] = vlt.git.git_status(DIRNAME)
 %
 % Examines whether a git working tree is up to date with its current branch
 %
@@ -11,9 +11,9 @@ function [uptodate, changes, untracked_present] = git_status(dirname)
 %
 % An error is generated if DIRNAME is not a GIT directory.
 %
-% See also: GIT_ISGITDIRECTORY
+% See also: vlt.git.git_isgitdirectory
 
-b = git_isgitdirectory(dirname);
+b = vlt.git.git_isgitdirectory(dirname);
 
 if ~b,
 	error(['Not a GIT directory: ' dirname '.']);

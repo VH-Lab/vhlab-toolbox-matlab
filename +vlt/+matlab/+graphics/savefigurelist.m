@@ -1,7 +1,7 @@
 function savefigurelist(figlist, varargin)
 % SAVEFIGURELIST - Write the current figures to disk using figure tags for file names
 %
-%   SAVEFIGURELIST(FIGLIST, ...)
+%   vlt.matlab.graphics.savefigurelist(FIGLIST, ...)
 %
 %   Writes all of the figures in FIGLIST to the present
 %   working directory, using the 'Tag' field of each figure as its filename.
@@ -24,7 +24,7 @@ function savefigurelist(figlist, varargin)
 ErrorIfTagEmpty = 1;
 Formats = {'fig','epsc','pdf'};
 
-assign(varargin{:});     
+vlt.data.assign(varargin{:});     
 
 
 if nargin==0,

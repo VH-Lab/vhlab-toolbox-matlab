@@ -1,8 +1,8 @@
 function r = compass2cartesian(c, useradians)
 
-% COMPASS2CARTESIAN - Convert angles from compass to cartesian
+% vlt.math.compass2cartesian - Convert angles from compass to cartesian
 %
-%  R = COMPASS2CARTESIAN(C, USERADIANS)
+%  R = vlt.math.compass2cartesian(C, USERADIANS)
 %  
 %  Converts angles from compass format to cartesian.
 %  In compass, 0 degrees is up, and angles rotate clockwise.

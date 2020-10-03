@@ -2,7 +2,7 @@ function g = listofvars(classname)
 
 %  Part of the NewStim package
 %
-%  VARLIST = LISTOFVARS(CLASSNAME)
+%  VARLIST = vlt.data.listofvars(CLASSNAME)
 %
 %  Returns a list of variables in the main workspace that are of type CLASSNAME.
 %  CLASSNAME should be a string like 'double' or 'stimulus'.  'ans' is never

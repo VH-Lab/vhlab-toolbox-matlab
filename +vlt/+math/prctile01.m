@@ -1,7 +1,7 @@
 function y = prctle01(x)
 % PRCTILE20 - 1st percentile of a data set
 % 
-% Y = PRCTILE01(X)
+% Y = vlt.math.prctile01(X)
 %
 % Simply returns Y=PRCTILE(X,1)
 %

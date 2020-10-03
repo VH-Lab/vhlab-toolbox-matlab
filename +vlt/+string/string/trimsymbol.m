@@ -1,7 +1,7 @@
 function newstr = trimsymbol(str, symbol)
 % TRIMSYMBOL - Trim a symbol (or symbols) from a string
 %
-%  NEWSTR = TRIMSYMBOL(STR, SYMBOL)
+%  NEWSTR = vlt.string.trimsymbol(STR, SYMBOL)
 %
 %  Removes the character symbols in the array SYMBOL from the
 %  character string STR, and return the result in NEWSTR.
@@ -11,7 +11,7 @@ function newstr = trimsymbol(str, symbol)
 %
 %  Example:  
 %     mystr = '*myhighlightedname#'
-%     newstr = trimsymbol(mystr,'*#')
+%     newstr = vlt.string.trimsymbol(mystr,'*#')
 %     % newstr = 'myhighlightedname'
 %     
 
@@ -19,7 +19,7 @@ newstr = str;
 
 if iscell(str),
 	for i=1:length(str),
-		newstr{i} = trimsymbol(str{i},symbol);
+		newstr{i} = vlt.string.trimsymbol(str{i},symbol);
 	end;
 else,
 	for i=1:length(symbol),

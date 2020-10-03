@@ -9,9 +9,9 @@ function addtag(ds, dir, tagname, value)
 %
 %  Tags are name/value pairs. The TAGNAME must be a valid Matlab
 %  variable name. Value can be any value that can be written to a string with
-%  SAVESTRUCTARRAY.
+%  vlt.file.saveStructArray.
 %
-%  See also: GETTAG, SAVESTRUCTARRAY
+%  See also: GETTAG, vlt.file.saveStructArray
 
 wholedir = [getpathname(ds) filesep dir];
 tagfilename = [wholedir filesep 'tags.txt'];
@@ -29,10 +29,10 @@ if isvarname(tagname),
 	else,
 		tags = newtag;
 	end;
-	[fid,key] = checkout_lock_file(taglockfilename,30,1);
+	[fid,key] = vlt.file.checkout_lock_file(taglockfilename,30,1);
 	if fid>0,
-		saveStructArray(tagfilename,tags);
-		release_lock_file(taglockfilename,key);
+		vlt.file.saveStructArray(tagfilename,tags);
+		vlt.file.release_lock_file(taglockfilename,key);
 	end;
 else,
 	error(['Cannot add tag with requested tagname ' tagname ' to directory ' wholedir '; the tag name is not a valid Matlab variable name.']);

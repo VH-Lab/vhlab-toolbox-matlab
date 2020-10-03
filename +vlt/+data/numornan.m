@@ -1,9 +1,9 @@
 function n_out = numornan(n_in, dims)
 % NUMORNAN - Return a number, or a NaN if the number is empty
 %
-%  N_OUT = NUMORNAN(N_IN)
+%  N_OUT = vlt.data.numornan(N_IN)
 %    or 
-%  N_OUT = NUMORNAN(N_IN, DIMS)
+%  N_OUT = vlt.data.numornan(N_IN, DIMS)
 %
 %  If N_IN is not empty, then N_OUT is set to N_IN.
 %  If N_IN is empty, then a NaN is returned.

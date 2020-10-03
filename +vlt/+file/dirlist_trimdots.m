@@ -1,7 +1,7 @@
 function dirlist = dirlist_trimdots(dirlist, output_struct)
 % DIR_TRIMDOTS - Trim strings '.' or '..' from a list of directory strings
 %   
-%  DIRLIST = DIRLIST_TRIMDOTS(DIRLIST_OR_DIRLISTSTRUCT, [OUTPUT_STRUCT])
+%  DIRLIST = vlt.file.dirlist_trimdots(DIRLIST_OR_DIRLISTSTRUCT, [OUTPUT_STRUCT])
 %
 %  When one obtains output from the MATLAB DIR function, the list sometimes
 %  includes the POSIX directories '.' (an abbreviation for the current
@@ -29,7 +29,7 @@ function dirlist = dirlist_trimdots(dirlist, output_struct)
 %    % display all of these directories
 %    dirlist = {D(dirnumbers).name}
 %    % now trim
-%    dirlist = dirlist_trimdots(dirlist)
+%    dirlist = vlt.file.dirlist_trimdots(dirlist)
 %
 
 if nargin<2, output_struct = 0; end;

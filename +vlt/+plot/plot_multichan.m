@@ -1,7 +1,7 @@
 function h = plotmultichan(data,t,space)
 % PLOT_MULTICHAN - Plots multiple channels
 %
-%  H = PLOT_MULTICHAN(DATA,T,SPACE)
+%  H = vlt.plot.plot_multichan(DATA,T,SPACE)
 %
 %  Plots multiple channels of DATA (assumed to be NUMSAMPLES X NUMCHANNELS)
 %

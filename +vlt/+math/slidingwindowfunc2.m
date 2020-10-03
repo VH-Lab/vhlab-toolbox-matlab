@@ -1,7 +1,7 @@
 function [Yn,Xn] = slidingwindowfunc2(X, Y, start, stepsize, stop, windowsize,func,zeropad)
 % SLIDINGWINDOWFUNC2 - Sliding window analysis for 1-dimensional data
 %
-%  [Yn,Xn] = SLIDINGWINDOWFUNC2(X,Y,START,STEPSIZE,STOP,WINDOWSIZE,...
+%  [Yn,Xn] = vlt.math.slidingwindowfunc2(X,Y,START,STEPSIZE,STOP,WINDOWSIZE,...
 %             FUNC,ZEROPAD)
 %
 %  Slides a window of WINDOWSIZE across the data and performs

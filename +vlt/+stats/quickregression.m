@@ -4,7 +4,7 @@ function [slope, offset, slope_interval, resid, residint, stats ] = quickregress
 % slope
 %
 % [SLOPE,OFFSET,SLOPE_CONFINTERVAL, ...
-%       RESID, RESIDINT, STATS] = QUICKREGRESSION(X,Y, ALPHA)
+%       RESID, RESIDINT, STATS] = vlt.stats.quickregression(X,Y, ALPHA)
 %
 %  Returns the best fit Y = SLOPE * X + OFFSET
 %

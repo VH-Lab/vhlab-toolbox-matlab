@@ -3,7 +3,7 @@ function v = vcarddata2addresslabels(vcarddata, varargin)
 %
 % V = VCARD2LABELS(VCARDDATA, ...)
 %
-% Identifies entries of the VCARDDATA (from VCARD2MAT) that have the
+% Identifies entries of the VCARDDATA (from vlt.file.vcard2mat) that have the
 % field VFLAG. Then, an address is constructed and saved in the cell array
 % of strings V. Each line of the address is a cell entry in the 2nd dimension
 % of V (for example, V{i}{2} is the 2nd line of the ith address.
@@ -22,9 +22,9 @@ function v = vcarddata2addresslabels(vcarddata, varargin)
 % 
 %
 % Example:
-%    v = vcard2mat(fname);
-%    vout = vcarddata2addresslabels(v);
-%    addresslabels2pdf(vout)
+%    v = vlt.file.vcard2mat(fname);
+%    vout = vlt.office.vcarddata2addresslabels(v);
+%    vlt.office.addresslabels2pdf(vout)
 %
 
 

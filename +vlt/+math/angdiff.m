@@ -1,12 +1,12 @@
 function D = angdiff(a)
 
-% ANGDIFF - Angular difference in 0..360
+% vlt.math.angdiff - Angular difference in 0..360
 %
-%  D = ANGDIFF(A)
+%  D = vlt.math.angdiff(A)
 %
 %  Returns min(abs([A;A+360;A-360]));
 %
-%  See also: ANGDIFFWRAP, ANGDIFFWRAPSIGN, DANGDIFFWRAP
+%  See also: vlt.math.angdiffwrap, vlt.math.angdiffwrapsign, vlt.math.dangdiffwrap
 
 flip = 0; 
 

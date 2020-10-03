@@ -2,7 +2,7 @@ function spreadsheet_out = spreadsheet_filterbydate(spreadsheet_in, datelow, dat
 % SPREADSHEET - Filter a spreadsheet for fields defined by a Timestamp field
 %  
 %
-% SPREADSHEET_OUT = SPREADSHEET_FILTERBYDATE(SPREADSHEET_IN, DATELOW, DATEHIGH, ...)
+% SPREADSHEET_OUT = vlt.spreadsheet.spreadsheet_filterbydate(SPREADSHEET_IN, DATELOW, DATEHIGH, ...)
 %
 % Filters a spreadsheet (cell array) SPREADSHEET_IN to exclude rows that have a 'timestamp'
 % field entry outside of the range DATELOW to DATEHIGH.
@@ -20,7 +20,7 @@ function spreadsheet_out = spreadsheet_filterbydate(spreadsheet_in, datelow, dat
 % TimestampColumnNumber    | The column of the timestamp column. If empty, will be
 %          ('')            |   searched for using TimestampColumnLabel.
 %
-% See also: DATENUM, NAMEVALUEPAIR 
+% See also: DATENUM, vlt.data.namevaluepair 
 
 
 FirstRowIsHeader = 1;
@@ -28,7 +28,7 @@ LeaveHeader = 1;
 TimestampColumnLabel = 'Timestamp';
 TimestampColumnNumber = [];
 
-assign(varargin{:});
+vlt.data.assign(varargin{:});
 
 datenumlow = datenum(datelow);
 datenumhigh = datenum(datehigh);

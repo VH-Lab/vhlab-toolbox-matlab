@@ -1,7 +1,7 @@
 function [x,group]=cell2group(input_data)
 % CELL2GROUP - Turn cell data into a vector with group ID, as appropriate for ANOVA1
 %
-%  [X,GROUP] = CELL2GROUP(INPUT_DATA)
+%  [X,GROUP] = vlt.data.cell2group(INPUT_DATA)
 %
 %  Reorganize data that is stored in vectors in different cells of the
 %  cell array INPUT_DATA into a single vector variable X with
@@ -12,7 +12,7 @@ function [x,group]=cell2group(input_data)
 %
 %  Example:
 %            a = { [1 2 3]', [4 5 6]', [7 8 9]' };
-%            [x,group]=cell2group(a)
+%            [x,group]=vlt.data.cell2group(a)
 %            % x is [1 2 3 4 5 6 7 8 9]'
 %            % group is [1 1 1 2 2 2 3 3 3]'
 %

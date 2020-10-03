@@ -22,7 +22,7 @@ function str = ugalumni_htmltable(faceinfo, varargin)
 % We use this to generate the undergraduate alumni portion of 
 % vhlab.org/people
 % 
-% See also: CELLSTR2TEXT, NAMEVALUEPAIR
+% See also: vlt.file.cellstr2text, vlt.data.namevaluepair
 %
 
 image_width = 200;
@@ -33,7 +33,7 @@ nametablepostfix = '</b></font>';
 tableidstr= '';
 addtitle = 0;
 
-assign(varargin{:});
+vlt.data.assign(varargin{:});
 
 str = {};
 

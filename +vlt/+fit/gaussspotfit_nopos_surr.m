@@ -1,7 +1,7 @@
 function [mu, C, a, b, fit_responses, r_squared] = gaussspotfit_nopos_surr(xrange, yrange, radius, response)
 % GAUSSSPOTFIT - Fit a 2d gaussian to data
 %
-%  [MU,C,AMP,B,FIT_RESPONSES, R_SQUARED] = GAUSSSPOTFIT_NOPOS_SURR(XRANGE, YRANGE, RADIUS, RESPONSE)
+%  [MU,C,AMP,B,FIT_RESPONSES, R_SQUARED] = vlt.fit.gaussspotfit_nopos_surr(XRANGE, YRANGE, RADIUS, RESPONSE)
 %
 %  Fits a 2d gaussian PDF with modulation to responses to circle / aperture stimulation.
 %
@@ -42,9 +42,9 @@ Upper = [ 2*max(radii)^2; Inf ; 0.5+0.5];
 Lower = [ 0; 0; -0.5-0.5 ];
 StartPoint = [ C(1)*10; amp_initial; 0];
 
-x = lsqcurvefit(@(x,xdata) ellipse_on_mvnpdf_nopos_surr_x0(x,xdata,X,Y),StartPoint,ellipse_params,response(:),Lower,Upper);
+x = lsqcurvefit(@(x,xdata) vlt.math.ellipse_on_mvnpdf_nopos_surr_x0(x,xdata,X,Y),StartPoint,ellipse_params,response(:),Lower,Upper);
 
-fit_responses = ellipse_on_mvnpdf_nopos_surr_x0(x,ellipse_params,X,Y);
+fit_responses = vlt.math.ellipse_on_mvnpdf_nopos_surr_x0(x,ellipse_params,X,Y);
 
 r_squared = 1 - sum((fit_responses-response(:)).^2) / sum((response(:) - nanmean(response(:))).^2);
 

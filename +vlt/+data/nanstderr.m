@@ -1,7 +1,7 @@
 function [se] = nanstderr(data)
 %  STDERR - Standard error of a vector of data
 %
-%  SE = STDERR(DATA);
+%  SE = vlt.data.nanstderr(DATA);
 %
 %  Computes standard error of each column, ignoring NaN's.
 %

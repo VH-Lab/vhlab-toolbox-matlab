@@ -1,7 +1,7 @@
 function str=intseq2str(A, varargin)
 % INTSEQ2STR - Convert an array of integers to a compact string, maintaining sequence
 %
-% STR = INTSEQ2STR(A)
+% STR = vlt.string.intseq2str(A)
 %
 % Converts the sequence of integers in array A to a compact, human-readable 
 % sequence with '-' indicating inclusion of a series of numbers and commas
@@ -18,7 +18,7 @@ function str=intseq2str(A, varargin)
 %     str = vlt.string.intseq2str(A)
 %     % str == '1-3,7,10'
 %
-% See also: INT2STR, STR2INTSEQ
+% See also: INT2STR, vlt.string.str2intseq
 %
 
 sep = ',';

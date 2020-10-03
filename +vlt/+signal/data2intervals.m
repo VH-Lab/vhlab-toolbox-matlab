@@ -1,7 +1,7 @@
 function [data_out,t_out] = data2intervals(data, t, intervals)
 %  DATA2INTERVALS - Identify data recorded during specified intervals
 %
-%   [DATA_OUT,T_OUT] = DATA2INTERVALS(DATA, T, INTERVALS)
+%   [DATA_OUT,T_OUT] = vlt.signal.data2intervals(DATA, T, INTERVALS)
 %
 %  This identifies data observations that were recorded in specified time
 %  intervals.  The input observations DATA are expected to be a cell list

@@ -1,7 +1,7 @@
 function saveStructArray(fname,gdi,header)
 % SAVESTRUCTARRAY - Save a structure array into a text file
 %  
-%   SAVESTRUCTARRAY(FILENAME, STRUCTARRAY, [HEADER])
+%   vlt.file.saveStructArray(FILENAME, STRUCTARRAY, [HEADER])
 %
 %   Saves structure array data of type STRUCT into a text
 %   file.  FILENAME is the name of the file to be written.
@@ -10,14 +10,14 @@ function saveStructArray(fname,gdi,header)
 %
 %   If HEADER is 1, then a header row with tab-delimited field names
 %   is written (recommended if the file is to be read back in with 
-%   LOADSTRUCTARRAY).  The input argument HEADER is optional 
+%   vlt.file.loadStructArray).  The input argument HEADER is optional 
 %   (and is 1 if not specified).
 %
 %   Any existing FILENAME is overwritten.
 %
 %   Originally from Ken Sugino
 %
-%   See also: LOADSTRUCTARRAY, STRUCT, TABSTR2STRUCT
+%   See also: vlt.file.loadStructArray, STRUCT, vlt.data.tabstr2struct
 %   
 
 if nargin == 2
@@ -41,7 +41,7 @@ if header == 1
 end
 
 for i=1:length(gdi)
-	s = struct2tabstr(gdi(i));
+	s = vlt.data.struct2tabstr(gdi(i));
 	fprintf(fid,'%s\n',s);
 end
 
