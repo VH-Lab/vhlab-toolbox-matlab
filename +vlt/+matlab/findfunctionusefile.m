@@ -33,10 +33,6 @@ if numel(minfo)>1,
 	return;
 end;
 
-if ~minfo.isfunction,
-	return;
-end;
-
 full = vlt.file.fullfilename(filename);
 t = vlt.file.text2cellstr(filename);
 
