@@ -13,7 +13,7 @@ pathname = which('vlt.config.config_dirname');
 
 pi = find(pathname==filesep);
 
-dirname= [pathname(1:pi(end-2)) 'vhlab_configuration' filesep];
+dirname= [pathname(1:pi(end-3)) 'vhlab_configuration' filesep];
 
 if ~exist(dirname,'dir')
 	mkdir(dirname);
