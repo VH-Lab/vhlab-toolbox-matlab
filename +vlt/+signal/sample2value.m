@@ -13,5 +13,5 @@ function v = sample2value(s, sr, v1)
 %    v = vlt.signal.sample2value(1001, 1000, 0) % v is 1.0
 %
 
-v = v1 + (s-1)/sr;
+v = v1 + (double(s)-1)/sr;
 
