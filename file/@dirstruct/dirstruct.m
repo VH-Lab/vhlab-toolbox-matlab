@@ -51,4 +51,6 @@ S.autoextractor_list = autoextractor_list;
 S.active_dir_list={};
 ds = class(S,'dirstruct');
 
-if nargin>0, ds = update(ds); end;
+if nargin>0,
+    ds = update(ds);
+end;
