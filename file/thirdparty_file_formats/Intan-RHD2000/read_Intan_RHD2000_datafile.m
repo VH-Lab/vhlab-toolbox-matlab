@@ -66,7 +66,7 @@ total_time = total_samples / header.frequency_parameters.amplifier_sample_rate; 
 % NOW, WHICH DATA DID THE USER REQUEST US TO READ?
 
  % fix t0, t1 to be in range
-if t0<1, t0 = 0; end;
+if t0<0, t0 = 0; end;
 if t1>(total_time-1/header.frequency_parameters.amplifier_sample_rate),
 	t1 = total_time-1/header.frequency_parameters.amplifier_sample_rate;
 end;
@@ -81,7 +81,7 @@ block0_s = mod(s0,60) + (mod(s0,60)==0)*60; % s0 is the block0_s sample in block
 block1 = ceil(s1/60);
 block1_s = mod(s1,60) + (mod(s1,60)==0)*60; % s1 is the block1_s sample in block1
 
- % determine which channels are going to be read into memory
+% determine which channels are going to be read into memory
 ch = zeros(1,8);
 if ischar(channel_type),
 	switch(channel_type),
