@@ -81,14 +81,14 @@ total_time = total_samples / header.frequency_parameters.amplifier_sample_rate; 
 % NOW, WHICH DATA DID THE USER REQUEST US TO READ?
 
  % fix t0, t1 to be in range
-if t0<1, t0 = 0; end;
+if t0<0, t0 = 0; end;
 if t1>(total_time-1/header.frequency_parameters.amplifier_sample_rate),
 	t1 = total_time-1/header.frequency_parameters.amplifier_sample_rate;
 end;
 
  % now compute starting and ending samples to read
-s0 = 1+fix(t0 * header.frequency_parameters.amplifier_sample_rate);
-s1 = 1+fix(t1 * header.frequency_parameters.amplifier_sample_rate);
+s0 = 1+round(t0 * header.frequency_parameters.amplifier_sample_rate);
+s1 = 1+round(t1 * header.frequency_parameters.amplifier_sample_rate);
 
  % determine which channels are going to be read into memory
 ch = zeros(1,8);

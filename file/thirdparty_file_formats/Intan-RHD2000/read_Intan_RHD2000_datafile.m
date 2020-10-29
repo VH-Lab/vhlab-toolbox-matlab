@@ -72,8 +72,8 @@ if t1>(total_time-1/header.frequency_parameters.amplifier_sample_rate),
 end;
 
  % now compute starting and ending samples to read
-s0 = 1+fix(t0 * header.frequency_parameters.amplifier_sample_rate);
-s1 = 1+fix(t1 * header.frequency_parameters.amplifier_sample_rate);
+s0 = 1+round(t0 * header.frequency_parameters.amplifier_sample_rate);
+s1 = 1+round(t1 * header.frequency_parameters.amplifier_sample_rate);
 
  % where do these samples live? in which blocks?
 block0 = ceil(s0/60);
