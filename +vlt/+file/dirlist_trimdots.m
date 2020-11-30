@@ -14,12 +14,12 @@ function dirlist = dirlist_trimdots(dirlist, output_struct)
 %
 %  The function stops when it has found both '.' and '..'; if these entries
 %  occur more than once they will not be removed. Also removes '.DS_Store'
-%  (Apple desktop information).
+%  (Apple desktop information) and '.git' (Git information).
 %
 %  If the argument OUTPUT_STRUCT is present and is 1, and if
 %  DIRLIST_OR_DIRLISTSTRUCT is a structure returned from the function DIR,
 %  then the output will be a structure of the same type with the '.' and
-%  '..' (and '.DS_Store') removed.
+%  '..' (and '.DS_Store' and '.git') removed.
 %
 %  See also: DIR, vlt.file.dirstrip()
 %
