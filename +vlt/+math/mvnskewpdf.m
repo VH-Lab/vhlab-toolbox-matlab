@@ -8,7 +8,7 @@ function Y = mvnskewpdf(X, Mu, Sigma, alpha)
 %  The multivariate skewed distribution is defined as in Azzalini and Dalla Valle (1996):
 %
 %   For each value of x:
-%   vlt.math.mvnskewpdf(X,MU,SIGMA,ALPHA) = 2*MVNPDF(X, MU, SIGMA) * NORMCDF(ALPHA'*(X-MU))
+%   vlt.math.mvnskewpdf(X,MU,SIGMA,ALPHA) = 2*MVNPDF(X, MU, SIGMA) * NORMCDF(ALPHA'*(X-MU)')
 %
 
 [N,D] = size(X);
