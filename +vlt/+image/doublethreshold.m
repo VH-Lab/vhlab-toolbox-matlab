@@ -16,12 +16,12 @@ function bin = doublethreshold(im, t1, t2, connectivity)
 t_high = max(t1,t2);
 t_low = min(t1,t2);
 
-Lhigh = bwlabel(logical(im>=t_high), connectivity);
+Lhigh = bwlabeln(logical(im>=t_high), connectivity);
 CClow  = bwconncomp(logical(im>=t_low),  connectivity);
 
 retain = [];
 
-for i=1:numel(CClow.NumObjects),
+for i=1:CClow.NumObjects,
 	if any(Lhigh(CClow.PixelIdxList{i})),
 		retain(end+1) = i;
 	end;
