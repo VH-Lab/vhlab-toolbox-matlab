@@ -24,6 +24,27 @@ function [fc, freqs] = fouriercoeffs(data,si)
 %  [1]: _Waves_, Berkeley Physics Course Volume 3, Crawford, 1968
 % 
 %  See also:  FFT
+%
+%  Example:
+%    t = 0:0.001:3;
+%    f = 4; % 4 Hz
+%    phase = pi/3;
+%    s = 2+0.5*sin(2*pi*f*t+phase); % sinusoidal function with amplitude 0.5
+%    [fc,freqs] = fouriercoeffs(s,0.001);
+%    figure;
+%    subplot(2,1,1);
+%    plot(t,s);
+%    xlabel('Time(s)');
+%    ylabel('Signal(a.u.)');
+%    box off;
+%    subplot(2,1,2);
+%    plot(freqs,abs(fc),'o');
+%    A=axis;
+%    axis([0 10 0 3]);
+%    xlabel('Frequency (Hz)');
+%    ylabel('Magnitude of Fourier coefficient');
+%    box off;
+% 
 
 fc = fft(data);
 
