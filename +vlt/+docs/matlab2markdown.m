@@ -1,16 +1,25 @@
-function out = matlab2markdown(input_path, output_path, ymlpath, packageprefix)
+function out = matlab2markdown(input_path, output_path, ymlpath, objectstruct, packageprefix)
 % MATLAB2MARKDOWN - convert Matlab documentation to markdown
 %
-% OUT = MATLAB2MARKDOWN(INPUT_PATH, OUTPUT_PATH, YMLPATH)
+% OUT = MATLAB2MARKDOWN(INPUT_PATH, OUTPUT_PATH, YMLPATH, OBJECTSTRUCT)
 % 
 % Recursively converts Matlab documentation to Markdown format (.md) starting from an INPUT_PATH.
 % The documentation is saved in subdirectories in OUTPUT_PATH and a yml index file is created.
 %
+% Optionally, one may pass an OBJECTSTRUCT with field 'object' that describes the full name of a code
+% object (such as 'ndi.app') and field 'path' that describes the mkdoc yml path to that object.
+%
 % OUT is a structure record of the same data written to the OUTPUT_PATH.
+%
+% See also: vlt.docs.markdownoutput2objectstruct
 
 out = vlt.data.emptystruct('title','path');
 
 if nargin<4,
+	objectstruct = [];
+end;
+
+if nargin<5,
 	packageprefix = '';
 end;
 
@@ -39,19 +48,36 @@ for i=1:numel(w.m),
 
 	doctext = ['# ' classstr vlt.matlab.mfile2package([input_path filesep w.m{i}]) newline newline];
 
-	doctext = cat(2,doctext,h);
+	if ~isclass, % if it is a class, we'll write the help below
+		doctext = cat(2,doctext,h); % write the help file
+	end;
 
 	out_here.title = vlt.matlab.mfile2package([input_path filesep w.m{i}]);
+	out_here.path = [ymlpath filesep w.m{i} '.md'];
 
 	if isclass,
 		[classhelp, prop_struct, methods_struct,superclassnames] = vlt.docs.class2help([input_path filesep w.m{i}]);
+
+		doctext = cat(2,doctext,classhelp);
 
 		doctext = cat(2,doctext,['## Superclasses' newline]);
 		if numel(superclassnames)==0,
 			doctext = cat(2,doctext, ['*none*']);
 		end;
 		for j=1:numel(superclassnames),
-			doctext = cat(2,doctext, ['**' superclassnames{j} '**']);
+			index = [];
+			if ~isempty(objectstruct),
+				index = find(strcmp(superclassnames{j},{objectstruct.object}));
+			end;
+			linkhere = [];
+			linkopen = '';
+			linkclose = '';
+			if ~isempty(index),
+				linkhere = ['(' vlt.path.absolute2relative(objectstruct(index).path,out_here.path) ')'];
+				linkopen = '[';
+				linkclose = ']';
+			end;
+			doctext = cat(2,doctext, ['**' linkopen superclassnames{j} linkclose linkhere '**']);
 			if j~=numel(superclassnames),
 				doctext = cat(2,doctext,', ');
 			end;
@@ -91,7 +117,6 @@ for i=1:numel(w.m),
 		end;
 	end;
 		
-	out_here.path = [ymlpath filesep w.m{i} '.md'];
 	vlt.file.str2text([output_path filesep w.m{i} '.md'], doctext);
 	out(end+1) = out_here;
 end;
@@ -110,7 +135,7 @@ for i=1:numel(w.packages),
 	next_ymlpath = [ymlpath filesep '+' w.packages{i}];
 	next_packageprefix = [packageprefix w.packages{i} '.'];
 
-	outst = vlt.docs.matlab2markdown(next_inputdir, next_outputdir, next_ymlpath, next_packageprefix);
+	outst = vlt.docs.matlab2markdown(next_inputdir, next_outputdir, next_ymlpath, objectstruct, next_packageprefix);
 
 	if ~isempty(outst),
 		out_here.path = outst;
