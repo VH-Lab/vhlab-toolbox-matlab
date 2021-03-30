@@ -135,7 +135,7 @@ classdef dumbjsondb
 				end;
 		end % dumbjsondb()
 
-		function dumbjsondb_obj = add(dumbjsondb_obj, doc_object, varargin)
+		function [dumbjsondb_obj,addAction] = add(dumbjsondb_obj, doc_object, varargin)
 			% ADD - add a document to a DUMBJSONDB
 			%
 			% DUMBJSONDB_OBJ = ADD(DUMBJSONDB_OBJ, DOC_OBJECT, ....)
@@ -155,6 +155,8 @@ classdef dumbjsondb
 			%
 			% See also: DUMBJSONDB, DUMBJSONDB/READ, DUMBJSONDB/REMOVE, DUMBJSONDB/DOCVERSIONS, DUMBJSONDB/ALLDOCIDS
 			%
+				addAction = vlt.data.emptystruct('wrote','overwrote','doc_object_json','doc_version','doc_unique_id');
+				addAction(1).wrote = 0;
 				Overwrite = 1;
 				[doc_unique_id] = docstats(dumbjsondb_obj, doc_object);
 				doc_version = dumbjsondb_obj.latestdocversion(doc_unique_id);
@@ -193,7 +195,11 @@ classdef dumbjsondb
 				end
 
 				if can_we_write,
-					writeobject(dumbjsondb_obj, doc_object, doc_unique_id, doc_version);
+					addAction.doc_object_json = writeobject(dumbjsondb_obj, doc_object, doc_unique_id, doc_version);
+					addAction.wrote = 1;
+					addAction.overwrote = Overwrite;
+					addAction.doc_unique_id = doc_unique_id;
+					addAction.doc_version = doc_version;
 				end
 		end % add()
 
@@ -568,14 +574,17 @@ classdef dumbjsondb
 
 	methods (Access=protected) % only available to subclasses
 
-		function writeobject(dumbjsondb_obj, doc_object, doc_unique_id, doc_version)
+		function js = writeobject(dumbjsondb_obj, doc_object, doc_unique_id, doc_version)
 			% WRITEOBJECT - write an object to the database, called by add (also overwrites)
 			%
-			% WRITEOBJECT(DUMBJSONDB_OBJ, DOC_OBJECT, DOC_UNIQUE_ID, DOC_VERSION)
+			% JS = WRITEOBJECT(DUMBJSONDB_OBJ, DOC_OBJECT, DOC_UNIQUE_ID, DOC_VERSION)
 			%
 			% Writes the object data for DOC_OBJECT to disk. DOC_UNIQUE_ID and DOC_VERSION specify
 			% the document unique id and document version, respectively. Overwrites any existing files.
 			%
+			% The string content of the document is returned in JS.
+			%
+				js = [];
 				doc_unique_id = vlt.file.dumbjsondb.fixdocuniqueid(doc_unique_id);
 				
 				% Write a) doc file 
@@ -584,11 +593,11 @@ classdef dumbjsondb
 				
 				% a) the doc file
 				p = dumbjsondb_obj.documentpath();
-                if ~exist(p,'dir'), 
-                    mkdir(p);
-                end;
+				if ~exist(p,'dir'), 
+					mkdir(p);
+				end;
 				docfile = vlt.file.dumbjsondb.uniqueid2filename(doc_unique_id, doc_version);
-				vlt.file.dumbjsondb.docobject2file(doc_object, [p docfile]);
+				js = vlt.file.dumbjsondb.docobject2file(doc_object, [p docfile]);
 
 				% b) the meta data file
 
@@ -738,23 +747,23 @@ classdef dumbjsondb
 	end % methods protected
 
 	methods (Static=true, Access=protected)
-
-		function docobject2file(doc_object, filename)
+		function js = docobject2file(doc_object, filename)
 			% DOCOBJECT2FILE - write a document object to a file
 			%
-			% DOCOBJECT2FILE(DOC_OBJECT, FILENAME)
+			% JS = DOCOBJECT2FILE(DOC_OBJECT, FILENAME)
 			%
-			% Encodes and writes the DOCOBJECT to FILENAME.
+			% Encodes and writes the DOCOBJECT to FILENAME. The JSON string JS is returned.
 			%
 			% In DUMBJSONDB class, this simply encodes the Matlab object
 			% DOCOBJECT in JSON using JSONENCODENAN.
 			%
+				js = [];
 				% encode the document 
-                try,
-    				js = vlt.data.jsonencodenan(doc_object);
-                catch,
-                    error(['Could not generate JSON code from object.']);
-                end;
+				try,
+					js = vlt.data.jsonencodenan(doc_object);
+				catch,
+					error(['Could not generate JSON code from object.']);
+				end;
 				try,
 					vlt.file.str2text([filename], js);
 				catch,
