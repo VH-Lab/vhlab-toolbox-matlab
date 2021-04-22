@@ -32,6 +32,12 @@ function [data,total_samples,total_time,blockinfo,time] = read_CED_SOMSMR_datafi
 %  See also: READ_CED_SOMSMR_HEADER, READ_CED_SOMSMR_SAMPLEINTERVAL
 %
 
+data = [];
+total_samples = [];
+total_time = [];
+blockinfo = [];
+time = [];
+
 if isempty(header),
 	header = read_CED_SOMSMR_header(filename);
 end;
@@ -40,7 +46,7 @@ if numel(channel_number)>1,
 	error([ ...
 	'Note: at this time, we can only read single channels at a time. If CHANNEL_NUMBER is an array, ' ...
 	'there will be an error. If the user need this functionality, please submit an ISSUE on GitHub ' ...
-	'(http://github.com/VH-Lab/vhlab_mltbx_toolbox).' ]);
+	'(http://github.com/VH-Lab/vhlab-toolbox-matlab).' ]);
 end
 
 channel_index = find([[header.channelinfo.number]==channel_number]);
@@ -62,7 +68,7 @@ switch (header.channelinfo(channel_index).kind),
 
 	case {1,9}, % ADC
 		blockinfo = SONGetBlockHeaders(fid,header.channelinfo(channel_index).number);
-        numblocks = size(blockinfo,2);
+		numblocks = size(blockinfo,2);
 		block_length = blockinfo(5,1); % assume all blocks except last have same length
 				% assume last block has possibly fewer samples but not greater
 
@@ -71,21 +77,21 @@ switch (header.channelinfo(channel_index).kind),
 		[dummy,chheader] = SONGetADCChannel(fid,header.channelinfo(channel_index).number,1,1);
 		total_time = chheader.sampleinterval*1e-6 * total_samples;
 		s0 = point2samplelabel(t0,chheader.sampleinterval*1e-6);
-        if s0<=0, s0 = 1; end;
+		if s0<=0, s0 = 1; end;
 		s1 = point2samplelabel(t1,chheader.sampleinterval*1e-6);
 
 		block_start = 1 + floor(s0/block_length);
 		start_sample_within_block = mod(s0,block_length);
 		block_stop = 1 + floor(s1/block_length);
 		stop_sample_within_block = mod(s1,block_length);
-        if block_stop > numblocks,
-            block_stop = numblocks;
-            stop_sample_within_block = blockinfo(5,block_stop);
-        end;
-        if stop_sample_within_block > blockinfo(5,block_stop), 
-            stop_sample_within_block = blockinfo(5,block_stop);
-        end;
-        actual_s1 = sum(blockinfo(5,1:block_stop-1)) + stop_sample_within_block;
+		if block_stop > numblocks,
+			block_stop = numblocks;
+			stop_sample_within_block = blockinfo(5,block_stop);
+		end;
+		if stop_sample_within_block > blockinfo(5,block_stop), 
+			stop_sample_within_block = blockinfo(5,block_stop);
+		end;
+		actual_s1 = sum(blockinfo(5,1:block_stop-1)) + stop_sample_within_block;
 		samples_to_trim = blockinfo(5,block_stop) - stop_sample_within_block;
 
 		data = SONGetADCChannel(fid,header.channelinfo(channel_index).number,...
@@ -95,8 +101,11 @@ switch (header.channelinfo(channel_index).kind),
 		time = chheader.start + ((s0:actual_s1)-1)* chheader.sampleinterval*1e-6;
 
 	case {2,3,4}, % event
-		total_samples = [];
 		blockinfo = SONGetBlockHeaders(fid,header.channelinfo(channel_index).number);
+		if isempty(blockinfo),
+			fclose(fid);
+			return;
+		end;
 		blocktimes = blockinfo(2:3,:)*header.fileinfo.usPerTime*header.fileinfo.dTimeBase;
 		total_time = blocktimes(2,end);
 
@@ -106,22 +115,34 @@ switch (header.channelinfo(channel_index).kind),
 			block_start,block_end);
 		data = data(find(data>=t0 & data<=t1));
 		time = data;
-	case {5,7,8}, % marker
-		total_samples = [];
+	case {5,6,7,8}, % marker
 		blockinfo = SONGetBlockHeaders(fid,header.channelinfo(channel_index).number);
+		if isempty(blockinfo),
+			fclose(fid);
+			return;
+		end;
 		blocktimes = blockinfo(2:3,:)*header.fileinfo.usPerTime*header.fileinfo.dTimeBase;
 		total_time = blocktimes(2,end);
 		
 		block_start = max([1 find(blocktimes(1,:)<=t0 & blocktimes(2,:)>=t0)]);
 		block_end = min([size(blocktimes,2) find(blocktimes(2,:)<=t1,1,'first')]);
-		[data]=SONGetMarkerChannel(fid,header.channelinfo(channel_index).number,...
+		if header.channelinfo(channel_index).kind == 5,
+			[data]=SONGetMarkerChannel(fid,header.channelinfo(channel_index).number,...
 			block_start,block_end);
+		elseif header.channelinfo(channel_index).kind == 6,
+			[data]=SONGetADCMarkerChannel(fid,header.channelinfo(channel_index).number,...
+			block_start,block_end);            
+		elseif header.channelinfo(channel_index).kind == 7,
+			[data]=SONGetRealMarkerChannel(fid,header.channelinfo(channel_index).number,...
+			block_start,block_end);            
+		elseif header.channelinfo(channel_index).kind == 8,
+			[data]=SONGetTextMarkerChannel(fid,header.channelinfo(channel_index).number,...
+			block_start,block_end);
+			data.markers = char(data.text);
+		end;
 		good_indexes = find(data.timings>=t0 & data.timings<=t1);
 		time = data.timings(good_indexes);
-		data = data.markers(good_indexes);
-	case 6, % wavemark
-		fclose(fid);
-		error(['need to implement this channel type (wavemark).']);
+		data = data.markers(good_indexes,:);
 	otherwise,
 		fclose(fid);
 		error(['Unknown channel kind: ' int2str(header.channelinfo(channel_index).kind)  '.']);

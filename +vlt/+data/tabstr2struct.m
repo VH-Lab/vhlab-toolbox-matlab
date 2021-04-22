@@ -11,8 +11,8 @@ function a = tabstr2struct(s,fields)
 % stored as a string.
 %
 % Exceptions: 
-%   a) If the string happens to have two '/' or '-' characters, then it is assumed to be a date and is interpreted as
-%      a string.
+%   a) If the string happens to have two '/' characters or has the form 'yyyy-dd-mm', then it
+%      is assumed to be a date and is interpreted as a string.
 % 
 %   b) If the string should happen to be correspond to a non-numeric object in Matlab,
 %      we assume the user wants to specify the string rather than an empty matlab 
@@ -33,7 +33,7 @@ pos = findstr(str,char(9));
 for i=1:length(fields)
 	t = str(pos(i)+1:pos(i+1)-1);
 
-	if numel(find(t=='/')) > 1 | numel(find(t=='-')) > 1, % assume it is a date, pass as string
+	if numel(find(t=='/')) > 1 | ~isempty(regexp(t,'(\s*)\d\d\d\d-\d\d-\d\d(\s*)')), % assume it is a date, pass as string
 		u = []; 
 	else,
 		u = str2num(t);
