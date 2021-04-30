@@ -36,7 +36,7 @@ if UseProgressBar,
 end;
 
 for i=1:numel(rois_to_update),
-	CCnew = ROI_resegment(im, CC.PixelIdxList{rois_to_update(i)}, resegment_namevaluepairs{:});
+	CCnew = vlt.image.roi.ROI_resegment(im, CC.PixelIdxList{rois_to_update(i)}, resegment_namevaluepairs{:});
 	if CCnew.NumObjects > 1, % we have to add some ROIs
 		L(CC.PixelIdxList{rois_to_update(i)}) = 0; % remove existing label label
 		CC.PixelIdxList{rois_to_update(i)} = CCnew.PixelIdxList{1}; % update the indexes
