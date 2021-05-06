@@ -31,3 +31,4 @@ CClow.NumObjects = numel(retain);
 CClow.PixelIdxList = CClow.PixelIdxList(retain);
 
 bin = logical(labelmatrix(CClow));
+
