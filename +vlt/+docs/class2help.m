@@ -24,7 +24,7 @@ end;
 packagename = vlt.matlab.mfile2package(filename);
 
 classhelp_ = help(filename);
-[classhelp,pos,linemarks] = [vlt.string.line_n(classhelp_,1)];
+[classhelp,pos,linemarks] = vlt.string.line_n(classhelp_,1);
 classhelp(end+1) = sprintf('\n');
 for i=2:numel(linemarks)-3, % remove last 3 lines that indicate documentation
 	classhelp = cat(2,classhelp,line_n(classhelp_,i),sprintf('\n'));
