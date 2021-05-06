@@ -30,7 +30,14 @@ for i=1:length(fn)
 		s = [s char(9) f];
     else
         try,
-    		s = [s char(9) mat2str(f)];
+            if iscell(f),
+                if min(size(f))~=1,
+                    error(['field ' fn{i} ' is a cell but not a 1-dimensional cell.']);
+                end;
+                s = [s char(9) cell2str(f)];
+            else,
+        		s = [s char(9) mat2str(f)];
+            end;
         catch,
             error(['field not character or numeric: ' fn{i} ' is ' class(f) '.']);
         end;
