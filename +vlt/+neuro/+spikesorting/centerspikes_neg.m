@@ -1,6 +1,6 @@
-function [centeredspikes] = centerspikes_neg(spikeshapes, center_range)
+function [centeredspikes, shifts] = centerspikes_neg(spikeshapes, center_range)
 % CENTERSPIKES_NEG Center negative-going spike waveforms based on minimum
-%  [CENTEREDSPIKES] = vlt.neuro.spikesorting.centerspikes_neg(SPIKESHAPES, CENTER_RANGE)
+%  [CENTEREDSPIKES, SHIFTS] = vlt.neuro.spikesorting.centerspikes_neg(SPIKESHAPES, CENTER_RANGE)
 %
 %  Inputs: SPIKESHAPES: an NxMxD vector where N is the number of spikes, M is the number of
 %           samples that comprise each spike waveform, and D is dimensions (i.e., number of
@@ -10,6 +10,8 @@ function [centeredspikes] = centerspikes_neg(spikeshapes, center_range)
 %  Outputs: 
 %          CENTEREDSPIKES: the re-centered spikes; if the center of a spike has shifted, then
 %           the edges will be zero padded.
+%          SHIFTS: the number of samples the spike has been shifted. Negative means the centered spike
+%           was shifted to the left, positive is shifted to the right.
 
 
 fits = [];
@@ -17,7 +19,9 @@ centeredspikes = [];
 
 [N,M,D] = size(spikeshapes);
 
-center_pts = round((M-1)/2) + [-center_range:center_range ];
+center_pts = round((M)/2) + [-center_range:center_range ];
+
+shifts = [];
 
 for i=1:N,
 	% fit the size for the dimension that has the largest negative going spike
@@ -28,7 +32,8 @@ for i=1:N,
 	[v,m] = min(ss);
 	[v2,dm] = min(v); % dimension that has minimum point
 	min_index = m(dm);
-	shift = center_pts(min_index) - round((M-1)/2);
+	shift = center_pts(min_index) - round((M)/2);
+	shifts(i) = -shift;
 	paddedspike = cat(2,zeros(1,center_range,D),spikeshapes(i,:,:),zeros(1,center_range,D));
 	paddedspike = paddedspike(1,shift+center_range+1:end+shift-center_range,:);
 	centeredspikes = cat(1,centeredspikes,paddedspike);
