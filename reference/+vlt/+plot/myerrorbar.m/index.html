@@ -1,0 +1,9338 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <meta name="author" content="Steve Van Hooser">
+      
+      
+      <link rel="icon" href="../../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-7.1.4">
+    
+    
+      
+        <title>vlt.plot.myerrorbar - vhlab-toolbox-matlab</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.bde7dde4.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.ef6f36e2.min.css">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>:root{--md-text-font-family:"Roboto";--md-code-font-family:"Roboto Mono"}</style>
+      
+    
+    
+    
+    
+      
+        
+<script>window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)},ga.l=+new Date,ga("create","UA-91714905-7","auto"),ga("set","anonymizeIp",!0),ga("send","pageview"),document.addEventListener("DOMContentLoaded",function(){document.forms.search&&document.forms.search.query.addEventListener("blur",function(){var e;this.value&&(e=document.location.pathname,ga("send","pageview",e+"?q="+this.value))}),"undefined"!=typeof location$&&location$.subscribe(function(e){ga("send","pageview",e.pathname)})})</script>
+<script async src="https://www.google-analytics.com/analytics.js"></script>
+      
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="">
+  
+    
+    <script>function __prefix(e){return new URL("../../../..",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
+    
+      <script>var palette=__get("__palette");if(null!==palette&&"object"==typeof palette.color)for(var key in palette.color)document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#vltplotmyerrorbar" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../../.." title="vhlab-toolbox-matlab" class="md-header__button md-logo" aria-label="vhlab-toolbox-matlab" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            vhlab-toolbox-matlab
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              vlt.plot.myerrorbar
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      <form class="md-header__option" data-md-component="palette">
+        
+          
+          
+          <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="" type="radio" name="__palette" id="__palette_1">
+          
+            <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5c-.84 0-1.65.15-2.39.42L12 2M3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29L3.34 7m.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14L3.36 17M20.65 7l-1.77 3.79a7.023 7.023 0 0 0-2.38-4.15l4.15.36m-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29L20.64 17M12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44L12 22z"/></svg>
+            </label>
+          
+        
+          
+          
+          <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="" data-md-color-accent="" type="radio" name="__palette" id="__palette_2">
+          
+            <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3 3.19.09m3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95 2.06.05m-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31z"/></svg>
+            </label>
+          
+        
+      </form>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        
+<a href="https://github.com/VH-Lab/vhlab-toolbox-matlab/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../../.." title="vhlab-toolbox-matlab" class="md-nav__button md-logo" aria-label="vhlab-toolbox-matlab" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    vhlab-toolbox-matlab
+  </label>
+  
+    <div class="md-nav__source">
+      
+<a href="https://github.com/VH-Lab/vhlab-toolbox-matlab/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../.." class="md-nav__link">
+        Home
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../installation/" class="md-nav__link">
+        Installation
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../contributing/" class="md-nav__link">
+        Contributing
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" checked>
+      
+      <label class="md-nav__link" for="__nav_4">
+        Code reference
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Code reference" data-md-level="1">
+        <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          Code reference
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../vlt_Init.m/" class="md-nav__link">
+        vlt_Init
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_2" type="checkbox" id="__nav_4_2" checked>
+      
+      <label class="md-nav__link" for="__nav_4_2">
+        vlt PACKAGE
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="vlt PACKAGE" data-md-level="2">
+        <label class="md-nav__title" for="__nav_4_2">
+          <span class="md-nav__icon md-icon"></span>
+          vlt PACKAGE
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../globals.m/" class="md-nav__link">
+        vlt.globals
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_2_2" type="checkbox" id="__nav_4_2_2" >
+      
+      <label class="md-nav__link" for="__nav_4_2_2">
+        app PACKAGE
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="app PACKAGE" data-md-level="3">
+        <label class="md-nav__title" for="__nav_4_2_2">
+          <span class="md-nav__icon md-icon"></span>
+          app PACKAGE
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bapp/log.m/" class="md-nav__link">
+        vlt.app.log
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_2_3" type="checkbox" id="__nav_4_2_3" >
+      
+      <label class="md-nav__link" for="__nav_4_2_3">
+        batch PACKAGE
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="batch PACKAGE" data-md-level="3">
+        <label class="md-nav__title" for="__nav_4_2_3">
+          <span class="md-nav__icon md-icon"></span>
+          batch PACKAGE
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bbatch/simple_batch.m/" class="md-nav__link">
+        vlt.batch.simple_batch
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_2_4" type="checkbox" id="__nav_4_2_4" >
+      
+      <label class="md-nav__link" for="__nav_4_2_4">
+        colorspace PACKAGE
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="colorspace PACKAGE" data-md-level="3">
+        <label class="md-nav__title" for="__nav_4_2_4">
+          <span class="md-nav__icon md-icon"></span>
+          colorspace PACKAGE
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bcolorspace/angle2ybgr.m/" class="md-nav__link">
+        vlt.colorspace.angle2ybgr
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bcolorspace/angle2ycgr.m/" class="md-nav__link">
+        vlt.colorspace.angle2ycgr
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bcolorspace/cmyk2rgb.m/" class="md-nav__link">
+        vlt.colorspace.cmyk2rgb
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bcolorspace/rgb2cmyk.m/" class="md-nav__link">
+        vlt.colorspace.rgb2cmyk
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_2_5" type="checkbox" id="__nav_4_2_5" >
+      
+      <label class="md-nav__link" for="__nav_4_2_5">
+        config PACKAGE
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="config PACKAGE" data-md-level="3">
+        <label class="md-nav__title" for="__nav_4_2_5">
+          <span class="md-nav__icon md-icon"></span>
+          config PACKAGE
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bconfig/add_config_file.m/" class="md-nav__link">
+        vlt.config.add_config_file
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bconfig/config_dirname.m/" class="md-nav__link">
+        vlt.config.config_dirname
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_2_6" type="checkbox" id="__nav_4_2_6" >
+      
+      <label class="md-nav__link" for="__nav_4_2_6">
+        daq PACKAGE
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="daq PACKAGE" data-md-level="3">
+        <label class="md-nav__title" for="__nav_4_2_6">
+          <span class="md-nav__icon md-icon"></span>
+          daq PACKAGE
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_2_6_1" type="checkbox" id="__nav_4_2_6_1" >
+      
+      <label class="md-nav__link" for="__nav_4_2_6_1">
+        MCCUSB1208FS PACKAGE
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="MCCUSB1208FS PACKAGE" data-md-level="4">
+        <label class="md-nav__title" for="__nav_4_2_6_1">
+          <span class="md-nav__icon md-icon"></span>
+          MCCUSB1208FS PACKAGE
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bdaq/%2BMCCUSB1208FS/MCCUSB1208FS_AcquireSimpleDaq.m/" class="md-nav__link">
+        vlt.daq.MCCUSB1208FS.MCCUSB1208FS_AcquireSimpleDaq
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bdaq/%2BMCCUSB1208FS/MCCUSB1208FS_CloseSimpleDaq.m/" class="md-nav__link">
+        vlt.daq.MCCUSB1208FS.MCCUSB1208FS_CloseSimpleDaq
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bdaq/%2BMCCUSB1208FS/MCCUSB1208FS_OpenSimpleDaq.m/" class="md-nav__link">
+        vlt.daq.MCCUSB1208FS.MCCUSB1208FS_OpenSimpleDaq
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_2_6_2" type="checkbox" id="__nav_4_2_6_2" >
+      
+      <label class="md-nav__link" for="__nav_4_2_6_2">
+        dummyekgeegdaq PACKAGE
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="dummyekgeegdaq PACKAGE" data-md-level="4">
+        <label class="md-nav__title" for="__nav_4_2_6_2">
+          <span class="md-nav__icon md-icon"></span>
+          dummyekgeegdaq PACKAGE
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bdaq/%2Bdummyekgeegdaq/dummyekgeegdaq_AcquireSimpleDaq.m/" class="md-nav__link">
+        vlt.daq.dummyekgeegdaq.dummyekgeegdaq_AcquireSimpleDaq
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bdaq/%2Bdummyekgeegdaq/dummyekgeegdaq_CloseSimpleDaq.m/" class="md-nav__link">
+        vlt.daq.dummyekgeegdaq.dummyekgeegdaq_CloseSimpleDaq
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bdaq/%2Bdummyekgeegdaq/dummyekgeegdaq_OpenSimpleDaq.m/" class="md-nav__link">
+        vlt.daq.dummyekgeegdaq.dummyekgeegdaq_OpenSimpleDaq
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_2_6_3" type="checkbox" id="__nav_4_2_6_3" >
+      
+      <label class="md-nav__link" for="__nav_4_2_6_3">
+        simpledaq PACKAGE
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="simpledaq PACKAGE" data-md-level="4">
+        <label class="md-nav__title" for="__nav_4_2_6_3">
+          <span class="md-nav__icon md-icon"></span>
+          simpledaq PACKAGE
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bdaq/%2Bsimpledaq/AcquireSimpleDaq.m/" class="md-nav__link">
+        vlt.daq.simpledaq.AcquireSimpleDaq
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bdaq/%2Bsimpledaq/CloseSimpleDaq.m/" class="md-nav__link">
+        vlt.daq.simpledaq.CloseSimpleDaq
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bdaq/%2Bsimpledaq/NewSimpleDaq.m/" class="md-nav__link">
+        vlt.daq.simpledaq.NewSimpleDaq
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bdaq/%2Bsimpledaq/OpenSimpleDaq.m/" class="md-nav__link">
+        vlt.daq.simpledaq.OpenSimpleDaq
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_2_7" type="checkbox" id="__nav_4_2_7" >
+      
+      <label class="md-nav__link" for="__nav_4_2_7">
+        data PACKAGE
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="data PACKAGE" data-md-level="3">
+        <label class="md-nav__title" for="__nav_4_2_7">
+          <span class="md-nav__icon md-icon"></span>
+          data PACKAGE
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bdata/assign.m/" class="md-nav__link">
+        vlt.data.assign
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bdata/cache.m/" class="md-nav__link">
+        vlt.data.cache
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bdata/catCellStr.m/" class="md-nav__link">
+        vlt.data.catCellStr
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bdata/catstructfields.m/" class="md-nav__link">
+        vlt.data.catstructfields
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bdata/cell2group.m/" class="md-nav__link">
+        vlt.data.cell2group
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bdata/cell2mlstr.m/" class="md-nav__link">
+        vlt.data.cell2mlstr
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bdata/cell2str.m/" class="md-nav__link">
+        vlt.data.cell2str
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bdata/celloritem.m/" class="md-nav__link">
+        vlt.data.celloritem
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bdata/celltable2struct.m/" class="md-nav__link">
+        vlt.data.celltable2struct
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bdata/colvec.m/" class="md-nav__link">
+        vlt.data.colvec
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bdata/conditional.m/" class="md-nav__link">
+        vlt.data.conditional
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bdata/conditiongroup2cell.m/" class="md-nav__link">
+        vlt.data.conditiongroup2cell
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bdata/deleteallchildren.m/" class="md-nav__link">
+        vlt.data.deleteallchildren
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bdata/dropnan.m/" class="md-nav__link">
+        vlt.data.dropnan
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bdata/dropzero.m/" class="md-nav__link">
+        vlt.data.dropzero
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bdata/emptystruct.m/" class="md-nav__link">
+        vlt.data.emptystruct
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bdata/eqemp.m/" class="md-nav__link">
+        vlt.data.eqemp
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bdata/eqlen.m/" class="md-nav__link">
+        vlt.data.eqlen
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bdata/eqtot.m/" class="md-nav__link">
+        vlt.data.eqtot
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bdata/equnique.m/" class="md-nav__link">
+        vlt.data.equnique
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bdata/fieldsearch.m/" class="md-nav__link">
+        vlt.data.fieldsearch
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bdata/findclosest.m/" class="md-nav__link">
+        vlt.data.findclosest
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bdata/findclosestpoint.m/" class="md-nav__link">
+        vlt.data.findclosestpoint
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bdata/findrowvec.m/" class="md-nav__link">
+        vlt.data.findrowvec
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bdata/hasAllFields.m/" class="md-nav__link">
+        vlt.data.hasAllFields
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bdata/hashmatlabvariable.m/" class="md-nav__link">
+        vlt.data.hashmatlabvariable
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bdata/isboolean.m/" class="md-nav__link">
+        vlt.data.isboolean
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bdata/isempty_cell.m/" class="md-nav__link">
+        vlt.data.isempty_cell
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bdata/isfullfield.m/" class="md-nav__link">
+        vlt.data.isfullfield
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bdata/isint.m/" class="md-nav__link">
+        vlt.data.isint
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bdata/islikevarname.m/" class="md-nav__link">
+        vlt.data.islikevarname
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bdata/ispos.m/" class="md-nav__link">
+        vlt.data.ispos
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bdata/isunix_sv.m/" class="md-nav__link">
+        vlt.data.isunix_sv
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bdata/jsonencodenan.m/" class="md-nav__link">
+        vlt.data.jsonencodenan
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bdata/listofvars.m/" class="md-nav__link">
+        vlt.data.listofvars
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bdata/matrow2cell.m/" class="md-nav__link">
+        vlt.data.matrow2cell
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bdata/mlstr2var.m/" class="md-nav__link">
+        vlt.data.mlstr2var
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bdata/namevaluepair.m/" class="md-nav__link">
+        vlt.data.namevaluepair
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bdata/nanstderr.m/" class="md-nav__link">
+        vlt.data.nanstderr
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bdata/numornan.m/" class="md-nav__link">
+        vlt.data.numornan
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bdata/onoff.m/" class="md-nav__link">
+        vlt.data.onoff
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bdata/prettyjson.m/" class="md-nav__link">
+        vlt.data.prettyjson
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bdata/rowvec.m/" class="md-nav__link">
+        vlt.data.rowvec
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bdata/savevar.m/" class="md-nav__link">
+        vlt.data.savevar
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bdata/simpletable.m/" class="md-nav__link">
+        vlt.data.simpletable
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bdata/sizeeq.m/" class="md-nav__link">
+        vlt.data.sizeeq
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bdata/sortorder.m/" class="md-nav__link">
+        vlt.data.sortorder
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bdata/sortstruct.m/" class="md-nav__link">
+        vlt.data.sortstruct
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bdata/str2nume.m/" class="md-nav__link">
+        vlt.data.str2nume
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bdata/streq.m/" class="md-nav__link">
+        vlt.data.streq
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bdata/string2cell.m/" class="md-nav__link">
+        vlt.data.string2cell
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bdata/struct2mlstr.m/" class="md-nav__link">
+        vlt.data.struct2mlstr
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bdata/struct2namevaluepair.m/" class="md-nav__link">
+        vlt.data.struct2namevaluepair
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bdata/struct2str.m/" class="md-nav__link">
+        vlt.data.struct2str
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bdata/struct2tabstr.m/" class="md-nav__link">
+        vlt.data.struct2tabstr
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bdata/struct2var.m/" class="md-nav__link">
+        vlt.data.struct2var
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bdata/structdiff.m/" class="md-nav__link">
+        vlt.data.structdiff
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bdata/structfindfield.m/" class="md-nav__link">
+        vlt.data.structfindfield
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bdata/structmerge.m/" class="md-nav__link">
+        vlt.data.structmerge
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bdata/structwhatvaries.m/" class="md-nav__link">
+        vlt.data.structwhatvaries
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bdata/tabstr2struct.m/" class="md-nav__link">
+        vlt.data.tabstr2struct
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bdata/text2struct.m/" class="md-nav__link">
+        vlt.data.text2struct
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bdata/uniq.m/" class="md-nav__link">
+        vlt.data.uniq
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bdata/valid_varname.m/" class="md-nav__link">
+        vlt.data.valid_varname
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bdata/var2struct.m/" class="md-nav__link">
+        vlt.data.var2struct
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bdata/workspace2struct.m/" class="md-nav__link">
+        vlt.data.workspace2struct
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_2_8" type="checkbox" id="__nav_4_2_8" >
+      
+      <label class="md-nav__link" for="__nav_4_2_8">
+        docs PACKAGE
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="docs PACKAGE" data-md-level="3">
+        <label class="md-nav__title" for="__nav_4_2_8">
+          <span class="md-nav__icon md-icon"></span>
+          docs PACKAGE
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bdocs/build.m/" class="md-nav__link">
+        vlt.docs.build
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bdocs/class2help.m/" class="md-nav__link">
+        vlt.docs.class2help
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bdocs/markdownoutput2objectstruct.m/" class="md-nav__link">
+        vlt.docs.markdownoutput2objectstruct
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bdocs/matlab2markdown.m/" class="md-nav__link">
+        vlt.docs.matlab2markdown
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bdocs/mkdocsnavtext.m/" class="md-nav__link">
+        vlt.docs.mkdocsnavtext
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bdocs/relative_url4object.m/" class="md-nav__link">
+        vlt.docs.relative_url4object
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_2_9" type="checkbox" id="__nav_4_2_9" >
+      
+      <label class="md-nav__link" for="__nav_4_2_9">
+        file PACKAGE
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="file PACKAGE" data-md-level="3">
+        <label class="md-nav__title" for="__nav_4_2_9">
+          <span class="md-nav__icon md-icon"></span>
+          file PACKAGE
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bfile/addline.m/" class="md-nav__link">
+        vlt.file.addline
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bfile/cellstr2text.m/" class="md-nav__link">
+        vlt.file.cellstr2text
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bfile/checkout_lock_file.m/" class="md-nav__link">
+        vlt.file.checkout_lock_file
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bfile/combinepdf.m/" class="md-nav__link">
+        vlt.file.combinepdf
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bfile/createpath.m/" class="md-nav__link">
+        vlt.file.createpath
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bfile/dirlist_trimdots.m/" class="md-nav__link">
+        vlt.file.dirlist_trimdots
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bfile/dirstrip.m/" class="md-nav__link">
+        vlt.file.dirstrip
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bfile/drivepath.m/" class="md-nav__link">
+        vlt.file.drivepath
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bfile/dumbjsondb.m/" class="md-nav__link">
+        vlt.file.dumbjsondb
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bfile/filebackup.m/" class="md-nav__link">
+        vlt.file.filebackup
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bfile/filediff.m/" class="md-nav__link">
+        vlt.file.filediff
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bfile/fileid_value.m/" class="md-nav__link">
+        vlt.file.fileid_value
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bfile/filename_value.m/" class="md-nav__link">
+        vlt.file.filename_value
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bfile/filenamesearchreplace.m/" class="md-nav__link">
+        vlt.file.filenamesearchreplace
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bfile/fileobj.m/" class="md-nav__link">
+        vlt.file.fileobj
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bfile/filesepconversion.m/" class="md-nav__link">
+        vlt.file.filesepconversion
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bfile/findfilegroups.m/" class="md-nav__link">
+        vlt.file.findfilegroups
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bfile/findfiletype.m/" class="md-nav__link">
+        vlt.file.findfiletype
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bfile/fixpath.m/" class="md-nav__link">
+        vlt.file.fixpath
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bfile/fixtilde.m/" class="md-nav__link">
+        vlt.file.fixtilde
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bfile/fullfilename.m/" class="md-nav__link">
+        vlt.file.fullfilename
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bfile/getAllFiles.m/" class="md-nav__link">
+        vlt.file.getAllFiles
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bfile/isfilepathroot.m/" class="md-nav__link">
+        vlt.file.isfilepathroot
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bfile/isurl.m/" class="md-nav__link">
+        vlt.file.isurl
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bfile/linpath2mac.m/" class="md-nav__link">
+        vlt.file.linpath2mac
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bfile/load2celllist.m/" class="md-nav__link">
+        vlt.file.load2celllist
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bfile/loadIgor.m/" class="md-nav__link">
+        vlt.file.loadIgor
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bfile/loadStructArray.m/" class="md-nav__link">
+        vlt.file.loadStructArray
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bfile/read_tab_delimited_file.m/" class="md-nav__link">
+        vlt.file.read_tab_delimited_file
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bfile/readlabviewarray.m/" class="md-nav__link">
+        vlt.file.readlabviewarray
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bfile/readplainmat.m/" class="md-nav__link">
+        vlt.file.readplainmat
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bfile/release_lock_file.m/" class="md-nav__link">
+        vlt.file.release_lock_file
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bfile/rename_mfiles_functions.m/" class="md-nav__link">
+        vlt.file.rename_mfiles_functions
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bfile/saveStructArray.m/" class="md-nav__link">
+        vlt.file.saveStructArray
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bfile/saveasv73.m/" class="md-nav__link">
+        vlt.file.saveasv73
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bfile/searchreplacefiles_shell.m/" class="md-nav__link">
+        vlt.file.searchreplacefiles_shell
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bfile/str2text.m/" class="md-nav__link">
+        vlt.file.str2text
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bfile/string2filestring.m/" class="md-nav__link">
+        vlt.file.string2filestring
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bfile/text2cellnum.m/" class="md-nav__link">
+        vlt.file.text2cellnum
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bfile/text2cellstr.m/" class="md-nav__link">
+        vlt.file.text2cellstr
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bfile/textfile2char.m/" class="md-nav__link">
+        vlt.file.textfile2char
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bfile/touch.m/" class="md-nav__link">
+        vlt.file.touch
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bfile/vcard2mat.m/" class="md-nav__link">
+        vlt.file.vcard2mat
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bfile/writelabviewarray.m/" class="md-nav__link">
+        vlt.file.writelabviewarray
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bfile/writeplainmat.m/" class="md-nav__link">
+        vlt.file.writeplainmat
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_2_9_46" type="checkbox" id="__nav_4_2_9_46" >
+      
+      <label class="md-nav__link" for="__nav_4_2_9_46">
+        custom_file_formats PACKAGE
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="custom_file_formats PACKAGE" data-md-level="4">
+        <label class="md-nav__title" for="__nav_4_2_9_46">
+          <span class="md-nav__icon md-icon"></span>
+          custom_file_formats PACKAGE
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bfile/%2Bcustom_file_formats/addroirawdatafile.m/" class="md-nav__link">
+        vlt.file.custom_file_formats.addroirawdatafile
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bfile/%2Bcustom_file_formats/addvhlspikewaveformfile.m/" class="md-nav__link">
+        vlt.file.custom_file_formats.addvhlspikewaveformfile
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bfile/%2Bcustom_file_formats/convertvhlvdatafile2integer.m/" class="md-nav__link">
+        vlt.file.custom_file_formats.convertvhlvdatafile2integer
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bfile/%2Bcustom_file_formats/newroirawdatafile.m/" class="md-nav__link">
+        vlt.file.custom_file_formats.newroirawdatafile
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bfile/%2Bcustom_file_formats/newvhlspikewaveformfile.m/" class="md-nav__link">
+        vlt.file.custom_file_formats.newvhlspikewaveformfile
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bfile/%2Bcustom_file_formats/readcellvoyagertiffheader.m/" class="md-nav__link">
+        vlt.file.custom_file_formats.readcellvoyagertiffheader
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bfile/%2Bcustom_file_formats/readroirawdatafile.m/" class="md-nav__link">
+        vlt.file.custom_file_formats.readroirawdatafile
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bfile/%2Bcustom_file_formats/readvhlspikewaveformfile.m/" class="md-nav__link">
+        vlt.file.custom_file_formats.readvhlspikewaveformfile
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bfile/%2Bcustom_file_formats/readvhlvdatafile.m/" class="md-nav__link">
+        vlt.file.custom_file_formats.readvhlvdatafile
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bfile/%2Bcustom_file_formats/readvhlvdatafile_orig.m/" class="md-nav__link">
+        vlt.file.custom_file_formats.readvhlvdatafile_orig
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bfile/%2Bcustom_file_formats/readvhlvheaderfile.m/" class="md-nav__link">
+        vlt.file.custom_file_formats.readvhlvheaderfile
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bfile/%2Bcustom_file_formats/vhsb_read.m/" class="md-nav__link">
+        vlt.file.custom_file_formats.vhsb_read
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bfile/%2Bcustom_file_formats/vhsb_readheader.m/" class="md-nav__link">
+        vlt.file.custom_file_formats.vhsb_readheader
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bfile/%2Bcustom_file_formats/vhsb_sampletype2matlabfwritestring.m/" class="md-nav__link">
+        vlt.file.custom_file_formats.vhsb_sampletype2matlabfwritestring
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bfile/%2Bcustom_file_formats/vhsb_write.m/" class="md-nav__link">
+        vlt.file.custom_file_formats.vhsb_write
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bfile/%2Bcustom_file_formats/vhsb_writeheader.m/" class="md-nav__link">
+        vlt.file.custom_file_formats.vhsb_writeheader
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bfile/%2Bcustom_file_formats/writevhlvdatafile.m/" class="md-nav__link">
+        vlt.file.custom_file_formats.writevhlvdatafile
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bfile/%2Bcustom_file_formats/writevhlvheaderfile.m/" class="md-nav__link">
+        vlt.file.custom_file_formats.writevhlvheaderfile
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bfile/%2Bcustom_file_formats/writevhlvtestfile.m/" class="md-nav__link">
+        vlt.file.custom_file_formats.writevhlvtestfile
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_2_9_47" type="checkbox" id="__nav_4_2_9_47" >
+      
+      <label class="md-nav__link" for="__nav_4_2_9_47">
+        xml PACKAGE
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="xml PACKAGE" data-md-level="4">
+        <label class="md-nav__title" for="__nav_4_2_9_47">
+          <span class="md-nav__icon md-icon"></span>
+          xml PACKAGE
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bfile/%2Bxml/getXMLNodeText.m/" class="md-nav__link">
+        vlt.file.xml.getXMLNodeText
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bfile/%2Bxml/parseXML.m/" class="md-nav__link">
+        vlt.file.xml.parseXML
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bfile/%2Bxml/xml2struct_vhtools.m/" class="md-nav__link">
+        vlt.file.xml.xml2struct_vhtools
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bfile/%2Bxml/xmlstringinput.m/" class="md-nav__link">
+        vlt.file.xml.xmlstringinput
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bfile/%2Bxml/xmlstruct_attributename2struct.m/" class="md-nav__link">
+        vlt.file.xml.xmlstruct_attributename2struct
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bfile/%2Bxml/xmlstruct_findnode.m/" class="md-nav__link">
+        vlt.file.xml.xmlstruct_findnode
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bfile/%2Bxml/xmlstruct_stripwhitespace.m/" class="md-nav__link">
+        vlt.file.xml.xmlstruct_stripwhitespace
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_2_10" type="checkbox" id="__nav_4_2_10" >
+      
+      <label class="md-nav__link" for="__nav_4_2_10">
+        fit PACKAGE
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="fit PACKAGE" data-md-level="3">
+        <label class="md-nav__title" for="__nav_4_2_10">
+          <span class="md-nav__icon md-icon"></span>
+          fit PACKAGE
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bfit/double_gauss_DoG_fit.m/" class="md-nav__link">
+        vlt.fit.double_gauss_DoG_fit
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bfit/example_double_gauss_dog_data.m/" class="md-nav__link">
+        vlt.fit.example_double_gauss_dog_data
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bfit/exp_fit.m/" class="md-nav__link">
+        vlt.fit.exp_fit
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bfit/exp_fit_err.m/" class="md-nav__link">
+        vlt.fit.exp_fit_err
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bfit/fitsearchspace.m/" class="md-nav__link">
+        vlt.fit.fitsearchspace
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bfit/gaussfit.m/" class="md-nav__link">
+        vlt.fit.gaussfit
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bfit/gaussfit_constraints.m/" class="md-nav__link">
+        vlt.fit.gaussfit_constraints
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bfit/gaussfit_conv.m/" class="md-nav__link">
+        vlt.fit.gaussfit_conv
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bfit/gaussfit_err.m/" class="md-nav__link">
+        vlt.fit.gaussfit_err
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bfit/gaussspotfit.m/" class="md-nav__link">
+        vlt.fit.gaussspotfit
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bfit/gaussspotfit_mod.m/" class="md-nav__link">
+        vlt.fit.gaussspotfit_mod
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bfit/gaussspotfit_nk.m/" class="md-nav__link">
+        vlt.fit.gaussspotfit_nk
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bfit/gaussspotfit_nopos_surr.m/" class="md-nav__link">
+        vlt.fit.gaussspotfit_nopos_surr
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bfit/gaussspotfit_noposition.m/" class="md-nav__link">
+        vlt.fit.gaussspotfit_noposition
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bfit/gaussspotfit_skew.m/" class="md-nav__link">
+        vlt.fit.gaussspotfit_skew
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bfit/linepowerthreshold.m/" class="md-nav__link">
+        vlt.fit.linepowerthreshold
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bfit/linepowerthresholdfit.m/" class="md-nav__link">
+        vlt.fit.linepowerthresholdfit
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bfit/linethresholdfit.m/" class="md-nav__link">
+        vlt.fit.linethresholdfit
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bfit/naka_rushton.m/" class="md-nav__link">
+        vlt.fit.naka_rushton
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bfit/naka_rushton_err.m/" class="md-nav__link">
+        vlt.fit.naka_rushton_err
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bfit/naka_rushton_func.m/" class="md-nav__link">
+        vlt.fit.naka_rushton_func
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bfit/naka_rushton_slope.m/" class="md-nav__link">
+        vlt.fit.naka_rushton_slope
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bfit/otfit_carandini.m/" class="md-nav__link">
+        vlt.fit.otfit_carandini
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bfit/otfit_carandini0.m/" class="md-nav__link">
+        vlt.fit.otfit_carandini0
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bfit/otfit_carandini2.m/" class="md-nav__link">
+        vlt.fit.otfit_carandini2
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bfit/otfit_carandini_conv.m/" class="md-nav__link">
+        vlt.fit.otfit_carandini_conv
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bfit/otfit_carandini_conv0.m/" class="md-nav__link">
+        vlt.fit.otfit_carandini_conv0
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bfit/otfit_carandini_conv2.m/" class="md-nav__link">
+        vlt.fit.otfit_carandini_conv2
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bfit/otfit_carandini_err.m/" class="md-nav__link">
+        vlt.fit.otfit_carandini_err
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bfit/otfit_carandini_err0.m/" class="md-nav__link">
+        vlt.fit.otfit_carandini_err0
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bfit/otfit_carandini_err2.m/" class="md-nav__link">
+        vlt.fit.otfit_carandini_err2
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bfit/otfit_carandini_err_joint.m/" class="md-nav__link">
+        vlt.fit.otfit_carandini_err_joint
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bfit/seriesresfit.m/" class="md-nav__link">
+        vlt.fit.seriesresfit
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bfit/seriesresfit_err.m/" class="md-nav__link">
+        vlt.fit.seriesresfit_err
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bfit/sin4_fit.m/" class="md-nav__link">
+        vlt.fit.sin4_fit
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bfit/skewgauss.m/" class="md-nav__link">
+        vlt.fit.skewgauss
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bfit/skewgaussfit_constraints.m/" class="md-nav__link">
+        vlt.fit.skewgaussfit_constraints
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bfit/tanhfit.m/" class="md-nav__link">
+        vlt.fit.tanhfit
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bfit/tanhfitoffset.m/" class="md-nav__link">
+        vlt.fit.tanhfitoffset
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_2_11" type="checkbox" id="__nav_4_2_11" >
+      
+      <label class="md-nav__link" for="__nav_4_2_11">
+        git PACKAGE
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="git PACKAGE" data-md-level="3">
+        <label class="md-nav__title" for="__nav_4_2_11">
+          <span class="md-nav__icon md-icon"></span>
+          git PACKAGE
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bgit/git_assert.m/" class="md-nav__link">
+        vlt.git.git_assert
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bgit/git_clone.m/" class="md-nav__link">
+        vlt.git.git_clone
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bgit/git_install.m/" class="md-nav__link">
+        vlt.git.git_install
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bgit/git_isgitdirectory.m/" class="md-nav__link">
+        vlt.git.git_isgitdirectory
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bgit/git_pull.m/" class="md-nav__link">
+        vlt.git.git_pull
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bgit/git_repo_version.m/" class="md-nav__link">
+        vlt.git.git_repo_version
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bgit/git_status.m/" class="md-nav__link">
+        vlt.git.git_status
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_2_12" type="checkbox" id="__nav_4_2_12" >
+      
+      <label class="md-nav__link" for="__nav_4_2_12">
+        graph PACKAGE
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="graph PACKAGE" data-md-level="3">
+        <label class="md-nav__title" for="__nav_4_2_12">
+          <span class="md-nav__icon md-icon"></span>
+          graph PACKAGE
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bgraph/dependency_graph.m/" class="md-nav__link">
+        vlt.graph.dependency_graph
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bgraph/mergegraph.m/" class="md-nav__link">
+        vlt.graph.mergegraph
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_2_13" type="checkbox" id="__nav_4_2_13" >
+      
+      <label class="md-nav__link" for="__nav_4_2_13">
+        html PACKAGE
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="html PACKAGE" data-md-level="3">
+        <label class="md-nav__title" for="__nav_4_2_13">
+          <span class="md-nav__icon md-icon"></span>
+          html PACKAGE
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bhtml/alumni_htmltable.m/" class="md-nav__link">
+        vlt.html.alumni_htmltable
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bhtml/vhlab_people_html.m/" class="md-nav__link">
+        vlt.html.vhlab_people_html
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_2_14" type="checkbox" id="__nav_4_2_14" >
+      
+      <label class="md-nav__link" for="__nav_4_2_14">
+        image PACKAGE
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="image PACKAGE" data-md-level="3">
+        <label class="md-nav__title" for="__nav_4_2_14">
+          <span class="md-nav__icon md-icon"></span>
+          image PACKAGE
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bimage/doublethreshold.m/" class="md-nav__link">
+        vlt.image.doublethreshold
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bimage/doublethresholdresegment.m/" class="md-nav__link">
+        vlt.image.doublethresholdresegment
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bimage/driftcheck.m/" class="md-nav__link">
+        vlt.image.driftcheck
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bimage/findroiinlinescan.m/" class="md-nav__link">
+        vlt.image.findroiinlinescan
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bimage/image_samplepoints.m/" class="md-nav__link">
+        vlt.image.image_samplepoints
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bimage/image_samplerange.m/" class="md-nav__link">
+        vlt.image.image_samplerange
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bimage/image_viewer_gui.m/" class="md-nav__link">
+        vlt.image.image_viewer_gui
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bimage/imshift.m/" class="md-nav__link">
+        vlt.image.imshift
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bimage/inside_ellipse.m/" class="md-nav__link">
+        vlt.image.inside_ellipse
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bimage/invertcolors.m/" class="md-nav__link">
+        vlt.image.invertcolors
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bimage/linescan2rasterindex.m/" class="md-nav__link">
+        vlt.image.linescan2rasterindex
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bimage/medfilt_phase.m/" class="md-nav__link">
+        vlt.image.medfilt_phase
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bimage/mergeluts.m/" class="md-nav__link">
+        vlt.image.mergeluts
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bimage/neighborindexes.m/" class="md-nav__link">
+        vlt.image.neighborindexes
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bimage/padimage.m/" class="md-nav__link">
+        vlt.image.padimage
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bimage/plotrasterroionlinescan.m/" class="md-nav__link">
+        vlt.image.plotrasterroionlinescan
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bimage/polyflare.m/" class="md-nav__link">
+        vlt.image.polyflare
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bimage/regionprops_circularity.m/" class="md-nav__link">
+        vlt.image.regionprops_circularity
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bimage/saturation_image.m/" class="md-nav__link">
+        vlt.image.saturation_image
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bimage/scramblepixels_movie.m/" class="md-nav__link">
+        vlt.image.scramblepixels_movie
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bimage/tiff16bit28bit.m/" class="md-nav__link">
+        vlt.image.tiff16bit28bit
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bimage/xcorr2dlag.m/" class="md-nav__link">
+        vlt.image.xcorr2dlag
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_2_14_23" type="checkbox" id="__nav_4_2_14_23" >
+      
+      <label class="md-nav__link" for="__nav_4_2_14_23">
+        roi PACKAGE
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="roi PACKAGE" data-md-level="4">
+        <label class="md-nav__title" for="__nav_4_2_14_23">
+          <span class="md-nav__icon md-icon"></span>
+          roi PACKAGE
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bimage/%2Broi/ROI_3d2dprojection.m/" class="md-nav__link">
+        vlt.image.roi.ROI_3d2dprojection
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bimage/%2Broi/ROI_3d_2dsummary.m/" class="md-nav__link">
+        vlt.image.roi.ROI_3d_2dsummary
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bimage/%2Broi/ROI_3d_all_overlaps.m/" class="md-nav__link">
+        vlt.image.roi.ROI_3d_all_overlaps
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bimage/%2Broi/ROI_3d_max_xy_size.m/" class="md-nav__link">
+        vlt.image.roi.ROI_3d_max_xy_size
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bimage/%2Broi/ROI_3d_overlap.m/" class="md-nav__link">
+        vlt.image.roi.ROI_3d_overlap
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bimage/%2Broi/ROI_3dplot2d.m/" class="md-nav__link">
+        vlt.image.roi.ROI_3dplot2d
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bimage/%2Broi/ROI_assignneighbors.m/" class="md-nav__link">
+        vlt.image.roi.ROI_assignneighbors
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bimage/%2Broi/ROI_centerofmassdistance.m/" class="md-nav__link">
+        vlt.image.roi.ROI_centerofmassdistance
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bimage/%2Broi/ROI_flare_indexes.m/" class="md-nav__link">
+        vlt.image.roi.ROI_flare_indexes
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bimage/%2Broi/ROI_flare_indexes_buggy.m/" class="md-nav__link">
+        vlt.image.roi.ROI_flare_indexes_buggy
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bimage/%2Broi/ROI_imageexample.m/" class="md-nav__link">
+        vlt.image.roi.ROI_imageexample
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bimage/%2Broi/ROI_isolate.m/" class="md-nav__link">
+        vlt.image.roi.ROI_isolate
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bimage/%2Broi/ROI_resegment.m/" class="md-nav__link">
+        vlt.image.roi.ROI_resegment
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bimage/%2Broi/ROI_resegment_all.m/" class="md-nav__link">
+        vlt.image.roi.ROI_resegment_all
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bimage/%2Broi/ROI_subset.m/" class="md-nav__link">
+        vlt.image.roi.ROI_subset
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_2_15" type="checkbox" id="__nav_4_2_15" >
+      
+      <label class="md-nav__link" for="__nav_4_2_15">
+        math PACKAGE
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="math PACKAGE" data-md-level="3">
+        <label class="md-nav__title" for="__nav_4_2_15">
+          <span class="md-nav__icon md-icon"></span>
+          math PACKAGE
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bmath/angdiff.m/" class="md-nav__link">
+        vlt.math.angdiff
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bmath/angdiffwrap.m/" class="md-nav__link">
+        vlt.math.angdiffwrap
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bmath/angdiffwrapsign.m/" class="md-nav__link">
+        vlt.math.angdiffwrapsign
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bmath/asymmetric_gaussian.m/" class="md-nav__link">
+        vlt.math.asymmetric_gaussian
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bmath/cartesian2compass.m/" class="md-nav__link">
+        vlt.math.cartesian2compass
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bmath/cas.m/" class="md-nav__link">
+        vlt.math.cas
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bmath/center_of_mass.m/" class="md-nav__link">
+        vlt.math.center_of_mass
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bmath/clip.m/" class="md-nav__link">
+        vlt.math.clip
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bmath/cluster_points_gui.m/" class="md-nav__link">
+        vlt.math.cluster_points_gui
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bmath/compass2cartesian.m/" class="md-nav__link">
+        vlt.math.compass2cartesian
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bmath/complex2vector.m/" class="md-nav__link">
+        vlt.math.complex2vector
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bmath/cov_of_cloud.m/" class="md-nav__link">
+        vlt.math.cov_of_cloud
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bmath/dangdiffwrap.m/" class="md-nav__link">
+        vlt.math.dangdiffwrap
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bmath/deg2rad.m/" class="md-nav__link">
+        vlt.math.deg2rad
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bmath/dist2line.m/" class="md-nav__link">
+        vlt.math.dist2line
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bmath/divide_nozero.m/" class="md-nav__link">
+        vlt.math.divide_nozero
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bmath/dog.m/" class="md-nav__link">
+        vlt.math.dog
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bmath/dog2dogf.m/" class="md-nav__link">
+        vlt.math.dog2dogf
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bmath/dogf2dog.m/" class="md-nav__link">
+        vlt.math.dogf2dog
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bmath/double_exp.m/" class="md-nav__link">
+        vlt.math.double_exp
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bmath/double_gauss_180.m/" class="md-nav__link">
+        vlt.math.double_gauss_180
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bmath/double_gauss_DoG.m/" class="md-nav__link">
+        vlt.math.double_gauss_DoG
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bmath/double_gauss_dog_plot.m/" class="md-nav__link">
+        vlt.math.double_gauss_dog_plot
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bmath/double_gaussian_plot.m/" class="md-nav__link">
+        vlt.math.double_gaussian_plot
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bmath/ellipse_on_mvnpdf.m/" class="md-nav__link">
+        vlt.math.ellipse_on_mvnpdf
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bmath/ellipse_on_mvnpdf_nk_x0.m/" class="md-nav__link">
+        vlt.math.ellipse_on_mvnpdf_nk_x0
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bmath/ellipse_on_mvnpdf_nopos_surr_x0.m/" class="md-nav__link">
+        vlt.math.ellipse_on_mvnpdf_nopos_surr_x0
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bmath/ellipse_on_mvnpdf_noposition_x0.m/" class="md-nav__link">
+        vlt.math.ellipse_on_mvnpdf_noposition_x0
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bmath/ellipse_on_mvnpdf_x0.m/" class="md-nav__link">
+        vlt.math.ellipse_on_mvnpdf_x0
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bmath/ellipse_on_mvnskewpdf.m/" class="md-nav__link">
+        vlt.math.ellipse_on_mvnskewpdf
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bmath/ellipse_on_mvnskewpdf_x0.m/" class="md-nav__link">
+        vlt.math.ellipse_on_mvnskewpdf_x0
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bmath/eucnorm.m/" class="md-nav__link">
+        vlt.math.eucnorm
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bmath/floorfloor.m/" class="md-nav__link">
+        vlt.math.floorfloor
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bmath/fouriercoeffs.m/" class="md-nav__link">
+        vlt.math.fouriercoeffs
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bmath/fouriercoeffs_2d.m/" class="md-nav__link">
+        vlt.math.fouriercoeffs_2d
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bmath/fouriercoeffs_tf.m/" class="md-nav__link">
+        vlt.math.fouriercoeffs_tf
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bmath/fouriercoeffs_tf2.m/" class="md-nav__link">
+        vlt.math.fouriercoeffs_tf2
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bmath/fouriercoeffs_tf_spikes.m/" class="md-nav__link">
+        vlt.math.fouriercoeffs_tf_spikes
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bmath/gauss2d_ellipse.m/" class="md-nav__link">
+        vlt.math.gauss2d_ellipse
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bmath/generate_random_data.m/" class="md-nav__link">
+        vlt.math.generate_random_data
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bmath/inside.m/" class="md-nav__link">
+        vlt.math.inside
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bmath/insideorborder.m/" class="md-nav__link">
+        vlt.math.insideorborder
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bmath/interval2continuous.m/" class="md-nav__link">
+        vlt.math.interval2continuous
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bmath/interval_add.m/" class="md-nav__link">
+        vlt.math.interval_add
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bmath/interval_notation.m/" class="md-nav__link">
+        vlt.math.interval_notation
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bmath/interval_subtract.m/" class="md-nav__link">
+        vlt.math.interval_subtract
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bmath/intnchoosek.m/" class="md-nav__link">
+        vlt.math.intnchoosek
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bmath/linearize_complex_discrete.m/" class="md-nav__link">
+        vlt.math.linearize_complex_discrete
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bmath/local_max.m/" class="md-nav__link">
+        vlt.math.local_max
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bmath/magsqrt.m/" class="md-nav__link">
+        vlt.math.magsqrt
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bmath/meshgridarea.m/" class="md-nav__link">
+        vlt.math.meshgridarea
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bmath/mod_ellipse_on_mvnpdf.m/" class="md-nav__link">
+        vlt.math.mod_ellipse_on_mvnpdf
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bmath/mod_ellipse_on_mvnpdf_x0.m/" class="md-nav__link">
+        vlt.math.mod_ellipse_on_mvnpdf_x0
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bmath/mvnskewpdf.m/" class="md-nav__link">
+        vlt.math.mvnskewpdf
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bmath/normalizebounds.m/" class="md-nav__link">
+        vlt.math.normalizebounds
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bmath/oriented_grid.m/" class="md-nav__link">
+        vlt.math.oriented_grid
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bmath/phase_advance.m/" class="md-nav__link">
+        vlt.math.phase_advance
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bmath/prctile01.m/" class="md-nav__link">
+        vlt.math.prctile01
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bmath/prctile20.m/" class="md-nav__link">
+        vlt.math.prctile20
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bmath/ptontoline.m/" class="md-nav__link">
+        vlt.math.ptontoline
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bmath/ptontovector.m/" class="md-nav__link">
+        vlt.math.ptontovector
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bmath/pts2line.m/" class="md-nav__link">
+        vlt.math.pts2line
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bmath/rad2deg.m/" class="md-nav__link">
+        vlt.math.rad2deg
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bmath/rect2rect.m/" class="md-nav__link">
+        vlt.math.rect2rect
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bmath/rectify.m/" class="md-nav__link">
+        vlt.math.rectify
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bmath/refl2d.m/" class="md-nav__link">
+        vlt.math.refl2d
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bmath/rescale.m/" class="md-nav__link">
+        vlt.math.rescale
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bmath/rescale_subrect.m/" class="md-nav__link">
+        vlt.math.rescale_subrect
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bmath/rot2d.m/" class="md-nav__link">
+        vlt.math.rot2d
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bmath/rot3d.m/" class="md-nav__link">
+        vlt.math.rot3d
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bmath/sample_difference_error.m/" class="md-nav__link">
+        vlt.math.sample_difference_error
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bmath/scale2d.m/" class="md-nav__link">
+        vlt.math.scale2d
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bmath/single_gaussian_plot.m/" class="md-nav__link">
+        vlt.math.single_gaussian_plot
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bmath/slidingwindowfunc.m/" class="md-nav__link">
+        vlt.math.slidingwindowfunc
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bmath/slidingwindowfunc2.m/" class="md-nav__link">
+        vlt.math.slidingwindowfunc2
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bmath/stepfunc.m/" class="md-nav__link">
+        vlt.math.stepfunc
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_2_16" type="checkbox" id="__nav_4_2_16" >
+      
+      <label class="md-nav__link" for="__nav_4_2_16">
+        matlab PACKAGE
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="matlab PACKAGE" data-md-level="3">
+        <label class="md-nav__title" for="__nav_4_2_16">
+          <span class="md-nav__icon md-icon"></span>
+          matlab PACKAGE
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bmatlab/findfunctionusedir.m/" class="md-nav__link">
+        vlt.matlab.findfunctionusedir
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bmatlab/findfunctionusefile.m/" class="md-nav__link">
+        vlt.matlab.findfunctionusefile
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bmatlab/isa_text.m/" class="md-nav__link">
+        vlt.matlab.isa_text
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bmatlab/isclassfile.m/" class="md-nav__link">
+        vlt.matlab.isclassfile
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bmatlab/isfunctionfile.m/" class="md-nav__link">
+        vlt.matlab.isfunctionfile
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bmatlab/matlabvers.m/" class="md-nav__link">
+        vlt.matlab.matlabvers
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bmatlab/mfile2package.m/" class="md-nav__link">
+        vlt.matlab.mfile2package
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bmatlab/mfiledirinfo.m/" class="md-nav__link">
+        vlt.matlab.mfiledirinfo
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bmatlab/mfileinfo.m/" class="md-nav__link">
+        vlt.matlab.mfileinfo
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bmatlab/packagenamereplacementtable.m/" class="md-nav__link">
+        vlt.matlab.packagenamereplacementtable
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bmatlab/replacefunction.m/" class="md-nav__link">
+        vlt.matlab.replacefunction
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bmatlab/vlt_build.m/" class="md-nav__link">
+        vlt.matlab.vlt_build
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_2_16_13" type="checkbox" id="__nav_4_2_16_13" >
+      
+      <label class="md-nav__link" for="__nav_4_2_16_13">
+        graphics PACKAGE
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="graphics PACKAGE" data-md-level="4">
+        <label class="md-nav__title" for="__nav_4_2_16_13">
+          <span class="md-nav__icon md-icon"></span>
+          graphics PACKAGE
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bmatlab/%2Bgraphics/cubeplot3d.m/" class="md-nav__link">
+        vlt.matlab.graphics.cubeplot3d
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bmatlab/%2Bgraphics/getline_3dplane.m/" class="md-nav__link">
+        vlt.matlab.graphics.getline_3dplane
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bmatlab/%2Bgraphics/grect2local.m/" class="md-nav__link">
+        vlt.matlab.graphics.grect2local
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bmatlab/%2Bgraphics/isinwhere.m/" class="md-nav__link">
+        vlt.matlab.graphics.isinwhere
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bmatlab/%2Bgraphics/normalized2pixels.m/" class="md-nav__link">
+        vlt.matlab.graphics.normalized2pixels
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bmatlab/%2Bgraphics/pcolordummyrowcolumn.m/" class="md-nav__link">
+        vlt.matlab.graphics.pcolordummyrowcolumn
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bmatlab/%2Bgraphics/pixels2normalized.m/" class="md-nav__link">
+        vlt.matlab.graphics.pixels2normalized
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bmatlab/%2Bgraphics/savefigurelist.m/" class="md-nav__link">
+        vlt.matlab.graphics.savefigurelist
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bmatlab/%2Bgraphics/selectpoints3d.m/" class="md-nav__link">
+        vlt.matlab.graphics.selectpoints3d
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bmatlab/%2Bgraphics/viewpoint3dto2d.m/" class="md-nav__link">
+        vlt.matlab.graphics.viewpoint3dto2d
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_2_17" type="checkbox" id="__nav_4_2_17" >
+      
+      <label class="md-nav__link" for="__nav_4_2_17">
+        neuro PACKAGE
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="neuro PACKAGE" data-md-level="3">
+        <label class="md-nav__title" for="__nav_4_2_17">
+          <span class="md-nav__icon md-icon"></span>
+          neuro PACKAGE
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_2_17_1" type="checkbox" id="__nav_4_2_17_1" >
+      
+      <label class="md-nav__link" for="__nav_4_2_17_1">
+        anatomy PACKAGE
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="anatomy PACKAGE" data-md-level="4">
+        <label class="md-nav__title" for="__nav_4_2_17_1">
+          <span class="md-nav__icon md-icon"></span>
+          anatomy PACKAGE
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bneuro/%2Banatomy/calc_cluster_index.m/" class="md-nav__link">
+        vlt.neuro.anatomy.calc_cluster_index
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_2_17_2" type="checkbox" id="__nav_4_2_17_2" >
+      
+      <label class="md-nav__link" for="__nav_4_2_17_2">
+        demos PACKAGE
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="demos PACKAGE" data-md-level="4">
+        <label class="md-nav__title" for="__nav_4_2_17_2">
+          <span class="md-nav__icon md-icon"></span>
+          demos PACKAGE
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bneuro/%2Bdemos/demo_illustrate_facespace_build.m/" class="md-nav__link">
+        vlt.neuro.demos.demo_illustrate_facespace_build
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bneuro/%2Bdemos/nbio140_wholecell.m/" class="md-nav__link">
+        vlt.neuro.demos.nbio140_wholecell
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_2_17_3" type="checkbox" id="__nav_4_2_17_3" >
+      
+      <label class="md-nav__link" for="__nav_4_2_17_3">
+        membrane PACKAGE
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="membrane PACKAGE" data-md-level="4">
+        <label class="md-nav__title" for="__nav_4_2_17_3">
+          <span class="md-nav__icon md-icon"></span>
+          membrane PACKAGE
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bneuro/%2Bmembrane/generate_normal_vm_fr.m/" class="md-nav__link">
+        vlt.neuro.membrane.generate_normal_vm_fr
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bneuro/%2Bmembrane/generate_poisson_vm_fr.m/" class="md-nav__link">
+        vlt.neuro.membrane.generate_poisson_vm_fr
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bneuro/%2Bmembrane/mle_normal_vm_fr.m/" class="md-nav__link">
+        vlt.neuro.membrane.mle_normal_vm_fr
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bneuro/%2Bmembrane/mle_poisson_vm_fr.m/" class="md-nav__link">
+        vlt.neuro.membrane.mle_poisson_vm_fr
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bneuro/%2Bmembrane/normal_vm_fr.m/" class="md-nav__link">
+        vlt.neuro.membrane.normal_vm_fr
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bneuro/%2Bmembrane/plot_voltage_firingrate_observations.m/" class="md-nav__link">
+        vlt.neuro.membrane.plot_voltage_firingrate_observations
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bneuro/%2Bmembrane/poisson_vm_fr.m/" class="md-nav__link">
+        vlt.neuro.membrane.poisson_vm_fr
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bneuro/%2Bmembrane/spikeFWHM.m/" class="md-nav__link">
+        vlt.neuro.membrane.spikeFWHM
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bneuro/%2Bmembrane/spikekink.m/" class="md-nav__link">
+        vlt.neuro.membrane.spikekink
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bneuro/%2Bmembrane/spikewavetrimmer.m/" class="md-nav__link">
+        vlt.neuro.membrane.spikewavetrimmer
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bneuro/%2Bmembrane/vmnospikes.m/" class="md-nav__link">
+        vlt.neuro.membrane.vmnospikes
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bneuro/%2Bmembrane/voltage_firingrate_observations.m/" class="md-nav__link">
+        vlt.neuro.membrane.voltage_firingrate_observations
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bneuro/%2Bmembrane/voltage_firingrate_observations_per_stimulus.m/" class="md-nav__link">
+        vlt.neuro.membrane.voltage_firingrate_observations_per_stimulus
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_2_17_4" type="checkbox" id="__nav_4_2_17_4" >
+      
+      <label class="md-nav__link" for="__nav_4_2_17_4">
+        minis PACKAGE
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="minis PACKAGE" data-md-level="4">
+        <label class="md-nav__title" for="__nav_4_2_17_4">
+          <span class="md-nav__icon md-icon"></span>
+          minis PACKAGE
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bneuro/%2Bminis/minidetection.m/" class="md-nav__link">
+        vlt.neuro.minis.minidetection
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bneuro/%2Bminis/minidetectionsimulation.m/" class="md-nav__link">
+        vlt.neuro.minis.minidetectionsimulation
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bneuro/%2Bminis/minitemplates.m/" class="md-nav__link">
+        vlt.neuro.minis.minitemplates
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_2_17_5" type="checkbox" id="__nav_4_2_17_5" >
+      
+      <label class="md-nav__link" for="__nav_4_2_17_5">
+        mledenoise PACKAGE
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="mledenoise PACKAGE" data-md-level="4">
+        <label class="md-nav__title" for="__nav_4_2_17_5">
+          <span class="md-nav__icon md-icon"></span>
+          mledenoise PACKAGE
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bneuro/%2Bmledenoise/MLE_PoisGauss.m/" class="md-nav__link">
+        vlt.neuro.mledenoise.MLE_PoisGauss
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bneuro/%2Bmledenoise/SlowMLEDeNoise.m/" class="md-nav__link">
+        vlt.neuro.mledenoise.SlowMLEDeNoise
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bneuro/%2Bmledenoise/gaindriftexample.m/" class="md-nav__link">
+        vlt.neuro.mledenoise.gaindriftexample
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bneuro/%2Bmledenoise/response_gaindrift_model.m/" class="md-nav__link">
+        vlt.neuro.mledenoise.response_gaindrift_model
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bneuro/%2Bmledenoise/testSlowMLE.m/" class="md-nav__link">
+        vlt.neuro.mledenoise.testSlowMLE
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bneuro/%2Bmledenoise/testSlowMLE_modulation.m/" class="md-nav__link">
+        vlt.neuro.mledenoise.testSlowMLE_modulation
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_2_17_6" type="checkbox" id="__nav_4_2_17_6" >
+      
+      <label class="md-nav__link" for="__nav_4_2_17_6">
+        models PACKAGE
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="models PACKAGE" data-md-level="4">
+        <label class="md-nav__title" for="__nav_4_2_17_6">
+          <span class="md-nav__icon md-icon"></span>
+          models PACKAGE
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_2_17_6_1" type="checkbox" id="__nav_4_2_17_6_1" >
+      
+      <label class="md-nav__link" for="__nav_4_2_17_6_1">
+        hh PACKAGE
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="hh PACKAGE" data-md-level="5">
+        <label class="md-nav__title" for="__nav_4_2_17_6_1">
+          <span class="md-nav__icon md-icon"></span>
+          hh PACKAGE
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bneuro/%2Bmodels/%2Bhh/HHclass.m/" class="md-nav__link">
+        vlt.neuro.models.hh.HHclass
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bneuro/%2Bmodels/%2Bhh/HHsynclass.m/" class="md-nav__link">
+        vlt.neuro.models.hh.HHsynclass
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bneuro/%2Bmodels/%2Bhh/neuronmodelclass.m/" class="md-nav__link">
+        vlt.neuro.models.hh.neuronmodelclass
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_2_17_6_2" type="checkbox" id="__nav_4_2_17_6_2" >
+      
+      <label class="md-nav__link" for="__nav_4_2_17_6_2">
+        ode PACKAGE
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="ode PACKAGE" data-md-level="5">
+        <label class="md-nav__title" for="__nav_4_2_17_6_2">
+          <span class="md-nav__icon md-icon"></span>
+          ode PACKAGE
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bneuro/%2Bmodels/%2Bode/simpleodedemo.m/" class="md-nav__link">
+        vlt.neuro.models.ode.simpleodedemo
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_2_17_6_3" type="checkbox" id="__nav_4_2_17_6_3" >
+      
+      <label class="md-nav__link" for="__nav_4_2_17_6_3">
+        synapses PACKAGE
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="synapses PACKAGE" data-md-level="5">
+        <label class="md-nav__title" for="__nav_4_2_17_6_3">
+          <span class="md-nav__icon md-icon"></span>
+          synapses PACKAGE
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bneuro/%2Bmodels/%2Bsynapses/depression_model_comp.m/" class="md-nav__link">
+        vlt.neuro.models.synapses.depression_model_comp
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bneuro/%2Bmodels/%2Bsynapses/depression_model_err.m/" class="md-nav__link">
+        vlt.neuro.models.synapses.depression_model_err
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bneuro/%2Bmodels/%2Bsynapses/depression_model_fit.m/" class="md-nav__link">
+        vlt.neuro.models.synapses.depression_model_fit
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bneuro/%2Bmodels/%2Bsynapses/nmda_voltage_gate.m/" class="md-nav__link">
+        vlt.neuro.models.synapses.nmda_voltage_gate
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bneuro/%2Bmodels/%2Bsynapses/probabilistic_release.m/" class="md-nav__link">
+        vlt.neuro.models.synapses.probabilistic_release
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_2_17_7" type="checkbox" id="__nav_4_2_17_7" >
+      
+      <label class="md-nav__link" for="__nav_4_2_17_7">
+        reverse_correlation PACKAGE
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="reverse_correlation PACKAGE" data-md-level="4">
+        <label class="md-nav__title" for="__nav_4_2_17_7">
+          <span class="md-nav__icon md-icon"></span>
+          reverse_correlation PACKAGE
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bneuro/%2Breverse_correlation/createdirkernel.m/" class="md-nav__link">
+        vlt.neuro.reverse_correlation.createdirkernel
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bneuro/%2Breverse_correlation/reverse_correlation_mv_stepfunc.m/" class="md-nav__link">
+        vlt.neuro.reverse_correlation.reverse_correlation_mv_stepfunc
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bneuro/%2Breverse_correlation/reverse_correlation_stepfunc.m/" class="md-nav__link">
+        vlt.neuro.reverse_correlation.reverse_correlation_stepfunc
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bneuro/%2Breverse_correlation/reverse_correlation_stepfunc_old.m/" class="md-nav__link">
+        vlt.neuro.reverse_correlation.reverse_correlation_stepfunc_old
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bneuro/%2Breverse_correlation/simulate_1dkernel_response.m/" class="md-nav__link">
+        vlt.neuro.reverse_correlation.simulate_1dkernel_response
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bneuro/%2Breverse_correlation/spike_triggered_average_stepfunc.m/" class="md-nav__link">
+        vlt.neuro.reverse_correlation.spike_triggered_average_stepfunc
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bneuro/%2Breverse_correlation/stim1d_motion.m/" class="md-nav__link">
+        vlt.neuro.reverse_correlation.stim1d_motion
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bneuro/%2Breverse_correlation/stim1d_random.m/" class="md-nav__link">
+        vlt.neuro.reverse_correlation.stim1d_random
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_2_17_7_9" type="checkbox" id="__nav_4_2_17_7_9" >
+      
+      <label class="md-nav__link" for="__nav_4_2_17_7_9">
+        demos PACKAGE
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="demos PACKAGE" data-md-level="5">
+        <label class="md-nav__title" for="__nav_4_2_17_7_9">
+          <span class="md-nav__icon md-icon"></span>
+          demos PACKAGE
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bneuro/%2Breverse_correlation/%2Bdemos/DirRFModelTestCode.m/" class="md-nav__link">
+        vlt.neuro.reverse_correlation.demos.DirRFModelTestCode
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bneuro/%2Breverse_correlation/%2Bdemos/DirRFModel_example0.m/" class="md-nav__link">
+        vlt.neuro.reverse_correlation.demos.DirRFModel_example0
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bneuro/%2Breverse_correlation/%2Bdemos/DirRFModel_example1.m/" class="md-nav__link">
+        vlt.neuro.reverse_correlation.demos.DirRFModel_example1
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bneuro/%2Breverse_correlation/%2Bdemos/DirRFModel_example2.m/" class="md-nav__link">
+        vlt.neuro.reverse_correlation.demos.DirRFModel_example2
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bneuro/%2Breverse_correlation/%2Bdemos/DirRFModel_example3.m/" class="md-nav__link">
+        vlt.neuro.reverse_correlation.demos.DirRFModel_example3
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bneuro/%2Breverse_correlation/%2Bdemos/DirRFModel_example3_old.m/" class="md-nav__link">
+        vlt.neuro.reverse_correlation.demos.DirRFModel_example3_old
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bneuro/%2Breverse_correlation/%2Bdemos/RandomRDTestCode.m/" class="md-nav__link">
+        vlt.neuro.reverse_correlation.demos.RandomRDTestCode
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_2_17_7_10" type="checkbox" id="__nav_4_2_17_7_10" >
+      
+      <label class="md-nav__link" for="__nav_4_2_17_7_10">
+        hartley PACKAGE
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="hartley PACKAGE" data-md-level="5">
+        <label class="md-nav__title" for="__nav_4_2_17_7_10">
+          <span class="md-nav__icon md-icon"></span>
+          hartley PACKAGE
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bneuro/%2Breverse_correlation/%2Bhartley/hartley_image.m/" class="md-nav__link">
+        vlt.neuro.reverse_correlation.hartley.hartley_image
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_2_17_8" type="checkbox" id="__nav_4_2_17_8" >
+      
+      <label class="md-nav__link" for="__nav_4_2_17_8">
+        spikesorting PACKAGE
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="spikesorting PACKAGE" data-md-level="4">
+        <label class="md-nav__title" for="__nav_4_2_17_8">
+          <span class="md-nav__icon md-icon"></span>
+          spikesorting PACKAGE
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bneuro/%2Bspikesorting/centerspikes_neg.m/" class="md-nav__link">
+        vlt.neuro.spikesorting.centerspikes_neg
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bneuro/%2Bspikesorting/cluster_spikewaves_gui.m/" class="md-nav__link">
+        vlt.neuro.spikesorting.cluster_spikewaves_gui
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bneuro/%2Bspikesorting/cluster_spikewaves_trivial.m/" class="md-nav__link">
+        vlt.neuro.spikesorting.cluster_spikewaves_trivial
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bneuro/%2Bspikesorting/fitspike_neg.m/" class="md-nav__link">
+        vlt.neuro.spikesorting.fitspike_neg
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bneuro/%2Bspikesorting/oversamplespikes.m/" class="md-nav__link">
+        vlt.neuro.spikesorting.oversamplespikes
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bneuro/%2Bspikesorting/plotspikewaves.m/" class="md-nav__link">
+        vlt.neuro.spikesorting.plotspikewaves
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bneuro/%2Bspikesorting/spikewaves2Npointfeature.m/" class="md-nav__link">
+        vlt.neuro.spikesorting.spikewaves2Npointfeature
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bneuro/%2Bspikesorting/spikewaves2pca.m/" class="md-nav__link">
+        vlt.neuro.spikesorting.spikewaves2pca
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_2_17_9" type="checkbox" id="__nav_4_2_17_9" >
+      
+      <label class="md-nav__link" for="__nav_4_2_17_9">
+        spiketrains PACKAGE
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="spiketrains PACKAGE" data-md-level="4">
+        <label class="md-nav__title" for="__nav_4_2_17_9">
+          <span class="md-nav__icon md-icon"></span>
+          spiketrains PACKAGE
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bneuro/%2Bspiketrains/interspikeinterval.m/" class="md-nav__link">
+        vlt.neuro.spiketrains.interspikeinterval
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bneuro/%2Bspiketrains/loglikelihood_spikerate.m/" class="md-nav__link">
+        vlt.neuro.spiketrains.loglikelihood_spikerate
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bneuro/%2Bspiketrains/loglikelihood_spiketrain.m/" class="md-nav__link">
+        vlt.neuro.spiketrains.loglikelihood_spiketrain
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bneuro/%2Bspiketrains/make_psth.m/" class="md-nav__link">
+        vlt.neuro.spiketrains.make_psth
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bneuro/%2Bspiketrains/plot_psth.m/" class="md-nav__link">
+        vlt.neuro.spiketrains.plot_psth
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bneuro/%2Bspiketrains/spikeresponse.m/" class="md-nav__link">
+        vlt.neuro.spiketrains.spikeresponse
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bneuro/%2Bspiketrains/spikeresponse_tf.m/" class="md-nav__link">
+        vlt.neuro.spiketrains.spikeresponse_tf
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bneuro/%2Bspiketrains/spiketimes2bins.m/" class="md-nav__link">
+        vlt.neuro.spiketrains.spiketimes2bins
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bneuro/%2Bspiketrains/spiketimes_correlation.m/" class="md-nav__link">
+        vlt.neuro.spiketrains.spiketimes_correlation
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bneuro/%2Bspiketrains/spiketimes_correlation_timeshiftsubtract.m/" class="md-nav__link">
+        vlt.neuro.spiketrains.spiketimes_correlation_timeshiftsubtract
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bneuro/%2Bspiketrains/spiketimes_plot.m/" class="md-nav__link">
+        vlt.neuro.spiketrains.spiketimes_plot
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bneuro/%2Bspiketrains/spiketrain2rate.m/" class="md-nav__link">
+        vlt.neuro.spiketrains.spiketrain2rate
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bneuro/%2Bspiketrains/spiketrain_poisson_n.m/" class="md-nav__link">
+        vlt.neuro.spiketrains.spiketrain_poisson_n
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bneuro/%2Bspiketrains/spiketrain_powerspectrum.m/" class="md-nav__link">
+        vlt.neuro.spiketrains.spiketrain_powerspectrum
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bneuro/%2Bspiketrains/spiketrain_powerspectrum_window.m/" class="md-nav__link">
+        vlt.neuro.spiketrains.spiketrain_powerspectrum_window
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bneuro/%2Bspiketrains/spiketrain_sinusoidal.m/" class="md-nav__link">
+        vlt.neuro.spiketrains.spiketrain_sinusoidal
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bneuro/%2Bspiketrains/spiketrain_timingcorrelated.m/" class="md-nav__link">
+        vlt.neuro.spiketrains.spiketrain_timingcorrelated
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_2_17_10" type="checkbox" id="__nav_4_2_17_10" >
+      
+      <label class="md-nav__link" for="__nav_4_2_17_10">
+        stdp PACKAGE
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="stdp PACKAGE" data-md-level="4">
+        <label class="md-nav__title" for="__nav_4_2_17_10">
+          <span class="md-nav__icon md-icon"></span>
+          stdp PACKAGE
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bneuro/%2Bstdp/ltpi_apply.m/" class="md-nav__link">
+        vlt.neuro.stdp.ltpi_apply
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bneuro/%2Bstdp/ltpi_test.m/" class="md-nav__link">
+        vlt.neuro.stdp.ltpi_test
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bneuro/%2Bstdp/sjostrom_freq_stdp.m/" class="md-nav__link">
+        vlt.neuro.stdp.sjostrom_freq_stdp
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bneuro/%2Bstdp/sjostrom_spiketrain.m/" class="md-nav__link">
+        vlt.neuro.stdp.sjostrom_spiketrain
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bneuro/%2Bstdp/stdp_apply.m/" class="md-nav__link">
+        vlt.neuro.stdp.stdp_apply
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bneuro/%2Bstdp/stdp_eltpi_apply.m/" class="md-nav__link">
+        vlt.neuro.stdp.stdp_eltpi_apply
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bneuro/%2Bstdp/stdp_study.m/" class="md-nav__link">
+        vlt.neuro.stdp.stdp_study
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bneuro/%2Bstdp/stdp_study_plotspiketrains.m/" class="md-nav__link">
+        vlt.neuro.stdp.stdp_study_plotspiketrains
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bneuro/%2Bstdp/stdp_test.m/" class="md-nav__link">
+        vlt.neuro.stdp.stdp_test
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bneuro/%2Bstdp/stdp_triplet_apply.m/" class="md-nav__link">
+        vlt.neuro.stdp.stdp_triplet_apply
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bneuro/%2Bstdp/stdp_tripletvscorrelation.m/" class="md-nav__link">
+        vlt.neuro.stdp.stdp_tripletvscorrelation
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bneuro/%2Bstdp/stdp_tripletvsratecorrelation.m/" class="md-nav__link">
+        vlt.neuro.stdp.stdp_tripletvsratecorrelation
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_2_17_11" type="checkbox" id="__nav_4_2_17_11" >
+      
+      <label class="md-nav__link" for="__nav_4_2_17_11">
+        stimulus PACKAGE
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="stimulus PACKAGE" data-md-level="4">
+        <label class="md-nav__title" for="__nav_4_2_17_11">
+          <span class="md-nav__icon md-icon"></span>
+          stimulus PACKAGE
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bneuro/%2Bstimulus/descramble_pseudorandom.m/" class="md-nav__link">
+        vlt.neuro.stimulus.descramble_pseudorandom
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bneuro/%2Bstimulus/findcontrolstimulus.m/" class="md-nav__link">
+        vlt.neuro.stimulus.findcontrolstimulus
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bneuro/%2Bstimulus/generate_test_stimulus_responses.m/" class="md-nav__link">
+        vlt.neuro.stimulus.generate_test_stimulus_responses
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bneuro/%2Bstimulus/plot_stimulus_timeseries.m/" class="md-nav__link">
+        vlt.neuro.stimulus.plot_stimulus_timeseries
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bneuro/%2Bstimulus/stimids2reps.m/" class="md-nav__link">
+        vlt.neuro.stimulus.stimids2reps
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bneuro/%2Bstimulus/stimulus_response_scalar.m/" class="md-nav__link">
+        vlt.neuro.stimulus.stimulus_response_scalar
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bneuro/%2Bstimulus/stimulus_response_stats.m/" class="md-nav__link">
+        vlt.neuro.stimulus.stimulus_response_stats
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bneuro/%2Bstimulus/stimulus_response_summary.m/" class="md-nav__link">
+        vlt.neuro.stimulus.stimulus_response_summary
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bneuro/%2Bstimulus/trimrespcurve.m/" class="md-nav__link">
+        vlt.neuro.stimulus.trimrespcurve
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_2_17_12" type="checkbox" id="__nav_4_2_17_12" >
+      
+      <label class="md-nav__link" for="__nav_4_2_17_12">
+        vision PACKAGE
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="vision PACKAGE" data-md-level="4">
+        <label class="md-nav__title" for="__nav_4_2_17_12">
+          <span class="md-nav__icon md-icon"></span>
+          vision PACKAGE
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bneuro/%2Bvision/curved_monitor_view.m/" class="md-nav__link">
+        vlt.neuro.vision.curved_monitor_view
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bneuro/%2Bvision/make3dbar.m/" class="md-nav__link">
+        vlt.neuro.vision.make3dbar
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bneuro/%2Bvision/make3dwords2.m/" class="md-nav__link">
+        vlt.neuro.vision.make3dwords2
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bneuro/%2Bvision/simp_sat_cgain.m/" class="md-nav__link">
+        vlt.neuro.vision.simp_sat_cgain
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bneuro/%2Bvision/squirrelcolor.m/" class="md-nav__link">
+        vlt.neuro.vision.squirrelcolor
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bneuro/%2Bvision/stereopoint.m/" class="md-nav__link">
+        vlt.neuro.vision.stereopoint
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bneuro/%2Bvision/visual_stim_row_correlator.m/" class="md-nav__link">
+        vlt.neuro.vision.visual_stim_row_correlator
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_2_17_12_8" type="checkbox" id="__nav_4_2_17_12_8" >
+      
+      <label class="md-nav__link" for="__nav_4_2_17_12_8">
+        oridir PACKAGE
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="oridir PACKAGE" data-md-level="5">
+        <label class="md-nav__title" for="__nav_4_2_17_12_8">
+          <span class="md-nav__icon md-icon"></span>
+          oridir PACKAGE
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bneuro/%2Bvision/%2Boridir/dirspace2orispace.m/" class="md-nav__link">
+        vlt.neuro.vision.oridir.dirspace2orispace
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bneuro/%2Bvision/%2Boridir/dsi2dirparams.m/" class="md-nav__link">
+        vlt.neuro.vision.oridir.dsi2dirparams
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bneuro/%2Bvision/%2Boridir/osi2oriparams.m/" class="md-nav__link">
+        vlt.neuro.vision.oridir.osi2oriparams
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bneuro/%2Bvision/%2Boridir/osi2oriparams2.m/" class="md-nav__link">
+        vlt.neuro.vision.oridir.osi2oriparams2
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bneuro/%2Bvision/%2Boridir/rotated_oripref_stats.m/" class="md-nav__link">
+        vlt.neuro.vision.oridir.rotated_oripref_stats
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bneuro/%2Bvision/%2Boridir/rotatedircurve.m/" class="md-nav__link">
+        vlt.neuro.vision.oridir.rotatedircurve
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bneuro/%2Bvision/%2Boridir/vector_direction_pref.m/" class="md-nav__link">
+        vlt.neuro.vision.oridir.vector_direction_pref
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_2_17_12_8_8" type="checkbox" id="__nav_4_2_17_12_8_8" >
+      
+      <label class="md-nav__link" for="__nav_4_2_17_12_8_8">
+        index PACKAGE
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="index PACKAGE" data-md-level="6">
+        <label class="md-nav__title" for="__nav_4_2_17_12_8_8">
+          <span class="md-nav__icon md-icon"></span>
+          index PACKAGE
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bneuro/%2Bvision/%2Boridir/%2Bindex/compute_circularvariance.m/" class="md-nav__link">
+        vlt.neuro.vision.oridir.index.compute_circularvariance
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bneuro/%2Bvision/%2Boridir/%2Bindex/compute_dircircularvariance.m/" class="md-nav__link">
+        vlt.neuro.vision.oridir.index.compute_dircircularvariance
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bneuro/%2Bvision/%2Boridir/%2Bindex/compute_directionindex.m/" class="md-nav__link">
+        vlt.neuro.vision.oridir.index.compute_directionindex
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bneuro/%2Bvision/%2Boridir/%2Bindex/compute_directionsignificancedotproduct.m/" class="md-nav__link">
+        vlt.neuro.vision.oridir.index.compute_directionsignificancedotproduct
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bneuro/%2Bvision/%2Boridir/%2Bindex/compute_dirvecconstrainedori.m/" class="md-nav__link">
+        vlt.neuro.vision.oridir.index.compute_dirvecconstrainedori
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bneuro/%2Bvision/%2Boridir/%2Bindex/compute_dirvecdotorivec.m/" class="md-nav__link">
+        vlt.neuro.vision.oridir.index.compute_dirvecdotorivec
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bneuro/%2Bvision/%2Boridir/%2Bindex/compute_halfwidth.m/" class="md-nav__link">
+        vlt.neuro.vision.oridir.index.compute_halfwidth
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bneuro/%2Bvision/%2Boridir/%2Bindex/compute_orientationindex.m/" class="md-nav__link">
+        vlt.neuro.vision.oridir.index.compute_orientationindex
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bneuro/%2Bvision/%2Boridir/%2Bindex/compute_orientationvector.m/" class="md-nav__link">
+        vlt.neuro.vision.oridir.index.compute_orientationvector
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bneuro/%2Bvision/%2Boridir/%2Bindex/compute_tuningwidth.m/" class="md-nav__link">
+        vlt.neuro.vision.oridir.index.compute_tuningwidth
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bneuro/%2Bvision/%2Boridir/%2Bindex/fit2fitdi.m/" class="md-nav__link">
+        vlt.neuro.vision.oridir.index.fit2fitdi
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bneuro/%2Bvision/%2Boridir/%2Bindex/fit2fitdibr.m/" class="md-nav__link">
+        vlt.neuro.vision.oridir.index.fit2fitdibr
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bneuro/%2Bvision/%2Boridir/%2Bindex/fit2fitdibr_orig.m/" class="md-nav__link">
+        vlt.neuro.vision.oridir.index.fit2fitdibr_orig
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bneuro/%2Bvision/%2Boridir/%2Bindex/fit2fitdidiffsum.m/" class="md-nav__link">
+        vlt.neuro.vision.oridir.index.fit2fitdidiffsum
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bneuro/%2Bvision/%2Boridir/%2Bindex/fit2fitdr_angle.m/" class="md-nav__link">
+        vlt.neuro.vision.oridir.index.fit2fitdr_angle
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bneuro/%2Bvision/%2Boridir/%2Bindex/fit2fitoi.m/" class="md-nav__link">
+        vlt.neuro.vision.oridir.index.fit2fitoi
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bneuro/%2Bvision/%2Boridir/%2Bindex/fit2fitoidiffsum.m/" class="md-nav__link">
+        vlt.neuro.vision.oridir.index.fit2fitoidiffsum
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bneuro/%2Bvision/%2Boridir/%2Bindex/fit2null.m/" class="md-nav__link">
+        vlt.neuro.vision.oridir.index.fit2null
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bneuro/%2Bvision/%2Boridir/%2Bindex/fit2orth.m/" class="md-nav__link">
+        vlt.neuro.vision.oridir.index.fit2orth
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bneuro/%2Bvision/%2Boridir/%2Bindex/fit2pref.m/" class="md-nav__link">
+        vlt.neuro.vision.oridir.index.fit2pref
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bneuro/%2Bvision/%2Boridir/%2Bindex/oridir_fitindexes.m/" class="md-nav__link">
+        vlt.neuro.vision.oridir.index.oridir_fitindexes
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bneuro/%2Bvision/%2Boridir/%2Bindex/oridir_vectorindexes.m/" class="md-nav__link">
+        vlt.neuro.vision.oridir.index.oridir_vectorindexes
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_2_17_12_8_9" type="checkbox" id="__nav_4_2_17_12_8_9" >
+      
+      <label class="md-nav__link" for="__nav_4_2_17_12_8_9">
+        plot PACKAGE
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="plot PACKAGE" data-md-level="6">
+        <label class="md-nav__title" for="__nav_4_2_17_12_8_9">
+          <span class="md-nav__icon md-icon"></span>
+          plot PACKAGE
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bneuro/%2Bvision/%2Boridir/%2Bplot/polarplot_dir.m/" class="md-nav__link">
+        vlt.neuro.vision.oridir.plot.polarplot_dir
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bneuro/%2Bvision/%2Boridir/%2Bplot/polarplot_ori.m/" class="md-nav__link">
+        vlt.neuro.vision.oridir.plot.polarplot_ori
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_2_18" type="checkbox" id="__nav_4_2_18" >
+      
+      <label class="md-nav__link" for="__nav_4_2_18">
+        office PACKAGE
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="office PACKAGE" data-md-level="3">
+        <label class="md-nav__title" for="__nav_4_2_18">
+          <span class="md-nav__icon md-icon"></span>
+          office PACKAGE
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Boffice/addresslabels2pdf.m/" class="md-nav__link">
+        vlt.office.addresslabels2pdf
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Boffice/vcarddata2addresslabels.m/" class="md-nav__link">
+        vlt.office.vcarddata2addresslabels
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_2_19" type="checkbox" id="__nav_4_2_19" >
+      
+      <label class="md-nav__link" for="__nav_4_2_19">
+        optics PACKAGE
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="optics PACKAGE" data-md-level="3">
+        <label class="md-nav__title" for="__nav_4_2_19">
+          <span class="md-nav__icon md-icon"></span>
+          optics PACKAGE
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Boptics/ideal_optical_transfer_function.m/" class="md-nav__link">
+        vlt.optics.ideal_optical_transfer_function
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_2_20" type="checkbox" id="__nav_4_2_20" >
+      
+      <label class="md-nav__link" for="__nav_4_2_20">
+        path PACKAGE
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="path PACKAGE" data-md-level="3">
+        <label class="md-nav__title" for="__nav_4_2_20">
+          <span class="md-nav__icon md-icon"></span>
+          path PACKAGE
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bpath/absolute2relative.m/" class="md-nav__link">
+        vlt.path.absolute2relative
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bpath/pathstr2cellarray.m/" class="md-nav__link">
+        vlt.path.pathstr2cellarray
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_2_21" type="checkbox" id="__nav_4_2_21" >
+      
+      <label class="md-nav__link" for="__nav_4_2_21">
+        pcb PACKAGE
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="pcb PACKAGE" data-md-level="3">
+        <label class="md-nav__title" for="__nav_4_2_21">
+          <span class="md-nav__icon md-icon"></span>
+          pcb PACKAGE
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bpcb/KiCadGerber2OSHPark.m/" class="md-nav__link">
+        vlt.pcb.KiCadGerber2OSHPark
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_2_22" type="checkbox" id="__nav_4_2_22" checked>
+      
+      <label class="md-nav__link" for="__nav_4_2_22">
+        plot PACKAGE
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="plot PACKAGE" data-md-level="3">
+        <label class="md-nav__title" for="__nav_4_2_22">
+          <span class="md-nav__icon md-icon"></span>
+          plot PACKAGE
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../arrowplot.m/" class="md-nav__link">
+        vlt.plot.arrowplot
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../autohistogram.m/" class="md-nav__link">
+        vlt.plot.autohistogram
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../autoplacetext.m/" class="md-nav__link">
+        vlt.plot.autoplacetext
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cleanfig.m/" class="md-nav__link">
+        vlt.plot.cleanfig
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../colorlist.m/" class="md-nav__link">
+        vlt.plot.colorlist
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ctable.m/" class="md-nav__link">
+        vlt.plot.ctable
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cumhist.m/" class="md-nav__link">
+        vlt.plot.cumhist
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../drawbarinimage.m/" class="md-nav__link">
+        vlt.plot.drawbarinimage
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../drawshape.m/" class="md-nav__link">
+        vlt.plot.drawshape
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../hist2d.m/" class="md-nav__link">
+        vlt.plot.hist2d
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../hist2line.m/" class="md-nav__link">
+        vlt.plot.hist2line
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../imagedisplay.m/" class="md-nav__link">
+        vlt.plot.imagedisplay
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../intline.m/" class="md-nav__link">
+        vlt.plot.intline
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../matchaxes.m/" class="md-nav__link">
+        vlt.plot.matchaxes
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../median_within_between_plot.m/" class="md-nav__link">
+        vlt.plot.median_within_between_plot
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../movetoback.m/" class="md-nav__link">
+        vlt.plot.movetoback
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../movetofront.m/" class="md-nav__link">
+        vlt.plot.movetofront
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        vlt.plot.myerrorbar
+      </a>
+      
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../plot_multichan.m/" class="md-nav__link">
+        vlt.plot.plot_multichan
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../plotbargraphwithdata.m/" class="md-nav__link">
+        vlt.plot.plotbargraphwithdata
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../plotmeanbar.m/" class="md-nav__link">
+        vlt.plot.plotmeanbar
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../plotoribox.m/" class="md-nav__link">
+        vlt.plot.plotoribox
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../plotshade.m/" class="md-nav__link">
+        vlt.plot.plotshade
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../posterize.m/" class="md-nav__link">
+        vlt.plot.posterize
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../quickhist.m/" class="md-nav__link">
+        vlt.plot.quickhist
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../scatterplot.m/" class="md-nav__link">
+        vlt.plot.scatterplot
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../shiftedbar.m/" class="md-nav__link">
+        vlt.plot.shiftedbar
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../supersubplot.m/" class="md-nav__link">
+        vlt.plot.supersubplot
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_2_23" type="checkbox" id="__nav_4_2_23" >
+      
+      <label class="md-nav__link" for="__nav_4_2_23">
+        python PACKAGE
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="python PACKAGE" data-md-level="3">
+        <label class="md-nav__title" for="__nav_4_2_23">
+          <span class="md-nav__icon md-icon"></span>
+          python PACKAGE
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bpython/app3.m/" class="md-nav__link">
+        vlt.python.app3
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bpython/conda.m/" class="md-nav__link">
+        vlt.python.conda
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bpython/condarun3.m/" class="md-nav__link">
+        vlt.python.condarun3
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bpython/run3.m/" class="md-nav__link">
+        vlt.python.run3
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_2_24" type="checkbox" id="__nav_4_2_24" >
+      
+      <label class="md-nav__link" for="__nav_4_2_24">
+        signal PACKAGE
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="signal PACKAGE" data-md-level="3">
+        <label class="md-nav__title" for="__nav_4_2_24">
+          <span class="md-nav__icon md-icon"></span>
+          signal PACKAGE
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bsignal/correlation_stepfunc.m/" class="md-nav__link">
+        vlt.signal.correlation_stepfunc
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bsignal/data2intervals.m/" class="md-nav__link">
+        vlt.signal.data2intervals
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bsignal/decompose_time.m/" class="md-nav__link">
+        vlt.signal.decompose_time
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bsignal/detrend_median.m/" class="md-nav__link">
+        vlt.signal.detrend_median
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bsignal/dotdisc.m/" class="md-nav__link">
+        vlt.signal.dotdisc
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bsignal/dual_led_filters.m/" class="md-nav__link">
+        vlt.signal.dual_led_filters
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bsignal/fermi.m/" class="md-nav__link">
+        vlt.signal.fermi
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bsignal/filterwaveform.m/" class="md-nav__link">
+        vlt.signal.filterwaveform
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bsignal/oversample.m/" class="md-nav__link">
+        vlt.signal.oversample
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bsignal/point2samplelabel.m/" class="md-nav__link">
+        vlt.signal.point2samplelabel
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bsignal/refractory.m/" class="md-nav__link">
+        vlt.signal.refractory
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bsignal/remove60hz.m/" class="md-nav__link">
+        vlt.signal.remove60hz
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bsignal/removespikes.m/" class="md-nav__link">
+        vlt.signal.removespikes
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bsignal/round2sample.m/" class="md-nav__link">
+        vlt.signal.round2sample
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bsignal/sample2value.m/" class="md-nav__link">
+        vlt.signal.sample2value
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bsignal/samplesinepochs.m/" class="md-nav__link">
+        vlt.signal.samplesinepochs
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bsignal/step_autocorrelation.m/" class="md-nav__link">
+        vlt.signal.step_autocorrelation
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bsignal/step_autocorrelation_ztrans_discrete.m/" class="md-nav__link">
+        vlt.signal.step_autocorrelation_ztrans_discrete
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bsignal/step_whitening_filter.m/" class="md-nav__link">
+        vlt.signal.step_whitening_filter
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bsignal/threshold_crossings.m/" class="md-nav__link">
+        vlt.signal.threshold_crossings
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bsignal/threshold_crossings_epochs.m/" class="md-nav__link">
+        vlt.signal.threshold_crossings_epochs
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bsignal/value2sample.m/" class="md-nav__link">
+        vlt.signal.value2sample
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bsignal/whitening_filter_from_autocorr.m/" class="md-nav__link">
+        vlt.signal.whitening_filter_from_autocorr
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bsignal/wiener_demo.m/" class="md-nav__link">
+        vlt.signal.wiener_demo
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bsignal/xcorr_discrete.m/" class="md-nav__link">
+        vlt.signal.xcorr_discrete
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bsignal/xcorr_stepfunc.m/" class="md-nav__link">
+        vlt.signal.xcorr_stepfunc
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bsignal/xcorr_stepfuncstepfunc.m/" class="md-nav__link">
+        vlt.signal.xcorr_stepfuncstepfunc
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bsignal/ztrans_discrete.m/" class="md-nav__link">
+        vlt.signal.ztrans_discrete
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_2_25" type="checkbox" id="__nav_4_2_25" >
+      
+      <label class="md-nav__link" for="__nav_4_2_25">
+        spreadsheet PACKAGE
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="spreadsheet PACKAGE" data-md-level="3">
+        <label class="md-nav__title" for="__nav_4_2_25">
+          <span class="md-nav__icon md-icon"></span>
+          spreadsheet PACKAGE
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bspreadsheet/spreadsheet_filterbydate.m/" class="md-nav__link">
+        vlt.spreadsheet.spreadsheet_filterbydate
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bspreadsheet/spreadsheet_multiplechoice.m/" class="md-nav__link">
+        vlt.spreadsheet.spreadsheet_multiplechoice
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_2_26" type="checkbox" id="__nav_4_2_26" >
+      
+      <label class="md-nav__link" for="__nav_4_2_26">
+        stats PACKAGE
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="stats PACKAGE" data-md-level="3">
+        <label class="md-nav__title" for="__nav_4_2_26">
+          <span class="md-nav__icon md-icon"></span>
+          stats PACKAGE
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bstats/chi2class.m/" class="md-nav__link">
+        vlt.stats.chi2class
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bstats/chi2uniformtest.m/" class="md-nav__link">
+        vlt.stats.chi2uniformtest
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bstats/discrimin_iterative.m/" class="md-nav__link">
+        vlt.stats.discrimin_iterative
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bstats/discrimin_iterative_err.m/" class="md-nav__link">
+        vlt.stats.discrimin_iterative_err
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bstats/gof_Zoccolan.m/" class="md-nav__link">
+        vlt.stats.gof_Zoccolan
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bstats/gof_dicarlo_totalpower.m/" class="md-nav__link">
+        vlt.stats.gof_dicarlo_totalpower
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bstats/gof_dicarlo_totalpower_biastest.m/" class="md-nav__link">
+        vlt.stats.gof_dicarlo_totalpower_biastest
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bstats/gof_totalpower.m/" class="md-nav__link">
+        vlt.stats.gof_totalpower
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bstats/hartigansdipsigniftest.m/" class="md-nav__link">
+        vlt.stats.hartigansdipsigniftest
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bstats/hartigansdiptest.m/" class="md-nav__link">
+        vlt.stats.hartigansdiptest
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bstats/hist_percentile.m/" class="md-nav__link">
+        vlt.stats.hist_percentile
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bstats/hist_std.m/" class="md-nav__link">
+        vlt.stats.hist_std
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bstats/hotellingt2test.m/" class="md-nav__link">
+        vlt.stats.hotellingt2test
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bstats/kolmogorov_smirnov_cdf.m/" class="md-nav__link">
+        vlt.stats.kolmogorov_smirnov_cdf
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bstats/kolmogorov_smirnov_test.m/" class="md-nav__link">
+        vlt.stats.kolmogorov_smirnov_test
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bstats/kruskal_wallis_mv.m/" class="md-nav__link">
+        vlt.stats.kruskal_wallis_mv
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bstats/kruskal_wallis_test.m/" class="md-nav__link">
+        vlt.stats.kruskal_wallis_test
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bstats/ks2_cdf.m/" class="md-nav__link">
+        vlt.stats.ks2_cdf
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bstats/ks_cdf_conf.m/" class="md-nav__link">
+        vlt.stats.ks_cdf_conf
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bstats/ks_cdf_conf_plot.m/" class="md-nav__link">
+        vlt.stats.ks_cdf_conf_plot
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bstats/manova.m/" class="md-nav__link">
+        vlt.stats.manova
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bstats/mwustat.m/" class="md-nav__link">
+        vlt.stats.mwustat
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bstats/myanova.m/" class="md-nav__link">
+        vlt.stats.myanova
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bstats/myanova1.m/" class="md-nav__link">
+        vlt.stats.myanova1
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bstats/nested_f.m/" class="md-nav__link">
+        vlt.stats.nested_f
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bstats/nestedftest.m/" class="md-nav__link">
+        vlt.stats.nestedftest
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bstats/power_index.m/" class="md-nav__link">
+        vlt.stats.power_index
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bstats/pseudorandomorder.m/" class="md-nav__link">
+        vlt.stats.pseudorandomorder
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bstats/quickregression.m/" class="md-nav__link">
+        vlt.stats.quickregression
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bstats/quickregressionpvalue.m/" class="md-nav__link">
+        vlt.stats.quickregressionpvalue
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bstats/ranks.m/" class="md-nav__link">
+        vlt.stats.ranks
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bstats/ranks2.m/" class="md-nav__link">
+        vlt.stats.ranks2
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bstats/resample_responses.m/" class="md-nav__link">
+        vlt.stats.resample_responses
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bstats/roc_analysis.m/" class="md-nav__link">
+        vlt.stats.roc_analysis
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bstats/roc_stats.m/" class="md-nav__link">
+        vlt.stats.roc_stats
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bstats/std_from_median.m/" class="md-nav__link">
+        vlt.stats.std_from_median
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bstats/stderr.m/" class="md-nav__link">
+        vlt.stats.stderr
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bstats/twocurves_bhfdr.m/" class="md-nav__link">
+        vlt.stats.twocurves_bhfdr
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_2_27" type="checkbox" id="__nav_4_2_27" >
+      
+      <label class="md-nav__link" for="__nav_4_2_27">
+        string PACKAGE
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="string PACKAGE" data-md-level="3">
+        <label class="md-nav__title" for="__nav_4_2_27">
+          <span class="md-nav__icon md-icon"></span>
+          string PACKAGE
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bstring/bracelevel.m/" class="md-nav__link">
+        vlt.string.bracelevel
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bstring/bracematch.m/" class="md-nav__link">
+        vlt.string.bracematch
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bstring/intseq2str.m/" class="md-nav__link">
+        vlt.string.intseq2str
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bstring/ismatlabstring.m/" class="md-nav__link">
+        vlt.string.ismatlabstring
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bstring/line_n.m/" class="md-nav__link">
+        vlt.string.line_n
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bstring/str2intseq.m/" class="md-nav__link">
+        vlt.string.str2intseq
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bstring/strcmp_substitution.m/" class="md-nav__link">
+        vlt.string.strcmp_substitution
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bstring/trimsymbol.m/" class="md-nav__link">
+        vlt.string.trimsymbol
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bstring/trimws.m/" class="md-nav__link">
+        vlt.string.trimws
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bstring/version_decode.m/" class="md-nav__link">
+        vlt.string.version_decode
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_2_28" type="checkbox" id="__nav_4_2_28" >
+      
+      <label class="md-nav__link" for="__nav_4_2_28">
+        time PACKAGE
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="time PACKAGE" data-md-level="3">
+        <label class="md-nav__title" for="__nav_4_2_28">
+          <span class="md-nav__icon md-icon"></span>
+          time PACKAGE
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Btime/datevecdiff.m/" class="md-nav__link">
+        vlt.time.datevecdiff
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Btime/dowait.m/" class="md-nav__link">
+        vlt.time.dowait
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Btime/fulltimestamp2datevec.m/" class="md-nav__link">
+        vlt.time.fulltimestamp2datevec
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_2_29" type="checkbox" id="__nav_4_2_29" >
+      
+      <label class="md-nav__link" for="__nav_4_2_29">
+        ui PACKAGE
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="ui PACKAGE" data-md-level="3">
+        <label class="md-nav__title" for="__nav_4_2_29">
+          <span class="md-nav__icon md-icon"></span>
+          ui PACKAGE
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bui/basicuitools_defs.m/" class="md-nav__link">
+        vlt.ui.basicuitools_defs
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bui/callbacknametag.m/" class="md-nav__link">
+        vlt.ui.callbacknametag
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bui/checksyntaxsize.m/" class="md-nav__link">
+        vlt.ui.checksyntaxsize
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bui/dlg2struct.m/" class="md-nav__link">
+        vlt.ui.dlg2struct
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bui/figurecommandcallbackstr.m/" class="md-nav__link">
+        vlt.ui.figurecommandcallbackstr
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bui/findclosestpointclick.m/" class="md-nav__link">
+        vlt.ui.findclosestpointclick
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bui/genercallback.m/" class="md-nav__link">
+        vlt.ui.genercallback
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bui/lb_getselected.m/" class="md-nav__link">
+        vlt.ui.lb_getselected
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bui/myuiinit.m/" class="md-nav__link">
+        vlt.ui.myuiinit
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bui/nitemmenuselection.m/" class="md-nav__link">
+        vlt.ui.nitemmenuselection
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bui/settoolbar.m/" class="md-nav__link">
+        vlt.ui.settoolbar
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bui/simplepopupmenucallback.m/" class="md-nav__link">
+        vlt.ui.simplepopupmenucallback
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bui/textbox.m/" class="md-nav__link">
+        vlt.ui.textbox
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%2Bui/uigetvarname.m/" class="md-nav__link">
+        vlt.ui.uigetvarname
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/VH-Lab/vhlab-toolbox-matlab/edit/master/docs/reference/+vlt/+plot/myerrorbar.m.md" title="Edit this page" class="md-content__button md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
+                  </a>
+                
+                
+                <h1 id="vltplotmyerrorbar">vlt.plot.myerrorbar<a class="headerlink" href="#vltplotmyerrorbar" title="Permanent link">&para;</a></h1>
+<p>MYERRORBAR Error bar plot.
+    ERRORBAR(X,Y,L,U) plots the graph of vector X vs. vector Y with
+    error bars specified by the vectors L and U.  L and U contain the
+    lower and upper error ranges for each point in Y.  Each error bar
+    is L(i) + U(i) long and is drawn a distance of U(i) above and L(i)
+    below the points in (X,Y).  The vectors X,Y,L and U must all be
+    the same length.  If X,Y,L and U are matrices then each column
+    produces a separate line.</p>
+<div class="codehilite"><pre><span></span><code><span class="n">ERRORBAR</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">Y</span><span class="p">,</span><span class="n">E</span><span class="p">)</span> <span class="ow">or</span> <span class="n">ERRORBAR</span><span class="p">(</span><span class="n">Y</span><span class="p">,</span><span class="n">E</span><span class="p">)</span> <span class="n">plots</span> <span class="n">Y</span> <span class="n">with</span> <span class="n">error</span> <span class="n">bars</span> <span class="p">[</span><span class="n">Y</span><span class="o">-</span><span class="n">E</span> <span class="n">Y</span><span class="o">+</span><span class="n">E</span><span class="p">]</span><span class="o">.</span>
+<span class="n">ERRORBAR</span><span class="p">(</span><span class="o">...</span><span class="p">,</span><span class="s1">&#39;LineSpec&#39;</span><span class="p">)</span> <span class="n">uses</span> <span class="n">the</span> <span class="n">color</span> <span class="ow">and</span> <span class="n">linestyle</span> <span class="n">specified</span> <span class="n">by</span>
+<span class="n">the</span> <span class="n">string</span> <span class="s1">&#39;LineSpec&#39;</span><span class="o">.</span>  <span class="n">See</span> <span class="n">PLOT</span> <span class="k">for</span> <span class="n">possibilities</span><span class="o">.</span>
+
+<span class="n">ERRORBAR</span><span class="p">(</span><span class="o">...</span><span class="p">,</span><span class="n">TEE</span><span class="p">)</span> <span class="n">gives</span> <span class="n">the</span> <span class="s1">&#39;TEE&#39;</span> <span class="n">width</span><span class="p">,</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">same</span> <span class="n">units</span> <span class="k">as</span> <span class="n">X</span> <span class="n">variable</span>
+
+<span class="n">H</span> <span class="o">=</span> <span class="n">ERRORBAR</span><span class="p">(</span><span class="o">...</span><span class="p">)</span> <span class="n">returns</span> <span class="n">a</span> <span class="n">vector</span> <span class="n">of</span> <span class="n">line</span> <span class="n">handles</span><span class="o">.</span>
+
+<span class="n">For</span> <span class="n">example</span><span class="p">,</span>
+   <span class="n">x</span> <span class="o">=</span> <span class="mi">1</span><span class="p">:</span><span class="mi">10</span><span class="p">;</span>
+   <span class="n">y</span> <span class="o">=</span> <span class="nb">sin</span><span class="p">(</span><span class="n">x</span><span class="p">);</span>
+   <span class="n">e</span> <span class="o">=</span> <span class="n">std</span><span class="p">(</span><span class="n">y</span><span class="p">)</span><span class="o">*</span><span class="n">ones</span><span class="p">(</span><span class="n">size</span><span class="p">(</span><span class="n">x</span><span class="p">));</span>
+   <span class="n">errorbar</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">e</span><span class="p">)</span>
+<span class="n">draws</span> <span class="n">symmetric</span> <span class="n">error</span> <span class="n">bars</span> <span class="n">of</span> <span class="n">unit</span> <span class="n">standard</span> <span class="n">deviation</span><span class="o">.</span>
+</code></pre></div>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+        
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        <a href="../movetofront.m/" class="md-footer__link md-footer__link--prev" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              vlt.plot.movetofront
+            </div>
+          </div>
+        </a>
+      
+      
+        <a href="../plot_multichan.m/" class="md-footer__link md-footer__link--next" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              vlt.plot.plot_multichan
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+        
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "../../../..", "features": ["navigation"], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}, "search": "../../../../assets/javascripts/workers/search.4fa0e4ee.min.js", "version": null}</script>
+    
+    
+      <script src="../../../../assets/javascripts/bundle.1d3bfcf1.min.js"></script>
+      
+    
+  </body>
+</html>

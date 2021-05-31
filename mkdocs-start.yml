@@ -1,0 +1,27 @@
+site_name: vhlab-toolbox-matlab
+repo_url: https://github.com/VH-Lab/vhlab-toolbox-matlab
+site_author: Steve Van Hooser
+docs_dir: 'docs'
+google_analytics:
+  - UA-91714905-7
+  - auto
+theme:
+  name: 'material'
+  palette:
+    - scheme: default
+      primary: 'teal'
+      secondary: 'teal'
+      toggle:
+        icon: material/weather-sunny
+        name: Switch to dark mode
+    - scheme: slate
+      toggle:
+        icon: material/weather-night
+        name: Switch to light mode
+  features:
+    - navigation
+nav:
+  - Home: index.md
+  - Installation: 'installation.md'
+  - Contributing: 'contributing.md'
+  - Code reference:

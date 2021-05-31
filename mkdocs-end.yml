@@ -1,0 +1,11 @@
+
+
+use_directory_urls: true
+
+markdown_extensions:
+  - admonition
+  - toc:
+      permalink: true
+  - codehilite
+
+
