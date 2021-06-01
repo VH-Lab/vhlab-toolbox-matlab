@@ -149,7 +149,7 @@ if fid<0, % we never opened it successfully, user might want us to produce an er
 			'created this file then you should manually delete it.']);
 	end;
 else,
-	if nargin>1, % if we are getting the key, we should close the lock file
+	if nargout>1, % if we are getting the key, we should close the lock file
 		fclose(fid);
 	end;
 end;

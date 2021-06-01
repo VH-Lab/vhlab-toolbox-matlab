@@ -27,7 +27,7 @@ end;
 
  % we need to permute this so the samples values 1..M are on the first dimension so that interp1 can deal
 
-spikeshapesup = interp1(1:M, permute(spikeshapes,[2 1 3]), linspace(1,61,61*5));
+spikeshapesup = interp1(1:M, permute(spikeshapes,[2 1 3]), linspace(1,M,M*upsamplefactor));
 
  % now let's change it back to the input format
 
