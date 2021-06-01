@@ -19,8 +19,6 @@ end;
 if stash_success, % if we are still going, try to 
 	[status,results]=system(['git -C "' dirname '" stash']);
 
-	results,
-
 	pull_success=(status==0);
 end;
 
