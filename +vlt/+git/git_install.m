@@ -8,11 +8,12 @@ function b = git_install(dirname, repository)
 % in the local directory DIRNAME that don't match the remote REPOSITORY are deleted.
 % 
 % If DIRNAME does not exist, then the repository is cloned.
-% If DIRNAME exists and has local changes, the directory is deleted and cloned fresh.
+% If DIRNAME exists and has local changes, the changes are stashed and the
+%    directory is updated by pulling.
 % If the DIRNAME exists and has no local changes, the directory is updated by
-% pulling.
+%    pulling.
 %
-% Note: if you have any local changes, vlt.git.git_install will totally remove them.
+% Note: if you have any local changes, vlt.git.git_install will stash them and warn the user.
 %
 % B is 1 if the operation is successful.
 %
@@ -26,22 +27,21 @@ if ~exist(dirname,'dir'),
 end;
 
 status_good = 0;
+
 if ~must_clone,
 	try,
 		[uptodate,changes,untrackedfiles] = vlt.git.git_status(dirname);
 		status_good = ~changes; %  & ~untrackedfiles;  % untracked files okay
 	end;
-end;
 
-if status_good, % we can pull without difficulty
-	b=vlt.git.git_pull(dirname);
-else, % stash first, then pull
-	warning(['STASHING changes in ' dirname '...']);
-	vlt.git.git_stash(dirname);
-	b=vlt.git.git_pull(dirname);
-end;
-
-if must_clone, 
+	if status_good, % we can pull without difficulty
+		b=vlt.git.git_pull(dirname);
+	else, % stash first, then pull
+		warning(['STASHING changes in ' dirname '...']);
+		vlt.git.git_stash(dirname);
+		b=vlt.git.git_pull(dirname);
+	end;
+else,
 	if exist(dirname,'dir'), 
 		rmdir(dirname,'s');
 	end;

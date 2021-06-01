@@ -8,7 +8,7 @@ function b = git_stash(dirname)
 
 localparentdir = fileparts(dirname);
 
- % see if pull succeeds
+ % see if stash succeeds
 
 stash_success = 1; % assume success, and update to failure if need be
 
@@ -19,8 +19,8 @@ end;
 if stash_success, % if we are still going, try to 
 	[status,results]=system(['git -C "' dirname '" stash']);
 
-	pull_success=(status==0);
+	stash_success=(status==0);
 end;
 
-b = pull_success;
+b = stash_success;
 
