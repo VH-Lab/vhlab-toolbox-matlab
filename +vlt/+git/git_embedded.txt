@@ -45,7 +45,7 @@ end;
 status_good = 0;
 if ~must_clone,
         try,
-                [uptodate,changes,untrackedfiles] = vlt.git.git_status(dirname);
+                [uptodate,changes,untrackedfiles] = git_embedded_status(dirname);
                 status_good = ~changes; %  & ~untrackedfiles;  % untracked files okay
         end;
 
