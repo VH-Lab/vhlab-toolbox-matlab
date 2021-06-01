@@ -1,0 +1,11 @@
+# vlt.stats.stderr
+
+   STDERR - Standard error of a vector of data
+ 
+   SE = vlt.stats.stderr(DATA);
+ 
+   Computes standard error of each column.
+ 
+   SE = std(DATA)./repmat(sqrt(size(DATA,1)),1,size(DATA,2));
+ 
+   See also: STD, NANSTD
