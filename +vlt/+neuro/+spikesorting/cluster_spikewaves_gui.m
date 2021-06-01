@@ -251,14 +251,14 @@ switch command,
                 button.HorizontalAlignment = 'center';
                 button.Callback = callbackstr;
                 txt.Units = 'pixels'; txt.BackgroundColor = [0.8 0.8 0.8];
-                txt.fontsize = 12; txt.fontweight = 'normal';
+                txt.fontsize = 10; txt.fontweight = 'normal';
                 txt.HorizontalAlignment = 'left';txt.Style='text';
                 edit = txt; edit.BackgroundColor = [ 1 1 1]; edit.Style = 'Edit';
                 popup = txt; popup.style = 'popupmenu';
                 popup.Callback = callbackstr;
                 cb = txt; cb.Style = 'Checkbox';
                 cb.Callback = callbackstr;
-                cb.fontsize = 12;
+                cb.fontsize = 10;
 
 		% feature list:
 
@@ -329,6 +329,13 @@ switch command,
 		uicontrol(txt,'position',[5+100+5 5+0*row-3 130 30],'string', '[xmin xmax ymin ymax]','tag','AxesText');
 		uicontrol(edit,'position',[5+100+5+130 5+0*row 200 30],'string', '[-2 0 -1 1]','tag','AxesEdit','callback',callbackstr);
 		uicontrol(button,'position',[5+100+5+130+200+5 5+0*row 40 30],'string', 'auto','tag','AxesAutoBt');
+
+		ch = get(gcf,'children');
+		for i=1:numel(ch),
+			try,
+				set(ch(i),'units','normalized');
+			end;
+		end;
 
 		set(fig,'userdata',ud);
 	case 'ShowInitialClustersBt',
@@ -886,9 +893,13 @@ switch command,
 			inds = inds_present;
 			if mod(i,2),
 				currentrow = currentrow + 1; 
-				ax{currentrow,1} = axes('units','pixels','position',[left_edge axesrows(currentrow+1) ax_width ax_height],'tag',['SpikeAxes' int2str(i)]);
+				ax{currentrow,1} = axes('units','normalized','position',...
+					vlt.matlab.graphics.pixels2normalized([0 0 ud.windowwidth ud.windowheight],[left_edge axesrows(currentrow+1) ax_width ax_height]),...
+					'tag',['SpikeAxes' int2str(i)]);
 			else,
-				ax{currentrow,2} = axes('units','pixels','position',[middle_edge+10 axesrows(currentrow+1) ax_width ax_height],'tag',['SpikeAxes' int2str(i)]);
+				ax{currentrow,2} = axes('units','normalized','position',...
+					vlt.matlab.graphics.pixels2normalized([0 0 ud.windowwidth ud.windowheight],[middle_edge+10 axesrows(currentrow+1) ax_width ax_height]),...
+					'tag',['SpikeAxes' int2str(i)]);
 			end;
 			vlt.neuro.spikesorting.plotspikewaves(ud.waves(:,:,inds),1:length(inds),'ColorOrder',thecolor,'RandomSubset',ud.RandomSubset,'RandomSubsetSize',ud.RandomSubsetSize);
 			box off;
