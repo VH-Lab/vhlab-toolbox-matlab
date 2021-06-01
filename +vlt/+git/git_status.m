@@ -26,7 +26,7 @@ untracked_present = 0;
 
 if status==0,
 	uptodate = ~isempty(strfind(results,'Your branch is up to date with'));
-	changes = ~isempty(strfind(results,'Changes to be committed:'));
+	changes = ~isempty(strfind(results,'Changes '));
 	untracked_present = ~isempty(strfind(results,'untracked files present'));
 else,
 	error(['Error running git status: ' results]);

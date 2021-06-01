@@ -29,14 +29,16 @@ status_good = 0;
 if ~must_clone,
 	try,
 		[uptodate,changes,untrackedfiles] = vlt.git.git_status(dirname);
-		status_good = ~changes & ~untrackedfiles;
+		status_good = ~changes; %  & ~untrackedfiles;  % untracked files okay
 	end;
 end;
 
 if status_good, % we can pull without difficulty
 	b=vlt.git.git_pull(dirname);
-else,
-	must_clone = 1;
+else, % stash first, then pull
+	warning(['STASHING changes in ' dirname '...']);
+	vlt.git.git_stash(dirname);
+	b=vlt.git.git_pull(dirname);
 end;
 
 if must_clone, 
