@@ -1,5 +1,6 @@
 # vlt.neuro.vision.oridir.index.fit2orth
 
+```
   FIT2ORTH - calculate the orthogonal response from a fit to direction
  
    ORTH=vlt.neuro.vision.oridir.index.fit2orth(RESPONSE)
@@ -16,3 +17,5 @@
    row is added equal to 0:359.
  
    See also: vlt.neuro.vision.oridir.index.fit2pref, vlt.neuro.vision.oridir.index.fit2null
+
+```

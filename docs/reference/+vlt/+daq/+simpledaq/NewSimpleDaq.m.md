@@ -1,5 +1,6 @@
 # vlt.daq.simpledaq.NewSimpleDaq
 
+```
   vlt.daq.simpledaq.NewSimpleDaq - Creates a new SimpleDaq object
  
    SD = vlt.daq.simpledaq.NewSimpleDaq(DAQNAME, PARAMETERS)
@@ -15,3 +16,5 @@
    SimpleDaq is a wrapper class for many types of aqcusition devices.  When
    one calls vlt.daq.simpledaq.OpenSimpleDaq, vlt.daq.simpledaq.OpenSimpleDaq will in turn call
      DAQNAME_OpenSimpleDaq(DAQNAME, PARAMETERS)
+
+```

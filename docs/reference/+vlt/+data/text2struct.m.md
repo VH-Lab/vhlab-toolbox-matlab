@@ -1,5 +1,6 @@
 # vlt.data.text2struct
 
+```
   TEXT2STRUCT - Convert a text string to a structure
  
     S = vlt.data.text2struct(STR)
@@ -46,3 +47,5 @@
   BraceRight ('>')               | The right brace character
   
     See also: CHAR2STRUCT
+
+```

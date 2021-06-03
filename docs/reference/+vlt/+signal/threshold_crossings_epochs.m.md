@@ -1,5 +1,6 @@
 # vlt.signal.threshold_crossings_epochs
 
+```
  THRESHOLD_CROSSINGS_EPOCHS Detect threshold crossing epochs in data and the corresponding peaks
   
    [INDEXES_UP,INDEXES_DOWN,INDEXES_PEAKS] = vlt.signal.threshold_crossings_epochs(INPUT, THRESHOLD)
@@ -21,3 +22,5 @@
    values between each UP and DOWN transition are returned in INDEXES_PEAK.
  
    See also: vlt.signal.threshold_crossings
+
+```

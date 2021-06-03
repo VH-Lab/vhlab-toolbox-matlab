@@ -1,5 +1,6 @@
 # vlt.file.dirlist_trimdots
 
+```
   DIR_TRIMDOTS - Trim strings '.' or '..' from a list of directory strings
     
    DIRLIST = vlt.file.dirlist_trimdots(DIRLIST_OR_DIRLISTSTRUCT, [OUTPUT_STRUCT])
@@ -31,3 +32,5 @@
      dirlist = {D(dirnumbers).name}
      % now trim
      dirlist = vlt.file.dirlist_trimdots(dirlist)
+
+```

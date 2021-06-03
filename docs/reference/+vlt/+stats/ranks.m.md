@@ -1,5 +1,6 @@
 # vlt.stats.ranks
 
+```
   RANKS - Returns vector of ranks of X adjusted for ties
  
   Y = vlt.stats.ranks(X)
@@ -14,3 +15,5 @@
   Description: Compute ranks
   This code is rather ugly, but is there an easy way to get the ranks
   adjusted for ties from sort?
+
+```

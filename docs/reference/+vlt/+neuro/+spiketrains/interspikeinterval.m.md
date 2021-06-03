@@ -1,5 +1,6 @@
 # vlt.neuro.spiketrains.interspikeinterval
 
+```
   INTERSPIKEINTERVAL - Calculate interspike interval distribution for spiketrain
  
    ISI = vlt.neuro.spiketrains.interspikeinterval(SPIKETIMES, BINS)
@@ -24,3 +25,5 @@
      ISI = vlt.neuro.spiketrains.interspikeinterval(spiketimes,bins);
      % plot as a fraction of total
      bar(bins+0.001/2,ISI/sum(ISI));
+
+```

@@ -1,5 +1,6 @@
 # vlt.data.struct2str
 
+```
   STRUCT2STR - Create a short text string to summarize a structure
  
    STR = vlt.data.struct2str(THESTRUCT)
@@ -37,3 +38,5 @@
                        
  
   See also: STRUCT2CHAR, CHAR2STRUCT, vlt.data.mlstr2var
+
+```

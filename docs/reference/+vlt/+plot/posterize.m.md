@@ -1,5 +1,6 @@
 # vlt.plot.posterize
 
+```
   vlt.plot.posterize - Change plot characteristics appropriate for posters
  
    vlt.plot.posterize(FIGNUM, ...)
@@ -27,3 +28,5 @@
      'fontsize' in all handles of type 'axes'.
    vlt.plot.posterize(FIGNUM,'_axes_xlabel_fontsize',13) sets the value of the field
      'fontsize' in all handles called 'xlabel' in objects of type 'axes'
+
+```

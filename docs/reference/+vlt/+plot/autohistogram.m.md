@@ -1,5 +1,6 @@
 # vlt.plot.autohistogram
 
+```
  AUTOHISTOGRAM - Choose bins based on Freedman-Diaconis' choice
    [COUNTS,BIN_CENTERS, BIN_EDGES, FULLCOUNTS] = vlt.plot.autohistogram(DATA)
       Automatically chooses bin sizes based on Freedman-Diaconis' choice,
@@ -20,3 +21,5 @@
              then BIN_EDGES and FULLCOUNTS allows the user to determine the
              number of data points that fall below and above the bins. (See
              help HISTC)
+
+```

@@ -1,5 +1,6 @@
 # vlt.plot.drawshape
 
+```
   vlt.plot.drawshape -- Draw a simple shape in an image or as a vector plot
  
  
@@ -43,3 +44,5 @@
         .direction= [theta]              % direction in cartesian angles, degrees (0 is right)
         .headangle = [theta]             % angle of head sweep back (e.g., 30)
         .headlength = [x]                % head length (e.g., length/2)
+
+```

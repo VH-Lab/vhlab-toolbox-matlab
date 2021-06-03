@@ -1,5 +1,6 @@
 # vlt.time.datevecdiff
 
+```
   DATEVECDIFF - Compute difference in date vectors, in seconds
  
    D = vlt.time.datevecdiff(V1,V2)
@@ -16,3 +17,5 @@
       D=vlt.time.datevecdiff(V1,V2)
  
    See also: NOW, DATEVEC
+
+```

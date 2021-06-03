@@ -1,5 +1,6 @@
 # vlt.neuro.vision.oridir.index.fit2fitdr_angle
 
+```
   vlt.neuro.vision.oridir.index.fit2fitdr_angle - Direction ratio (fraction of response in certain direction) from double gaussian fit
  
    TDR = vlt.neuro.vision.oridir.index.fit2fitdr_angle(FITPARAMS, BLANKRESP, THEANGLE)
@@ -20,3 +21,5 @@
                          (Resp(THEANGLE)+Resp(THEANGLE+180))
  
    See also: vlt.fit.otfit_carandini, vlt.neuro.vision.oridir.index.fit2fitoi, vlt.neuro.vision.oridir.index.fit2fitdibr
+
+```

@@ -1,5 +1,6 @@
 # vlt.file.custom_file_formats.writevhlvheaderfile
 
+```
   WRITEVHLVHEADERFILE - Write a VHLV header file
  
     vlt.file.custom_file_formats.writevhlvheaderfile(HEADERSTRUCT, FILENAME)
@@ -15,3 +16,5 @@
    written to disk in each burst of recording, 'precision', which indicates the
    binary data type ('double','single','int16', for example), and 'Scale', which
    indicates any scale factor that should be applied to the data upon reading.
+
+```

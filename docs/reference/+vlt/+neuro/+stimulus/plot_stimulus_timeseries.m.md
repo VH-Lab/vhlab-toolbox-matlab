@@ -1,5 +1,6 @@
 # vlt.neuro.stimulus.plot_stimulus_timeseries
 
+```
   PLOT_STIMULUS_TIMESERIES - plot the occurence of a stimulus or stimuli as a thick bar on a time series plot
  
   [H,HTEXT] = vlt.neuro.stimulus.plot_stimulus_timeseries(Y, STIMON, STIMOFF, ...)
@@ -22,3 +23,5 @@
   FontColor([0 0 0])                 | Text default color
   textycoord (Y+1)                   | Text y coordinate
   HorizontalAlignment ('center')     | Text horizontal alignment
+
+```

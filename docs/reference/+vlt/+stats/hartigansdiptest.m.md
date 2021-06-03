@@ -1,5 +1,6 @@
 # vlt.stats.hartigansdiptest
 
+```
   function	[dip,xl,xu, ifault, gcm, lcm, mn, mj]=HartigansDipTest(xpdf)
  
   This is a direct translation by F. Mechler (August 27 2002)
@@ -15,3 +16,5 @@
   It returns the 'DIP' statistic, and 7 more optional results, which include
   the modal interval (XL,XU), ann error flag IFAULT (>0 flags an error)
   as well as the minorant and majorant fits GCM, LCM, and the corresponding support indices MN, and MJ
+
+```

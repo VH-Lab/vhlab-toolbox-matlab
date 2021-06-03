@@ -1,5 +1,6 @@
 # vlt.neuro.membrane.poisson_vm_fr
 
+```
   POISSON_VM_FR - calculate log likelihood of seeing Vm/Fr pairs given model
  
   LOGP_OF_DATA = vlt.neuro.membrane.poisson_vm_fr(VM, FR, DELTAT, RATEFUNC, RATEFUNCPARAMS, ...)
@@ -11,3 +12,5 @@
   to be passed to RATEFUNC, so that the call to RATEFUNC is RATEFUNC(VM, RATEFUNCPARAMS{:});
  
   See also: vlt.neuro.membrane.mle_poisson_vm_fr
+
+```

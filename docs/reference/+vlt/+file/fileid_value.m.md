@@ -1,5 +1,6 @@
 # vlt.file.fileid_value
 
+```
  FILEID_VALUE - return the value of an FID whether it is an FID or inside a FILEOBJ
  
   FID = vlt.file.fileid_value(FID_OR_FILEOBJ)
@@ -9,3 +10,5 @@
  
   Allows one to test 'if vlt.file.fileid_value(f)<0' without knowing if f is a Matlab file identifier
   or a vlt.file.fileobj.
+
+```

@@ -1,5 +1,6 @@
 # vlt.data.struct2var
 
+```
   STRUCT2VAR - Assign variables to the fieldnames and data values of a structure
  
    vlt.data.struct2var(S)
@@ -18,3 +19,5 @@
       b   % now b=6
  
    See also: vlt.data.var2struct
+
+```

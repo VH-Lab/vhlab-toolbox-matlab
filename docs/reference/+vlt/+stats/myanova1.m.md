@@ -1,5 +1,6 @@
 # vlt.stats.myanova1
 
+```
  ANOVA1 One-way analysis of variance (ANOVA).
     ANOVA1 performs a one-way ANOVA for comparing the means of two or more 
     groups of data. It returns the p-value for the null hypothesis that the
@@ -17,3 +18,5 @@
   
     ANOVA1 prints the standard one-way ANOVA table in Figure 1 and displays 
     a boxplot in Figure2.
+
+```

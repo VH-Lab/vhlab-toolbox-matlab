@@ -1,5 +1,6 @@
 # vlt.file.xml.getXMLNodeText
 
+```
   vlt.file.xml.getXMLNodeText - Read Node Text from XML
  
    VALUES = vlt.file.xml.getXMLNodeText(XDOC, LISTITEM, SUBITEM, ISNUMBER)
@@ -18,3 +19,5 @@
  
  
    Developer note: Who wrote this?? Was it Steve or Mark Mazurek?
+
+```

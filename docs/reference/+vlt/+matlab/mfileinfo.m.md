@@ -1,5 +1,6 @@
 # vlt.matlab.mfileinfo
 
+```
   MFILEINFO - return a structure with information about an m-file
  
   MINFO = MFILEINFO(FILENAME)
@@ -18,3 +19,5 @@
  
   Example:
     minfo = vlt.matlab.mfileinfo('table.m');
+
+```

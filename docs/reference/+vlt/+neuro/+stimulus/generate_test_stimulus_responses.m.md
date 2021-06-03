@@ -1,5 +1,6 @@
 # vlt.neuro.stimulus.generate_test_stimulus_responses
 
+```
   GENERATE_TEST_STIMULUS_RESPONSES - generate test stimuli and responses to test analysis code
  
   [TIMESERIES, TIMESTAMPS, STIMONSETOFFSETID] = GENERATE_TEST_STIMULUS_RESPONSE(...)
@@ -62,3 +63,5 @@
     vlt.plot.myerrorbar(1:10,abs(S.mean),S.stderr,S.stderr);  % F1 response is complex, convert to magnitude
     xlabel('Stim ID');
     ylabel('F1 response');
+
+```

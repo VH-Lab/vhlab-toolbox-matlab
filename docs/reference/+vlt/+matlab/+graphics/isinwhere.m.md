@@ -1,5 +1,6 @@
 # vlt.matlab.graphics.isinwhere
 
+```
   ISINWHERE 0/1 is a rectangle within another rectangle?
  
   B = vlt.matlab.graphics.isinwhere(RECT, UNITS, WHERE)
@@ -9,3 +10,5 @@
   WHERE.FIGURE;
   
   For a description of the location structure, see 'help analysis_generic'.
+
+```

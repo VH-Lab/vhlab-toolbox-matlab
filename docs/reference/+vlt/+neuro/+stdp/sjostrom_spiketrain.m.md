@@ -1,5 +1,6 @@
 # vlt.neuro.stdp.sjostrom_spiketrain
 
+```
   SJOSTROM_SPIKETRAIN - Generate a pre/post synaptic spiketrain pair from Sjostrom 2001
  
     [PRE,POST] = SJOSTROM_STPD(deltaT, frequency, N)
@@ -16,3 +17,5 @@
       % Generate pre- and post-synaptic spiketrains to pair
       %  with 10ms pre-before-post firing at 10Hz, with 60 repetitions
       [PRE,POST] = vlt.neuro.stdp.sjostrom_spiketrain(0.010, 10, 60)
+
+```

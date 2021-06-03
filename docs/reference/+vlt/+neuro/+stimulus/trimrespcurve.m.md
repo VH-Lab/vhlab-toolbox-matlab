@@ -1,5 +1,6 @@
 # vlt.neuro.stimulus.trimrespcurve
 
+```
   TRIMRESPCURVE - Trim a 4xN response curve to remove NaN stimulus values
  
      CURVE = vlt.neuro.stimulus.trimrespcurve(MYCURVE)
@@ -10,3 +11,5 @@
    
    One can use this function to remove the response of the blank stimulus from a
    response curve.
+
+```

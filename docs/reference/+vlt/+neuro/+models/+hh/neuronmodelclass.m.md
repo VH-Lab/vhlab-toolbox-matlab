@@ -1,7 +1,10 @@
 # CLASS vlt.neuro.models.hh.neuronmodelclass
 
+```
   developed by Steve Van Hooser and Ishaan Khurana
 
+
+```
 ## Superclasses
 *none*
 
@@ -45,36 +48,41 @@
 
 **dsdt** - *vlt.neuro.models.hh.neuronmodelclass/dsdt is a function.*
 
+```
 dsdt = dsdt(neuronmodel_obj, S_value)
-
+```
 
 ---
 
 **neuronmodelclass** - *developed by Steve Van Hooser and Ishaan Khurana*
 
+```
 
-
+```
 
 ---
 
 **setup_command** - *vlt.neuro.models.hh.neuronmodelclass/setup_command is a function.*
 
+```
 neuronmodel_obj = setup_command(neuronmodel_obj, varargin)
-
+```
 
 ---
 
 **simulate** - *perform a simulation*
 
+```
 
-
+```
 
 ---
 
 **statemodifier** - *nothing to do in base class*
 
+```
 
-
+```
 
 ---
 

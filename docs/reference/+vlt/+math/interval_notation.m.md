@@ -1,5 +1,6 @@
 # vlt.math.interval_notation
 
+```
   INTERVAL_NOTATION - Description of interval notation in mathematics
  
   Interval notation is a means of expressing an interval as a pair of
@@ -14,3 +15,5 @@
   Note that this is a mathematical notation (described for documentation
   purposes), and does not have meaning in Matlab code.  (That is, brackets and
   parentheses have different meanings in Matlab code.)
+
+```

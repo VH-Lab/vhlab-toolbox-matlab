@@ -1,5 +1,6 @@
 # vlt.neuro.mledenoise.response_gaindrift_model
 
+```
   RESPONSE_GAINDRIFT_MODEL - Computes the response of the gain drift model
  
    R=vlt.neuro.mledenoise.response_gaindrift_model(STIM_TIMES, STIM_DURATION, STIMLIST,...
@@ -26,3 +27,5 @@
     G_PARAMS has a 5th element, it is assumed to be a constant offset for g(t).
  
     R is returned at the STIM_TIMES.  If R is less than or equal to 0, R is set to eps.
+
+```

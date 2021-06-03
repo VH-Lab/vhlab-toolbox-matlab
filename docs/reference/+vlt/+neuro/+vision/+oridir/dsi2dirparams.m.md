@@ -1,5 +1,6 @@
 # vlt.neuro.vision.oridir.dsi2dirparams
 
+```
   DSI2DIRPARAMS - Given a DSI, generate double gaussian parameters that has that dsi index
  
     [RSP,RP,OP,SIGMA,RN] = vlt.neuro.vision.oridir.dsi2dirparams(DSI, ...)
@@ -27,3 +28,5 @@
         [desired_index' actual_index']
  
     See also: vlt.fit.otfit_carandini
+
+```

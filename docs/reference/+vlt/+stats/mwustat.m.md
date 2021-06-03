@@ -1,5 +1,6 @@
 # vlt.stats.mwustat
 
+```
   [u,z,P] = mwustat(data1,data2)
   vlt.stats.mwustat.m: given vectors data1 and data2, the Mann-Whitney U statistic is
   returned along with the significance statistic Z.  The Z value should be
@@ -17,3 +18,5 @@
   P - the p-value for that z
   thesign - the sign of the difference (data2 - data1): +1 if Rank2>Rank1
   NOTE: Is this the correct order?
+
+```

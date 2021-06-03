@@ -1,5 +1,6 @@
 # vlt.math.ptontovector
 
+```
   PTONTOVECTOR - Find distance between point and a vector
  
   [D, CPT] = vlt.math.ptontovector(OFFSET, VECTOR_DIR, PT)
@@ -16,3 +17,5 @@
   ----------------------------------------------------------------------
   Segment (0)              | Only calculate distance to points within the
                            |   segment from offset to offset + vector_dir
+
+```

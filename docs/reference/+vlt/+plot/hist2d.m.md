@@ -1,5 +1,6 @@
 # vlt.plot.hist2d
 
+```
  function mHist = hist2d ([vY, vX], vYEdge, vXEdge)
  2 Dimensional Histogram
  Counts number of points in the bins defined by vYEdge, vXEdge.
@@ -17,3 +18,5 @@
     vXLabel = 0.5*(vXEdge(1:(nXBins-1))+vXEdge(2:nXBins));
     vYLabel = 0.5*(vYEdge(1:(nYBins-1))+vYEdge(2:nYBins));
     pcolor(vXLabel, vYLabel,mHist2d); colorbar
+
+```

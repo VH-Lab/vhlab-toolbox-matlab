@@ -1,5 +1,6 @@
 # vlt.neuro.membrane.mle_poisson_vm_fr
 
+```
   MLE_POISSON_VM_FR - use maximum likelihood analysis to compute Poisson rate model of voltage -> firing rate
   
   PARAMS = vlt.neuro.membrane.mle_poisson_vm_fr(VM, FR, DELTAT,  ...)
@@ -37,3 +38,5 @@
     fr = n / deltaT; % convert to rates
     p_out =vlt.neuro.membrane.mle_poisson_vm_fr(0*fr,fr,deltaT,'fit_function','Poisson')  
     p_out_matlab = mle(round(fr*deltaT),'distribution','Poisson' ) / deltaT % they match
+
+```

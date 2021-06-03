@@ -1,5 +1,6 @@
 # vlt.git.git_clone
 
+```
   GIT_CLONE - clone a git repository onto the local computer
  
   B = vlt.git.git_clone(REPOSITORY, LOCALPARENTDIR)
@@ -11,3 +12,5 @@
   an error is returned.
  
   B is 1 if the operation is successful.
+
+```

@@ -1,5 +1,6 @@
 # vlt.matlab.findfunctionusedir
 
+```
   FINDFUNCTIONUSEDIR determine where a function is called in a directory of m-files
  
   FUSE = FINDFUNCTIONUSEDIR(DIRNAME, MINFO)
@@ -22,3 +23,5 @@
                               |   begin with a '@' ?
  
   See also: vlt.matlab.mfileinfo, vlt.matlab.findfunctionusefile, vlt.data.namevaluepair
+
+```

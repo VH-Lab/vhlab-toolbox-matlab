@@ -1,5 +1,6 @@
 # vlt.fit.sin4_fit
 
+```
   SIN4_FIT - Fit a 4 term sine wave to data
  
     [FITVALUES,COEFFS] = vlt.fit.sin4_fit(X, Y, MAXFREQUENCY, INCLUDECONSTANT)
@@ -18,3 +19,5 @@
           fit function is 
           a1*sin(a2*x+a3)+a4*sin(a5*x+a6)+a7*sin(a8*x+a9)+a10*sin(a11*x+a12)+a13
           a13 is only present if INCLUDECONSTANT is 1.
+
+```

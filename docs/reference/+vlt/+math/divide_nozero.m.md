@@ -1,5 +1,6 @@
 # vlt.math.divide_nozero
 
+```
    vlt.math.divide_nozero - performs division such that 0/0 = 0
  
    Z = vlt.math.divide_nozero(X,Y)
@@ -9,3 +10,5 @@
    number except zero, will still be inf.
  
    See also:  RDIVIDE, LDIVIDE
+
+```

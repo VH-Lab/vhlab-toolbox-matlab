@@ -1,5 +1,6 @@
 # vlt.file.xml.xml2struct_vhtools
 
+```
  XML2STRUCT - An incomplete xml string to struct conversion program
  
    STC = XML2STRUCT(XMLSTR)
@@ -17,3 +18,5 @@
  
    Note that this function will not process an arbitrary xml string but only files that use the three
    conventions described above.
+
+```

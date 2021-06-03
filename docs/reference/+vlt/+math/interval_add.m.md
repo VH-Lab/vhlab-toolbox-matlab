@@ -1,5 +1,6 @@
 # vlt.math.interval_add
 
+```
   INTERVAL_ADD - add intervals 
   
   I_OUT = vlt.math.interval_add(I_IN, I_ADD)
@@ -13,3 +14,5 @@
      i_out = vlt.math.interval_add([0 3],[3 6])  % yields [ 0 6]
      i_out = vlt.math.interval_add([0 2],[3 4])  % yields [ 0 2; 3 4]
      i_out = vlt.math.interval_add([0 10],[0 2]) % yields [ 0 10]
+
+```

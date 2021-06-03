@@ -1,5 +1,6 @@
 # vlt.stats.roc_stats
 
+```
   ROC_STATS - Receiver operator characteristic for 2 groups
  
   OUT = ROC_STATS(GROUP1, GROUP2)
@@ -22,3 +23,5 @@
   acc_em_max_th  | Threshold where accuracy is highest if mixtures match empircally provided mixtures
  
   See also: ROC
+
+```

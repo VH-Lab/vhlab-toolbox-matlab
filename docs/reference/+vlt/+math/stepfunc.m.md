@@ -1,5 +1,6 @@
 # vlt.math.stepfunc
 
+```
   vlt.math.stepfunc - Evaluate a discrete step function at many times
  
    [SI,INDS] = vlt.math.stepfunc(T, STEPS, TI [,OUTOFBOUNDS])
@@ -41,3 +42,5 @@
  
             Si   : [0 0 9 NaN]
             inds : [1 1 10 NaN]
+
+```

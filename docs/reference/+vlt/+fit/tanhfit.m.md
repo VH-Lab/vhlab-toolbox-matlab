@@ -1,5 +1,6 @@
 # vlt.fit.tanhfit
 
+```
   TANHFIT - Fit a curve with a hyperbolic tangent tanh
   
   [FIT_CURVE, PARAMS, GOF, FITINFO] = vlt.fit.tanhfit(X, Y, ...)
@@ -31,3 +32,5 @@
   Jason Osik 2016-2017
  
   See also: FIT, FITTYPE
+
+```

@@ -1,5 +1,6 @@
 # vlt.neuro.vision.oridir.index.fit2fitdidiffsum
 
+```
   FIT2FITDIDIFFSUM - direction selectivity index (DSI) from double gaussian fit of direction tuning curve
  
    DIIND = vlt.neuro.vision.oridir.index.fit2fitdidiffsum(R)
@@ -15,3 +16,5 @@
      the second row is the response of the fit for each angle.
    
      See also: vlt.fit.otfit_carandini, vlt.neuro.vision.oridir.index.fit2fitoi, vlt.neuro.vision.oridir.index.fit2fitdibr, vlt.neuro.vision.oridir.index.fit2fitdi
+
+```

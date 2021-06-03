@@ -1,5 +1,6 @@
 # vlt.math.cov_of_cloud
 
+```
   COV_OF_CLOUD - generate a cloud of gaussian points and compute covariance matrix
  
   [C,PTS] = vlt.math.cov_of_cloud(STD1, STD2, ROTATION, NUMPOINTS)
@@ -23,3 +24,5 @@
    colormap jet;
    caxis([-max(Z(:)) max(Z(:))]);
    shading flat
+
+```

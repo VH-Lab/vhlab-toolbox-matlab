@@ -1,5 +1,6 @@
 # vlt.matlab.findfunctionusefile
 
+```
   FINDFUNCTIONUSE determine where a function is called in an m file
  
   FUSE = FINDFUNCTIONUSE(FILENAME, MINFO)
@@ -23,3 +24,5 @@
   allcaps                       | 0/1 Does the function appear in all caps here? (might be documentation use)
   
   See also: vlt.matlab.mfileinfo
+
+```

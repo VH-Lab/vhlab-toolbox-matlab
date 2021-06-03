@@ -1,5 +1,6 @@
 # vlt.image.roi.ROI_isolate
 
+```
   ROI_ISOLATE - Return the index values within an ROI of of an isolated cube that encompasses ROI
  
   [ISOLATE_INDEXES, ISOLATE_INDEXES_IN_ROI] = ROI_ISOLATE(IMSIZE, INDEXESND)
@@ -23,3 +24,5 @@
             % this is an ROI in the bottom right corner of a 3x3x3 cube except the edge point
             % to see where this is, use reshape(1:27,3,3,3)
          [isolate_indexes, isolate_indexes_in_roi] = ROI_isolate(imsize, indexesnd)
+
+```

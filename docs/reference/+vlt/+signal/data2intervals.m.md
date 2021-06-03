@@ -1,5 +1,6 @@
 # vlt.signal.data2intervals
 
+```
    DATA2INTERVALS - Identify data recorded during specified intervals
  
     [DATA_OUT,T_OUT] = vlt.signal.data2intervals(DATA, T, INTERVALS)
@@ -19,3 +20,5 @@
  
    T_OUT is a cell list of size N x M.  Each element T{i,p} contains the
      time of all observation in DATA_OUT{i,p}.
+
+```

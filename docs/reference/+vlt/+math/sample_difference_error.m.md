@@ -1,5 +1,6 @@
 # vlt.math.sample_difference_error
 
+```
   SAMPLE_DIFFERENCE_ERROR - calculate the uncertainty in the difference between 2 samples
  
   [SD, SDE] = vlt.math.sample_difference_error(X1, X2, ...)
@@ -33,3 +34,5 @@
      [sd,sde]=vlt.math.sample_difference_error(x1,x2),
      % show the bootstrap version is similar to standard when data is normally distributed
      [sdb,sdeb]=vlt.math.sample_difference_error(x1,x2,'algorithm','bootstrap'),
+
+```

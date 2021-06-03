@@ -1,5 +1,6 @@
 # vlt.data.catstructfields
 
+```
   CATSTRUCTFIELDS - Concatenate fields from structures with equal fields
  
    STRUCT_OUT = vlt.data.catstructfields(STRUCT1,STRUCT2[,DIMENSION])
@@ -18,3 +19,5 @@
      c = vlt.data.catstructfields(a,b);
      c.field1 % is [1 2 3 4 5 6]
      c.field2 % is [1 2 3 4 5 6]
+
+```

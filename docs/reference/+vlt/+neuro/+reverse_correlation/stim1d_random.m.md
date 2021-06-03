@@ -1,5 +1,6 @@
 # vlt.neuro.reverse_correlation.stim1d_random
 
+```
   vlt.neuro.reverse_correlation.stim1d_random -- Creates a 1-D (space) random stimulus for model computation
  
     STIM=vlt.neuro.reverse_correlation.stim1d_motion(X, T, VALUES, DISTRIBUTION)
@@ -21,3 +22,5 @@
      of time; time is represented across the columns.
         
      Example: stim = vlt.neuro.reverse_correlation.stim1d_random([0:0.1:10],[0:0.1:300],[1 0 -1],[0.1 0.8 0.1]);
+
+```

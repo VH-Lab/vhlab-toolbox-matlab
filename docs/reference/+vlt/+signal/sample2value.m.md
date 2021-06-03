@@ -1,5 +1,6 @@
 # vlt.signal.sample2value
 
+```
   vlt.signal.sample2value - give the value corresponding to a sample number for a fixed sampling rate (sample2value)
  
   V = SAMPLE2VALUE(S, SR, V1)
@@ -12,3 +13,5 @@
   
   Example:
      v = vlt.signal.sample2value(1001, 1000, 0) % v is 1.0
+
+```

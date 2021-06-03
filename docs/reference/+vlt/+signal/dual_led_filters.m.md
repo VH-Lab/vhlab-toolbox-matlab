@@ -1,5 +1,6 @@
 # vlt.signal.dual_led_filters
 
+```
   LED2FILTERS - Design filters for detecting dual LEDs
  
    [FILTERS,X,Y] = vlt.signal.dual_led_filters(DA, SEP, RAD)
@@ -26,3 +27,5 @@
         image(x(:),y(:),255*filters(:,:,i));
         pause(1);
     end;
+
+```

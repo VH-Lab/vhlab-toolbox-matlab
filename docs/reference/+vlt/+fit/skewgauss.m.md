@@ -1,5 +1,6 @@
 # vlt.fit.skewgauss
 
+```
   SKEWGAUSS - calculate the skew gaussian function
  
   Y = SKEWGAUSS(X, P)
@@ -13,3 +14,5 @@
   The parameters are specified in a vector P = [a b c d e]
   
   See also: vlt.fit.skewgaussfit_constraints
+
+```

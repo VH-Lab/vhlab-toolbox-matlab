@@ -1,5 +1,6 @@
 # vlt.data.sortstruct
 
+```
   SORTSTRUCT - sort structure by fieldname values
   
   [S_sorted, indexes] = vlt.data.sortstruct(S, 'sign_fieldname1', 'sign_fieldname2', ...)
@@ -19,3 +20,5 @@
  
     [S_sorted,indexes] = vlt.data.sortstruct(s,'+test1','+test2');
      % indexes == [2;1] and S_sorted = s([2;1])
+
+```

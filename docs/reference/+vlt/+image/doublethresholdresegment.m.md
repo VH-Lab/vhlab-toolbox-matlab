@@ -1,5 +1,6 @@
 # vlt.image.doublethresholdresegment
 
+```
   DOUBLETHRESHOLD - apply a double threshold to an image
   
   BIN = DOUBLETHRESHOLDRESEGMENT(IM, T1, T2, CONNECTIVITY, RAW_IM, RESEGMENT_NAMEVALUEPAIRS)
@@ -17,3 +18,5 @@
   returned in BIN.
  
   See also: vlt.image.roi.ROI_resegment_all
+
+```

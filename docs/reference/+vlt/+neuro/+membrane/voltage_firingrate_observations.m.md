@@ -1,5 +1,6 @@
 # vlt.neuro.membrane.voltage_firingrate_observations
 
+```
   VOLTAGE_FIRINGRATE_OBSERVATIONS - compile a list of voltage measurements and firing rate measurements
  
   [V,FR,STIMID,TIMEPOINTS,VM_BASELINESUBECTRACTED,EXACTBINTIME, SUBTRACTED_VALUE] = ...
@@ -36,3 +37,5 @@
                                   |    for patch recordings.)
   vm_baseline_correct_func        | The function to use for correcting baseline (usually 'median' or 'mean').
               ('median')
+
+```

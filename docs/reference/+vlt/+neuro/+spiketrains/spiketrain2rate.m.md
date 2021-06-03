@@ -1,5 +1,6 @@
 # vlt.neuro.spiketrains.spiketrain2rate
 
+```
   SPIKETRAIN2RATE - compute a 'blurred' spike rate from 0/1 spike train
  
   RATE = vlt.neuro.spiketrains.spiketrain2rate(SPIKETRAIN, DT, BLUR, ...)
@@ -35,3 +36,5 @@
     plot([0 sum(R)],[0 sum(R)],'k--');
     xlabel('Cumulative rate measured (spikes)'); ylabel('Actual cumulative rate (spikes)'); 
     axis equal square; box off;
+
+```

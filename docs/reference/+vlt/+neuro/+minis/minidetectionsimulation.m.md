@@ -1,5 +1,6 @@
 # vlt.neuro.minis.minidetectionsimulation
 
+```
   MINIDETECTIONSIMULATION
  
    [OPT_THRESHOLD, DETECTOR, CONV_SCALE, STATS] = vlt.neuro.minis.minidetectionsimulation
@@ -39,3 +40,5 @@
    refractory_period (0.020)    | Refractory period (time between events can be no shorter
                                 |   than this, in seconds)
    plotit (0)                   | Plot the threshold vs. errors curve
+
+```

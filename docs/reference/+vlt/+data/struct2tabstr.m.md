@@ -1,5 +1,6 @@
 # vlt.data.struct2tabstr
 
+```
   STRUCT2TABSTR - convert a struct to a tab-delimited string
  
   S = vlt.data.struct2tabstr(A)
@@ -19,3 +20,5 @@
      s = vlt.data.struct2tabstr(a)
      % convert back
      a2 = vlt.data.tabstr2struct(s, {'fielda','fieldb'} )
+
+```

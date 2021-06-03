@@ -1,5 +1,6 @@
 # vlt.math.inside
 
+```
  vlt.math.inside Points inside a polygonal region in the plane.
     k = vlt.math.inside(z,w) is a vector of indices.
     The points z(k) are strictly inside the region defined by w.
@@ -15,3 +16,5 @@
  
     Developer note: This is an old Matlab function that has been replaced
     by INPOLYGON. Here for backwards compatibility
+
+```

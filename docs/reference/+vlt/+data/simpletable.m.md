@@ -1,5 +1,6 @@
 # vlt.data.simpletable
 
+```
   SIMPLETABLE - Simple X/Y numeric table
  
     [NEWSIMPLETABLE,NEWCATEGORYLABELS] = vlt.data.simpletable(OLDSIMPLETABLE,...
@@ -28,3 +29,5 @@
         [newtable,newcats] = vlt.data.simpletable(oldsimpletable,oldcategories,Y2,X2),
  
     See also: TABLE
+
+```

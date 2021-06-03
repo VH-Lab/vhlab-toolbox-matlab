@@ -1,5 +1,6 @@
 # vlt.signal.oversample
 
+```
   OVERSAMPLE - Calculate sample values for oversampling
  
     XN = vlt.signal.oversample(X, N)
@@ -11,3 +12,5 @@
    Example:
        X = [ 0 1];
        Xn = vlt.signal.oversample(X,5) % Xn is [0 0.25 0.5 0.75 1.0]
+
+```

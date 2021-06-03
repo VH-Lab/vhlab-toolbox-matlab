@@ -1,5 +1,6 @@
 # vlt.neuro.vision.curved_monitor_view
 
+```
   CURVED_MONITOR_VIEW - Given the dimensions of a curved monitor, calculate the viewing angle of the animal
  
   SYSTEM = vlt.neuro.vision.curved_monitor_view(MONITOR_DIAG, ASPECTRATIO, RADIUS, VIEWING_DISTANCE)
@@ -31,3 +32,5 @@
   P                    | Distance between monitor and location that
                        |   makes a right angle with the edge of the monitor
   A                    | Distance between edge of monitor and point P
+
+```

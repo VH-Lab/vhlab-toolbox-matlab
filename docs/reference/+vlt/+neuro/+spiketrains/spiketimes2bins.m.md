@@ -1,5 +1,6 @@
 # vlt.neuro.spiketrains.spiketimes2bins
 
+```
   SPIKETIMES2BINS - Convert a list of spike times to discrete time bins
  
     SPIKE_COUNTS = vlt.neuro.spiketrains.spiketimes2bins(SPIKETIMES, TIMES)
@@ -24,3 +25,5 @@
       S2 = vlt.neuro.spiketrains.spiketimes2bins(spiketimes,T); % convert back
  
       all(S==S2)    % are these vectors equal? Yes!
+
+```

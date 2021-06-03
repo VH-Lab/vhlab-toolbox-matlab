@@ -1,5 +1,6 @@
 # vlt.fit.example_double_gauss_dog_data
 
+```
   EXAMPLE_DOUBLE_GAUSS_DOG_DATA - generate a random set of data + parameters
  
  
@@ -11,3 +12,5 @@
   sf_range = [ 0.01 0.02 0.05 0.08 0.1 0.2 0.5 1.2 1.5 1.8];
   [theta, sf] = meshgrid(theta_range, sf_range);
   R = vlt.math.double_gauss_DoG(theta, sf, double_gauss_params, dog_params);
+
+```

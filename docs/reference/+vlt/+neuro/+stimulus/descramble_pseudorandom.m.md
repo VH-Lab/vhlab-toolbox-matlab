@@ -1,5 +1,6 @@
 # vlt.neuro.stimulus.descramble_pseudorandom
 
+```
   DESCRAMBLE_PSEUDORANDOM - Descramble responses to pseduorandomly varied stimuli
  
     [RESPONSE_CURVE] = vlt.neuro.stimulus.descramble_pseudorandom(STIM_RESPONSES, STIMVALUES)
@@ -29,3 +30,5 @@
          indexes      |  2xnum_stims Indicates where the nth stim is represented in
                       |     in inds (first column is stimid, second column is entry
                       |     number in vector inds{stimid})
+
+```

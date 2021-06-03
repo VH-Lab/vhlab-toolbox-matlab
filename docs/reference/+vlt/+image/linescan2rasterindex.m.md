@@ -1,5 +1,6 @@
 # vlt.image.linescan2rasterindex
 
+```
   LINESCAN2RASTERINDEX - Determine index values within a raster that correspond to points visited by a linescan
  
     INDS = LINESCAN2RASTERINDEX(IMSIZE, LINESCANPOINTS)
@@ -12,3 +13,5 @@
     INDS is a list of index values such that RASTERIMAGE(INDS(n)) corresponds
     to the nth pixel in the linescan.  If the linescan is "out of bounds" at
     point i, then then INDS(i) is NaN.
+
+```

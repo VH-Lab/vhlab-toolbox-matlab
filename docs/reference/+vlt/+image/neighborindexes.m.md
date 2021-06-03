@@ -1,5 +1,6 @@
 # vlt.image.neighborindexes
 
+```
   NEIGHBORINDEXES - identify pixel index values that border a pixel
  
   INDEXES = NEIGHBORINDEXES(IMSIZE, INDEX, [CONN])
@@ -38,3 +39,5 @@
      I = neighborindexes(size(A),sub2ind(size(A),2,1))
      A(sub2ind(size(A),2,1)) = 2;
      A(I) = 1  % 1s are neighbors, 2 is seed
+
+```

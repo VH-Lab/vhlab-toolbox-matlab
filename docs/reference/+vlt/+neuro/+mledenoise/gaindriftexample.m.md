@@ -1,5 +1,6 @@
 # vlt.neuro.mledenoise.gaindriftexample
 
+```
   GAINDRIFTEXAMPLE - Create an artificial stimulus response where gain varies
  
    [SPIKETIMES, R, T, STIM_ON_TIMES, STIM_OFF_TIMES, STIM_NUMBERS, G] = ...
@@ -61,3 +62,5 @@
       axis([t(1) t(end) -60 60]); box off;
       xlabel('Time(s)'); ylabel('Firing rate');
       title('x indicates spike, numbers indicate stimulus number');
+
+```

@@ -1,5 +1,6 @@
 # vlt.data.string2cell
 
+```
   STRING2CELL = Convert a delimited list to a cell array of strings
  
    C = vlt.data.string2cell(STRING, SEPARATOR)
@@ -25,3 +26,5 @@
    
  
    See also: DLMREAD, TDFREAD
+
+```

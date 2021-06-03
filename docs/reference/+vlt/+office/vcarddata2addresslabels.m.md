@@ -1,5 +1,6 @@
 # vlt.office.vcarddata2addresslabels
 
+```
   VCARD2LABELS - convert a VCARD file to a structure of label content
  
   V = VCARD2LABELS(VCARDDATA, ...)
@@ -26,3 +27,5 @@
      v = vlt.file.vcard2mat(fname);
      vout = vlt.office.vcarddata2addresslabels(v);
      vlt.office.addresslabels2pdf(vout)
+
+```

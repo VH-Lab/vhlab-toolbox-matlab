@@ -1,5 +1,6 @@
 # vlt.math.mod_ellipse_on_mvnpdf_x0
 
+```
   ELLIPSE_ON_MVNPDF_X0 - Calcluate 'response' of an ellipse on multivariate normal
  
    Y=vlt.math.ellipse_on_mvnpdf_x0(X,ELLIPSE_PARAMS,XMESH,YMESH)
@@ -27,3 +28,5 @@
      Y - The response, in a column vector, for each ellipse
  
    See also: vlt.image.inside_ellipse, MVNPDF
+
+```

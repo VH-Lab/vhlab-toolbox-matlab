@@ -1,5 +1,6 @@
 # vlt.data.var2struct
 
+```
   VAR2STRUCT - Export variable(s) to a structure
  
    OUTPUT = vlt.data.var2struct('NAME1', 'NAME2', ...)
@@ -18,3 +19,5 @@
       output = 
          a: 5
          b: 6
+
+```

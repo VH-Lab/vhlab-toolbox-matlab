@@ -1,5 +1,6 @@
 # vlt.neuro.spikesorting.cluster_spikewaves_gui
 
+```
   CLUSTER_SPIKEWAVES_GUI - Cluster spikewaves into groups with manual checking
  
     [CLUSTERIDS,CLUSTERINFO] = vlt.neuro.spikesorting.cluster_spikewaves_gui('WAVES', WAVES, ...
@@ -59,3 +60,5 @@
                                            :        Default {'Epoch1'}. There must be the same number
                                            :        of EpochNames as there are entries in the array
                                            :        EpochStartSamples.
+
+```

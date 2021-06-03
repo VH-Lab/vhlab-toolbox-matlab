@@ -1,5 +1,6 @@
 # vlt.file.loadStructArray
 
+```
   LOADSTRUCTARRAY - load a struct array from a tab-delimited file
  
   A = vlt.file.loadStructArray(FNAME [, FIELDS])
@@ -16,3 +17,5 @@
   Each subsequent row contains the values for each entry in the STRUCT array.
  
   See also: vlt.file.saveStructArray, vlt.data.tabstr2struct
+
+```

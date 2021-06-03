@@ -1,5 +1,6 @@
 # vlt.neuro.spiketrains.spiketrain_powerspectrum_window
 
+```
   SPIKETRAIN_POWERSPECTRUM_WINDOW - calculate the power spectrum of a spike train using a sliding window
  
    [Pxx,Fxx, BANDVALUES, BANDS] = vlt.neuro.spiketrains.spiketrain_powerspectrum_window(SPIKETRAIN,...
@@ -27,3 +28,5 @@
    
  
    See also: vlt.neuro.spiketrains.spiketrain_powerspectrum
+
+```

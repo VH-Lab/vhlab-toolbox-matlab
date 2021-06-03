@@ -1,5 +1,6 @@
 # vlt.file.searchreplacefiles_shell
 
+```
   SEARCHREPLACEFILES_SHELL - search and replace text in all files in a directory search
  
    vlt.file.searchreplacefiles_shell(DIRSEARCH, FINDSTRING, REPLACESTRING)
@@ -11,3 +12,5 @@
    At present, this requires unix (it calls the shell commands 'find' and 'sed').
  
    The function prints its shell command before attempting to run.
+
+```

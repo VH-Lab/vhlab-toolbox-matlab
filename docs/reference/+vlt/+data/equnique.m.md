@@ -1,5 +1,6 @@
 # vlt.data.equnique
 
+```
   EQUNIQUE - Return unique elements of an arbitrary class using EQ
  
   OUT = vlt.data.equnique(IN)
@@ -18,3 +19,5 @@
      B = vlt.data.equnique(A); % B == A(1)
  
   See also: UNIQUE
+
+```

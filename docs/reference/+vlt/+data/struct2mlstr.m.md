@@ -1,5 +1,6 @@
 # vlt.data.struct2mlstr
 
+```
   STRUCT2MLSTR - Create a text string to fully characterize a structure
  
    STR = vlt.data.struct2mlstr(THESTRUCT)
@@ -42,3 +43,5 @@
    Consider also: JSONENCODE, JSONDECODE
  
    See also: vlt.data.mlstr2var, vlt.data.cell2mlstr, vlt.data.struct2str, JSONENCODE
+
+```

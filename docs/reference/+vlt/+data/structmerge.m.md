@@ -1,5 +1,6 @@
 # vlt.data.structmerge
 
+```
   STRUCTMERGE - Merge struct variables into a common struct
  
    S_OUT = vlt.data.structmerge(S1, S2, ...)
@@ -19,3 +20,5 @@
    DoAlphabetical (1)      | (0/1) Alphabetize the field names in the result
   
    See also: STRUCT
+
+```

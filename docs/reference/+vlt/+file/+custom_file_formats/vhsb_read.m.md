@@ -1,5 +1,6 @@
 # vlt.file.custom_file_formats.vhsb_read
 
+```
   VHSB_READ - write a VHLab series binary file
  
   [Y,X] = vlt.file.custom_file_formats.vhsb_read(FO, X0, X1, OUT_OF_BOUNDS_ERR, ...)
@@ -25,3 +26,5 @@
      Y is an NUM_SAMPLESxXxYxZx... dataset with the Y samples that
           are associated with each value of X.
           X(i) is the ith sample returned of X, and Y(i,:,:,...) is the ith sample returned of Y
+
+```

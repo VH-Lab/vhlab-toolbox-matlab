@@ -1,5 +1,6 @@
 # vlt.neuro.stimulus.stimids2reps
 
+```
   STIMIDS2REPS - Label each stimulus id with the repetition number for a regular stimulus sequence
  
    [REPS, ISREGULAR] = vlt.neuro.stimulus.stimids2reps(STIMIDS, NUMSTIMS)
@@ -19,3 +20,5 @@
      [reps,isregular] = vlt.neuro.stimulus.stimids2reps([1 2 3 1 2 3],3)
         % reps = [1 1 1 2 2 2]
         % isregular = 1
+
+```

@@ -1,5 +1,6 @@
 # vlt.file.custom_file_formats.vhsb_sampletype2matlabfwritestring
 
+```
   VHSH_SAMPLETYPE2MATLABFWRITESTRING - return fwrite/fread string for sample type
  
   S = VHSB_SAMPLETypE2MATLABFWRITESTRING(DATA_TYPE, DATASIZE)
@@ -11,3 +12,5 @@
   Example:
     s = vlt.file.custom_file_formats.vhsb_sampletype2matlabfwritestring(4, 64)
       % s = 'float64'
+
+```

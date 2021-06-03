@@ -1,5 +1,6 @@
 # vlt.file.checkout_lock_file
 
+```
   CHECKOUT_LOCK_FILE Try to establish control of a lock file
  
    [FID,KEY] = vlt.file.checkout_lock_file(FILENAME)
@@ -70,3 +71,5 @@
     
  
    See also: vlt.file.release_lock_file, FOPEN, DELETE
+
+```

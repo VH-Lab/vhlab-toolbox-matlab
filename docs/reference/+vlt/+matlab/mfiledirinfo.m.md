@@ -1,5 +1,6 @@
 # vlt.matlab.mfiledirinfo
 
+```
   MFILEDIRINFO - return m-file info for all files in a directory recursively
   
   MINFO = MFILEDIRINFO(DIRNAME, ...)
@@ -21,3 +22,5 @@
   Example:
     dirname = '/Users/vanhoosr/Documents/matlab/tools/vhlab-toolbox-matlab';
     m=vlt.matlab.mfiledirinfo(dirname);
+
+```

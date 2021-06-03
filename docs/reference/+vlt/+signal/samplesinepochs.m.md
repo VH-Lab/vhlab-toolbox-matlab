@@ -1,5 +1,6 @@
 # vlt.signal.samplesinepochs
 
+```
   SAMPLESINEPOCHS - Identify samples that are within the given recording epochs
  
      [SAMPLES_IN,SAMPLEINDEXES,SAMPLESNOTINEPOCHS] = vlt.signal.samplesinepochs(SAMPLE_NUMBERS, EPOCHSTARTSAMPLES, EPOCHSTART, EPOCHSTOP)
@@ -20,3 +21,5 @@
           EpStop = 2;
           SI = vlt.signal.samplesinepochs(SN, EpStartSamples,EpStart,EpStop)
              % SI = [ 1 2 3 4 5 6 7 8 ] % samples in first 2 epochs
+
+```

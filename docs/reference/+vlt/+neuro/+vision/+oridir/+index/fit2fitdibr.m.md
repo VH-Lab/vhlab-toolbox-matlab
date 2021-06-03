@@ -1,5 +1,6 @@
 # vlt.neuro.vision.oridir.index.fit2fitdibr
 
+```
   vlt.neuro.vision.oridir.index.fit2fitdibr - Direction index from double gaussian fit (blank rectified) 
  
    DSI = vlt.neuro.vision.oridir.index.fit2fitdibr(FITPARAMS, BLANKRESP)
@@ -19,3 +20,5 @@
    The DSI is defined as DSI = (Rpref - Rnull) / Rpref
  
    See also: vlt.fit.otfit_carandini, vlt.neuro.vision.oridir.index.fit2fitoi, vlt.neuro.vision.oridir.index.fit2fitdibr
+
+```

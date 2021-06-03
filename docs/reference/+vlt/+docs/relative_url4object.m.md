@@ -1,5 +1,6 @@
 # vlt.docs.relative_url4object
 
+```
   vlt.docs.relative_url4object - compute the relative url name for an object, relative to the current path
  
   S = vlt.docs.relative_url4object(CURRENTPATH, OBJECTNAME)
@@ -13,3 +14,5 @@
     objectName = 'ndi.time.timereference'
     s = vlt.docs.relative_url4object(currentPath,objectName);
       % s = '../+time/timereference.m.md'
+
+```

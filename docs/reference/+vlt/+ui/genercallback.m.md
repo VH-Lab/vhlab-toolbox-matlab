@@ -1,5 +1,6 @@
 # vlt.ui.genercallback
 
+```
    vlt.ui.genercallback - Generic callback function for user interfaces
  
    Attempts to call a function with the same name as the 'Tag' field in the
@@ -8,3 +9,5 @@
    Example:  Suppose there is a button pressed in Figure 1, and the 'Tag'
    field of Figure 1 is 'myFunnyPanel'.  Then, the generic callback calls
    the function 'myFunnyPanel(gcbo)';
+
+```

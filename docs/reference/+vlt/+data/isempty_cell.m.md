@@ -1,5 +1,6 @@
 # vlt.data.isempty_cell
 
+```
    ISEMPTY_CELL - Returns elements of a cell variable that are empty/not empty
  
    B = ISEMPTY(THECELL)
@@ -15,3 +16,5 @@
       B =
             0     1
             1     0
+
+```

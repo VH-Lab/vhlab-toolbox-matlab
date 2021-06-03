@@ -1,5 +1,6 @@
 # vlt.image.roi.ROI_resegment
 
+```
   ROI_RESEGMENT - resegment an ROI using an algorithm like WATERSHED
  
   [CC] = ROI_RESEGMENT(IM, INDEXESND, ...)
@@ -30,3 +31,5 @@
                                        |   between ROIs. If 'assign_neighbors_to_roi' is 1, then
                                        |   these pixels are assigned to their brightest immediately
                                        |   neighboring pixels.
+
+```

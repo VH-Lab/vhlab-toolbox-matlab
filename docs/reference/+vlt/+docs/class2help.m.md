@@ -1,5 +1,6 @@
 # vlt.docs.class2help
 
+```
   CLASS2HELP - get help information from a Matlab class .m file
  
   [CLASSHELP, PROP_STRUCT, METHODS_STRUCT, SUPERCLASSES] = CLASS2HELP(FILENAME)
@@ -15,3 +16,5 @@
   documentation), and 'help' (lines 2..n of the function 'help').
  
   SUPERCLASSES is a list of all superclasses for the file.
+
+```

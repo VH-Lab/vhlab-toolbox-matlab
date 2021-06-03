@@ -1,5 +1,6 @@
 # vlt.python.conda
 
+```
   vlt.python.conda - return the path to the local conda binary to use
   
   CONDA_PATH = vlt.python.conda()
@@ -9,3 +10,5 @@
  
   The variable to be edited in matlab_python3.m should be 
   conda_path = PATH;
+
+```

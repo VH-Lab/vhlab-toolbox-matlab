@@ -1,5 +1,6 @@
 # vlt.fit.otfit_carandini0
 
+```
   vlt.fit.otfit_carandini0 Fits orientation curves like Carandini/Ferster 2000
  
    [Rsp,Rp,Op,sigm,FITCURVE,ERR]=vlt.fit.otfit_carandini0(ANGLES,...
@@ -19,3 +20,5 @@
    
    
    FITCURVE is the fit function at 1 degree intervals (0:1:359).
+
+```

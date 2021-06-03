@@ -1,5 +1,6 @@
 # vlt.file.custom_file_formats.vhsb_writeheader
 
+```
   VHSB_WRITEHEADER - write a VH Lab Series Binary file header
  
   H = vlt.file.custom_file_formats.vhsb_writeheader(FILE_OBJ_OR_FNAME, 'PARAM1, VALUE1, ...)
@@ -38,3 +39,5 @@
   X_offset (0)                      | 64-bit float offset factor common to all X info
   Y_scale (1)                       | 64-bit float scale factor
   Y_offset (0)                      | 64-bit float offset factor common to all Y info
+
+```

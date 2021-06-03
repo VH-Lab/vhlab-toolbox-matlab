@@ -1,5 +1,6 @@
 # vlt.math.fouriercoeffs
 
+```
    vlt.math.fouriercoeffs - find Fourier coefficients for data
  
    Uses FFT to compute the Fourier coefficients for a vector of data.
@@ -44,3 +45,5 @@
      xlabel('Frequency (Hz)');
      ylabel('Magnitude of Fourier coefficient');
      box off;
+
+```

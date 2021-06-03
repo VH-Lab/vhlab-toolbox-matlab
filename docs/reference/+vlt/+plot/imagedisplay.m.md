@@ -1,5 +1,6 @@
 # vlt.plot.imagedisplay
 
+```
    vlt.plot.imagedisplay - Display an image and allow user to adjust 
  
    H = vlt.plot.imagedisplay(IMAGE, [...] )
@@ -23,3 +24,5 @@
                                 (initially 1)
    'Title'                      A title string
    'fig'                        The figure (new is created by default)
+
+```

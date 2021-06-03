@@ -1,5 +1,6 @@
 # vlt.stats.kruskal_wallis_mv
 
+```
    KRUSKAL_WALLIS_MV(VARARGIN)
    Perform a Kruskal-Wallis one-factor 'analysis of variance' for multivariate
    data.
@@ -19,3 +20,5 @@
    warning: this has been tested for normal distributions and seems to
    perform reasonably, but I could not find example data for which the
    authors had performed analysis; upshot: this is not 100% tested
+
+```

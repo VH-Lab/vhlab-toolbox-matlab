@@ -1,5 +1,6 @@
 # vlt.neuro.stdp.stdp_triplet_apply
 
+```
   STDP_TRIPLET_APPLY Spike-timing dependent-plasticity for calculating changes in synaptic weights
  
      WEIGHT = vlt.neuro.stdp.stdp_triplet_apply(SPIKETIMES_PRE, SPIKETIMES_POST)
@@ -40,3 +41,5 @@
    A3_plus                       | 6.2e-3
    A3_minus                      | 2.3e-4
    T0                            | 0
+
+```

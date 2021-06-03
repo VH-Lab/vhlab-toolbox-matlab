@@ -1,5 +1,6 @@
 # vlt.image.roi.ROI_imageexample
 
+```
   ROI_imageexample - return an example image for experimenting with ROI functions
  
   IM = ROI_IMAGEEXAMPLE;
@@ -9,3 +10,5 @@
   Example:
     im = ROI_imageexample;
     imshow(im);
+
+```

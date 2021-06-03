@@ -1,5 +1,6 @@
 # vlt.python.run3
 
+```
   vlt.python.run3 - Run a python3 script
   
   [status,result] = vlt.python.run3(SCRIPT)
@@ -12,3 +13,5 @@
    mydir = tempdir;
    vlt.file.str2text([tempdir filesep 'myscript.py'], 'a=1; print("Running python"); ');
    [status,result]=vlt.python.run3([tempdir filesep 'myscript.py'])
+
+```

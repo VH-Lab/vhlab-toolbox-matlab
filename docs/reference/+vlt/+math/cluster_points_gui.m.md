@@ -1,5 +1,6 @@
 # vlt.math.cluster_points_gui
 
+```
   CLUSTER_POINTS_GUI - Cluster points into groups with manual checking
  
     [CLUSTERIDS,CLUSTERINFO] = vlt.math.cluster_points_gui('POINTS', POINTS)
@@ -29,3 +30,5 @@
                                            :        windows until the user finishes? Default is 1.
                                            :        If the dialog is not modal then it cannot return
                                            :        any values.
+
+```

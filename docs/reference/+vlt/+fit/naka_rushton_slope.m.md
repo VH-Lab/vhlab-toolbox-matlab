@@ -1,5 +1,6 @@
 # vlt.fit.naka_rushton_slope
 
+```
   vlt.fit.naka_rushton_slope - Evaluate slope of Naka Rushton function
  
    R=vlt.fit.naka_rushton_slope (C, C50, N, S)
@@ -9,3 +10,5 @@
  
    If S is not specified, S is assumed to be 1.
    If C is negative, the result is negative.
+
+```

@@ -1,5 +1,6 @@
 # vlt.neuro.spiketrains.spiketimes_correlation_timeshiftsubtract
 
+```
   SPIKETIMES_CORRELATION_TIMESHIFTSUBTRACT - Correlation that subtracts correlation not due to precise times
  
    [XCORR_ACTUAL, XCORR_SHIFTED, XCORR_PERCENTILE, LAGS] = 
@@ -22,3 +23,5 @@
    for example.  This estimate is returned in XCORR_SHIFTED.  The percentile
    distribution of XCORR_SHIFTED is returned in XCORR_PERCENTILE. Each Nth
    row of XCORR_PERCENTILE is the N-1th percentile of the distribution.
+
+```

@@ -1,5 +1,6 @@
 # vlt.file.custom_file_formats.readroirawdatafile
 
+```
   READROIRAWDATAFILE - Read spike waveforms from binary file
  
      ******NOT FUNCTIONAL YET**********
@@ -26,3 +27,5 @@
           N:  number of points in the image that overlapped the ROI (integer)
     indexes:  the index values of these points (if they were stored) (N integers)
        data:  the actual data values (N doubles)
+
+```

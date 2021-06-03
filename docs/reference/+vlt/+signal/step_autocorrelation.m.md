@@ -1,5 +1,6 @@
 # vlt.signal.step_autocorrelation
 
+```
   STEP_AUTOCORRELATION - Mathematical function describing autocorrelation of a step function
  
    SAC = vlt.signal.step_autocorrelation(ALPHA, N, n)
@@ -16,3 +17,5 @@
       sac = vlt.signal.step_autocorrelation(alpha, N, n);
       figure;
       plot(n,sac,'-o');
+
+```

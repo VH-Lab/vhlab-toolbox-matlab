@@ -1,5 +1,6 @@
 # vlt.signal.xcorr_stepfuncstepfunc
 
+```
   XCORR_STEPFUNC - Perform correlation between a step function and a step function
  
   [CORR,LAGS] = vlt.signal.xcorr_stepfuncstepfunc(TE, T1, SIGNAL1, MAXLAG, T2, SIGNAL2)
@@ -25,3 +26,5 @@
     (Programmer note: there is a probably a better algorithm for this.)
  
    See also: XCORR, vlt.signal.xcorr_stepfunc, vlt.math.stepfunc, vlt.signal.correlation_stepfunc
+
+```

@@ -1,5 +1,6 @@
 # vlt.neuro.stdp.stdp_eltpi_apply
 
+```
   STDP_ELTPI_APPLY Spike-timing dependent-plasticity for calculating changes in synaptic weights
  
      WEIGHT = vlt.neuro.stdp.stdp_eltpi_apply(SPIKETIMES_PRE, SPIKETIMES_POST)
@@ -56,3 +57,5 @@
    A4_plusgaussmean              | 1.4 
    A4_plusgausswidth             | 0.17
    T0                            | 0
+
+```

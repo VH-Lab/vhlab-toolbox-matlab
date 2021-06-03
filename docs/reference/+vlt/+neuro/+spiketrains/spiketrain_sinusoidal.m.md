@@ -1,5 +1,6 @@
 # vlt.neuro.spiketrains.spiketrain_sinusoidal
 
+```
   SPIKETRAIN_SINUSOIDAL - Create a spike train with a sinusoidal rate
  
    SPIKETIMES = vlt.neuro.spiketrains.spiketrain_sinusoidal(MAXRATE, FREQUENCY,...
@@ -35,3 +36,5 @@
      xlabel('Frequency');
      ylabel('Fourier magnitude');
      A = axis; axis([0 10 A(3) A(4)]);
+
+```

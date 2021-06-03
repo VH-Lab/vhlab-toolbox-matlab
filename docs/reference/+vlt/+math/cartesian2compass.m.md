@@ -1,5 +1,6 @@
 # vlt.math.cartesian2compass
 
+```
   CARTESIAN2COMPASS - Convert angles from cartiesian to compass
  
    C = vlt.math.cartesian2compass(R, USERADIANS)
@@ -11,3 +12,5 @@
  
    If USERADIANS is 1, radians are used; otherwise, 
    degrees are used.
+
+```

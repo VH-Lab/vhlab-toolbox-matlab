@@ -1,5 +1,6 @@
 # vlt.data.tabstr2struct
 
+```
   TABSTR2STRUCT - convert a tab-separated set of strings to a STRUCT entry
  
   A = vlt.data.tabstr2struct(S, FIELDS)
@@ -25,3 +26,5 @@
     s = ['5' char(9) 'my string data'];
     fn = {'fielda','fieldb'};
     a = vlt.data.tabstr2struct(s,fn)
+
+```

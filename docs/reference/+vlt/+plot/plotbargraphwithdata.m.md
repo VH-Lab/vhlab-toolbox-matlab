@@ -1,5 +1,6 @@
 # vlt.plot.plotbargraphwithdata
 
+```
   PLOTMEANBAR - Plot a bar graph indicating mean, standard error, and raw data
  
   H = vlt.plot.plotbargraphwithdata(DATA, ...)
@@ -27,3 +28,5 @@
   symbol ('o')                 | Symbol to use
   xoffset (0.25)               | X offset for plotting standard error, raw data
   measure ('nanmean(data(:))') | Function to call to obtain mean; could be 'median', e.g.
+
+```

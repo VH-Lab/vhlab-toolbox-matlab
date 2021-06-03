@@ -1,5 +1,6 @@
 # vlt.string.intseq2str
 
+```
   INTSEQ2STR - Convert an array of integers to a compact string, maintaining sequence
  
   STR = vlt.string.intseq2str(A)
@@ -20,3 +21,5 @@
       % str == '1-3,7,10'
  
   See also: INT2STR, vlt.string.str2intseq
+
+```

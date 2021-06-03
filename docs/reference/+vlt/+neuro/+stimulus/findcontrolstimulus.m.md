@@ -1,5 +1,6 @@
 # vlt.neuro.stimulus.findcontrolstimulus
 
+```
   FINDCONTROLSTIMULUS - find the corresponding 'control' stimulus for a set of stimuli
  
   CONTROLSTIMNUMBER = vlt.neuro.stimulus.findcontrolstimulus(STIMID, CONTROLSTIMID)
@@ -26,3 +27,5 @@
     stimid = [ 1 2 3 1 2 3 1 2 3 1 2 3 1 2 3 ];
     cs=vlt.neuro.stimulus.findcontrolstimulus(stimid,3)'
        % cs == [ 3 3 3 6 6 6 9 9 9 12 12 12 15 15 15 ]
+
+```

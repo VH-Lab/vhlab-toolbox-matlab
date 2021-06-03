@@ -1,5 +1,6 @@
 # vlt.matlab.isa_text
 
+```
   ISA_TEXT - examines whether a class is a subclass of another class type
  
   [B,SUBCLASSES_INCLUSIVE] = vlt.matlab.isa_text(CLASSNAME_A, CLASSNAME_B)
@@ -12,3 +13,5 @@
   of requiring one input to be an object.
  
   See also: ISA
+
+```

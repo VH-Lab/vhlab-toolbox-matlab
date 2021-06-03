@@ -1,5 +1,6 @@
 # vlt.stats.manova
 
+```
   vlt.stats.manova - Multivariate Analysis of Variance
  
    [STATS,H] = vlt.stats.manova(X,G), or
@@ -40,3 +41,5 @@
    (See sec. 11.5 of above book.)
  
    Steve Van Hooser, 2003
+
+```

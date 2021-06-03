@@ -1,5 +1,6 @@
 # vlt.image.roi.ROI_3d_max_xy_size
 
+```
   ROI_3D_MAX_XY_SIZE - compute the maximum X/Y size of a 3-d ROI
  
   MAX_XY_SIZE = ROI_3D_MAX_XY_SIZE(CC, ...)
@@ -25,3 +26,5 @@
       A, % view A
       CC = bwconncomp(A);
       max_xy_size = ROI_3d_max_xy_size(CC)
+
+```

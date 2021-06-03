@@ -1,5 +1,6 @@
 # vlt.math.slidingwindowfunc
 
+```
   vlt.math.slidingwindowfunc - Sliding window analysis for 1-dimensional data
  
         [Yn,Xn,Yint] = vlt.math.slidingwindowfunc(X, Y, START, STEPSIZE, STOP, WINDOWSIZE,...
@@ -26,3 +27,5 @@
  
    Xn is the center location of each window and Yn is the result of the
    function in each window.
+
+```

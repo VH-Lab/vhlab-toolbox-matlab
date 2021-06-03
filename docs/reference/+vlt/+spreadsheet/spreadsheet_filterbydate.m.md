@@ -1,5 +1,6 @@
 # vlt.spreadsheet.spreadsheet_filterbydate
 
+```
   SPREADSHEET - Filter a spreadsheet for fields defined by a Timestamp field
    
  
@@ -22,3 +23,5 @@
            ('')            |   searched for using TimestampColumnLabel.
  
   See also: DATENUM, vlt.data.namevaluepair
+
+```

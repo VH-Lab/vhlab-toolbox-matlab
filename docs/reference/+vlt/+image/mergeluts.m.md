@@ -1,5 +1,6 @@
 # vlt.image.mergeluts
 
+```
   MERGELUTS Merge color look up tables
  
   NEWLUT = MERGELUTS(ORIGINAL_LUT, LUT_TO_BE_MERGED)
@@ -10,3 +11,5 @@
        than LUT_TO_BE_MERGED, either in depth or number of elements,
        then ORIGINAL_LUT's values will be preserved.  In this way,
        NEWLUT will have size identical to ORIGINAL_LUT.
+
+```

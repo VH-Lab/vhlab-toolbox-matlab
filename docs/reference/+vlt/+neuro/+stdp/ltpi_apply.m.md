@@ -1,5 +1,6 @@
 # vlt.neuro.stdp.ltpi_apply
 
+```
   LTPI_APPLY Spike-timing dependent-plasticity for calculating changes in synaptic weights
  
      WEIGHT = vlt.neuro.stdp.ltpi_apply(SPIKETIMES_PRE, SPIKETIMES_POST)
@@ -47,3 +48,5 @@
    dIW                           | 0.001 (a 1% change)
    T0                            | 0
    T1                            | max(spiketimes_pre(end),spiketimes_post(end))
+
+```

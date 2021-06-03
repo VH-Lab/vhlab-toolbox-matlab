@@ -1,5 +1,6 @@
 # vlt.image.image_samplepoints
 
+```
   IMAGE_SAMPLEPOINTS - Sample points from an image file
  
    [PTS, IMAGESIZE] = IMAGE_SAMPLEPOINTS(IMAGEFILE, N, METHOD)
@@ -22,3 +23,5 @@
    info ([])             | Optionally, one can pass the output of
                          |   imfinfo as info; it saves time beause
                          |   IMAGE_SAMPLEPOINTS doesn't need to read it
+
+```

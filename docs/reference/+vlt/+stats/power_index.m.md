@@ -1,5 +1,6 @@
 # vlt.stats.power_index
 
+```
   POWER_INDEX - Compute the number of observations needed to find a change
  
    N = vlt.stats.power_index(MN, STDDEV, CHANGE, G, CONF)
@@ -11,3 +12,5 @@
    look for differences across the G groups in the simulated data.
  
    See also: ANOVA1
+
+```

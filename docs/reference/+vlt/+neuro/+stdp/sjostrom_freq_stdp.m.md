@@ -1,5 +1,6 @@
 # vlt.neuro.stdp.sjostrom_freq_stdp
 
+```
   SJOSTROM_FREQ_STDP - Sjostrom's data on plasticity vs. spike rate and timing 
  
     A = SJOSTROM_FREQ_STPD
@@ -24,3 +25,5 @@
  	20   0.29 0.14 -0.34 0.1; 
  	40   0.53 0.11  0.56 0.32; 
  	50   0.56 0.26  0.75 0.19; ];
+
+```

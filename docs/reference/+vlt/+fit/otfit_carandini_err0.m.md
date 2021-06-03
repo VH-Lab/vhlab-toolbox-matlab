@@ -1,5 +1,6 @@
 # vlt.fit.otfit_carandini_err0
 
+```
   vlt.fit.otfit_carandini_err0 Computes error of Carandini/Ferster orientation fit
  
     [ERR, RFIT]=OTFIT_CARANDINI_NEWS_ERR0(P,ANGLES,VARARGIN) 
@@ -31,3 +32,5 @@
     180 degrees away from the preferred angle.
  
     See also:  vlt.fit.otfit_carandini0
+
+```

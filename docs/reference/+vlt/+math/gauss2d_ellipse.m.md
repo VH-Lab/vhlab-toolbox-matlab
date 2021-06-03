@@ -1,5 +1,6 @@
 # vlt.math.gauss2d_ellipse
 
+```
   GAUSS2D_ELLIPSE Compute a fullwidth at half-weight ellipse from a 2d gaussian
  
    ELLIPSE_OUT = vlt.math.gauss2d_ellipse(MU, C, [N])
@@ -29,3 +30,5 @@
  
  
    w/ contribution by Shen Wang
+
+```

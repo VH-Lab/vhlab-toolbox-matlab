@@ -1,5 +1,6 @@
 # vlt.fit.linepowerthresholdfit
 
+```
   LINEPOWERTHRESHOLDFIT - Fit a linear function, raised to a power, with a threshold
  
    [SLOPE, OFFSET, THRESHOLD, EXPONENT, CURVE, GOF, FITINFO] = 
@@ -43,3 +44,5 @@
   See also: vlt.stats.quickregression (simple linear fit), FIT, vlt.fit.linepowerthreshold
  
   Jason Osik and Steve Van Hooser
+
+```

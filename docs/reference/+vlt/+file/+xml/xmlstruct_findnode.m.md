@@ -1,5 +1,6 @@
 # vlt.file.xml.xmlstruct_findnode
 
+```
   XMLSTRUCT_FINDNODE - Find a node in a Matlab struct based on XML
  
    NODE = vlt.file.xml.xmlstruct_findnode(XML_STRUCT, NODENAME)
@@ -13,3 +14,5 @@
    should be a structure with the same fields.
   
    See also: vlt.file.xml.parseXML
+
+```

@@ -1,5 +1,6 @@
 # vlt.fit.gaussfit_constraints
 
+```
   GAUSSFIT_CONSTRAINTS - gaussian fit with constraints
  
   [P,GOF,FITCURVE] = GAUSSFIT_CONSTRAINTS(X, Y, ...)
@@ -26,3 +27,5 @@
   d_hint (0.1*(max(x)-min(x)))         | Initial guess of width
   d_range [0.01*(max(x)-min(x)) ...    | Width range
           [1*(max(x)-min(x))]          |
+
+```

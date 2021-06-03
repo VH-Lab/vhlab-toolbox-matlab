@@ -1,5 +1,6 @@
 # vlt.neuro.spiketrains.loglikelihood_spikerate
 
+```
   LOGLIKELIHOOD_SPIKERATE - Compute the log likelihood of seeing spike rates
  
    LL = vlt.neuro.spiketrains.loglikelihood_spikerate(BIN_RATES, BIN_DURATIONS, SPIKERATES, SIGMA)
@@ -14,3 +15,5 @@
  
    See "A Novel Circuit Model of Contextual Modulation and Normalization in Primary Visual Cortex"
    Columbia University 2012
+
+```

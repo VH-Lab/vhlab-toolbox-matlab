@@ -1,5 +1,6 @@
 # vlt.math.double_gauss_180
 
+```
   DOUBLE_GAUSS - Double gaussian function
   Computes a double gaussian function 
  
@@ -13,3 +14,5 @@
   Rsp=offset,Rp=peak parameter of first gaussian, 0p=location of first
   peak, sig=width parameter, Rn=peak parameter of second gaussian
   and takes the angle difference between the first peak and second peak
+
+```

@@ -1,5 +1,6 @@
 # vlt.stats.resample_responses
 
+```
   vlt.stats.resample_responses - Resample responses for montecarlo simulations
  
    NEWRESPS = vlt.stats.resample_responses(TRIALDATA, MODE, REPS)
@@ -19,3 +20,5 @@
    REPS - The number of simulated trials to generate.
  
    Based on code by Mark Mazurek
+
+```

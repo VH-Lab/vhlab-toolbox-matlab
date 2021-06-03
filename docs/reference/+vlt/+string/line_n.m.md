@@ -1,5 +1,6 @@
 # vlt.string.line_n
 
+```
   LINE_N - Get the Nth line of a character string
  
    [LINE_N_STR, POS, EOL_MARKS] = vlt.string.line_n(STR, N, ...)
@@ -33,3 +34,5 @@
       vlt.string.line_n(str,1)
       vlt.string.line_n(str,2)
       vlt.string.line_n(str,3)
+
+```

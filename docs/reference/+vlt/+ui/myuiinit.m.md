@@ -1,5 +1,6 @@
 # vlt.ui.myuiinit
 
+```
   MYUIINIT - a script to initialize workspace variables for user interfaces
  
     Initializes several structure variables that can then be passed to
@@ -22,3 +23,5 @@
     is set to [1 1 1]
  
    See also: UICONTROL, vlt.ui.genercallback, ASSIGNIN
+
+```

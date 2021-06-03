@@ -1,5 +1,6 @@
 # vlt.neuro.models.synapses.depression_model_fit
 
+```
   DEPRESSION_MODEL - Compute parameters of model for synaptic depression
  
   [A0,F,FTAU,D,TAU,ERR]=DEPRESSION_MODEL(SPIKETIMES,SYNAPTIC_CURRENT,...
@@ -14,3 +15,5 @@
    See Varela, Sen, Gibson, Fost, Abbott, and Nelson, J. Neuroscience 17:7926-40
    (1997) and 'help vlt.neuro.models.synapses.depression_model_comp' for details of the model and parameters.
    ERR is the squared error over the whole data.
+
+```

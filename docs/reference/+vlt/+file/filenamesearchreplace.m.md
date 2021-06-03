@@ -1,5 +1,6 @@
 # vlt.file.filenamesearchreplace
 
+```
   FILENAMESEARCHREPLACE - Seach and replace filenames within a directory
  
   vlt.file.filenamesearchreplace(DIRNAME, SEARCHSTRS, REPLACESTRS, ...)
@@ -26,3 +27,5 @@
   Example: Suppose mydirname has a file '.ext1'.
       vlt.file.filenamesearchreplace(mydirname,{'.ext1'},{'.ext2'}, 'deleteOriginals', 1)
       % renames any files with '.ext1' to have '.ext2', deleting old files
+
+```

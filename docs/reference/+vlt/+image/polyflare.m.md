@@ -1,5 +1,6 @@
 # vlt.image.polyflare
 
+```
   POLYFLARE - Flare out a polygon by N units
  
     PNEW = POLYFLARE(P,N)
@@ -20,3 +21,5 @@
  
  
     See also: INSIDE, ROIPOLY, POLYAREA
+
+```

@@ -1,5 +1,6 @@
 # vlt.neuro.spiketrains.spikeresponse
 
+```
  
    [RESPONSE_CURVE] = vlt.neuro.spiketrains.spikeresponse(STIMTIMES_ON, STIMTIMES_OFF, STIM_VALUES, SPIKETIMES)
  
@@ -42,3 +43,5 @@
      response_curve.curve(2,:),
      
    See also: vlt.neuro.spiketrains.spikeresponse_tf
+
+```

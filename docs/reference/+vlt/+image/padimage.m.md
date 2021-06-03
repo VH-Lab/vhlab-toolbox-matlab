@@ -1,5 +1,6 @@
 # vlt.image.padimage
 
+```
   PADIMAGE - Add a border to an image
  
    IM_OUT = PADIMAGE(IM_IN, N, PAD)
@@ -19,3 +20,5 @@
    dimension, etc.
  
    The result is returned in IM_OUT.
+
+```

@@ -1,5 +1,6 @@
 # vlt.data.celloritem
 
+```
   CELLORITEM - Returns the ith element of a cell list, or a single item
  
     ITEM = vlt.data.celloritem(VAR, [INDEX], [USEINDEXFORVAR])
@@ -35,3 +36,5 @@
             vlt.data.celloritem(myotherlist1,i,1),
             vlt.data.celloritem(myotherlist2,i,1),
       end
+
+```

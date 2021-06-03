@@ -1,5 +1,6 @@
 # vlt.image.xcorr2dlag
 
+```
   XCORR2DLAG - 2-d cross-correlation computed at specified lags
  
     XC = XCORR2DLAG(W1,W2,XLAGS,YLAGS)
@@ -12,3 +13,5 @@
    are in bounds.  
  
    XC is a matrix LENGTH(YLAGS)xLENGTH(XLAGS).
+
+```

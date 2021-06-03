@@ -1,5 +1,6 @@
 # vlt.plot.supersubplot
 
+```
   SUPERSUBPLOT - Organize axes across multiple figures
  
    AX_H=vlt.plot.supersubplot(FIG, M, N, P)
@@ -24,3 +25,5 @@
         % on a second figure
      
    See also: SUBPLOT, AXES
+
+```

@@ -1,5 +1,6 @@
 # vlt.plot.median_within_between_plot
 
+```
   MEDIAN_WITHIN_BETWEEN_PLOT - Plot an index for many experiments, different conditions
  
    [H,DATAPOINTS]=vlt.plot.median_within_between_plot(DATA, EXPERIMENT_INDEXES, LABELS)
@@ -30,3 +31,5 @@
          index:      the index of the point within the condition
          x:          the x position on the plot
          y:          the y position on the plot (might be transformed from the raw data)
+
+```

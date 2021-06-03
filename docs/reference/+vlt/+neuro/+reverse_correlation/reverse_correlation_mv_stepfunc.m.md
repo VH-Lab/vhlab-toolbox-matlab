@@ -1,5 +1,6 @@
 # vlt.neuro.reverse_correlation.reverse_correlation_mv_stepfunc
 
+```
   REVERSE_CORRELATION_MV_STEPFUNC - Performs RC between a continuously valued signal and step function stimulus
  
   [REV_CORR, REV_CORR_RAW, XC_STIMSIGNAL, XC_STIMSTIM] = ...
@@ -70,3 +71,5 @@
     dt (1)                     | Resolution of kernel in time
  
    See also:  vlt.math.stepfunc, vlt.neuro.reverse_correlation.demos.DirRFModel_example2, FIRWIENER
+
+```

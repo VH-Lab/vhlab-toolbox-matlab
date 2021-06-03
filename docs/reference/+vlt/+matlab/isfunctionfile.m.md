@@ -1,5 +1,6 @@
 # vlt.matlab.isfunctionfile
 
+```
   ISFUNCTIONFILE - determines if a FILENAME defines a Matlab function
  
   B = ISFUNCTIONFILE(FILENAME)
@@ -15,3 +16,5 @@
   Example: 
     wfilename = which('vlt.matlab.isfunctionfile')
     b = vlt.matlab.isfunctionfile(wfilename)
+
+```

@@ -1,5 +1,6 @@
 # vlt.file.saveStructArray
 
+```
   SAVESTRUCTARRAY - Save a structure array into a text file
    
     vlt.file.saveStructArray(FILENAME, STRUCTARRAY, [HEADER])
@@ -19,3 +20,5 @@
     Originally from Ken Sugino
  
     See also: vlt.file.loadStructArray, STRUCT, vlt.data.tabstr2struct
+
+```

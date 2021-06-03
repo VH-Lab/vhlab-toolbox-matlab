@@ -1,5 +1,6 @@
 # vlt.signal.decompose_time
 
+```
   DECOMPOSE_TIME - Unwrap or desegment a concatenated recording into pieces
  
     NEWTIMES = vlt.signal.decompose_time(TIMESTAMPS, TIME_INTERVALS)
@@ -21,3 +22,5 @@
         timestamps = [ 0.5 1.5 ]; 
         % event at 1.5 really occured at 2.5 units in real time
         newtimes = vlt.signal.decompose_time(timestamps,[myrecording1;myrecording2])
+
+```

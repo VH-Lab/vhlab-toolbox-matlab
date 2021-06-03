@@ -1,5 +1,6 @@
 # vlt.neuro.vision.oridir.index.compute_orientationvector
 
+```
   vlt.neuro.vision.oridir.index.compute_orientationvector
       VECTOR = vlt.neuro.vision.oridir.index.compute_orientationvector( ANGLES, RATES )
  
@@ -12,3 +13,5 @@
       as opposed to from 0 to 180 (N = 1).
     
       no interpolation done
+
+```

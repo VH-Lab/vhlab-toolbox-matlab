@@ -1,5 +1,6 @@
 # vlt.stats.myanova
 
+```
    vlt.stats.myanova - One-way analysis of variance with posthoc comparisons
      vlt.stats.myanova performs a one-way ANOVA for comparing the means of two or more
      groups of data.  It returns the p-value for the null hypothesis that the
@@ -12,3 +13,5 @@
      1 if the null hypothesis is rejected and 0 otherwise, and COMP is an
      NxN matrix of significant comparisons among the groups, where N is the
      total number of groups (determined by the number of unique elements in G).
+
+```

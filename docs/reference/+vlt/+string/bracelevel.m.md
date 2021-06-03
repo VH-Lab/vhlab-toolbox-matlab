@@ -1,5 +1,6 @@
 # vlt.string.bracelevel
 
+```
   BRACELEVEL - Determine the enclosure depth level for text within braces
  
    LEVEL = vlt.string.bracelevel(STR)
@@ -20,3 +21,5 @@
  
       str2 = 'this is [a test of [depth]]';
       level=vlt.string.bracelevel(str,'[',']')
+
+```

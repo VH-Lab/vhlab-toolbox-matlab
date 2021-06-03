@@ -1,5 +1,6 @@
 # vlt.graph.mergegraph
 
+```
   MERGEGRAPH - merge adjacency matrixes of 2 graphs
  
   [MERGED_GRAPH, INDEXES, NUMNEWNODES] = vlt.graph.mergegraph(G1, G2, NODENUMBERS2_1)
@@ -42,3 +43,5 @@
              upper_right(indexes.upper_right.merged) = G2(indexes.upper_right.G2);
              G4 = [ G1 upper_right; lower_left lower_right ];
              G3==G4 % it does
+
+```

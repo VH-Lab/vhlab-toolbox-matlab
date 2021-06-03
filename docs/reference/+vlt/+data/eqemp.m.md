@@ -1,5 +1,6 @@
 # vlt.data.eqemp
 
+```
    vlt.data.eqemp
  
      B = vlt.data.eqemp(X,Y)
@@ -8,3 +9,5 @@
    Otherwise, b=0;  Note that if X==Y is not defined, there will be an error.
  
    See also:  EQ, vlt.data.eqtot, vlt.data.eqlen
+
+```

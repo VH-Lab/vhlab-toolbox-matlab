@@ -1,5 +1,6 @@
 # vlt.file.loadIgor
 
+```
    vlt.file.loadIgor Load Igor Binary file
       DATA = vlt.file.loadIgor(FILENAME) loads data from an Igor binary data file.  The
    data is assumed to be one dimentional, and the file is assumed to be from
@@ -14,3 +15,5 @@
    Note:  This program has only been tested with float data.
  
    Developer note: Who wrote this? Was it Steve? Ken Sugino?
+
+```

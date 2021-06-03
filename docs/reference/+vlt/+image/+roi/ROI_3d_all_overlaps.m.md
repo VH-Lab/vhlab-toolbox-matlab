@@ -1,5 +1,6 @@
 # vlt.image.roi.ROI_3d_all_overlaps
 
+```
   ROIS_3D_ALL_OVERLAPS - Compute overlaps between sets of 3D ROIs
  
    [OVERLAP_AB, OVERLAP_BA] = ROI_3D_ALL_OVERLAPS(ROIS3D_A, LA, ...
@@ -41,3 +42,5 @@
        MAX(MAX(ABS(YRANGE)),   :  ROI in A to check for overlaps in B?
          MAX(ABS(ZRANGE)) ))   : (The flare expands the ROI in all directions
                                :  to allow us to look for overlapping ROIs.)
+
+```

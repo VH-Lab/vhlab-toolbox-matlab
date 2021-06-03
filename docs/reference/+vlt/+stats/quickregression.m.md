@@ -1,5 +1,6 @@
 # vlt.stats.quickregression
 
+```
   QUICKREGRESSSION - Computes best fit to a line and confidence interval on
   slope
  
@@ -14,3 +15,5 @@
    NAN entries are ignored.
  
    See also: POLYFIT, REGRESS, QUICKREGRESIONPVALUE
+
+```

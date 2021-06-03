@@ -1,5 +1,6 @@
 # vlt.signal.remove60hz
 
+```
   REMOVE60HZ remove 60Hz noise
  
     DATA_OUT = vlt.signal.remove60hz(DATA_IN, SAMPLERATE)
@@ -59,3 +60,5 @@
     If you get NaN for your output data, try reducing the filter order.
  
     Contributions: Wes Alford, Steve Van Hooser
+
+```

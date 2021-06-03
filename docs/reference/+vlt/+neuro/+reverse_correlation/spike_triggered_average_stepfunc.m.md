@@ -1,5 +1,6 @@
 # vlt.neuro.reverse_correlation.spike_triggered_average_stepfunc
 
+```
   vlt.neuro.reverse_correlation.spike_triggered_average_stepfunc - Performs STA between spike times and step function stimulus
  
   AVG_STIM = vlt.neuro.reverse_correlation.spike_triggered_average_stepfunc(SPIKETIMES, STIM_OFFSETS, STIMTIMES, STIM)
@@ -21,3 +22,5 @@
     See Dayan and Abbott (2005), Chapters 1-2
    
    See also:  vlt.math.stepfunc, vlt.neuro.reverse_correlation.demos.DirRFModel_example3
+
+```

@@ -1,5 +1,6 @@
 # vlt.plot.matchaxes
 
+```
   MATCHAXES - Set the axis limits on a set of axes to the same value
  
    vlt.plot.matchaxes(AXESLIST, XMIN, XMAX, YMIN, YMAX)
@@ -34,3 +35,5 @@
       vlt.plot.matchaxes([myaxes1 myaxes2],'axis','axis',0,1);
  
    See also: AXES, AXIS
+
+```

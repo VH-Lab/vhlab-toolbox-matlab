@@ -1,5 +1,6 @@
 # vlt.neuro.membrane.vmnospikes
 
+```
   VMNOSPIKES - Return underlying voltage with spikes removed
  
    [VMNS,T,SPIKETIMES] = vlt.neuro.membrane.vmnospikes(VM, SI)
@@ -36,3 +37,5 @@
    rm60hz (1)               | 0/1 should we filter 60Hz noise? (uses vlt.signal.remove60hz)
    rm60hz_inputs ({})       | Any custom arguments we should pass to vlt.signal.remove60hz
                             |   (see vlt.signal.remove60hz)
+
+```

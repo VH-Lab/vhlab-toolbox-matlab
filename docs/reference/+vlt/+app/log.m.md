@@ -1,5 +1,6 @@
 # CLASS vlt.app.log
 
+```
   vlt.app.log: A logger for system and/or error messages by a Matlab application or package
  
   vlt.app.log is an API and implementation for writing messages to a log file. 
@@ -27,6 +28,8 @@
     seterrorbehavior - set the error behavior of a LOG object
     touch - create the log files if they don't exist
 
+
+```
 ## Superclasses
 **handle**
 
@@ -71,6 +74,7 @@
 
 **addlistener** - *ADDLISTENER  Add listener for event.*
 
+```
 el = ADDLISTENER(hSource, Eventname, callbackFcn) creates a listener
     for the event named Eventname.  The source of the event is the handle 
     object hSource.  If hSource is an array of source handles, the listener
@@ -105,12 +109,13 @@ Help for vlt.app.log/addlistener is inherited from superclass HANDLE
 
     Documentation for vlt.app.log/addlistener
        doc handle.addlistener
-
+```
 
 ---
 
 **delete** - *DELETE   Delete a handle object.*
 
+```
 DELETE(H) deletes all handle objects in array H. After the delete 
     function call, H is an array of invalid objects.
  
@@ -120,12 +125,13 @@ Help for vlt.app.log/delete is inherited from superclass HANDLE
 
     Documentation for vlt.app.log/delete
        doc handle.delete
-
+```
 
 ---
 
 **eq** - *== (EQ)   Test handle equality.*
 
+```
 Handles are equal if they are handles for the same object.
  
     H1 == H2 performs element-wise comparisons between handle arrays H1 and
@@ -145,12 +151,13 @@ Help for vlt.app.log/eq is inherited from superclass HANDLE
 
     Documentation for vlt.app.log/eq
        doc handle.eq
-
+```
 
 ---
 
 **findobj** - *FINDOBJ   Find objects matching specified conditions.*
 
+```
 The FINDOBJ method of the HANDLE class follows the same syntax as the 
     MATLAB FINDOBJ command, except that the first argument must be an array
     of handles to objects.
@@ -166,12 +173,13 @@ Help for vlt.app.log/findobj is inherited from superclass HANDLE
 
     Documentation for vlt.app.log/findobj
        doc handle.findobj
-
+```
 
 ---
 
 **findprop** - *FINDPROP   Find property of MATLAB handle object.*
 
+```
 p = FINDPROP(H,PROPNAME) finds and returns the META.PROPERTY object
     associated with property name PROPNAME of scalar handle object H.
     PROPNAME can be a string scalar or character vector.  It can be the 
@@ -187,12 +195,13 @@ Help for vlt.app.log/findprop is inherited from superclass HANDLE
 
     Documentation for vlt.app.log/findprop
        doc handle.findprop
-
+```
 
 ---
 
 **ge** - *>= (GE)   Greater than or equal relation for handles.*
 
+```
 H1 >= H2 performs element-wise comparisons between handle arrays H1 and
     H2.  H1 and H2 must be of the same dimensions unless one is a scalar.
     The result is a logical array of the same dimensions, where each
@@ -210,12 +219,13 @@ Help for vlt.app.log/ge is inherited from superclass HANDLE
 
     Documentation for vlt.app.log/ge
        doc handle.ge
-
+```
 
 ---
 
 **gt** - *> (GT)   Greater than relation for handles.*
 
+```
 H1 > H2 performs element-wise comparisons between handle arrays H1 and 
     H2.  H1 and H2 must be of the same dimensions unless one is a scalar.  
     The result is a logical array of the same dimensions, where each
@@ -233,12 +243,13 @@ Help for vlt.app.log/gt is inherited from superclass HANDLE
 
     Documentation for vlt.app.log/gt
        doc handle.gt
-
+```
 
 ---
 
 **isvalid** - *ISVALID   Test handle validity.*
 
+```
 TF = ISVALID(H) performs an element-wise check for validity on the 
     handle elements of H.  The result is a logical array of the same 
     dimensions as H, where each element is the element-wise validity 
@@ -253,12 +264,13 @@ Help for vlt.app.log/isvalid is inherited from superclass HANDLE
 
     Documentation for vlt.app.log/isvalid
        doc handle.isvalid
-
+```
 
 ---
 
 **le** - *<= (LE)   Less than or equal relation for handles.*
 
+```
 Handles are equal if they are handles for the same object.  All 
     comparisons use a number associated with each handle object.  Nothing
     can be assumed about the result of a handle comparison except that the
@@ -284,12 +296,13 @@ Help for vlt.app.log/le is inherited from superclass HANDLE
 
     Documentation for vlt.app.log/le
        doc handle.le
-
+```
 
 ---
 
 **listener** - *LISTENER  Add listener for event without binding the listener to the source object.*
 
+```
 el = LISTENER(hSource, Eventname, callbackFcn) creates a listener
     for the event named Eventname.  The source of the event is the handle  
     object hSource.  If hSource is an array of source handles, the listener
@@ -329,12 +342,13 @@ Help for vlt.app.log/listener is inherited from superclass HANDLE
 
     Documentation for vlt.app.log/listener
        doc handle.listener
-
+```
 
 ---
 
 **log** - *create a vlt.app.log for writing system, debugging, error information to log files*
 
+```
 LOG_OBJ = LOG(PROPERTY1, VALUE1, ... )
  
   Creates a new vlt.app.log object with the properties initiallized with name/value pair
@@ -350,12 +364,13 @@ LOG_OBJ = LOG(PROPERTY1, VALUE1, ... )
   debug_verbosity           | 1.0
   log_name                  | ''
   log_error_behavior        | 'warning'
-
+```
 
 ---
 
 **lt** - *< (LT)   Less than relation for handles.*
 
+```
 H1 < H2 performs element-wise comparisons between handle arrays H1 and
     H2.  H1 and H2 must be of the same dimensions unless one is a scalar.
     The result is a logical array of the same dimensions, where each
@@ -373,12 +388,13 @@ Help for vlt.app.log/lt is inherited from superclass HANDLE
 
     Documentation for vlt.app.log/lt
        doc handle.lt
-
+```
 
 ---
 
 **msg** - *write a log message to the log*
 
+```
 B = MSG(LOG_OBJ, TYPE, PRIORITY, MESSAGE)
  
   Appends the character string MESSAGE to the appropriate log file for the matapptools.log object
@@ -397,12 +413,13 @@ B = MSG(LOG_OBJ, TYPE, PRIORITY, MESSAGE)
     log_obj.msg('system',1,'starting my program');
     log_obj.msg('error',1,'Could not find file C:\mydir\abc.txt.');
     log_obj.msg('debug',1,'a=5 here.');
-
+```
 
 ---
 
 **ne** - *~= (NE)   Not equal relation for handles.*
 
+```
 Handles are equal if they are handles for the same object and are 
     unequal otherwise.
  
@@ -423,12 +440,13 @@ Help for vlt.app.log/ne is inherited from superclass HANDLE
 
     Documentation for vlt.app.log/ne
        doc handle.ne
-
+```
 
 ---
 
 **notify** - *NOTIFY   Notify listeners of event.*
 
+```
 NOTIFY(H, eventname) notifies listeners added to the event named 
     eventname for handle object array H that the event is taking place. 
     eventname can be a string scalar or character vector.  
@@ -445,26 +463,28 @@ Help for vlt.app.log/notify is inherited from superclass HANDLE
 
     Documentation for vlt.app.log/notify
        doc handle.notify
-
+```
 
 ---
 
 **seterrorbehavior** - *set the error behavior of a LOG object*
 
+```
 LOG_OBJ = SETERRORBEHAVIOR(LOG_OBJ, LOG_ERROR_BEHAVIOR)
  
   Assign LOG_ERROR_BEHAVIOR, which can be 'warning', 'error', or 'nothing'.
-
+```
 
 ---
 
 **touch** - *create all log files if they do not already exist*
 
+```
 TOUCH(LOG_OBJ)
  
   Creates all log files if they do not already exist. If these log files
   cannot be created, then an error is generated.
-
+```
 
 ---
 

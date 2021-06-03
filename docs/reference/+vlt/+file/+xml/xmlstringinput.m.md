@@ -1,5 +1,6 @@
 # vlt.file.xml.xmlstringinput
 
+```
  XMLSTRINGINPUT Determine whether a string is a file or URL
     RESULT = vlt.file.xml.xmlstringinput(STRING) will return STRING if
     it contains "://", indicating that it is a URN.  Otherwise,
@@ -24,3 +25,5 @@
     RESULT returns as a URN.  RETURNFILE is TRUE if omitted.
  
     This utility is used by XSLT, XMLWRITE, and XMLREAD
+
+```

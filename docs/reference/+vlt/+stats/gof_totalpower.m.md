@@ -1,5 +1,6 @@
 # vlt.stats.gof_totalpower
 
+```
   GOF_TOTALPOWER - Simple computation of how much 'power' of a signal is accounted for by a fit
  
   [GF, TOTAL_POWER, FIT_POWER, RES_POWER, RES] = vlt.stats.gof_totalpower(S, F)
@@ -18,3 +19,5 @@
   RES_POWER is the power of the residual RES which is S - F.
  
   S and F are expected to be vectors.
+
+```

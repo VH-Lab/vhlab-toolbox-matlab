@@ -1,5 +1,6 @@
 # vlt.neuro.membrane.generate_normal_vm_fr
 
+```
   GENERATE_POISSON_VM_FR - generate firing rate values from poisson process
  
   FR = vlt.neuro.membrane.generate_poisson_vm_fr(VM, DELTAT, RATEFUNC, RATEFUNCPARAMS, SIGMA)
@@ -12,3 +13,5 @@
   See also: vlt.neuro.membrane.normal_vm_fr, vlt.neuro.membrane.poisson_vm_fr
  
   Example:
+
+```

@@ -1,5 +1,6 @@
 # vlt.stats.ranks2
 
+```
   RANKS2 - Returns vector of ranks of X adjusted for ties, assuming ties rare
  
   Y = vlt.stats.ranks2(X)
@@ -13,3 +14,5 @@
   Author: KH <Kurt.Hornik@ci.tuwien.ac.at>
  
   Modified 9/9/2004 by SDV for speed; assumes ties are rare.
+
+```

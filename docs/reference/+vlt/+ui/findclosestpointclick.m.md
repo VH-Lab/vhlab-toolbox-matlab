@@ -1,5 +1,6 @@
 # vlt.ui.findclosestpointclick
 
+```
   FINDCLOSESTPOINT - Find the closest point to where a user clicked
  
    [I,PT] = vlt.ui.findclosestpointclick(POINTLIST)
@@ -23,3 +24,5 @@
    If POINTLIST is in 2-space (2D) then a 2D comparison is made.
   
    See also: vlt.data.findclosest, vlt.data.findclosestpoint
+
+```

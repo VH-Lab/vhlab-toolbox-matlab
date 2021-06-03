@@ -1,5 +1,6 @@
 # vlt.neuro.spikesorting.plotspikewaves
 
+```
   PLOTSPIKEWAVES - Plot spike waveforms to the current axes
  
     H=vlt.neuro.spikesorting.plotspikewaves(WAVES, [INDEXES], ...)
@@ -32,3 +33,5 @@
  
    Outputs:
      H: A list of the plot handles for these waves
+
+```

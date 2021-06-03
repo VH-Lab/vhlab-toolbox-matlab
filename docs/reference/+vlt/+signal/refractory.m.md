@@ -1,5 +1,6 @@
 # vlt.signal.refractory
 
+```
   REFRACTORY - Impose a refractory period on events
  
    [OUT_TIMES,OUT_INDEXES] = vlt.signal.refractory(IN_TIMES, REFRACTORY_PERIOD)
@@ -17,3 +18,5 @@
    OUT_TIMES are the times that meet the refractory criteria.  OUT_INDEXES
    are the index values of the points in IN_TIMES that meet the criteria,
    such that OUT_TIMES = IN_TIMES(OUT_INDEXES)
+
+```

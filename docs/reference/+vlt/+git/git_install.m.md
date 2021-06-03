@@ -1,5 +1,6 @@
 # vlt.git.git_install
 
+```
   GIT_PULL - pull changes to a git repository
  
   B = vlt.git.git_pull(DIRNAME, REPOSITORY)
@@ -9,10 +10,13 @@
   in the local directory DIRNAME that don't match the remote REPOSITORY are deleted.
   
   If DIRNAME does not exist, then the repository is cloned.
-  If DIRNAME exists and has local changes, the directory is deleted and cloned fresh.
+  If DIRNAME exists and has local changes, the changes are stashed and the
+     directory is updated by pulling.
   If the DIRNAME exists and has no local changes, the directory is updated by
-  pulling.
+     pulling.
  
-  Note: if you have any local changes, vlt.git.git_install will totally remove them.
+  Note: if you have any local changes, vlt.git.git_install will stash them and warn the user.
  
   B is 1 if the operation is successful.
+
+```

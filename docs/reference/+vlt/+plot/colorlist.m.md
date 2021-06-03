@@ -1,5 +1,6 @@
 # vlt.plot.colorlist
 
+```
   COLORLIST - Grab a color or group of colors from a list
  
     C = vlt.plot.colorlist
@@ -27,3 +28,5 @@
                          |    selection around the list if N
                          |    is greater than the number of colors.
                          |    Instead, an error will occur.
+
+```

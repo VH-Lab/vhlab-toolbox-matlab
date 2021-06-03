@@ -1,5 +1,6 @@
 # vlt.string.trimsymbol
 
+```
   TRIMSYMBOL - Trim a symbol (or symbols) from a string
  
    NEWSTR = vlt.string.trimsymbol(STR, SYMBOL)
@@ -14,3 +15,5 @@
       mystr = '*myhighlightedname#'
       newstr = vlt.string.trimsymbol(mystr,'*#')
       % newstr = 'myhighlightedname'
+
+```

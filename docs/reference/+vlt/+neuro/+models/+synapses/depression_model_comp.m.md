@@ -1,5 +1,6 @@
 # vlt.neuro.models.synapses.depression_model_comp
 
+```
    vlt.neuro.models.synapses.depression_model_comp-Computes synaptic currents for Varela depression model
  
      SYNCURRS = vlt.neuro.models.synapses.depression_model_comp(SPIKETIMES,A0,F,FTAU,D,DTAU)
@@ -25,3 +26,5 @@
    and contains the time constants ditau.
  
    See Varela,Sen,Gibson,Fost,Abbott,and Nelson,J.Neurosci.17:7926-40,1997.
+
+```

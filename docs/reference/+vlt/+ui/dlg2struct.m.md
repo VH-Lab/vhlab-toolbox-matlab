@@ -1,5 +1,6 @@
 # vlt.ui.dlg2struct
 
+```
   DLG2STRUCT - Have a user fill in a structure with values
  
     S = vlt.ui.dlg2struct(WINDOWNAME, FN, DESCRIPTIONS, DEFAULTS)
@@ -25,3 +26,5 @@
        mystruct.b = 1;
        desc = {'Favorite number (1-10)', '2nd favorite number (1-10)'};
        s = vlt.ui.dlg2struct('Favorite numbers',fieldnames(mystruct),desc,mystruct);
+
+```

@@ -1,5 +1,6 @@
 # vlt.stats.nestedftest
 
+```
   NESTEDFTEST - Compute Nested F test statistic for 2 nested models
  
    [P,F] = vlt.stats.nestedftest(SE1, P1, SE2, P2, NDATA)
@@ -21,3 +22,5 @@
    F:   The value of the F statistic.
  
    See: http://en.wikipedia.org/wiki/F-test#Regression_problems
+
+```

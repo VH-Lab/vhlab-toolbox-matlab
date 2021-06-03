@@ -1,5 +1,6 @@
 # vlt.data.isfullfield
 
+```
   ISFULLFIELD - is there a field (or field and subfield) of a structure with a given name?
  
   [B, VALUE] = vlt.data.isfullfield(A, FIELD)
@@ -13,3 +14,5 @@
       A = struct('a',struct('sub1',1,'sub2',2),'b',5);
       [b,value] = vlt.data.isfullfield(A, 'a.sub1') % returns b==1 and value==1
       [b2,value2] = vlt.data.isfullfield(A, 'a.sub3') % returns b==0 and value==[]
+
+```

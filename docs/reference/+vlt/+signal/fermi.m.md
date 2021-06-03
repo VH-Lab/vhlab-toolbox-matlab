@@ -1,5 +1,6 @@
 # vlt.signal.fermi
 
+```
   FERMI creates a 2D Fermi filter.
     FFILTER = vlt.signal.fermi(XDIM,CUTOFF,TRANS_WIDTH) calculates a 2D
       Fermi filter on a grid with dimensions XDIM * XDIM. 
@@ -11,3 +12,5 @@
      Author: Wally Block, UW-Madison  02/23/01. 
  
      Call: ffilter = vlt.signal.fermi(xdim, cutoff, trans_width);
+
+```

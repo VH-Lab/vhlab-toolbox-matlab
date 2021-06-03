@@ -1,5 +1,6 @@
 # vlt.neuro.vision.oridir.index.fit2fitoi
 
+```
   FIT2FITOI - Calculate orientation index from a double gaussian fit of direction tuning curve
  
    OIIND = vlt.neuro.vision.oridir.index.fit2fitoi(R)
@@ -17,3 +18,5 @@
      the second row is the response of the fit for each angle.
  
      See also: vlt.fit.otfit_carandini, vlt.neuro.vision.oridir.index.fit2fitoi, vlt.neuro.vision.oridir.index.fit2fitdibr
+
+```

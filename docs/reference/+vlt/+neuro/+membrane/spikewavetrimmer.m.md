@@ -1,5 +1,6 @@
 # vlt.neuro.membrane.spikewavetrimmer
 
+```
   SPIKEWAVETRIMMER - remove the zero padding from spikewave and yield the time preceding spike peaks
   [SPIKEWAVE_VTRIM] = vlt.neuro.membrane.spikewavetrimmer(SPIKEWAVE, SPIKEPEAK_LOC)
  
@@ -13,3 +14,5 @@
                      |  0 padding removed and replaced with the leading (or
                      |  trailing) non-zero data points at the beginning and
                      |  end of the wave, respectively.
+
+```

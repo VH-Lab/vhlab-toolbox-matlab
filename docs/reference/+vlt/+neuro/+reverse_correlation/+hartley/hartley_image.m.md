@@ -1,5 +1,6 @@
 # vlt.neuro.reverse_correlation.hartley.hartley_image
 
+```
   HARTLEY_IMAGE - A Hartley image function
    IM = vlt.neuro.reverse_correlation.hartley.hartley_image(KX, KY, M)
  
@@ -9,3 +10,5 @@
     where l and m run from 0 to M-1.
  
    From Ringach et al., 1997
+
+```

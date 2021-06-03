@@ -1,5 +1,6 @@
 # vlt.data.colvec
 
+```
   COLVEC - return a matrix reshaped as a column vector
  
    Y = vlt.data.colvec(X)
@@ -18,3 +19,5 @@
    Example: 
      A = rand(5,5)
      Y = vlt.data.colvec(A(1:3,1:2)) % returns points in rows 1:3, columns 1:2
+
+```

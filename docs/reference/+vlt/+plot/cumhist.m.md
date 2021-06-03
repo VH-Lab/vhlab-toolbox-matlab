@@ -1,5 +1,6 @@
 # vlt.plot.cumhist
 
+```
   vlt.plot.cumhist - Make data for a cumulative histogram plot
  
     [X,Y]=vlt.plot.cumhist(DATA,XRANGE,PERCENT_DELTA)
@@ -25,3 +26,5 @@
        xlabel('Values');
  
      See also: PRCTILE, CUMSUM, HIST
+
+```

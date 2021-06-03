@@ -1,5 +1,6 @@
 # vlt.colorspace.angle2ybgr
 
+```
   ANGLE2YBRG - Determine color by angle 0-360 degrees
  
   [CTAB, VALUE, RGB] = vlt.colorspace.angle2ybgr([ANGLE])
@@ -20,3 +21,5 @@
  
     angle = 5.5;
     [ctab, value, rgb] = vlt.colorspace.angle2ybgr(angle);
+
+```

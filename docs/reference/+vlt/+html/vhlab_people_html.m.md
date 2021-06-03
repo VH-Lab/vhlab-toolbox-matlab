@@ -1,5 +1,6 @@
 # vlt.html.vhlab_people_html
 
+```
   VHLAB_PEOPLE_HTML - Generate the VHLAB people page given a datebase of members
  
   vlt.html.vhlab_people_html(DBTABLE_FILENAME, OUTPUT_FILENAME)
@@ -23,3 +24,5 @@
   paragraph                | HTML string containing a paragraph(s) of research interests.
   Links                    | Any links (current personnel only)
   imagefile                | Image link to the person's picture
+
+```

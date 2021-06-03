@@ -1,5 +1,6 @@
 # vlt.data.conditional
 
+```
   CONDITIONAL - Return A or B depending on result of a true/false test
  
     C = vlt.data.conditional(TEST,A,B)
@@ -13,3 +14,5 @@
  
     Example:
       C = vlt.data.conditional(3<5,1,0) % C will be 1
+
+```

@@ -1,5 +1,6 @@
 # vlt.file.custom_file_formats.convertvhlvdatafile2integer
 
+```
   CONVERTVHLVDATAFILE2INTEGER - Convert a VH LabView file to binary integer format
  
    vlt.file.custom_file_formats.convertvhlvdatafile2integer(OLDFILENAME, HEADERSTRUCT, OUTPUTFILENAME, SCALE, PRECISION)
@@ -19,3 +20,5 @@
  
    Example:
         vlt.file.custom_file_formats.convertvhlvdatafile2integer('vhlvanaloginput.vld',[],'vhlvanaloginput_int.vld',10,'int16');
+
+```

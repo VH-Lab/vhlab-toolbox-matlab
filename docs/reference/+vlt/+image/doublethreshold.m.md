@@ -1,5 +1,6 @@
 # vlt.image.doublethreshold
 
+```
   DOUBLETHRESHOLD - apply a double threshold to an image
   
   BIN = DOUBLETHRESHOLD(IM, T1, T2, CONNECTIVITY)
@@ -12,3 +13,5 @@
   
   Finally, a binary image is created from the ROIs that remain and is
   returned in BIN.
+
+```

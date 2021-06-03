@@ -1,5 +1,6 @@
 # vlt.image.driftcheck
 
+```
   DRIFTCHECK - Checks for drift in image pair by correlation
  
     DR = DRIFTCHECK(IM1,IM2,SEARCHX,SEARCHY,...)
@@ -34,3 +35,5 @@
    This function calls the xcorr2dlag MEX file; this function
    will produce an error if this function is not compiled for
    your platform.
+
+```

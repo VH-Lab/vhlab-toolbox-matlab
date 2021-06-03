@@ -1,5 +1,6 @@
 # vlt.neuro.stimulus.stimulus_response_stats
 
+```
   STIMULUS_RESPONSE_SUMMARY - compute a stimulus response summary for timeseries data
   
   STATS = vlt.neuro.stimulus.stimulus_response_stats(RESPONSES,...)
@@ -47,3 +48,5 @@
   
  
   See also: vlt.data.namevaluepair
+
+```

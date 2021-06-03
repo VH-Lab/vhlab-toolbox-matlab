@@ -1,5 +1,6 @@
 # vlt.docs.matlab2markdown
 
+```
   MATLAB2MARKDOWN - convert Matlab documentation to markdown
  
   OUT = MATLAB2MARKDOWN(INPUT_PATH, OUTPUT_PATH, YMLPATH, OBJECTSTRUCT)
@@ -13,3 +14,5 @@
   OUT is a structure record of the same data written to the OUTPUT_PATH.
  
   See also: vlt.docs.markdownoutput2objectstruct
+
+```

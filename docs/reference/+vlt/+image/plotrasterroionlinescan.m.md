@@ -1,5 +1,6 @@
 # vlt.image.plotrasterroionlinescan
 
+```
   PLOTRASTERROIONLINESCAN - Plot an ROI defined in an raster image on a linescan image
  
    [H] = PLOTRASTERROIONLINESCAN(LINESCANIMAGE,RASTERIMSIZE,ROIINDS,...
@@ -18,3 +19,5 @@
  
     CONTOURS              |  Plot contours around ROIs (default 1)
     INDEXES               |  Fill index values of ROI (default 0)
+
+```

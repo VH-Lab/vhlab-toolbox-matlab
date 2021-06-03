@@ -1,5 +1,6 @@
 # vlt.ui.lb_getselected
 
+```
  
    Part of the NewStim package
  
@@ -9,3 +10,5 @@
    items in the listbox LB.  LB should be a handle to a listbox.
  
                                     Questions to vanhoosr@brandeis.edu
+
+```

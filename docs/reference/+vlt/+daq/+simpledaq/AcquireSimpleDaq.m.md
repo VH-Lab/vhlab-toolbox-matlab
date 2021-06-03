@@ -1,5 +1,6 @@
 # vlt.daq.simpledaq.AcquireSimpleDaq
 
+```
   vlt.daq.simpledaq.AcquireSimpleDaq - Acquires a SimpleDaq device
  
       [DATA,NEWSD] = vlt.daq.simpledaq.AcquireSimpleDaq(SD)
@@ -18,3 +19,5 @@
                        where t_i indicates the sample times of data record i
                        (usually with respect to starttime; that is 0==starttime)
                        and data_i_n is the value sampled on channel n.
+
+```

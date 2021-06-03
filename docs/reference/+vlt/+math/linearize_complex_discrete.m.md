@@ -1,5 +1,6 @@
 # vlt.math.linearize_complex_discrete
 
+```
   LINEARIZE_COMPLEX_DISCRETE - create a linear plot by concatenating discrete complex elements
  
   [Y, INDEXES, SET] = vlt.math.linearize_complex_discrete(X, ...)
@@ -26,3 +27,5 @@
        % Y = [ [1 2 3]  [4 5 6] [7 8 9] ]', 
        % IND = [ [1 2 3] [4 5 6] [7 8 9] ]', 
        % SET = [ [1 1 1] [2 2 2] [3 3 3] ]'
+
+```

@@ -1,5 +1,6 @@
 # vlt.file.fixtilde
 
+```
    vlt.file.fixtilde - Removes ~ from filenames and replaces with user home directory
  
    NEWNAME = vlt.file.fixtilde(FILENAME)
@@ -10,3 +11,5 @@
    e.g.  vlt.file.fixtilde('~/myfile') returns '/home/username/myfile'
  
    If the tilde is not the leading character then no changes are made.
+
+```

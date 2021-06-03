@@ -1,5 +1,6 @@
 # vlt.stats.kolmogorov_smirnov_test
 
+```
   vlt.stats.kolmogorov_smirnov_test Kolmogorov-smirnov test
  
   [PVAL.KS] = vlt.stats.kolmogorov_smirnov_test(X,HYP,DIST,PARAMS)
@@ -13,3 +14,5 @@
   See CDF for information about legal DIST names and parameters.
  
   Ported from Octave version 2.1.35
+
+```

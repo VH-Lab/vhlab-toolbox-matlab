@@ -1,5 +1,6 @@
 # vlt.math.mod_ellipse_on_mvnpdf
 
+```
   MOD_ELLIPSE_ON_MVNPDF - Calcluate 'response' of an ellipse on multivariate normal, modulated by surround region
  
    Y=vlt.math.mod_ellipse_on_mvnpdf(XMESH,YMESH,ELLIPSE_PARAMS,MU,SIGMA)
@@ -24,3 +25,5 @@
      Y - The response, in a column vector, for each ellipse
  
    See also: vlt.image.inside_ellipse, MVNPDF
+
+```

@@ -1,5 +1,6 @@
 # vlt.file.custom_file_formats.newroirawdatafile
 
+```
   NEWROIRAWDATAFILE - Create a binary file for storing spike waveforms
  
      **********NOT COMPLETE YET!!!!!!!!!!!************
@@ -40,3 +41,5 @@
    file with the function vlt.file.custom_file_formats.addroirawdatafile(FID, roinum, framenum, indexes, pixelvalues, precision)
  
    NOTE: When one is done using the file, it must be closed with FCLOSE(FID).
+
+```

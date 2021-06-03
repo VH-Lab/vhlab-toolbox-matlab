@@ -1,5 +1,6 @@
 # vlt.math.fouriercoeffs_tf2
 
+```
   FOURIERCOEFFS_TF  Fourier Transform at a particular frequency.
  	ft(response, tf, SAMPLERATE) is the product of response with
  	exp( 2*pi*i*tf/SAMPLERATE ). If tf is zero it returns the mean.
@@ -9,3 +10,5 @@
  	(I usually use Hz). 
  	From Sooyoung Chung, from Matteo Carandini,modified slightly by
     Steve Van Hooser
+
+```

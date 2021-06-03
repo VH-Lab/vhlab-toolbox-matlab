@@ -1,5 +1,6 @@
 # vlt.data.fieldsearch
 
+```
   FIELDSEARCH - Search a structure to determine if it matches a search structure
  
   B = vlt.data.fieldsearch(A, SEARCHSTRUCT)
@@ -52,3 +53,5 @@
       b4=vlt.data.fieldsearch(A,struct('field','','operation','or', ...
           'param1', struct('field','b','operation','hasfield','param1','','param2',''), ...
           'param2', struct('field','c','operation','hasfield','param1','','param2','') ))
+
+```

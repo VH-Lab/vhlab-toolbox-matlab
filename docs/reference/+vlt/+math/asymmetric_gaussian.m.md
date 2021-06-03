@@ -1,5 +1,6 @@
 # vlt.math.asymmetric_gaussian
 
+```
   ASYMMETRIC_GAUSSIAN - Compute an assymmetric gaussian curve
  
     Y = vlt.math.asymmetric_gaussian(X, a, b, c, d, e)
@@ -9,3 +10,5 @@
   'a+b*exp(-((x-c).^2)/((heaviside(x-c)*(2*d^2)+(1-heaviside(x-c))*(2*(d^2)*e))))'
  
    This function with no input arguments returns the string above.
+
+```

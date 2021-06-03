@@ -1,5 +1,6 @@
 # vlt.image.saturation_image
 
+```
   SATURATION_IMAGE - Scale an image to allow a saturation plot
  
   IM_OUT = SATURATION_IMAGE(IM_IN, ...)
@@ -34,3 +35,5 @@
   LowSaturationValue (1)| Value used for the low saturation value
   NaNSaturation (1)     | Should NaN entries be set to Low (-1), High (1), or
                         |   be left alone (0)  ?
+
+```

@@ -1,5 +1,6 @@
 # vlt.math.interval2continuous
 
+```
   INTERVAL2CONTINUOUS - transform a discrete interval to continuous time at timesteps
  
   [DATA,T] = vlt.math.interval2continuous(TIMESTAMPS,DATAPOINTS,TRES)
@@ -14,3 +15,5 @@
   Note: The function vlt.math.stepfunc does the same thing and is easier to understand.
  
   See also:  vlt.math.stepfunc
+
+```

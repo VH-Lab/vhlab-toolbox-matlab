@@ -1,5 +1,6 @@
 # vlt.neuro.spikesorting.cluster_spikewaves_trivial
 
+```
   CLUSTER_SPIKEWAVES_TRIVIAL - Cluster spikewaves into a single 'multi-unit' group
  
     [CLUSTERIDS,CLUSTERINFO] = vlt.neuro.spikesorting.cluster_spikewaves_trivial('WAVES', WAVES, ...
@@ -62,3 +63,5 @@
                                            :        Default {'Epoch1'}. There must be the same number
                                            :        of EpochNames as there are entries in the array
                                            :        EpochStartSamples.
+
+```

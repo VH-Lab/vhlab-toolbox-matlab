@@ -1,5 +1,6 @@
 # vlt.data.valid_varname
 
+```
    Part of the NewStim package
  
    B = VALIDVARNAME(VARNAME)
@@ -10,3 +11,5 @@
    Note: There is now a Matlab function that does this: ISVARNAME
  
    See also: ISVARNAME, MATLAB.LANG.MAKEVALIDNAME
+
+```

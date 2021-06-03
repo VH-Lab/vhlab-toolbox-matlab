@@ -49,6 +49,7 @@ for i=1:numel(w.m),
 	doctext = ['# ' classstr vlt.matlab.mfile2package([input_path filesep w.m{i}]) newline newline];
 
 	if ~isclass, % if it is a class, we'll write the help below
+		h = ['```' sprintf('\n') h sprintf('\n') '```' sprintf('\n') ];
 		doctext = cat(2,doctext,h); % write the help file
 	end;
 
@@ -58,6 +59,7 @@ for i=1:numel(w.m),
 	if isclass,
 		[classhelp, prop_struct, methods_struct,superclassnames] = vlt.docs.class2help([input_path filesep w.m{i}]);
 
+		classhelp = ['```' newline classhelp newline '```' newline];
 		doctext = cat(2,doctext,classhelp);
 
 		doctext = cat(2,doctext,['## Superclasses' newline]);
@@ -112,7 +114,7 @@ for i=1:numel(w.m),
 			doctext = cat(2,doctext,['### Methods help ' newline newline]);
 			for j=1:numel(methods_struct),
 				doctext = cat(2,doctext, ['**' methods_struct(j).method '** - *' methods_struct(j).description '*' newline newline ]);
-				doctext = cat(2,doctext, [methods_struct(j).help newline newline newline '---' newline newline]);
+				doctext = cat(2,doctext, ['```' newline methods_struct(j).help newline '```' newline newline '---' newline newline]);
 			end;
 		end;
 	end;

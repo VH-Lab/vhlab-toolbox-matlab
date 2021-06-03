@@ -1,5 +1,6 @@
 # vlt.file.readlabviewarray
 
+```
   vlt.file.readlabviewarray - Reads a LabView array into Matlab
  
    A = vlt.file.readlabviewarray(FNAME, DATASIZE, MACHINEFORMAT)
@@ -20,3 +21,5 @@
                             byte ordering and 64 bit long data type
      'ieee-be.l64' or 's' - IEEE floating point with big-endian byte
                             ordering and 64 bit long data type.
+
+```

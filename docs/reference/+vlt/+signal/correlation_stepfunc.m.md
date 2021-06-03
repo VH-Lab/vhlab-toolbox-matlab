@@ -1,5 +1,6 @@
 # vlt.signal.correlation_stepfunc
 
+```
   vlt.signal.correlation_stepfunc - Perform correlation between a time series and a step function
  
   CORR = CORRELATION(T1, SIGNAL1, CORR_TIMES, T2, SIGNAL2)
@@ -26,3 +27,5 @@
        where TAU assumes all values listed in the vector CORR_TIMES.
  
    See also: XCORR, vlt.math.stepfunc, vlt.signal.xcorr_stepfunc
+
+```

@@ -1,5 +1,6 @@
 # vlt.neuro.vision.oridir.index.compute_directionsignificancedotproduct
 
+```
   COMPUTE_DIRECTIONSIGNIFICANCEDOTPRODUCT Direction tuning significance using dot product with empirical orientation preference
  
  
@@ -19,3 +20,5 @@
             non-zero.
  
    See: Mazurek, Kagan, Van Hooser 2014;  Frontiers in Neural Circuits
+
+```

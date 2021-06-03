@@ -1,5 +1,6 @@
 # vlt.plot.movetofront
 
+```
   vlt.plot.movetofront - Move a plot to the "front" of the "paper"
  
    vlt.plot.movetofront(PLOT_H)
@@ -17,3 +18,5 @@
        % now the black line is in "front"
  
    PLOT_H can be a single handle or an array of handles.
+
+```

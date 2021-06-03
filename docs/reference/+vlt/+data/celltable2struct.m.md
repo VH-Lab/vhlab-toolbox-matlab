@@ -1,5 +1,6 @@
 # vlt.data.celltable2struct
 
+```
   CELLTABLE2STRUCT - convert a table stored in a CELL datatype to a structure
  
   S = vlt.data.celltable2struct(C)
@@ -17,3 +18,5 @@
      %where each line ends prematurely if later fields are empty):
      o = vlt.file.read_tab_delimited_file(filename);
      s = vlt.data.celltable2struct(o);
+
+```

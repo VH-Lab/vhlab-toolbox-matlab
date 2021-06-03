@@ -1,5 +1,6 @@
 # vlt.neuro.vision.oridir.osi2oriparams2
 
+```
   OSI2ORIPARAMS - Given an OSI, generate double gaussian parameters that has that osi index
  
     [RSP,RP,OP,SIGMA,RN] = vlt.neuro.vision.oridir.osi2oriparams2(OSI, ...)
@@ -30,3 +31,5 @@
         [desired_index' actual_index']
  
     See also: vlt.fit.otfit_carandini
+
+```

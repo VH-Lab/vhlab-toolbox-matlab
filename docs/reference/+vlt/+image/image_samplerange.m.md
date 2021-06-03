@@ -1,5 +1,6 @@
 # vlt.image.image_samplerange
 
+```
   IMAGE_SAMPLERANGE - return the range of values in an image file
  
    [RANGE, IMSIZE, IMFILEINFO] = IMAGE_SAMPLERANGE(IMAGEFILE, ...)
@@ -28,3 +29,5 @@
    
  
    See also: IMAGE, IMFINFO, NAMEVALUEPAIR
+
+```

@@ -1,5 +1,6 @@
 # vlt.stats.gof_dicarlo_totalpower
 
+```
   GOF_DICARLO_TOTALPOWER - Goodness of Fit from DiCarlo et al. 1988
  
   [GF, WS] = vlt.stats.gof_dicarlo_totalpower(RAWDATA, FIT, NUMFITPARAMS)
@@ -37,3 +38,5 @@
   NoiseEstimation ('median') | How will we estimate the noise? Can be 'median' or 'std'.
                              |   If it is 'median', then vlt.stats.std_from_median(X) is used.
                              |   If it is 'STD', then STD(X) is used.
+
+```

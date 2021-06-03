@@ -1,5 +1,6 @@
 # vlt.signal.point2samplelabel
 
+```
   POINT2SAMPLE - Convert a continuous point to a sample number for regularly sampled data
  
    S = vlt.signal.point2samplelabel(TI, DT, [T0])
@@ -19,3 +20,5 @@
      S = vlt.signal.point2samplelabel(T(20),dt)   % returns 20
      
    See also: vlt.signal.round2sample
+
+```

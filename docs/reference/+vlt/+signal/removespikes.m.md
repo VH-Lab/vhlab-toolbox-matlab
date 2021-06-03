@@ -1,5 +1,6 @@
 # vlt.signal.removespikes
 
+```
   REMOVESPIKES - Remove spikes from voltage trace w/ linear interpolation
  
     DATA_OUT = vlt.signal.removespikes(DATA, T, SPIKETIMES, ...)
@@ -43,3 +44,5 @@
                                      |    the baseline value; the median value 
                                      |    is taken as the baseline; (e.g., [0.001 0.003]
                                      |    considers times between 1ms and 3ms)
+
+```

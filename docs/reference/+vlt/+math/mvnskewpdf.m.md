@@ -1,5 +1,6 @@
 # vlt.math.mvnskewpdf
 
+```
   MVNSKEWPDF - Multivariate normal skewed probability density function (pdf)
    Y=vlt.math.mvnskewpdf(X,MU,SIGMA,ALPHA) returns the probability density of the multivariate
    normal distribution with mean MU, covariance SIGMA, and skewness ALPHA, evaluated at
@@ -10,3 +11,5 @@
  
     For each value of x:
     vlt.math.mvnskewpdf(X,MU,SIGMA,ALPHA) = 2*MVNPDF(X, MU, SIGMA) * NORMCDF(ALPHA'*(X-MU)')
+
+```

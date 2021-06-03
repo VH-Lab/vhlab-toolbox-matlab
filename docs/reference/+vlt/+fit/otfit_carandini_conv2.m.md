@@ -1,5 +1,6 @@
 # vlt.fit.otfit_carandini_conv2
 
+```
   vlt.fit.otfit_carandini_conv Converts between real params and fitting params
  
     [Rsp,Rp,Op,sig,Rn,OnOff]=vlt.fit.otfit_carandini_conv2(DIR,P,VARARGIN)
@@ -40,3 +41,5 @@
       'data', [obs11 obs12 ...; obs21 .. ;]   Observations to compute error
  
    See also:  vlt.fit.otfit_carandini, vlt.fit.otfit_carandini_err
+
+```

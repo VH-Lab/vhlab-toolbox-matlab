@@ -1,5 +1,6 @@
 # vlt.neuro.vision.oridir.index.oridir_vectorindexes
 
+```
   ORIDIR_VECTORINDEX - compute orientation/direction vector indexes
  
   VI = vlt.neuro.vision.oridir.index.oridir_vectorindexes(RESPSTRUCT)
@@ -30,3 +31,5 @@
   dir_circularvariance            |   Direction index in vector space
   dir_dotproduct_sig_p            |   P value of dot product direction vector significance
                                   |     method of Mazurek et al. 2014
+
+```

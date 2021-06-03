@@ -1,5 +1,6 @@
 # vlt.data.prettyjson
 
+```
   PRETTYJSON - use Java JSONObject to produce pretty JSON output
  
   PRETTY = vlt.data.prettyjson(JSON_ENCODED_OBJECT, [SPACESTOINDENTEACHLEVEL])
@@ -23,3 +24,5 @@
  
        % or a single line:
        j_pretty = vlt.data.prettyjson(vlt.data.jsonencodenan(mystruct))
+
+```

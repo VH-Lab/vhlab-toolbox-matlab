@@ -1,5 +1,6 @@
 # vlt.neuro.membrane.spikekink
 
+```
   SPIKEKINK - find the "kink" inflection point in spike waveforms, and maximum dv/dt after Azouz and Gray 1999
  
   [KINK_VM, MAX_DVDT, KINK_INDEX_] = vlt.neuro.membrane.spikekink(SPIKE_TRACE, T, SPIKE_INDEXES, ...)
@@ -32,3 +33,5 @@
                           |    the search for the kink (in seconds)
  
   Jason Osik 2016-2017, slight mods by SDV, DPL
+
+```

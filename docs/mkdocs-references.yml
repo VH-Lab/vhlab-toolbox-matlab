@@ -222,6 +222,7 @@
         - vlt.git.git_isgitdirectory: 'reference/+vlt/+git/git_isgitdirectory.m.md'
         - vlt.git.git_pull: 'reference/+vlt/+git/git_pull.m.md'
         - vlt.git.git_repo_version: 'reference/+vlt/+git/git_repo_version.m.md'
+        - vlt.git.git_stash: 'reference/+vlt/+git/git_stash.m.md'
         - vlt.git.git_status: 'reference/+vlt/+git/git_status.m.md'
       - graph PACKAGE:
         - vlt.graph.dependency_graph: 'reference/+vlt/+graph/dependency_graph.m.md'

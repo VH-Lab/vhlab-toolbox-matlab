@@ -1,5 +1,6 @@
 # vlt.string.strcmp_substitution
 
+```
   STRCMP_SUBSTITUTION - Checks strings for match with ability to substitute a symbol for a string
  
    [TF, MATCH_STRING, SUBSTITUTE_STRING] = vlt.string.strcmp_substitution(S1, S2, ...)
@@ -43,3 +44,5 @@
              s1 = ['stimtimes#.txt'];
              s2 = { 'dummy.ext' 'stimtimes123.txt' 'stimtimes.txt' 'stimtimes456.txt'}
              [tf, matchstring, substring] = vlt.string.strcmp_substitution(s1,s2)
+
+```

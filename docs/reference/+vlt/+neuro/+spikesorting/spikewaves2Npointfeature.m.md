@@ -1,5 +1,6 @@
 # vlt.neuro.spikesorting.spikewaves2Npointfeature
 
+```
   SPIKEWAVES2NPOINTFEATURE - Select samples from spike waves
  
     FEATURES = vlt.neuro.spikesorting.spikewaves2Npointfeature(WAVES, SAMPLELIST)
@@ -18,3 +19,5 @@
     features.  Each spike waveform is sampled on each channel at 
     the sample offsets in SAMPLELIST.  Each column has the sample
     values on the first channel, followed by the second, and so on.
+
+```

@@ -1,5 +1,6 @@
 # vlt.file.getAllFiles
 
+```
   GETALLFILES - Get all files (including those in subdirectories) of a given directory
  
     FILELIST = vlt.file.getAllFiles(DIRNAME)
@@ -11,3 +12,5 @@
   See also: DIR
  
   By Ziqi Wang
+
+```

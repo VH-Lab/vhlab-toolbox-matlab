@@ -1,5 +1,6 @@
 # vlt.neuro.spikesorting.spikewaves2pca
 
+```
   SPIKEWAVES2PCA - Compute first N principle components of spike waveforms
  
    FEATURES = vlt.neuro.spikesorting.spikewaves2pca(WAVES, N, [RANGE])
@@ -16,3 +17,5 @@
  
    Outputs:
    FEATURES:   An N x NumSpikes list of features.
+
+```

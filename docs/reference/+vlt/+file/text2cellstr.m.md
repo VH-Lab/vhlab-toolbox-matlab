@@ -1,5 +1,6 @@
 # vlt.file.text2cellstr
 
+```
   TEXT2CELLSTR - Read a cell array of strings from a text file
  
    C = vlt.file.text2cellstr(FILENAME)
@@ -8,3 +9,5 @@
    in a cell array of strings.
    
    See also: FGETL
+
+```

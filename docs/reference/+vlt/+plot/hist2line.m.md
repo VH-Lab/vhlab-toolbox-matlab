@@ -1,5 +1,6 @@
 # vlt.plot.hist2line
 
+```
   HIST2LINE - generate a line plot from a histogram that will plot the histogram
  
    [X,Y] = vlt.plot.hist2line(BINS, COUNTS)
@@ -9,3 +10,5 @@
    BINS(i) and BINS(i+1).
  
    See also:  BAR, BARH, HIST, HISTC, vlt.plot.shiftedbar
+
+```

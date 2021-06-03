@@ -1,5 +1,6 @@
 # vlt.path.absolute2relative
 
+```
   vlt.path.absolute2relative - Determine the relative path between two filenames, given two absolute names
  
   r = vlt.path.absolute2relative(absolutepath1, absolutepath2)
@@ -17,3 +18,5 @@
   **Example**:
       r=vlt.path.absolute2relative('/Users/me/mydir1/mydir2/myfile1.m', '/Users/me/mydir3/myfile2.m')
       % r = '../mydir1/mydir2/myfile1.m'
+
+```

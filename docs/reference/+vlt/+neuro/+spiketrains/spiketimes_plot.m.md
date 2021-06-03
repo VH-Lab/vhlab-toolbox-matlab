@@ -1,5 +1,6 @@
 # vlt.neuro.spiketrains.spiketimes_plot
 
+```
   SPIKETIMES_PLOT - Plot a spike train as a bunch of hash ticks
  
      H = vlt.neuro.spiketrains.spiketimes_plot(SPIKETIMES)
@@ -20,3 +21,5 @@
      hashcenter      0.5  |  Center location of the hash marks
  
     Keywords: spiketrain spike train spiketimes times hash
+
+```

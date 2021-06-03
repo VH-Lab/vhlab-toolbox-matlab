@@ -1,5 +1,6 @@
 # vlt.neuro.mledenoise.SlowMLEDeNoise
 
+```
   SlowMLEDeNoise -- Estimate underlying stimulus response assuming a slow background drift in gain
  
     [RESPONSES, SIN_WEIGHTS] = vlt.neuro.mledenoise.SlowMLEDeNoise(STIM_ONSETS, STIMOFFSETS, STIMVALUES, ...
@@ -87,3 +88,5 @@
            ('type vlt.neuro.mledenoise.testSlowMLE'  and 'type vlt.neuro.mledenoise.testSlowMLE_modulation')
    
    See also:  FIT_SIN4
+
+```

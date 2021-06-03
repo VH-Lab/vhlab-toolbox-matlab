@@ -1,5 +1,6 @@
 # vlt.image.tiff16bit28bit
 
+```
   TIFF16BIT28BIT Convert 16bit TIFF to 8-bit
  
     [IMG1,IMG2] = TIFF16BIT28BIT(FILENAME)
@@ -12,3 +13,5 @@
     provided, then the image is saved as FILENAME_8bit.TIFF.
  
     If the file is not a grayscale image then an error is generated.
+
+```

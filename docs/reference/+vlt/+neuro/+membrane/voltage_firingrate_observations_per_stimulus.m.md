@@ -1,5 +1,6 @@
 # vlt.neuro.membrane.voltage_firingrate_observations_per_stimulus
 
+```
   VOLTAGE_FIRINGRATE_OBSERVATIONS - calculate voltage and firing rate observations for a stimulus (mean, mean at a frequency)
  
   [MEAN_V, MEAN_FR, STIMID, STIMPRES, VMOPSPERSTIM, FROBSPERSTIM] = vlt.neuro.membrane.voltage_firingrate_observations_per_stimulus(...
@@ -20,3 +21,5 @@
                                    |    stimulus is subtracted from the response. 
   F1 ([])                          | If not empty, then the responses is taken to be the
                                    |    magnitude of the fourier transform at the frequency F1.
+
+```

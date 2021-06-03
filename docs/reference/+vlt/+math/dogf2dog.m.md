@@ -1,5 +1,6 @@
 # vlt.math.dogf2dog
 
+```
   vlt.math.dogf2dog - convert difference of gaussian parameters in frequency space to real space 
  
   P_DOG = vlt.math.dogf2dog(P_DOGF)
@@ -22,3 +23,5 @@
   This function just calls vlt.math.dog2dogf, as it is its own inverse.
  
   See also: vlt.math.dog, vlt.math.dog2dogf
+
+```

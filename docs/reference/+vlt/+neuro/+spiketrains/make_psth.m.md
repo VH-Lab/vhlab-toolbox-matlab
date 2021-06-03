@@ -1,5 +1,6 @@
 # vlt.neuro.spiketrains.make_psth
 
+```
    [N,X, RAST] = vlt.neuro.spiketrains.make_psth(SPIKEDATA, TRIGGERS, INTERV, RES, NORMALIZE, RASTTYPE)
  
        vlt.neuro.spiketrains.make_psth gives a peri-stimulus time histogram.  The bins of the
@@ -19,3 +20,5 @@
    (documentation cryptic...fix)
  
                                            Questions?  vanhoosr@brandeis.edu
+
+```

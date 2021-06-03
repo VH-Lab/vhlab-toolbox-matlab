@@ -1,5 +1,6 @@
 # vlt.signal.dotdisc
 
+```
  DOTDISC - Dot discriminator, an advanced window discriminator
  
    EVENT_SAMPLES = vlt.signal.dotdisc(DATA, DOTS)
@@ -24,3 +25,5 @@
    the point in the middle of the points that pass.
  
    This is implemented as a mex function.
+
+```

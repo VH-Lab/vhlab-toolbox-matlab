@@ -1,5 +1,6 @@
 # vlt.string.bracematch
 
+```
   BRACEMATCH - Match parenthesis in a text string
  
    [POS_MATCH,BRACEDEPTH] = vlt.string.bracematch(STR, POS)
@@ -24,3 +25,5 @@
       match2=vlt.string.bracematch(str,20)
  
    See also:  vlt.string.bracelevel
+
+```

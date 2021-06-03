@@ -1,5 +1,6 @@
 # vlt.string.str2intseq
 
+```
   STR2INTSEQ - Recover a sequence of integers from a string
  
   A = vlt.string.str2intseq(STR)
@@ -18,3 +19,5 @@
       str = '1-3,7,10,12';
       a = vlt.string.str2intseq(str);
       % a == [1 2 3 7 10 12]
+
+```

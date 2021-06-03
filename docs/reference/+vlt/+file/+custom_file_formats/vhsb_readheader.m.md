@@ -1,5 +1,6 @@
 # vlt.file.custom_file_formats.vhsb_readheader
 
+```
   VHSB_READHEADER - read a VH Lab Series Binary file header
  
   H = vlt.file.custom_file_formats.vhsb_writeheader(FILE_OBJ_OR_FNAME, ...)
@@ -43,3 +44,5 @@
   Y_skip_bytes (variable)           | Number of bytes to skip over when reading Y samples
   sample_size (variable)            | The size of each (x,y) pair of samples in bytes
   filesize (variable)               | The size of the file in bytes
+
+```

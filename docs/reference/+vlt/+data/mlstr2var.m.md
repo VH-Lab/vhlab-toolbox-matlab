@@ -1,5 +1,6 @@
 # vlt.data.mlstr2var
 
+```
   MLSTR2VAR - creates a Matlab variable from markup language strings (STRUCT2MLSTR, CELL2MLSTR)
  
   V = vlt.data.mlstr2var(MLSTRING)
@@ -23,3 +24,5 @@
   Consider also: JSONENCODE, JSONDECODE
  
   See also: vlt.data.cell2mlstr, vlt.data.struct2mlstr, JSONDECODE
+
+```

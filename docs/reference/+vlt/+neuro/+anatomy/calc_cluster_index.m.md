@@ -1,5 +1,6 @@
 # vlt.neuro.anatomy.calc_cluster_index
 
+```
   vlt.neuro.anatomy.calc_cluster_index - Calculate cluster index from Ruthazer and Stryker
  
     CI = vlt.neuro.anatomy.calc_cluster_index(CELL_PTS, ROI_PTS, SCALE, INJ_SIZE, WINDSIZE,
@@ -37,3 +38,5 @@
    or 'abs(x1-x2)'.  RANDFUNC is a function that describes how to randomly generate
    an index value.  For example, RANDFUNC = 'rand*360' picks a value between 0 and
    360 psuedorandomly.
+
+```

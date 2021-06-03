@@ -1,5 +1,6 @@
 # vlt.plot.shiftedbar
 
+```
   vlt.plot.shiftedbar - Shifted bar graph
  
    HB = vlt.plot.shiftedbar(BINS, DATA, SHFT, COL)
@@ -15,3 +16,5 @@
    BINS(i,j) and BINS(i,j+1).
  
    See also:  BAR, BARH, HIST, HISTC
+
+```

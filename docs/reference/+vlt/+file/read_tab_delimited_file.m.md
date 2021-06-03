@@ -1,5 +1,6 @@
 # vlt.file.read_tab_delimited_file
 
+```
   vlt.file.read_tab_delimited_file - Reads data from a tab-delimited file; tries to sort string/number data
  
  
@@ -13,3 +14,5 @@
     to be a date and is read as a string. Otherwise, this function tries to assign each value a
     number using the function STR2NUM. If this process fails, then the value is assumed to be a
     text string and is stored as such.
+
+```

@@ -1,5 +1,6 @@
 # vlt.stats.hotellingt2test
 
+```
   vlt.stats.hotellingt2test - Hotelling T^2 test for multivariate samples
  
    [H,P] = vlt.stats.hotellingt2test(X,MU)
@@ -16,3 +17,5 @@
    The code is based on HotellingT2.m by A. Trujillo-Ortiz and
    R. Hernandez-Walls.  That software is available at TheMathWorks
    free file exchange site.
+
+```

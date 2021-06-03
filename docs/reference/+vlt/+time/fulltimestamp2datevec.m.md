@@ -1,5 +1,6 @@
 # vlt.time.fulltimestamp2datevec
 
+```
   FULLTIMESTAMP2DATEVEC - Convert full time stamp yyyy-mm-ddTHH:MM:SS-TIMEZONE, to a date vector
  
   [V,TZ] = vlt.time.fulltimestamp2datevec(FULLTIMESTAMP_STR)
@@ -18,3 +19,5 @@
      [V,TZ]=vlt.time.fulltimestamp2datevec(fulltimestamp_str)
       
    See also: DATEVEC, DATESTRING
+
+```

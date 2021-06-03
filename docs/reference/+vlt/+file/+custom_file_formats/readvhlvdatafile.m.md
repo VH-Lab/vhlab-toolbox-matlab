@@ -1,5 +1,6 @@
 # vlt.file.custom_file_formats.readvhlvdatafile
 
+```
   READVHLVDATAFILE - Read LabView data from the VH Lab format
  
    [T,D,TOTAL_SAMPLES,TOTAL_TIME] = vlt.file.custom_file_formats.readvhlvdatafile(FILENAME, HEADERSTRUCT, CHANNELNUMS, T0, T1)
@@ -50,3 +51,5 @@
       plot(T,D);
       xlabel('Time(s)');
       ylabel('Volts');  % or mV or microV, whatever the units were
+
+```

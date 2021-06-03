@@ -1,5 +1,6 @@
 # vlt.fit.naka_rushton_err
 
+```
    NAKA_RUSHTON_ERR Naka-Rushton function helper function for fitting
  
         ERR=vlt.fit.naka_rushton_err(P,C,DATA)
@@ -10,3 +11,5 @@
            where cn=c.^p(3)
         P = [rm b n s]
            returns mean squared error of p(1)*c^(p3)./(p(2)^(p(3)*p(4))+c^(p(3)*p(4))
+
+```

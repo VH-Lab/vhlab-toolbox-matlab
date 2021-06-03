@@ -1,5 +1,6 @@
 # vlt.data.numornan
 
+```
   NUMORNAN - Return a number, or a NaN if the number is empty
  
    N_OUT = vlt.data.numornan(N_IN)
@@ -12,3 +13,5 @@
    If the optional input argument DIMS is provided, then the NaN
    matrix has dimension DIMS. If N_IN is smaller than DIMS, then
    N_OUT is padded to be filled with NaN.
+
+```

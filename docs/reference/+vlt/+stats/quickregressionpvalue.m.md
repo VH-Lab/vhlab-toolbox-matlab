@@ -1,5 +1,6 @@
 # vlt.stats.quickregressionpvalue
 
+```
   QUICKREGRESSSIONPVALUE - Estimate p value of the null hypothesis that slope==0
  
   P = vlt.stats.quickregressionpvalue(X,Y,[NUM_STEPS])
@@ -13,3 +14,5 @@
   NAN entries are ignored.
  
   See also: vlt.stats.quickregression, REGRESS
+
+```

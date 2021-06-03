@@ -1,5 +1,6 @@
 # vlt.file.vcard2mat
 
+```
   VCARD2STRUCT - read information from Vcard text file, return as Matlab struct
  
   V = VCARD2STRUCT(VCARDFILE)
@@ -14,3 +15,5 @@
  
   developer note: assumes parameter names are 'type', should read it
   need to look ahead to next line
+
+```

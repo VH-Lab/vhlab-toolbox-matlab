@@ -1,5 +1,6 @@
 # vlt.neuro.spikesorting.oversamplespikes
 
+```
   OVERSAMPLESPIKES - Oversample spike waveforms using spline interpolation
  
    [SPIKESHAPESUP,TUP] = vlt.neuro.spikesorting.oversamplespikes(SPIKESHAPES, UPSAMPLEFACTOR, [T])
@@ -16,3 +17,5 @@
            of samples for each spike, and D is the number of dimensions. N,M, and D 
            are unchanged from the input SPIKESHAPES.
              TUP: If T is given, TUP is the upscaled time values for each spike.
+
+```

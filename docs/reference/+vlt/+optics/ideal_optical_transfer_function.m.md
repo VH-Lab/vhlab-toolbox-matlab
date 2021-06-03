@@ -1,5 +1,6 @@
 # vlt.optics.ideal_optical_transfer_function
 
+```
   IDEAL_OPTICAL_TRANSFER_FUNCTION - ideal optical transfer function as a function of spatial frequency
    
   OTF_VALUE = vlt.optics.ideal_optical_transfer_function(V)
@@ -18,3 +19,5 @@
      plot(v,otf);
      xlabel('Spatial frequency (relative to max cut-off)');
      ylabel('Contrast');
+
+```

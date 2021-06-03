@@ -1,5 +1,6 @@
 # vlt.neuro.stimulus.stimulus_response_scalar
 
+```
   STIMULUS_RESPONSE_SUMMARY - compute stimulus responses to stimuli
   
   RESPONSE = vlt.neuro.stimulus.stimulus_response_scalar(TIMESERIES, TIMESTAMPS, STIM_ONSETOFFSETID, ...)
@@ -43,3 +44,5 @@
                                 |       3) Divide: Response:= Response ./ PreStimResponse
   isspike (see right)           | 0/1 Is the signal a spike process? If so, timestamps correspond to spike events.
   spiketrain_dt (0.001)         | Resolution to use for spike train reconstruction if computing Fourier transform
+
+```

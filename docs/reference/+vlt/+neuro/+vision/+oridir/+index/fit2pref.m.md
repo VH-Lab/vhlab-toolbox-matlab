@@ -1,5 +1,6 @@
 # vlt.neuro.vision.oridir.index.fit2pref
 
+```
   FIT2PREF - calculate the preferred response from a fit to direction
  
    PREF=vlt.neuro.vision.oridir.index.fit2pref(RESPONSE)
@@ -15,3 +16,5 @@
    The largest response is returned in PREF.
  
    See also: vlt.neuro.vision.oridir.index.fit2null, vlt.neuro.vision.oridir.index.fit2orth
+
+```

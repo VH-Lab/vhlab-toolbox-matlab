@@ -1,5 +1,6 @@
 # vlt.data.jsonencodenan
 
+```
   JSONENCODENAN - encode a JSON object allowing Nan/Infinity
  
   T = vlt.data.jsonencodenan(OBJ)
@@ -11,3 +12,5 @@
   these numbers are allowed.
  
   See also: JSONENCODE
+
+```

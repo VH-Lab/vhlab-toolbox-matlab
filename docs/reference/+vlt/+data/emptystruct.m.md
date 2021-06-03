@@ -1,5 +1,6 @@
 # vlt.data.emptystruct
 
+```
   EMPTYSTRUCT - Create a structure with given fieldnames that is empty
  
     S = vlt.data.emptystruct(fieldname1, fieldname2, ...);
@@ -20,3 +21,5 @@
         end;
   
   See also: vlt.data.var2struct
+
+```

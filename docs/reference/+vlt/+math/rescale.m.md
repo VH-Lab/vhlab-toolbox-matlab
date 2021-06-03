@@ -1,5 +1,6 @@
 # vlt.math.rescale
 
+```
    vlt.math.rescale - Rescale a quantity to a new interval
  
      NEWVALS = vlt.math.rescale(VALS, INT1, INT2)
@@ -11,3 +12,5 @@
      NEWVALS = vlt.math.rescale(VALS, INT1, INT2, 'noclip')
         will do the same as above but will not clip values
         above b or below a.
+
+```

@@ -1,5 +1,6 @@
 # vlt.file.dirstrip
 
+```
    D = vlt.file.dirstrip(DS)
  
    Removes '.' and '..' from a directory structure returned by the function
@@ -10,3 +11,5 @@
    directories, see vlt.file.dirlist_trimdots().
  
    See also: DIR, vlt.file.dirlist_trimdots()
+
+```

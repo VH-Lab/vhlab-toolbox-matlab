@@ -1,5 +1,6 @@
 # vlt.file.release_lock_file
 
+```
   RELEASE_LOCK_FILE - release a lock file with the key
  
   B = vlt.file.release_lock_file(FID_OR_FILENAME, KEY)
@@ -19,3 +20,5 @@
   See also: vlt.file.checkout_lock_file
   
   For an example, see vlt.file.checkout_lock_file
+
+```

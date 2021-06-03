@@ -1,5 +1,6 @@
 # vlt.data.savevar
 
+```
   vlt.data.savevar - Saves variables in a Matlab file
  
    vlt.data.savevar(FILENAME,VARIABLE,VARIABLENAME,OPTIONSTRING1,OPTIONSTRING2,...)
@@ -13,3 +14,5 @@
      vlt.data.savevar('myfile',5,'myvariable','-append','-mat');
   
    See also: SAVE
+
+```

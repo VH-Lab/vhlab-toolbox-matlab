@@ -1,5 +1,6 @@
 # vlt.neuro.spiketrains.spiketrain_poisson_n
 
+```
   SPIKETRAIN_POISSON_N - Return a Poisson spike train with N spikes
  
      SPIKETIMES = vlt.neuro.spiketrains.spiketrain_poisson_n(LAMBDA, N, TIMERESOLUTION)
@@ -14,3 +15,5 @@
         spiketimes = spiketrain_posson_n(lambda, 10, timeres);
         % returns 10 spikes distributed in a Poisson manner with rate
         % 10Hz, 1ms bins
+
+```

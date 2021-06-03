@@ -1,7 +1,10 @@
 # CLASS vlt.data.cache
 
+```
   cache - Cache class
 
+
+```
 ## Superclasses
 **handle**
 
@@ -45,17 +48,19 @@
 
 **add** - *add data to an NDI.CACHE*
 
+```
 CACHE_OBJ = ADD(CACHE_OBJ, KEY, TYPE, DATA, [PRIORITY])
  
   Adds DATA to the CACHE_OBJ that is referenced by a KEY and TYPE.
   If desired, a PRIORITY can be added; items with greatest PRIORITY will be
   deleted last.
-
+```
 
 ---
 
 **addlistener** - *ADDLISTENER  Add listener for event.*
 
+```
 el = ADDLISTENER(hSource, Eventname, callbackFcn) creates a listener
     for the event named Eventname.  The source of the event is the handle 
     object hSource.  If hSource is an array of source handles, the listener
@@ -90,21 +95,23 @@ Help for vlt.data.cache/addlistener is inherited from superclass HANDLE
 
     Documentation for vlt.data.cache/addlistener
        doc handle.addlistener
-
+```
 
 ---
 
 **bytes** - *memory size of an NDI.CACHE object in bytes*
 
+```
 B = BYTES(CACHE_OBJ)
  
   Return the current memory that is occupied by the table of CACHE_OBJ.
-
+```
 
 ---
 
 **cache** - *create a new NDI cache handle*
 
+```
 CACHE_OBJ = vlt.data.cache(...)
  
   Creates a new vlt.data.cache object. Additional arguments can be specified as
@@ -118,21 +125,23 @@ CACHE_OBJ = vlt.data.cache(...)
   Note that the cache is not 'secure', any function can query the data added.
  
   See also: vlt.data.namevaluepair
-
+```
 
 ---
 
 **clear** - *clear data from an NDI.CACHE*
 
+```
 CACHE_OBJ = CLEAR(CACHE_OBJ)
  
   Clears all entries from the NDI.CACHE object CACHE_OBJ.
-
+```
 
 ---
 
 **delete** - *DELETE   Delete a handle object.*
 
+```
 DELETE(H) deletes all handle objects in array H. After the delete 
     function call, H is an array of invalid objects.
  
@@ -142,12 +151,13 @@ Help for vlt.data.cache/delete is inherited from superclass HANDLE
 
     Documentation for vlt.data.cache/delete
        doc handle.delete
-
+```
 
 ---
 
 **eq** - *== (EQ)   Test handle equality.*
 
+```
 Handles are equal if they are handles for the same object.
  
     H1 == H2 performs element-wise comparisons between handle arrays H1 and
@@ -167,12 +177,13 @@ Help for vlt.data.cache/eq is inherited from superclass HANDLE
 
     Documentation for vlt.data.cache/eq
        doc handle.eq
-
+```
 
 ---
 
 **findobj** - *FINDOBJ   Find objects matching specified conditions.*
 
+```
 The FINDOBJ method of the HANDLE class follows the same syntax as the 
     MATLAB FINDOBJ command, except that the first argument must be an array
     of handles to objects.
@@ -188,12 +199,13 @@ Help for vlt.data.cache/findobj is inherited from superclass HANDLE
 
     Documentation for vlt.data.cache/findobj
        doc handle.findobj
-
+```
 
 ---
 
 **findprop** - *FINDPROP   Find property of MATLAB handle object.*
 
+```
 p = FINDPROP(H,PROPNAME) finds and returns the META.PROPERTY object
     associated with property name PROPNAME of scalar handle object H.
     PROPNAME can be a string scalar or character vector.  It can be the 
@@ -209,24 +221,26 @@ Help for vlt.data.cache/findprop is inherited from superclass HANDLE
 
     Documentation for vlt.data.cache/findprop
        doc handle.findprop
-
+```
 
 ---
 
 **freebytes** - *remove the lowest priority entries from the cache to free a certain amount of memory*
 
+```
 CACHE_OBJ = FREEBYTES(CACHE_OBJ, FREEBYTES)
  
   Remove entries to free at least FREEBYTES memory. Entries will be removed, first by PRIORITY and then by
   the replacement_rule parameter.
  
   See also: NDI.CACHE/ADD, NDI.CACHE/SET_REPLACEMENT_RULE
-
+```
 
 ---
 
 **ge** - *>= (GE)   Greater than or equal relation for handles.*
 
+```
 H1 >= H2 performs element-wise comparisons between handle arrays H1 and
     H2.  H1 and H2 must be of the same dimensions unless one is a scalar.
     The result is a logical array of the same dimensions, where each
@@ -244,12 +258,13 @@ Help for vlt.data.cache/ge is inherited from superclass HANDLE
 
     Documentation for vlt.data.cache/ge
        doc handle.ge
-
+```
 
 ---
 
 **gt** - *> (GT)   Greater than relation for handles.*
 
+```
 H1 > H2 performs element-wise comparisons between handle arrays H1 and 
     H2.  H1 and H2 must be of the same dimensions unless one is a scalar.  
     The result is a logical array of the same dimensions, where each
@@ -267,12 +282,13 @@ Help for vlt.data.cache/gt is inherited from superclass HANDLE
 
     Documentation for vlt.data.cache/gt
        doc handle.gt
-
+```
 
 ---
 
 **isvalid** - *ISVALID   Test handle validity.*
 
+```
 TF = ISVALID(H) performs an element-wise check for validity on the 
     handle elements of H.  The result is a logical array of the same 
     dimensions as H, where each element is the element-wise validity 
@@ -287,12 +303,13 @@ Help for vlt.data.cache/isvalid is inherited from superclass HANDLE
 
     Documentation for vlt.data.cache/isvalid
        doc handle.isvalid
-
+```
 
 ---
 
 **le** - *<= (LE)   Less than or equal relation for handles.*
 
+```
 Handles are equal if they are handles for the same object.  All 
     comparisons use a number associated with each handle object.  Nothing
     can be assumed about the result of a handle comparison except that the
@@ -318,12 +335,13 @@ Help for vlt.data.cache/le is inherited from superclass HANDLE
 
     Documentation for vlt.data.cache/le
        doc handle.le
-
+```
 
 ---
 
 **listener** - *LISTENER  Add listener for event without binding the listener to the source object.*
 
+```
 el = LISTENER(hSource, Eventname, callbackFcn) creates a listener
     for the event named Eventname.  The source of the event is the handle  
     object hSource.  If hSource is an array of source handles, the listener
@@ -363,12 +381,13 @@ Help for vlt.data.cache/listener is inherited from superclass HANDLE
 
     Documentation for vlt.data.cache/listener
        doc handle.listener
-
+```
 
 ---
 
 **lookup** - *retrieve the NDI.CACHE data table corresponding to KEY and TYPE*
 
+```
 TABLEENTRY = LOOKUP(CACHE_OBJ, KEY, TYPE)
  
   Performs a case-sensitive lookup of the CACHE entry whose key and type
@@ -382,12 +401,13 @@ TABLEENTRY = LOOKUP(CACHE_OBJ, KEY, TYPE)
   priority          | The priority of maintaining the data (higher is better)
   bytes             | The size of the data in this entry (bytes)
   data              | The data stored
-
+```
 
 ---
 
 **lt** - *< (LT)   Less than relation for handles.*
 
+```
 H1 < H2 performs element-wise comparisons between handle arrays H1 and
     H2.  H1 and H2 must be of the same dimensions unless one is a scalar.
     The result is a logical array of the same dimensions, where each
@@ -405,12 +425,13 @@ Help for vlt.data.cache/lt is inherited from superclass HANDLE
 
     Documentation for vlt.data.cache/lt
        doc handle.lt
-
+```
 
 ---
 
 **ne** - *~= (NE)   Not equal relation for handles.*
 
+```
 Handles are equal if they are handles for the same object and are 
     unequal otherwise.
  
@@ -431,12 +452,13 @@ Help for vlt.data.cache/ne is inherited from superclass HANDLE
 
     Documentation for vlt.data.cache/ne
        doc handle.ne
-
+```
 
 ---
 
 **notify** - *NOTIFY   Notify listeners of event.*
 
+```
 NOTIFY(H, eventname) notifies listeners added to the event named 
     eventname for handle object array H that the event is taking place. 
     eventname can be a string scalar or character vector.  
@@ -453,12 +475,13 @@ Help for vlt.data.cache/notify is inherited from superclass HANDLE
 
     Documentation for vlt.data.cache/notify
        doc handle.notify
-
+```
 
 ---
 
 **remove** - *remove data from an NDI.CACHE*
 
+```
 CACHE_OBJ = REMOVE(CACHE_OBJ, KEY, TYPE, ...)
     or
   CACHE_OBJ = REMOVE(CACHE_OBJ, INDEX, [],  ...)
@@ -476,12 +499,13 @@ CACHE_OBJ = REMOVE(CACHE_OBJ, KEY, TYPE, ...)
                               |   leave it in memory.
  
   See also: vlt.data.namevaluepair
-
+```
 
 ---
 
 **set_replacement_rule** - *set the replacement rule for an CACHE object*
 
+```
 CACHE_OBJ = SET_REPLACEMENT_RULE(CACHE_OBJ, RULE)
  
   Sets the replacement rule for a vlt.data.cache object to be used when a new entry
@@ -493,7 +517,7 @@ CACHE_OBJ = SET_REPLACEMENT_RULE(CACHE_OBJ, RULE)
   'fifo'          | First in, first out; discard oldest entries first.
   'lifo'          | Last in, first out; discard newest entries first.
   'error'         | Don't discard anything, just produce an error saying cache is full
-
+```
 
 ---
 

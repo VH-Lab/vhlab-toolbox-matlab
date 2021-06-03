@@ -1,5 +1,6 @@
 # vlt.math.ellipse_on_mvnpdf_nk_x0
 
+```
   ELLIPSE_ON_MVNPDF_X0 - Calcluate 'response' of an ellipse on multivariate normal - Naka-Rushton response
  
    Y=vlt.math.ellipse_on_mvnpdf_nk_x0(X,ELLIPSE_PARAMS,XMESH,YMESH)
@@ -26,3 +27,5 @@
      Y - The response, in a column vector, for each ellipse
  
    See also: vlt.image.inside_ellipse, MVNPDF, vlt.fit.naka_rushton_func
+
+```

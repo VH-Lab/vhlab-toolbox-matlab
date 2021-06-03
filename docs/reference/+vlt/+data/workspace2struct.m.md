@@ -1,5 +1,6 @@
 # vlt.data.workspace2struct
 
+```
   vlt.data.workspace2struct - Export the current workspace to a structure
  
    OUTPUT = vlt.data.workspace2struct
@@ -16,3 +17,5 @@
  
       output = 
          a: 5
+
+```

@@ -1,5 +1,6 @@
 # vlt.path.pathstr2cellarray
 
+```
   PATHSTR2CELLARRAY - Convert a path string to a cell list of strings
  
     PATH_CELLSTR = vlt.path.pathstr2cellarray
@@ -22,3 +23,5 @@
  
  
     See also: PATH, PATHSEP, vlt.data.isempty_cell
+
+```

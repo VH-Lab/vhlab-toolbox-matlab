@@ -1,5 +1,6 @@
 # vlt.image.roi.ROI_assignneighbors
 
+```
   ROI_3D_ASSIGNNEIGHBORS - assign neighbors to adjacent ROIs
  
   L_OUT = ROI_ASSIGNNEIGHBORS(L, IM, INDEXES_TO_SEARCH)
@@ -24,3 +25,5 @@
     L2(3,2) = 2  % segment the initial ROI into 2 with a 1 pixel border
                  % might mimic output of WATERSHED
     L_out = ROI_assignneighbors(L2, A, indexes_to_search)
+
+```

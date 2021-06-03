@@ -1,5 +1,6 @@
 # vlt.signal.round2sample
 
+```
   ROUND2SAMPLE - Round a continuous point to the nearest sampled value for a regularly sampled signal
   
     TR = vlt.signal.round2sample(TI,DT[, T0])
@@ -14,3 +15,5 @@
         TR = vlt.signal.round2sample(TI, DT)   % returns 0.001
  
     See also: vlt.signal.point2samplelabel
+
+```

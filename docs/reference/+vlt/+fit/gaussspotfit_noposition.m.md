@@ -1,5 +1,6 @@
 # vlt.fit.gaussspotfit_noposition
 
+```
   GAUSSSPOTFIT - Fit a 2d gaussian to data
  
    [MU,C,AMP,SIZES,FIT_RESPONSES] = vlt.fit.gaussspotfit_noposition(XRANGE, YRANGE, RADIUS, RESPONSE)
@@ -17,3 +18,5 @@
      AMP - The amplitude of the response for each circle size.
      SIZES - The sizes that are associated with each amplitude.
      FIT_RESPONSES - the fit responses
+
+```

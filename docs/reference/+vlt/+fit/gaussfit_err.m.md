@@ -1,5 +1,6 @@
 # vlt.fit.gaussfit_err
 
+```
   vlt.fit.gaussfit_err Computes error of gaussian fit
  
     [ERR, RFIT]=vlt.fit.gaussfit_err(P,ANGLES,VARARGIN) 
@@ -27,3 +28,5 @@
     180 degrees away from the preferred angle.
  
     See also:  vlt.fit.gaussfit vlt.fit.otfit_carandini
+
+```

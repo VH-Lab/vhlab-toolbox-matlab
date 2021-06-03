@@ -1,5 +1,6 @@
 # vlt.neuro.vision.visual_stim_row_correlator
 
+```
   VISUAL_STIM_ROW_CORRELATOR - Compute the next visual stimulus frame for a given correlator
  
    NEXT_FRAME = vlt.neuro.vision.visual_stim_row_correlator(FRAME_DATA, CORRELATOR, SIGN)
@@ -33,3 +34,5 @@
           row_data(i+1,:) = vlt.neuro.vision.visual_stim_row_correlator(row_data(i,:),correlator,correlator_sign);
        end;
        row_data,
+
+```

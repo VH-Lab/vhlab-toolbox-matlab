@@ -1,5 +1,6 @@
 # vlt.neuro.membrane.spikeFWHM
 
+```
   vlt.neuro.membrane.spikeFWHM - find the full-width, half-maximum range in single spike waveforms
  
   [FWHM] = vlt.neuro.membrane.spikeFWHM(SPIKEWAVES, V_SPIKEPEAK, SPIKEPEAK_LOC,V_INITIATION,SAMPLERATE)
@@ -18,3 +19,5 @@
   HM_PRESK_LOC    | Position value of half-maximum value before spike peak               | 
   HM_POSTSK_LOC   | Position value of half-maximum value after spike peak
   V_hm            | Voltage value of the half-maximum points (units V)
+
+```

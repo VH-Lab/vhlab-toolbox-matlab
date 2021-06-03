@@ -1,5 +1,6 @@
 # vlt.signal.step_whitening_filter
 
+```
   STEP_WHITENING_FILTER - Compute the optimal FIR filter for Wiener filtering a step 
  
    [RINV,R] = vlt.signal.step_whitening_filter(ALPHA, N, M)
@@ -22,3 +23,5 @@
     This matrix can be used to find the optimal filter h[n]:
  
     h[n] = Rinv * P, where P is the correlation of d[n] with x[n].
+
+```

@@ -1,5 +1,6 @@
 # vlt.matlab.graphics.selectpoints3d
 
+```
   SELECTPOINTS3D - Graphically select a bunch of (2D or 3D) points by making a polygon in the current axes view
  
    INSIDE = vlt.matlab.graphics.selectpoints3d(PTS3D)
@@ -28,3 +29,5 @@
       indexes = find(inside);
       plot3(pts(indexes,1),pts(indexes,2),pts(indexes,3),'bs'); % add red x to selected points
       % look around with rotate3d tool to make sure it is right
+
+```

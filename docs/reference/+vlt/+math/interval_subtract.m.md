@@ -1,5 +1,6 @@
 # vlt.math.interval_subtract
 
+```
   INTERVAL_SUBTRACT - remove an interval from a larger interval
   
   I_OUT = vlt.math.interval_subtract(I_IN, I_SUB)
@@ -11,3 +12,5 @@
   Examples:
      i_out = vlt.math.interval_subtract([0 10],[1 2]) % yields [ 0 1; 2 10]
      i_out = vlt.math.interval_subtract([0 10],[0 2]) % yields [ 2 10]
+
+```

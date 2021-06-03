@@ -1,5 +1,6 @@
 # vlt.plot.autoplacetext
 
+```
   AUTOPLACETEXT - Automatically place text within the current axes
  
    H = vlt.plot.autoplacetext(TEXTSTRING)
@@ -11,3 +12,5 @@
  
    This function could be improved to examine the axes and 
    put the text in a "non-busy" location.
+
+```

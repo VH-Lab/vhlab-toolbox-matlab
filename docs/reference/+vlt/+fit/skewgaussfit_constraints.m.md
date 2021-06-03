@@ -1,5 +1,6 @@
 # vlt.fit.skewgaussfit_constraints
 
+```
   SKEWGAUSSFIT_CONSTRAINTS - skewed gaussian fit with constraints
  
   [P,GOF,FITCURVE] = SKEWGAUSSFIT_CONSTRAINTS(X, Y, ...)
@@ -31,3 +32,5 @@
           [1*(max(x)-min(x))]          | 
   e_hint (0)                           | Skew parameter hint
   e_range ([-1 1])                     | Allows strong skewness but not infinitely strong
+
+```

@@ -1,5 +1,6 @@
 # vlt.data.cell2group
 
+```
   CELL2GROUP - Turn cell data into a vector with group ID, as appropriate for ANOVA1
  
    [X,GROUP] = vlt.data.cell2group(INPUT_DATA)
@@ -18,3 +19,5 @@
              % group is [1 1 1 2 2 2 3 3 3]'
  
    See also: ANOVA1
+
+```

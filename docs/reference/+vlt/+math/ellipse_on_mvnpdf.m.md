@@ -1,5 +1,6 @@
 # vlt.math.ellipse_on_mvnpdf
 
+```
   ELLIPSE_ON_MVNPDF - Calcluate 'response' of an ellipse (or elliptical aperture) on multivariate normal
  
    Y=vlt.math.ellipse_on_mvnpdf(XMESH,YMESH,ELLIPSE_PARAMS,MU,SIGMA)
@@ -26,3 +27,5 @@
      Y - The response, in a column vector, for each ellipse
  
    See also: vlt.image.inside_ellipse, MVNPDF
+
+```

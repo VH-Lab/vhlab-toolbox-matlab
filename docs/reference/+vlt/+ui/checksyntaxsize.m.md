@@ -1,5 +1,6 @@
 # vlt.ui.checksyntaxsize
 
+```
    vlt.ui.checksyntaxsize - Checks syntax and size of uitools string arguments
  
    [B,VALS] = vlt.ui.checksyntaxsize(THEFIG,TAGLIST,SIZELIST,[ERRORMSG, VARNAMELIST])
@@ -15,3 +16,5 @@
    or size error (if ERRORMSG is provided and is 1), and the field is
    referenced in this message either by its tag or by the corresponding entry
    in VARNAMELIST if it is provided.
+
+```

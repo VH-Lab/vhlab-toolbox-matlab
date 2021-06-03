@@ -1,5 +1,6 @@
 # vlt.neuro.vision.oridir.plot.polarplot_ori
 
+```
   POLARPLOT_ORI - Produces a polar plot of orientation responses
  
    [H,OUTPUTS]=vlt.neuro.vision.oridir.plot.polarplot_ori(ANGLES, RESPONSES, ...)
@@ -26,3 +27,5 @@
    'style'                   : 'compass' or 'cartesian', default 'compass'
  
    See also: vlt.neuro.vision.oridir.dirspace2orispace, MMPOLAR, vlt.neuro.vision.oridir.plot.polarplot_dir
+
+```

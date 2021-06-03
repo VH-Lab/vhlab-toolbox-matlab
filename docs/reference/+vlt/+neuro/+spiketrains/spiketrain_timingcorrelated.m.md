@@ -1,5 +1,6 @@
 # vlt.neuro.spiketrains.spiketrain_timingcorrelated
 
+```
   SPIKETRAIN_TIMINGCORRELATED - Make spike train that is correlated in spike timing with an input spike train
  
     [CORRELATED_TRAIN, CORR] = vlt.neuro.spiketrains.spiketrain_timingcorrelated(INPUT_TRAIN, C)
@@ -12,3 +13,5 @@
    
    CORR is the actual correlation that was achieved.  This may differ slightly from the requested
    correlation if the fraction correlation requested times the number of spikes is not an integer.
+
+```

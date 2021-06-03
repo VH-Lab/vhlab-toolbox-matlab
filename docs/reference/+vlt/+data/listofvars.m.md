@@ -1,5 +1,6 @@
 # vlt.data.listofvars
 
+```
    Part of the NewStim package
  
    VARLIST = vlt.data.listofvars(CLASSNAME)
@@ -11,3 +12,5 @@
    See also:  LIST
  
                                       Questions to vanhoosr@brandeis.edu
+
+```

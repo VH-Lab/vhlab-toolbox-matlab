@@ -1,5 +1,6 @@
 # vlt.file.addline
 
+```
   ADDLINE - add a line of text to a text file
  
   [B, ERRORMSG] = ADDLINE(FILENAME, MESSAGE)
@@ -11,3 +12,5 @@
   A newline '\n' and carriage return '\r' is added to the end of the message.
  
   If the operation is successful, B is 1 and ERRORMSG is ''. Otherwise, B is 0 and ERRORMSG describes the error.
+
+```

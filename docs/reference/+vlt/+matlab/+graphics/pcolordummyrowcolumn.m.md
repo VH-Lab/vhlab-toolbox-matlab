@@ -1,5 +1,6 @@
 # vlt.matlab.graphics.pcolordummyrowcolumn
 
+```
   PCOLORDUMMYROWCOLUMN - Add a dummy row and column to input to pcolor
  
    C_out = vlt.matlab.graphics.pcolordummyrowcolumn(C)
@@ -11,3 +12,5 @@
    vlt.matlab.graphics.pcolordummyrowcolumn first.
  
    See also: PCOLOR, NONOPTIMAL-FUNCTION-BEHAVIOR (sorry, I've got some too)
+
+```

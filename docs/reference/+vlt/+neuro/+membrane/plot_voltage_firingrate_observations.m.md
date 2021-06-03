@@ -1,5 +1,6 @@
 # vlt.neuro.membrane.plot_voltage_firingrate_observations
 
+```
   PLOT_VOLTAGE_FIRINGRATE_OBSERVATIONS - plot a list of voltage-firing rate observations against real data
  
   [H,HTEXT] = vlt.neuro.membrane.plot_voltage_firingrate_observations(V, FR, STIMID, TIMEPOINTS, VM_BASELINESUBTRACTED, T, VM, SPIKETIMES, ...)
@@ -27,3 +28,5 @@
                                   |    and voltage waveform
  
   See also: vlt.neuro.membrane.voltage_firingrate_observations
+
+```

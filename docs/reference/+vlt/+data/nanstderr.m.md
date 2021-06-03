@@ -1,5 +1,6 @@
 # vlt.data.nanstderr
 
+```
    STDERR - Standard error of a vector of data
  
    SE = vlt.data.nanstderr(DATA);
@@ -9,3 +10,5 @@
    SE = nanstd(data)./sqrt(sum(1-[isnan(data)]));
  
    See also: STD, NANSTD
+
+```

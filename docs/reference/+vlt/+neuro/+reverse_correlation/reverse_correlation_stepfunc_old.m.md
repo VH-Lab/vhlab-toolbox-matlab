@@ -1,5 +1,6 @@
 # vlt.neuro.reverse_correlation.reverse_correlation_stepfunc_old
 
+```
   vlt.neuro.reverse_correlation.reverse_correlation_stepfunc - Performs RC between spike times and step function stimulus
  
   AVG_STIM = vlt.neuro.reverse_correlation.reverse_correlation_stepfunc(SPIKETIMES, STIM_OFFSETS, STIMTIMES, STIM)
@@ -21,3 +22,5 @@
     See Dayan and Abbott (2005), Chapters 1-2
    
    See also:  vlt.math.stepfunc, vlt.neuro.reverse_correlation.demos.DirRFModel_example3
+
+```

@@ -1,5 +1,6 @@
 # vlt.file.custom_file_formats.addroirawdatafile
 
+```
    ADDVHLSPIKEWAVEFORMFILE - Add waveforms to a VHL spike waveform file
  
     ******NOT FUNCTIONAL YET*********
@@ -22,3 +23,5 @@
         NUM_SAMPLES x NUM_CHANNELS X NUM_WAVEFORMS. 
  
    See also:  vlt.file.custom_file_formats.newvhlspikewaveformfile
+
+```

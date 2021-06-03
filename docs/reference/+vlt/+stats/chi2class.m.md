@@ -1,5 +1,6 @@
 # vlt.stats.chi2class
 
+```
   CHI2CLASS - Tests whether observations are distributed equally among classes
    
     [P,CHI2,E] = vlt.stats.chi2class(D)
@@ -19,3 +20,5 @@
  
     D = [ 90 10 ; 40 60 ];
     [p,chi2,E] = vlt.stats.chi2class(D)
+
+```

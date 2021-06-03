@@ -1,5 +1,6 @@
 # vlt.math.dog2dogf
 
+```
   vlt.math.dog2dogf - convert difference of gaussian parameters to difference of gaussian Fourier transform parameters
  
   P_DOGF = vlt.math.dog2dogf(P_DOG)
@@ -38,3 +39,5 @@
     Y2 = [Y2(1) 2*Y2(2:end)] /(x(end)-x(1)); % convert to same units as fourier_coeffs 
     hold on;
     plot(f,Y2,'go-');
+
+```

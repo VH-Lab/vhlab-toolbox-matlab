@@ -1,5 +1,6 @@
 # vlt.neuro.reverse_correlation.createdirkernel
 
+```
   vlt.neuro.reverse_correlation.createdirkernel - Create a model direction-selective kernel
  
    D = vlt.neuro.reverse_correlation.createdirkernel(X, T, SPFREQ, SPHASE, TF, DIR, SPACE_GAUSS, TIME_DE, ABSNORM)
@@ -22,3 +23,5 @@
             (rougly speaking, tau1 is the onset time constant, tau2 is offset)
         ABSNORM -- if this parameter is not empty ([]) then the kernel will be
         normalized so the optimal stimulus will produce a response of ABSNORM.
+
+```

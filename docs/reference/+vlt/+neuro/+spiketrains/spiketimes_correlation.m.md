@@ -1,5 +1,6 @@
 # vlt.neuro.spiketrains.spiketimes_correlation
 
+```
   SPIKETIMES_CORRELATION - Compute correlation of 2 spike trains
  
     [CORR, LAGS] = vlt.neuro.spiketrains.spiketimes_correlation(TRAIN1,TRAIN2,BINSIZE, MAXLAG)
@@ -26,3 +27,5 @@
       ylabel('Counts');
  
    See also: XCORR
+
+```

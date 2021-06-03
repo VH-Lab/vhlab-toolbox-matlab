@@ -1,5 +1,6 @@
 # vlt.neuro.stimulus.stimulus_response_summary
 
+```
   STIMULUS_RESPONSE_SUMMARY - compute a stimulus response summary for timeseries data
   
   RESPONSE = vlt.neuro.stimulus.stimulus_response_summary(TIMESERIES, TIMESTAMPS, STIM_ONSETOFFSETID, ...)
@@ -49,3 +50,5 @@
                                 |       1) Subtract: Response := Response - PrestimResponse
                                 |       2) Fractional change Response:= ((Response-PrestimResponse)/PrestimResponse)
                                 |       3) Divide: Response:= Response ./ PreStimResponse
+
+```

@@ -1,5 +1,6 @@
 # vlt.math.fouriercoeffs_2d
 
+```
   FOURIERCOEFFS_2D - calculate Fourier coeffients for 2-d fourier analysis
  
   [Y, FX, FY, R, FR] = vlt.math.fouriercoeffs_2d(X, PIXELSIZE)
@@ -38,3 +39,5 @@
       plot(FR_,abs(R_),'bo');  % average spatial frequency tuning across all directions
       xlabel('Spatial frequency (cycles/unit)');
       ylabel('Magnitude');
+
+```

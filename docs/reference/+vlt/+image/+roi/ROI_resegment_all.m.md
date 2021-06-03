@@ -1,5 +1,6 @@
 # vlt.image.roi.ROI_resegment_all
 
+```
   ROI_RESEGMENT_ALL - resegment ROIs from an image (such as with WATERSHED), updating ROIs and labeled image
   
   [CC, L] = ROI_RESEGMENT_ALL(CC, L, IM, ...)
@@ -25,3 +26,5 @@
       figure, imshow(label2rgb(L_orig));
       [CC_new,L_new] = ROI_resegment_all(CC_orig, L_orig, myimg);
       figure, imshow(label2rgb(L_new));
+
+```

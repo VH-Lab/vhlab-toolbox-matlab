@@ -1,5 +1,6 @@
 # vlt.plot.plotshade
 
+```
   PLOTSHADE - Make a plot with region above or below a line shaded
  
    H = vlt.plot.plotshade(X,Y,SHADELINE,COLOR,LOCATIONSTRING)
@@ -29,3 +30,5 @@
      plot(x,y,'k-');
      hold on;
      vlt.plot.plotshade(x,y,shadeline);
+
+```

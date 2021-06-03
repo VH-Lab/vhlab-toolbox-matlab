@@ -1,5 +1,6 @@
 # vlt.neuro.minis.minitemplates
 
+```
  
    [MT,T,PARAMS] = vlt.neuro.minis.minitemplates(...)
  
@@ -24,3 +25,5 @@
    t0 (0)                   | The time of the first sample in each template (seconds)
    t1 (0.100)               | The time of the last sample in each template (seconds)
    dt (0.001)               | The time interval between samples (seconds)
+
+```

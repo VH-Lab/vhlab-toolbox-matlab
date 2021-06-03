@@ -1,5 +1,6 @@
 # vlt.signal.xcorr_stepfunc
 
+```
   XCORR_STEPFUNC - Perform correlation between a time series and a step function
  
   [CORR,LAGS] = vlt.signal.xcorr_stepfunc(T1, SIGNAL1, MAXLAG, T2, SIGNAL2)
@@ -15,3 +16,5 @@
     MAXLAG is the maximum lag to examine (in samples of SIGNAL1)
  
    See also: XCORR, vlt.math.stepfunc, vlt.signal.correlation_stepfunc
+
+```

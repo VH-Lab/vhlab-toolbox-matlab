@@ -1,5 +1,6 @@
 # vlt.data.rowvec
 
+```
   ROWVEC - return a matrix reshaped as a row vector
  
    Y = vlt.data.rowvec(X)
@@ -18,3 +19,5 @@
    Example: 
      A = rand(5,5)
      Y = vlt.data.rowvec(A(1:3,1:2)) % returns points in rows 1:3, columns 1:2
+
+```

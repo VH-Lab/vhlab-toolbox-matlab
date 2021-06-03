@@ -1,5 +1,6 @@
 # vlt.matlab.replacefunction
 
+```
   REPLACEFUNCTION - replace instances of one function call with another
  
   STATUS = REPLACEFUNCTION(FUSE, REPLACEMENT_TABLE, ...)
@@ -21,3 +22,5 @@
   Disable (1)                    | Disable the changes (the default)
  
   See also: vlt.matlab.findfunctionusefile, vlt.matlab.mfileinfo
+
+```

@@ -1,5 +1,6 @@
 # vlt.neuro.mledenoise.MLE_PoisGauss
 
+```
  MLE_PoisGauss - Calculate maximum likelihood of gain and average stimulus responses given raw responses
     
     [PARAMS,FVAL] = vlt.neuro.mledenoise.MLE_PoisGauss(STIM_CENTER_TIMES, STIM_DURATIONS, RESPONSES_OBSERVED, ...
@@ -26,3 +27,5 @@
    Outputs: 
      PARAMS - The estimated parameters, either s_i (FIXPARAM==1) or g (FIXPARAM==0)
      Fval - the value of the function to be minimized
+
+```

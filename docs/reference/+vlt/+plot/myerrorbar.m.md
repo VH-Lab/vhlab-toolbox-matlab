@@ -1,5 +1,6 @@
 # vlt.plot.myerrorbar
 
+```
  MYERRORBAR Error bar plot.
     ERRORBAR(X,Y,L,U) plots the graph of vector X vs. vector Y with
     error bars specified by the vectors L and U.  L and U contain the
@@ -23,3 +24,5 @@
        e = std(y)*ones(size(x));
        errorbar(x,y,e)
     draws symmetric error bars of unit standard deviation.
+
+```

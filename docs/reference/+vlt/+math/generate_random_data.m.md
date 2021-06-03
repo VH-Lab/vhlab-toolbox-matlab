@@ -1,5 +1,6 @@
 # vlt.math.generate_random_data
 
+```
  GENERATE_RANDOM_DATA Produce data from different distributions
     DATA=vlt.math.generate_random_data(N, DIST, PARAM1, PARAM2, ...)
  
@@ -12,3 +13,5 @@
              PARAM2 - The second parameter of the distribution
                          (see HELP ICDF)
     Outputs: DATA - N data points from the distribution.
+
+```

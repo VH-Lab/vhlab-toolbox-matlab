@@ -1,5 +1,6 @@
 # vlt.data.matrow2cell
 
+```
   MATROW2CELL - Convert a matrix to a cell array with each row as a cell
   
   B = vlt.data.matrow2cell(A)
@@ -11,3 +12,5 @@
  
   One might want to use this when using JSONDECODE, when regularly-sized
   items might be returned as a matrix instead of the more general cell array.
+
+```

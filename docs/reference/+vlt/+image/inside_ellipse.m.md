@@ -1,5 +1,6 @@
 # vlt.image.inside_ellipse
 
+```
   INSIDE_ELLIPSE - Return 1 when a point is inside of an ellipse
  
    Z = INSIDE_ELLIPSE(X, Y, X_CTR, Y_CTR, A, B, THETA)
@@ -10,3 +11,5 @@
    angles increase according to a compass reference
  
    See also: INPOLYGON, CARTESIAN2COMPASS, COMPASS2CARTESIAN, DEG2RAD
+
+```

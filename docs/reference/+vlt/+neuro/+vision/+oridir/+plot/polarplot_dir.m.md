@@ -1,5 +1,6 @@
 # vlt.neuro.vision.oridir.plot.polarplot_dir
 
+```
   POLARPLOT_DIR - Produces a polar plot of direction responses
  
    [H,OUTPUTS]=vlt.neuro.vision.oridir.plot.polarplot_dir(ANGLES, RESPONSES, ...)
@@ -26,3 +27,5 @@
    'style'                   : 'compass' or 'cartesian', default 'compass'
  
    See also: vlt.neuro.vision.oridir.dirspace2orispace, MMPOLAR, vlt.neuro.vision.oridir.plot.polarplot_ori
+
+```

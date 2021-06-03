@@ -1,5 +1,6 @@
 # vlt.file.custom_file_formats.newvhlspikewaveformfile
 
+```
   NEWVHLSPIKEWAVEFORMFILE - Create a binary file for storing spike waveforms
  
     FID = vlt.file.custom_file_formats.newvhlspikewaveformfile(FID_OR_FILENAME, PARAMETERS)
@@ -28,3 +29,5 @@
    file with the function ADDVHSPIKEWAVEFORMFILE(FID, WAVES)
  
    NOTE: When one is done using the file, it must be closed with FCLOSE(FID).
+
+```

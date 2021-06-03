@@ -1,5 +1,6 @@
 # vlt.neuro.vision.oridir.rotatedircurve
 
+```
   ROTATEDIRCURVE - rotate a direction curve so that it's highest value is at a defined place
  
    NEWCURVE = vlt.neuro.vision.oridir.rotatedircurve(ANGLES, RESPONSES, PREF_ANGLE_ASSIGNMENT)
@@ -19,3 +20,5 @@
    That will shift the curve RESPONSES based on the responses of a different curve
    ANCHOR_RESPONSES. This is useful, for example, for shifting the surround tuning
    curve with respect to the responses of a center tuning curve, for example.
+
+```

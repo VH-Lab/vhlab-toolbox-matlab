@@ -1,5 +1,6 @@
 # CLASS vlt.file.fileobj
 
+```
  vlt.file.fileobj - a Matlab binary file object; an interface to fopen, fread, fwrite, fseek, fclose, ftell
  
   This is an object interface to fopen, fread, fwrite, fseek, fclose, and ftell. Why do this?
@@ -7,6 +8,8 @@
   system. For example, one could write to GRIDFS by overriding these functions, and the user's code
   would never have to know.
 
+
+```
 ## Superclasses
 **handle**
 
@@ -59,6 +62,7 @@
 
 **addlistener** - *ADDLISTENER  Add listener for event.*
 
+```
 el = ADDLISTENER(hSource, Eventname, callbackFcn) creates a listener
     for the event named Eventname.  The source of the event is the handle 
     object hSource.  If hSource is an array of source handles, the listener
@@ -93,24 +97,26 @@ Help for vlt.file.fileobj/addlistener is inherited from superclass HANDLE
 
     Documentation for vlt.file.fileobj/addlistener
        doc handle.addlistener
-
+```
 
 ---
 
 **delete** - *delete a FILEOBJ_OBJ, closing file first if need be*
 
+```
 DELETE(FILEOBJ_OBJ)
  
   Deletes the handle FILEOBJ_OBJ. If the file (FILEOBJ_OBJ.fid) is open,
   it is closed first.
  
   See also: HANDLE/DELETE, FILEOBJ/FCLOSE
-
+```
 
 ---
 
 **eq** - *== (EQ)   Test handle equality.*
 
+```
 Handles are equal if they are handles for the same object.
  
     H1 == H2 performs element-wise comparisons between handle arrays H1 and
@@ -130,85 +136,93 @@ Help for vlt.file.fileobj/eq is inherited from superclass HANDLE
 
     Documentation for vlt.file.fileobj/eq
        doc handle.eq
-
+```
 
 ---
 
 **fclose** - *close a FILEOBJ*
 
+```
 FILEOBJ_OBJ = FCLOSE(FILEOBJ_OBJ)
  
   Close a file associated with a FILEOBJ.
  
   Attempt to close the file and then set FILEOBJ_OBJ.fid to -1.
-
+```
 
 ---
 
 **feof** - *test to see if a FILEOBJ is at END-OF-FILE*
 
+```
 B = FEOF(FILEOBJ_OBJ)
  
   Returns 1 if FILEOBJ_OBJ is at its end of file, 0 otherwise.
  
   See also: FSEEK, FILEOBJ/FSEEK, FTELL
-
+```
 
 ---
 
 **ferror** - *return the last file error message for FILEOBJ*
 
+```
 [MESSAGE, ERRORNUM] = FERROR(FILEOBJ_OBJ, COMMAND)
  
   Return the most recent file error MESSAGE and ERRORNUM for
   the file associated with FERROR.
-
+```
 
 ---
 
 **fgetl** - *get a line from a FILEOBJ*
 
+```
 TLINE = FGETL(FILEOBJ_OBJ)
  
   Returns the next line (not including NEWLINE character) just like FGETL.
  
   See also: FGETL
-
+```
 
 ---
 
 **fgets** - *get a line from a FILEOBJ*
 
+```
 TLINE = FGETS(FILEOBJ_OBJ, [NCHAR])
  
   Returns the next line (including NEWLINE character) just like FGETS.
  
   See also: FGETS
-
+```
 
 ---
 
 **fileobj** - *create a new binary file object*
 
+```
 FILEOBJ_OBJ = FILEOBJ(...)
  
   Creates an empty FILEOBJ object. If FILENAME is provided,
   then the filename is stored.
-
+```
 
 ---
 
 **fileparts** - *return filename parts for the file associated with FILEOBJ*
 
+```
 [PATHSTR,NAME,EXT] = FILEPARTS(FILEOBJ_OBJ)
  
   Returns FILEPARTS of the 'fullpathfilename' field of FILEOBJ.
-
+```
 
 ---
 
 **findobj** - *FINDOBJ   Find objects matching specified conditions.*
 
+```
 The FINDOBJ method of the HANDLE class follows the same syntax as the 
     MATLAB FINDOBJ command, except that the first argument must be an array
     of handles to objects.
@@ -224,12 +238,13 @@ Help for vlt.file.fileobj/findobj is inherited from superclass HANDLE
 
     Documentation for vlt.file.fileobj/findobj
        doc handle.findobj
-
+```
 
 ---
 
 **findprop** - *FINDPROP   Find property of MATLAB handle object.*
 
+```
 p = FINDPROP(H,PROPNAME) finds and returns the META.PROPERTY object
     associated with property name PROPNAME of scalar handle object H.
     PROPNAME can be a string scalar or character vector.  It can be the 
@@ -245,12 +260,13 @@ Help for vlt.file.fileobj/findprop is inherited from superclass HANDLE
 
     Documentation for vlt.file.fileobj/findprop
        doc handle.findprop
-
+```
 
 ---
 
 **fopen** - *open a FILEOBJ*
 
+```
 FILEOBJ_OBJ = FOPEN(FILEOBJ_OBJ, [ , PERMISSION], [MACHINEFORMAT],[FILENAME])
  
   Opens the file associated with a FILEOBJ_OBJ object. If FILENAME, PERMISSION, 
@@ -265,22 +281,24 @@ FILEOBJ_OBJ = FOPEN(FILEOBJ_OBJ, [ , PERMISSION], [MACHINEFORMAT],[FILENAME])
   FILEOBJ_OBJ.fid is -1.
  
   See also: FOPEN, FILEOBJ/FCLOSE, FCLOSE
-
+```
 
 ---
 
 **fprintf** - *print data to a FILEOBJ_OBJ*
 
+```
 [COUNT] = FPRINTF(FID,FORMAT,A, ...)
  
   Call FPRINTF (see FPRINTF for inputs) for the file associated with
   FILEOBJ_OBJ.
-
+```
 
 ---
 
 **fread** - *read data from a FILEOBJ*
 
+```
 COUNT = FWRITE(FILEOBJ_OBJ, COUNT, [PRECISION], [SKIP], [MACHINEFORMAT])
  
   Attempts to read COUNT elements with resolution PRECISION. If PRECISION is not 
@@ -290,33 +308,36 @@ COUNT = FWRITE(FILEOBJ_OBJ, COUNT, [PRECISION], [SKIP], [MACHINEFORMAT])
   See FREAD for a full description of these input arguments.
  
   See also: FREAD
-
+```
 
 ---
 
 **frewind** - *'rewind' a FILEOBJ back to the beginning*
 
+```
 FREWIND(FILEOBJ_OBJ)
  
   Seeks to the beginning of the file.
  
   See also: FSEEK, FILEOBJ/FSEEK, FTELL
-
+```
 
 ---
 
 **fscanf** - *scan data from a FILEOBJ_OBJ*
 
+```
 [A,COUNT] = FSCANF(FID,FORMAT,[SIZEA])
  
   Call FSCANF (see FSCANF for inputs) for the file associated with
   FILEOBJ_OBJ.
-
+```
 
 ---
 
 **fseek** - *seek to a location within a FILEOBJ*
 
+```
 B = FSEEK(FILEOBJ_OBJ, OFFSET, REFERENCE)
  
   Seeks the file to the location OFFSET (in bytes) relative to
@@ -328,24 +349,26 @@ B = FSEEK(FILEOBJ_OBJ, OFFSET, REFERENCE)
   B is 0 on success and -1 on failure.
  
   See also: FSEEK, FILEOBJ/FTELL
-
+```
 
 ---
 
 **ftell** - *find current location within a FILEOBJ*
 
+```
 LOCATION = FTELL(FILEOBJ_OBJ)
  
   Returns the current location (in bytes) relative to the beginning of the
   file. If the query fails, -1 is returned.
  
   See also: FSEEK, FILEOBJ/FSEEK, FTELL
-
+```
 
 ---
 
 **fwrite** - *write data to a FILEOBJ*
 
+```
 COUNT = FWRITE(FILEOBJ_OBJ, DATA, [PRECISION], [SKIP], [MACHINEFORMAT])
  
   Attempts to write DATA elements with resolution PRECISION. If PRECISION is not 
@@ -355,12 +378,13 @@ COUNT = FWRITE(FILEOBJ_OBJ, DATA, [PRECISION], [SKIP], [MACHINEFORMAT])
   See FWRITE for a full description of these input arguments.
  
   See also: FWRITE
-
+```
 
 ---
 
 **ge** - *>= (GE)   Greater than or equal relation for handles.*
 
+```
 H1 >= H2 performs element-wise comparisons between handle arrays H1 and
     H2.  H1 and H2 must be of the same dimensions unless one is a scalar.
     The result is a logical array of the same dimensions, where each
@@ -378,12 +402,13 @@ Help for vlt.file.fileobj/ge is inherited from superclass HANDLE
 
     Documentation for vlt.file.fileobj/ge
        doc handle.ge
-
+```
 
 ---
 
 **gt** - *> (GT)   Greater than relation for handles.*
 
+```
 H1 > H2 performs element-wise comparisons between handle arrays H1 and 
     H2.  H1 and H2 must be of the same dimensions unless one is a scalar.  
     The result is a logical array of the same dimensions, where each
@@ -401,12 +426,13 @@ Help for vlt.file.fileobj/gt is inherited from superclass HANDLE
 
     Documentation for vlt.file.fileobj/gt
        doc handle.gt
-
+```
 
 ---
 
 **isvalid** - *ISVALID   Test handle validity.*
 
+```
 TF = ISVALID(H) performs an element-wise check for validity on the 
     handle elements of H.  The result is a logical array of the same 
     dimensions as H, where each element is the element-wise validity 
@@ -421,12 +447,13 @@ Help for vlt.file.fileobj/isvalid is inherited from superclass HANDLE
 
     Documentation for vlt.file.fileobj/isvalid
        doc handle.isvalid
-
+```
 
 ---
 
 **le** - *<= (LE)   Less than or equal relation for handles.*
 
+```
 Handles are equal if they are handles for the same object.  All 
     comparisons use a number associated with each handle object.  Nothing
     can be assumed about the result of a handle comparison except that the
@@ -452,12 +479,13 @@ Help for vlt.file.fileobj/le is inherited from superclass HANDLE
 
     Documentation for vlt.file.fileobj/le
        doc handle.le
-
+```
 
 ---
 
 **listener** - *LISTENER  Add listener for event without binding the listener to the source object.*
 
+```
 el = LISTENER(hSource, Eventname, callbackFcn) creates a listener
     for the event named Eventname.  The source of the event is the handle  
     object hSource.  If hSource is an array of source handles, the listener
@@ -497,12 +525,13 @@ Help for vlt.file.fileobj/listener is inherited from superclass HANDLE
 
     Documentation for vlt.file.fileobj/listener
        doc handle.listener
-
+```
 
 ---
 
 **lt** - *< (LT)   Less than relation for handles.*
 
+```
 H1 < H2 performs element-wise comparisons between handle arrays H1 and
     H2.  H1 and H2 must be of the same dimensions unless one is a scalar.
     The result is a logical array of the same dimensions, where each
@@ -520,12 +549,13 @@ Help for vlt.file.fileobj/lt is inherited from superclass HANDLE
 
     Documentation for vlt.file.fileobj/lt
        doc handle.lt
-
+```
 
 ---
 
 **ne** - *~= (NE)   Not equal relation for handles.*
 
+```
 Handles are equal if they are handles for the same object and are 
     unequal otherwise.
  
@@ -546,12 +576,13 @@ Help for vlt.file.fileobj/ne is inherited from superclass HANDLE
 
     Documentation for vlt.file.fileobj/ne
        doc handle.ne
-
+```
 
 ---
 
 **notify** - *NOTIFY   Notify listeners of event.*
 
+```
 NOTIFY(H, eventname) notifies listeners added to the event named 
     eventname for handle object array H that the event is taking place. 
     eventname can be a string scalar or character vector.  
@@ -568,12 +599,13 @@ Help for vlt.file.fileobj/notify is inherited from superclass HANDLE
 
     Documentation for vlt.file.fileobj/notify
        doc handle.notify
-
+```
 
 ---
 
 **setproperties** - *set the properties of a FILEOBJ*
 
+```
 FILEOBJ_OBJ = SETPROPERTIES(FILEOBJ_OBJ, 'PROPERTY1',VALUE1, ...)
  
   Sets the properties of a FILEOBJ with name/value pairs.
@@ -583,7 +615,7 @@ FILEOBJ_OBJ = SETPROPERTIES(FILEOBJ_OBJ, 'PROPERTY1',VALUE1, ...)
     fid;              % The Matlab file identifier
     permission;       % The file permission
     machineformat     % big-endian ('b'), little-endian ('l'), or native ('n')
-
+```
 
 ---
 

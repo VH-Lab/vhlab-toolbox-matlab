@@ -1,5 +1,6 @@
 # vlt.string.trimws
 
+```
   TRIMWS - Trim leading whitespace from a string
  
     NEWSTR = vlt.string.trimws(STR)
@@ -19,3 +20,5 @@
         m = vlt.string.trimws('   this string has leading whitespace')
  
     See also:  STRTRIM, ISSPACE
+
+```

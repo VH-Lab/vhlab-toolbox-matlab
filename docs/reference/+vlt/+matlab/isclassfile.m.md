@@ -1,5 +1,6 @@
 # vlt.matlab.isclassfile
 
+```
   ISCLASSFILE - Is a Matlab .m file a class definition?
  
   B = ISCLASSFILE(FILENAME)
@@ -20,3 +21,5 @@
   Example: 
     wfilename = which('table')
     b = vlt.matlab.isclassfile(wfilename)
+
+```

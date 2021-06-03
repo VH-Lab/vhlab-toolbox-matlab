@@ -1,5 +1,6 @@
 # vlt.stats.std_from_median
 
+```
   STD_FROM_MEDIAN - calculate standard deviation of gaussian process from median
  
   SD = vlt.stats.std_from_median(X, ...)
@@ -34,3 +35,5 @@
         superparamagnetic clustering.
  
   See also: MEDIAN
+
+```

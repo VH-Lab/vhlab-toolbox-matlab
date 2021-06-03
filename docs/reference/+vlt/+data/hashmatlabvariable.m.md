@@ -1,5 +1,6 @@
 # vlt.data.hashmatlabvariable
 
+```
   HASHMATLABVARIABLE - create a hashed version of a Matlab variable in memory
  
   H = vlt.data.hashmatlabvariable(D)
@@ -18,3 +19,5 @@
                              |  At present, the only choice is 
                              |  pm_hash/crc, which uses the Matlab
                              |  function PM_HASH.
+
+```

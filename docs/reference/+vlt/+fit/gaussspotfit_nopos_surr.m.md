@@ -1,5 +1,6 @@
 # vlt.fit.gaussspotfit_nopos_surr
 
+```
   GAUSSSPOTFIT - Fit a 2d gaussian to data
  
    [MU,C,AMP,B,FIT_RESPONSES, R_SQUARED] = vlt.fit.gaussspotfit_nopos_surr(XRANGE, YRANGE, RADIUS, RESPONSE)
@@ -24,3 +25,5 @@
      B - The modulating factor
      FIT_RESPONSES - the fit responses
      R_SQUARED - The error of the fit normalized by the square of the data around its mean
+
+```

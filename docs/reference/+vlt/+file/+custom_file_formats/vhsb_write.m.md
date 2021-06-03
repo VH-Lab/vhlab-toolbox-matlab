@@ -1,5 +1,6 @@
 # vlt.file.custom_file_formats.vhsb_write
 
+```
   VHSB_WRITE - write a VHLab series binary file
  
   B = vlt.file.custom_file_formats.vhsb_write(FO, X, Y, ...)
@@ -45,3 +46,5 @@
   Y_offset (0)                                  | The Y offset to use (Ydisk = Y/Y_scale + X_offset)
  
   See also: vlt.data.namevaluepair
+
+```

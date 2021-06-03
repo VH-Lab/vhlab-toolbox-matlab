@@ -1,5 +1,6 @@
 # vlt.image.roi.ROI_centerofmassdistance
 
+```
   ROI_CENTEROFMASSDISTANCE - Compute center-of-mass distances between sets of ROIs
  
   [COMD] = ROI_CENTEROFMASSDISTANCE(ROI_COM_A, LA, ROI_COM_B, LB, ...
@@ -20,3 +21,5 @@
          not worth counting.
       DISTANCE_MIN If any distance is 0, it will be set to DISTANCE_MIN. 0 is reserved for 
          too-long distances beyond DISTANCE_MAX so that COMD can be sparse (mostly 0s).
+
+```

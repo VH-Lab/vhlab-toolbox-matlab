@@ -1,5 +1,6 @@
 # vlt.git.git_status
 
+```
   GIT_STATUS - return git working tree status
  
   [UPTODATE, CHANGES, UNTRACKED_PRESENT] = vlt.git.git_status(DIRNAME)
@@ -13,3 +14,5 @@
   An error is generated if DIRNAME is not a GIT directory.
  
   See also: vlt.git.git_isgitdirectory
+
+```

@@ -1,5 +1,6 @@
 # vlt.data.eqtot
 
+```
   vlt.data.eqtot
  
     B = vlt.data.eqtot(X,Y)
@@ -10,3 +11,5 @@
    Example:  vlt.data.eqtot([4 4 4],[4 4 4]) = 1, vlt.data.eqtot([1],[1 1]) = 1
  
    See also:  vlt.data.eqemp, EQ
+
+```

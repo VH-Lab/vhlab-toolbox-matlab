@@ -1,5 +1,6 @@
 # vlt.time.dowait
 
+```
    DOWAIT - Pause for a particular amount of time based on platform
  
    vlt.time.dowait(HOWLONG)
@@ -9,3 +10,5 @@
    use any processor time.  Otherwise, it calls Matlab's pause function.
  
    See also: PAUSE, man sleep
+
+```

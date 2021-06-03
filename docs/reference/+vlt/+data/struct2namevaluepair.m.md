@@ -1,5 +1,6 @@
 # vlt.data.struct2namevaluepair
 
+```
   STRUCT2NAMEVALUEPAIR - Convert a structure to a cell array of name/value pairs
  
    NV = vlt.data.struct2namevaluepair(THESTRUCT)
@@ -18,3 +19,5 @@
  
  
    See also: VARARGIN, vlt.data.assign, STRUCT
+
+```

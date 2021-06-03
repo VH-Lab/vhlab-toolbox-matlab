@@ -1,5 +1,6 @@
 # vlt.fit.gaussfit_conv
 
+```
   vlt.fit.otfit_carandini_conv Converts between real params and fitting params
  
     [Rsp,Rp,Op,sig]=GUASSFIT_CONV(DIR,P,VARARGIN)
@@ -30,3 +31,5 @@
       'data', [obs11 obs12 ...; obs21 .. ;]   Observations to compute error
  
    See also:  vlt.fit.gaussfit, vlt.fit.gaussfit_err, vlt.fit.otfit_carandini, vlt.fit.otfit_carandini_err
+
+```

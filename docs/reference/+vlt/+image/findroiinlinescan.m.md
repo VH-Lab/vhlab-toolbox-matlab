@@ -1,5 +1,6 @@
 # vlt.image.findroiinlinescan
 
+```
   FINDROIINLINESCAN - Find a ROI defined in a raster image in a linescan
  
    [LSINDEXES,ONs,OFFs] = FINDROIINLINESCAN(RASTERIMAGESIZE, LINESCANIMAGESIZE, LINESCANPOINTS,...
@@ -9,3 +10,5 @@
    within a raster image of size RASTERIMAGESIZE, this function determines the corresponding
    index values LSINDEXES where those pixels were scanned in the linescan LINESCANPOINTS (y, x)
    with image of size LINESCANIMAGESIZE.
+
+```

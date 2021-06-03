@@ -1,5 +1,6 @@
 # vlt.office.addresslabels2pdf
 
+```
   ADDRESSLABELS2PDF - print address labels to a set of PDFs following a template
  
   vlt.office.addresslabels2pdf(LABELS, ...)
@@ -21,3 +22,5 @@
   nrows (3)                   | Number of rows per sheet
                               |   (These are for Avery Labels 8160)
   fontsize (13)               | Fontsize to use
+
+```

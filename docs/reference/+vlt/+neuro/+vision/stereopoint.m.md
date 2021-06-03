@@ -1,5 +1,6 @@
 # vlt.neuro.vision.stereopoint
 
+```
   vlt.neuro.vision.stereopoint - Compute shifts for a point in space for making a stereograph
  
     [LEFTOFFSET,RIGHTOFFSET]=vlt.neuro.vision.stereopoint(VIEWDIST,EYEDIST,XOFFSET,DOFFSET)
@@ -16,3 +17,5 @@
  
     DOFFSET is the depth offset between the focal point and the point for which
       to compute shifts.
+
+```

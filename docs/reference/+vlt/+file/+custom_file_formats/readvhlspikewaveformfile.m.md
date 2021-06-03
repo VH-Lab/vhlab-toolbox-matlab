@@ -1,5 +1,6 @@
 # vlt.file.custom_file_formats.readvhlspikewaveformfile
 
+```
   READVHLSPIKEWAVEFORMFILE - Read spike waveforms from binary file
  
    [WAVEFORMS, HEADER] = vlt.file.custom_file_formats.readvhlspikewaveformfile(FID_OR_FILENAME)
@@ -19,3 +20,5 @@
    If WAVE_START is less than 1, then only the header is read.
  
    The waveforms are output in the form NUM_SAMPLESxNUM_CHANNELSxNUM_WAVEFORMS
+
+```

@@ -1,5 +1,6 @@
 # vlt.string.ismatlabstring
 
+```
   ISMATLABSTRING - is a character within a Matlab string?
  
   TF = vlt.string.ismatlabstring(STR, [STARTISWITHINSTRING])
@@ -20,3 +21,5 @@
  
      str = ['myvar=5; a = [''my '''' '' int2str(5) '' string'';]']
      vlt.string.ismatlabstring(str)
+
+```

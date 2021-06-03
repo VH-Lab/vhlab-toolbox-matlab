@@ -1,5 +1,6 @@
 # vlt.neuro.spikesorting.centerspikes_neg
 
+```
   CENTERSPIKES_NEG Center negative-going spike waveforms based on minimum
    [CENTEREDSPIKES, SHIFTS] = vlt.neuro.spikesorting.centerspikes_neg(SPIKESHAPES, CENTER_RANGE)
  
@@ -13,3 +14,5 @@
             the edges will be zero padded.
            SHIFTS: the number of samples the spike has been shifted. Negative means the centered spike
             was shifted to the left, positive is shifted to the right.
+
+```

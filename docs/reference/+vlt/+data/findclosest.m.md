@@ -1,5 +1,6 @@
 # vlt.data.findclosest
 
+```
   FINDCLOSEST - Find closest value in an array (using absolute value)
  
   [I,V] = vlt.data.findclosest(ARRAY,VALUE)
@@ -12,3 +13,5 @@
   only the first is returned in I.
  
   See also: FIND
+
+```

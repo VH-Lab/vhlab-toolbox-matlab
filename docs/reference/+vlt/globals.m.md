@@ -1,5 +1,6 @@
 # vlt.globals
 
+```
   vlt.globals - define global variables for VLT (VH Lab tools)
  
   vlt.globals
@@ -20,3 +21,5 @@
   vlt_globals.debug                | A structure with preferences for debugging
   vlt_globals.log                  | An object that manages writing system, error, debugging logs (vlt.app.log)
   vlt_globals.cache                | A vlt.data.cache object for the use of the toolbox
+
+```

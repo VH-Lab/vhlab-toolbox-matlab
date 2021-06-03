@@ -1,5 +1,6 @@
 # vlt.spreadsheet.spreadsheet_multiplechoice
 
+```
   SPREADSHEET_MULTIPLECHOICE - Return answers to a multiple choice spreadsheet question
  
   ANSWERS = vlt.spreadsheet.spreadsheet_multiplechoice(SPREADSHEET, QUESTION, ...)
@@ -23,3 +24,5 @@
                          |   in the spreadsheet.
  
   See also: NAMEVALUEPAIRS
+
+```

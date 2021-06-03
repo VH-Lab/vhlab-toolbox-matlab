@@ -1,5 +1,6 @@
 # vlt.fit.gaussspotfit_mod
 
+```
   GAUSSSPOTFIT - Fit a 2d gaussian to data
  
    [MU,C,AMP,MOD_AMP, MOD_SIGMA, SIZES,FIT_RESPONSES] = vlt.fit.gaussspotfit(XRANGE, YRANGE, X_CTR,Y_CTR,...
@@ -20,3 +21,5 @@
      MOD_AMP - The amplitude of the surround modulation (multiplicative)
      SIZES - The sizes that are associated with each amplitude.
      FIT_RESPONSES - the fit responses
+
+```

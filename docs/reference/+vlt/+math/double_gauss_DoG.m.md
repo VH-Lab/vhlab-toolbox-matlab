@@ -1,5 +1,6 @@
 # vlt.math.double_gauss_DoG
 
+```
   DOUBLE_GAUSS_DOG - computes a double-gaussian function that is modulated
   by a difference of gaussians
  
@@ -11,3 +12,5 @@
   DOG_PARAMS = [0 a2 b2 c2 d2]
  
   See also: vlt.math.double_gauss_180, DOG
+
+```

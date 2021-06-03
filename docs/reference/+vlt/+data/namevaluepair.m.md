@@ -1,5 +1,6 @@
 # vlt.data.namevaluepair
 
+```
   NAMEVALUEPAIR - Describes the use of name/value pairs in Matlab functions
  
   In Matlab, functions often accept extra arguments in the form of 
@@ -15,3 +16,5 @@
   accept name/value pairs (it is not automatically available in any function).
  
   See also: vlt.data.struct2namevaluepair, VARARGIN, vlt.data.assign
+
+```

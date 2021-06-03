@@ -1,5 +1,6 @@
 # vlt.file.writeplainmat
 
+```
   WRITEPLAINVECTOR - write a simple binary matrix to disk
  
   vlt.file.writeplainmat(FID, MAT)
@@ -31,3 +32,5 @@
     fclose(fid); 
     mydata, % display mydata
     data-mydata, % display the difference
+
+```

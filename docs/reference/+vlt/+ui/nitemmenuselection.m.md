@@ -1,5 +1,6 @@
 # vlt.ui.nitemmenuselection
 
+```
   NITEMNENUSELECTION - control multiple item selection for a popup menu
  
   [SELECTED, B, ERRORMSG] = vlt.ui.nitemmenuselection(POPUPMENU_HANDLE, ...)
@@ -23,3 +24,5 @@
     uicontrol('units','normalized','position',[0.1 0.1 0.2 0.5],'tag','mymenu',...
         'style','popup','string',names,'callback','vlt.ui.nitemmenuselection(gcbo);');
     selected=vlt.ui.nitemmenuselection(findobj(fig,'tag','mymenu'),'value',[]);
+
+```

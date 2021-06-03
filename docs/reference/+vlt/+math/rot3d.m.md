@@ -1,5 +1,6 @@
 # vlt.math.rot3d
 
+```
   ROT3D - Rotation in 3d space
     R = vlt.math.rot3d(THETA, AXIS)
  
@@ -13,3 +14,5 @@
    
  
    See also: vlt.math.rot2d
+
+```

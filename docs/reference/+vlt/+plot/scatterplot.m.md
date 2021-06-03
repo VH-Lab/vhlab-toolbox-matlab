@@ -1,5 +1,6 @@
 # vlt.plot.scatterplot
 
+```
   SCATTERPLOT -- plot data points
  
  	vlt.plot.scatterplot (X) draws a scatter plot with a dot for each row
@@ -27,3 +28,5 @@
  	'projection'	- plot only the specified dimensions
  	'shrink'	- resize the axes to exactly surround
  			  the points (on by default)
+
+```

@@ -1,5 +1,6 @@
 # vlt.fit.gaussfit
 
+```
   vlt.fit.gaussfit Fits data to a Gaussian
  
    [Rsp,Rp,P,sigm,FITCURVE,ERR]=vlt.fit.gaussfit(VALUES,...
@@ -18,3 +19,5 @@
    FITCURVE is the fit function at 1 value intervals min:max.
  
    ERR is the mean squared error.
+
+```

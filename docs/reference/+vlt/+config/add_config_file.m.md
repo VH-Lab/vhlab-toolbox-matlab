@@ -1,5 +1,6 @@
 # vlt.config.add_config_file
 
+```
   ADD_CONFIG_FILE - Add a default configuration file to the configuration directory
  
    vlt.config.add_config_file(CONFIG_FILENAME, CONFIG_BASENAME, ...)
@@ -15,3 +16,5 @@
   -----------------------------------------------------------
   config_dirpath          | Path of where the file should be
      (config_dirname)     |   saved
+
+```

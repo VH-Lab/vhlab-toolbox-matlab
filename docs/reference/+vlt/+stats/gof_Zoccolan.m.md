@@ -1,5 +1,6 @@
 # vlt.stats.gof_Zoccolan
 
+```
   vlt.stats.gof_Zoccolan - Goodness of Fit from Zoccolan et al., 2005
  
    [GF,Vres,Vexpl,Vnoise] = vlt.stats.gof_Zoccolan(TRIALDATA, FIT)
@@ -20,3 +21,5 @@
   Vnoise is the variance of the noise
  
   Ref:  Zoccolan DE, Cox DD, DiCarlo, JJ.  J Neurosci 25:8150-8164 2005.
+
+```

@@ -1,5 +1,6 @@
 # vlt.plot.plotmeanbar
 
+```
   PLOTMEANBAR - Plot a horizontal bar indicating mean (or standard error) of a dataset
  
   H = vlt.plot.plotmeanbar(DATA, ...)
@@ -19,3 +20,5 @@
   linewidth (2)                | Linewidth for mean bar plot
   linewidth_stderr (1)         | Linewidth for standard error plot
   measure ('nanmean(data(:))') | Function to call to obtain mean; could be 'median'
+
+```

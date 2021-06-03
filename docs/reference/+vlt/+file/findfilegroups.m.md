@@ -1,5 +1,6 @@
 # vlt.file.findfilegroups
 
+```
   FINDFILEGROUPS - Find a group of files based on parameters
  
    FILELIST = vlt.file.findfilegroups(PARENTDIR, FILEPARAMETERS, ...)
@@ -59,3 +60,5 @@
        dir(([ffg_prefix 'findfilegroupstest3' filesep '**/*']))
  
    See also: VLT.STRING.STRCMP_SUBSTITUTE
+
+```

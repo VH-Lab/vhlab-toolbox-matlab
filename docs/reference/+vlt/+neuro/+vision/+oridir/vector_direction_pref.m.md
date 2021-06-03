@@ -1,5 +1,6 @@
 # vlt.neuro.vision.oridir.vector_direction_pref
 
+```
   VECTOR_DIRECTION_PREF - Determine dir preference/response w/ vector methods
  
    [PREF_RESP, NULL_RESP, DIR_PREF, ORI_PREF] = ...
@@ -12,3 +13,5 @@
    Then, the preferred and null responses are computed at the 2 directions
    that correspond to the orientation angle indicated by the vector method.
    The responses are computed by interpolation.
+
+```

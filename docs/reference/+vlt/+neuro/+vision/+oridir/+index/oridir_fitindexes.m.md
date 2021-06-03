@@ -1,5 +1,6 @@
 # vlt.neuro.vision.oridir.index.oridir_fitindexes
 
+```
   ORIDIR_FITINDEXES - compute orientation/direction fits, index values
  
   FI = vlt.neuro.vision.oridir.index.oridir_fitindexes(RESPSTRUCT)
@@ -34,3 +35,5 @@
   dir_index_rectified             |   Direction index ( (pref-orth)/pref) ) rectified to be in 0, 1
   dir_index_diffsum               |   Direction index ( (pref-orth)/(pref+orth) )
   dir_index_diffsum_rectified     |   Direction index ( (pref-orth)/(pref+orth) ), rectified to be in 0,1
+
+```

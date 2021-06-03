@@ -1,5 +1,6 @@
 # vlt.neuro.spiketrains.spiketrain_powerspectrum
 
+```
   SPIKETRAIN_POWERSPECTRUM - Compute power spectrum of a spiketrain using pmtm
  
    [Pxx,Pxxc,F] = vlt.neuro.spiketrains.spiketrain_powerspectrum(SPIKETIMES, TIME_RESOLUTION)
@@ -30,3 +31,5 @@
      title('Tomson Multitaper Power Spectral Density Estimate');
      xlabel('Frequency (Hz)');
      ylabel('Power/frequency (dB/Hz)');
+
+```

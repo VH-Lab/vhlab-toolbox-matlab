@@ -1,5 +1,6 @@
 # vlt.math.rescale_subrect
 
+```
   RESCALE_SUBRECT - resize a rectangle within a larger rectangle according to a scale and shift
  
    [NEWRECT] = vlt.math.rescale_subrect(SUBRECT, ORIGINAL_RECT, SCALED_RECT, [FORMAT])
@@ -15,3 +16,5 @@
    FORMAT == 4 means [left top width height]
  
    See also: vlt.math.rescale, vlt.math.rect2rect
+
+```

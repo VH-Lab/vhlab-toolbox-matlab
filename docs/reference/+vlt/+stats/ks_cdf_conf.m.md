@@ -1,5 +1,6 @@
 # vlt.stats.ks_cdf_conf
 
+```
  KS_CDF_CONF Kolmogorov-Smirnov confidence interval for a data set.
     [Xvalues,sampleCDF,minCDF,maxCDF] = vlt.stats.ks_cdf_conf(X1,ALPHA)
     performs a Kolmogorov-Smirnov (K-S) test to determine the confidence
@@ -14,3 +15,5 @@
     Created by SDV, based on KSTEST2 by the MathWorks
  
     See also KSTEST, KSTEST2, CDFPLOT.
+
+```

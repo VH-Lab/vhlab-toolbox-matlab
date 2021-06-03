@@ -1,5 +1,6 @@
 # vlt.file.drivepath
 
+```
   DRIVEPATH - What is the default name of the directory that contains drives / media / volumes ?
   
    P = vlt.file.drivepath
@@ -15,3 +16,5 @@
    'PCWIN64'                   | ''
  
    See also: COMPUTER
+
+```

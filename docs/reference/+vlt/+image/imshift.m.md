@@ -1,5 +1,6 @@
 # vlt.image.imshift
 
+```
   IMSHIFT - Shift an image, maintaining image size
  
    IM_OUT = IMSHIFT(IM, SHIFT)
@@ -20,3 +21,5 @@
    'PadValue' (0)        | Value for pixels used to pad the
                          |   edges of the shifted image so as
                          |   to maintain the original image size.
+
+```

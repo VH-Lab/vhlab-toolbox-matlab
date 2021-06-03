@@ -1,5 +1,6 @@
 # vlt.neuro.vision.oridir.dirspace2orispace
 
+```
   DIRSPACE2ORISPACE - Converts direction responses to orientation responses
  
    [ANGLES_ORI,RESPONSES_ORI] = vlt.neuro.vision.oridir.dirspace2orispace(ANGLES, RESPONSES)
@@ -14,3 +15,5 @@
    RESPONSES_ORI(A,R) is a matrix of all RESPONSES R that map to the orientation 
    A.  In the event that there are not an equal number of responses to each
    orientation, extra entries in the matrix will be NaN.
+
+```

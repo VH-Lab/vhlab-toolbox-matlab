@@ -1,5 +1,6 @@
 # vlt.data.hasAllFields
 
+```
    Part of the NewStim package
    [GOOD,ERRORMSG] = vlt.data.hasAllFields(VARIABLE,FIELDNAMES,FIELDSIZES)
  
@@ -23,3 +24,5 @@
    Note:  At present, this function does not work on arrays of structs, only
    structs.  As a work-around, pass the first element of a struct array to see
    if it is good.
+
+```

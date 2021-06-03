@@ -1,5 +1,6 @@
 # vlt.neuro.membrane.mle_normal_vm_fr
 
+```
   MLE_NORMAL_VM_FR - use maximum likelihood analysis to compute Poisson rate model of voltage -> firing rate
   
   PARAMS = vlt.neuro.membrane.mle_normal_vm_fr(VM, FR, DELTAT,  ...)
@@ -36,3 +37,5 @@
     fr = icdf('Normal',rand(500,1),2,1); % generate rates, rate of 2, standard deviation of 1
     p_out =vlt.neuro.membrane.mle_normal_vm_fr(0*fr,fr,deltaT,'fit_function','Normal')  
     p_out_matlab = mle(fr,'distribution','Normal' ) % they match
+
+```

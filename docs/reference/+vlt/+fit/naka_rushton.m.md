@@ -1,5 +1,6 @@
 # vlt.fit.naka_rushton
 
+```
   NAKA_RUSHTON Naka-Rushton fit (for contrast curves)
  
    [RM,B] = vlt.fit.naka_rushton(C,DATA)
@@ -29,3 +30,5 @@
      and used to fit contrast data of cortical cells in  
      Albrecht and Hamilton, J. Neurophys. 48: 217-237, 1982
      The saturation form was described in Peirce 2007 J Vision
+
+```

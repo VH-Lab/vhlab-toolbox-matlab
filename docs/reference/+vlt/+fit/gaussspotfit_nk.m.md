@@ -1,5 +1,6 @@
 # vlt.fit.gaussspotfit_nk
 
+```
   GAUSSSPOTFIT - Fit a 2d gaussian to data
  
    [MU,C,AMP,C50, N, FIT_RESPONSES] = vlt.fit.gaussspotfit_nk(XRANGE, YRANGE, X_CTR,Y_CTR,...
@@ -21,3 +22,5 @@
      C50 - 50% point of Naka Rushton response
      N - N power of Naka Rushton response
      FIT_RESPONSES - the fit responses
+
+```

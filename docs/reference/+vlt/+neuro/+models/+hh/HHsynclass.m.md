@@ -1,8 +1,11 @@
 # CLASS vlt.neuro.models.hh.HHsynclass
 
+```
   developed by Steve Van Hooser and Ishaan Khurana, with code from 
   _An Introductory Course in Computational Neuroscience_ by Paul Miller
 
+
+```
 ## Superclasses
 **[vlt.neuro.models.hh.neuronmodelclass](neuronmodelclass.m.md)**
 
@@ -79,71 +82,81 @@
 
 **HHsynclass** - *developed by Steve Van Hooser and Ishaan Khurana, with code from*
 
+```
 _An Introductory Course in Computational Neuroscience_ by Paul Miller
-
+```
 
 ---
 
 **dsdt** - *vlt.neuro.models.hh.HHsynclass/dsdt is a function.*
 
+```
 [dsdt, Itot] = dsdt(HHobj, S_value)
-
+```
 
 ---
 
 **hvar** - *vlt.neuro.models.hh.HHsynclass/hvar is a function.*
 
+```
 h = hvar(HHobj)
-
+```
 
 ---
 
 **mvar** - *vlt.neuro.models.hh.HHsynclass/mvar is a function.*
 
+```
 m = mvar(HHobj)
-
+```
 
 ---
 
 **nvar** - *vlt.neuro.models.hh.HHsynclass/nvar is a function.*
 
+```
 n = nvar(HHobj)
-
+```
 
 ---
 
 **setup_command** - *vlt.neuro.models.hh.HHsynclass/setup_command is a function.*
 
+```
 neuronmodel_obj = setup_command(neuronmodel_obj, varargin)
-
+```
 
 ---
 
 **setup_synapses** - *vlt.neuro.models.hh.HHsynclass/setup_synapses is a function.*
 
+```
 HHobj = setup_synapses(HHobj)
-
+```
 
 ---
 
 **simulate** - *perform a simulation*
 
+```
 Help for vlt.neuro.models.hh.HHsynclass/simulate is inherited from superclass VLT.NEURO.MODELS.HH.NEURONMODELCLASS
-
+```
 
 ---
 
 **statemodifier** - *nothing to do in base class*
 
+```
 Help for vlt.neuro.models.hh.HHsynclass/statemodifier is inherited from superclass VLT.NEURO.MODELS.HH.NEURONMODELCLASS
-
+```
 
 ---
 
 **voltage** - *vlt.neuro.models.hh.HHsynclass/voltage is a function.*
 
+```
 V = voltage(HHobj)
-
+```
 
 ---
 

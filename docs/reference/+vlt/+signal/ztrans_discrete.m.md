@@ -1,5 +1,6 @@
 # vlt.signal.ztrans_discrete
 
+```
   ZTRANS_DISCRETE Evaluate the discrete Z transform for a value of z
  
    OUT = vlt.signal.ztrans_discrete(N, V, Z)
@@ -11,3 +12,5 @@
    The Z-transform is
  
       X(Z) = sum{all_N}{V(n)*z^(-n)}
+
+```

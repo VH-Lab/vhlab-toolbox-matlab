@@ -1,5 +1,6 @@
 # vlt.data.eqlen
 
+```
    vlt.data.eqlen  Returns 1 if objects to compare are equal and have same size
    
      B = vlt.data.eqlen(X,Y)
@@ -12,3 +13,5 @@
               vlt.data.eqlen([],[]) = 1
  
    See also:  vlt.data.eqtot, vlt.data.eqemp, EQ
+
+```

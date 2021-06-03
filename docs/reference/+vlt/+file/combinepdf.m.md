@@ -1,5 +1,6 @@
 # vlt.file.combinepdf
 
+```
   COMBINEPDF - Merge PDF (portable document format) files on Mac OS X
  
    vlt.file.combinepdf(MERGEFILENAME, FILE1, FILE2, ...)
@@ -14,3 +15,5 @@
    path format or should be in the local directory.
    
    This function will fail on platforms other than Mac OS X.
+
+```

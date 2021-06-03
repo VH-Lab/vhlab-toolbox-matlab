@@ -1,5 +1,6 @@
 # vlt.fit.linethresholdfit
 
+```
   LINETHRESHOLDFIT - Fit a linear function with a threshold
  
    [SLOPE, THRESHOLD, CURVE, GOF, FITINFO] = 
@@ -38,3 +39,5 @@
   See also: vlt.stats.quickregression (simple linear fit), FIT, vlt.fit.linepowerthreshold, vlt.fit.linepowerthresholdfit
  
   Jason Osik and Steve Van Hooser
+
+```

@@ -1,5 +1,6 @@
 # vlt.image.roi.ROI_flare_indexes
 
+```
   ROI_FLARE_INDEXES - flare a given ROI specified by indexes in an image
  
    INDEXESFLARED = ROI_FLARE_INDEXES(INDEXES, IMSIZE, N)
@@ -8,3 +9,5 @@
    indexes of the ROI flared out by N pixels in INDEXESFLARED.
  
    See also: IND2SUB, SUB2IND
+
+```

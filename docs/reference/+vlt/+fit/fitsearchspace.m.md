@@ -1,5 +1,6 @@
 # vlt.fit.fitsearchspace
 
+```
   FITSEARCHSPACE - return a set of vectors that span a range
   
   X0_VECTORS = vlt.fit.fitearchspace(LOWER_BOUNDS, UPPER_BOUNDS, NSPACE)
@@ -14,3 +15,5 @@
  
   Example:
      X0_vectors = vlt.fit.fitearchspace([0 0],[1 1],5)
+
+```

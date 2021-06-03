@@ -1,5 +1,6 @@
 # vlt.neuro.vision.oridir.index.fit2null
 
+```
   FIT2NULL - calculate the null (anti-preferred) response from a fit to direction
  
    NULL=vlt.neuro.vision.oridir.index.fit2null(RESPONSE)
@@ -15,3 +16,5 @@
    row is added equal to 0:359.
  
    See also: vlt.neuro.vision.oridir.index.fit2pref, vlt.neuro.vision.oridir.index.fit2orth
+
+```

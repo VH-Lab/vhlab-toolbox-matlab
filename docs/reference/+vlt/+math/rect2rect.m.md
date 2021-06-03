@@ -1,5 +1,6 @@
 # vlt.math.rect2rect
 
+```
   RECT2RECT - Convert among rectangle formats, eg [left bottom width height]->[left top right bottom]
  
     R_OUT = vlt.math.rect2rect(R_IN, DIRECTION)
@@ -15,3 +16,5 @@
     Case is ignored in the DIRECTION command.
  
     See also: RESCALE_RECT
+
+```

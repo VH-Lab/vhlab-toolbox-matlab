@@ -1,5 +1,6 @@
 # vlt.file.fullfilename
 
+```
   FULLFILENAME - return the full path file name of a file
  
   FULLNAME = vlt.file.fullfilename(FILENAME, [USEWHICH])
@@ -16,3 +17,5 @@
   Example:
     vlt.file.fullfilename('myfile.txt')  % returns [pwd filesep 'myfile.txt']
     vlt.file.fullfilename('/Users/me/myfile.txt') % returns ['/Users/me/myfile.txt']
+
+```

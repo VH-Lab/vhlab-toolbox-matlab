@@ -1,5 +1,6 @@
 # vlt.math.dog
 
+```
   vlt.math.dog - difference of gaussians
  
   Y = vlt.math.dog(X,P_DOG)
@@ -8,3 +9,5 @@
   vlt.math.dog(X,P_DOG) = [ a1*exp(-X.^2/(2*b1^2) - a2*exp(-X.^2/(2*b2^2)) ]
  
   See also: vlt.math.dog2dogf
+
+```

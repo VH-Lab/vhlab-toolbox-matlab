@@ -1,5 +1,6 @@
 # vlt.fit.otfit_carandini_conv0
 
+```
   vlt.fit.otfit_carandini_conv0 Converts between real params and fitting params
  
     [Rsp,Rp,Op,sig]=vlt.fit.otfit_carandini_conv0(DIR,P,VARARGIN)
@@ -36,3 +37,5 @@
                                                   by standard deviation
  
    See also:  vlt.fit.otfit_carandini0, vlt.fit.otfit_carandini_err0
+
+```

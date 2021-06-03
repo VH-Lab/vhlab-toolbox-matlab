@@ -1,5 +1,6 @@
 # vlt.neuro.minis.minidetection
 
+```
   MINIDETECTION - Detect minis from noise -- THIS FUNCTION DOESNT WORK YET, STILL IN DEVELOPMENT
  
    MINISTRUCT = vlt.neuro.minis.minidetection(DATA, SI, ...)
@@ -48,3 +49,5 @@
  
  
    See also:
+
+```

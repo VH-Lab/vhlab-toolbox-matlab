@@ -1,5 +1,6 @@
 # vlt.data.conditiongroup2cell
 
+```
    CONDITIONGROUP2VALUE - Convert a condition grouping matrix to a cell.
  
    [DATA, EXPER_INDEXES] = vlt.data.conditiongroup2cell(VALUES, EXPERIMENT_INDEXES, CONDITION_INDEXES)
@@ -18,3 +19,5 @@
    This function is useful for preparing data in the form expected by vlt.plot.median_within_between_plot
  
    The documentation is way longer than the code.
+
+```

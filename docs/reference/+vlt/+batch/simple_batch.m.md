@@ -1,5 +1,6 @@
 # vlt.batch.simple_batch
 
+```
   SIMPLE_BATCH - Run a simple batch
  
     vlt.batch.simple_batch(TEXTFILE)
@@ -13,3 +14,5 @@
     commandtorun -- the command that will be run
     savefile -- the output will be saved to this file
     errorsave -- if there is an error, the workspace will be saved to this file
+
+```

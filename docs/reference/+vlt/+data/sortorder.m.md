@@ -1,5 +1,6 @@
 # vlt.data.sortorder
 
+```
   SORTORDER - return the order of the sorted data
  
   I = vlt.data.sortorder([inputs])
@@ -13,3 +14,5 @@
     A = [ 3 2 1];
     I = vlt.data.sortorder(A) % returns 3 2 1
     A(I) % shows sorted values
+
+```

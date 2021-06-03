@@ -1,5 +1,6 @@
 # vlt.file.xml.xmlstruct_attributename2struct
 
+```
    XMLSTRUCT_ATTRIBUTE2STRUCT Convert an XMLSTRUCT Name/Attribute/Data structure to Matlab structure
    
    THESTRUCT = vlt.file.xml.xmlstruct_attributename2struct(XMLSTRUCT_INPUT)
@@ -14,3 +15,5 @@
    child will be used.
  
    See also: vlt.file.xml.parseXML
+
+```

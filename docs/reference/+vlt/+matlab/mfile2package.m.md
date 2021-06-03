@@ -1,5 +1,6 @@
 # vlt.matlab.mfile2package
 
+```
   MFILE2PACKAGE - return the package name (if any) from a full path mfile name
  
   PNAME = MFILE2PACKAGE(MFILENAME)
@@ -10,3 +11,5 @@
   Example: 
     pname = vlt.matlab.mfile2package('/Users/me/Documents/+mypackage/myf.m');
     % pname = 'mypackage.myf'
+
+```

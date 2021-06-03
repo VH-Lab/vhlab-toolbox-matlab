@@ -1,5 +1,6 @@
 # vlt.neuro.reverse_correlation.stim1d_motion
 
+```
   vlt.neuro.reverse_correlation.stim1d_motion -- Creates a 1-D (space) motion stimulus for model computation
  
     STIM=vlt.neuro.reverse_correlation.stim1d_motion(X, T, SPFREQ, SPPHASE, TF, DIR)
@@ -22,3 +23,5 @@
      of time; time is represented across the columns.
         
      Example: stim = vlt.neuro.reverse_correlation.stim1d_motion([0:0.1:10],[0:0.01:2],0.1,0,4,1);
+
+```

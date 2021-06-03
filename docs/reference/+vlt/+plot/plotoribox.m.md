@@ -1,5 +1,6 @@
 # vlt.plot.plotoribox
 
+```
   PLOTORIBOX - Plot an oriented box (as a patch) on a graph 
   
     H = vlt.plot.plotoribox(X,Y,ORI,WIDTH,HEIGHT,REVY)
@@ -17,3 +18,5 @@
     col ([0 0 0])            |  Fill color of the bar (default is
                              |    black [0 0 0]; white would be
                              |    [1 1 1]
+
+```

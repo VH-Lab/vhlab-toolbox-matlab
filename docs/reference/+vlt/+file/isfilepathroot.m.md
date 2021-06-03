@@ -1,5 +1,6 @@
 # vlt.file.isfilepathroot
 
+```
   ISFILEPATHATROOT - determine if a file path is at the root or not
  
   B = vlt.file.isfilepathroot(FILEPATH)
@@ -23,3 +24,5 @@
      % on Windows
      vlt.file.isfilepathroot('C:\myfolder\test') is true
      vlt.file.isfilepathroot('/C/myfolder/test') is true
+
+```

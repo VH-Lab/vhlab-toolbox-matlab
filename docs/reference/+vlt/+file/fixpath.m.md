@@ -1,5 +1,6 @@
 # vlt.file.fixpath
 
+```
     PATHN = FIXPATH (PATHSTR)
  
     Checks the string PATHSTR to see if it ends in FILESEP ('/' on the Unix
@@ -7,3 +8,5 @@
     attached at the end if necessary.
  
     See also: FILESEP
+
+```
