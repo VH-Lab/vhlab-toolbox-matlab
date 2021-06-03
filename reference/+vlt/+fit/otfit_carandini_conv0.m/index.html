@@ -3225,6 +3225,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../%2Bgit/git_stash.m/" class="md-nav__link">
+        vlt.git.git_stash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../%2Bgit/git_status.m/" class="md-nav__link">
         vlt.git.git_status
       </a>
@@ -9237,39 +9249,43 @@
                 
                 
                 <h1 id="vltfitotfit_carandini_conv0">vlt.fit.otfit_carandini_conv0<a class="headerlink" href="#vltfitotfit_carandini_conv0" title="Permanent link">&para;</a></h1>
-<p>vlt.fit.otfit_carandini_conv0 Converts between real params and fitting params</p>
-<div class="codehilite"><pre><span></span><code>[Rsp,Rp,Op,sig]=vlt.fit.otfit_carandini_conv0(DIR,P,VARARGIN)
-</code></pre></div>
+<div class="codehilite"><pre><span></span><code>  <span class="n">vlt</span><span class="o">.</span><span class="n">fit</span><span class="o">.</span><span class="n">otfit_carandini_conv0</span> <span class="n">Converts</span> <span class="n">between</span> <span class="n">real</span> <span class="n">params</span> <span class="ow">and</span> <span class="n">fitting</span> <span class="n">params</span>
 
-<p><strong>This is really an internal function.  Only read if you're interested
-   in modifying vlt.fit.otfit_carandini0.</strong></p>
-<p>Converts between the real parameters in the carandini fitting
-   function and those used by Matlab to find the minimum in the error
-   function.  For example, if the user specifies that Rsp must be
-   in the interval [0 10], then the fitting variable Rsp_ will take
-   values from -realmax to realmax but this value will be mapped onto
-   the interval [0 10]. </p>
-<p>DIR indicates direction of conversion.  'TOREAL' converts from
-   fitting variables to real, whereas 'TOFITTING' converts from
-   real variables to fitting variables.</p>
-<p>The variable arguments, given in name/value pairs, are used to
-   specify restrictions.
-     Valid name/value pairs:
-      'widthint', e.g., [15 180]              sig must be in given interval
-                                                  (default no restriction)
-      'spontfixed',  e.g., 0                  Rsp fixed to given value
-                                                  (default is not fixed)
-      'spontint', [0 10]                      Rsp must be in given interval
-                                                  (default is no restriction)
-      'Rpint', e.g., [0 2*maxdata]            Rp must bein given interval
-                                                  (default is no restriction)
-      'data', [obs11 obs12 ...; obs21 .. ;]   Observations to compute error</p>
-<div class="codehilite"><pre><span></span><code>  <span class="s1">&#39;</span><span class="s">stddev</span><span class="s1">&#39;</span>, [<span class="nv">stddev1</span> <span class="nv">stddev2</span> <span class="nv">stddev3</span> ...] <span class="nv">Standard</span> <span class="nv">deviation</span><span class="c1">; if provided,</span>
-                                              <span class="nv">squared</span> <span class="nv">error</span> <span class="nv">is</span> <span class="nv">normalized</span>
-                                              <span class="nv">by</span> <span class="nv">standard</span> <span class="nv">deviation</span>
-</code></pre></div>
+    <span class="p">[</span><span class="n">Rsp</span><span class="p">,</span><span class="n">Rp</span><span class="p">,</span><span class="n">Op</span><span class="p">,</span><span class="n">sig</span><span class="p">]</span><span class="o">=</span><span class="n">vlt</span><span class="o">.</span><span class="n">fit</span><span class="o">.</span><span class="n">otfit_carandini_conv0</span><span class="p">(</span><span class="n">DIR</span><span class="p">,</span><span class="n">P</span><span class="p">,</span><span class="n">VARARGIN</span><span class="p">)</span>
 
-<p>See also:  vlt.fit.otfit_carandini0, vlt.fit.otfit_carandini_err0</p>
+   <span class="o">**</span><span class="n">This</span> <span class="k">is</span> <span class="n">really</span> <span class="n">an</span> <span class="n">internal</span> <span class="n">function</span><span class="o">.</span>  <span class="n">Only</span> <span class="n">read</span> <span class="k">if</span> <span class="n">you</span><span class="s1">&#39;re interested</span>
+   <span class="ow">in</span> <span class="n">modifying</span> <span class="n">vlt</span><span class="o">.</span><span class="n">fit</span><span class="o">.</span><span class="n">otfit_carandini0</span><span class="o">.**</span>
+
+   <span class="n">Converts</span> <span class="n">between</span> <span class="n">the</span> <span class="n">real</span> <span class="n">parameters</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">carandini</span> <span class="n">fitting</span>
+   <span class="n">function</span> <span class="ow">and</span> <span class="n">those</span> <span class="n">used</span> <span class="n">by</span> <span class="n">Matlab</span> <span class="n">to</span> <span class="n">find</span> <span class="n">the</span> <span class="n">minimum</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">error</span>
+   <span class="n">function</span><span class="o">.</span>  <span class="n">For</span> <span class="n">example</span><span class="p">,</span> <span class="k">if</span> <span class="n">the</span> <span class="n">user</span> <span class="n">specifies</span> <span class="n">that</span> <span class="n">Rsp</span> <span class="n">must</span> <span class="n">be</span>
+   <span class="ow">in</span> <span class="n">the</span> <span class="n">interval</span> <span class="p">[</span><span class="mi">0</span> <span class="mi">10</span><span class="p">],</span> <span class="n">then</span> <span class="n">the</span> <span class="n">fitting</span> <span class="n">variable</span> <span class="n">Rsp_</span> <span class="n">will</span> <span class="n">take</span>
+   <span class="n">values</span> <span class="n">from</span> <span class="o">-</span><span class="n">realmax</span> <span class="n">to</span> <span class="n">realmax</span> <span class="n">but</span> <span class="n">this</span> <span class="n">value</span> <span class="n">will</span> <span class="n">be</span> <span class="n">mapped</span> <span class="n">onto</span>
+   <span class="n">the</span> <span class="n">interval</span> <span class="p">[</span><span class="mi">0</span> <span class="mi">10</span><span class="p">]</span><span class="o">.</span> 
+
+   <span class="n">DIR</span> <span class="n">indicates</span> <span class="n">direction</span> <span class="n">of</span> <span class="n">conversion</span><span class="o">.</span>  <span class="s1">&#39;TOREAL&#39;</span> <span class="n">converts</span> <span class="n">from</span>
+   <span class="n">fitting</span> <span class="n">variables</span> <span class="n">to</span> <span class="n">real</span><span class="p">,</span> <span class="n">whereas</span> <span class="s1">&#39;TOFITTING&#39;</span> <span class="n">converts</span> <span class="n">from</span>
+   <span class="n">real</span> <span class="n">variables</span> <span class="n">to</span> <span class="n">fitting</span> <span class="n">variables</span><span class="o">.</span>
+
+   <span class="n">The</span> <span class="n">variable</span> <span class="n">arguments</span><span class="p">,</span> <span class="n">given</span> <span class="ow">in</span> <span class="n">name</span><span class="o">/</span><span class="n">value</span> <span class="n">pairs</span><span class="p">,</span> <span class="n">are</span> <span class="n">used</span> <span class="n">to</span>
+   <span class="n">specify</span> <span class="n">restrictions</span><span class="o">.</span>
+     <span class="n">Valid</span> <span class="n">name</span><span class="o">/</span><span class="n">value</span> <span class="n">pairs</span><span class="p">:</span>
+      <span class="s1">&#39;widthint&#39;</span><span class="p">,</span> <span class="n">e</span><span class="o">.</span><span class="n">g</span><span class="o">.</span><span class="p">,</span> <span class="p">[</span><span class="mi">15</span> <span class="mi">180</span><span class="p">]</span>              <span class="n">sig</span> <span class="n">must</span> <span class="n">be</span> <span class="ow">in</span> <span class="n">given</span> <span class="n">interval</span>
+                                                  <span class="p">(</span><span class="n">default</span> <span class="n">no</span> <span class="n">restriction</span><span class="p">)</span>
+      <span class="s1">&#39;spontfixed&#39;</span><span class="p">,</span>  <span class="n">e</span><span class="o">.</span><span class="n">g</span><span class="o">.</span><span class="p">,</span> <span class="mi">0</span>                  <span class="n">Rsp</span> <span class="n">fixed</span> <span class="n">to</span> <span class="n">given</span> <span class="n">value</span>
+                                                  <span class="p">(</span><span class="n">default</span> <span class="k">is</span> <span class="ow">not</span> <span class="n">fixed</span><span class="p">)</span>
+      <span class="s1">&#39;spontint&#39;</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span> <span class="mi">10</span><span class="p">]</span>                      <span class="n">Rsp</span> <span class="n">must</span> <span class="n">be</span> <span class="ow">in</span> <span class="n">given</span> <span class="n">interval</span>
+                                                  <span class="p">(</span><span class="n">default</span> <span class="k">is</span> <span class="n">no</span> <span class="n">restriction</span><span class="p">)</span>
+      <span class="s1">&#39;Rpint&#39;</span><span class="p">,</span> <span class="n">e</span><span class="o">.</span><span class="n">g</span><span class="o">.</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span> <span class="mi">2</span><span class="o">*</span><span class="n">maxdata</span><span class="p">]</span>            <span class="n">Rp</span> <span class="n">must</span> <span class="n">bein</span> <span class="n">given</span> <span class="n">interval</span>
+                                                  <span class="p">(</span><span class="n">default</span> <span class="k">is</span> <span class="n">no</span> <span class="n">restriction</span><span class="p">)</span>
+      <span class="s1">&#39;data&#39;</span><span class="p">,</span> <span class="p">[</span><span class="n">obs11</span> <span class="n">obs12</span> <span class="o">...</span><span class="p">;</span> <span class="n">obs21</span> <span class="o">..</span> <span class="p">;]</span>   <span class="n">Observations</span> <span class="n">to</span> <span class="n">compute</span> <span class="n">error</span>
+
+      <span class="s1">&#39;stddev&#39;</span><span class="p">,</span> <span class="p">[</span><span class="n">stddev1</span> <span class="n">stddev2</span> <span class="n">stddev3</span> <span class="o">...</span><span class="p">]</span> <span class="n">Standard</span> <span class="n">deviation</span><span class="p">;</span> <span class="k">if</span> <span class="n">provided</span><span class="p">,</span>
+                                                  <span class="n">squared</span> <span class="n">error</span> <span class="k">is</span> <span class="n">normalized</span>
+                                                  <span class="n">by</span> <span class="n">standard</span> <span class="n">deviation</span>
+
+   <span class="n">See</span> <span class="n">also</span><span class="p">:</span>  <span class="n">vlt</span><span class="o">.</span><span class="n">fit</span><span class="o">.</span><span class="n">otfit_carandini0</span><span class="p">,</span> <span class="n">vlt</span><span class="o">.</span><span class="n">fit</span><span class="o">.</span><span class="n">otfit_carandini_err0</span>
+</code></pre></div>
                 
               
               

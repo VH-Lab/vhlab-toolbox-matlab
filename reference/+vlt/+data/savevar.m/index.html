@@ -3225,6 +3225,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../%2Bgit/git_stash.m/" class="md-nav__link">
+        vlt.git.git_stash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../%2Bgit/git_status.m/" class="md-nav__link">
         vlt.git.git_status
       </a>
@@ -9237,16 +9249,20 @@
                 
                 
                 <h1 id="vltdatasavevar">vlt.data.savevar<a class="headerlink" href="#vltdatasavevar" title="Permanent link">&para;</a></h1>
-<p>vlt.data.savevar - Saves variables in a Matlab file</p>
-<p>vlt.data.savevar(FILENAME,VARIABLE,VARIABLENAME,OPTIONSTRING1,OPTIONSTRING2,...)</p>
-<p>Saves the variable VARIABLE to the file FILENAME.  The name of 
-   the variable in the file will be VARIABLENAME.  OPTIONS is a 
-   string of options passed to the MATLAB SAVE command.</p>
-<p>For example:</p>
-<div class="codehilite"><pre><span></span><code> <span class="n">vlt</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">savevar</span><span class="p">(</span><span class="s1">&#39;myfile&#39;</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="s1">&#39;myvariable&#39;</span><span class="p">,</span><span class="s1">&#39;-append&#39;</span><span class="p">,</span><span class="s1">&#39;-mat&#39;</span><span class="p">);</span>
-</code></pre></div>
+<div class="codehilite"><pre><span></span><code>  <span class="n">vlt</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">savevar</span> <span class="o">-</span> <span class="n">Saves</span> <span class="n">variables</span> <span class="ow">in</span> <span class="n">a</span> <span class="n">Matlab</span> <span class="n">file</span>
 
-<p>See also: SAVE</p>
+   <span class="n">vlt</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">savevar</span><span class="p">(</span><span class="n">FILENAME</span><span class="p">,</span><span class="n">VARIABLE</span><span class="p">,</span><span class="n">VARIABLENAME</span><span class="p">,</span><span class="n">OPTIONSTRING1</span><span class="p">,</span><span class="n">OPTIONSTRING2</span><span class="p">,</span><span class="o">...</span><span class="p">)</span>
+
+   <span class="n">Saves</span> <span class="n">the</span> <span class="n">variable</span> <span class="n">VARIABLE</span> <span class="n">to</span> <span class="n">the</span> <span class="n">file</span> <span class="n">FILENAME</span><span class="o">.</span>  <span class="n">The</span> <span class="n">name</span> <span class="n">of</span> 
+   <span class="n">the</span> <span class="n">variable</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">file</span> <span class="n">will</span> <span class="n">be</span> <span class="n">VARIABLENAME</span><span class="o">.</span>  <span class="n">OPTIONS</span> <span class="k">is</span> <span class="n">a</span> 
+   <span class="n">string</span> <span class="n">of</span> <span class="n">options</span> <span class="n">passed</span> <span class="n">to</span> <span class="n">the</span> <span class="n">MATLAB</span> <span class="n">SAVE</span> <span class="n">command</span><span class="o">.</span>
+
+   <span class="n">For</span> <span class="n">example</span><span class="p">:</span>
+
+     <span class="n">vlt</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">savevar</span><span class="p">(</span><span class="s1">&#39;myfile&#39;</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="s1">&#39;myvariable&#39;</span><span class="p">,</span><span class="s1">&#39;-append&#39;</span><span class="p">,</span><span class="s1">&#39;-mat&#39;</span><span class="p">);</span>
+
+   <span class="n">See</span> <span class="n">also</span><span class="p">:</span> <span class="n">SAVE</span>
+</code></pre></div>
                 
               
               

@@ -3225,6 +3225,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../%2Bgit/git_stash.m/" class="md-nav__link">
+        vlt.git.git_stash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../%2Bgit/git_status.m/" class="md-nav__link">
         vlt.git.git_status
       </a>
@@ -9237,15 +9249,19 @@
                 
                 
                 <h1 id="vltdatanumornan">vlt.data.numornan<a class="headerlink" href="#vltdatanumornan" title="Permanent link">&para;</a></h1>
-<p>NUMORNAN - Return a number, or a NaN if the number is empty</p>
-<p>N_OUT = vlt.data.numornan(N_IN)
-     or 
-   N_OUT = vlt.data.numornan(N_IN, DIMS)</p>
-<p>If N_IN is not empty, then N_OUT is set to N_IN.
-   If N_IN is empty, then a NaN is returned.</p>
-<p>If the optional input argument DIMS is provided, then the NaN
-   matrix has dimension DIMS. If N_IN is smaller than DIMS, then
-   N_OUT is padded to be filled with NaN.</p>
+<div class="codehilite"><pre><span></span><code>  <span class="nv">NUMORNAN</span> <span class="o">-</span> <span class="k">Return</span> <span class="nv">a</span> <span class="nv">number</span>, <span class="nv">or</span> <span class="nv">a</span> <span class="nv">NaN</span> <span class="k">if</span> <span class="nv">the</span> <span class="nv">number</span> <span class="nv">is</span> <span class="nv">empty</span>
+
+   <span class="nv">N_OUT</span> <span class="o">=</span> <span class="nv">vlt</span>.<span class="nv">data</span>.<span class="nv">numornan</span><span class="ss">(</span><span class="nv">N_IN</span><span class="ss">)</span>
+     <span class="nv">or</span> 
+   <span class="nv">N_OUT</span> <span class="o">=</span> <span class="nv">vlt</span>.<span class="nv">data</span>.<span class="nv">numornan</span><span class="ss">(</span><span class="nv">N_IN</span>, <span class="nv">DIMS</span><span class="ss">)</span>
+
+   <span class="k">If</span> <span class="nv">N_IN</span> <span class="nv">is</span> <span class="nv">not</span> <span class="nv">empty</span>, <span class="k">then</span> <span class="nv">N_OUT</span> <span class="nv">is</span> <span class="nv">set</span> <span class="nv">to</span> <span class="nv">N_IN</span>.
+   <span class="k">If</span> <span class="nv">N_IN</span> <span class="nv">is</span> <span class="nv">empty</span>, <span class="k">then</span> <span class="nv">a</span> <span class="nv">NaN</span> <span class="nv">is</span> <span class="nv">returned</span>.
+
+   <span class="k">If</span> <span class="nv">the</span> <span class="nv">optional</span> <span class="nv">input</span> <span class="nv">argument</span> <span class="nv">DIMS</span> <span class="nv">is</span> <span class="nv">provided</span>, <span class="k">then</span> <span class="nv">the</span> <span class="nv">NaN</span>
+   <span class="nv">matrix</span> <span class="nv">has</span> <span class="nv">dimension</span> <span class="nv">DIMS</span>. <span class="k">If</span> <span class="nv">N_IN</span> <span class="nv">is</span> <span class="nv">smaller</span> <span class="nv">than</span> <span class="nv">DIMS</span>, <span class="k">then</span>
+   <span class="nv">N_OUT</span> <span class="nv">is</span> <span class="nv">padded</span> <span class="nv">to</span> <span class="nv">be</span> <span class="nv">filled</span> <span class="nv">with</span> <span class="nv">NaN</span>.
+</code></pre></div>
                 
               
               

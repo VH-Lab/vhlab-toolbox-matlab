@@ -3213,6 +3213,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../../%2Bgit/git_stash.m/" class="md-nav__link">
+        vlt.git.git_stash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../../%2Bgit/git_status.m/" class="md-nav__link">
         vlt.git.git_status
       </a>
@@ -9239,22 +9251,25 @@
                 
                 
                 <h1 id="vltneurospikesortingspikewaves2npointfeature">vlt.neuro.spikesorting.spikewaves2Npointfeature<a class="headerlink" href="#vltneurospikesortingspikewaves2npointfeature" title="Permanent link">&para;</a></h1>
-<p>SPIKEWAVES2NPOINTFEATURE - Select samples from spike waves</p>
-<div class="codehilite"><pre><span></span><code>FEATURES = vlt.neuro.spikesorting.spikewaves2Npointfeature(WAVES, SAMPLELIST)
-</code></pre></div>
+<div class="codehilite"><pre><span></span><code>  SPIKEWAVES2NPOINTFEATURE - Select samples from spike waves
 
-<p>Creates a set of "features" of the spike waveform WAVES by
-   grabbing samples at the locations SAMPLELIST.</p>
-<p>Inputs:
+    FEATURES = vlt.neuro.spikesorting.spikewaves2Npointfeature(WAVES, SAMPLELIST)
+
+   Creates a set of &quot;features&quot; of the spike waveform WAVES by
+   grabbing samples at the locations SAMPLELIST.
+
+   Inputs:
    WAVES: A NumSamples x NumChannels x NumSpikes list of spike
     waveforms. 
    SAMPLELIST:  A list of samples [S1 S2 ...] at which to sample
-    the spike waveforms on each channel.</p>
-<p>Outputs:
+    the spike waveforms on each channel.
+
+   Outputs:
    FEATURES:   A (NumSampleList*NumChannel) x NumSpikes list of
     features.  Each spike waveform is sampled on each channel at 
     the sample offsets in SAMPLELIST.  Each column has the sample
-    values on the first channel, followed by the second, and so on.</p>
+    values on the first channel, followed by the second, and so on.
+</code></pre></div>
                 
               
               

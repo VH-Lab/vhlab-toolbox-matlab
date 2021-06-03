@@ -3213,6 +3213,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../../%2Bgit/git_stash.m/" class="md-nav__link">
+        vlt.git.git_stash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../../%2Bgit/git_status.m/" class="md-nav__link">
         vlt.git.git_status
       </a>
@@ -9239,33 +9251,43 @@
                 
                 
                 <h1 id="vltneuromembranemle_normal_vm_fr">vlt.neuro.membrane.mle_normal_vm_fr<a class="headerlink" href="#vltneuromembranemle_normal_vm_fr" title="Permanent link">&para;</a></h1>
-<p>MLE_NORMAL_VM_FR - use maximum likelihood analysis to compute Poisson rate model of voltage -&gt; firing rate</p>
-<p>PARAMS = vlt.neuro.membrane.mle_normal_vm_fr(VM, FR, DELTAT,  ...)</p>
-<p>Estimate the parameters of a Normal rate function for fitting spike counts in bins and
-  voltage values in bins.</p>
-<p>VM should be measurements of membrane potential in bins of size DELTAT
-  FR should be measurements of firing rate (N_SPIKES/DELTAT)</p>
-<p>It returns the free PARAMS for each fit function type.
-  For 'linearthreshold', PARAMS is [slope threshold sigma] (see help vlt.fit.linepowerthreshold)
-  For 'vlt.fit.linepowerthreshold', PARAMS is [slope threshold exponent sigma]
-  For 'Normal', PARAMS is [rate sigma]</p>
-<p>This function also accepts name/value pairs that alter its behavior:
-  Parameters (default)              | Description</p>
-<hr />
-<p>fit_function ('linearthreshold')  | Uses function 'linearthreshold'
-                                    |  that has form R(v) = vlt.math.rectify(V-V0)
-                                    | The name of any function that takes X, Y
-                                    | as inputs and then name/value pairs can be used
-  fit_function_params               | Cell array of name/value pairs for the fit function.
-   {'threshold_start',0}            |</p>
-<p>Note: This function has been tested with some known values but has not been tested
-  to publication standard because the line of questioning petered out.
-  SDV thinks it is right but more testing would be good.</p>
-<p>Example: (simple test, without voltage dependence)
-    deltaT = 0.030; % 30 ms bins
-    fr = icdf('Normal',rand(500,1),2,1); % generate rates, rate of 2, standard deviation of 1
-    p_out =vlt.neuro.membrane.mle_normal_vm_fr(0*fr,fr,deltaT,'fit_function','Normal')<br />
-    p_out_matlab = mle(fr,'distribution','Normal' ) % they match</p>
+<div class="codehilite"><pre><span></span><code>  <span class="n">MLE_NORMAL_VM_FR</span> <span class="o">-</span> <span class="n">use</span> <span class="n">maximum</span> <span class="n">likelihood</span> <span class="n">analysis</span> <span class="n">to</span> <span class="n">compute</span> <span class="n">Poisson</span> <span class="n">rate</span> <span class="n">model</span> <span class="n">of</span> <span class="n">voltage</span> <span class="o">-&gt;</span> <span class="n">firing</span> <span class="n">rate</span>
+
+  <span class="n">PARAMS</span> <span class="o">=</span> <span class="n">vlt</span><span class="p">.</span><span class="n">neuro</span><span class="p">.</span><span class="n">membrane</span><span class="p">.</span><span class="n">mle_normal_vm_fr</span><span class="p">(</span><span class="n">VM</span><span class="p">,</span> <span class="n">FR</span><span class="p">,</span> <span class="n">DELTAT</span><span class="p">,</span>  <span class="p">...)</span>
+
+  <span class="n">Estimate</span> <span class="n">the</span> <span class="n">parameters</span> <span class="n">of</span> <span class="n">a</span> <span class="n">Normal</span> <span class="n">rate</span> <span class="n">function</span> <span class="k">for</span> <span class="n">fitting</span> <span class="n">spike</span> <span class="n">counts</span> <span class="k">in</span> <span class="n">bins</span> <span class="n">and</span>
+  <span class="n">voltage</span> <span class="n">values</span> <span class="k">in</span> <span class="n">bins</span><span class="p">.</span>
+
+  <span class="n">VM</span> <span class="n">should</span> <span class="n">be</span> <span class="n">measurements</span> <span class="n">of</span> <span class="n">membrane</span> <span class="n">potential</span> <span class="k">in</span> <span class="n">bins</span> <span class="n">of</span> <span class="n">size</span> <span class="n">DELTAT</span>
+  <span class="n">FR</span> <span class="n">should</span> <span class="n">be</span> <span class="n">measurements</span> <span class="n">of</span> <span class="n">firing</span> <span class="n">rate</span> <span class="p">(</span><span class="n">N_SPIKES</span><span class="o">/</span><span class="n">DELTAT</span><span class="p">)</span>
+
+  <span class="n">It</span> <span class="n">returns</span> <span class="n">the</span> <span class="n">free</span> <span class="n">PARAMS</span> <span class="k">for</span> <span class="n">each</span> <span class="n">fit</span> <span class="n">function</span> <span class="n">type</span><span class="p">.</span>
+  <span class="n">For</span> <span class="err">&#39;</span><span class="n">linearthreshold</span><span class="err">&#39;</span><span class="p">,</span> <span class="n">PARAMS</span> <span class="n">is</span> <span class="p">[</span><span class="n">slope</span> <span class="n">threshold</span> <span class="n">sigma</span><span class="p">]</span> <span class="p">(</span><span class="n">see</span> <span class="n">help</span> <span class="n">vlt</span><span class="p">.</span><span class="n">fit</span><span class="p">.</span><span class="n">linepowerthreshold</span><span class="p">)</span>
+  <span class="n">For</span> <span class="err">&#39;</span><span class="n">vlt</span><span class="p">.</span><span class="n">fit</span><span class="p">.</span><span class="n">linepowerthreshold</span><span class="err">&#39;</span><span class="p">,</span> <span class="n">PARAMS</span> <span class="n">is</span> <span class="p">[</span><span class="n">slope</span> <span class="n">threshold</span> <span class="n">exponent</span> <span class="n">sigma</span><span class="p">]</span>
+  <span class="n">For</span> <span class="err">&#39;</span><span class="n">Normal</span><span class="err">&#39;</span><span class="p">,</span> <span class="n">PARAMS</span> <span class="n">is</span> <span class="p">[</span><span class="n">rate</span> <span class="n">sigma</span><span class="p">]</span>
+
+  <span class="n">This</span> <span class="n">function</span> <span class="n">also</span> <span class="n">accepts</span> <span class="n">name</span><span class="o">/</span><span class="n">value</span> <span class="n">pairs</span> <span class="n">that</span> <span class="n">alter</span> <span class="n">its</span> <span class="nl">behavior</span><span class="p">:</span>
+  <span class="n">Parameters</span> <span class="p">(</span><span class="k">default</span><span class="p">)</span>              <span class="o">|</span> <span class="n">Description</span>
+  <span class="o">-----------------------------------------------------------------</span>
+  <span class="n">fit_function</span> <span class="p">(</span><span class="err">&#39;</span><span class="n">linearthreshold</span><span class="err">&#39;</span><span class="p">)</span>  <span class="o">|</span> <span class="n">Uses</span> <span class="n">function</span> <span class="err">&#39;</span><span class="n">linearthreshold</span><span class="err">&#39;</span>
+                                    <span class="o">|</span>  <span class="n">that</span> <span class="n">has</span> <span class="n">form</span> <span class="n">R</span><span class="p">(</span><span class="n">v</span><span class="p">)</span> <span class="o">=</span> <span class="n">vlt</span><span class="p">.</span><span class="n">math</span><span class="p">.</span><span class="n">rectify</span><span class="p">(</span><span class="n">V</span><span class="o">-</span><span class="n">V0</span><span class="p">)</span>
+                                    <span class="o">|</span> <span class="n">The</span> <span class="n">name</span> <span class="n">of</span> <span class="n">any</span> <span class="n">function</span> <span class="n">that</span> <span class="n">takes</span> <span class="n">X</span><span class="p">,</span> <span class="n">Y</span>
+                                    <span class="o">|</span> <span class="n">as</span> <span class="n">inputs</span> <span class="n">and</span> <span class="n">then</span> <span class="n">name</span><span class="o">/</span><span class="n">value</span> <span class="n">pairs</span> <span class="n">can</span> <span class="n">be</span> <span class="n">used</span>
+  <span class="n">fit_function_params</span>               <span class="o">|</span> <span class="n">Cell</span> <span class="n">array</span> <span class="n">of</span> <span class="n">name</span><span class="o">/</span><span class="n">value</span> <span class="n">pairs</span> <span class="k">for</span> <span class="n">the</span> <span class="n">fit</span> <span class="n">function</span><span class="p">.</span>
+   <span class="p">{</span><span class="err">&#39;</span><span class="n">threshold_start</span><span class="err">&#39;</span><span class="p">,</span><span class="mi">0</span><span class="p">}</span>            <span class="o">|</span>
+
+
+  <span class="nl">Note</span><span class="p">:</span> <span class="n">This</span> <span class="n">function</span> <span class="n">has</span> <span class="n">been</span> <span class="n">tested</span> <span class="n">with</span> <span class="n">some</span> <span class="n">known</span> <span class="n">values</span> <span class="n">but</span> <span class="n">has</span> <span class="n">not</span> <span class="n">been</span> <span class="n">tested</span>
+  <span class="n">to</span> <span class="n">publication</span> <span class="n">standard</span> <span class="n">because</span> <span class="n">the</span> <span class="n">line</span> <span class="n">of</span> <span class="n">questioning</span> <span class="n">petered</span> <span class="k">out</span><span class="p">.</span>
+  <span class="n">SDV</span> <span class="n">thinks</span> <span class="n">it</span> <span class="n">is</span> <span class="n">right</span> <span class="n">but</span> <span class="n">more</span> <span class="n">testing</span> <span class="n">would</span> <span class="n">be</span> <span class="n">good</span><span class="p">.</span>
+
+
+  <span class="nl">Example</span><span class="p">:</span> <span class="p">(</span><span class="n">simple</span> <span class="n">test</span><span class="p">,</span> <span class="n">without</span> <span class="n">voltage</span> <span class="n">dependence</span><span class="p">)</span>
+    <span class="n">deltaT</span> <span class="o">=</span> <span class="mf">0.030</span><span class="p">;</span> <span class="o">%</span> <span class="mi">30</span> <span class="n">ms</span> <span class="n">bins</span>
+    <span class="n">fr</span> <span class="o">=</span> <span class="n">icdf</span><span class="p">(</span><span class="err">&#39;</span><span class="n">Normal</span><span class="err">&#39;</span><span class="p">,</span><span class="n">rand</span><span class="p">(</span><span class="mi">500</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span> <span class="o">%</span> <span class="n">generate</span> <span class="n">rates</span><span class="p">,</span> <span class="n">rate</span> <span class="n">of</span> <span class="mi">2</span><span class="p">,</span> <span class="n">standard</span> <span class="n">deviation</span> <span class="n">of</span> <span class="mi">1</span>
+    <span class="n">p_out</span> <span class="o">=</span><span class="n">vlt</span><span class="p">.</span><span class="n">neuro</span><span class="p">.</span><span class="n">membrane</span><span class="p">.</span><span class="n">mle_normal_vm_fr</span><span class="p">(</span><span class="mi">0</span><span class="o">*</span><span class="n">fr</span><span class="p">,</span><span class="n">fr</span><span class="p">,</span><span class="n">deltaT</span><span class="p">,</span><span class="err">&#39;</span><span class="n">fit_function</span><span class="sc">&#39;,&#39;</span><span class="n">Normal</span><span class="err">&#39;</span><span class="p">)</span>  
+    <span class="n">p_out_matlab</span> <span class="o">=</span> <span class="n">mle</span><span class="p">(</span><span class="n">fr</span><span class="p">,</span><span class="err">&#39;</span><span class="n">distribution</span><span class="sc">&#39;,&#39;</span><span class="n">Normal</span><span class="err">&#39;</span> <span class="p">)</span> <span class="o">%</span> <span class="n">they</span> <span class="n">match</span>
+</code></pre></div>
                 
               
               

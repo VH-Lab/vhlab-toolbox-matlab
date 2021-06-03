@@ -3213,6 +3213,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../%2Bgit/git_stash.m/" class="md-nav__link">
+        vlt.git.git_stash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../%2Bgit/git_status.m/" class="md-nav__link">
         vlt.git.git_status
       </a>
@@ -9237,17 +9249,22 @@
                 
                 
                 <h1 id="vltmathrescale_subrect">vlt.math.rescale_subrect<a class="headerlink" href="#vltmathrescale_subrect" title="Permanent link">&para;</a></h1>
-<p>RESCALE_SUBRECT - resize a rectangle within a larger rectangle according to a scale and shift</p>
-<p>[NEWRECT] = vlt.math.rescale_subrect(SUBRECT, ORIGINAL_RECT, SCALED_RECT, [FORMAT])</p>
-<p>This function rescales a rectangle SUBRECT, whose coordinates are located with
-   respect to ORIGINAL_RECT. The same transformation that would be required to scale and
-   shift ORIGINAL_RECT to SCALED_RECT is applied to SUBRECT, and returned in NEWRECT.</p>
-<p>FORMAT is an optional argument that specifies the format of the rectangles.
-   FORMAT == 1 (default) means [left top right bottom]
-   FORMAT == 2 means [left bottom right top]
-   FORMAT == 3 means [left bottom width height]
-   FORMAT == 4 means [left top width height]</p>
-<p>See also: vlt.math.rescale, vlt.math.rect2rect</p>
+<div class="codehilite"><pre><span></span><code><span class="w">  </span><span class="n">RESCALE_SUBRECT</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">resize</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">rectangle</span><span class="w"> </span><span class="k">within</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">larger</span><span class="w"> </span><span class="n">rectangle</span><span class="w"> </span><span class="n">according</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">scale</span><span class="w"> </span><span class="ow">and</span><span class="w"> </span><span class="n">shift</span><span class="w"></span>
+
+<span class="w">   </span><span class="o">[</span><span class="n">NEWRECT</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">vlt</span><span class="p">.</span><span class="n">math</span><span class="p">.</span><span class="n">rescale_subrect</span><span class="p">(</span><span class="n">SUBRECT</span><span class="p">,</span><span class="w"> </span><span class="n">ORIGINAL_RECT</span><span class="p">,</span><span class="w"> </span><span class="n">SCALED_RECT</span><span class="p">,</span><span class="w"> </span><span class="o">[</span><span class="n">FORMAT</span><span class="o">]</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">   </span><span class="n">This</span><span class="w"> </span><span class="k">function</span><span class="w"> </span><span class="n">rescales</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">rectangle</span><span class="w"> </span><span class="n">SUBRECT</span><span class="p">,</span><span class="w"> </span><span class="n">whose</span><span class="w"> </span><span class="n">coordinates</span><span class="w"> </span><span class="k">are</span><span class="w"> </span><span class="n">located</span><span class="w"> </span><span class="k">with</span><span class="w"></span>
+<span class="w">   </span><span class="n">respect</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="n">ORIGINAL_RECT</span><span class="p">.</span><span class="w"> </span><span class="n">The</span><span class="w"> </span><span class="n">same</span><span class="w"> </span><span class="n">transformation</span><span class="w"> </span><span class="n">that</span><span class="w"> </span><span class="n">would</span><span class="w"> </span><span class="n">be</span><span class="w"> </span><span class="n">required</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="n">scale</span><span class="w"> </span><span class="ow">and</span><span class="w"></span>
+<span class="w">   </span><span class="n">shift</span><span class="w"> </span><span class="n">ORIGINAL_RECT</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="n">SCALED_RECT</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="n">applied</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="n">SUBRECT</span><span class="p">,</span><span class="w"> </span><span class="ow">and</span><span class="w"> </span><span class="n">returned</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">NEWRECT</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">   </span><span class="nf">FORMAT</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="n">an</span><span class="w"> </span><span class="n">optional</span><span class="w"> </span><span class="n">argument</span><span class="w"> </span><span class="n">that</span><span class="w"> </span><span class="n">specifies</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="nf">format</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">rectangles</span><span class="p">.</span><span class="w"></span>
+<span class="w">   </span><span class="nf">FORMAT</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="p">(</span><span class="k">default</span><span class="p">)</span><span class="w"> </span><span class="n">means</span><span class="w"> </span><span class="o">[</span><span class="n">left top right bottom</span><span class="o">]</span><span class="w"></span>
+<span class="w">   </span><span class="nf">FORMAT</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="n">means</span><span class="w"> </span><span class="o">[</span><span class="n">left bottom right top</span><span class="o">]</span><span class="w"></span>
+<span class="w">   </span><span class="nf">FORMAT</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="n">means</span><span class="w"> </span><span class="o">[</span><span class="n">left bottom width height</span><span class="o">]</span><span class="w"></span>
+<span class="w">   </span><span class="nf">FORMAT</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">4</span><span class="w"> </span><span class="n">means</span><span class="w"> </span><span class="o">[</span><span class="n">left top width height</span><span class="o">]</span><span class="w"></span>
+
+<span class="w">   </span><span class="n">See</span><span class="w"> </span><span class="nl">also</span><span class="p">:</span><span class="w"> </span><span class="n">vlt</span><span class="p">.</span><span class="n">math</span><span class="p">.</span><span class="n">rescale</span><span class="p">,</span><span class="w"> </span><span class="n">vlt</span><span class="p">.</span><span class="n">math</span><span class="p">.</span><span class="n">rect2rect</span><span class="w"></span>
+</code></pre></div>
                 
               
               

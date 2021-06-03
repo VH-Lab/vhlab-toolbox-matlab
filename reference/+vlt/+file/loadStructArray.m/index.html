@@ -3225,6 +3225,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../%2Bgit/git_stash.m/" class="md-nav__link">
+        vlt.git.git_stash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../%2Bgit/git_status.m/" class="md-nav__link">
         vlt.git.git_status
       </a>
@@ -9237,17 +9249,23 @@
                 
                 
                 <h1 id="vltfileloadstructarray">vlt.file.loadStructArray<a class="headerlink" href="#vltfileloadstructarray" title="Permanent link">&para;</a></h1>
-<p>LOADSTRUCTARRAY - load a struct array from a tab-delimited file</p>
-<p>A = vlt.file.loadStructArray(FNAME [, FIELDS])</p>
-<p>Reads tab-delimited text from the file FNAME to create an array of
-  Matlab STRUCT objects. If FIELDS is not provided, then the field names
-  are read from the first row of FNAME.</p>
-<p>If the header row contains strings that are not valid Matlab structure
-  field names % (because they have a space or begin with a number for example), 
-  then they will be converted to valid variable names with 
-  MATLAB.LANG.MAKEVALIDNAME.</p>
-<p>Each subsequent row contains the values for each entry in the STRUCT array.</p>
-<p>See also: vlt.file.saveStructArray, vlt.data.tabstr2struct</p>
+<div class="codehilite"><pre><span></span><code>  <span class="n">LOADSTRUCTARRAY</span> <span class="o">-</span> <span class="nb">load</span> <span class="n">a</span> <span class="n">struct</span> <span class="n">array</span> <span class="n">from</span> <span class="n">a</span> <span class="n">tab</span><span class="o">-</span><span class="n">delimited</span> <span class="n">file</span>
+
+  <span class="n">A</span> <span class="o">=</span> <span class="n">vlt</span><span class="o">.</span><span class="n">file</span><span class="o">.</span><span class="n">loadStructArray</span><span class="p">(</span><span class="n">FNAME</span> <span class="p">[,</span> <span class="n">FIELDS</span><span class="p">])</span>
+
+  <span class="n">Reads</span> <span class="n">tab</span><span class="o">-</span><span class="n">delimited</span> <span class="n">text</span> <span class="n">from</span> <span class="n">the</span> <span class="n">file</span> <span class="n">FNAME</span> <span class="n">to</span> <span class="n">create</span> <span class="n">an</span> <span class="n">array</span> <span class="n">of</span>
+  <span class="n">Matlab</span> <span class="n">STRUCT</span> <span class="n">objects</span><span class="o">.</span> <span class="n">If</span> <span class="n">FIELDS</span> <span class="k">is</span> <span class="ow">not</span> <span class="n">provided</span><span class="p">,</span> <span class="n">then</span> <span class="n">the</span> <span class="n">field</span> <span class="n">names</span>
+  <span class="n">are</span> <span class="n">read</span> <span class="n">from</span> <span class="n">the</span> <span class="n">first</span> <span class="n">row</span> <span class="n">of</span> <span class="n">FNAME</span><span class="o">.</span>
+
+  <span class="n">If</span> <span class="n">the</span> <span class="n">header</span> <span class="n">row</span> <span class="n">contains</span> <span class="n">strings</span> <span class="n">that</span> <span class="n">are</span> <span class="ow">not</span> <span class="n">valid</span> <span class="n">Matlab</span> <span class="n">structure</span>
+  <span class="n">field</span> <span class="n">names</span> <span class="o">%</span> <span class="p">(</span><span class="n">because</span> <span class="n">they</span> <span class="n">have</span> <span class="n">a</span> <span class="n">space</span> <span class="ow">or</span> <span class="n">begin</span> <span class="n">with</span> <span class="n">a</span> <span class="n">number</span> <span class="k">for</span> <span class="n">example</span><span class="p">),</span> 
+  <span class="n">then</span> <span class="n">they</span> <span class="n">will</span> <span class="n">be</span> <span class="n">converted</span> <span class="n">to</span> <span class="n">valid</span> <span class="n">variable</span> <span class="n">names</span> <span class="n">with</span> 
+  <span class="n">MATLAB</span><span class="o">.</span><span class="n">LANG</span><span class="o">.</span><span class="n">MAKEVALIDNAME</span><span class="o">.</span>
+
+  <span class="n">Each</span> <span class="n">subsequent</span> <span class="n">row</span> <span class="n">contains</span> <span class="n">the</span> <span class="n">values</span> <span class="k">for</span> <span class="n">each</span> <span class="n">entry</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">STRUCT</span> <span class="n">array</span><span class="o">.</span>
+
+  <span class="n">See</span> <span class="n">also</span><span class="p">:</span> <span class="n">vlt</span><span class="o">.</span><span class="n">file</span><span class="o">.</span><span class="n">saveStructArray</span><span class="p">,</span> <span class="n">vlt</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">tabstr2struct</span>
+</code></pre></div>
                 
               
               

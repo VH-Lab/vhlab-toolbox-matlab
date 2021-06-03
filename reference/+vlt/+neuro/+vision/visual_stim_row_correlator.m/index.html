@@ -3213,6 +3213,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../../%2Bgit/git_stash.m/" class="md-nav__link">
+        vlt.git.git_stash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../../%2Bgit/git_status.m/" class="md-nav__link">
         vlt.git.git_status
       </a>
@@ -9239,32 +9251,40 @@
                 
                 
                 <h1 id="vltneurovisionvisual_stim_row_correlator">vlt.neuro.vision.visual_stim_row_correlator<a class="headerlink" href="#vltneurovisionvisual_stim_row_correlator" title="Permanent link">&para;</a></h1>
-<p>VISUAL_STIM_ROW_CORRELATOR - Compute the next visual stimulus frame for a given correlator</p>
-<p>NEXT_FRAME = vlt.neuro.vision.visual_stim_row_correlator(FRAME_DATA, CORRELATOR, SIGN)</p>
-<p>Given a frame of visual stimulus data that consists of -1's and 1s
-   (FRAME_DATA), then a new frame (NEXT_FRAME) of -1's and 1s is created
-   such that the correlation between the new frame and the old frame is
-   as described in CORRELATOR (see below).</p>
-<p>The algorithm operates on the rows of the stimulus, so that if the
-   stimulus frame has many rows, each row will be operated on independently.</p>
-<p>CORRELATOR: A number that indicates which correlator to use
-      0: 2-point leftward correlator
-      1: 2-point rightward correlator
-      2: 3-point converging leftward correlator
-      3: 3-point converging rightward correlator
-      4: 3-point diverging leftward correlator
-      5: 3-point diverging rightward correlator</p>
-<p>SIGN: the sign of the correlator; should the product be -1 or 1?</p>
-<p>For a graphical depiction of these correlators, see Clark, Fitzgerald, and Ales et al.,
-   Nature Neuroscience 2014 (in particular, Supplementary Figure 4)</p>
-<p>Example: Compute 10 frames for a single row, using a leftward 2-point correlator (sign 1)
-       correlator = 0;
-       corelator_sign = 1;
-       row_data = [ 1 1 -1 1 -1 -1 1 1]; % made up data
-       for i=1:10,
-          row_data(i+1,:) = vlt.neuro.vision.visual_stim_row_correlator(row_data(i,:),correlator,correlator_sign);
-       end;
-       row_data,</p>
+<div class="codehilite"><pre><span></span><code>  <span class="nt">VISUAL_STIM_ROW_CORRELATOR</span> <span class="nt">-</span> <span class="nt">Compute</span> <span class="nt">the</span> <span class="nt">next</span> <span class="nt">visual</span> <span class="nt">stimulus</span> <span class="nt">frame</span> <span class="nt">for</span> <span class="nt">a</span> <span class="nt">given</span> <span class="nt">correlator</span>
+
+   <span class="nt">NEXT_FRAME</span> <span class="o">=</span> <span class="nt">vlt</span><span class="p">.</span><span class="nc">neuro</span><span class="p">.</span><span class="nc">vision</span><span class="p">.</span><span class="nc">visual_stim_row_correlator</span><span class="o">(</span><span class="nt">FRAME_DATA</span><span class="o">,</span> <span class="nt">CORRELATOR</span><span class="o">,</span> <span class="nt">SIGN</span><span class="o">)</span>
+
+   <span class="nt">Given</span> <span class="nt">a</span> <span class="nt">frame</span> <span class="nt">of</span> <span class="nt">visual</span> <span class="nt">stimulus</span> <span class="nt">data</span> <span class="nt">that</span> <span class="nt">consists</span> <span class="nt">of</span> <span class="nt">-1</span><span class="s1">&#39;s and 1s</span>
+<span class="s1">   (FRAME_DATA), then a new frame (NEXT_FRAME) of -1&#39;</span><span class="nt">s</span> <span class="nt">and</span> <span class="nt">1s</span> <span class="nt">is</span> <span class="nt">created</span>
+   <span class="nt">such</span> <span class="nt">that</span> <span class="nt">the</span> <span class="nt">correlation</span> <span class="nt">between</span> <span class="nt">the</span> <span class="nt">new</span> <span class="nt">frame</span> <span class="nt">and</span> <span class="nt">the</span> <span class="nt">old</span> <span class="nt">frame</span> <span class="nt">is</span>
+   <span class="nt">as</span> <span class="nt">described</span> <span class="nt">in</span> <span class="nt">CORRELATOR</span> <span class="o">(</span><span class="nt">see</span> <span class="nt">below</span><span class="o">).</span>
+
+   <span class="nt">The</span> <span class="nt">algorithm</span> <span class="nt">operates</span> <span class="nt">on</span> <span class="nt">the</span> <span class="nt">rows</span> <span class="nt">of</span> <span class="nt">the</span> <span class="nt">stimulus</span><span class="o">,</span> <span class="nt">so</span> <span class="nt">that</span> <span class="nt">if</span> <span class="nt">the</span>
+   <span class="nt">stimulus</span> <span class="nt">frame</span> <span class="nt">has</span> <span class="nt">many</span> <span class="nt">rows</span><span class="o">,</span> <span class="nt">each</span> <span class="nt">row</span> <span class="nt">will</span> <span class="nt">be</span> <span class="nt">operated</span> <span class="nt">on</span> <span class="nt">independently</span><span class="o">.</span>
+
+   <span class="nt">CORRELATOR</span><span class="o">:</span> <span class="nt">A</span> <span class="nt">number</span> <span class="nt">that</span> <span class="nt">indicates</span> <span class="nt">which</span> <span class="nt">correlator</span> <span class="nt">to</span> <span class="nt">use</span>
+      <span class="nt">0</span><span class="o">:</span> <span class="nt">2-point</span> <span class="nt">leftward</span> <span class="nt">correlator</span>
+      <span class="nt">1</span><span class="o">:</span> <span class="nt">2-point</span> <span class="nt">rightward</span> <span class="nt">correlator</span>
+      <span class="nt">2</span><span class="o">:</span> <span class="nt">3-point</span> <span class="nt">converging</span> <span class="nt">leftward</span> <span class="nt">correlator</span>
+      <span class="nt">3</span><span class="o">:</span> <span class="nt">3-point</span> <span class="nt">converging</span> <span class="nt">rightward</span> <span class="nt">correlator</span>
+      <span class="nt">4</span><span class="o">:</span> <span class="nt">3-point</span> <span class="nt">diverging</span> <span class="nt">leftward</span> <span class="nt">correlator</span>
+      <span class="nt">5</span><span class="o">:</span> <span class="nt">3-point</span> <span class="nt">diverging</span> <span class="nt">rightward</span> <span class="nt">correlator</span>
+
+   <span class="nt">SIGN</span><span class="o">:</span> <span class="nt">the</span> <span class="nt">sign</span> <span class="nt">of</span> <span class="nt">the</span> <span class="nt">correlator</span><span class="o">;</span> <span class="nt">should</span> <span class="nt">the</span> <span class="nt">product</span> <span class="nt">be</span> <span class="nt">-1</span> <span class="nt">or</span> <span class="nt">1</span><span class="o">?</span>
+
+   <span class="nt">For</span> <span class="nt">a</span> <span class="nt">graphical</span> <span class="nt">depiction</span> <span class="nt">of</span> <span class="nt">these</span> <span class="nt">correlators</span><span class="o">,</span> <span class="nt">see</span> <span class="nt">Clark</span><span class="o">,</span> <span class="nt">Fitzgerald</span><span class="o">,</span> <span class="nt">and</span> <span class="nt">Ales</span> <span class="nt">et</span> <span class="nt">al</span><span class="o">.,</span>
+   <span class="nt">Nature</span> <span class="nt">Neuroscience</span> <span class="nt">2014</span> <span class="o">(</span><span class="nt">in</span> <span class="nt">particular</span><span class="o">,</span> <span class="nt">Supplementary</span> <span class="nt">Figure</span> <span class="nt">4</span><span class="o">)</span>
+
+   <span class="nt">Example</span><span class="o">:</span> <span class="nt">Compute</span> <span class="nt">10</span> <span class="nt">frames</span> <span class="nt">for</span> <span class="nt">a</span> <span class="nt">single</span> <span class="nt">row</span><span class="o">,</span> <span class="nt">using</span> <span class="nt">a</span> <span class="nt">leftward</span> <span class="nt">2-point</span> <span class="nt">correlator</span> <span class="o">(</span><span class="nt">sign</span> <span class="nt">1</span><span class="o">)</span>
+       <span class="nt">correlator</span> <span class="o">=</span> <span class="nt">0</span><span class="o">;</span>
+       <span class="nt">corelator_sign</span> <span class="o">=</span> <span class="nt">1</span><span class="o">;</span>
+       <span class="nt">row_data</span> <span class="o">=</span> <span class="cp">[</span> <span class="mi">1</span> <span class="mi">1</span> <span class="o">-</span><span class="mi">1</span> <span class="mi">1</span> <span class="o">-</span><span class="mi">1</span> <span class="o">-</span><span class="mi">1</span> <span class="mi">1</span> <span class="mi">1</span><span class="cp">]</span><span class="o">;</span> <span class="o">%</span> <span class="nt">made</span> <span class="nt">up</span> <span class="nt">data</span>
+       <span class="nt">for</span> <span class="nt">i</span><span class="o">=</span><span class="nt">1</span><span class="p">:</span><span class="nd">10</span><span class="o">,</span>
+          <span class="nt">row_data</span><span class="o">(</span><span class="nt">i</span><span class="o">+</span><span class="nt">1</span><span class="o">,:)</span> <span class="o">=</span> <span class="nt">vlt</span><span class="p">.</span><span class="nc">neuro</span><span class="p">.</span><span class="nc">vision</span><span class="p">.</span><span class="nc">visual_stim_row_correlator</span><span class="o">(</span><span class="nt">row_data</span><span class="o">(</span><span class="nt">i</span><span class="o">,:),</span><span class="nt">correlator</span><span class="o">,</span><span class="nt">correlator_sign</span><span class="o">);</span>
+       <span class="nt">end</span><span class="o">;</span>
+       <span class="nt">row_data</span><span class="o">,</span>
+</code></pre></div>
                 
               
               

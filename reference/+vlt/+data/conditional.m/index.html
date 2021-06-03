@@ -3225,6 +3225,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../%2Bgit/git_stash.m/" class="md-nav__link">
+        vlt.git.git_stash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../%2Bgit/git_status.m/" class="md-nav__link">
         vlt.git.git_status
       </a>
@@ -9237,18 +9249,19 @@
                 
                 
                 <h1 id="vltdataconditional">vlt.data.conditional<a class="headerlink" href="#vltdataconditional" title="Permanent link">&para;</a></h1>
-<p>CONDITIONAL - Return A or B depending on result of a true/false test</p>
-<div class="codehilite"><pre><span></span><code><span class="nt">C</span> <span class="o">=</span> <span class="nt">vlt</span><span class="p">.</span><span class="nc">data</span><span class="p">.</span><span class="nc">conditional</span><span class="o">(</span><span class="nt">TEST</span><span class="o">,</span><span class="nt">A</span><span class="o">,</span><span class="nt">B</span><span class="o">)</span>
+<div class="codehilite"><pre><span></span><code>  <span class="nt">CONDITIONAL</span> <span class="nt">-</span> <span class="nt">Return</span> <span class="nt">A</span> <span class="nt">or</span> <span class="nt">B</span> <span class="nt">depending</span> <span class="nt">on</span> <span class="nt">result</span> <span class="nt">of</span> <span class="nt">a</span> <span class="nt">true</span><span class="o">/</span><span class="nt">false</span> <span class="nt">test</span>
 
-<span class="nt">If</span> <span class="nt">TEST</span> <span class="nt">is</span> <span class="o">&gt;</span><span class="nt">0</span><span class="o">,</span> <span class="nt">then</span> <span class="nt">C</span> <span class="o">=</span> <span class="nt">A</span><span class="o">.</span> <span class="nt">Otherwise</span><span class="o">,</span> <span class="nt">C</span> <span class="o">=</span> <span class="nt">B</span><span class="o">.</span>
+    <span class="nt">C</span> <span class="o">=</span> <span class="nt">vlt</span><span class="p">.</span><span class="nc">data</span><span class="p">.</span><span class="nc">conditional</span><span class="o">(</span><span class="nt">TEST</span><span class="o">,</span><span class="nt">A</span><span class="o">,</span><span class="nt">B</span><span class="o">)</span>
 
-<span class="nt">Same</span> <span class="nt">as</span> <span class="nt">in</span> <span class="nt">C</span> <span class="nt">language</span><span class="o">:</span>  <span class="nt">C</span> <span class="o">=</span> <span class="o">(</span><span class="nt">TEST</span><span class="o">)</span> <span class="o">?</span> <span class="nt">A</span> <span class="o">:</span> <span class="nt">B</span><span class="o">;</span>
+    <span class="nt">If</span> <span class="nt">TEST</span> <span class="nt">is</span> <span class="o">&gt;</span><span class="nt">0</span><span class="o">,</span> <span class="nt">then</span> <span class="nt">C</span> <span class="o">=</span> <span class="nt">A</span><span class="o">.</span> <span class="nt">Otherwise</span><span class="o">,</span> <span class="nt">C</span> <span class="o">=</span> <span class="nt">B</span><span class="o">.</span> 
 
-<span class="nt">See</span> <span class="nt">also</span><span class="o">:</span>  <span class="nt">SIGN</span><span class="o">.</span> <span class="nt">In</span> <span class="nt">C</span> <span class="nt">language</span><span class="o">:</span> <span class="nt">C</span> <span class="nt">language</span> <span class="nt">ternary</span> <span class="nt">operator</span><span class="o">,</span>
-<span class="nt">ternary</span> <span class="nt">conditional</span> <span class="nt">operator</span><span class="o">,</span> <span class="nt">conditional</span> <span class="nt">operator</span>
+    <span class="nt">Same</span> <span class="nt">as</span> <span class="nt">in</span> <span class="nt">C</span> <span class="nt">language</span><span class="o">:</span>  <span class="nt">C</span> <span class="o">=</span> <span class="o">(</span><span class="nt">TEST</span><span class="o">)</span> <span class="o">?</span> <span class="nt">A</span> <span class="o">:</span> <span class="nt">B</span><span class="o">;</span>
 
-<span class="nt">Example</span><span class="o">:</span>
-  <span class="nt">C</span> <span class="o">=</span> <span class="nt">vlt</span><span class="p">.</span><span class="nc">data</span><span class="p">.</span><span class="nc">conditional</span><span class="o">(</span><span class="nt">3</span><span class="o">&lt;</span><span class="nt">5</span><span class="o">,</span><span class="nt">1</span><span class="o">,</span><span class="nt">0</span><span class="o">)</span> <span class="o">%</span> <span class="nt">C</span> <span class="nt">will</span> <span class="nt">be</span> <span class="nt">1</span>
+    <span class="nt">See</span> <span class="nt">also</span><span class="o">:</span>  <span class="nt">SIGN</span><span class="o">.</span> <span class="nt">In</span> <span class="nt">C</span> <span class="nt">language</span><span class="o">:</span> <span class="nt">C</span> <span class="nt">language</span> <span class="nt">ternary</span> <span class="nt">operator</span><span class="o">,</span>
+    <span class="nt">ternary</span> <span class="nt">conditional</span> <span class="nt">operator</span><span class="o">,</span> <span class="nt">conditional</span> <span class="nt">operator</span>
+
+    <span class="nt">Example</span><span class="o">:</span>
+      <span class="nt">C</span> <span class="o">=</span> <span class="nt">vlt</span><span class="p">.</span><span class="nc">data</span><span class="p">.</span><span class="nc">conditional</span><span class="o">(</span><span class="nt">3</span><span class="o">&lt;</span><span class="nt">5</span><span class="o">,</span><span class="nt">1</span><span class="o">,</span><span class="nt">0</span><span class="o">)</span> <span class="o">%</span> <span class="nt">C</span> <span class="nt">will</span> <span class="nt">be</span> <span class="nt">1</span>
 </code></pre></div>
                 
               

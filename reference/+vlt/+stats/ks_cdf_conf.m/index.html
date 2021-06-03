@@ -3213,6 +3213,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../%2Bgit/git_stash.m/" class="md-nav__link">
+        vlt.git.git_stash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../%2Bgit/git_status.m/" class="md-nav__link">
         vlt.git.git_status
       </a>
@@ -9237,19 +9249,20 @@
                 
                 
                 <h1 id="vltstatsks_cdf_conf">vlt.stats.ks_cdf_conf<a class="headerlink" href="#vltstatsks_cdf_conf" title="Permanent link">&para;</a></h1>
-<p>KS_CDF_CONF Kolmogorov-Smirnov confidence interval for a data set.
-    [Xvalues,sampleCDF,minCDF,maxCDF] = vlt.stats.ks_cdf_conf(X1,ALPHA)
-    performs a Kolmogorov-Smirnov (K-S) test to determine the confidence
-    interval for independent random samples X1.
-    ALPHA is the desired significance level (default = 0.05); 
-    observations, indicated by NaNs (Not-a-Number), are ignored.</p>
-<div class="codehilite"><pre><span></span><code><span class="nv">The</span> <span class="nv">asymptotic</span> <span class="nv">P</span><span class="o">-</span><span class="nv">value</span> <span class="nv">becomes</span> <span class="nv">very</span> <span class="nv">accurate</span> <span class="k">for</span> <span class="nv">large</span> <span class="nv">sample</span> <span class="nv">sizes</span>, <span class="nv">and</span>
-<span class="nv">is</span> <span class="nv">believed</span> <span class="nv">to</span> <span class="nv">be</span> <span class="nv">reasonably</span> <span class="nv">accurate</span> <span class="k">for</span> <span class="nv">sample</span> <span class="nv">sizes</span> <span class="nv">N1</span> <span class="nv">and</span> <span class="nv">N2</span> <span class="nv">such</span> 
-<span class="nv">that</span> <span class="ss">(</span><span class="nv">N1</span><span class="o">*</span><span class="nv">N2</span><span class="ss">)</span><span class="o">/</span><span class="ss">(</span><span class="nv">N1</span> <span class="o">+</span> <span class="nv">N2</span><span class="ss">)</span> <span class="o">&gt;=</span> <span class="mi">4</span>.
+<div class="codehilite"><pre><span></span><code> <span class="nv">KS_CDF_CONF</span> <span class="nv">Kolmogorov</span><span class="o">-</span><span class="nv">Smirnov</span> <span class="nv">confidence</span> <span class="nv">interval</span> <span class="k">for</span> <span class="nv">a</span> <span class="nv">data</span> <span class="nv">set</span>.
+    [<span class="nv">Xvalues</span>,<span class="nv">sampleCDF</span>,<span class="nv">minCDF</span>,<span class="nv">maxCDF</span>] <span class="o">=</span> <span class="nv">vlt</span>.<span class="nv">stats</span>.<span class="nv">ks_cdf_conf</span><span class="ss">(</span><span class="nv">X1</span>,<span class="nv">ALPHA</span><span class="ss">)</span>
+    <span class="nv">performs</span> <span class="nv">a</span> <span class="nv">Kolmogorov</span><span class="o">-</span><span class="nv">Smirnov</span> <span class="ss">(</span><span class="nv">K</span><span class="o">-</span><span class="nv">S</span><span class="ss">)</span> <span class="nv">test</span> <span class="nv">to</span> <span class="nv">determine</span> <span class="nv">the</span> <span class="nv">confidence</span>
+    <span class="nv">interval</span> <span class="k">for</span> <span class="nv">independent</span> <span class="k">random</span> <span class="nv">samples</span> <span class="nv">X1</span>.
+    <span class="nv">ALPHA</span> <span class="nv">is</span> <span class="nv">the</span> <span class="nv">desired</span> <span class="nv">significance</span> <span class="nv">level</span> <span class="ss">(</span><span class="nv">default</span> <span class="o">=</span> <span class="mi">0</span>.<span class="mi">05</span><span class="ss">)</span><span class="c1">; </span>
+    <span class="nv">observations</span>, <span class="nv">indicated</span> <span class="nv">by</span> <span class="nv">NaNs</span> <span class="ss">(</span><span class="nv">Not</span><span class="o">-</span><span class="nv">a</span><span class="o">-</span><span class="nv">Number</span><span class="ss">)</span>, <span class="nv">are</span> <span class="nv">ignored</span>.
 
-<span class="nv">Created</span> <span class="nv">by</span> <span class="nv">SDV</span>, <span class="nv">based</span> <span class="nv">on</span> <span class="nv">KSTEST2</span> <span class="nv">by</span> <span class="nv">the</span> <span class="nv">MathWorks</span>
+    <span class="nv">The</span> <span class="nv">asymptotic</span> <span class="nv">P</span><span class="o">-</span><span class="nv">value</span> <span class="nv">becomes</span> <span class="nv">very</span> <span class="nv">accurate</span> <span class="k">for</span> <span class="nv">large</span> <span class="nv">sample</span> <span class="nv">sizes</span>, <span class="nv">and</span>
+    <span class="nv">is</span> <span class="nv">believed</span> <span class="nv">to</span> <span class="nv">be</span> <span class="nv">reasonably</span> <span class="nv">accurate</span> <span class="k">for</span> <span class="nv">sample</span> <span class="nv">sizes</span> <span class="nv">N1</span> <span class="nv">and</span> <span class="nv">N2</span> <span class="nv">such</span> 
+    <span class="nv">that</span> <span class="ss">(</span><span class="nv">N1</span><span class="o">*</span><span class="nv">N2</span><span class="ss">)</span><span class="o">/</span><span class="ss">(</span><span class="nv">N1</span> <span class="o">+</span> <span class="nv">N2</span><span class="ss">)</span> <span class="o">&gt;=</span> <span class="mi">4</span>.
 
-<span class="nv">See</span> <span class="nv">also</span> <span class="nv">KSTEST</span>, <span class="nv">KSTEST2</span>, <span class="nv">CDFPLOT</span>.
+    <span class="nv">Created</span> <span class="nv">by</span> <span class="nv">SDV</span>, <span class="nv">based</span> <span class="nv">on</span> <span class="nv">KSTEST2</span> <span class="nv">by</span> <span class="nv">the</span> <span class="nv">MathWorks</span>
+
+    <span class="nv">See</span> <span class="nv">also</span> <span class="nv">KSTEST</span>, <span class="nv">KSTEST2</span>, <span class="nv">CDFPLOT</span>.
 </code></pre></div>
                 
               

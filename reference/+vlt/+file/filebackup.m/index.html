@@ -3225,6 +3225,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../%2Bgit/git_stash.m/" class="md-nav__link">
+        vlt.git.git_stash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../%2Bgit/git_status.m/" class="md-nav__link">
         vlt.git.git_status
       </a>
@@ -9237,24 +9249,30 @@
                 
                 
                 <h1 id="vltfilefilebackup">vlt.file.filebackup<a class="headerlink" href="#vltfilefilebackup" title="Permanent link">&para;</a></h1>
-<p>FILEBACKUP - Create a backup of a file</p>
-<p>BACKUPNAME = vlt.file.filebackup(FNAME)</p>
-<p>Creates a backup file of the file named FNAME (full path). The
-   new file is named [FNAME '_bkupNNN' EXT], where NNN is a number.
-   The number NNN is chosen such that no file has that name (for example,
-   if there is a file 001, then the new file created is 002, etc).</p>
-<p>The name of the backup file is BACKUPNAME.</p>
-<p>The behavior of the function can be modified with extra name/value pairs:
-   PARAMETER NAME (default)  |  DESCRIPTION</p>
-<hr />
-<p>DeleteOrig (0)            |  Delete the original file?
-   Digits (3)                |  Number of digits to use
-   ErrorIfDigitsExceeded (1) |  Produce an error if the number of digits
-                             |    is exceeded. (If no error is produced, then
-                             |    no backup is made.)</p>
-<p>Example:<br />
-      fname = 'C:\Users\me\mytest.txt';
-      backupname=vlt.file.filebackup(fname); % will be 'C:\Users\me\mytest_bkup001.txt'</p>
+<div class="codehilite"><pre><span></span><code>  <span class="nt">FILEBACKUP</span> <span class="nt">-</span> <span class="nt">Create</span> <span class="nt">a</span> <span class="nt">backup</span> <span class="nt">of</span> <span class="nt">a</span> <span class="nt">file</span>
+
+   <span class="nt">BACKUPNAME</span> <span class="o">=</span> <span class="nt">vlt</span><span class="p">.</span><span class="nc">file</span><span class="p">.</span><span class="nc">filebackup</span><span class="o">(</span><span class="nt">FNAME</span><span class="o">)</span>
+
+   <span class="nt">Creates</span> <span class="nt">a</span> <span class="nt">backup</span> <span class="nt">file</span> <span class="nt">of</span> <span class="nt">the</span> <span class="nt">file</span> <span class="nt">named</span> <span class="nt">FNAME</span> <span class="o">(</span><span class="nt">full</span> <span class="nt">path</span><span class="o">).</span> <span class="nt">The</span>
+   <span class="nt">new</span> <span class="nt">file</span> <span class="nt">is</span> <span class="nt">named</span> <span class="cp">[</span><span class="nx">FNAME</span> <span class="s1">&#39;_bkupNNN&#39;</span> <span class="nx">EXT</span><span class="cp">]</span><span class="o">,</span> <span class="nt">where</span> <span class="nt">NNN</span> <span class="nt">is</span> <span class="nt">a</span> <span class="nt">number</span><span class="o">.</span>
+   <span class="nt">The</span> <span class="nt">number</span> <span class="nt">NNN</span> <span class="nt">is</span> <span class="nt">chosen</span> <span class="nt">such</span> <span class="nt">that</span> <span class="nt">no</span> <span class="nt">file</span> <span class="nt">has</span> <span class="nt">that</span> <span class="nt">name</span> <span class="o">(</span><span class="nt">for</span> <span class="nt">example</span><span class="o">,</span>
+   <span class="nt">if</span> <span class="nt">there</span> <span class="nt">is</span> <span class="nt">a</span> <span class="nt">file</span> <span class="nt">001</span><span class="o">,</span> <span class="nt">then</span> <span class="nt">the</span> <span class="nt">new</span> <span class="nt">file</span> <span class="nt">created</span> <span class="nt">is</span> <span class="nt">002</span><span class="o">,</span> <span class="nt">etc</span><span class="o">).</span>
+
+   <span class="nt">The</span> <span class="nt">name</span> <span class="nt">of</span> <span class="nt">the</span> <span class="nt">backup</span> <span class="nt">file</span> <span class="nt">is</span> <span class="nt">BACKUPNAME</span><span class="o">.</span>
+
+   <span class="nt">The</span> <span class="nt">behavior</span> <span class="nt">of</span> <span class="nt">the</span> <span class="nt">function</span> <span class="nt">can</span> <span class="nt">be</span> <span class="nt">modified</span> <span class="nt">with</span> <span class="nt">extra</span> <span class="nt">name</span><span class="o">/</span><span class="nt">value</span> <span class="nt">pairs</span><span class="o">:</span>
+   <span class="nt">PARAMETER</span> <span class="nt">NAME</span> <span class="o">(</span><span class="nt">default</span><span class="o">)</span>  <span class="o">|</span>  <span class="nt">DESCRIPTION</span>
+   <span class="nt">-----------------------------------------------------------------</span>
+   <span class="nt">DeleteOrig</span> <span class="o">(</span><span class="nt">0</span><span class="o">)</span>            <span class="o">|</span>  <span class="nt">Delete</span> <span class="nt">the</span> <span class="nt">original</span> <span class="nt">file</span><span class="o">?</span>
+   <span class="nt">Digits</span> <span class="o">(</span><span class="nt">3</span><span class="o">)</span>                <span class="o">|</span>  <span class="nt">Number</span> <span class="nt">of</span> <span class="nt">digits</span> <span class="nt">to</span> <span class="nt">use</span>
+   <span class="nt">ErrorIfDigitsExceeded</span> <span class="o">(</span><span class="nt">1</span><span class="o">)</span> <span class="o">|</span>  <span class="nt">Produce</span> <span class="nt">an</span> <span class="nt">error</span> <span class="nt">if</span> <span class="nt">the</span> <span class="nt">number</span> <span class="nt">of</span> <span class="nt">digits</span>
+                             <span class="o">|</span>    <span class="nt">is</span> <span class="nt">exceeded</span><span class="o">.</span> <span class="o">(</span><span class="nt">If</span> <span class="nt">no</span> <span class="nt">error</span> <span class="nt">is</span> <span class="nt">produced</span><span class="o">,</span> <span class="nt">then</span>
+                             <span class="o">|</span>    <span class="nt">no</span> <span class="nt">backup</span> <span class="nt">is</span> <span class="nt">made</span><span class="o">.)</span>
+
+   <span class="nt">Example</span><span class="o">:</span>  
+      <span class="nt">fname</span> <span class="o">=</span> <span class="s1">&#39;C:\Users\me\mytest.txt&#39;</span><span class="o">;</span>
+      <span class="nt">backupname</span><span class="o">=</span><span class="nt">vlt</span><span class="p">.</span><span class="nc">file</span><span class="p">.</span><span class="nc">filebackup</span><span class="o">(</span><span class="nt">fname</span><span class="o">);</span> <span class="o">%</span> <span class="nt">will</span> <span class="nt">be</span> <span class="s1">&#39;C:\Users\me\mytest_bkup001.txt&#39;</span>
+</code></pre></div>
                 
               
               

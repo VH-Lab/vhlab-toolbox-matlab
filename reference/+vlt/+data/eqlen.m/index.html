@@ -3225,6 +3225,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../%2Bgit/git_stash.m/" class="md-nav__link">
+        vlt.git.git_stash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../%2Bgit/git_status.m/" class="md-nav__link">
         vlt.git.git_status
       </a>
@@ -9237,16 +9249,19 @@
                 
                 
                 <h1 id="vltdataeqlen">vlt.data.eqlen<a class="headerlink" href="#vltdataeqlen" title="Permanent link">&para;</a></h1>
-<p>vlt.data.eqlen  Returns 1 if objects to compare are equal and have same size</p>
-<div class="codehilite"><pre><span></span><code> B = vlt.data.eqlen(X,Y)
-</code></pre></div>
+<div class="codehilite"><pre><span></span><code>   <span class="nv">vlt</span>.<span class="nv">data</span>.<span class="nv">eqlen</span>  <span class="nv">Returns</span> <span class="mi">1</span> <span class="k">if</span> <span class="nv">objects</span> <span class="nv">to</span> <span class="nv">compare</span> <span class="nv">are</span> <span class="nv">equal</span> <span class="nv">and</span> <span class="nv">have</span> <span class="nv">same</span> <span class="nv">size</span>
 
-<p>Returns 1 iff X and Y have the same length and all of the entries in X and
-   Y are the same.</p>
-<p>Examples:  vlt.data.eqlen([1],[1 1])=0, whereas [1]==[1 1]=[1 1], vlt.data.eqtot([1],[1 1])=1
-              vlt.data.eqlen([1 1],[1 1])=1
-              vlt.data.eqlen([],[]) = 1</p>
-<p>See also:  vlt.data.eqtot, vlt.data.eqemp, EQ</p>
+     <span class="nv">B</span> <span class="o">=</span> <span class="nv">vlt</span>.<span class="nv">data</span>.<span class="nv">eqlen</span><span class="ss">(</span><span class="nv">X</span>,<span class="nv">Y</span><span class="ss">)</span>
+
+   <span class="nv">Returns</span> <span class="mi">1</span> <span class="nv">iff</span> <span class="nv">X</span> <span class="nv">and</span> <span class="nv">Y</span> <span class="nv">have</span> <span class="nv">the</span> <span class="nv">same</span> <span class="nv">length</span> <span class="nv">and</span> <span class="nv">all</span> <span class="nv">of</span> <span class="nv">the</span> <span class="nv">entries</span> <span class="nv">in</span> <span class="nv">X</span> <span class="nv">and</span>
+   <span class="nv">Y</span> <span class="nv">are</span> <span class="nv">the</span> <span class="nv">same</span>.
+
+   <span class="nv">Examples</span>:  <span class="nv">vlt</span>.<span class="nv">data</span>.<span class="nv">eqlen</span><span class="ss">(</span>[<span class="mi">1</span>],[<span class="mi">1</span> <span class="mi">1</span>]<span class="ss">)</span><span class="o">=</span><span class="mi">0</span>, <span class="nv">whereas</span> [<span class="mi">1</span>]<span class="o">==</span>[<span class="mi">1</span> <span class="mi">1</span>]<span class="o">=</span>[<span class="mi">1</span> <span class="mi">1</span>], <span class="nv">vlt</span>.<span class="nv">data</span>.<span class="nv">eqtot</span><span class="ss">(</span>[<span class="mi">1</span>],[<span class="mi">1</span> <span class="mi">1</span>]<span class="ss">)</span><span class="o">=</span><span class="mi">1</span>
+              <span class="nv">vlt</span>.<span class="nv">data</span>.<span class="nv">eqlen</span><span class="ss">(</span>[<span class="mi">1</span> <span class="mi">1</span>],[<span class="mi">1</span> <span class="mi">1</span>]<span class="ss">)</span><span class="o">=</span><span class="mi">1</span>
+              <span class="nv">vlt</span>.<span class="nv">data</span>.<span class="nv">eqlen</span><span class="ss">(</span>[],[]<span class="ss">)</span> <span class="o">=</span> <span class="mi">1</span>
+
+   <span class="nv">See</span> <span class="nv">also</span>:  <span class="nv">vlt</span>.<span class="nv">data</span>.<span class="nv">eqtot</span>, <span class="nv">vlt</span>.<span class="nv">data</span>.<span class="nv">eqemp</span>, <span class="nv">EQ</span>
+</code></pre></div>
                 
               
               

@@ -3225,6 +3225,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../%2Bgit/git_stash.m/" class="md-nav__link">
+        vlt.git.git_stash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../%2Bgit/git_status.m/" class="md-nav__link">
         vlt.git.git_status
       </a>
@@ -9237,12 +9249,15 @@
                 
                 
                 <h1 id="vltfitexp_fit">vlt.fit.exp_fit<a class="headerlink" href="#vltfitexp_fit" title="Permanent link">&para;</a></h1>
-<p>EXP_FIT Exponential fit</p>
-<p>[TAU,B,k,err,fit] = vlt.fit.exp_fit(T,DATA)</p>
-<p>Finds the best fit to the exponential function
-     y(t) = b + k*(1-exp(-T/tau))
-   where T is an increasing vector of timevalues, b is a constant offset, k
-   is a scalar, and tau is the exponential time constant.</p>
+<div class="codehilite"><pre><span></span><code>  <span class="n">EXP_FIT</span> <span class="n">Exponential</span> <span class="n">fit</span>
+
+   <span class="p">[</span><span class="bp">TAU</span><span class="p">,</span><span class="n">B</span><span class="p">,</span><span class="n">k</span><span class="p">,</span><span class="n">err</span><span class="p">,</span><span class="n">fit</span><span class="p">]</span> <span class="o">=</span> <span class="n">vlt</span><span class="o">.</span><span class="n">fit</span><span class="o">.</span><span class="n">exp_fit</span><span class="p">(</span><span class="n">T</span><span class="p">,</span><span class="n">DATA</span><span class="p">)</span>
+
+   <span class="n">Finds</span> <span class="n">the</span> <span class="n">best</span> <span class="n">fit</span> <span class="n">to</span> <span class="n">the</span> <span class="n">exponential</span> <span class="n">function</span>
+     <span class="n">y</span><span class="p">(</span><span class="n">t</span><span class="p">)</span> <span class="o">=</span> <span class="n">b</span> <span class="o">+</span> <span class="n">k</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="nb">exp</span><span class="p">(</span><span class="o">-</span><span class="n">T</span><span class="o">/</span><span class="n">tau</span><span class="p">))</span>
+   <span class="n">where</span> <span class="n">T</span> <span class="k">is</span> <span class="n">an</span> <span class="n">increasing</span> <span class="n">vector</span> <span class="n">of</span> <span class="n">timevalues</span><span class="p">,</span> <span class="n">b</span> <span class="k">is</span> <span class="n">a</span> <span class="n">constant</span> <span class="n">offset</span><span class="p">,</span> <span class="n">k</span>
+   <span class="k">is</span> <span class="n">a</span> <span class="n">scalar</span><span class="p">,</span> <span class="ow">and</span> <span class="n">tau</span> <span class="k">is</span> <span class="n">the</span> <span class="n">exponential</span> <span class="n">time</span> <span class="n">constant</span><span class="o">.</span>
+</code></pre></div>
                 
               
               

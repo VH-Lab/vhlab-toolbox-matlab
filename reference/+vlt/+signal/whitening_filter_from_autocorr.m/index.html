@@ -3213,6 +3213,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../%2Bgit/git_stash.m/" class="md-nav__link">
+        vlt.git.git_stash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../%2Bgit/git_status.m/" class="md-nav__link">
         vlt.git.git_status
       </a>
@@ -9237,13 +9249,18 @@
                 
                 
                 <h1 id="vltsignalwhitening_filter_from_autocorr">vlt.signal.whitening_filter_from_autocorr<a class="headerlink" href="#vltsignalwhitening_filter_from_autocorr" title="Permanent link">&para;</a></h1>
-<p>WHITENING_FILTER_FROM_AUTOCORR - Compute whitening filter from inverse covariance matrix from autocorrelation of signal</p>
-<p>[RINV, R] = vlt.signal.whitening_filter_from_autocorr(AUTOCORR, M)</p>
-<p>Uses the inverse of the covariance matrix derived from the autocorrelation of a signal
-   to generate a whitening filter. </p>
-<p>Given an autocorrelation of a signal in the form of a vector with lags 1..N, 
-   this function creates a covariance matrix R with dimension M and its inverse, RINV.</p>
-<p>If M is greater than M, then the matrix R is zero padded.</p>
+<div class="codehilite"><pre><span></span><code>  <span class="n">WHITENING_FILTER_FROM_AUTOCORR</span> <span class="o">-</span> <span class="n">Compute</span> <span class="n">whitening</span> <span class="n">filter</span> <span class="n">from</span> <span class="n">inverse</span> <span class="n">covariance</span> <span class="n">matrix</span> <span class="n">from</span> <span class="n">autocorrelation</span> <span class="n">of</span> <span class="k">signal</span>
+
+   <span class="p">[</span><span class="n">RINV</span><span class="p">,</span> <span class="n">R</span><span class="p">]</span> <span class="o">=</span> <span class="n">vlt</span><span class="o">.</span><span class="k">signal</span><span class="o">.</span><span class="n">whitening_filter_from_autocorr</span><span class="p">(</span><span class="n">AUTOCORR</span><span class="p">,</span> <span class="n">M</span><span class="p">)</span>
+
+   <span class="n">Uses</span> <span class="n">the</span> <span class="n">inverse</span> <span class="n">of</span> <span class="n">the</span> <span class="n">covariance</span> <span class="n">matrix</span> <span class="n">derived</span> <span class="n">from</span> <span class="n">the</span> <span class="n">autocorrelation</span> <span class="n">of</span> <span class="n">a</span> <span class="k">signal</span>
+   <span class="n">to</span> <span class="n">generate</span> <span class="n">a</span> <span class="n">whitening</span> <span class="n">filter</span><span class="o">.</span> 
+
+   <span class="n">Given</span> <span class="n">an</span> <span class="n">autocorrelation</span> <span class="n">of</span> <span class="n">a</span> <span class="k">signal</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">form</span> <span class="n">of</span> <span class="n">a</span> <span class="n">vector</span> <span class="n">with</span> <span class="n">lags</span> <span class="mf">1.</span><span class="o">.</span><span class="n">N</span><span class="p">,</span> 
+   <span class="n">this</span> <span class="n">function</span> <span class="n">creates</span> <span class="n">a</span> <span class="n">covariance</span> <span class="n">matrix</span> <span class="n">R</span> <span class="n">with</span> <span class="n">dimension</span> <span class="n">M</span> <span class="ow">and</span> <span class="n">its</span> <span class="n">inverse</span><span class="p">,</span> <span class="n">RINV</span><span class="o">.</span>
+
+   <span class="n">If</span> <span class="n">M</span> <span class="k">is</span> <span class="n">greater</span> <span class="n">than</span> <span class="n">M</span><span class="p">,</span> <span class="n">then</span> <span class="n">the</span> <span class="n">matrix</span> <span class="n">R</span> <span class="k">is</span> <span class="n">zero</span> <span class="n">padded</span><span class="o">.</span>
+</code></pre></div>
                 
               
               

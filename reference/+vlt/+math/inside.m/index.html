@@ -3213,6 +3213,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../%2Bgit/git_stash.m/" class="md-nav__link">
+        vlt.git.git_stash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../%2Bgit/git_status.m/" class="md-nav__link">
         vlt.git.git_status
       </a>
@@ -9237,20 +9249,21 @@
                 
                 
                 <h1 id="vltmathinside">vlt.math.inside<a class="headerlink" href="#vltmathinside" title="Permanent link">&para;</a></h1>
-<p>vlt.math.inside Points inside a polygonal region in the plane.
-    k = vlt.math.inside(z,w) is a vector of indices.
-    The points z(k) are strictly inside the region defined by w.
-    Here, z is a complex vector of points in the plane, and
-    w is a complex vector of points definining the vertices of a
-    polygonal region in the plane.  The region should be "starlike"
-    wth respect to the "center", i.e. any ray eminating from
-    mean(w) should intersect the boundary only once.
-    Convex regions satisfy this requirement.
-    For example, the vertices of the unit square are
-    w = [0 1 1+i i] and k = vlt.math.inside(z,w) is the same as
-    k = find((real(z)&gt;0) &amp; (real(z)&lt;1) &amp; (imag(z)&gt;0) &amp; (imag(z)&lt;1))</p>
-<div class="codehilite"><pre><span></span><code><span class="nv">Developer</span> <span class="nv">note</span>: <span class="nv">This</span> <span class="nv">is</span> <span class="nv">an</span> <span class="nv">old</span> <span class="nv">Matlab</span> <span class="nv">function</span> <span class="nv">that</span> <span class="nv">has</span> <span class="nv">been</span> <span class="nv">replaced</span>
-<span class="nv">by</span> <span class="nv">INPOLYGON</span>. <span class="nv">Here</span> <span class="k">for</span> <span class="nv">backwards</span> <span class="nv">compatibility</span>
+<div class="codehilite"><pre><span></span><code> <span class="n">vlt</span><span class="p">.</span><span class="n">math</span><span class="p">.</span><span class="n">inside</span> <span class="n">Points</span> <span class="n">inside</span> <span class="n">a</span> <span class="n">polygonal</span> <span class="n">region</span> <span class="n">in</span> <span class="n">the</span> <span class="n">plane</span><span class="p">.</span>
+    <span class="n">k</span> <span class="o">=</span> <span class="n">vlt</span><span class="p">.</span><span class="n">math</span><span class="p">.</span><span class="n">inside</span><span class="p">(</span><span class="n">z</span><span class="p">,</span><span class="n">w</span><span class="p">)</span> <span class="n">is</span> <span class="n">a</span> <span class="n">vector</span> <span class="n">of</span> <span class="n">indices</span><span class="p">.</span>
+    <span class="n">The</span> <span class="n">points</span> <span class="n">z</span><span class="p">(</span><span class="n">k</span><span class="p">)</span> <span class="n">are</span> <span class="n">strictly</span> <span class="n">inside</span> <span class="n">the</span> <span class="n">region</span> <span class="n">defined</span> <span class="n">by</span> <span class="n">w</span><span class="p">.</span>
+    <span class="n">Here</span><span class="p">,</span> <span class="n">z</span> <span class="n">is</span> <span class="n">a</span> <span class="n">complex</span> <span class="n">vector</span> <span class="n">of</span> <span class="n">points</span> <span class="n">in</span> <span class="n">the</span> <span class="n">plane</span><span class="p">,</span> <span class="k">and</span>
+    <span class="n">w</span> <span class="n">is</span> <span class="n">a</span> <span class="n">complex</span> <span class="n">vector</span> <span class="n">of</span> <span class="n">points</span> <span class="n">definining</span> <span class="n">the</span> <span class="n">vertices</span> <span class="n">of</span> <span class="n">a</span>
+    <span class="n">polygonal</span> <span class="n">region</span> <span class="n">in</span> <span class="n">the</span> <span class="n">plane</span><span class="p">.</span>  <span class="n">The</span> <span class="n">region</span> <span class="n">should</span> <span class="n">be</span> <span class="s">&quot;starlike&quot;</span>
+    <span class="n">wth</span> <span class="n">respect</span> <span class="n">to</span> <span class="n">the</span> <span class="s">&quot;center&quot;</span><span class="p">,</span> <span class="n">i</span><span class="p">.</span><span class="n">e</span><span class="p">.</span> <span class="n">any</span> <span class="n">ray</span> <span class="n">eminating</span> <span class="n">from</span>
+    <span class="n">mean</span><span class="p">(</span><span class="n">w</span><span class="p">)</span> <span class="n">should</span> <span class="n">intersect</span> <span class="n">the</span> <span class="n">boundary</span> <span class="n">only</span> <span class="n">once</span><span class="p">.</span>
+    <span class="n">Convex</span> <span class="n">regions</span> <span class="n">satisfy</span> <span class="n">this</span> <span class="n">requirement</span><span class="p">.</span>
+    <span class="n">For</span> <span class="n">example</span><span class="p">,</span> <span class="n">the</span> <span class="n">vertices</span> <span class="n">of</span> <span class="n">the</span> <span class="n">unit</span> <span class="n">square</span> <span class="n">are</span>
+    <span class="n">w</span> <span class="o">=</span> <span class="p">[</span><span class="mh">0</span> <span class="mh">1</span> <span class="mh">1</span><span class="o">+</span><span class="n">i</span> <span class="n">i</span><span class="p">]</span> <span class="k">and</span> <span class="n">k</span> <span class="o">=</span> <span class="n">vlt</span><span class="p">.</span><span class="n">math</span><span class="p">.</span><span class="n">inside</span><span class="p">(</span><span class="n">z</span><span class="p">,</span><span class="n">w</span><span class="p">)</span> <span class="n">is</span> <span class="n">the</span> <span class="n">same</span> <span class="n">as</span>
+    <span class="n">k</span> <span class="o">=</span> <span class="n">find</span><span class="p">((</span><span class="kt">real</span><span class="p">(</span><span class="n">z</span><span class="p">)</span><span class="o">&gt;</span><span class="mh">0</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="kt">real</span><span class="p">(</span><span class="n">z</span><span class="p">)</span><span class="o">&lt;</span><span class="mh">1</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">imag</span><span class="p">(</span><span class="n">z</span><span class="p">)</span><span class="o">&gt;</span><span class="mh">0</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">imag</span><span class="p">(</span><span class="n">z</span><span class="p">)</span><span class="o">&lt;</span><span class="mh">1</span><span class="p">))</span>
+
+    <span class="n">Developer</span> <span class="nl">note:</span> <span class="n">This</span> <span class="n">is</span> <span class="n">an</span> <span class="n">old</span> <span class="n">Matlab</span> <span class="k">function</span> <span class="n">that</span> <span class="n">has</span> <span class="n">been</span> <span class="n">replaced</span>
+    <span class="n">by</span> <span class="n">INPOLYGON</span><span class="p">.</span> <span class="n">Here</span> <span class="k">for</span> <span class="n">backwards</span> <span class="n">compatibility</span>
 </code></pre></div>
                 
               

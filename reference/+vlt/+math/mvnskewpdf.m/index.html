@@ -3213,6 +3213,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../%2Bgit/git_stash.m/" class="md-nav__link">
+        vlt.git.git_stash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../%2Bgit/git_status.m/" class="md-nav__link">
         vlt.git.git_status
       </a>
@@ -9237,14 +9249,16 @@
                 
                 
                 <h1 id="vltmathmvnskewpdf">vlt.math.mvnskewpdf<a class="headerlink" href="#vltmathmvnskewpdf" title="Permanent link">&para;</a></h1>
-<p>MVNSKEWPDF - Multivariate normal skewed probability density function (pdf)
-   Y=vlt.math.mvnskewpdf(X,MU,SIGMA,ALPHA) returns the probability density of the multivariate
-   normal distribution with mean MU, covariance SIGMA, and skewness ALPHA, evaluated at
-   each row of X. Rows of the N-by-D matrix X correspond to observations (or points), and 
-   columns correspond to variables or coordinate. Y is an N by 1 vector.</p>
-<p>The multivariate skewed distribution is defined as in Azzalini and Dalla Valle (1996):</p>
-<div class="codehilite"><pre><span></span><code><span class="k">For</span> <span class="nv">each</span> <span class="nv">value</span> <span class="nv">of</span> <span class="nv">x</span>:
-<span class="nv">vlt</span>.<span class="nv">math</span>.<span class="nv">mvnskewpdf</span><span class="ss">(</span><span class="nv">X</span>,<span class="nv">MU</span>,<span class="nv">SIGMA</span>,<span class="nv">ALPHA</span><span class="ss">)</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="nv">MVNPDF</span><span class="ss">(</span><span class="nv">X</span>, <span class="nv">MU</span>, <span class="nv">SIGMA</span><span class="ss">)</span> <span class="o">*</span> <span class="nv">NORMCDF</span><span class="ss">(</span><span class="nv">ALPHA</span><span class="s1">&#39;</span><span class="s">*(X-MU)</span><span class="s1">&#39;</span><span class="ss">)</span>
+<div class="codehilite"><pre><span></span><code>  <span class="n">MVNSKEWPDF</span> <span class="o">-</span> <span class="n">Multivariate</span> <span class="n">normal</span> <span class="n">skewed</span> <span class="n">probability</span> <span class="n">density</span> <span class="n">function</span> <span class="p">(</span><span class="n">pdf</span><span class="p">)</span>
+   <span class="n">Y</span><span class="o">=</span><span class="n">vlt</span><span class="o">.</span><span class="n">math</span><span class="o">.</span><span class="n">mvnskewpdf</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">MU</span><span class="p">,</span><span class="n">SIGMA</span><span class="p">,</span><span class="n">ALPHA</span><span class="p">)</span> <span class="n">returns</span> <span class="n">the</span> <span class="n">probability</span> <span class="n">density</span> <span class="n">of</span> <span class="n">the</span> <span class="n">multivariate</span>
+   <span class="n">normal</span> <span class="n">distribution</span> <span class="n">with</span> <span class="n">mean</span> <span class="n">MU</span><span class="p">,</span> <span class="n">covariance</span> <span class="n">SIGMA</span><span class="p">,</span> <span class="ow">and</span> <span class="n">skewness</span> <span class="n">ALPHA</span><span class="p">,</span> <span class="n">evaluated</span> <span class="n">at</span>
+   <span class="n">each</span> <span class="n">row</span> <span class="n">of</span> <span class="n">X</span><span class="o">.</span> <span class="n">Rows</span> <span class="n">of</span> <span class="n">the</span> <span class="n">N</span><span class="o">-</span><span class="n">by</span><span class="o">-</span><span class="n">D</span> <span class="n">matrix</span> <span class="n">X</span> <span class="n">correspond</span> <span class="n">to</span> <span class="n">observations</span> <span class="p">(</span><span class="ow">or</span> <span class="n">points</span><span class="p">),</span> <span class="ow">and</span> 
+   <span class="n">columns</span> <span class="n">correspond</span> <span class="n">to</span> <span class="n">variables</span> <span class="ow">or</span> <span class="n">coordinate</span><span class="o">.</span> <span class="n">Y</span> <span class="k">is</span> <span class="n">an</span> <span class="n">N</span> <span class="n">by</span> <span class="mi">1</span> <span class="n">vector</span><span class="o">.</span>
+
+   <span class="n">The</span> <span class="n">multivariate</span> <span class="n">skewed</span> <span class="n">distribution</span> <span class="k">is</span> <span class="n">defined</span> <span class="k">as</span> <span class="ow">in</span> <span class="n">Azzalini</span> <span class="ow">and</span> <span class="n">Dalla</span> <span class="n">Valle</span> <span class="p">(</span><span class="mi">1996</span><span class="p">):</span>
+
+    <span class="n">For</span> <span class="n">each</span> <span class="n">value</span> <span class="n">of</span> <span class="n">x</span><span class="p">:</span>
+    <span class="n">vlt</span><span class="o">.</span><span class="n">math</span><span class="o">.</span><span class="n">mvnskewpdf</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">MU</span><span class="p">,</span><span class="n">SIGMA</span><span class="p">,</span><span class="n">ALPHA</span><span class="p">)</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="n">MVNPDF</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">MU</span><span class="p">,</span> <span class="n">SIGMA</span><span class="p">)</span> <span class="o">*</span> <span class="n">NORMCDF</span><span class="p">(</span><span class="n">ALPHA</span><span class="s1">&#39;*(X-MU)&#39;</span><span class="p">)</span>
 </code></pre></div>
                 
               

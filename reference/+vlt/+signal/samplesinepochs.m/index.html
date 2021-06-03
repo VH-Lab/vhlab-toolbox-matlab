@@ -3213,6 +3213,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../%2Bgit/git_stash.m/" class="md-nav__link">
+        vlt.git.git_stash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../%2Bgit/git_status.m/" class="md-nav__link">
         vlt.git.git_status
       </a>
@@ -9237,25 +9249,26 @@
                 
                 
                 <h1 id="vltsignalsamplesinepochs">vlt.signal.samplesinepochs<a class="headerlink" href="#vltsignalsamplesinepochs" title="Permanent link">&para;</a></h1>
-<p>SAMPLESINEPOCHS - Identify samples that are within the given recording epochs</p>
-<div class="codehilite"><pre><span></span><code> <span class="p">[</span><span class="n">SAMPLES_IN</span><span class="p">,</span><span class="n">SAMPLEINDEXES</span><span class="p">,</span><span class="n">SAMPLESNOTINEPOCHS</span><span class="p">]</span> <span class="o">=</span> <span class="n">vlt</span><span class="o">.</span><span class="k">signal</span><span class="o">.</span><span class="n">samplesinepochs</span><span class="p">(</span><span class="n">SAMPLE_NUMBERS</span><span class="p">,</span> <span class="n">EPOCHSTARTSAMPLES</span><span class="p">,</span> <span class="n">EPOCHSTART</span><span class="p">,</span> <span class="n">EPOCHSTOP</span><span class="p">)</span>
+<div class="codehilite"><pre><span></span><code>  <span class="n">SAMPLESINEPOCHS</span> <span class="o">-</span> <span class="n">Identify</span> <span class="n">samples</span> <span class="n">that</span> <span class="n">are</span> <span class="n">within</span> <span class="n">the</span> <span class="n">given</span> <span class="n">recording</span> <span class="n">epochs</span>
 
- <span class="n">Given</span> <span class="n">a</span> <span class="n">list</span> <span class="n">of</span> <span class="n">SAMPLE_NUMBERS</span><span class="p">,</span> <span class="n">determines</span> <span class="n">which</span> <span class="n">are</span> <span class="ow">in</span> <span class="n">a</span> <span class="n">set</span> <span class="n">of</span> <span class="n">epochs</span> <span class="ow">and</span> <span class="n">returns</span> <span class="n">them</span>
- <span class="ow">in</span> <span class="n">SAMPLES_IN</span> <span class="ow">and</span> <span class="n">returns</span> <span class="n">the</span> <span class="n">index</span> <span class="n">numbers</span> <span class="n">of</span> <span class="n">these</span> <span class="n">samples</span> <span class="ow">in</span> <span class="n">SAMPLEINDEXES</span><span class="o">.</span>
+     <span class="p">[</span><span class="n">SAMPLES_IN</span><span class="p">,</span><span class="n">SAMPLEINDEXES</span><span class="p">,</span><span class="n">SAMPLESNOTINEPOCHS</span><span class="p">]</span> <span class="o">=</span> <span class="n">vlt</span><span class="o">.</span><span class="k">signal</span><span class="o">.</span><span class="n">samplesinepochs</span><span class="p">(</span><span class="n">SAMPLE_NUMBERS</span><span class="p">,</span> <span class="n">EPOCHSTARTSAMPLES</span><span class="p">,</span> <span class="n">EPOCHSTART</span><span class="p">,</span> <span class="n">EPOCHSTOP</span><span class="p">)</span>
 
- <span class="n">The</span> <span class="n">recording</span> <span class="n">epochs</span> <span class="n">are</span> <span class="n">specified</span> <span class="n">by</span> <span class="n">start</span> <span class="n">sample</span> <span class="n">numbers</span><span class="p">:</span> <span class="n">EPOCHSTARTSAMPLES</span>
- <span class="k">is</span> <span class="n">an</span> <span class="n">array</span> <span class="n">with</span> <span class="n">the</span> <span class="n">sample</span> <span class="n">number</span> <span class="n">that</span> <span class="n">begins</span> <span class="n">each</span> <span class="n">epoch</span><span class="o">.</span>
+     <span class="n">Given</span> <span class="n">a</span> <span class="n">list</span> <span class="n">of</span> <span class="n">SAMPLE_NUMBERS</span><span class="p">,</span> <span class="n">determines</span> <span class="n">which</span> <span class="n">are</span> <span class="ow">in</span> <span class="n">a</span> <span class="n">set</span> <span class="n">of</span> <span class="n">epochs</span> <span class="ow">and</span> <span class="n">returns</span> <span class="n">them</span>
+     <span class="ow">in</span> <span class="n">SAMPLES_IN</span> <span class="ow">and</span> <span class="n">returns</span> <span class="n">the</span> <span class="n">index</span> <span class="n">numbers</span> <span class="n">of</span> <span class="n">these</span> <span class="n">samples</span> <span class="ow">in</span> <span class="n">SAMPLEINDEXES</span><span class="o">.</span>
 
- <span class="n">EPOCHSTART</span> <span class="k">is</span> <span class="n">the</span> <span class="n">Epoch</span> <span class="n">number</span> <span class="n">we</span> <span class="n">want</span> <span class="n">to</span> <span class="n">start</span> <span class="n">including</span><span class="o">.</span>
- <span class="n">EPOCHSTOP</span> <span class="k">is</span> <span class="n">the</span> <span class="n">last</span> <span class="n">Epoch</span> <span class="n">number</span> <span class="n">we</span> <span class="n">want</span> <span class="n">to</span> <span class="n">stop</span> <span class="n">including</span><span class="o">.</span>
+     <span class="n">The</span> <span class="n">recording</span> <span class="n">epochs</span> <span class="n">are</span> <span class="n">specified</span> <span class="n">by</span> <span class="n">start</span> <span class="n">sample</span> <span class="n">numbers</span><span class="p">:</span> <span class="n">EPOCHSTARTSAMPLES</span>
+     <span class="k">is</span> <span class="n">an</span> <span class="n">array</span> <span class="n">with</span> <span class="n">the</span> <span class="n">sample</span> <span class="n">number</span> <span class="n">that</span> <span class="n">begins</span> <span class="n">each</span> <span class="n">epoch</span><span class="o">.</span>
 
- <span class="n">Example</span><span class="p">:</span>  
-      <span class="n">SN</span> <span class="o">=</span> <span class="p">[</span> <span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span> <span class="mi">4</span> <span class="mi">5</span> <span class="mi">6</span> <span class="mi">7</span> <span class="mi">8</span> <span class="mi">9</span> <span class="mi">10</span> <span class="p">];</span>
-      <span class="n">EpStartSamples</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span> <span class="mi">5</span> <span class="mi">9</span><span class="p">];</span> <span class="o">%</span> <span class="n">epochs</span> <span class="n">start</span> <span class="n">at</span> <span class="n">samples</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="ow">and</span> <span class="mi">9</span>
-      <span class="n">EpStart</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
-      <span class="n">EpStop</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
-      <span class="n">SI</span> <span class="o">=</span> <span class="n">vlt</span><span class="o">.</span><span class="k">signal</span><span class="o">.</span><span class="n">samplesinepochs</span><span class="p">(</span><span class="n">SN</span><span class="p">,</span> <span class="n">EpStartSamples</span><span class="p">,</span><span class="n">EpStart</span><span class="p">,</span><span class="n">EpStop</span><span class="p">)</span>
-         <span class="o">%</span> <span class="n">SI</span> <span class="o">=</span> <span class="p">[</span> <span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span> <span class="mi">4</span> <span class="mi">5</span> <span class="mi">6</span> <span class="mi">7</span> <span class="mi">8</span> <span class="p">]</span> <span class="o">%</span> <span class="n">samples</span> <span class="ow">in</span> <span class="n">first</span> <span class="mi">2</span> <span class="n">epochs</span>
+     <span class="n">EPOCHSTART</span> <span class="k">is</span> <span class="n">the</span> <span class="n">Epoch</span> <span class="n">number</span> <span class="n">we</span> <span class="n">want</span> <span class="n">to</span> <span class="n">start</span> <span class="n">including</span><span class="o">.</span>
+     <span class="n">EPOCHSTOP</span> <span class="k">is</span> <span class="n">the</span> <span class="n">last</span> <span class="n">Epoch</span> <span class="n">number</span> <span class="n">we</span> <span class="n">want</span> <span class="n">to</span> <span class="n">stop</span> <span class="n">including</span><span class="o">.</span>
+
+     <span class="n">Example</span><span class="p">:</span>  
+          <span class="n">SN</span> <span class="o">=</span> <span class="p">[</span> <span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span> <span class="mi">4</span> <span class="mi">5</span> <span class="mi">6</span> <span class="mi">7</span> <span class="mi">8</span> <span class="mi">9</span> <span class="mi">10</span> <span class="p">];</span>
+          <span class="n">EpStartSamples</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span> <span class="mi">5</span> <span class="mi">9</span><span class="p">];</span> <span class="o">%</span> <span class="n">epochs</span> <span class="n">start</span> <span class="n">at</span> <span class="n">samples</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="ow">and</span> <span class="mi">9</span>
+          <span class="n">EpStart</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+          <span class="n">EpStop</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+          <span class="n">SI</span> <span class="o">=</span> <span class="n">vlt</span><span class="o">.</span><span class="k">signal</span><span class="o">.</span><span class="n">samplesinepochs</span><span class="p">(</span><span class="n">SN</span><span class="p">,</span> <span class="n">EpStartSamples</span><span class="p">,</span><span class="n">EpStart</span><span class="p">,</span><span class="n">EpStop</span><span class="p">)</span>
+             <span class="o">%</span> <span class="n">SI</span> <span class="o">=</span> <span class="p">[</span> <span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span> <span class="mi">4</span> <span class="mi">5</span> <span class="mi">6</span> <span class="mi">7</span> <span class="mi">8</span> <span class="p">]</span> <span class="o">%</span> <span class="n">samples</span> <span class="ow">in</span> <span class="n">first</span> <span class="mi">2</span> <span class="n">epochs</span>
 </code></pre></div>
                 
               

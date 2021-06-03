@@ -3213,6 +3213,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../%2Bgit/git_stash.m/" class="md-nav__link">
+        vlt.git.git_stash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../%2Bgit/git_status.m/" class="md-nav__link">
         vlt.git.git_status
       </a>
@@ -9237,22 +9249,28 @@
                 
                 
                 <h1 id="vltmatlabreplacefunction">vlt.matlab.replacefunction<a class="headerlink" href="#vltmatlabreplacefunction" title="Permanent link">&para;</a></h1>
-<p>REPLACEFUNCTION - replace instances of one function call with another</p>
-<p>STATUS = REPLACEFUNCTION(FUSE, REPLACEMENT_TABLE, ...)</p>
-<p>This function examines each function use structure FUSE that is
-  returned from vlt.matlab.findfunctionusefil or vlt.matlab.findfunctionusedir,
-  and displays the relevant lines of code (2 above, and 2 below). It asks the
-  user if they would like to replace the function (yes, no) or write a note.
-  The status ("skipped", "replaced", or the note) for each entry is returned.</p>
-<p>The FUSE(i).name is looked up in the replacement_table for the replacement text.
-  The replacement_table should be a struct with fields 'original', and 'replace'.</p>
-<p>This function also takes name/value pairs that modify its behavior:
-  Parameter (default)            | Description</p>
-<hr />
-<p>MinLine (2)                    | Minimum line number to examine; line numbers
-                                 |    less than this value will not be examined
-  Disable (1)                    | Disable the changes (the default)</p>
-<p>See also: vlt.matlab.findfunctionusefile, vlt.matlab.mfileinfo</p>
+<div class="codehilite"><pre><span></span><code>  <span class="nt">REPLACEFUNCTION</span> <span class="nt">-</span> <span class="nt">replace</span> <span class="nt">instances</span> <span class="nt">of</span> <span class="nt">one</span> <span class="nt">function</span> <span class="nt">call</span> <span class="nt">with</span> <span class="nt">another</span>
+
+  <span class="nt">STATUS</span> <span class="o">=</span> <span class="nt">REPLACEFUNCTION</span><span class="o">(</span><span class="nt">FUSE</span><span class="o">,</span> <span class="nt">REPLACEMENT_TABLE</span><span class="o">,</span> <span class="o">...)</span>
+
+  <span class="nt">This</span> <span class="nt">function</span> <span class="nt">examines</span> <span class="nt">each</span> <span class="nt">function</span> <span class="nt">use</span> <span class="nt">structure</span> <span class="nt">FUSE</span> <span class="nt">that</span> <span class="nt">is</span>
+  <span class="nt">returned</span> <span class="nt">from</span> <span class="nt">vlt</span><span class="p">.</span><span class="nc">matlab</span><span class="p">.</span><span class="nc">findfunctionusefil</span> <span class="nt">or</span> <span class="nt">vlt</span><span class="p">.</span><span class="nc">matlab</span><span class="p">.</span><span class="nc">findfunctionusedir</span><span class="o">,</span>
+  <span class="nt">and</span> <span class="nt">displays</span> <span class="nt">the</span> <span class="nt">relevant</span> <span class="nt">lines</span> <span class="nt">of</span> <span class="nt">code</span> <span class="o">(</span><span class="nt">2</span> <span class="nt">above</span><span class="o">,</span> <span class="nt">and</span> <span class="nt">2</span> <span class="nt">below</span><span class="o">).</span> <span class="nt">It</span> <span class="nt">asks</span> <span class="nt">the</span>
+  <span class="nt">user</span> <span class="nt">if</span> <span class="nt">they</span> <span class="nt">would</span> <span class="nt">like</span> <span class="nt">to</span> <span class="nt">replace</span> <span class="nt">the</span> <span class="nt">function</span> <span class="o">(</span><span class="nt">yes</span><span class="o">,</span> <span class="nt">no</span><span class="o">)</span> <span class="nt">or</span> <span class="nt">write</span> <span class="nt">a</span> <span class="nt">note</span><span class="o">.</span>
+  <span class="nt">The</span> <span class="nt">status</span> <span class="o">(</span><span class="s2">&quot;skipped&quot;</span><span class="o">,</span> <span class="s2">&quot;replaced&quot;</span><span class="o">,</span> <span class="nt">or</span> <span class="nt">the</span> <span class="nt">note</span><span class="o">)</span> <span class="nt">for</span> <span class="nt">each</span> <span class="nt">entry</span> <span class="nt">is</span> <span class="nt">returned</span><span class="o">.</span>
+
+  <span class="nt">The</span> <span class="nt">FUSE</span><span class="o">(</span><span class="nt">i</span><span class="o">)</span><span class="p">.</span><span class="nc">name</span> <span class="nt">is</span> <span class="nt">looked</span> <span class="nt">up</span> <span class="nt">in</span> <span class="nt">the</span> <span class="nt">replacement_table</span> <span class="nt">for</span> <span class="nt">the</span> <span class="nt">replacement</span> <span class="nt">text</span><span class="o">.</span>
+  <span class="nt">The</span> <span class="nt">replacement_table</span> <span class="nt">should</span> <span class="nt">be</span> <span class="nt">a</span> <span class="nt">struct</span> <span class="nt">with</span> <span class="nt">fields</span> <span class="s1">&#39;original&#39;</span><span class="o">,</span> <span class="nt">and</span> <span class="s1">&#39;replace&#39;</span><span class="o">.</span>
+
+  <span class="nt">This</span> <span class="nt">function</span> <span class="nt">also</span> <span class="nt">takes</span> <span class="nt">name</span><span class="o">/</span><span class="nt">value</span> <span class="nt">pairs</span> <span class="nt">that</span> <span class="nt">modify</span> <span class="nt">its</span> <span class="nt">behavior</span><span class="o">:</span>
+  <span class="nt">Parameter</span> <span class="o">(</span><span class="nt">default</span><span class="o">)</span>            <span class="o">|</span> <span class="nt">Description</span>
+  <span class="nt">------------------------------------------------------------------------</span>
+  <span class="nt">MinLine</span> <span class="o">(</span><span class="nt">2</span><span class="o">)</span>                    <span class="o">|</span> <span class="nt">Minimum</span> <span class="nt">line</span> <span class="nt">number</span> <span class="nt">to</span> <span class="nt">examine</span><span class="o">;</span> <span class="nt">line</span> <span class="nt">numbers</span>
+                                 <span class="o">|</span>    <span class="nt">less</span> <span class="nt">than</span> <span class="nt">this</span> <span class="nt">value</span> <span class="nt">will</span> <span class="nt">not</span> <span class="nt">be</span> <span class="nt">examined</span>
+  <span class="nt">Disable</span> <span class="o">(</span><span class="nt">1</span><span class="o">)</span>                    <span class="o">|</span> <span class="nt">Disable</span> <span class="nt">the</span> <span class="nt">changes</span> <span class="o">(</span><span class="nt">the</span> <span class="nt">default</span><span class="o">)</span>
+
+  <span class="nt">See</span> <span class="nt">also</span><span class="o">:</span> <span class="nt">vlt</span><span class="p">.</span><span class="nc">matlab</span><span class="p">.</span><span class="nc">findfunctionusefile</span><span class="o">,</span> <span class="nt">vlt</span><span class="p">.</span><span class="nc">matlab</span><span class="p">.</span><span class="nc">mfileinfo</span>
+</code></pre></div>
                 
               
               

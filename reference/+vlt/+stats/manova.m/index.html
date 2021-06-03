@@ -3213,6 +3213,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../%2Bgit/git_stash.m/" class="md-nav__link">
+        vlt.git.git_stash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../%2Bgit/git_status.m/" class="md-nav__link">
         vlt.git.git_status
       </a>
@@ -9237,41 +9249,47 @@
                 
                 
                 <h1 id="vltstatsmanova">vlt.stats.manova<a class="headerlink" href="#vltstatsmanova" title="Permanent link">&para;</a></h1>
-<p>vlt.stats.manova - Multivariate Analysis of Variance</p>
-<p>[STATS,H] = vlt.stats.manova(X,G), or
-   [STATS,H] = vlt.stats.manova(X,G,ALPHA)</p>
-<p>Determines whether the means of groups of multivariate data points are the
-   same, using Wilks' criterion.  Each N-dimensional data point is a row in X,
-   so that X is NxP, where P is the total number of data points.  Each data
-   point belongs to a group, indicated in vector G, which should be 1XP.
-   ALPHA is level of significance, and, If ALPHA is not given, 0.01 is assumed.</p>
-<p>STATS is a struct with the following elements:</p>
-<div class="codehilite"><pre><span></span><code> <span class="n">DF_between</span> <span class="o">=</span> <span class="n">degrees</span> <span class="n">of</span> <span class="n">freedom</span> <span class="n">among</span> <span class="n">samplesm</span><span class="p">,</span> <span class="ow">or</span> <span class="p">(</span><span class="n">K</span><span class="o">-</span><span class="mi">1</span><span class="p">),</span> <span class="n">K</span><span class="o">==</span><span class="n">num</span> <span class="n">of</span> <span class="n">groups</span>
- <span class="n">DF_within</span>  <span class="o">=</span> <span class="n">degrees</span> <span class="n">of</span> <span class="n">freedom</span> <span class="n">within</span> <span class="n">samples</span><span class="p">,</span> <span class="ow">or</span> <span class="n">N</span><span class="o">-</span><span class="n">K</span>
- <span class="n">DF_TOTAL</span>   <span class="o">=</span> <span class="n">total</span> <span class="n">degrees</span> <span class="n">of</span> <span class="n">freedom</span> <span class="n">N</span><span class="o">-</span><span class="mi">1</span>
- <span class="n">B</span>          <span class="o">=</span> <span class="n">matrix</span> <span class="n">of</span> <span class="n">sum</span> <span class="n">of</span> <span class="n">squares</span> <span class="ow">and</span> <span class="n">products</span> <span class="p">(</span><span class="n">SSP</span><span class="p">)</span> <span class="n">between</span> <span class="n">samples</span>
- <span class="n">W</span>          <span class="o">=</span> <span class="n">matrix</span> <span class="n">of</span> <span class="n">SSP</span> <span class="n">within</span> <span class="n">samples</span>
- <span class="n">T</span>          <span class="o">=</span> <span class="n">matrix</span> <span class="n">of</span> <span class="n">total</span> <span class="n">SSP</span><span class="p">,</span> <span class="n">note</span> <span class="n">that</span> <span class="n">T</span><span class="o">==</span><span class="n">W</span><span class="o">+</span><span class="n">B</span>
- <span class="n">ratio</span>      <span class="o">=</span> <span class="o">|</span><span class="n">W</span><span class="o">|/|</span><span class="n">T</span><span class="o">|</span><span class="p">,</span> <span class="ow">or</span> <span class="n">ratio</span> <span class="n">to</span> <span class="n">be</span> <span class="n">compared</span> <span class="n">to</span> <span class="n">Wilks</span><span class="s1">&#39; statistic</span>
- <span class="n">P</span>          <span class="o">=</span> <span class="n">Probability</span> <span class="n">of</span> <span class="n">data</span> <span class="n">under</span> <span class="n">hypothesis</span> <span class="n">that</span> <span class="n">means</span> <span class="n">are</span> <span class="n">equal</span>
- <span class="n">H</span>          <span class="o">=</span> <span class="mi">0</span> <span class="k">if</span> <span class="n">means</span> <span class="n">are</span> <span class="n">SAME</span><span class="p">,</span> <span class="mi">1</span> <span class="k">if</span> <span class="n">DIFFERENT</span>
- <span class="n">X__</span>        <span class="o">=</span> <span class="n">Grand</span> <span class="n">mean</span> <span class="n">of</span> <span class="n">data</span>
- <span class="n">X_</span>         <span class="o">=</span> <span class="n">Mean</span> <span class="n">of</span> <span class="n">each</span> <span class="n">group</span> <span class="p">(</span><span class="n">KxP</span><span class="p">)</span>
- <span class="n">N</span>          <span class="o">=</span> <span class="n">Number</span> <span class="n">of</span> <span class="n">items</span> <span class="ow">in</span> <span class="n">each</span> <span class="n">group</span> <span class="p">(</span><span class="n">Kx1</span><span class="p">)</span>
- <span class="n">E</span>          <span class="o">=</span> <span class="n">Eigenvalues</span> <span class="k">for</span> <span class="n">canonical</span> <span class="n">variate</span> <span class="n">projection</span> <span class="p">(</span><span class="n">inv</span><span class="p">(</span><span class="n">W</span><span class="p">)</span><span class="o">*</span><span class="n">B</span><span class="p">)</span>
- <span class="n">V</span>          <span class="o">=</span> <span class="n">Eigenvectors</span> <span class="n">corresp</span><span class="o">.</span> <span class="n">to</span> <span class="n">these</span> <span class="n">eigenvalues</span>
- <span class="n">VV</span>         <span class="o">=</span> <span class="n">Eigenvectors</span> <span class="n">normalized</span> <span class="p">(</span><span class="n">by</span> <span class="n">W</span><span class="o">/</span><span class="p">(</span><span class="n">N</span><span class="o">-</span><span class="n">K</span><span class="p">))</span> <span class="k">for</span> <span class="n">canonical</span> <span class="n">v</span><span class="o">.</span> <span class="n">proj</span><span class="o">.</span>
-</code></pre></div>
+<div class="codehilite"><pre><span></span><code>  <span class="n">vlt</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">manova</span> <span class="o">-</span> <span class="n">Multivariate</span> <span class="n">Analysis</span> <span class="n">of</span> <span class="n">Variance</span>
 
-<p>See Chapter 12 of <em>Multivariate Analysis</em>, KV Mardia, JT Kent, JM Bibby,
-   Academic Press, London, 1979.</p>
-<p>Note:  The eigenvector corresponding to the largest eigenvalue of inv(W)*B 
-   is the first canonical variate or Fisher's linear discriminant function.
-   Projecting onto this variate is useful for visualizing the differences among
-   groups of data.  The other canonical variates are the eigenvectors
-   corresponding to the eigenvalues in descending order of magnitude.
-   (See sec. 11.5 of above book.)</p>
-<p>Steve Van Hooser, 2003</p>
+   <span class="p">[</span><span class="n">STATS</span><span class="p">,</span><span class="n">H</span><span class="p">]</span> <span class="o">=</span> <span class="n">vlt</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">manova</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">G</span><span class="p">),</span> <span class="ow">or</span>
+   <span class="p">[</span><span class="n">STATS</span><span class="p">,</span><span class="n">H</span><span class="p">]</span> <span class="o">=</span> <span class="n">vlt</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">manova</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">G</span><span class="p">,</span><span class="n">ALPHA</span><span class="p">)</span>
+
+   <span class="n">Determines</span> <span class="n">whether</span> <span class="n">the</span> <span class="n">means</span> <span class="n">of</span> <span class="n">groups</span> <span class="n">of</span> <span class="n">multivariate</span> <span class="n">data</span> <span class="n">points</span> <span class="n">are</span> <span class="n">the</span>
+   <span class="n">same</span><span class="p">,</span> <span class="n">using</span> <span class="n">Wilks</span><span class="s1">&#39; criterion.  Each N-dimensional data point is a row in X,</span>
+   <span class="n">so</span> <span class="n">that</span> <span class="n">X</span> <span class="k">is</span> <span class="n">NxP</span><span class="p">,</span> <span class="n">where</span> <span class="n">P</span> <span class="k">is</span> <span class="n">the</span> <span class="n">total</span> <span class="n">number</span> <span class="n">of</span> <span class="n">data</span> <span class="n">points</span><span class="o">.</span>  <span class="n">Each</span> <span class="n">data</span>
+   <span class="n">point</span> <span class="n">belongs</span> <span class="n">to</span> <span class="n">a</span> <span class="n">group</span><span class="p">,</span> <span class="n">indicated</span> <span class="ow">in</span> <span class="n">vector</span> <span class="n">G</span><span class="p">,</span> <span class="n">which</span> <span class="n">should</span> <span class="n">be</span> <span class="mi">1</span><span class="n">XP</span><span class="o">.</span>
+   <span class="n">ALPHA</span> <span class="k">is</span> <span class="n">level</span> <span class="n">of</span> <span class="n">significance</span><span class="p">,</span> <span class="ow">and</span><span class="p">,</span> <span class="n">If</span> <span class="n">ALPHA</span> <span class="k">is</span> <span class="ow">not</span> <span class="n">given</span><span class="p">,</span> <span class="mf">0.01</span> <span class="k">is</span> <span class="n">assumed</span><span class="o">.</span>
+
+   <span class="n">STATS</span> <span class="k">is</span> <span class="n">a</span> <span class="n">struct</span> <span class="n">with</span> <span class="n">the</span> <span class="n">following</span> <span class="n">elements</span><span class="p">:</span>
+
+     <span class="n">DF_between</span> <span class="o">=</span> <span class="n">degrees</span> <span class="n">of</span> <span class="n">freedom</span> <span class="n">among</span> <span class="n">samplesm</span><span class="p">,</span> <span class="ow">or</span> <span class="p">(</span><span class="n">K</span><span class="o">-</span><span class="mi">1</span><span class="p">),</span> <span class="n">K</span><span class="o">==</span><span class="n">num</span> <span class="n">of</span> <span class="n">groups</span>
+     <span class="n">DF_within</span>  <span class="o">=</span> <span class="n">degrees</span> <span class="n">of</span> <span class="n">freedom</span> <span class="n">within</span> <span class="n">samples</span><span class="p">,</span> <span class="ow">or</span> <span class="n">N</span><span class="o">-</span><span class="n">K</span>
+     <span class="n">DF_TOTAL</span>   <span class="o">=</span> <span class="n">total</span> <span class="n">degrees</span> <span class="n">of</span> <span class="n">freedom</span> <span class="n">N</span><span class="o">-</span><span class="mi">1</span>
+     <span class="n">B</span>          <span class="o">=</span> <span class="n">matrix</span> <span class="n">of</span> <span class="n">sum</span> <span class="n">of</span> <span class="n">squares</span> <span class="ow">and</span> <span class="n">products</span> <span class="p">(</span><span class="n">SSP</span><span class="p">)</span> <span class="n">between</span> <span class="n">samples</span>
+     <span class="n">W</span>          <span class="o">=</span> <span class="n">matrix</span> <span class="n">of</span> <span class="n">SSP</span> <span class="n">within</span> <span class="n">samples</span>
+     <span class="n">T</span>          <span class="o">=</span> <span class="n">matrix</span> <span class="n">of</span> <span class="n">total</span> <span class="n">SSP</span><span class="p">,</span> <span class="n">note</span> <span class="n">that</span> <span class="n">T</span><span class="o">==</span><span class="n">W</span><span class="o">+</span><span class="n">B</span>
+     <span class="n">ratio</span>      <span class="o">=</span> <span class="o">|</span><span class="n">W</span><span class="o">|/|</span><span class="n">T</span><span class="o">|</span><span class="p">,</span> <span class="ow">or</span> <span class="n">ratio</span> <span class="n">to</span> <span class="n">be</span> <span class="n">compared</span> <span class="n">to</span> <span class="n">Wilks</span><span class="s1">&#39; statistic</span>
+     <span class="n">P</span>          <span class="o">=</span> <span class="n">Probability</span> <span class="n">of</span> <span class="n">data</span> <span class="n">under</span> <span class="n">hypothesis</span> <span class="n">that</span> <span class="n">means</span> <span class="n">are</span> <span class="n">equal</span>
+     <span class="n">H</span>          <span class="o">=</span> <span class="mi">0</span> <span class="k">if</span> <span class="n">means</span> <span class="n">are</span> <span class="n">SAME</span><span class="p">,</span> <span class="mi">1</span> <span class="k">if</span> <span class="n">DIFFERENT</span>
+     <span class="n">X__</span>        <span class="o">=</span> <span class="n">Grand</span> <span class="n">mean</span> <span class="n">of</span> <span class="n">data</span>
+     <span class="n">X_</span>         <span class="o">=</span> <span class="n">Mean</span> <span class="n">of</span> <span class="n">each</span> <span class="n">group</span> <span class="p">(</span><span class="n">KxP</span><span class="p">)</span>
+     <span class="n">N</span>          <span class="o">=</span> <span class="n">Number</span> <span class="n">of</span> <span class="n">items</span> <span class="ow">in</span> <span class="n">each</span> <span class="n">group</span> <span class="p">(</span><span class="n">Kx1</span><span class="p">)</span>
+     <span class="n">E</span>          <span class="o">=</span> <span class="n">Eigenvalues</span> <span class="k">for</span> <span class="n">canonical</span> <span class="n">variate</span> <span class="n">projection</span> <span class="p">(</span><span class="n">inv</span><span class="p">(</span><span class="n">W</span><span class="p">)</span><span class="o">*</span><span class="n">B</span><span class="p">)</span>
+     <span class="n">V</span>          <span class="o">=</span> <span class="n">Eigenvectors</span> <span class="n">corresp</span><span class="o">.</span> <span class="n">to</span> <span class="n">these</span> <span class="n">eigenvalues</span>
+     <span class="n">VV</span>         <span class="o">=</span> <span class="n">Eigenvectors</span> <span class="n">normalized</span> <span class="p">(</span><span class="n">by</span> <span class="n">W</span><span class="o">/</span><span class="p">(</span><span class="n">N</span><span class="o">-</span><span class="n">K</span><span class="p">))</span> <span class="k">for</span> <span class="n">canonical</span> <span class="n">v</span><span class="o">.</span> <span class="n">proj</span><span class="o">.</span>
+
+   <span class="n">See</span> <span class="n">Chapter</span> <span class="mi">12</span> <span class="n">of</span> <span class="n">_Multivariate</span> <span class="n">Analysis_</span><span class="p">,</span> <span class="n">KV</span> <span class="n">Mardia</span><span class="p">,</span> <span class="n">JT</span> <span class="n">Kent</span><span class="p">,</span> <span class="n">JM</span> <span class="n">Bibby</span><span class="p">,</span>
+   <span class="n">Academic</span> <span class="n">Press</span><span class="p">,</span> <span class="n">London</span><span class="p">,</span> <span class="mf">1979.</span>
+
+   <span class="n">Note</span><span class="p">:</span>  <span class="n">The</span> <span class="n">eigenvector</span> <span class="n">corresponding</span> <span class="n">to</span> <span class="n">the</span> <span class="n">largest</span> <span class="n">eigenvalue</span> <span class="n">of</span> <span class="n">inv</span><span class="p">(</span><span class="n">W</span><span class="p">)</span><span class="o">*</span><span class="n">B</span> 
+   <span class="k">is</span> <span class="n">the</span> <span class="n">first</span> <span class="n">canonical</span> <span class="n">variate</span> <span class="ow">or</span> <span class="n">Fisher</span><span class="s1">&#39;s linear discriminant function.</span>
+   <span class="n">Projecting</span> <span class="n">onto</span> <span class="n">this</span> <span class="n">variate</span> <span class="k">is</span> <span class="n">useful</span> <span class="k">for</span> <span class="n">visualizing</span> <span class="n">the</span> <span class="n">differences</span> <span class="n">among</span>
+   <span class="n">groups</span> <span class="n">of</span> <span class="n">data</span><span class="o">.</span>  <span class="n">The</span> <span class="n">other</span> <span class="n">canonical</span> <span class="n">variates</span> <span class="n">are</span> <span class="n">the</span> <span class="n">eigenvectors</span>
+   <span class="n">corresponding</span> <span class="n">to</span> <span class="n">the</span> <span class="n">eigenvalues</span> <span class="ow">in</span> <span class="n">descending</span> <span class="n">order</span> <span class="n">of</span> <span class="n">magnitude</span><span class="o">.</span>
+   <span class="p">(</span><span class="n">See</span> <span class="n">sec</span><span class="o">.</span> <span class="mf">11.5</span> <span class="n">of</span> <span class="n">above</span> <span class="n">book</span><span class="o">.</span><span class="p">)</span>
+
+   <span class="n">Steve</span> <span class="n">Van</span> <span class="n">Hooser</span><span class="p">,</span> <span class="mi">2003</span>
+</code></pre></div>
                 
               
               

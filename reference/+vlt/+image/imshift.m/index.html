@@ -3213,6 +3213,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../%2Bgit/git_stash.m/" class="md-nav__link">
+        vlt.git.git_stash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../%2Bgit/git_status.m/" class="md-nav__link">
         vlt.git.git_status
       </a>
@@ -9237,22 +9249,27 @@
                 
                 
                 <h1 id="vltimageimshift">vlt.image.imshift<a class="headerlink" href="#vltimageimshift" title="Permanent link">&para;</a></h1>
-<p>IMSHIFT - Shift an image, maintaining image size</p>
-<p>IM_OUT = IMSHIFT(IM, SHIFT)</p>
-<p>Shifts a 2-dimensional image IM by SHIFT pixels
-   SHIFT should be a vector with elements [SHIFT_ROWS SHIFT_COLUMNS]
-   SHIFT_COLUMNS is the number of pixels to shift the pixels to the
-   right (can be negative to shift left); SHIFT_ROWS is the number
-   of pixels to shift down (can be negative to shift up).</p>
-<p>Note that with images, the 'X' axis typically corresponds to
-   columns, and the 'Y' axis typically corresponds to rows, so
-   consider the order of the shift parameters for your application.</p>
-<p>One can pass additional arguments as name/value pairs:
-   Name (default value): | Description:  </p>
-<hr />
-<p>'PadValue' (0)        | Value for pixels used to pad the
-                         |   edges of the shifted image so as
-                         |   to maintain the original image size.</p>
+<div class="codehilite"><pre><span></span><code>  <span class="n">IMSHIFT</span> <span class="o">-</span> <span class="n">Shift</span> <span class="n">an</span> <span class="n">image</span><span class="p">,</span> <span class="n">maintaining</span> <span class="n">image</span> <span class="n">size</span>
+
+   <span class="n">IM_OUT</span> <span class="o">=</span> <span class="n">IMSHIFT</span><span class="p">(</span><span class="n">IM</span><span class="p">,</span> <span class="n">SHIFT</span><span class="p">)</span>
+
+   <span class="n">Shifts</span> <span class="n">a</span> <span class="mi">2</span><span class="o">-</span><span class="n">dimensional</span> <span class="n">image</span> <span class="n">IM</span> <span class="n">by</span> <span class="n">SHIFT</span> <span class="n">pixels</span>
+   <span class="n">SHIFT</span> <span class="n">should</span> <span class="n">be</span> <span class="n">a</span> <span class="n">vector</span> <span class="n">with</span> <span class="n">elements</span> <span class="p">[</span><span class="n">SHIFT_ROWS</span> <span class="n">SHIFT_COLUMNS</span><span class="p">]</span>
+   <span class="n">SHIFT_COLUMNS</span> <span class="n">is</span> <span class="n">the</span> <span class="n">number</span> <span class="n">of</span> <span class="n">pixels</span> <span class="n">to</span> <span class="n">shift</span> <span class="n">the</span> <span class="n">pixels</span> <span class="n">to</span> <span class="n">the</span>
+   <span class="n">right</span> <span class="p">(</span><span class="n">can</span> <span class="n">be</span> <span class="n">negative</span> <span class="n">to</span> <span class="n">shift</span> <span class="n">left</span><span class="p">);</span> <span class="n">SHIFT_ROWS</span> <span class="n">is</span> <span class="n">the</span> <span class="n">number</span>
+   <span class="n">of</span> <span class="n">pixels</span> <span class="n">to</span> <span class="n">shift</span> <span class="n">down</span> <span class="p">(</span><span class="n">can</span> <span class="n">be</span> <span class="n">negative</span> <span class="n">to</span> <span class="n">shift</span> <span class="n">up</span><span class="p">).</span>
+
+   <span class="n">Note</span> <span class="n">that</span> <span class="n">with</span> <span class="n">images</span><span class="p">,</span> <span class="n">the</span> <span class="sc">&#39;X&#39;</span> <span class="n">axis</span> <span class="n">typically</span> <span class="n">corresponds</span> <span class="n">to</span>
+   <span class="n">columns</span><span class="p">,</span> <span class="n">and</span> <span class="n">the</span> <span class="sc">&#39;Y&#39;</span> <span class="n">axis</span> <span class="n">typically</span> <span class="n">corresponds</span> <span class="n">to</span> <span class="n">rows</span><span class="p">,</span> <span class="n">so</span>
+   <span class="n">consider</span> <span class="n">the</span> <span class="n">order</span> <span class="n">of</span> <span class="n">the</span> <span class="n">shift</span> <span class="n">parameters</span> <span class="k">for</span> <span class="n">your</span> <span class="n">application</span><span class="p">.</span>
+
+   <span class="n">One</span> <span class="n">can</span> <span class="n">pass</span> <span class="n">additional</span> <span class="n">arguments</span> <span class="n">as</span> <span class="n">name</span><span class="o">/</span><span class="n">value</span> <span class="nl">pairs</span><span class="p">:</span>
+   <span class="n">Name</span> <span class="p">(</span><span class="k">default</span> <span class="n">value</span><span class="p">)</span><span class="o">:</span> <span class="o">|</span> <span class="nl">Description</span><span class="p">:</span>  
+   <span class="o">---------------------------------------------------------</span>
+   <span class="err">&#39;</span><span class="n">PadValue</span><span class="err">&#39;</span> <span class="p">(</span><span class="mi">0</span><span class="p">)</span>        <span class="o">|</span> <span class="n">Value</span> <span class="k">for</span> <span class="n">pixels</span> <span class="n">used</span> <span class="n">to</span> <span class="n">pad</span> <span class="n">the</span>
+                         <span class="o">|</span>   <span class="n">edges</span> <span class="n">of</span> <span class="n">the</span> <span class="n">shifted</span> <span class="n">image</span> <span class="n">so</span> <span class="n">as</span>
+                         <span class="o">|</span>   <span class="n">to</span> <span class="n">maintain</span> <span class="n">the</span> <span class="n">original</span> <span class="n">image</span> <span class="n">size</span><span class="p">.</span>
+</code></pre></div>
                 
               
               

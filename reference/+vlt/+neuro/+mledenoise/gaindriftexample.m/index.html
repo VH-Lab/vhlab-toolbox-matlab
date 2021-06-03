@@ -3213,6 +3213,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../../%2Bgit/git_stash.m/" class="md-nav__link">
+        vlt.git.git_stash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../../%2Bgit/git_status.m/" class="md-nav__link">
         vlt.git.git_status
       </a>
@@ -9239,54 +9251,67 @@
                 
                 
                 <h1 id="vltneuromledenoisegaindriftexample">vlt.neuro.mledenoise.gaindriftexample<a class="headerlink" href="#vltneuromledenoisegaindriftexample" title="Permanent link">&para;</a></h1>
-<p>GAINDRIFTEXAMPLE - Create an artificial stimulus response where gain varies</p>
-<p>[SPIKETIMES, R, T, STIM_ON_TIMES, STIM_OFF_TIMES, STIM_NUMBERS, G] = ...
-           vlt.neuro.mledenoise.gaindriftexample</p>
-<p>Creates a spike train that with the following rate:</p>
-<p>r(t) = g(t) * s_i(t)</p>
-<p>The ongoing gain of the system is g(t), and is a slow sinusoid.
-   s_i(t) is the response to stimulus i.</p>
-<p>Outputs:
-   SPIKETIMES is the time of all of the stimulated spikes.
-   R is the rate used to generate the spikes
-   T is an array of time value for the simulated rate values
-   STIM_ON_TIMES is an array of times of stimulus onset
-   STIM_OFF_TIMES is an array of time of stimulus offset
-   STIM_NUMBERS is an array of stim ids
-   G is the gain as a function of time.</p>
-<p>Alternatively, one may use:</p>
-<p>[SPIKETIMES, STIM_ON_TIMES, STIM_OFF_TIMES, STIM_NUMBERS] = ...
-           vlt.neuro.mledenoise.gaindriftexample('PROPERTY1',VALUE1,...);</p>
-<p>can be used to alter the parameters used to create the model as follows:</p>
-<p>NAME:                    DESCRIPTION:</p>
-<hr />
-<p>'gain_amplitude'         The amplitude of the gain modulation (default 2)
-   'gain_frequency'         Frequency of gain modulation (default 1/300 Hz)
-   'gain_offset'            Offset of gain modulation (default 0.5)
-   'stim_response'          Mean responses to each stim (default [20 10 5 0])
-   'stim_repeats'           Number of times to repeat each stim (default 50)
-   'stim_duration'          Duration of each stimulus (default 2 seconds)
-   'stim_isi'               Inter-stimulus-interval (default 5 seconds)
-   'response_tf'            Temporal frequency of response (default 0Hz)
-   'dt'                     Time step of simulation; default 0.001 seconds</p>
-<p>Creates an artificial stimulus response where gain varies.</p>
-<p>Creates REPS numbers of repetitions of the stimuli that have mean responses
-   STIM_RESPONSES(i).  The length of STIM_RESPONSES determines the number of 
-   stimuli that are produced.  Each stimulus is assumed to last STIM_DURATION
-   seconds.  </p>
-<p>Example:</p>
-<div class="codehilite"><pre><span></span><code>  <span class="cp">[</span><span class="nx">spiketimes</span><span class="p">,</span><span class="nx">r</span><span class="p">,</span><span class="nx">t</span><span class="p">,</span><span class="nx">stimon</span><span class="p">,</span><span class="nx">stimoff</span><span class="p">,</span><span class="nx">stimids</span><span class="p">,</span><span class="nx">g</span><span class="cp">]</span><span class="o">=</span><span class="nt">vlt</span><span class="p">.</span><span class="nc">neuro</span><span class="p">.</span><span class="nc">mledenoise</span><span class="p">.</span><span class="nc">gaindriftexample</span><span class="o">;</span>
-  <span class="nt">figure</span><span class="o">;</span>
-  <span class="nt">plot</span><span class="o">(</span><span class="nt">t</span><span class="o">,</span><span class="nt">r</span><span class="o">);</span>
-  <span class="nt">hold</span> <span class="nt">on</span><span class="o">;</span>
-  <span class="nt">plot</span><span class="o">(</span><span class="nt">spiketimes</span><span class="o">,</span><span class="nt">50</span><span class="o">,</span><span class="s1">&#39;kx&#39;</span><span class="o">);</span> <span class="o">%</span> <span class="nt">plot</span> <span class="nt">an</span> <span class="nt">x</span> <span class="nt">for</span> <span class="nt">each</span> <span class="nt">simulated</span> <span class="nt">spike</span> <span class="nt">time</span>
-  <span class="nt">plot</span><span class="o">(</span><span class="nt">t</span><span class="o">,</span><span class="nt">g</span><span class="o">,</span><span class="s1">&#39;g&#39;</span><span class="o">);</span> <span class="o">%</span> <span class="nt">plot</span> <span class="nt">gain</span>
-  <span class="nt">for</span> <span class="nt">i</span><span class="o">=</span><span class="nt">1</span><span class="p">:</span><span class="nd">length</span><span class="o">(</span><span class="nt">stimon</span><span class="o">),</span>
-     <span class="nt">text</span><span class="o">(</span><span class="nt">mean</span><span class="o">(</span><span class="cp">[</span><span class="nx">stimon</span><span class="p">(</span><span class="nx">i</span><span class="p">)</span> <span class="nx">stimoff</span><span class="p">(</span><span class="nx">i</span><span class="p">)</span><span class="cp">]</span><span class="o">),</span> <span class="nt">55</span><span class="o">,</span> <span class="nt">int2str</span><span class="o">(</span><span class="nt">stimids</span><span class="o">(</span><span class="nt">i</span><span class="o">)));</span>
-  <span class="nt">end</span><span class="o">;</span>
-  <span class="nt">axis</span><span class="o">(</span><span class="cp">[</span><span class="nx">t</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="nx">t</span><span class="p">(</span><span class="nx">end</span><span class="p">)</span> <span class="o">-</span><span class="mi">60</span> <span class="mi">60</span><span class="cp">]</span><span class="o">);</span> <span class="nt">box</span> <span class="nt">off</span><span class="o">;</span>
-  <span class="nt">xlabel</span><span class="o">(</span><span class="s1">&#39;Time(s)&#39;</span><span class="o">);</span> <span class="nt">ylabel</span><span class="o">(</span><span class="s1">&#39;Firing rate&#39;</span><span class="o">);</span>
-  <span class="nt">title</span><span class="o">(</span><span class="s1">&#39;x indicates spike, numbers indicate stimulus number&#39;</span><span class="o">);</span>
+<div class="codehilite"><pre><span></span><code>  <span class="n">GAINDRIFTEXAMPLE</span> <span class="o">-</span> <span class="n">Create</span> <span class="n">an</span> <span class="n">artificial</span> <span class="n">stimulus</span> <span class="n">response</span> <span class="n">where</span> <span class="n">gain</span> <span class="n">varies</span>
+
+   <span class="p">[</span><span class="n">SPIKETIMES</span><span class="p">,</span> <span class="n">R</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">STIM_ON_TIMES</span><span class="p">,</span> <span class="n">STIM_OFF_TIMES</span><span class="p">,</span> <span class="n">STIM_NUMBERS</span><span class="p">,</span> <span class="n">G</span><span class="p">]</span> <span class="o">=</span> <span class="o">...</span>
+           <span class="n">vlt</span><span class="o">.</span><span class="n">neuro</span><span class="o">.</span><span class="n">mledenoise</span><span class="o">.</span><span class="n">gaindriftexample</span>
+
+   <span class="n">Creates</span> <span class="n">a</span> <span class="n">spike</span> <span class="n">train</span> <span class="n">that</span> <span class="n">with</span> <span class="n">the</span> <span class="n">following</span> <span class="n">rate</span><span class="p">:</span>
+
+   <span class="n">r</span><span class="p">(</span><span class="n">t</span><span class="p">)</span> <span class="o">=</span> <span class="n">g</span><span class="p">(</span><span class="n">t</span><span class="p">)</span> <span class="o">*</span> <span class="n">s_i</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+
+   <span class="n">The</span> <span class="n">ongoing</span> <span class="n">gain</span> <span class="n">of</span> <span class="n">the</span> <span class="n">system</span> <span class="k">is</span> <span class="n">g</span><span class="p">(</span><span class="n">t</span><span class="p">),</span> <span class="ow">and</span> <span class="k">is</span> <span class="n">a</span> <span class="n">slow</span> <span class="n">sinusoid</span><span class="o">.</span>
+   <span class="n">s_i</span><span class="p">(</span><span class="n">t</span><span class="p">)</span> <span class="k">is</span> <span class="n">the</span> <span class="n">response</span> <span class="n">to</span> <span class="n">stimulus</span> <span class="n">i</span><span class="o">.</span>
+
+   <span class="n">Outputs</span><span class="p">:</span>
+   <span class="n">SPIKETIMES</span> <span class="k">is</span> <span class="n">the</span> <span class="n">time</span> <span class="n">of</span> <span class="n">all</span> <span class="n">of</span> <span class="n">the</span> <span class="n">stimulated</span> <span class="n">spikes</span><span class="o">.</span>
+   <span class="n">R</span> <span class="k">is</span> <span class="n">the</span> <span class="n">rate</span> <span class="n">used</span> <span class="n">to</span> <span class="n">generate</span> <span class="n">the</span> <span class="n">spikes</span>
+   <span class="n">T</span> <span class="k">is</span> <span class="n">an</span> <span class="n">array</span> <span class="n">of</span> <span class="n">time</span> <span class="n">value</span> <span class="k">for</span> <span class="n">the</span> <span class="n">simulated</span> <span class="n">rate</span> <span class="n">values</span>
+   <span class="n">STIM_ON_TIMES</span> <span class="k">is</span> <span class="n">an</span> <span class="n">array</span> <span class="n">of</span> <span class="n">times</span> <span class="n">of</span> <span class="n">stimulus</span> <span class="n">onset</span>
+   <span class="n">STIM_OFF_TIMES</span> <span class="k">is</span> <span class="n">an</span> <span class="n">array</span> <span class="n">of</span> <span class="n">time</span> <span class="n">of</span> <span class="n">stimulus</span> <span class="n">offset</span>
+   <span class="n">STIM_NUMBERS</span> <span class="k">is</span> <span class="n">an</span> <span class="n">array</span> <span class="n">of</span> <span class="n">stim</span> <span class="n">ids</span>
+   <span class="n">G</span> <span class="k">is</span> <span class="n">the</span> <span class="n">gain</span> <span class="k">as</span> <span class="n">a</span> <span class="n">function</span> <span class="n">of</span> <span class="n">time</span><span class="o">.</span>
+
+   <span class="n">Alternatively</span><span class="p">,</span> <span class="n">one</span> <span class="n">may</span> <span class="n">use</span><span class="p">:</span>
+
+   <span class="p">[</span><span class="n">SPIKETIMES</span><span class="p">,</span> <span class="n">STIM_ON_TIMES</span><span class="p">,</span> <span class="n">STIM_OFF_TIMES</span><span class="p">,</span> <span class="n">STIM_NUMBERS</span><span class="p">]</span> <span class="o">=</span> <span class="o">...</span>
+           <span class="n">vlt</span><span class="o">.</span><span class="n">neuro</span><span class="o">.</span><span class="n">mledenoise</span><span class="o">.</span><span class="n">gaindriftexample</span><span class="p">(</span><span class="s1">&#39;PROPERTY1&#39;</span><span class="p">,</span><span class="n">VALUE1</span><span class="p">,</span><span class="o">...</span><span class="p">);</span>
+
+   <span class="n">can</span> <span class="n">be</span> <span class="n">used</span> <span class="n">to</span> <span class="n">alter</span> <span class="n">the</span> <span class="n">parameters</span> <span class="n">used</span> <span class="n">to</span> <span class="n">create</span> <span class="n">the</span> <span class="n">model</span> <span class="k">as</span> <span class="n">follows</span><span class="p">:</span>
+
+   <span class="n">NAME</span><span class="p">:</span>                    <span class="n">DESCRIPTION</span><span class="p">:</span>
+   <span class="o">-------------------------------------------------------------------------</span>
+   <span class="s1">&#39;gain_amplitude&#39;</span>         <span class="n">The</span> <span class="n">amplitude</span> <span class="n">of</span> <span class="n">the</span> <span class="n">gain</span> <span class="n">modulation</span> <span class="p">(</span><span class="n">default</span> <span class="mi">2</span><span class="p">)</span>
+   <span class="s1">&#39;gain_frequency&#39;</span>         <span class="n">Frequency</span> <span class="n">of</span> <span class="n">gain</span> <span class="n">modulation</span> <span class="p">(</span><span class="n">default</span> <span class="mi">1</span><span class="o">/</span><span class="mi">300</span> <span class="n">Hz</span><span class="p">)</span>
+   <span class="s1">&#39;gain_offset&#39;</span>            <span class="n">Offset</span> <span class="n">of</span> <span class="n">gain</span> <span class="n">modulation</span> <span class="p">(</span><span class="n">default</span> <span class="mf">0.5</span><span class="p">)</span>
+   <span class="s1">&#39;stim_response&#39;</span>          <span class="n">Mean</span> <span class="n">responses</span> <span class="n">to</span> <span class="n">each</span> <span class="n">stim</span> <span class="p">(</span><span class="n">default</span> <span class="p">[</span><span class="mi">20</span> <span class="mi">10</span> <span class="mi">5</span> <span class="mi">0</span><span class="p">])</span>
+   <span class="s1">&#39;stim_repeats&#39;</span>           <span class="n">Number</span> <span class="n">of</span> <span class="n">times</span> <span class="n">to</span> <span class="n">repeat</span> <span class="n">each</span> <span class="n">stim</span> <span class="p">(</span><span class="n">default</span> <span class="mi">50</span><span class="p">)</span>
+   <span class="s1">&#39;stim_duration&#39;</span>          <span class="n">Duration</span> <span class="n">of</span> <span class="n">each</span> <span class="n">stimulus</span> <span class="p">(</span><span class="n">default</span> <span class="mi">2</span> <span class="n">seconds</span><span class="p">)</span>
+   <span class="s1">&#39;stim_isi&#39;</span>               <span class="n">Inter</span><span class="o">-</span><span class="n">stimulus</span><span class="o">-</span><span class="n">interval</span> <span class="p">(</span><span class="n">default</span> <span class="mi">5</span> <span class="n">seconds</span><span class="p">)</span>
+   <span class="s1">&#39;response_tf&#39;</span>            <span class="n">Temporal</span> <span class="n">frequency</span> <span class="n">of</span> <span class="n">response</span> <span class="p">(</span><span class="n">default</span> <span class="mi">0</span><span class="n">Hz</span><span class="p">)</span>
+   <span class="s1">&#39;dt&#39;</span>                     <span class="n">Time</span> <span class="n">step</span> <span class="n">of</span> <span class="n">simulation</span><span class="p">;</span> <span class="n">default</span> <span class="mf">0.001</span> <span class="n">seconds</span>
+
+   <span class="n">Creates</span> <span class="n">an</span> <span class="n">artificial</span> <span class="n">stimulus</span> <span class="n">response</span> <span class="n">where</span> <span class="n">gain</span> <span class="n">varies</span><span class="o">.</span>
+
+   <span class="n">Creates</span> <span class="n">REPS</span> <span class="n">numbers</span> <span class="n">of</span> <span class="n">repetitions</span> <span class="n">of</span> <span class="n">the</span> <span class="n">stimuli</span> <span class="n">that</span> <span class="n">have</span> <span class="n">mean</span> <span class="n">responses</span>
+   <span class="n">STIM_RESPONSES</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="o">.</span>  <span class="n">The</span> <span class="n">length</span> <span class="n">of</span> <span class="n">STIM_RESPONSES</span> <span class="n">determines</span> <span class="n">the</span> <span class="n">number</span> <span class="n">of</span> 
+   <span class="n">stimuli</span> <span class="n">that</span> <span class="n">are</span> <span class="n">produced</span><span class="o">.</span>  <span class="n">Each</span> <span class="n">stimulus</span> <span class="k">is</span> <span class="n">assumed</span> <span class="n">to</span> <span class="n">last</span> <span class="n">STIM_DURATION</span>
+   <span class="n">seconds</span><span class="o">.</span>  
+
+   <span class="n">Example</span><span class="p">:</span>
+
+      <span class="p">[</span><span class="n">spiketimes</span><span class="p">,</span><span class="n">r</span><span class="p">,</span><span class="n">t</span><span class="p">,</span><span class="n">stimon</span><span class="p">,</span><span class="n">stimoff</span><span class="p">,</span><span class="n">stimids</span><span class="p">,</span><span class="n">g</span><span class="p">]</span><span class="o">=</span><span class="n">vlt</span><span class="o">.</span><span class="n">neuro</span><span class="o">.</span><span class="n">mledenoise</span><span class="o">.</span><span class="n">gaindriftexample</span><span class="p">;</span>
+      <span class="n">figure</span><span class="p">;</span>
+      <span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">r</span><span class="p">);</span>
+      <span class="n">hold</span> <span class="n">on</span><span class="p">;</span>
+      <span class="n">plot</span><span class="p">(</span><span class="n">spiketimes</span><span class="p">,</span><span class="mi">50</span><span class="p">,</span><span class="s1">&#39;kx&#39;</span><span class="p">);</span> <span class="o">%</span> <span class="n">plot</span> <span class="n">an</span> <span class="n">x</span> <span class="k">for</span> <span class="n">each</span> <span class="n">simulated</span> <span class="n">spike</span> <span class="n">time</span>
+      <span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">g</span><span class="p">,</span><span class="s1">&#39;g&#39;</span><span class="p">);</span> <span class="o">%</span> <span class="n">plot</span> <span class="n">gain</span>
+      <span class="k">for</span> <span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">:</span><span class="n">length</span><span class="p">(</span><span class="n">stimon</span><span class="p">),</span>
+         <span class="n">text</span><span class="p">(</span><span class="n">mean</span><span class="p">([</span><span class="n">stimon</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="n">stimoff</span><span class="p">(</span><span class="n">i</span><span class="p">)]),</span> <span class="mi">55</span><span class="p">,</span> <span class="n">int2str</span><span class="p">(</span><span class="n">stimids</span><span class="p">(</span><span class="n">i</span><span class="p">)));</span>
+      <span class="n">end</span><span class="p">;</span>
+      <span class="n">axis</span><span class="p">([</span><span class="n">t</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="n">t</span><span class="p">(</span><span class="n">end</span><span class="p">)</span> <span class="o">-</span><span class="mi">60</span> <span class="mi">60</span><span class="p">]);</span> <span class="n">box</span> <span class="n">off</span><span class="p">;</span>
+      <span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Time(s)&#39;</span><span class="p">);</span> <span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Firing rate&#39;</span><span class="p">);</span>
+      <span class="n">title</span><span class="p">(</span><span class="s1">&#39;x indicates spike, numbers indicate stimulus number&#39;</span><span class="p">);</span>
 </code></pre></div>
                 
               

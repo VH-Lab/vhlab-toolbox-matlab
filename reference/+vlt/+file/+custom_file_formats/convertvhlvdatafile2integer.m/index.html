@@ -3227,6 +3227,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../../%2Bgit/git_stash.m/" class="md-nav__link">
+        vlt.git.git_stash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../../%2Bgit/git_status.m/" class="md-nav__link">
         vlt.git.git_status
       </a>
@@ -9239,20 +9251,26 @@
                 
                 
                 <h1 id="vltfilecustom_file_formatsconvertvhlvdatafile2integer">vlt.file.custom_file_formats.convertvhlvdatafile2integer<a class="headerlink" href="#vltfilecustom_file_formatsconvertvhlvdatafile2integer" title="Permanent link">&para;</a></h1>
-<p>CONVERTVHLVDATAFILE2INTEGER - Convert a VH LabView file to binary integer format</p>
-<p>vlt.file.custom_file_formats.convertvhlvdatafile2integer(OLDFILENAME, HEADERSTRUCT, OUTPUTFILENAME, SCALE, PRECISION)</p>
-<p>This function reads data from the multichannel VHLab LabView binary
-   data file format and writes a new file with precision PRECISION,
-   where PRECISION is 'int32' or 'int16'.
-   HEADERSTRUCT is the header structure as returned from 
-   vlt.file.custom_file_formats.readvhlvheaderfile (or use empty, [], to open a file of the same name
-   as OLDFILENAME with extension 'vlh').</p>
-<p>OUTPUTFILENAME is the name of the new file to be written; a new header
-   file with the same name as OUTPUTFILENAME and extension
-   'vlh' will be created. The data are divided by SCALE before writing.</p>
-<p>The output file will be saved with channel multiplexing.</p>
-<p>Example:
-        vlt.file.custom_file_formats.convertvhlvdatafile2integer('vhlvanaloginput.vld',[],'vhlvanaloginput_int.vld',10,'int16');</p>
+<div class="codehilite"><pre><span></span><code>  <span class="nt">CONVERTVHLVDATAFILE2INTEGER</span> <span class="nt">-</span> <span class="nt">Convert</span> <span class="nt">a</span> <span class="nt">VH</span> <span class="nt">LabView</span> <span class="nt">file</span> <span class="nt">to</span> <span class="nt">binary</span> <span class="nt">integer</span> <span class="nt">format</span>
+
+   <span class="nt">vlt</span><span class="p">.</span><span class="nc">file</span><span class="p">.</span><span class="nc">custom_file_formats</span><span class="p">.</span><span class="nc">convertvhlvdatafile2integer</span><span class="o">(</span><span class="nt">OLDFILENAME</span><span class="o">,</span> <span class="nt">HEADERSTRUCT</span><span class="o">,</span> <span class="nt">OUTPUTFILENAME</span><span class="o">,</span> <span class="nt">SCALE</span><span class="o">,</span> <span class="nt">PRECISION</span><span class="o">)</span>
+
+   <span class="nt">This</span> <span class="nt">function</span> <span class="nt">reads</span> <span class="nt">data</span> <span class="nt">from</span> <span class="nt">the</span> <span class="nt">multichannel</span> <span class="nt">VHLab</span> <span class="nt">LabView</span> <span class="nt">binary</span>
+   <span class="nt">data</span> <span class="nt">file</span> <span class="nt">format</span> <span class="nt">and</span> <span class="nt">writes</span> <span class="nt">a</span> <span class="nt">new</span> <span class="nt">file</span> <span class="nt">with</span> <span class="nt">precision</span> <span class="nt">PRECISION</span><span class="o">,</span>
+   <span class="nt">where</span> <span class="nt">PRECISION</span> <span class="nt">is</span> <span class="s1">&#39;int32&#39;</span> <span class="nt">or</span> <span class="s1">&#39;int16&#39;</span><span class="o">.</span>
+   <span class="nt">HEADERSTRUCT</span> <span class="nt">is</span> <span class="nt">the</span> <span class="nt">header</span> <span class="nt">structure</span> <span class="nt">as</span> <span class="nt">returned</span> <span class="nt">from</span> 
+   <span class="nt">vlt</span><span class="p">.</span><span class="nc">file</span><span class="p">.</span><span class="nc">custom_file_formats</span><span class="p">.</span><span class="nc">readvhlvheaderfile</span> <span class="o">(</span><span class="nt">or</span> <span class="nt">use</span> <span class="nt">empty</span><span class="o">,</span> <span class="cp">[]</span><span class="o">,</span> <span class="nt">to</span> <span class="nt">open</span> <span class="nt">a</span> <span class="nt">file</span> <span class="nt">of</span> <span class="nt">the</span> <span class="nt">same</span> <span class="nt">name</span>
+   <span class="nt">as</span> <span class="nt">OLDFILENAME</span> <span class="nt">with</span> <span class="nt">extension</span> <span class="s1">&#39;vlh&#39;</span><span class="o">).</span>
+
+   <span class="nt">OUTPUTFILENAME</span> <span class="nt">is</span> <span class="nt">the</span> <span class="nt">name</span> <span class="nt">of</span> <span class="nt">the</span> <span class="nt">new</span> <span class="nt">file</span> <span class="nt">to</span> <span class="nt">be</span> <span class="nt">written</span><span class="o">;</span> <span class="nt">a</span> <span class="nt">new</span> <span class="nt">header</span>
+   <span class="nt">file</span> <span class="nt">with</span> <span class="nt">the</span> <span class="nt">same</span> <span class="nt">name</span> <span class="nt">as</span> <span class="nt">OUTPUTFILENAME</span> <span class="nt">and</span> <span class="nt">extension</span>
+   <span class="s1">&#39;vlh&#39;</span> <span class="nt">will</span> <span class="nt">be</span> <span class="nt">created</span><span class="o">.</span> <span class="nt">The</span> <span class="nt">data</span> <span class="nt">are</span> <span class="nt">divided</span> <span class="nt">by</span> <span class="nt">SCALE</span> <span class="nt">before</span> <span class="nt">writing</span><span class="o">.</span>
+
+   <span class="nt">The</span> <span class="nt">output</span> <span class="nt">file</span> <span class="nt">will</span> <span class="nt">be</span> <span class="nt">saved</span> <span class="nt">with</span> <span class="nt">channel</span> <span class="nt">multiplexing</span><span class="o">.</span>
+
+   <span class="nt">Example</span><span class="o">:</span>
+        <span class="nt">vlt</span><span class="p">.</span><span class="nc">file</span><span class="p">.</span><span class="nc">custom_file_formats</span><span class="p">.</span><span class="nc">convertvhlvdatafile2integer</span><span class="o">(</span><span class="s1">&#39;vhlvanaloginput.vld&#39;</span><span class="o">,</span><span class="cp">[]</span><span class="o">,</span><span class="s1">&#39;vhlvanaloginput_int.vld&#39;</span><span class="o">,</span><span class="nt">10</span><span class="o">,</span><span class="s1">&#39;int16&#39;</span><span class="o">);</span>
+</code></pre></div>
                 
               
               

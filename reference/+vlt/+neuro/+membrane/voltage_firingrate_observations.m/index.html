@@ -3213,6 +3213,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../../%2Bgit/git_stash.m/" class="md-nav__link">
+        vlt.git.git_stash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../../%2Bgit/git_status.m/" class="md-nav__link">
         vlt.git.git_status
       </a>
@@ -9239,38 +9251,43 @@
                 
                 
                 <h1 id="vltneuromembranevoltage_firingrate_observations">vlt.neuro.membrane.voltage_firingrate_observations<a class="headerlink" href="#vltneuromembranevoltage_firingrate_observations" title="Permanent link">&para;</a></h1>
-<p>VOLTAGE_FIRINGRATE_OBSERVATIONS - compile a list of voltage measurements and firing rate measurements</p>
-<p>[V,FR,STIMID,TIMEPOINTS,VM_BASELINESUBECTRACTED,EXACTBINTIME, SUBTRACTED_VALUE] = ...
-           vlt.neuro.membrane.voltage_firingrate_observations(T, VM, SPIKETIMES, ...)</p>
-<p>Compiles a list of membrane voltage measurements V and firing rate measurements FR given the
-  following inputs: 
-     T    is a vector with the time of each sample in VM
-     VM   is a vector of samples of absolute voltage measurement, should have spikes removed
-     SPIKETIMES is a vector of spike times (in units of t, should be seconds)</p>
-<p>V and FR are paired, binned observations of voltage and firing rate,
-  and TIMEPOINTS are the mid-point values of the bins in time.
-  STIMID is a vector containing the stimulus id of each V,FR pair.
-  VM_BASELINESUBTRACTED is the voltage waveform with baseline values subtracted.
-  EXACTBINTIME is the time interval of each bin exactly, which varies depending upon the sampling rate of Vm.</p>
-<p>This function can be modified by additional parameter name/value pairs:
-  Parameter name (default value)  | Description</p>
-<hr />
-<p>binsize (0.030)                 | Sliding bin size (units of t, should be seconds)
-  fr_smooth ([])                  | If not empty, the spike times are smoothed
-                                  |    by Gaussian window with this standard
-                                  |    deviation (in units of t).
-  stim_onsetoffsetid ([])         | Each row should contain
-                                  |    [stim_onset_time stim_offset_time stimid]
-                                  |    where the times are in units of 't' (seconds)
-  dotrialaverage (0)              | If 1, perform a trial-averaging of the spike times
-                                  |    and voltage waveform
-  vm_baseline_correct ([])        | If non-empty, perform a baseline correction of the
-                                  |    voltage waveform using this much pre-stimulus 
-                                  |    time (units of t, should be seconds).
-                                  |    (Recommended for sharp electrode recordings, not receommended
-                                  |    for patch recordings.)
-  vm_baseline_correct_func        | The function to use for correcting baseline (usually 'median' or 'mean').
-              ('median')</p>
+<div class="codehilite"><pre><span></span><code>  <span class="n">VOLTAGE_FIRINGRATE_OBSERVATIONS</span> <span class="o">-</span> <span class="n">compile</span> <span class="n">a</span> <span class="n">list</span> <span class="n">of</span> <span class="n">voltage</span> <span class="n">measurements</span> <span class="ow">and</span> <span class="n">firing</span> <span class="n">rate</span> <span class="n">measurements</span>
+
+  <span class="p">[</span><span class="n">V</span><span class="p">,</span><span class="n">FR</span><span class="p">,</span><span class="n">STIMID</span><span class="p">,</span><span class="n">TIMEPOINTS</span><span class="p">,</span><span class="n">VM_BASELINESUBECTRACTED</span><span class="p">,</span><span class="n">EXACTBINTIME</span><span class="p">,</span> <span class="n">SUBTRACTED_VALUE</span><span class="p">]</span> <span class="o">=</span> <span class="o">...</span>
+           <span class="n">vlt</span><span class="o">.</span><span class="n">neuro</span><span class="o">.</span><span class="n">membrane</span><span class="o">.</span><span class="n">voltage_firingrate_observations</span><span class="p">(</span><span class="n">T</span><span class="p">,</span> <span class="n">VM</span><span class="p">,</span> <span class="n">SPIKETIMES</span><span class="p">,</span> <span class="o">...</span><span class="p">)</span>
+
+  <span class="n">Compiles</span> <span class="n">a</span> <span class="n">list</span> <span class="n">of</span> <span class="n">membrane</span> <span class="n">voltage</span> <span class="n">measurements</span> <span class="n">V</span> <span class="ow">and</span> <span class="n">firing</span> <span class="n">rate</span> <span class="n">measurements</span> <span class="n">FR</span> <span class="n">given</span> <span class="n">the</span>
+  <span class="n">following</span> <span class="n">inputs</span><span class="p">:</span> 
+     <span class="n">T</span>    <span class="k">is</span> <span class="n">a</span> <span class="n">vector</span> <span class="n">with</span> <span class="n">the</span> <span class="n">time</span> <span class="n">of</span> <span class="n">each</span> <span class="n">sample</span> <span class="ow">in</span> <span class="n">VM</span>
+     <span class="n">VM</span>   <span class="k">is</span> <span class="n">a</span> <span class="n">vector</span> <span class="n">of</span> <span class="n">samples</span> <span class="n">of</span> <span class="n">absolute</span> <span class="n">voltage</span> <span class="n">measurement</span><span class="p">,</span> <span class="n">should</span> <span class="n">have</span> <span class="n">spikes</span> <span class="n">removed</span>
+     <span class="n">SPIKETIMES</span> <span class="k">is</span> <span class="n">a</span> <span class="n">vector</span> <span class="n">of</span> <span class="n">spike</span> <span class="n">times</span> <span class="p">(</span><span class="ow">in</span> <span class="n">units</span> <span class="n">of</span> <span class="n">t</span><span class="p">,</span> <span class="n">should</span> <span class="n">be</span> <span class="n">seconds</span><span class="p">)</span>
+
+  <span class="n">V</span> <span class="ow">and</span> <span class="n">FR</span> <span class="n">are</span> <span class="n">paired</span><span class="p">,</span> <span class="n">binned</span> <span class="n">observations</span> <span class="n">of</span> <span class="n">voltage</span> <span class="ow">and</span> <span class="n">firing</span> <span class="n">rate</span><span class="p">,</span>
+  <span class="ow">and</span> <span class="n">TIMEPOINTS</span> <span class="n">are</span> <span class="n">the</span> <span class="n">mid</span><span class="o">-</span><span class="n">point</span> <span class="n">values</span> <span class="n">of</span> <span class="n">the</span> <span class="n">bins</span> <span class="ow">in</span> <span class="n">time</span><span class="o">.</span>
+  <span class="n">STIMID</span> <span class="k">is</span> <span class="n">a</span> <span class="n">vector</span> <span class="n">containing</span> <span class="n">the</span> <span class="n">stimulus</span> <span class="n">id</span> <span class="n">of</span> <span class="n">each</span> <span class="n">V</span><span class="p">,</span><span class="n">FR</span> <span class="n">pair</span><span class="o">.</span>
+  <span class="n">VM_BASELINESUBTRACTED</span> <span class="k">is</span> <span class="n">the</span> <span class="n">voltage</span> <span class="n">waveform</span> <span class="n">with</span> <span class="n">baseline</span> <span class="n">values</span> <span class="n">subtracted</span><span class="o">.</span>
+  <span class="n">EXACTBINTIME</span> <span class="k">is</span> <span class="n">the</span> <span class="n">time</span> <span class="n">interval</span> <span class="n">of</span> <span class="n">each</span> <span class="n">bin</span> <span class="n">exactly</span><span class="p">,</span> <span class="n">which</span> <span class="n">varies</span> <span class="n">depending</span> <span class="n">upon</span> <span class="n">the</span> <span class="n">sampling</span> <span class="n">rate</span> <span class="n">of</span> <span class="n">Vm</span><span class="o">.</span>
+
+  <span class="n">This</span> <span class="n">function</span> <span class="n">can</span> <span class="n">be</span> <span class="n">modified</span> <span class="n">by</span> <span class="n">additional</span> <span class="n">parameter</span> <span class="n">name</span><span class="o">/</span><span class="n">value</span> <span class="n">pairs</span><span class="p">:</span>
+  <span class="n">Parameter</span> <span class="n">name</span> <span class="p">(</span><span class="n">default</span> <span class="n">value</span><span class="p">)</span>  <span class="o">|</span> <span class="n">Description</span>
+  <span class="o">----------------------------------------------------------------</span>
+  <span class="n">binsize</span> <span class="p">(</span><span class="mf">0.030</span><span class="p">)</span>                 <span class="o">|</span> <span class="n">Sliding</span> <span class="n">bin</span> <span class="n">size</span> <span class="p">(</span><span class="n">units</span> <span class="n">of</span> <span class="n">t</span><span class="p">,</span> <span class="n">should</span> <span class="n">be</span> <span class="n">seconds</span><span class="p">)</span>
+  <span class="n">fr_smooth</span> <span class="p">([])</span>                  <span class="o">|</span> <span class="n">If</span> <span class="ow">not</span> <span class="n">empty</span><span class="p">,</span> <span class="n">the</span> <span class="n">spike</span> <span class="n">times</span> <span class="n">are</span> <span class="n">smoothed</span>
+                                  <span class="o">|</span>    <span class="n">by</span> <span class="n">Gaussian</span> <span class="n">window</span> <span class="n">with</span> <span class="n">this</span> <span class="n">standard</span>
+                                  <span class="o">|</span>    <span class="n">deviation</span> <span class="p">(</span><span class="ow">in</span> <span class="n">units</span> <span class="n">of</span> <span class="n">t</span><span class="p">)</span><span class="o">.</span>
+  <span class="n">stim_onsetoffsetid</span> <span class="p">([])</span>         <span class="o">|</span> <span class="n">Each</span> <span class="n">row</span> <span class="n">should</span> <span class="n">contain</span>
+                                  <span class="o">|</span>    <span class="p">[</span><span class="n">stim_onset_time</span> <span class="n">stim_offset_time</span> <span class="n">stimid</span><span class="p">]</span>
+                                  <span class="o">|</span>    <span class="n">where</span> <span class="n">the</span> <span class="n">times</span> <span class="n">are</span> <span class="ow">in</span> <span class="n">units</span> <span class="n">of</span> <span class="s1">&#39;t&#39;</span> <span class="p">(</span><span class="n">seconds</span><span class="p">)</span>
+  <span class="n">dotrialaverage</span> <span class="p">(</span><span class="mi">0</span><span class="p">)</span>              <span class="o">|</span> <span class="n">If</span> <span class="mi">1</span><span class="p">,</span> <span class="n">perform</span> <span class="n">a</span> <span class="n">trial</span><span class="o">-</span><span class="n">averaging</span> <span class="n">of</span> <span class="n">the</span> <span class="n">spike</span> <span class="n">times</span>
+                                  <span class="o">|</span>    <span class="ow">and</span> <span class="n">voltage</span> <span class="n">waveform</span>
+  <span class="n">vm_baseline_correct</span> <span class="p">([])</span>        <span class="o">|</span> <span class="n">If</span> <span class="n">non</span><span class="o">-</span><span class="n">empty</span><span class="p">,</span> <span class="n">perform</span> <span class="n">a</span> <span class="n">baseline</span> <span class="n">correction</span> <span class="n">of</span> <span class="n">the</span>
+                                  <span class="o">|</span>    <span class="n">voltage</span> <span class="n">waveform</span> <span class="n">using</span> <span class="n">this</span> <span class="n">much</span> <span class="n">pre</span><span class="o">-</span><span class="n">stimulus</span> 
+                                  <span class="o">|</span>    <span class="n">time</span> <span class="p">(</span><span class="n">units</span> <span class="n">of</span> <span class="n">t</span><span class="p">,</span> <span class="n">should</span> <span class="n">be</span> <span class="n">seconds</span><span class="p">)</span><span class="o">.</span>
+                                  <span class="o">|</span>    <span class="p">(</span><span class="n">Recommended</span> <span class="k">for</span> <span class="n">sharp</span> <span class="n">electrode</span> <span class="n">recordings</span><span class="p">,</span> <span class="ow">not</span> <span class="n">receommended</span>
+                                  <span class="o">|</span>    <span class="k">for</span> <span class="n">patch</span> <span class="n">recordings</span><span class="o">.</span><span class="p">)</span>
+  <span class="n">vm_baseline_correct_func</span>        <span class="o">|</span> <span class="n">The</span> <span class="n">function</span> <span class="n">to</span> <span class="n">use</span> <span class="k">for</span> <span class="n">correcting</span> <span class="n">baseline</span> <span class="p">(</span><span class="n">usually</span> <span class="s1">&#39;median&#39;</span> <span class="ow">or</span> <span class="s1">&#39;mean&#39;</span><span class="p">)</span><span class="o">.</span>
+              <span class="p">(</span><span class="s1">&#39;median&#39;</span><span class="p">)</span>
+</code></pre></div>
                 
               
               

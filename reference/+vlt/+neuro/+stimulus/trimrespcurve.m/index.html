@@ -3213,6 +3213,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../../%2Bgit/git_stash.m/" class="md-nav__link">
+        vlt.git.git_stash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../../%2Bgit/git_status.m/" class="md-nav__link">
         vlt.git.git_status
       </a>
@@ -9239,15 +9251,17 @@
                 
                 
                 <h1 id="vltneurostimulustrimrespcurve">vlt.neuro.stimulus.trimrespcurve<a class="headerlink" href="#vltneurostimulustrimrespcurve" title="Permanent link">&para;</a></h1>
-<p>TRIMRESPCURVE - Trim a 4xN response curve to remove NaN stimulus values</p>
-<div class="codehilite"><pre><span></span><code> CURVE = vlt.neuro.stimulus.trimrespcurve(MYCURVE)
-</code></pre></div>
+<div class="codehilite"><pre><span></span><code>  <span class="nv">TRIMRESPCURVE</span> <span class="o">-</span> <span class="nv">Trim</span> <span class="nv">a</span> <span class="mi">4</span><span class="nv">xN</span> <span class="nv">response</span> <span class="nv">curve</span> <span class="nv">to</span> <span class="nv">remove</span> <span class="nv">NaN</span> <span class="nv">stimulus</span> <span class="nv">values</span>
 
-<p>Assumes MYCURVE is a 4xN response curve where the first row MYCURVE(1,:)
-   has the stimulus values.  If any of these entries are NaN, then those column
-   is removed from MYCURVE. The result is returned in CURVE.</p>
-<p>One can use this function to remove the response of the blank stimulus from a
-   response curve.</p>
+     <span class="nv">CURVE</span> <span class="o">=</span> <span class="nv">vlt</span>.<span class="nv">neuro</span>.<span class="nv">stimulus</span>.<span class="nv">trimrespcurve</span><span class="ss">(</span><span class="nv">MYCURVE</span><span class="ss">)</span>
+
+   <span class="nv">Assumes</span> <span class="nv">MYCURVE</span> <span class="nv">is</span> <span class="nv">a</span> <span class="mi">4</span><span class="nv">xN</span> <span class="nv">response</span> <span class="nv">curve</span> <span class="nv">where</span> <span class="nv">the</span> <span class="nv">first</span> <span class="nv">row</span> <span class="nv">MYCURVE</span><span class="ss">(</span><span class="mi">1</span>,:<span class="ss">)</span>
+   <span class="nv">has</span> <span class="nv">the</span> <span class="nv">stimulus</span> <span class="nv">values</span>.  <span class="k">If</span> <span class="nv">any</span> <span class="nv">of</span> <span class="nv">these</span> <span class="nv">entries</span> <span class="nv">are</span> <span class="nv">NaN</span>, <span class="k">then</span> <span class="nv">those</span> <span class="nv">column</span>
+   <span class="nv">is</span> <span class="nv">removed</span> <span class="nv">from</span> <span class="nv">MYCURVE</span>. <span class="nv">The</span> <span class="nb">result</span> <span class="nv">is</span> <span class="nv">returned</span> <span class="nv">in</span> <span class="nv">CURVE</span>.
+
+   <span class="nv">One</span> <span class="nv">can</span> <span class="nv">use</span> <span class="nv">this</span> <span class="nv">function</span> <span class="nv">to</span> <span class="nv">remove</span> <span class="nv">the</span> <span class="nv">response</span> <span class="nv">of</span> <span class="nv">the</span> <span class="nv">blank</span> <span class="nv">stimulus</span> <span class="nv">from</span> <span class="nv">a</span>
+   <span class="nv">response</span> <span class="nv">curve</span>.
+</code></pre></div>
                 
               
               

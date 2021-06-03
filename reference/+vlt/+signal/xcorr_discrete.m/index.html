@@ -3213,6 +3213,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../%2Bgit/git_stash.m/" class="md-nav__link">
+        vlt.git.git_stash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../%2Bgit/git_status.m/" class="md-nav__link">
         vlt.git.git_status
       </a>
@@ -9237,14 +9249,18 @@
                 
                 
                 <h1 id="vltsignalxcorr_discrete">vlt.signal.xcorr_discrete<a class="headerlink" href="#vltsignalxcorr_discrete" title="Permanent link">&para;</a></h1>
-<p>XCORR_DISCRETE - Calculate the cross-correlation between two signals without FFT</p>
-<p>XC = vlt.signal.xcorr_discrete(SIGNAL1, SIGNAL2, N, NORMSTRING)</p>
-<p>Computes the cross-correlation between SIGNAL1 and SIGNAL2 for lags up to N.</p>
-<p>If NORMSTRING is left off, then the correlation is not normalized.
-   Otherwise it is normalized according to the following values of NORMSTRING:
-     'none' : no normalization
-    'biased': divides by length of SIGNAL1
-  'unbiased': divides by the absolute value of length of SIGNAL - LAG</p>
+<div class="codehilite"><pre><span></span><code>  <span class="n">XCORR_DISCRETE</span> <span class="o">-</span> <span class="n">Calculate</span> <span class="n">the</span> <span class="n">cross</span><span class="o">-</span><span class="n">correlation</span> <span class="n">between</span> <span class="n">two</span> <span class="n">signals</span> <span class="n">without</span> <span class="n">FFT</span>
+
+   <span class="n">XC</span> <span class="o">=</span> <span class="n">vlt</span><span class="o">.</span><span class="k">signal</span><span class="o">.</span><span class="n">xcorr_discrete</span><span class="p">(</span><span class="n">SIGNAL1</span><span class="p">,</span> <span class="n">SIGNAL2</span><span class="p">,</span> <span class="n">N</span><span class="p">,</span> <span class="n">NORMSTRING</span><span class="p">)</span>
+
+   <span class="n">Computes</span> <span class="n">the</span> <span class="n">cross</span><span class="o">-</span><span class="n">correlation</span> <span class="n">between</span> <span class="n">SIGNAL1</span> <span class="ow">and</span> <span class="n">SIGNAL2</span> <span class="k">for</span> <span class="n">lags</span> <span class="n">up</span> <span class="n">to</span> <span class="n">N</span><span class="o">.</span>
+
+   <span class="n">If</span> <span class="n">NORMSTRING</span> <span class="k">is</span> <span class="n">left</span> <span class="n">off</span><span class="p">,</span> <span class="n">then</span> <span class="n">the</span> <span class="n">correlation</span> <span class="k">is</span> <span class="ow">not</span> <span class="n">normalized</span><span class="o">.</span>
+   <span class="n">Otherwise</span> <span class="n">it</span> <span class="k">is</span> <span class="n">normalized</span> <span class="n">according</span> <span class="n">to</span> <span class="n">the</span> <span class="n">following</span> <span class="n">values</span> <span class="n">of</span> <span class="n">NORMSTRING</span><span class="p">:</span>
+     <span class="s1">&#39;none&#39;</span> <span class="p">:</span> <span class="n">no</span> <span class="n">normalization</span>
+    <span class="s1">&#39;biased&#39;</span><span class="p">:</span> <span class="n">divides</span> <span class="n">by</span> <span class="n">length</span> <span class="n">of</span> <span class="n">SIGNAL1</span>
+  <span class="s1">&#39;unbiased&#39;</span><span class="p">:</span> <span class="n">divides</span> <span class="n">by</span> <span class="n">the</span> <span class="n">absolute</span> <span class="n">value</span> <span class="n">of</span> <span class="n">length</span> <span class="n">of</span> <span class="n">SIGNAL</span> <span class="o">-</span> <span class="n">LAG</span>
+</code></pre></div>
                 
               
               

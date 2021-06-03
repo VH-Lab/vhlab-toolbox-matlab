@@ -3227,6 +3227,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../../%2Bgit/git_stash.m/" class="md-nav__link">
+        vlt.git.git_stash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../../%2Bgit/git_status.m/" class="md-nav__link">
         vlt.git.git_status
       </a>
@@ -9239,29 +9251,30 @@
                 
                 
                 <h1 id="vltfilexmlxmlstringinput">vlt.file.xml.xmlstringinput<a class="headerlink" href="#vltfilexmlxmlstringinput" title="Permanent link">&para;</a></h1>
-<p>XMLSTRINGINPUT Determine whether a string is a file or URL
-    RESULT = vlt.file.xml.xmlstringinput(STRING) will return STRING if
-    it contains "://", indicating that it is a URN.  Otherwise,
-    it will search the path for a file identified by STRING.</p>
-<div class="codehilite"><pre><span></span><code><span class="nb">RESULT</span> <span class="o">=</span> <span class="nv">vlt</span>.<span class="nv">file</span>.<span class="nv">xml</span>.<span class="nv">xmlstringinput</span><span class="ss">(</span><span class="nv">STRING</span>,<span class="nv">FULLSEARCH</span>, <span class="nv">RETURNFILE</span><span class="ss">)</span> <span class="nv">will</span>
-<span class="nv">process</span> <span class="nv">STRING</span> <span class="nv">to</span> <span class="k">return</span> <span class="nv">a</span> <span class="nb">RESULT</span> <span class="nv">appropriate</span> <span class="k">for</span> <span class="nv">passing</span>
-<span class="nv">to</span> <span class="nv">an</span> <span class="nv">XML</span> <span class="nv">process</span>.   <span class="nv">STRING</span> <span class="nv">can</span> <span class="nv">be</span> <span class="nv">a</span> <span class="nv">URN</span>, <span class="nv">full</span> <span class="nv">path</span> <span class="nv">name</span>,
-<span class="nv">or</span> <span class="nv">file</span> <span class="nv">name</span>.
+<div class="codehilite"><pre><span></span><code> <span class="nv">XMLSTRINGINPUT</span> <span class="nv">Determine</span> <span class="nv">whether</span> <span class="nv">a</span> <span class="nv">string</span> <span class="nv">is</span> <span class="nv">a</span> <span class="nv">file</span> <span class="nv">or</span> <span class="nv">URL</span>
+    <span class="nb">RESULT</span> <span class="o">=</span> <span class="nv">vlt</span>.<span class="nv">file</span>.<span class="nv">xml</span>.<span class="nv">xmlstringinput</span><span class="ss">(</span><span class="nv">STRING</span><span class="ss">)</span> <span class="nv">will</span> <span class="k">return</span> <span class="nv">STRING</span> <span class="k">if</span>
+    <span class="nv">it</span> <span class="nv">contains</span> <span class="s2">&quot;</span><span class="s">://</span><span class="s2">&quot;</span>, <span class="nv">indicating</span> <span class="nv">that</span> <span class="nv">it</span> <span class="nv">is</span> <span class="nv">a</span> <span class="nv">URN</span>.  <span class="nv">Otherwise</span>,
+    <span class="nv">it</span> <span class="nv">will</span> <span class="nv">search</span> <span class="nv">the</span> <span class="nv">path</span> <span class="k">for</span> <span class="nv">a</span> <span class="nv">file</span> <span class="nv">identified</span> <span class="nv">by</span> <span class="nv">STRING</span>.
 
-<span class="k">If</span> <span class="nv">STRING</span> <span class="nv">is</span> <span class="nv">a</span>  <span class="nv">filename</span>, <span class="nv">FULLSEARCH</span> <span class="nv">will</span> <span class="nv">control</span> <span class="nv">how</span> 
-<span class="nv">the</span> <span class="nv">full</span> <span class="nv">path</span> <span class="nv">is</span> <span class="nv">built</span>.  <span class="k">If</span> <span class="nv">TRUE</span>, <span class="nv">the</span> <span class="nv">vlt</span>.<span class="nv">file</span>.<span class="nv">xml</span>.<span class="nv">xmlstringinput</span> 
-<span class="nv">will</span> <span class="nv">search</span> <span class="nv">the</span> <span class="nv">entire</span> <span class="nv">MATLAB</span> <span class="nv">path</span> <span class="k">for</span> <span class="nv">the</span> <span class="nv">filename</span>
-<span class="nv">and</span> <span class="k">return</span> <span class="nv">an</span> <span class="nv">error</span> <span class="k">if</span> <span class="nv">the</span> <span class="nv">file</span> <span class="nv">can</span> <span class="nv">not</span> <span class="nv">be</span> <span class="nv">found</span>.
-<span class="nv">This</span> <span class="nv">is</span> <span class="nv">useful</span> <span class="k">for</span> <span class="nv">source</span> <span class="nv">documents</span> <span class="nv">which</span> <span class="nv">are</span> <span class="nv">assumed</span>
-<span class="nv">to</span> <span class="nv">exist</span>.  <span class="k">If</span> <span class="nv">FALSE</span>, <span class="nv">only</span> <span class="nv">the</span> <span class="nv">current</span> <span class="nv">directory</span> <span class="nv">will</span>
-<span class="nv">be</span> <span class="nv">searched</span>.  <span class="nv">This</span> <span class="nv">is</span> <span class="nv">useful</span> <span class="k">for</span> <span class="nb">result</span> <span class="nv">documents</span> <span class="nv">which</span>
-<span class="nv">may</span> <span class="nv">not</span> <span class="nv">exist</span> <span class="nv">yet</span>.  <span class="nv">FULLSEARCH</span> <span class="nv">is</span> <span class="nv">TRUE</span> <span class="k">if</span> <span class="nv">omitted</span>.
+    <span class="nb">RESULT</span> <span class="o">=</span> <span class="nv">vlt</span>.<span class="nv">file</span>.<span class="nv">xml</span>.<span class="nv">xmlstringinput</span><span class="ss">(</span><span class="nv">STRING</span>,<span class="nv">FULLSEARCH</span>, <span class="nv">RETURNFILE</span><span class="ss">)</span> <span class="nv">will</span>
+    <span class="nv">process</span> <span class="nv">STRING</span> <span class="nv">to</span> <span class="k">return</span> <span class="nv">a</span> <span class="nb">RESULT</span> <span class="nv">appropriate</span> <span class="k">for</span> <span class="nv">passing</span>
+    <span class="nv">to</span> <span class="nv">an</span> <span class="nv">XML</span> <span class="nv">process</span>.   <span class="nv">STRING</span> <span class="nv">can</span> <span class="nv">be</span> <span class="nv">a</span> <span class="nv">URN</span>, <span class="nv">full</span> <span class="nv">path</span> <span class="nv">name</span>,
+    <span class="nv">or</span> <span class="nv">file</span> <span class="nv">name</span>.
 
-<span class="k">If</span> <span class="nv">RETURNFILE</span> <span class="nv">is</span> <span class="nv">TRUE</span>, <span class="nb">RESULT</span> <span class="nv">returns</span> <span class="nv">as</span> <span class="nv">a</span> <span class="nv">java</span>.<span class="nv">io</span>.<span class="nv">File</span>
-<span class="nv">when</span> <span class="nv">STRING</span> <span class="nv">is</span> <span class="nv">a</span> <span class="nv">file</span>.  <span class="k">If</span> <span class="nv">RETURNFILE</span> <span class="nv">is</span> <span class="nv">FALSE</span>,
-<span class="nb">RESULT</span> <span class="nv">returns</span> <span class="nv">as</span> <span class="nv">a</span> <span class="nv">URN</span>.  <span class="nv">RETURNFILE</span> <span class="nv">is</span> <span class="nv">TRUE</span> <span class="k">if</span> <span class="nv">omitted</span>.
+    <span class="k">If</span> <span class="nv">STRING</span> <span class="nv">is</span> <span class="nv">a</span>  <span class="nv">filename</span>, <span class="nv">FULLSEARCH</span> <span class="nv">will</span> <span class="nv">control</span> <span class="nv">how</span> 
+    <span class="nv">the</span> <span class="nv">full</span> <span class="nv">path</span> <span class="nv">is</span> <span class="nv">built</span>.  <span class="k">If</span> <span class="nv">TRUE</span>, <span class="nv">the</span> <span class="nv">vlt</span>.<span class="nv">file</span>.<span class="nv">xml</span>.<span class="nv">xmlstringinput</span> 
+    <span class="nv">will</span> <span class="nv">search</span> <span class="nv">the</span> <span class="nv">entire</span> <span class="nv">MATLAB</span> <span class="nv">path</span> <span class="k">for</span> <span class="nv">the</span> <span class="nv">filename</span>
+    <span class="nv">and</span> <span class="k">return</span> <span class="nv">an</span> <span class="nv">error</span> <span class="k">if</span> <span class="nv">the</span> <span class="nv">file</span> <span class="nv">can</span> <span class="nv">not</span> <span class="nv">be</span> <span class="nv">found</span>.
+    <span class="nv">This</span> <span class="nv">is</span> <span class="nv">useful</span> <span class="k">for</span> <span class="nv">source</span> <span class="nv">documents</span> <span class="nv">which</span> <span class="nv">are</span> <span class="nv">assumed</span>
+    <span class="nv">to</span> <span class="nv">exist</span>.  <span class="k">If</span> <span class="nv">FALSE</span>, <span class="nv">only</span> <span class="nv">the</span> <span class="nv">current</span> <span class="nv">directory</span> <span class="nv">will</span>
+    <span class="nv">be</span> <span class="nv">searched</span>.  <span class="nv">This</span> <span class="nv">is</span> <span class="nv">useful</span> <span class="k">for</span> <span class="nb">result</span> <span class="nv">documents</span> <span class="nv">which</span>
+    <span class="nv">may</span> <span class="nv">not</span> <span class="nv">exist</span> <span class="nv">yet</span>.  <span class="nv">FULLSEARCH</span> <span class="nv">is</span> <span class="nv">TRUE</span> <span class="k">if</span> <span class="nv">omitted</span>.
 
-<span class="nv">This</span> <span class="nv">utility</span> <span class="nv">is</span> <span class="nv">used</span> <span class="nv">by</span> <span class="nv">XSLT</span>, <span class="nv">XMLWRITE</span>, <span class="nv">and</span> <span class="nv">XMLREAD</span>
+    <span class="k">If</span> <span class="nv">RETURNFILE</span> <span class="nv">is</span> <span class="nv">TRUE</span>, <span class="nb">RESULT</span> <span class="nv">returns</span> <span class="nv">as</span> <span class="nv">a</span> <span class="nv">java</span>.<span class="nv">io</span>.<span class="nv">File</span>
+    <span class="nv">when</span> <span class="nv">STRING</span> <span class="nv">is</span> <span class="nv">a</span> <span class="nv">file</span>.  <span class="k">If</span> <span class="nv">RETURNFILE</span> <span class="nv">is</span> <span class="nv">FALSE</span>,
+    <span class="nb">RESULT</span> <span class="nv">returns</span> <span class="nv">as</span> <span class="nv">a</span> <span class="nv">URN</span>.  <span class="nv">RETURNFILE</span> <span class="nv">is</span> <span class="nv">TRUE</span> <span class="k">if</span> <span class="nv">omitted</span>.
+
+    <span class="nv">This</span> <span class="nv">utility</span> <span class="nv">is</span> <span class="nv">used</span> <span class="nv">by</span> <span class="nv">XSLT</span>, <span class="nv">XMLWRITE</span>, <span class="nv">and</span> <span class="nv">XMLREAD</span>
 </code></pre></div>
                 
               

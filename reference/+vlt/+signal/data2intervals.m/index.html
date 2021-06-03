@@ -3213,6 +3213,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../%2Bgit/git_stash.m/" class="md-nav__link">
+        vlt.git.git_stash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../%2Bgit/git_status.m/" class="md-nav__link">
         vlt.git.git_status
       </a>
@@ -9237,22 +9249,26 @@
                 
                 
                 <h1 id="vltsignaldata2intervals">vlt.signal.data2intervals<a class="headerlink" href="#vltsignaldata2intervals" title="Permanent link">&para;</a></h1>
-<p>DATA2INTERVALS - Identify data recorded during specified intervals</p>
-<div class="codehilite"><pre><span></span><code><span class="p">[</span><span class="n">DATA_OUT</span><span class="p">,</span><span class="n">T_OUT</span><span class="p">]</span> <span class="o">=</span> <span class="n">vlt</span><span class="o">.</span><span class="k">signal</span><span class="o">.</span><span class="n">data2intervals</span><span class="p">(</span><span class="n">DATA</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">INTERVALS</span><span class="p">)</span>
-</code></pre></div>
+<div class="codehilite"><pre><span></span><code>   <span class="n">DATA2INTERVALS</span> <span class="o">-</span> <span class="n">Identify</span> <span class="n">data</span> <span class="n">recorded</span> <span class="n">during</span> <span class="n">specified</span> <span class="n">intervals</span>
 
-<p>This identifies data observations that were recorded in specified time
-   intervals.  The input observations DATA are expected to be a cell list
-   of M vectors; each vector is assumed to reflect a different element such
-   as a neuron.  T is also a cell list of M vectors, and each value in T should
-   reflect the time of an observation in DATA.</p>
-<p>INTERVALS should be a Nx2 matrix of time intervals, such as
-     INTERVALS = [ t11 t12; t21 t22; t31 t32 ; ...];</p>
-<p>DATA_OUT is a cell list of size N x M.  Each element DATA_OUT{i,p}
-     contains all observations in DATA{p} that occured during the 
-     interval [interval(i,1) ... interval(i,2)].</p>
-<p>T_OUT is a cell list of size N x M.  Each element T{i,p} contains the
-     time of all observation in DATA_OUT{i,p}.</p>
+    <span class="p">[</span><span class="n">DATA_OUT</span><span class="p">,</span><span class="n">T_OUT</span><span class="p">]</span> <span class="o">=</span> <span class="n">vlt</span><span class="o">.</span><span class="k">signal</span><span class="o">.</span><span class="n">data2intervals</span><span class="p">(</span><span class="n">DATA</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">INTERVALS</span><span class="p">)</span>
+
+   <span class="n">This</span> <span class="n">identifies</span> <span class="n">data</span> <span class="n">observations</span> <span class="n">that</span> <span class="n">were</span> <span class="n">recorded</span> <span class="ow">in</span> <span class="n">specified</span> <span class="n">time</span>
+   <span class="n">intervals</span><span class="o">.</span>  <span class="n">The</span> <span class="n">input</span> <span class="n">observations</span> <span class="n">DATA</span> <span class="n">are</span> <span class="n">expected</span> <span class="n">to</span> <span class="n">be</span> <span class="n">a</span> <span class="n">cell</span> <span class="n">list</span>
+   <span class="n">of</span> <span class="n">M</span> <span class="n">vectors</span><span class="p">;</span> <span class="n">each</span> <span class="n">vector</span> <span class="k">is</span> <span class="n">assumed</span> <span class="n">to</span> <span class="n">reflect</span> <span class="n">a</span> <span class="n">different</span> <span class="n">element</span> <span class="n">such</span>
+   <span class="k">as</span> <span class="n">a</span> <span class="n">neuron</span><span class="o">.</span>  <span class="n">T</span> <span class="k">is</span> <span class="n">also</span> <span class="n">a</span> <span class="n">cell</span> <span class="n">list</span> <span class="n">of</span> <span class="n">M</span> <span class="n">vectors</span><span class="p">,</span> <span class="ow">and</span> <span class="n">each</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">T</span> <span class="n">should</span>
+   <span class="n">reflect</span> <span class="n">the</span> <span class="n">time</span> <span class="n">of</span> <span class="n">an</span> <span class="n">observation</span> <span class="ow">in</span> <span class="n">DATA</span><span class="o">.</span>
+
+   <span class="n">INTERVALS</span> <span class="n">should</span> <span class="n">be</span> <span class="n">a</span> <span class="n">Nx2</span> <span class="n">matrix</span> <span class="n">of</span> <span class="n">time</span> <span class="n">intervals</span><span class="p">,</span> <span class="n">such</span> <span class="k">as</span>
+     <span class="n">INTERVALS</span> <span class="o">=</span> <span class="p">[</span> <span class="n">t11</span> <span class="n">t12</span><span class="p">;</span> <span class="n">t21</span> <span class="n">t22</span><span class="p">;</span> <span class="n">t31</span> <span class="n">t32</span> <span class="p">;</span> <span class="o">...</span><span class="p">];</span>
+
+   <span class="n">DATA_OUT</span> <span class="k">is</span> <span class="n">a</span> <span class="n">cell</span> <span class="n">list</span> <span class="n">of</span> <span class="n">size</span> <span class="n">N</span> <span class="n">x</span> <span class="n">M</span><span class="o">.</span>  <span class="n">Each</span> <span class="n">element</span> <span class="n">DATA_OUT</span><span class="p">{</span><span class="n">i</span><span class="p">,</span><span class="n">p</span><span class="p">}</span>
+     <span class="n">contains</span> <span class="n">all</span> <span class="n">observations</span> <span class="ow">in</span> <span class="n">DATA</span><span class="p">{</span><span class="n">p</span><span class="p">}</span> <span class="n">that</span> <span class="n">occured</span> <span class="n">during</span> <span class="n">the</span> 
+     <span class="n">interval</span> <span class="p">[</span><span class="n">interval</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span> <span class="o">...</span> <span class="n">interval</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="mi">2</span><span class="p">)]</span><span class="o">.</span>
+
+   <span class="n">T_OUT</span> <span class="k">is</span> <span class="n">a</span> <span class="n">cell</span> <span class="n">list</span> <span class="n">of</span> <span class="n">size</span> <span class="n">N</span> <span class="n">x</span> <span class="n">M</span><span class="o">.</span>  <span class="n">Each</span> <span class="n">element</span> <span class="n">T</span><span class="p">{</span><span class="n">i</span><span class="p">,</span><span class="n">p</span><span class="p">}</span> <span class="n">contains</span> <span class="n">the</span>
+     <span class="n">time</span> <span class="n">of</span> <span class="n">all</span> <span class="n">observation</span> <span class="ow">in</span> <span class="n">DATA_OUT</span><span class="p">{</span><span class="n">i</span><span class="p">,</span><span class="n">p</span><span class="p">}</span><span class="o">.</span>
+</code></pre></div>
                 
               
               

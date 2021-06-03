@@ -3213,6 +3213,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../../%2Bgit/git_stash.m/" class="md-nav__link">
+        vlt.git.git_stash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../../%2Bgit/git_status.m/" class="md-nav__link">
         vlt.git.git_status
       </a>
@@ -9239,29 +9251,34 @@
                 
                 
                 <h1 id="vltneuromembraneplot_voltage_firingrate_observations">vlt.neuro.membrane.plot_voltage_firingrate_observations<a class="headerlink" href="#vltneuromembraneplot_voltage_firingrate_observations" title="Permanent link">&para;</a></h1>
-<p>PLOT_VOLTAGE_FIRINGRATE_OBSERVATIONS - plot a list of voltage-firing rate observations against real data</p>
-<p>[H,HTEXT] = vlt.neuro.membrane.plot_voltage_firingrate_observations(V, FR, STIMID, TIMEPOINTS, VM_BASELINESUBTRACTED, T, VM, SPIKETIMES, ...)</p>
-<p>Given inputs:
-            V - voltage observations returned from vlt.neuro.membrane.voltage_firingrate_observations
-           FR - firing rate observations returned from vlt.neuro.membrane.voltage_firingrate_observations
-       STIMID - stimulus IDs
-   TIMEPOINTS - Timepoints that are averaged together
-            T - time points of raw data
-           VM - voltage measurements of raw data
-   SPIKETIMES - time of spiking events</p>
-<p>This function can be modified by additional parameter name/value pairs:
-  Parameter name (default value)  | Description</p>
-<hr />
-<p>binsize (0.030)                 | Sliding bin size (units of t, should be seconds)
-  fr_smooth ([])                  | If not empty, the spike times are smoothed
-                                  |    by Gaussian window with this standard
-                                  |    deviation (in units of t).
-  stim_onsetoffsetid ([])         | Each row should contain
-                                  |    [stim_onset_time stim_offset_time stimid]
-                                  |    where the times are in units of 't' (seconds)
-  dotrialaverage (0)              | If 1, perform a trial-averaging of the spike times
-                                  |    and voltage waveform</p>
-<p>See also: vlt.neuro.membrane.voltage_firingrate_observations</p>
+<div class="codehilite"><pre><span></span><code>  <span class="nv">PLOT_VOLTAGE_FIRINGRATE_OBSERVATIONS</span> <span class="o">-</span> <span class="nv">plot</span> <span class="nv">a</span> <span class="nv">list</span> <span class="nv">of</span> <span class="nv">voltage</span><span class="o">-</span><span class="nv">firing</span> <span class="nv">rate</span> <span class="nv">observations</span> <span class="nv">against</span> <span class="nv">real</span> <span class="nv">data</span>
+
+  [<span class="nv">H</span>,<span class="nv">HTEXT</span>] <span class="o">=</span> <span class="nv">vlt</span>.<span class="nv">neuro</span>.<span class="nv">membrane</span>.<span class="nv">plot_voltage_firingrate_observations</span><span class="ss">(</span><span class="nv">V</span>, <span class="nv">FR</span>, <span class="nv">STIMID</span>, <span class="nv">TIMEPOINTS</span>, <span class="nv">VM_BASELINESUBTRACTED</span>, <span class="nv">T</span>, <span class="nv">VM</span>, <span class="nv">SPIKETIMES</span>, ...<span class="ss">)</span>
+
+  <span class="nv">Given</span> <span class="nv">inputs</span>:
+            <span class="nv">V</span> <span class="o">-</span> <span class="nv">voltage</span> <span class="nv">observations</span> <span class="nv">returned</span> <span class="nv">from</span> <span class="nv">vlt</span>.<span class="nv">neuro</span>.<span class="nv">membrane</span>.<span class="nv">voltage_firingrate_observations</span>
+           <span class="nv">FR</span> <span class="o">-</span> <span class="nv">firing</span> <span class="nv">rate</span> <span class="nv">observations</span> <span class="nv">returned</span> <span class="nv">from</span> <span class="nv">vlt</span>.<span class="nv">neuro</span>.<span class="nv">membrane</span>.<span class="nv">voltage_firingrate_observations</span>
+       <span class="nv">STIMID</span> <span class="o">-</span> <span class="nv">stimulus</span> <span class="nv">IDs</span>
+   <span class="nv">TIMEPOINTS</span> <span class="o">-</span> <span class="nv">Timepoints</span> <span class="nv">that</span> <span class="nv">are</span> <span class="nv">averaged</span> <span class="nv">together</span>
+            <span class="nv">T</span> <span class="o">-</span> <span class="nv">time</span> <span class="nv">points</span> <span class="nv">of</span> <span class="nv">raw</span> <span class="nv">data</span>
+           <span class="nv">VM</span> <span class="o">-</span> <span class="nv">voltage</span> <span class="nv">measurements</span> <span class="nv">of</span> <span class="nv">raw</span> <span class="nv">data</span>
+   <span class="nv">SPIKETIMES</span> <span class="o">-</span> <span class="nv">time</span> <span class="nv">of</span> <span class="nv">spiking</span> <span class="nv">events</span>
+
+  <span class="nv">This</span> <span class="nv">function</span> <span class="nv">can</span> <span class="nv">be</span> <span class="nv">modified</span> <span class="nv">by</span> <span class="nv">additional</span> <span class="nv">parameter</span> <span class="nv">name</span><span class="o">/</span><span class="nv">value</span> <span class="nv">pairs</span>:
+  <span class="nv">Parameter</span> <span class="nv">name</span> <span class="ss">(</span><span class="nv">default</span> <span class="nv">value</span><span class="ss">)</span>  <span class="o">|</span> <span class="nv">Description</span>
+  <span class="o">----------------------------------------------------------------</span>
+  <span class="nv">binsize</span> <span class="ss">(</span><span class="mi">0</span>.<span class="mi">030</span><span class="ss">)</span>                 <span class="o">|</span> <span class="nv">Sliding</span> <span class="nv">bin</span> <span class="nv">size</span> <span class="ss">(</span><span class="nv">units</span> <span class="nv">of</span> <span class="nv">t</span>, <span class="nv">should</span> <span class="nv">be</span> <span class="nv">seconds</span><span class="ss">)</span>
+  <span class="nv">fr_smooth</span> <span class="ss">(</span>[]<span class="ss">)</span>                  <span class="o">|</span> <span class="k">If</span> <span class="nv">not</span> <span class="nv">empty</span>, <span class="nv">the</span> <span class="nv">spike</span> <span class="nv">times</span> <span class="nv">are</span> <span class="nv">smoothed</span>
+                                  <span class="o">|</span>    <span class="nv">by</span> <span class="nv">Gaussian</span> <span class="nv">window</span> <span class="nv">with</span> <span class="nv">this</span> <span class="nv">standard</span>
+                                  <span class="o">|</span>    <span class="nv">deviation</span> <span class="ss">(</span><span class="nv">in</span> <span class="nv">units</span> <span class="nv">of</span> <span class="nv">t</span><span class="ss">)</span>.
+  <span class="nv">stim_onsetoffsetid</span> <span class="ss">(</span>[]<span class="ss">)</span>         <span class="o">|</span> <span class="nv">Each</span> <span class="nv">row</span> <span class="nv">should</span> <span class="nv">contain</span>
+                                  <span class="o">|</span>    [<span class="nv">stim_onset_time</span> <span class="nv">stim_offset_time</span> <span class="nv">stimid</span>]
+                                  <span class="o">|</span>    <span class="nv">where</span> <span class="nv">the</span> <span class="nv">times</span> <span class="nv">are</span> <span class="nv">in</span> <span class="nv">units</span> <span class="nv">of</span> <span class="s1">&#39;</span><span class="s">t</span><span class="s1">&#39;</span> <span class="ss">(</span><span class="nv">seconds</span><span class="ss">)</span>
+  <span class="nv">dotrialaverage</span> <span class="ss">(</span><span class="mi">0</span><span class="ss">)</span>              <span class="o">|</span> <span class="k">If</span> <span class="mi">1</span>, <span class="nv">perform</span> <span class="nv">a</span> <span class="nv">trial</span><span class="o">-</span><span class="nv">averaging</span> <span class="nv">of</span> <span class="nv">the</span> <span class="nv">spike</span> <span class="nv">times</span>
+                                  <span class="o">|</span>    <span class="nv">and</span> <span class="nv">voltage</span> <span class="nv">waveform</span>
+
+  <span class="nv">See</span> <span class="nv">also</span>: <span class="nv">vlt</span>.<span class="nv">neuro</span>.<span class="nv">membrane</span>.<span class="nv">voltage_firingrate_observations</span>
+</code></pre></div>
                 
               
               

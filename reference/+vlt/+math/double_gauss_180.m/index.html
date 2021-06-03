@@ -3213,6 +3213,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../%2Bgit/git_stash.m/" class="md-nav__link">
+        vlt.git.git_stash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../%2Bgit/git_status.m/" class="md-nav__link">
         vlt.git.git_status
       </a>
@@ -9237,15 +9249,20 @@
                 
                 
                 <h1 id="vltmathdouble_gauss_180">vlt.math.double_gauss_180<a class="headerlink" href="#vltmathdouble_gauss_180" title="Permanent link">&para;</a></h1>
-<p>DOUBLE_GAUSS - Double gaussian function
-  Computes a double gaussian function </p>
-<p>DG = DOUBLE_GAUSS(X, PARAMETERS)</p>
-<p>DG=Rsp+Rp<em>EXP(-(X-Op)^2)/(2</em>sig^2))+Rn<em>EXP(-(X-Op+180)^2/(2</em>sig^2))</p>
-<p>PARAMETERS = [Rsp Rp Op sig Rn]</p>
-<p>parameters correspond to Carrandini fit parameters where
+<div class="codehilite"><pre><span></span><code>  DOUBLE_GAUSS - Double gaussian function
+  Computes a double gaussian function 
+
+  DG = DOUBLE_GAUSS(X, PARAMETERS)
+
+  DG=Rsp+Rp*EXP(-(X-Op)^2)/(2*sig^2))+Rn*EXP(-(X-Op+180)^2/(2*sig^2))
+
+  PARAMETERS = [Rsp Rp Op sig Rn]
+
+  parameters correspond to Carrandini fit parameters where
   Rsp=offset,Rp=peak parameter of first gaussian, 0p=location of first
   peak, sig=width parameter, Rn=peak parameter of second gaussian
-  and takes the angle difference between the first peak and second peak</p>
+  and takes the angle difference between the first peak and second peak
+</code></pre></div>
                 
               
               

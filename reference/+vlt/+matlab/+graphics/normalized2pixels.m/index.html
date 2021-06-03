@@ -3213,6 +3213,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../../%2Bgit/git_stash.m/" class="md-nav__link">
+        vlt.git.git_stash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../../%2Bgit/git_status.m/" class="md-nav__link">
         vlt.git.git_status
       </a>
@@ -9239,11 +9251,21 @@
                 
                 
                 <h1 id="vltmatlabgraphicsnormalized2pixels">vlt.matlab.graphics.normalized2pixels<a class="headerlink" href="#vltmatlabgraphicsnormalized2pixels" title="Permanent link">&para;</a></h1>
-<p>NORMALIZED2PIXELS - converts a 'normalized' figure rectangle to raw pixels</p>
-<p>NEWRECT = vlt.matlab.graphics.normalized2pixels(FIG,RECT)</p>
-<p>Converts a 'normalized' rectangle (see help axes for definition) to raw
-   pixels.</p>
-<p>See also:  vlt.matlab.graphics.pixels2normalized</p>
+<div class="codehilite"><pre><span></span><code>  <span class="nv">NORMALIZED2PIXELS</span> <span class="o">-</span> <span class="nv">converts</span> <span class="nv">a</span> <span class="s1">&#39;</span><span class="s">normalized</span><span class="s1">&#39;</span> <span class="nv">figure</span> <span class="nv">rectangle</span> <span class="nv">to</span> <span class="nv">raw</span> <span class="nv">pixels</span>
+
+  <span class="nv">NEWRECT</span> <span class="o">=</span> <span class="nv">vlt</span>.<span class="nv">matlab</span>.<span class="nv">graphics</span>.<span class="nv">normalized2pixels</span><span class="ss">(</span><span class="nv">FIG</span>,<span class="nv">RECT</span><span class="ss">)</span>
+    <span class="nv">or</span> 
+  <span class="nv">NEWRECT</span> <span class="o">=</span> <span class="nv">vlt</span>.<span class="nv">matlab</span>.<span class="nv">graphics</span>.<span class="nv">normalized2pixels</span><span class="ss">(</span><span class="nv">FIG_RECT</span>,<span class="nv">RECT</span><span class="ss">)</span>
+
+  <span class="nv">Converts</span> <span class="nv">a</span> <span class="s1">&#39;</span><span class="s">normalized</span><span class="s1">&#39;</span> <span class="nv">rectangle</span> <span class="ss">(</span><span class="nv">see</span> <span class="nv">help</span> <span class="nv">axes</span> <span class="k">for</span> <span class="nv">definition</span><span class="ss">)</span> <span class="nv">to</span> <span class="nv">raw</span>
+  <span class="nv">pixels</span>.
+
+  <span class="nv">This</span> <span class="nv">function</span> <span class="nv">obtains</span> <span class="nv">the</span> <span class="nv">figure</span> <span class="nv">rectangle</span> <span class="nv">from</span> <span class="nv">the</span> <span class="nv">figure</span> <span class="nv">handle</span> <span class="nv">FIG</span> <span class="k">if</span> <span class="nv">the</span>
+  <span class="nv">first</span> <span class="nv">input</span> <span class="nv">argument</span> <span class="nv">is</span> <span class="nv">a</span> <span class="nv">figure</span> <span class="nv">handle</span>, <span class="nv">or</span> <span class="nv">uses</span> <span class="nv">the</span> <span class="nv">rectangle</span> <span class="nv">FIG_RECT</span>
+  <span class="k">if</span> <span class="nv">it</span> <span class="nv">is</span> <span class="nv">a</span> <span class="mi">4</span><span class="o">-</span><span class="nv">element</span> <span class="nv">vector</span>.
+
+  <span class="nv">See</span> <span class="nv">also</span>:  <span class="nv">vlt</span>.<span class="nv">matlab</span>.<span class="nv">graphics</span>.<span class="nv">pixels2normalized</span>
+</code></pre></div>
                 
               
               

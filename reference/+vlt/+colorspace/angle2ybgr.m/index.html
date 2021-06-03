@@ -3225,6 +3225,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../%2Bgit/git_stash.m/" class="md-nav__link">
+        vlt.git.git_stash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../%2Bgit/git_status.m/" class="md-nav__link">
         vlt.git.git_status
       </a>
@@ -9237,20 +9249,26 @@
                 
                 
                 <h1 id="vltcolorspaceangle2ybgr">vlt.colorspace.angle2ybgr<a class="headerlink" href="#vltcolorspaceangle2ybgr" title="Permanent link">&para;</a></h1>
-<p>ANGLE2YBRG - Determine color by angle 0-360 degrees</p>
-<p>[CTAB, VALUE, RGB] = vlt.colorspace.angle2ybgr([ANGLE])</p>
-<p>Returns a color table for angle values 0:1:359. If a specific 
-  ANGLE is given as an input argument, the function will also return
-  the (interpolated) value of the ANGLE in the space of the color table CTAB,
-  and the interpolated RGB value.</p>
-<p>The color space ranges from yellow ([1 1 0]) at 0 degrees, to green at
-  90 degrees ([0 1 0]), to blue at 180 degrees ([0 0 1]), to red ([1 0 0]) 
-  at 270 degrees, and back to yellow at 360 degrees/0 degrees.</p>
-<p>See also: vlt.colorspace.angle2ycgr</p>
-<p>Examples:
-    ctab = vlt.colorspace.angle2ybgr; % (can serve as a color map for angle data)</p>
-<div class="codehilite"><pre><span></span><code>angle = 5.5;
-[ctab, value, rgb] = vlt.colorspace.angle2ybgr(angle);
+<div class="codehilite"><pre><span></span><code><span class="w">  </span><span class="n">ANGLE2YBRG</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">Determine</span><span class="w"> </span><span class="n">color</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">angle</span><span class="w"> </span><span class="mi">0</span><span class="o">-</span><span class="mi">360</span><span class="w"> </span><span class="nf">degrees</span><span class="w"></span>
+
+<span class="w">  </span><span class="o">[</span><span class="n">CTAB, VALUE, RGB</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">vlt</span><span class="p">.</span><span class="n">colorspace</span><span class="p">.</span><span class="n">angle2ybgr</span><span class="p">(</span><span class="o">[</span><span class="n">ANGLE</span><span class="o">]</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">  </span><span class="k">Returns</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">color</span><span class="w"> </span><span class="nc">table</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">angle</span><span class="w"> </span><span class="k">values</span><span class="w"> </span><span class="mi">0</span><span class="err">:</span><span class="mi">1</span><span class="err">:</span><span class="mf">359.</span><span class="w"> </span><span class="k">If</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="k">specific</span><span class="w"> </span>
+<span class="w">  </span><span class="n">ANGLE</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="n">given</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">an</span><span class="w"> </span><span class="k">input</span><span class="w"> </span><span class="n">argument</span><span class="p">,</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="k">function</span><span class="w"> </span><span class="n">will</span><span class="w"> </span><span class="n">also</span><span class="w"> </span><span class="k">return</span><span class="w"></span>
+<span class="w">  </span><span class="n">the</span><span class="w"> </span><span class="p">(</span><span class="n">interpolated</span><span class="p">)</span><span class="w"> </span><span class="k">value</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">ANGLE</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="nf">space</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">color</span><span class="w"> </span><span class="nc">table</span><span class="w"> </span><span class="n">CTAB</span><span class="p">,</span><span class="w"></span>
+<span class="w">  </span><span class="ow">and</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">interpolated</span><span class="w"> </span><span class="n">RGB</span><span class="w"> </span><span class="k">value</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">  </span><span class="n">The</span><span class="w"> </span><span class="n">color</span><span class="w"> </span><span class="nf">space</span><span class="w"> </span><span class="n">ranges</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">yellow</span><span class="w"> </span><span class="p">(</span><span class="o">[</span><span class="n">1 1 0</span><span class="o">]</span><span class="p">)</span><span class="w"> </span><span class="k">at</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="nf">degrees</span><span class="p">,</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="n">green</span><span class="w"> </span><span class="k">at</span><span class="w"></span>
+<span class="w">  </span><span class="mi">90</span><span class="w"> </span><span class="nf">degrees</span><span class="w"> </span><span class="p">(</span><span class="o">[</span><span class="n">0 1 0</span><span class="o">]</span><span class="p">),</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="n">blue</span><span class="w"> </span><span class="k">at</span><span class="w"> </span><span class="mi">180</span><span class="w"> </span><span class="nf">degrees</span><span class="w"> </span><span class="p">(</span><span class="o">[</span><span class="n">0 0 1</span><span class="o">]</span><span class="p">),</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="n">red</span><span class="w"> </span><span class="p">(</span><span class="o">[</span><span class="n">1 0 0</span><span class="o">]</span><span class="p">)</span><span class="w"> </span>
+<span class="w">  </span><span class="k">at</span><span class="w"> </span><span class="mi">270</span><span class="w"> </span><span class="nf">degrees</span><span class="p">,</span><span class="w"> </span><span class="ow">and</span><span class="w"> </span><span class="n">back</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="n">yellow</span><span class="w"> </span><span class="k">at</span><span class="w"> </span><span class="mi">360</span><span class="w"> </span><span class="nf">degrees</span><span class="o">/</span><span class="mi">0</span><span class="w"> </span><span class="nf">degrees</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">  </span><span class="n">See</span><span class="w"> </span><span class="nl">also</span><span class="p">:</span><span class="w"> </span><span class="n">vlt</span><span class="p">.</span><span class="n">colorspace</span><span class="p">.</span><span class="n">angle2ycgr</span><span class="w"></span>
+
+<span class="w">  </span><span class="nl">Examples</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="n">ctab</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">vlt</span><span class="p">.</span><span class="n">colorspace</span><span class="p">.</span><span class="n">angle2ybgr</span><span class="p">;</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="p">(</span><span class="n">can</span><span class="w"> </span><span class="n">serve</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">color</span><span class="w"> </span><span class="k">map</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">angle</span><span class="w"> </span><span class="k">data</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">angle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">5.5</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="o">[</span><span class="n">ctab, value, rgb</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">vlt</span><span class="p">.</span><span class="n">colorspace</span><span class="p">.</span><span class="n">angle2ybgr</span><span class="p">(</span><span class="n">angle</span><span class="p">);</span><span class="w"></span>
 </code></pre></div>
                 
               

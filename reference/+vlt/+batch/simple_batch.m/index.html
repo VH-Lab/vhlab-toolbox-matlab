@@ -3225,6 +3225,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../%2Bgit/git_stash.m/" class="md-nav__link">
+        vlt.git.git_stash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../%2Bgit/git_status.m/" class="md-nav__link">
         vlt.git.git_status
       </a>
@@ -9237,18 +9249,19 @@
                 
                 
                 <h1 id="vltbatchsimple_batch">vlt.batch.simple_batch<a class="headerlink" href="#vltbatchsimple_batch" title="Permanent link">&para;</a></h1>
-<p>SIMPLE_BATCH - Run a simple batch</p>
-<div class="codehilite"><pre><span></span><code><span class="nv">vlt</span>.<span class="nv">batch</span>.<span class="nv">simple_batch</span><span class="ss">(</span><span class="nv">TEXTFILE</span><span class="ss">)</span>
+<div class="codehilite"><pre><span></span><code>  <span class="nv">SIMPLE_BATCH</span> <span class="o">-</span> <span class="nv">Run</span> <span class="nv">a</span> <span class="nv">simple</span> <span class="nv">batch</span>
 
-<span class="nv">Runs</span> <span class="nv">a</span> <span class="nv">simple</span> <span class="nv">batch</span> <span class="nv">script</span>.
+    <span class="nv">vlt</span>.<span class="nv">batch</span>.<span class="nv">simple_batch</span><span class="ss">(</span><span class="nv">TEXTFILE</span><span class="ss">)</span>
 
-<span class="nv">The</span> <span class="nv">TEXTFILE</span> <span class="nv">is</span> <span class="nv">assumed</span> <span class="nv">to</span> <span class="nv">be</span> <span class="nv">a</span> <span class="nv">tab</span><span class="o">-</span><span class="nv">delimited</span> <span class="nv">text</span> <span class="nv">file</span> <span class="nv">with</span> <span class="nv">the</span> <span class="nv">first</span> <span class="nv">row</span>
-<span class="nv">describing</span> <span class="nv">the</span> <span class="nv">fields</span> <span class="ss">(</span><span class="nv">described</span> <span class="nv">here</span><span class="ss">)</span>:
-<span class="nv">jobclaimfile</span> <span class="o">--</span> <span class="nv">the</span> <span class="nv">filename</span> <span class="nv">that</span> <span class="nv">will</span> <span class="nv">be</span> <span class="nv">created</span> <span class="nv">to</span> <span class="s2">&quot;</span><span class="s">claim</span><span class="s2">&quot;</span> <span class="nv">the</span> <span class="nv">job</span> <span class="k">for</span> <span class="nv">this</span> <span class="nv">Matlab</span>
-<span class="nv">pathtorun</span> <span class="o">--</span> <span class="nv">the</span> <span class="nv">directory</span> <span class="nv">that</span> <span class="nv">will</span> <span class="nv">be</span> <span class="nv">changed</span> <span class="nv">to</span> <span class="nv">with</span> <span class="nv">the</span> <span class="nv">cd</span> <span class="nv">command</span>
-<span class="nv">commandtorun</span> <span class="o">--</span> <span class="nv">the</span> <span class="nv">command</span> <span class="nv">that</span> <span class="nv">will</span> <span class="nv">be</span> <span class="nv">run</span>
-<span class="nv">savefile</span> <span class="o">--</span> <span class="nv">the</span> <span class="nv">output</span> <span class="nv">will</span> <span class="nv">be</span> <span class="nv">saved</span> <span class="nv">to</span> <span class="nv">this</span> <span class="nv">file</span>
-<span class="nv">errorsave</span> <span class="o">--</span> <span class="k">if</span> <span class="nv">there</span> <span class="nv">is</span> <span class="nv">an</span> <span class="nv">error</span>, <span class="nv">the</span> <span class="nv">workspace</span> <span class="nv">will</span> <span class="nv">be</span> <span class="nv">saved</span> <span class="nv">to</span> <span class="nv">this</span> <span class="nv">file</span>
+    <span class="nv">Runs</span> <span class="nv">a</span> <span class="nv">simple</span> <span class="nv">batch</span> <span class="nv">script</span>.
+
+    <span class="nv">The</span> <span class="nv">TEXTFILE</span> <span class="nv">is</span> <span class="nv">assumed</span> <span class="nv">to</span> <span class="nv">be</span> <span class="nv">a</span> <span class="nv">tab</span><span class="o">-</span><span class="nv">delimited</span> <span class="nv">text</span> <span class="nv">file</span> <span class="nv">with</span> <span class="nv">the</span> <span class="nv">first</span> <span class="nv">row</span>
+    <span class="nv">describing</span> <span class="nv">the</span> <span class="nv">fields</span> <span class="ss">(</span><span class="nv">described</span> <span class="nv">here</span><span class="ss">)</span>:
+    <span class="nv">jobclaimfile</span> <span class="o">--</span> <span class="nv">the</span> <span class="nv">filename</span> <span class="nv">that</span> <span class="nv">will</span> <span class="nv">be</span> <span class="nv">created</span> <span class="nv">to</span> <span class="s2">&quot;</span><span class="s">claim</span><span class="s2">&quot;</span> <span class="nv">the</span> <span class="nv">job</span> <span class="k">for</span> <span class="nv">this</span> <span class="nv">Matlab</span>
+    <span class="nv">pathtorun</span> <span class="o">--</span> <span class="nv">the</span> <span class="nv">directory</span> <span class="nv">that</span> <span class="nv">will</span> <span class="nv">be</span> <span class="nv">changed</span> <span class="nv">to</span> <span class="nv">with</span> <span class="nv">the</span> <span class="nv">cd</span> <span class="nv">command</span>
+    <span class="nv">commandtorun</span> <span class="o">--</span> <span class="nv">the</span> <span class="nv">command</span> <span class="nv">that</span> <span class="nv">will</span> <span class="nv">be</span> <span class="nv">run</span>
+    <span class="nv">savefile</span> <span class="o">--</span> <span class="nv">the</span> <span class="nv">output</span> <span class="nv">will</span> <span class="nv">be</span> <span class="nv">saved</span> <span class="nv">to</span> <span class="nv">this</span> <span class="nv">file</span>
+    <span class="nv">errorsave</span> <span class="o">--</span> <span class="k">if</span> <span class="nv">there</span> <span class="nv">is</span> <span class="nv">an</span> <span class="nv">error</span>, <span class="nv">the</span> <span class="nv">workspace</span> <span class="nv">will</span> <span class="nv">be</span> <span class="nv">saved</span> <span class="nv">to</span> <span class="nv">this</span> <span class="nv">file</span>
 </code></pre></div>
                 
               

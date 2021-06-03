@@ -3225,6 +3225,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../%2Bgit/git_stash.m/" class="md-nav__link">
+        vlt.git.git_stash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../%2Bgit/git_status.m/" class="md-nav__link">
         vlt.git.git_status
       </a>
@@ -9237,20 +9249,24 @@
                 
                 
                 <h1 id="vltdatacelltable2struct">vlt.data.celltable2struct<a class="headerlink" href="#vltdatacelltable2struct" title="Permanent link">&para;</a></h1>
-<p>CELLTABLE2STRUCT - convert a table stored in a CELL datatype to a structure</p>
-<p>S = vlt.data.celltable2struct(C)</p>
-<p>Converts a table stored in the cell matrix C to a structure.
-  It is assumed that the first row of C (C{1}) has structure labels.
-  If any of these labels are not valid Matlab variables, then 
-  they are converted to be.
-  If rows of C{j} (j&gt;1) have fewer entries than the header row,
-  then all subsequent fields in the structure will have empty ([])
-  values.</p>
-<p>Example:
-     %Read a tab-seperated-value file with truncated entries (that is,
-     %where each line ends prematurely if later fields are empty):
-     o = vlt.file.read_tab_delimited_file(filename);
-     s = vlt.data.celltable2struct(o);</p>
+<div class="codehilite"><pre><span></span><code>  <span class="n">CELLTABLE2STRUCT</span> <span class="o">-</span> <span class="n">convert</span> <span class="n">a</span> <span class="n">table</span> <span class="n">stored</span> <span class="n">in</span> <span class="n">a</span> <span class="n">CELL</span> <span class="n">datatype</span> <span class="n">to</span> <span class="n">a</span> <span class="n">structure</span>
+
+  <span class="n">S</span> <span class="o">=</span> <span class="n">vlt</span><span class="p">.</span><span class="n">data</span><span class="p">.</span><span class="n">celltable2struct</span><span class="p">(</span><span class="n">C</span><span class="p">)</span>
+
+  <span class="n">Converts</span> <span class="n">a</span> <span class="n">table</span> <span class="n">stored</span> <span class="n">in</span> <span class="n">the</span> <span class="n">cell</span> <span class="n">matrix</span> <span class="n">C</span> <span class="n">to</span> <span class="n">a</span> <span class="n">structure</span><span class="p">.</span>
+  <span class="n">It</span> <span class="n">is</span> <span class="n">assumed</span> <span class="n">that</span> <span class="n">the</span> <span class="n">first</span> <span class="n">row</span> <span class="n">of</span> <span class="n">C</span> <span class="p">(</span><span class="n">C</span><span class="p">{</span><span class="mi">1</span><span class="p">})</span> <span class="n">has</span> <span class="n">structure</span> <span class="n">labels</span><span class="p">.</span>
+  <span class="n">If</span> <span class="n">any</span> <span class="n">of</span> <span class="n">these</span> <span class="n">labels</span> <span class="n">are</span> <span class="n">not</span> <span class="n">valid</span> <span class="n">Matlab</span> <span class="n">variables</span><span class="p">,</span> <span class="n">then</span> 
+  <span class="n">they</span> <span class="n">are</span> <span class="n">converted</span> <span class="n">to</span> <span class="n">be</span><span class="p">.</span>
+  <span class="n">If</span> <span class="n">rows</span> <span class="n">of</span> <span class="n">C</span><span class="p">{</span><span class="n">j</span><span class="p">}</span> <span class="p">(</span><span class="n">j</span><span class="o">&gt;</span><span class="mi">1</span><span class="p">)</span> <span class="n">have</span> <span class="n">fewer</span> <span class="n">entries</span> <span class="n">than</span> <span class="n">the</span> <span class="n">header</span> <span class="n">row</span><span class="p">,</span>
+  <span class="n">then</span> <span class="n">all</span> <span class="n">subsequent</span> <span class="n">fields</span> <span class="n">in</span> <span class="n">the</span> <span class="n">structure</span> <span class="n">will</span> <span class="n">have</span> <span class="n">empty</span> <span class="p">([])</span>
+  <span class="n">values</span><span class="p">.</span>
+
+  <span class="nl">Example</span><span class="p">:</span>
+     <span class="o">%</span><span class="n">Read</span> <span class="n">a</span> <span class="n">tab</span><span class="o">-</span><span class="n">seperated</span><span class="o">-</span><span class="n">value</span> <span class="n">file</span> <span class="n">with</span> <span class="n">truncated</span> <span class="n">entries</span> <span class="p">(</span><span class="n">that</span> <span class="n">is</span><span class="p">,</span>
+     <span class="nf">%where</span> <span class="n">each</span> <span class="n">line</span> <span class="n">ends</span> <span class="n">prematurely</span> <span class="k">if</span> <span class="n">later</span> <span class="n">fields</span> <span class="n">are</span> <span class="n">empty</span><span class="p">)</span><span class="o">:</span>
+     <span class="n">o</span> <span class="o">=</span> <span class="n">vlt</span><span class="p">.</span><span class="n">file</span><span class="p">.</span><span class="n">read_tab_delimited_file</span><span class="p">(</span><span class="n">filename</span><span class="p">);</span>
+     <span class="n">s</span> <span class="o">=</span> <span class="n">vlt</span><span class="p">.</span><span class="n">data</span><span class="p">.</span><span class="n">celltable2struct</span><span class="p">(</span><span class="n">o</span><span class="p">);</span>
+</code></pre></div>
                 
               
               

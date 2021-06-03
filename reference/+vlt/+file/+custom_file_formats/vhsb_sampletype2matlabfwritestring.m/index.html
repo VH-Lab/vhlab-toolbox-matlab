@@ -3227,6 +3227,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../../%2Bgit/git_stash.m/" class="md-nav__link">
+        vlt.git.git_stash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../../%2Bgit/git_status.m/" class="md-nav__link">
         vlt.git.git_status
       </a>
@@ -9239,14 +9251,18 @@
                 
                 
                 <h1 id="vltfilecustom_file_formatsvhsb_sampletype2matlabfwritestring">vlt.file.custom_file_formats.vhsb_sampletype2matlabfwritestring<a class="headerlink" href="#vltfilecustom_file_formatsvhsb_sampletype2matlabfwritestring" title="Permanent link">&para;</a></h1>
-<p>VHSH_SAMPLETYPE2MATLABFWRITESTRING - return fwrite/fread string for sample type</p>
-<p>S = VHSB_SAMPLETypE2MATLABFWRITESTRING(DATA_TYPE, DATASIZE)</p>
-<p>Given the DATA_TYPE (char (1), uint (2), int (3), or float (4)) and
-  the DATA_SIZE in bytes, this function returns a format string
-  appropriate for passing to FREAD or FWRITE.</p>
-<p>Example:
-    s = vlt.file.custom_file_formats.vhsb_sampletype2matlabfwritestring(4, 64)
-      % s = 'float64'</p>
+<div class="codehilite"><pre><span></span><code><span class="w">  </span><span class="n">VHSH_SAMPLETYPE2MATLABFWRITESTRING</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="nb">fwrite</span><span class="o">/</span><span class="nb">fread</span><span class="w"> </span><span class="nb">string</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">sample</span><span class="w"> </span><span class="nb">type</span><span class="w"></span>
+
+<span class="w">  </span><span class="n">S</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">VHSB_SAMPLETypE2MATLABFWRITESTRING</span><span class="p">(</span><span class="n">DATA_TYPE</span><span class="p">,</span><span class="w"> </span><span class="n">DATASIZE</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">  </span><span class="n">Given</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">DATA_TYPE</span><span class="w"> </span><span class="p">(</span><span class="nb">char</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="p">),</span><span class="w"> </span><span class="n">uint</span><span class="w"> </span><span class="p">(</span><span class="mi">2</span><span class="p">),</span><span class="w"> </span><span class="n">int</span><span class="w"> </span><span class="p">(</span><span class="mi">3</span><span class="p">),</span><span class="w"> </span><span class="n">or</span><span class="w"> </span><span class="n">float</span><span class="w"> </span><span class="p">(</span><span class="mi">4</span><span class="p">))</span><span class="w"> </span><span class="n">and</span><span class="w"></span>
+<span class="w">  </span><span class="n">the</span><span class="w"> </span><span class="n">DATA_SIZE</span><span class="w"> </span><span class="n">in</span><span class="w"> </span><span class="n">bytes</span><span class="p">,</span><span class="w"> </span><span class="n">this</span><span class="w"> </span><span class="k">function</span><span class="w"> </span><span class="n">returns</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="nb">format</span><span class="w"> </span><span class="nb">string</span><span class="w"></span>
+<span class="w">  </span><span class="n">appropriate</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">passing</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="n">FREAD</span><span class="w"> </span><span class="n">or</span><span class="w"> </span><span class="n">FWRITE</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">  </span><span class="n">Example</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="n">s</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">vlt</span><span class="p">.</span><span class="n">file</span><span class="p">.</span><span class="n">custom_file_formats</span><span class="p">.</span><span class="n">vhsb_sampletype2matlabfwritestring</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="mi">64</span><span class="p">)</span><span class="w"></span>
+<span class="w">      </span><span class="c">% s = &#39;float64&#39;</span><span class="w"></span>
+</code></pre></div>
                 
               
               

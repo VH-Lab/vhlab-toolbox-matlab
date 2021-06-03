@@ -3213,6 +3213,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../%2Bgit/git_stash.m/" class="md-nav__link">
+        vlt.git.git_stash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../%2Bgit/git_status.m/" class="md-nav__link">
         vlt.git.git_status
       </a>
@@ -9237,21 +9249,26 @@
                 
                 
                 <h1 id="vltstringismatlabstring">vlt.string.ismatlabstring<a class="headerlink" href="#vltstringismatlabstring" title="Permanent link">&para;</a></h1>
-<p>ISMATLABSTRING - is a character within a Matlab string?</p>
-<p>TF = vlt.string.ismatlabstring(STR, [STARTISWITHINSTRING])</p>
-<p>Returns 0/1 for each character of STR as to whether or not the
-  character is within a Matlab string literal. The quotes are considered
-  to be part of the string.</p>
-<p>It is normally assumed that the beginning of STR is not already
-  considered to be part of a Matlab string. The user can pass STARTISWITHINSTRING as
-  1 to indicate that the first character of STR should be taken to be within a Matlab
-  string.</p>
-<p>Examples:
-     str = ['myvar=5; a = ''my string'';']
-     vlt.string.ismatlabstring(str)
-              000000000000011111111100</p>
-<div class="codehilite"><pre><span></span><code> <span class="nb">str</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;myvar=5; a = [&#39;&#39;my &#39;&#39;&#39;&#39; &#39;&#39; int2str(5) &#39;&#39; string&#39;&#39;;]&#39;]</span>
-<span class="s1"> vlt.string.ismatlabstring(str)</span>
+<div class="codehilite"><pre><span></span><code><span class="w">  </span><span class="n">ISMATLABSTRING</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="k">character</span><span class="w"> </span><span class="k">within</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">Matlab</span><span class="w"> </span><span class="n">string</span><span class="vm">?</span><span class="w"></span>
+
+<span class="w">  </span><span class="n">TF</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">vlt</span><span class="p">.</span><span class="n">string</span><span class="p">.</span><span class="n">ismatlabstring</span><span class="p">(</span><span class="nf">STR</span><span class="p">,</span><span class="w"> </span><span class="o">[</span><span class="n">STARTISWITHINSTRING</span><span class="o">]</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">  </span><span class="k">Returns</span><span class="w"> </span><span class="mi">0</span><span class="o">/</span><span class="mi">1</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="k">each</span><span class="w"> </span><span class="k">character</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="nf">STR</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="n">whether</span><span class="w"> </span><span class="ow">or</span><span class="w"> </span><span class="ow">not</span><span class="w"> </span><span class="n">the</span><span class="w"></span>
+<span class="w">  </span><span class="k">character</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="k">within</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">Matlab</span><span class="w"> </span><span class="n">string</span><span class="w"> </span><span class="n">literal</span><span class="p">.</span><span class="w"> </span><span class="n">The</span><span class="w"> </span><span class="n">quotes</span><span class="w"> </span><span class="k">are</span><span class="w"> </span><span class="n">considered</span><span class="w"></span>
+<span class="w">  </span><span class="k">to</span><span class="w"> </span><span class="n">be</span><span class="w"> </span><span class="n">part</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">string</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">  </span><span class="n">It</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="n">normally</span><span class="w"> </span><span class="n">assumed</span><span class="w"> </span><span class="n">that</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">beginning</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="nf">STR</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="ow">not</span><span class="w"> </span><span class="n">already</span><span class="w"></span>
+<span class="w">  </span><span class="n">considered</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="n">be</span><span class="w"> </span><span class="n">part</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">Matlab</span><span class="w"> </span><span class="n">string</span><span class="p">.</span><span class="w"> </span><span class="n">The</span><span class="w"> </span><span class="k">user</span><span class="w"> </span><span class="n">can</span><span class="w"> </span><span class="n">pass</span><span class="w"> </span><span class="n">STARTISWITHINSTRING</span><span class="w"> </span><span class="k">as</span><span class="w"></span>
+<span class="w">  </span><span class="mi">1</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="n">indicate</span><span class="w"> </span><span class="n">that</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="k">first</span><span class="w"> </span><span class="k">character</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="nf">STR</span><span class="w"> </span><span class="n">should</span><span class="w"> </span><span class="n">be</span><span class="w"> </span><span class="n">taken</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="n">be</span><span class="w"> </span><span class="k">within</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">Matlab</span><span class="w"></span>
+<span class="w">  </span><span class="n">string</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">  </span><span class="nl">Examples</span><span class="p">:</span><span class="w"></span>
+<span class="w">     </span><span class="nf">str</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">[</span><span class="n">&#39;myvar=5; a = &#39;&#39;my string&#39;&#39;;&#39;</span><span class="o">]</span><span class="w"></span>
+<span class="w">     </span><span class="n">vlt</span><span class="p">.</span><span class="n">string</span><span class="p">.</span><span class="n">ismatlabstring</span><span class="p">(</span><span class="nf">str</span><span class="p">)</span><span class="w"></span>
+<span class="w">              </span><span class="mi">000000000000011111111100</span><span class="w"></span>
+
+<span class="w">     </span><span class="nf">str</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">[</span><span class="n">&#39;myvar=5; a = [&#39;&#39;my &#39;&#39;&#39;&#39; &#39;&#39; int2str(5) &#39;&#39; string&#39;&#39;;</span><span class="o">]</span><span class="err">&#39;]</span><span class="w"></span>
+<span class="w">     </span><span class="n">vlt</span><span class="p">.</span><span class="n">string</span><span class="p">.</span><span class="n">ismatlabstring</span><span class="p">(</span><span class="nf">str</span><span class="p">)</span><span class="w"></span>
 </code></pre></div>
                 
               

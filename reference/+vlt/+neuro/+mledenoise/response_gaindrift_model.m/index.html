@@ -3213,6 +3213,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../../%2Bgit/git_stash.m/" class="md-nav__link">
+        vlt.git.git_stash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../../%2Bgit/git_status.m/" class="md-nav__link">
         vlt.git.git_status
       </a>
@@ -9239,30 +9251,32 @@
                 
                 
                 <h1 id="vltneuromledenoiseresponse_gaindrift_model">vlt.neuro.mledenoise.response_gaindrift_model<a class="headerlink" href="#vltneuromledenoiseresponse_gaindrift_model" title="Permanent link">&para;</a></h1>
-<p>RESPONSE_GAINDRIFT_MODEL - Computes the response of the gain drift model</p>
-<p>R=vlt.neuro.mledenoise.response_gaindrift_model(STIM_TIMES, STIM_DURATION, STIMLIST,...
-       SINPARAMS, G_PARAMS, S_I_PARAMS);</p>
-<div class="codehilite"><pre><span></span><code><span class="n">This</span> <span class="n">function</span> <span class="n">assumes</span> <span class="n">that</span> <span class="n">the</span> <span class="n">response</span> <span class="n">to</span> <span class="n">a</span> <span class="n">neural</span> <span class="n">spike</span> <span class="n">train</span> <span class="ow">in</span> <span class="n">response</span> <span class="n">to</span> <span class="n">stimuli</span>
-<span class="n">s_i</span> <span class="n">can</span> <span class="n">be</span> <span class="n">written</span> <span class="k">as</span>
+<div class="codehilite"><pre><span></span><code>  <span class="n">RESPONSE_GAINDRIFT_MODEL</span> <span class="o">-</span> <span class="n">Computes</span> <span class="n">the</span> <span class="n">response</span> <span class="n">of</span> <span class="n">the</span> <span class="n">gain</span> <span class="n">drift</span> <span class="n">model</span>
 
-<span class="n">r</span><span class="p">(</span><span class="n">t</span><span class="p">)</span> <span class="o">=</span> <span class="n">g</span><span class="p">(</span><span class="n">t</span><span class="p">)</span> <span class="o">*</span> <span class="n">s_i</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+   <span class="n">R</span><span class="o">=</span><span class="n">vlt</span><span class="o">.</span><span class="n">neuro</span><span class="o">.</span><span class="n">mledenoise</span><span class="o">.</span><span class="n">response_gaindrift_model</span><span class="p">(</span><span class="n">STIM_TIMES</span><span class="p">,</span> <span class="n">STIM_DURATION</span><span class="p">,</span> <span class="n">STIMLIST</span><span class="p">,</span><span class="o">...</span>
+       <span class="n">SINPARAMS</span><span class="p">,</span> <span class="n">G_PARAMS</span><span class="p">,</span> <span class="n">S_I_PARAMS</span><span class="p">);</span>
 
-<span class="n">where</span> <span class="n">r</span><span class="p">(</span><span class="n">t</span><span class="p">)</span> <span class="k">is</span> <span class="n">the</span> <span class="n">actual</span> <span class="n">response</span> <span class="n">observed</span> <span class="k">as</span> <span class="n">a</span> <span class="n">function</span> <span class="n">of</span> <span class="n">time</span><span class="p">,</span> <span class="n">g</span><span class="p">(</span><span class="n">t</span><span class="p">)</span> <span class="k">is</span> <span class="n">an</span> <span class="n">unknown</span>
-<span class="n">slow</span> <span class="n">background</span> <span class="n">gain</span> <span class="n">modulation</span> <span class="n">of</span> <span class="n">the</span> <span class="n">cortex</span><span class="p">,</span> <span class="ow">and</span> <span class="n">s_i</span><span class="p">(</span><span class="n">t</span><span class="p">)</span> <span class="k">is</span> <span class="n">the</span> <span class="n">unknown</span> <span class="n">mean</span> <span class="n">response</span>
-<span class="n">to</span> <span class="n">each</span> <span class="n">stimulus</span><span class="o">.</span>
+    <span class="n">This</span> <span class="n">function</span> <span class="n">assumes</span> <span class="n">that</span> <span class="n">the</span> <span class="n">response</span> <span class="n">to</span> <span class="n">a</span> <span class="n">neural</span> <span class="n">spike</span> <span class="n">train</span> <span class="ow">in</span> <span class="n">response</span> <span class="n">to</span> <span class="n">stimuli</span>
+    <span class="n">s_i</span> <span class="n">can</span> <span class="n">be</span> <span class="n">written</span> <span class="k">as</span>
 
-<span class="n">This</span> <span class="n">function</span> <span class="n">computes</span> <span class="n">the</span> <span class="n">response</span> <span class="n">to</span> <span class="n">a</span> <span class="n">specific</span> <span class="n">model</span><span class="p">,</span> <span class="n">where</span> <span class="n">the</span> <span class="n">stimuli</span> <span class="n">are</span> <span class="n">presented</span>
-<span class="ow">in</span> <span class="n">order</span> <span class="n">STIMLIST</span> <span class="n">at</span> <span class="n">times</span> <span class="n">STIM_TIMES</span> <span class="ow">and</span> <span class="n">have</span> <span class="n">stim</span> <span class="n">duration</span> <span class="n">STIM_DURATION</span><span class="o">.</span> 
-<span class="n">It</span> <span class="k">is</span> <span class="n">further</span> <span class="n">assumed</span> <span class="n">that</span> <span class="n">SINPARAMS</span> <span class="n">are</span> <span class="n">parameters</span> <span class="n">of</span> <span class="n">a</span> <span class="mi">4</span> <span class="n">sinusoidal</span> <span class="n">fit</span> <span class="n">to</span> <span class="n">the</span> <span class="n">data</span>
-<span class="n">that</span> <span class="n">describes</span> <span class="n">the</span> <span class="n">slow</span> <span class="n">drift</span> <span class="ow">in</span> <span class="n">gain</span> <span class="n">g</span><span class="o">.</span>
+    <span class="n">r</span><span class="p">(</span><span class="n">t</span><span class="p">)</span> <span class="o">=</span> <span class="n">g</span><span class="p">(</span><span class="n">t</span><span class="p">)</span> <span class="o">*</span> <span class="n">s_i</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
 
-<span class="n">S_I_PARAMS</span> <span class="k">is</span> <span class="n">the</span> <span class="n">mean</span> <span class="n">response</span> <span class="n">to</span> <span class="n">stimulus</span> <span class="n">type</span> <span class="n">i</span><span class="p">,</span> <span class="n">which</span> <span class="n">can</span> <span class="n">occur</span> <span class="n">more</span> <span class="n">than</span> <span class="n">once</span> <span class="ow">in</span>
-<span class="n">the</span> <span class="n">STIMLIST</span><span class="o">.</span>
+    <span class="n">where</span> <span class="n">r</span><span class="p">(</span><span class="n">t</span><span class="p">)</span> <span class="k">is</span> <span class="n">the</span> <span class="n">actual</span> <span class="n">response</span> <span class="n">observed</span> <span class="k">as</span> <span class="n">a</span> <span class="n">function</span> <span class="n">of</span> <span class="n">time</span><span class="p">,</span> <span class="n">g</span><span class="p">(</span><span class="n">t</span><span class="p">)</span> <span class="k">is</span> <span class="n">an</span> <span class="n">unknown</span>
+    <span class="n">slow</span> <span class="n">background</span> <span class="n">gain</span> <span class="n">modulation</span> <span class="n">of</span> <span class="n">the</span> <span class="n">cortex</span><span class="p">,</span> <span class="ow">and</span> <span class="n">s_i</span><span class="p">(</span><span class="n">t</span><span class="p">)</span> <span class="k">is</span> <span class="n">the</span> <span class="n">unknown</span> <span class="n">mean</span> <span class="n">response</span>
+    <span class="n">to</span> <span class="n">each</span> <span class="n">stimulus</span><span class="o">.</span>
 
-<span class="n">G_PARAMS</span> <span class="k">is</span> <span class="n">a</span> <span class="mi">4</span> <span class="n">element</span> <span class="n">vector</span> <span class="n">that</span> <span class="n">describes</span> <span class="n">the</span> <span class="n">weighting</span> <span class="n">of</span> <span class="n">the</span> <span class="mi">4</span> <span class="n">sinusoids</span><span class="o">.</span>  <span class="n">If</span> 
-<span class="n">G_PARAMS</span> <span class="n">has</span> <span class="n">a</span> <span class="mi">5</span><span class="n">th</span> <span class="n">element</span><span class="p">,</span> <span class="n">it</span> <span class="k">is</span> <span class="n">assumed</span> <span class="n">to</span> <span class="n">be</span> <span class="n">a</span> <span class="n">constant</span> <span class="n">offset</span> <span class="k">for</span> <span class="n">g</span><span class="p">(</span><span class="n">t</span><span class="p">)</span><span class="o">.</span>
+    <span class="n">This</span> <span class="n">function</span> <span class="n">computes</span> <span class="n">the</span> <span class="n">response</span> <span class="n">to</span> <span class="n">a</span> <span class="n">specific</span> <span class="n">model</span><span class="p">,</span> <span class="n">where</span> <span class="n">the</span> <span class="n">stimuli</span> <span class="n">are</span> <span class="n">presented</span>
+    <span class="ow">in</span> <span class="n">order</span> <span class="n">STIMLIST</span> <span class="n">at</span> <span class="n">times</span> <span class="n">STIM_TIMES</span> <span class="ow">and</span> <span class="n">have</span> <span class="n">stim</span> <span class="n">duration</span> <span class="n">STIM_DURATION</span><span class="o">.</span> 
+    <span class="n">It</span> <span class="k">is</span> <span class="n">further</span> <span class="n">assumed</span> <span class="n">that</span> <span class="n">SINPARAMS</span> <span class="n">are</span> <span class="n">parameters</span> <span class="n">of</span> <span class="n">a</span> <span class="mi">4</span> <span class="n">sinusoidal</span> <span class="n">fit</span> <span class="n">to</span> <span class="n">the</span> <span class="n">data</span>
+    <span class="n">that</span> <span class="n">describes</span> <span class="n">the</span> <span class="n">slow</span> <span class="n">drift</span> <span class="ow">in</span> <span class="n">gain</span> <span class="n">g</span><span class="o">.</span> 
 
-<span class="n">R</span> <span class="k">is</span> <span class="n">returned</span> <span class="n">at</span> <span class="n">the</span> <span class="n">STIM_TIMES</span><span class="o">.</span>  <span class="n">If</span> <span class="n">R</span> <span class="k">is</span> <span class="n">less</span> <span class="n">than</span> <span class="ow">or</span> <span class="n">equal</span> <span class="n">to</span> <span class="mi">0</span><span class="p">,</span> <span class="n">R</span> <span class="k">is</span> <span class="n">set</span> <span class="n">to</span> <span class="n">eps</span><span class="o">.</span>
+    <span class="n">S_I_PARAMS</span> <span class="k">is</span> <span class="n">the</span> <span class="n">mean</span> <span class="n">response</span> <span class="n">to</span> <span class="n">stimulus</span> <span class="n">type</span> <span class="n">i</span><span class="p">,</span> <span class="n">which</span> <span class="n">can</span> <span class="n">occur</span> <span class="n">more</span> <span class="n">than</span> <span class="n">once</span> <span class="ow">in</span>
+    <span class="n">the</span> <span class="n">STIMLIST</span><span class="o">.</span>
+
+    <span class="n">G_PARAMS</span> <span class="k">is</span> <span class="n">a</span> <span class="mi">4</span> <span class="n">element</span> <span class="n">vector</span> <span class="n">that</span> <span class="n">describes</span> <span class="n">the</span> <span class="n">weighting</span> <span class="n">of</span> <span class="n">the</span> <span class="mi">4</span> <span class="n">sinusoids</span><span class="o">.</span>  <span class="n">If</span> 
+    <span class="n">G_PARAMS</span> <span class="n">has</span> <span class="n">a</span> <span class="mi">5</span><span class="n">th</span> <span class="n">element</span><span class="p">,</span> <span class="n">it</span> <span class="k">is</span> <span class="n">assumed</span> <span class="n">to</span> <span class="n">be</span> <span class="n">a</span> <span class="n">constant</span> <span class="n">offset</span> <span class="k">for</span> <span class="n">g</span><span class="p">(</span><span class="n">t</span><span class="p">)</span><span class="o">.</span>
+
+    <span class="n">R</span> <span class="k">is</span> <span class="n">returned</span> <span class="n">at</span> <span class="n">the</span> <span class="n">STIM_TIMES</span><span class="o">.</span>  <span class="n">If</span> <span class="n">R</span> <span class="k">is</span> <span class="n">less</span> <span class="n">than</span> <span class="ow">or</span> <span class="n">equal</span> <span class="n">to</span> <span class="mi">0</span><span class="p">,</span> <span class="n">R</span> <span class="k">is</span> <span class="n">set</span> <span class="n">to</span> <span class="n">eps</span><span class="o">.</span>
 </code></pre></div>
                 
               

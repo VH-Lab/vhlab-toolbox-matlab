@@ -3213,6 +3213,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../../../../%2Bgit/git_stash.m/" class="md-nav__link">
+        vlt.git.git_stash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../../../../%2Bgit/git_status.m/" class="md-nav__link">
         vlt.git.git_status
       </a>
@@ -9243,20 +9255,26 @@
                 
                 
                 <h1 id="vltneurovisionoridirindexcompute_directionsignificancedotproduct">vlt.neuro.vision.oridir.index.compute_directionsignificancedotproduct<a class="headerlink" href="#vltneurovisionoridirindexcompute_directionsignificancedotproduct" title="Permanent link">&para;</a></h1>
-<p>COMPUTE_DIRECTIONSIGNIFICANCEDOTPRODUCT Direction tuning significance using dot product with empirical orientation preference</p>
-<p>P = COMPUTE_DIRECTIONSIGNIFIANCEDOTPRODUCT(ANGLES, RATES)</p>
-<p>This function calculates the probability that the "true" direction tuning
-   vector of a neuron has non-zero length. It performs this by empirically
-   determing the unit orientation vector, and then computing the dot
-   product of the direction vector for each trial onto the overall orientation
-   vector, and then looking to see if the average is non-zero.</p>
-<p>Inputs:  ANGLES is a vector of direction angles at which the response has
-            been measured. 
-            RATES is the response of the neuron in to each angle; each row
-            should contain responses from a different trial.
-   Output:  P the probability that the "true" direction tuning vector is
-            non-zero.</p>
-<p>See: Mazurek, Kagan, Van Hooser 2014;  Frontiers in Neural Circuits</p>
+<div class="codehilite"><pre><span></span><code>  <span class="nt">COMPUTE_DIRECTIONSIGNIFICANCEDOTPRODUCT</span> <span class="nt">Direction</span> <span class="nt">tuning</span> <span class="nt">significance</span> <span class="nt">using</span> <span class="nt">dot</span> <span class="nt">product</span> <span class="nt">with</span> <span class="nt">empirical</span> <span class="nt">orientation</span> <span class="nt">preference</span>
+
+
+   <span class="nt">P</span> <span class="o">=</span> <span class="nt">COMPUTE_DIRECTIONSIGNIFIANCEDOTPRODUCT</span><span class="o">(</span><span class="nt">ANGLES</span><span class="o">,</span> <span class="nt">RATES</span><span class="o">)</span>
+
+   <span class="nt">This</span> <span class="nt">function</span> <span class="nt">calculates</span> <span class="nt">the</span> <span class="nt">probability</span> <span class="nt">that</span> <span class="nt">the</span> <span class="s2">&quot;true&quot;</span> <span class="nt">direction</span> <span class="nt">tuning</span>
+   <span class="nt">vector</span> <span class="nt">of</span> <span class="nt">a</span> <span class="nt">neuron</span> <span class="nt">has</span> <span class="nt">non-zero</span> <span class="nt">length</span><span class="o">.</span> <span class="nt">It</span> <span class="nt">performs</span> <span class="nt">this</span> <span class="nt">by</span> <span class="nt">empirically</span>
+   <span class="nt">determing</span> <span class="nt">the</span> <span class="nt">unit</span> <span class="nt">orientation</span> <span class="nt">vector</span><span class="o">,</span> <span class="nt">and</span> <span class="nt">then</span> <span class="nt">computing</span> <span class="nt">the</span> <span class="nt">dot</span>
+   <span class="nt">product</span> <span class="nt">of</span> <span class="nt">the</span> <span class="nt">direction</span> <span class="nt">vector</span> <span class="nt">for</span> <span class="nt">each</span> <span class="nt">trial</span> <span class="nt">onto</span> <span class="nt">the</span> <span class="nt">overall</span> <span class="nt">orientation</span>
+   <span class="nt">vector</span><span class="o">,</span> <span class="nt">and</span> <span class="nt">then</span> <span class="nt">looking</span> <span class="nt">to</span> <span class="nt">see</span> <span class="nt">if</span> <span class="nt">the</span> <span class="nt">average</span> <span class="nt">is</span> <span class="nt">non-zero</span><span class="o">.</span>
+
+   <span class="nt">Inputs</span><span class="o">:</span>  <span class="nt">ANGLES</span> <span class="nt">is</span> <span class="nt">a</span> <span class="nt">vector</span> <span class="nt">of</span> <span class="nt">direction</span> <span class="nt">angles</span> <span class="nt">at</span> <span class="nt">which</span> <span class="nt">the</span> <span class="nt">response</span> <span class="nt">has</span>
+            <span class="nt">been</span> <span class="nt">measured</span><span class="o">.</span> 
+            <span class="nt">RATES</span> <span class="nt">is</span> <span class="nt">the</span> <span class="nt">response</span> <span class="nt">of</span> <span class="nt">the</span> <span class="nt">neuron</span> <span class="nt">in</span> <span class="nt">to</span> <span class="nt">each</span> <span class="nt">angle</span><span class="o">;</span> <span class="nt">each</span> <span class="nt">row</span>
+            <span class="nt">should</span> <span class="nt">contain</span> <span class="nt">responses</span> <span class="nt">from</span> <span class="nt">a</span> <span class="nt">different</span> <span class="nt">trial</span><span class="o">.</span>
+   <span class="nt">Output</span><span class="o">:</span>  <span class="nt">P</span> <span class="nt">the</span> <span class="nt">probability</span> <span class="nt">that</span> <span class="nt">the</span> <span class="s2">&quot;true&quot;</span> <span class="nt">direction</span> <span class="nt">tuning</span> <span class="nt">vector</span> <span class="nt">is</span>
+            <span class="nt">non-zero</span><span class="o">.</span>
+
+   <span class="nt">See</span><span class="o">:</span> <span class="nt">Mazurek</span><span class="o">,</span> <span class="nt">Kagan</span><span class="o">,</span> <span class="nt">Van</span> <span class="nt">Hooser</span> <span class="nt">2014</span><span class="o">;</span>  <span class="nt">Frontiers</span> <span class="nt">in</span> <span class="nt">Neural</span> <span class="nt">Circuits</span>
+</code></pre></div>
                 
               
               

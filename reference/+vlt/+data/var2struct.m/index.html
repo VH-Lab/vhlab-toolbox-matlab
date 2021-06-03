@@ -3225,6 +3225,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../%2Bgit/git_stash.m/" class="md-nav__link">
+        vlt.git.git_stash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../%2Bgit/git_status.m/" class="md-nav__link">
         vlt.git.git_status
       </a>
@@ -9237,19 +9249,24 @@
                 
                 
                 <h1 id="vltdatavar2struct">vlt.data.var2struct<a class="headerlink" href="#vltdatavar2struct" title="Permanent link">&para;</a></h1>
-<p>VAR2STRUCT - Export variable(s) to a structure</p>
-<p>OUTPUT = vlt.data.var2struct('NAME1', 'NAME2', ...)</p>
-<p>Saves local workspace variables as a structure.</p>
-<p>Each variable is added a field to the structure OUTPUT.</p>
-<p>Example:
-      Imagine your workspace has 3 variables, A=5, B=6, C=7;</p>
-<div class="codehilite"><pre><span></span><code>  <span class="n">output</span> <span class="o">=</span> <span class="n">vlt</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">var2struct</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">,</span><span class="s1">&#39;b&#39;</span><span class="p">)</span>
+<div class="codehilite"><pre><span></span><code>  <span class="n">VAR2STRUCT</span> <span class="o">-</span> <span class="n">Export</span> <span class="n">variable</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="n">to</span> <span class="n">a</span> <span class="n">structure</span>
 
-    <span class="n">produces</span>
+   <span class="n">OUTPUT</span> <span class="o">=</span> <span class="n">vlt</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">var2struct</span><span class="p">(</span><span class="s1">&#39;NAME1&#39;</span><span class="p">,</span> <span class="s1">&#39;NAME2&#39;</span><span class="p">,</span> <span class="o">...</span><span class="p">)</span>
 
-  <span class="n">output</span> <span class="o">=</span> 
-     <span class="n">a</span><span class="p">:</span> <span class="mi">5</span>
-     <span class="n">b</span><span class="p">:</span> <span class="mi">6</span>
+   <span class="n">Saves</span> <span class="n">local</span> <span class="n">workspace</span> <span class="n">variables</span> <span class="k">as</span> <span class="n">a</span> <span class="n">structure</span><span class="o">.</span>
+
+   <span class="n">Each</span> <span class="n">variable</span> <span class="k">is</span> <span class="n">added</span> <span class="n">a</span> <span class="n">field</span> <span class="n">to</span> <span class="n">the</span> <span class="n">structure</span> <span class="n">OUTPUT</span><span class="o">.</span>
+
+   <span class="n">Example</span><span class="p">:</span>
+      <span class="n">Imagine</span> <span class="n">your</span> <span class="n">workspace</span> <span class="n">has</span> <span class="mi">3</span> <span class="n">variables</span><span class="p">,</span> <span class="n">A</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">B</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span> <span class="n">C</span><span class="o">=</span><span class="mi">7</span><span class="p">;</span>
+
+      <span class="n">output</span> <span class="o">=</span> <span class="n">vlt</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">var2struct</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">,</span><span class="s1">&#39;b&#39;</span><span class="p">)</span>
+
+        <span class="n">produces</span>
+
+      <span class="n">output</span> <span class="o">=</span> 
+         <span class="n">a</span><span class="p">:</span> <span class="mi">5</span>
+         <span class="n">b</span><span class="p">:</span> <span class="mi">6</span>
 </code></pre></div>
                 
               

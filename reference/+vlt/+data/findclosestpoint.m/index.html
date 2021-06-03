@@ -3225,6 +3225,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../%2Bgit/git_stash.m/" class="md-nav__link">
+        vlt.git.git_stash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../%2Bgit/git_status.m/" class="md-nav__link">
         vlt.git.git_status
       </a>
@@ -9237,15 +9249,20 @@
                 
                 
                 <h1 id="vltdatafindclosestpoint">vlt.data.findclosestpoint<a class="headerlink" href="#vltdatafindclosestpoint" title="Permanent link">&para;</a></h1>
-<p>FINDCLOSESTPOINT - Find the closest corresponding point in a list</p>
-<p>[I,POINTC] = vlt.data.findclosestpoint(POINTLIST,POINT)</p>
-<p>Finds the index and value to the closest member of POINTLIST to POINT
-  in Euclidean distance. POINTLIST should be a list of points, with 1 
-  row per point. It returns the index in I and the value
-  in POINTC.  If ARRAY is empointy, so are I and POINTC.</p>
-<p>If there are multiple occurances of POINT within POINTLIST,
-  only the first is returned in I.</p>
-<p>See also: FIND, vlt.data.findclosest</p>
+<div class="codehilite"><pre><span></span><code>  <span class="nv">FINDCLOSESTPOINT</span> <span class="o">-</span> <span class="nv">Find</span> <span class="nv">the</span> <span class="nv">closest</span> <span class="nv">corresponding</span> <span class="nv">point</span> <span class="nv">in</span> <span class="nv">a</span> <span class="nv">list</span>
+
+  [<span class="nv">I</span>,<span class="nv">POINTC</span>] <span class="o">=</span> <span class="nv">vlt</span>.<span class="nv">data</span>.<span class="nv">findclosestpoint</span><span class="ss">(</span><span class="nv">POINTLIST</span>,<span class="nv">POINT</span><span class="ss">)</span>
+
+  <span class="nv">Finds</span> <span class="nv">the</span> <span class="nv">index</span> <span class="nv">and</span> <span class="nv">value</span> <span class="nv">to</span> <span class="nv">the</span> <span class="nv">closest</span> <span class="nv">member</span> <span class="nv">of</span> <span class="nv">POINTLIST</span> <span class="nv">to</span> <span class="nv">POINT</span>
+  <span class="nv">in</span> <span class="nv">Euclidean</span> <span class="nv">distance</span>. <span class="nv">POINTLIST</span> <span class="nv">should</span> <span class="nv">be</span> <span class="nv">a</span> <span class="nv">list</span> <span class="nv">of</span> <span class="nv">points</span>, <span class="nv">with</span> <span class="mi">1</span> 
+  <span class="nv">row</span> <span class="nv">per</span> <span class="nv">point</span>. <span class="nv">It</span> <span class="nv">returns</span> <span class="nv">the</span> <span class="nv">index</span> <span class="nv">in</span> <span class="nv">I</span> <span class="nv">and</span> <span class="nv">the</span> <span class="nv">value</span>
+  <span class="nv">in</span> <span class="nv">POINTC</span>.  <span class="k">If</span> <span class="nv">ARRAY</span> <span class="nv">is</span> <span class="nv">empointy</span>, <span class="nv">so</span> <span class="nv">are</span> <span class="nv">I</span> <span class="nv">and</span> <span class="nv">POINTC</span>.
+
+  <span class="k">If</span> <span class="nv">there</span> <span class="nv">are</span> <span class="nv">multiple</span> <span class="nv">occurances</span> <span class="nv">of</span> <span class="nv">POINT</span> <span class="nv">within</span> <span class="nv">POINTLIST</span>,
+  <span class="nv">only</span> <span class="nv">the</span> <span class="nv">first</span> <span class="nv">is</span> <span class="nv">returned</span> <span class="nv">in</span> <span class="nv">I</span>.
+
+  <span class="nv">See</span> <span class="nv">also</span>: <span class="nv">FIND</span>, <span class="nv">vlt</span>.<span class="nv">data</span>.<span class="nv">findclosest</span>
+</code></pre></div>
                 
               
               

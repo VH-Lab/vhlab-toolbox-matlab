@@ -3213,6 +3213,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../%2Bgit/git_stash.m/" class="md-nav__link">
+        vlt.git.git_stash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../%2Bgit/git_status.m/" class="md-nav__link">
         vlt.git.git_status
       </a>
@@ -9237,19 +9249,20 @@
                 
                 
                 <h1 id="vltsignalround2sample">vlt.signal.round2sample<a class="headerlink" href="#vltsignalround2sample" title="Permanent link">&para;</a></h1>
-<p>ROUND2SAMPLE - Round a continuous point to the nearest sampled value for a regularly sampled signal</p>
-<div class="codehilite"><pre><span></span><code><span class="n">TR</span> <span class="o">=</span> <span class="n">vlt</span><span class="o">.</span><span class="k">signal</span><span class="o">.</span><span class="n">round2sample</span><span class="p">(</span><span class="n">TI</span><span class="p">,</span><span class="n">DT</span><span class="p">[,</span> <span class="n">T0</span><span class="p">])</span>
+<div class="codehilite"><pre><span></span><code>  <span class="n">ROUND2SAMPLE</span> <span class="o">-</span> <span class="n">Round</span> <span class="n">a</span> <span class="n">continuous</span> <span class="n">point</span> <span class="n">to</span> <span class="n">the</span> <span class="n">nearest</span> <span class="n">sampled</span> <span class="n">value</span> <span class="k">for</span> <span class="n">a</span> <span class="n">regularly</span> <span class="n">sampled</span> <span class="k">signal</span>
 
-<span class="n">Given</span> <span class="n">a</span> <span class="k">signal</span> <span class="n">sampled</span> <span class="n">at</span> <span class="n">regular</span> <span class="n">intervals</span> <span class="n">DT</span><span class="p">,</span> <span class="ow">and</span> <span class="n">given</span> <span class="n">a</span> <span class="n">set</span> <span class="n">of</span> <span class="n">time</span> <span class="n">points</span> <span class="n">TI</span><span class="p">,</span>
-<span class="n">calculates</span> <span class="n">the</span> <span class="n">closest</span> <span class="n">sample</span> <span class="n">times</span> <span class="n">TR</span> <span class="n">that</span> <span class="n">are</span> <span class="n">multiples</span> <span class="n">of</span> <span class="n">DT</span><span class="o">.</span>
-<span class="n">T0</span> <span class="k">is</span> <span class="n">the</span> <span class="n">time</span> <span class="n">of</span> <span class="n">the</span> <span class="n">first</span> <span class="n">sample</span><span class="o">.</span> <span class="n">If</span> <span class="n">it</span> <span class="k">is</span> <span class="ow">not</span> <span class="n">provided</span> <span class="n">then</span> <span class="n">it</span> <span class="k">is</span> <span class="n">assumed</span> <span class="n">to</span> <span class="n">be</span> <span class="mf">0.</span>
+    <span class="n">TR</span> <span class="o">=</span> <span class="n">vlt</span><span class="o">.</span><span class="k">signal</span><span class="o">.</span><span class="n">round2sample</span><span class="p">(</span><span class="n">TI</span><span class="p">,</span><span class="n">DT</span><span class="p">[,</span> <span class="n">T0</span><span class="p">])</span>
 
-<span class="n">Example</span><span class="p">:</span>
-    <span class="n">DT</span> <span class="o">=</span> <span class="mf">0.001</span><span class="p">;</span>
-    <span class="n">TI</span> <span class="o">=</span> <span class="mf">0.00100000001</span><span class="p">;</span>
-    <span class="n">TR</span> <span class="o">=</span> <span class="n">vlt</span><span class="o">.</span><span class="k">signal</span><span class="o">.</span><span class="n">round2sample</span><span class="p">(</span><span class="n">TI</span><span class="p">,</span> <span class="n">DT</span><span class="p">)</span>   <span class="o">%</span> <span class="n">returns</span> <span class="mf">0.001</span>
+    <span class="n">Given</span> <span class="n">a</span> <span class="k">signal</span> <span class="n">sampled</span> <span class="n">at</span> <span class="n">regular</span> <span class="n">intervals</span> <span class="n">DT</span><span class="p">,</span> <span class="ow">and</span> <span class="n">given</span> <span class="n">a</span> <span class="n">set</span> <span class="n">of</span> <span class="n">time</span> <span class="n">points</span> <span class="n">TI</span><span class="p">,</span>
+    <span class="n">calculates</span> <span class="n">the</span> <span class="n">closest</span> <span class="n">sample</span> <span class="n">times</span> <span class="n">TR</span> <span class="n">that</span> <span class="n">are</span> <span class="n">multiples</span> <span class="n">of</span> <span class="n">DT</span><span class="o">.</span>
+    <span class="n">T0</span> <span class="k">is</span> <span class="n">the</span> <span class="n">time</span> <span class="n">of</span> <span class="n">the</span> <span class="n">first</span> <span class="n">sample</span><span class="o">.</span> <span class="n">If</span> <span class="n">it</span> <span class="k">is</span> <span class="ow">not</span> <span class="n">provided</span> <span class="n">then</span> <span class="n">it</span> <span class="k">is</span> <span class="n">assumed</span> <span class="n">to</span> <span class="n">be</span> <span class="mf">0.</span> 
 
-<span class="n">See</span> <span class="n">also</span><span class="p">:</span> <span class="n">vlt</span><span class="o">.</span><span class="k">signal</span><span class="o">.</span><span class="n">point2samplelabel</span>
+    <span class="n">Example</span><span class="p">:</span>
+        <span class="n">DT</span> <span class="o">=</span> <span class="mf">0.001</span><span class="p">;</span>
+        <span class="n">TI</span> <span class="o">=</span> <span class="mf">0.00100000001</span><span class="p">;</span>
+        <span class="n">TR</span> <span class="o">=</span> <span class="n">vlt</span><span class="o">.</span><span class="k">signal</span><span class="o">.</span><span class="n">round2sample</span><span class="p">(</span><span class="n">TI</span><span class="p">,</span> <span class="n">DT</span><span class="p">)</span>   <span class="o">%</span> <span class="n">returns</span> <span class="mf">0.001</span>
+
+    <span class="n">See</span> <span class="n">also</span><span class="p">:</span> <span class="n">vlt</span><span class="o">.</span><span class="k">signal</span><span class="o">.</span><span class="n">point2samplelabel</span>
 </code></pre></div>
                 
               

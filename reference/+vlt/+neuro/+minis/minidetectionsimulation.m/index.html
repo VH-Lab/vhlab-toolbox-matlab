@@ -3213,6 +3213,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../../%2Bgit/git_stash.m/" class="md-nav__link">
+        vlt.git.git_stash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../../%2Bgit/git_status.m/" class="md-nav__link">
         vlt.git.git_status
       </a>
@@ -9239,36 +9251,46 @@
                 
                 
                 <h1 id="vltneurominisminidetectionsimulation">vlt.neuro.minis.minidetectionsimulation<a class="headerlink" href="#vltneurominisminidetectionsimulation" title="Permanent link">&para;</a></h1>
-<p>MINIDETECTIONSIMULATION</p>
-<p>[OPT_THRESHOLD, DETECTOR, CONV_SCALE, STATS] = vlt.neuro.minis.minidetectionsimulation</p>
-<p>Solves, through simulation, the optimum threshold for detecting miniature 
-   excitatory or inhibitory post-synaptic potentials or currents.</p>
-<p>Minis are assumed to arrive on a background of pure gaussian noise with
-   a standard deviation of 1. (One can divide the threshold by the actual noise 
-   encountered in one's own data to obtain the equivalent value for real data.)</p>
-<p>OPT_THRESHOLD - the threshold that produced the fewest overall errors of
-   detection, weighing false positives and false negatives equally (because both
-   errors have the same impact on average mini frequency and amplitude).</p>
-<p>DETECTOR - The filter used for detection. It assumes a positively-going wave
-   (simply multiply this by -1 to switch sign).</p>
-<p>CONV_SCALE - The amount by which the convolution of the data and the DETECTOR
-   should be scaled to reproduce the detection values used in this simulation
-   (depends on sampling rate and number of samples).</p>
-<p>STATS - a structure with error rates for different values of threshold.</p>
-<p>The behavior of the function can be altered by passing name/value pairs:</p>
-<p>Parameter (default)          | Description</p>
-<hr />
-<p>DT (0.001)                   | The time step between adjacent samples
-   Tau_Onset  (0.0025)          | The time of the synaptic potential onset (in seconds)
-   Tau_Offset (0.0250)          | The time of the synaptic potential offset (in seconds)
-   Simulation_Duration (100)    | The simulation duration (seconds)
-   expected_rate_of_events (10) | The expected rate of real events (Hz)
-   noise_fraction (0.1)         | The fraction that Tau_Offset and Tau_Onset should be
-                                |   altered by noise in the simulation
-   threshold_steps (50)         | Threshold steps to examine
-   refractory_period (0.020)    | Refractory period (time between events can be no shorter
-                                |   than this, in seconds)
-   plotit (0)                   | Plot the threshold vs. errors curve</p>
+<div class="codehilite"><pre><span></span><code>  <span class="nv">MINIDETECTIONSIMULATION</span>
+
+   [<span class="nv">OPT_THRESHOLD</span>, <span class="nv">DETECTOR</span>, <span class="nv">CONV_SCALE</span>, <span class="nv">STATS</span>] <span class="o">=</span> <span class="nv">vlt</span>.<span class="nv">neuro</span>.<span class="nv">minis</span>.<span class="nv">minidetectionsimulation</span>
+
+   <span class="nv">Solves</span>, <span class="nv">through</span> <span class="nv">simulation</span>, <span class="nv">the</span> <span class="nv">optimum</span> <span class="nv">threshold</span> <span class="k">for</span> <span class="nv">detecting</span> <span class="nv">miniature</span> 
+   <span class="nv">excitatory</span> <span class="nv">or</span> <span class="nv">inhibitory</span> <span class="nv">post</span><span class="o">-</span><span class="nv">synaptic</span> <span class="nv">potentials</span> <span class="nv">or</span> <span class="nv">currents</span>.
+
+   <span class="nv">Minis</span> <span class="nv">are</span> <span class="nv">assumed</span> <span class="nv">to</span> <span class="nv">arrive</span> <span class="nv">on</span> <span class="nv">a</span> <span class="nv">background</span> <span class="nv">of</span> <span class="nv">pure</span> <span class="nv">gaussian</span> <span class="nv">noise</span> <span class="nv">with</span>
+   <span class="nv">a</span> <span class="nv">standard</span> <span class="nv">deviation</span> <span class="nv">of</span> <span class="mi">1</span>. <span class="ss">(</span><span class="nv">One</span> <span class="nv">can</span> <span class="nv">divide</span> <span class="nv">the</span> <span class="nv">threshold</span> <span class="nv">by</span> <span class="nv">the</span> <span class="nv">actual</span> <span class="nv">noise</span> 
+   <span class="nv">encountered</span> <span class="nv">in</span> <span class="nv">one</span><span class="s1">&#39;</span><span class="s">s own data to obtain the equivalent value for real data.)</span>
+
+   <span class="nv">OPT_THRESHOLD</span> <span class="o">-</span> <span class="nv">the</span> <span class="nv">threshold</span> <span class="nv">that</span> <span class="nv">produced</span> <span class="nv">the</span> <span class="nv">fewest</span> <span class="nv">overall</span> <span class="nv">errors</span> <span class="nv">of</span>
+   <span class="nv">detection</span>, <span class="nv">weighing</span> <span class="nv">false</span> <span class="nv">positives</span> <span class="nv">and</span> <span class="nv">false</span> <span class="nv">negatives</span> <span class="nv">equally</span> <span class="ss">(</span><span class="nv">because</span> <span class="nv">both</span>
+   <span class="nv">errors</span> <span class="nv">have</span> <span class="nv">the</span> <span class="nv">same</span> <span class="nv">impact</span> <span class="nv">on</span> <span class="nv">average</span> <span class="nv">mini</span> <span class="nv">frequency</span> <span class="nv">and</span> <span class="nv">amplitude</span><span class="ss">)</span>.
+
+   <span class="nv">DETECTOR</span> <span class="o">-</span> <span class="nv">The</span> <span class="nv">filter</span> <span class="nv">used</span> <span class="k">for</span> <span class="nv">detection</span>. <span class="nv">It</span> <span class="nv">assumes</span> <span class="nv">a</span> <span class="nv">positively</span><span class="o">-</span><span class="nv">going</span> <span class="nv">wave</span>
+   <span class="ss">(</span><span class="nv">simply</span> <span class="nv">multiply</span> <span class="nv">this</span> <span class="nv">by</span> <span class="o">-</span><span class="mi">1</span> <span class="nv">to</span> <span class="nv">switch</span> <span class="nv">sign</span><span class="ss">)</span>.
+
+   <span class="nv">CONV_SCALE</span> <span class="o">-</span> <span class="nv">The</span> <span class="nv">amount</span> <span class="nv">by</span> <span class="nv">which</span> <span class="nv">the</span> <span class="nv">convolution</span> <span class="nv">of</span> <span class="nv">the</span> <span class="nv">data</span> <span class="nv">and</span> <span class="nv">the</span> <span class="nv">DETECTOR</span>
+   <span class="nv">should</span> <span class="nv">be</span> <span class="nv">scaled</span> <span class="nv">to</span> <span class="nv">reproduce</span> <span class="nv">the</span> <span class="nv">detection</span> <span class="nv">values</span> <span class="nv">used</span> <span class="nv">in</span> <span class="nv">this</span> <span class="nv">simulation</span>
+   <span class="ss">(</span><span class="nv">depends</span> <span class="nv">on</span> <span class="nv">sampling</span> <span class="nv">rate</span> <span class="nv">and</span> <span class="nv">number</span> <span class="nv">of</span> <span class="nv">samples</span><span class="ss">)</span>.
+
+   <span class="nv">STATS</span> <span class="o">-</span> <span class="nv">a</span> <span class="nv">structure</span> <span class="nv">with</span> <span class="nv">error</span> <span class="nv">rates</span> <span class="k">for</span> <span class="nv">different</span> <span class="nv">values</span> <span class="nv">of</span> <span class="nv">threshold</span>.
+
+   <span class="nv">The</span> <span class="nv">behavior</span> <span class="nv">of</span> <span class="nv">the</span> <span class="nv">function</span> <span class="nv">can</span> <span class="nv">be</span> <span class="nv">altered</span> <span class="nv">by</span> <span class="nv">passing</span> <span class="nv">name</span><span class="o">/</span><span class="nv">value</span> <span class="nv">pairs</span>:
+
+   <span class="nv">Parameter</span> <span class="ss">(</span><span class="nv">default</span><span class="ss">)</span>          <span class="o">|</span> <span class="nv">Description</span>
+   <span class="o">------------------------------------------------------------------------------</span>
+   <span class="nv">DT</span> <span class="ss">(</span><span class="mi">0</span>.<span class="mi">001</span><span class="ss">)</span>                   <span class="o">|</span> <span class="nv">The</span> <span class="nv">time</span> <span class="nv">step</span> <span class="nv">between</span> <span class="nv">adjacent</span> <span class="nv">samples</span>
+   <span class="nv">Tau_Onset</span>  <span class="ss">(</span><span class="mi">0</span>.<span class="mi">0025</span><span class="ss">)</span>          <span class="o">|</span> <span class="nv">The</span> <span class="nv">time</span> <span class="nv">of</span> <span class="nv">the</span> <span class="nv">synaptic</span> <span class="nv">potential</span> <span class="nv">onset</span> <span class="ss">(</span><span class="nv">in</span> <span class="nv">seconds</span><span class="ss">)</span>
+   <span class="nv">Tau_Offset</span> <span class="ss">(</span><span class="mi">0</span>.<span class="mi">0250</span><span class="ss">)</span>          <span class="o">|</span> <span class="nv">The</span> <span class="nv">time</span> <span class="nv">of</span> <span class="nv">the</span> <span class="nv">synaptic</span> <span class="nv">potential</span> <span class="nv">offset</span> <span class="ss">(</span><span class="nv">in</span> <span class="nv">seconds</span><span class="ss">)</span>
+   <span class="nv">Simulation_Duration</span> <span class="ss">(</span><span class="mi">100</span><span class="ss">)</span>    <span class="o">|</span> <span class="nv">The</span> <span class="nv">simulation</span> <span class="nv">duration</span> <span class="ss">(</span><span class="nv">seconds</span><span class="ss">)</span>
+   <span class="nv">expected_rate_of_events</span> <span class="ss">(</span><span class="mi">10</span><span class="ss">)</span> <span class="o">|</span> <span class="nv">The</span> <span class="nv">expected</span> <span class="nv">rate</span> <span class="nv">of</span> <span class="nv">real</span> <span class="nv">events</span> <span class="ss">(</span><span class="nv">Hz</span><span class="ss">)</span>
+   <span class="nv">noise_fraction</span> <span class="ss">(</span><span class="mi">0</span>.<span class="mi">1</span><span class="ss">)</span>         <span class="o">|</span> <span class="nv">The</span> <span class="nv">fraction</span> <span class="nv">that</span> <span class="nv">Tau_Offset</span> <span class="nv">and</span> <span class="nv">Tau_Onset</span> <span class="nv">should</span> <span class="nv">be</span>
+                                <span class="o">|</span>   <span class="nv">altered</span> <span class="nv">by</span> <span class="nv">noise</span> <span class="nv">in</span> <span class="nv">the</span> <span class="nv">simulation</span>
+   <span class="nv">threshold_steps</span> <span class="ss">(</span><span class="mi">50</span><span class="ss">)</span>         <span class="o">|</span> <span class="nv">Threshold</span> <span class="nv">steps</span> <span class="nv">to</span> <span class="nv">examine</span>
+   <span class="nv">refractory_period</span> <span class="ss">(</span><span class="mi">0</span>.<span class="mi">020</span><span class="ss">)</span>    <span class="o">|</span> <span class="nv">Refractory</span> <span class="nv">period</span> <span class="ss">(</span><span class="nv">time</span> <span class="nv">between</span> <span class="nv">events</span> <span class="nv">can</span> <span class="nv">be</span> <span class="nv">no</span> <span class="nv">shorter</span>
+                                <span class="o">|</span>   <span class="nv">than</span> <span class="nv">this</span>, <span class="nv">in</span> <span class="nv">seconds</span><span class="ss">)</span>
+   <span class="nv">plotit</span> <span class="ss">(</span><span class="mi">0</span><span class="ss">)</span>                   <span class="o">|</span> <span class="nv">Plot</span> <span class="nv">the</span> <span class="nv">threshold</span> <span class="nv">vs</span>. <span class="nv">errors</span> <span class="nv">curve</span>
+</code></pre></div>
                 
               
               

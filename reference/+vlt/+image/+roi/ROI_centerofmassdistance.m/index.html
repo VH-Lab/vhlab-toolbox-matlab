@@ -3213,6 +3213,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../../%2Bgit/git_stash.m/" class="md-nav__link">
+        vlt.git.git_stash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../../%2Bgit/git_status.m/" class="md-nav__link">
         vlt.git.git_status
       </a>
@@ -9239,23 +9251,27 @@
                 
                 
                 <h1 id="vltimageroiroi_centerofmassdistance">vlt.image.roi.ROI_centerofmassdistance<a class="headerlink" href="#vltimageroiroi_centerofmassdistance" title="Permanent link">&para;</a></h1>
-<p>ROI_CENTEROFMASSDISTANCE - Compute center-of-mass distances between sets of ROIs</p>
-<p>[COMD] = ROI_CENTEROFMASSDISTANCE(ROI_COM_A, LA, ROI_COM_B, LB, ...
-              DISTANCE_MAX, DISTANCE_MIN, ...);</p>
-<p>For 2 sets of ROIS, calculate the center-of-mass distances for all ROIs closer than
-  DISTANCE_MAX.</p>
-<p>Inputs: 
-      ROI_COM_A and ROI_COM_B are NUM_ROIS x DIM_ROI matrixes with the center of mass
-        coordinates in each row. 
-      LA and LB are labeled image matrixes, the same size as the original
-        image. Each pixel should be labeled with a '0' if it contains no ROI, 
-         or i if it is part of the ith ROI. See also BWLABEL
-      DISTANCE_MAX the maximum distance over which to search for center-of-mass distance.
-         This is important because if the number of ROIs in A and B are large, then a full
-         matrix describing ROI overlaps would require several hundred GB of memory and is usually
-         not worth counting.
-      DISTANCE_MIN If any distance is 0, it will be set to DISTANCE_MIN. 0 is reserved for 
-         too-long distances beyond DISTANCE_MAX so that COMD can be sparse (mostly 0s).</p>
+<div class="codehilite"><pre><span></span><code><span class="w">  </span><span class="n">ROI_CENTEROFMASSDISTANCE</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="k">Compute</span><span class="w"> </span><span class="n">center</span><span class="o">-</span><span class="k">of</span><span class="o">-</span><span class="n">mass</span><span class="w"> </span><span class="n">distances</span><span class="w"> </span><span class="ow">between</span><span class="w"> </span><span class="k">sets</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="n">ROIs</span><span class="w"></span>
+
+<span class="w">  </span><span class="o">[</span><span class="n">COMD</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ROI_CENTEROFMASSDISTANCE</span><span class="p">(</span><span class="n">ROI_COM_A</span><span class="p">,</span><span class="w"> </span><span class="n">LA</span><span class="p">,</span><span class="w"> </span><span class="n">ROI_COM_B</span><span class="p">,</span><span class="w"> </span><span class="n">LB</span><span class="p">,</span><span class="w"> </span><span class="p">...</span><span class="w"></span>
+<span class="w">              </span><span class="n">DISTANCE_MAX</span><span class="p">,</span><span class="w"> </span><span class="n">DISTANCE_MIN</span><span class="p">,</span><span class="w"> </span><span class="p">...);</span><span class="w"></span>
+
+<span class="w">  </span><span class="k">For</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="k">sets</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="n">ROIS</span><span class="p">,</span><span class="w"> </span><span class="n">calculate</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">center</span><span class="o">-</span><span class="k">of</span><span class="o">-</span><span class="n">mass</span><span class="w"> </span><span class="n">distances</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="ow">all</span><span class="w"> </span><span class="n">ROIs</span><span class="w"> </span><span class="n">closer</span><span class="w"> </span><span class="k">than</span><span class="w"></span>
+<span class="w">  </span><span class="n">DISTANCE_MAX</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">   </span><span class="nl">Inputs</span><span class="p">:</span><span class="w"> </span>
+<span class="w">      </span><span class="n">ROI_COM_A</span><span class="w"> </span><span class="ow">and</span><span class="w"> </span><span class="n">ROI_COM_B</span><span class="w"> </span><span class="k">are</span><span class="w"> </span><span class="n">NUM_ROIS</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="n">DIM_ROI</span><span class="w"> </span><span class="n">matrixes</span><span class="w"> </span><span class="k">with</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">center</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="n">mass</span><span class="w"></span>
+<span class="w">        </span><span class="n">coordinates</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="k">each</span><span class="w"> </span><span class="k">row</span><span class="p">.</span><span class="w"> </span>
+<span class="w">      </span><span class="n">LA</span><span class="w"> </span><span class="ow">and</span><span class="w"> </span><span class="n">LB</span><span class="w"> </span><span class="k">are</span><span class="w"> </span><span class="n">labeled</span><span class="w"> </span><span class="nc">image</span><span class="w"> </span><span class="n">matrixes</span><span class="p">,</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">same</span><span class="w"> </span><span class="k">size</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">original</span><span class="w"></span>
+<span class="w">        </span><span class="nc">image</span><span class="p">.</span><span class="w"> </span><span class="k">Each</span><span class="w"> </span><span class="n">pixel</span><span class="w"> </span><span class="n">should</span><span class="w"> </span><span class="n">be</span><span class="w"> </span><span class="n">labeled</span><span class="w"> </span><span class="k">with</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="s1">&#39;0&#39;</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">it</span><span class="w"> </span><span class="k">contains</span><span class="w"> </span><span class="k">no</span><span class="w"> </span><span class="n">ROI</span><span class="p">,</span><span class="w"> </span>
+<span class="w">         </span><span class="ow">or</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">it</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="n">part</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">ith</span><span class="w"> </span><span class="n">ROI</span><span class="p">.</span><span class="w"> </span><span class="n">See</span><span class="w"> </span><span class="n">also</span><span class="w"> </span><span class="n">BWLABEL</span><span class="w"></span>
+<span class="w">      </span><span class="n">DISTANCE_MAX</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">maximum</span><span class="w"> </span><span class="n">distance</span><span class="w"> </span><span class="k">over</span><span class="w"> </span><span class="n">which</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="k">search</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">center</span><span class="o">-</span><span class="k">of</span><span class="o">-</span><span class="n">mass</span><span class="w"> </span><span class="n">distance</span><span class="p">.</span><span class="w"></span>
+<span class="w">         </span><span class="n">This</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="n">important</span><span class="w"> </span><span class="n">because</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">number</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="n">ROIs</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">A</span><span class="w"> </span><span class="ow">and</span><span class="w"> </span><span class="n">B</span><span class="w"> </span><span class="k">are</span><span class="w"> </span><span class="k">large</span><span class="p">,</span><span class="w"> </span><span class="k">then</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="k">full</span><span class="w"></span>
+<span class="w">         </span><span class="n">matrix</span><span class="w"> </span><span class="n">describing</span><span class="w"> </span><span class="n">ROI</span><span class="w"> </span><span class="k">overlaps</span><span class="w"> </span><span class="n">would</span><span class="w"> </span><span class="n">require</span><span class="w"> </span><span class="n">several</span><span class="w"> </span><span class="n">hundred</span><span class="w"> </span><span class="n">GB</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="n">memory</span><span class="w"> </span><span class="ow">and</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="n">usually</span><span class="w"></span>
+<span class="w">         </span><span class="ow">not</span><span class="w"> </span><span class="n">worth</span><span class="w"> </span><span class="n">counting</span><span class="p">.</span><span class="w"></span>
+<span class="w">      </span><span class="n">DISTANCE_MIN</span><span class="w"> </span><span class="k">If</span><span class="w"> </span><span class="ow">any</span><span class="w"> </span><span class="n">distance</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">it</span><span class="w"> </span><span class="n">will</span><span class="w"> </span><span class="n">be</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="n">DISTANCE_MIN</span><span class="p">.</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="n">reserved</span><span class="w"> </span><span class="k">for</span><span class="w"> </span>
+<span class="w">         </span><span class="n">too</span><span class="o">-</span><span class="n">long</span><span class="w"> </span><span class="n">distances</span><span class="w"> </span><span class="n">beyond</span><span class="w"> </span><span class="n">DISTANCE_MAX</span><span class="w"> </span><span class="n">so</span><span class="w"> </span><span class="n">that</span><span class="w"> </span><span class="n">COMD</span><span class="w"> </span><span class="n">can</span><span class="w"> </span><span class="n">be</span><span class="w"> </span><span class="n">sparse</span><span class="w"> </span><span class="p">(</span><span class="n">mostly</span><span class="w"> </span><span class="mi">0</span><span class="n">s</span><span class="p">).</span><span class="w"></span>
+</code></pre></div>
                 
               
               

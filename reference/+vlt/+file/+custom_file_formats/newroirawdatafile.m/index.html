@@ -3227,6 +3227,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../../%2Bgit/git_stash.m/" class="md-nav__link">
+        vlt.git.git_stash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../../%2Bgit/git_status.m/" class="md-nav__link">
         vlt.git.git_status
       </a>
@@ -9239,44 +9251,47 @@
                 
                 
                 <h1 id="vltfilecustom_file_formatsnewroirawdatafile">vlt.file.custom_file_formats.newroirawdatafile<a class="headerlink" href="#vltfilecustom_file_formatsnewroirawdatafile" title="Permanent link">&para;</a></h1>
-<p>NEWROIRAWDATAFILE - Create a binary file for storing spike waveforms</p>
-<div class="codehilite"><pre><span></span><code> <span class="o">**********</span><span class="nv">NOT</span> <span class="nv">COMPLETE</span> <span class="nv">YET</span><span class="o">!!!!!!!!!!!************</span>
+<div class="codehilite"><pre><span></span><code>  <span class="n">NEWROIRAWDATAFILE</span> <span class="o">-</span> <span class="n">Create</span> <span class="n">a</span> <span class="n">binary</span> <span class="n">file</span> <span class="k">for</span> <span class="n">storing</span> <span class="n">spike</span> <span class="n">waveforms</span>
+
+     <span class="o">**********</span><span class="n">NOT</span> <span class="n">COMPLETE</span> <span class="n">YET</span><span class="o">!!!!!!!!!!!************</span>
 
 
-<span class="nv">FID</span> <span class="o">=</span> <span class="nv">vlt</span>.<span class="nv">file</span>.<span class="nv">custom_file_formats</span>.<span class="nv">newroirawdatafile</span><span class="ss">(</span><span class="nv">FILENAME</span>, <span class="nv">PARAMETERS</span><span class="ss">)</span>
+    <span class="n">FID</span> <span class="o">=</span> <span class="n">vlt</span><span class="o">.</span><span class="n">file</span><span class="o">.</span><span class="n">custom_file_formats</span><span class="o">.</span><span class="n">newroirawdatafile</span><span class="p">(</span><span class="n">FILENAME</span><span class="p">,</span> <span class="n">PARAMETERS</span><span class="p">)</span>
 
-<span class="nv">Creates</span> <span class="ss">(</span><span class="nv">and</span> <span class="nv">leaves</span> <span class="nv">open</span><span class="ss">)</span> <span class="nv">a</span> <span class="nv">new</span> <span class="nv">binary</span> <span class="nv">file</span> <span class="k">for</span> <span class="nv">storing</span> <span class="nv">raw</span> <span class="nv">data</span> <span class="nv">that</span> <span class="nv">is</span>
-<span class="nv">extracted</span> <span class="nv">from</span> <span class="nv">images</span>.  <span class="nv">Optionally</span>, <span class="nv">one</span> <span class="nv">can</span> <span class="nv">also</span> <span class="nv">store</span> <span class="nv">the</span> <span class="nv">image</span> <span class="nv">index</span> <span class="nv">values</span>
-<span class="nv">that</span> <span class="nv">correspond</span> <span class="nv">to</span> <span class="nv">the</span> <span class="nv">roi</span> <span class="nv">pixels</span>.
+    <span class="n">Creates</span> <span class="p">(</span><span class="ow">and</span> <span class="n">leaves</span> <span class="n">open</span><span class="p">)</span> <span class="n">a</span> <span class="n">new</span> <span class="n">binary</span> <span class="n">file</span> <span class="k">for</span> <span class="n">storing</span> <span class="n">raw</span> <span class="n">data</span> <span class="n">that</span> <span class="k">is</span>
+    <span class="n">extracted</span> <span class="n">from</span> <span class="n">images</span><span class="o">.</span>  <span class="n">Optionally</span><span class="p">,</span> <span class="n">one</span> <span class="n">can</span> <span class="n">also</span> <span class="n">store</span> <span class="n">the</span> <span class="n">image</span> <span class="n">index</span> <span class="n">values</span>
+    <span class="n">that</span> <span class="n">correspond</span> <span class="n">to</span> <span class="n">the</span> <span class="n">roi</span> <span class="n">pixels</span><span class="o">.</span>
 
-<span class="nv">This</span> <span class="nv">function</span> <span class="nv">creates</span> <span class="nv">the</span> <span class="nv">header</span> <span class="nv">portion</span> <span class="nv">that</span> <span class="k">include</span> <span class="nv">the</span> <span class="nv">following</span>
-<span class="nv">parameters</span>:
+    <span class="n">This</span> <span class="n">function</span> <span class="n">creates</span> <span class="n">the</span> <span class="n">header</span> <span class="n">portion</span> <span class="n">that</span> <span class="n">include</span> <span class="n">the</span> <span class="n">following</span>
+    <span class="n">parameters</span><span class="p">:</span>
 
-<span class="nv">NAME</span> <span class="ss">(</span><span class="nv">type</span><span class="ss">)</span>:                      <span class="nv">DESCRIPTION</span>         
-<span class="o">-------------------------------------------------------------------------</span>
-<span class="nv">parameters</span>.<span class="nv">name</span> <span class="ss">(</span><span class="mi">80</span><span class="nv">xchar</span><span class="ss">)</span>         : <span class="nv">Name</span> <span class="ss">(</span><span class="nv">up</span> <span class="nv">to</span> <span class="mi">80</span> <span class="nv">characters</span><span class="ss">)</span>
-<span class="nv">parameters</span>.<span class="nv">ref</span> <span class="ss">(</span><span class="nv">uint8</span><span class="ss">)</span>            : <span class="nv">Reference</span> <span class="nv">number</span>
-<span class="nv">parameters</span>.<span class="nv">comment</span> <span class="ss">(</span><span class="mi">80</span><span class="nv">xchar</span><span class="ss">)</span>      : <span class="nv">Up</span> <span class="nv">to</span> <span class="mi">80</span> <span class="nv">characters</span> <span class="nv">of</span> <span class="nv">comment</span>
-<span class="nv">parameters</span>.<span class="nv">precision</span> <span class="ss">(</span><span class="nv">uint8</span><span class="ss">)</span>      : <span class="nv">The</span> <span class="nv">precision</span> <span class="o">--</span>
-                                  :    <span class="mi">0</span> <span class="o">=</span> <span class="nv">uint16</span>
-                                  :    <span class="mi">1</span> <span class="o">=</span> <span class="nv">uint32</span>
-                                  :    <span class="mi">2</span> <span class="o">=</span> <span class="nv">float32</span>
-                                  :    <span class="mi">3</span> <span class="o">=</span> <span class="nv">float64</span>     
-<span class="nv">parameters</span>.<span class="nv">indexesincluded</span> <span class="ss">(</span><span class="nv">uint8</span><span class="ss">)</span>: <span class="nv">Are</span> <span class="nv">index</span> <span class="nv">values</span> <span class="nv">included</span>?
-                                  :    <span class="mi">0</span> <span class="o">=</span> <span class="nv">no</span>
-                                  :    <span class="mi">1</span> <span class="o">=</span> <span class="nv">yes</span>
-<span class="ss">(</span><span class="nv">first</span> <span class="mi">512</span> <span class="nv">bytes</span> <span class="nv">are</span> <span class="nv">free</span> <span class="k">for</span> <span class="nv">additional</span> <span class="nv">header</span> <span class="nv">use</span><span class="ss">)</span>
+    <span class="n">NAME</span> <span class="p">(</span><span class="n">type</span><span class="p">):</span>                      <span class="n">DESCRIPTION</span>         
+    <span class="o">-------------------------------------------------------------------------</span>
+    <span class="n">parameters</span><span class="o">.</span><span class="n">name</span> <span class="p">(</span><span class="mi">80</span><span class="n">xchar</span><span class="p">)</span>         <span class="p">:</span> <span class="n">Name</span> <span class="p">(</span><span class="n">up</span> <span class="n">to</span> <span class="mi">80</span> <span class="n">characters</span><span class="p">)</span>
+    <span class="n">parameters</span><span class="o">.</span><span class="n">ref</span> <span class="p">(</span><span class="n">uint8</span><span class="p">)</span>            <span class="p">:</span> <span class="n">Reference</span> <span class="n">number</span>
+    <span class="n">parameters</span><span class="o">.</span><span class="n">comment</span> <span class="p">(</span><span class="mi">80</span><span class="n">xchar</span><span class="p">)</span>      <span class="p">:</span> <span class="n">Up</span> <span class="n">to</span> <span class="mi">80</span> <span class="n">characters</span> <span class="n">of</span> <span class="n">comment</span>
+    <span class="n">parameters</span><span class="o">.</span><span class="n">precision</span> <span class="p">(</span><span class="n">uint8</span><span class="p">)</span>      <span class="p">:</span> <span class="n">The</span> <span class="n">precision</span> <span class="o">--</span>
+                                      <span class="p">:</span>    <span class="mi">0</span> <span class="o">=</span> <span class="n">uint16</span>
+                                      <span class="p">:</span>    <span class="mi">1</span> <span class="o">=</span> <span class="n">uint32</span>
+                                      <span class="p">:</span>    <span class="mi">2</span> <span class="o">=</span> <span class="n">float32</span>
+                                      <span class="p">:</span>    <span class="mi">3</span> <span class="o">=</span> <span class="n">float64</span>     
+    <span class="n">parameters</span><span class="o">.</span><span class="n">indexesincluded</span> <span class="p">(</span><span class="n">uint8</span><span class="p">):</span> <span class="n">Are</span> <span class="n">index</span> <span class="n">values</span> <span class="n">included</span><span class="err">?</span>
+                                      <span class="p">:</span>    <span class="mi">0</span> <span class="o">=</span> <span class="n">no</span>
+                                      <span class="p">:</span>    <span class="mi">1</span> <span class="o">=</span> <span class="n">yes</span>
+    <span class="p">(</span><span class="n">first</span> <span class="mi">512</span> <span class="n">bytes</span> <span class="n">are</span> <span class="n">free</span> <span class="k">for</span> <span class="n">additional</span> <span class="n">header</span> <span class="n">use</span><span class="p">)</span>
+
+   <span class="n">Each</span> <span class="n">bit</span> <span class="n">of</span> <span class="n">data</span> <span class="n">includes</span>
+     <span class="n">the</span> <span class="n">ROI</span> <span class="n">number</span> <span class="p">(</span><span class="mi">1</span> <span class="mi">16</span> <span class="n">bit</span> <span class="n">integer</span><span class="p">)</span>
+     <span class="n">the</span> <span class="n">frame</span> <span class="n">number</span> <span class="p">(</span><span class="mi">1</span> <span class="mi">32</span> <span class="n">bit</span> <span class="n">integer</span><span class="p">)</span>
+     <span class="n">N</span><span class="p">,</span> <span class="n">the</span> <span class="n">number</span> <span class="n">of</span> <span class="n">points</span> <span class="n">falling</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">roi</span> <span class="n">on</span> <span class="n">this</span> <span class="n">frame</span> <span class="p">(</span><span class="mi">1</span> <span class="mi">32</span> <span class="n">bit</span> <span class="n">integer</span><span class="p">)</span>
+     <span class="n">the</span> <span class="n">N</span> <span class="n">index</span> <span class="n">values</span> <span class="n">of</span> <span class="n">these</span> <span class="n">data</span> <span class="n">points</span> <span class="p">(</span><span class="n">N</span> <span class="mi">32</span> <span class="n">bit</span> <span class="n">integers</span><span class="p">),</span> <span class="k">if</span> <span class="n">parameters</span><span class="o">.</span><span class="n">precision</span> <span class="k">is</span> <span class="mi">1</span>
+     <span class="n">the</span> <span class="n">N</span> <span class="n">values</span> <span class="n">of</span> <span class="n">these</span> <span class="n">pixels</span> <span class="p">(</span><span class="n">N</span> <span class="n">values</span> <span class="n">of</span> <span class="n">type</span> <span class="n">parameters</span><span class="o">.</span><span class="n">precision</span><span class="p">)</span>
+
+   <span class="n">The</span> <span class="n">resulting</span> <span class="n">FID</span> <span class="p">(</span><span class="n">file</span> <span class="n">identifier</span><span class="p">)</span> <span class="n">can</span> <span class="n">be</span> <span class="n">used</span> <span class="n">to</span> <span class="n">write</span> <span class="n">waveforms</span> <span class="n">to</span> <span class="n">the</span>
+   <span class="n">file</span> <span class="n">with</span> <span class="n">the</span> <span class="n">function</span> <span class="n">vlt</span><span class="o">.</span><span class="n">file</span><span class="o">.</span><span class="n">custom_file_formats</span><span class="o">.</span><span class="n">addroirawdatafile</span><span class="p">(</span><span class="n">FID</span><span class="p">,</span> <span class="n">roinum</span><span class="p">,</span> <span class="n">framenum</span><span class="p">,</span> <span class="n">indexes</span><span class="p">,</span> <span class="n">pixelvalues</span><span class="p">,</span> <span class="n">precision</span><span class="p">)</span>
+
+   <span class="n">NOTE</span><span class="p">:</span> <span class="n">When</span> <span class="n">one</span> <span class="k">is</span> <span class="n">done</span> <span class="n">using</span> <span class="n">the</span> <span class="n">file</span><span class="p">,</span> <span class="n">it</span> <span class="n">must</span> <span class="n">be</span> <span class="n">closed</span> <span class="n">with</span> <span class="n">FCLOSE</span><span class="p">(</span><span class="n">FID</span><span class="p">)</span><span class="o">.</span>
 </code></pre></div>
-
-<p>Each bit of data includes
-     the ROI number (1 16 bit integer)
-     the frame number (1 32 bit integer)
-     N, the number of points falling in the roi on this frame (1 32 bit integer)
-     the N index values of these data points (N 32 bit integers), if parameters.precision is 1
-     the N values of these pixels (N values of type parameters.precision)</p>
-<p>The resulting FID (file identifier) can be used to write waveforms to the
-   file with the function vlt.file.custom_file_formats.addroirawdatafile(FID, roinum, framenum, indexes, pixelvalues, precision)</p>
-<p>NOTE: When one is done using the file, it must be closed with FCLOSE(FID).</p>
                 
               
               

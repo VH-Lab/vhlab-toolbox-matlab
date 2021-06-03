@@ -3213,6 +3213,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../../../../%2Bgit/git_stash.m/" class="md-nav__link">
+        vlt.git.git_stash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../../../../%2Bgit/git_status.m/" class="md-nav__link">
         vlt.git.git_status
       </a>
@@ -9243,27 +9255,33 @@
                 
                 
                 <h1 id="vltneurovisionoridirplotpolarplot_ori">vlt.neuro.vision.oridir.plot.polarplot_ori<a class="headerlink" href="#vltneurovisionoridirplotpolarplot_ori" title="Permanent link">&para;</a></h1>
-<p>POLARPLOT_ORI - Produces a polar plot of orientation responses</p>
-<p>[H,OUTPUTS]=vlt.neuro.vision.oridir.plot.polarplot_ori(ANGLES, RESPONSES, ...)</p>
-<p>Produces a polar plot (using the third party library MMPOLAR)
-   of orientation responses in orientation space. The plot handle is
-   returned in H.  ANGLES should be orientation angles in degrees,
-   and RESPONSES are the responses in appropriate units. </p>
-<p>OUTPUTS is a structure with the following fields:
-      'meanvector'        :  mean orientation vector in the complex plane
-      'vectormag'         :  mean vector magnitude
-      'vectorpref'        :  vector preference in degrees
-      'circularvariance'  :  circular variance
-      'h_meanvector'      :  plot handle to the mean vector
-      'h_circularvariance':  plot handle to the circular variance vector</p>
-<p>Additional name/value pairs can be provided as additional arguments:
-   'showmeanvector'          : 0/1 show mean orientation vector (default 0)
-   'showcircularvariance'    : 0/1 show circular variance vector (default 0)
-                             :    (plots vector with length equal to 1-circular
-                             :     variance and angle equal to orientation
-                             :     preference)
-   'style'                   : 'compass' or 'cartesian', default 'compass'</p>
-<p>See also: vlt.neuro.vision.oridir.dirspace2orispace, MMPOLAR, vlt.neuro.vision.oridir.plot.polarplot_dir</p>
+<div class="codehilite"><pre><span></span><code>  <span class="n">POLARPLOT_ORI</span> <span class="o">-</span> <span class="n">Produces</span> <span class="n">a</span> <span class="n">polar</span> <span class="n">plot</span> <span class="n">of</span> <span class="n">orientation</span> <span class="n">responses</span>
+
+   <span class="p">[</span><span class="n">H</span><span class="p">,</span><span class="n">OUTPUTS</span><span class="p">]</span><span class="o">=</span><span class="n">vlt</span><span class="o">.</span><span class="n">neuro</span><span class="o">.</span><span class="n">vision</span><span class="o">.</span><span class="n">oridir</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">polarplot_ori</span><span class="p">(</span><span class="n">ANGLES</span><span class="p">,</span> <span class="n">RESPONSES</span><span class="p">,</span> <span class="o">...</span><span class="p">)</span>
+
+   <span class="n">Produces</span> <span class="n">a</span> <span class="n">polar</span> <span class="n">plot</span> <span class="p">(</span><span class="n">using</span> <span class="n">the</span> <span class="n">third</span> <span class="n">party</span> <span class="n">library</span> <span class="n">MMPOLAR</span><span class="p">)</span>
+   <span class="n">of</span> <span class="n">orientation</span> <span class="n">responses</span> <span class="ow">in</span> <span class="n">orientation</span> <span class="n">space</span><span class="o">.</span> <span class="n">The</span> <span class="n">plot</span> <span class="n">handle</span> <span class="k">is</span>
+   <span class="n">returned</span> <span class="ow">in</span> <span class="n">H</span><span class="o">.</span>  <span class="n">ANGLES</span> <span class="n">should</span> <span class="n">be</span> <span class="n">orientation</span> <span class="n">angles</span> <span class="ow">in</span> <span class="n">degrees</span><span class="p">,</span>
+   <span class="ow">and</span> <span class="n">RESPONSES</span> <span class="n">are</span> <span class="n">the</span> <span class="n">responses</span> <span class="ow">in</span> <span class="n">appropriate</span> <span class="n">units</span><span class="o">.</span> 
+
+   <span class="n">OUTPUTS</span> <span class="k">is</span> <span class="n">a</span> <span class="n">structure</span> <span class="n">with</span> <span class="n">the</span> <span class="n">following</span> <span class="n">fields</span><span class="p">:</span>
+      <span class="s1">&#39;meanvector&#39;</span>        <span class="p">:</span>  <span class="n">mean</span> <span class="n">orientation</span> <span class="n">vector</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">complex</span> <span class="n">plane</span>
+      <span class="s1">&#39;vectormag&#39;</span>         <span class="p">:</span>  <span class="n">mean</span> <span class="n">vector</span> <span class="n">magnitude</span>
+      <span class="s1">&#39;vectorpref&#39;</span>        <span class="p">:</span>  <span class="n">vector</span> <span class="n">preference</span> <span class="ow">in</span> <span class="n">degrees</span>
+      <span class="s1">&#39;circularvariance&#39;</span>  <span class="p">:</span>  <span class="n">circular</span> <span class="n">variance</span>
+      <span class="s1">&#39;h_meanvector&#39;</span>      <span class="p">:</span>  <span class="n">plot</span> <span class="n">handle</span> <span class="n">to</span> <span class="n">the</span> <span class="n">mean</span> <span class="n">vector</span>
+      <span class="s1">&#39;h_circularvariance&#39;</span><span class="p">:</span>  <span class="n">plot</span> <span class="n">handle</span> <span class="n">to</span> <span class="n">the</span> <span class="n">circular</span> <span class="n">variance</span> <span class="n">vector</span>
+
+   <span class="n">Additional</span> <span class="n">name</span><span class="o">/</span><span class="n">value</span> <span class="n">pairs</span> <span class="n">can</span> <span class="n">be</span> <span class="n">provided</span> <span class="k">as</span> <span class="n">additional</span> <span class="n">arguments</span><span class="p">:</span>
+   <span class="s1">&#39;showmeanvector&#39;</span>          <span class="p">:</span> <span class="mi">0</span><span class="o">/</span><span class="mi">1</span> <span class="n">show</span> <span class="n">mean</span> <span class="n">orientation</span> <span class="n">vector</span> <span class="p">(</span><span class="n">default</span> <span class="mi">0</span><span class="p">)</span>
+   <span class="s1">&#39;showcircularvariance&#39;</span>    <span class="p">:</span> <span class="mi">0</span><span class="o">/</span><span class="mi">1</span> <span class="n">show</span> <span class="n">circular</span> <span class="n">variance</span> <span class="n">vector</span> <span class="p">(</span><span class="n">default</span> <span class="mi">0</span><span class="p">)</span>
+                             <span class="p">:</span>    <span class="p">(</span><span class="n">plots</span> <span class="n">vector</span> <span class="n">with</span> <span class="n">length</span> <span class="n">equal</span> <span class="n">to</span> <span class="mi">1</span><span class="o">-</span><span class="n">circular</span>
+                             <span class="p">:</span>     <span class="n">variance</span> <span class="ow">and</span> <span class="n">angle</span> <span class="n">equal</span> <span class="n">to</span> <span class="n">orientation</span>
+                             <span class="p">:</span>     <span class="n">preference</span><span class="p">)</span>
+   <span class="s1">&#39;style&#39;</span>                   <span class="p">:</span> <span class="s1">&#39;compass&#39;</span> <span class="ow">or</span> <span class="s1">&#39;cartesian&#39;</span><span class="p">,</span> <span class="n">default</span> <span class="s1">&#39;compass&#39;</span>
+
+   <span class="n">See</span> <span class="n">also</span><span class="p">:</span> <span class="n">vlt</span><span class="o">.</span><span class="n">neuro</span><span class="o">.</span><span class="n">vision</span><span class="o">.</span><span class="n">oridir</span><span class="o">.</span><span class="n">dirspace2orispace</span><span class="p">,</span> <span class="n">MMPOLAR</span><span class="p">,</span> <span class="n">vlt</span><span class="o">.</span><span class="n">neuro</span><span class="o">.</span><span class="n">vision</span><span class="o">.</span><span class="n">oridir</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">polarplot_dir</span>
+</code></pre></div>
                 
               
               

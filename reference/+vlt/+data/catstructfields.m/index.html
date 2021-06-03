@@ -3225,6 +3225,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../%2Bgit/git_stash.m/" class="md-nav__link">
+        vlt.git.git_stash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../%2Bgit/git_status.m/" class="md-nav__link">
         vlt.git.git_status
       </a>
@@ -9237,21 +9249,25 @@
                 
                 
                 <h1 id="vltdatacatstructfields">vlt.data.catstructfields<a class="headerlink" href="#vltdatacatstructfields" title="Permanent link">&para;</a></h1>
-<p>CATSTRUCTFIELDS - Concatenate fields from structures with equal fields</p>
-<p>STRUCT_OUT = vlt.data.catstructfields(STRUCT1,STRUCT2[,DIMENSION])</p>
-<p>This function concatenates the contents of the field values of
-   STRUCT1 and STRUCT2.  STRUCT1 and STRUCT2 must have identical fieldnames.
-   DIMENSION is the dimension over which the concatenation is performed.
-   If DIMENSION is not provided, then the function uses the largest
-   dimension of each field as the concatenation dimension.</p>
-<p>Example:
-     a.field1 = [ 1 2 3];
-     a.field2 = [ 1 2 3];
-     b.field1 = [ 4 5 6];
-     b.field2 = [ 4 5 6];
-     c = vlt.data.catstructfields(a,b);
-     c.field1 % is [1 2 3 4 5 6]
-     c.field2 % is [1 2 3 4 5 6]</p>
+<div class="codehilite"><pre><span></span><code>  <span class="nt">CATSTRUCTFIELDS</span> <span class="nt">-</span> <span class="nt">Concatenate</span> <span class="nt">fields</span> <span class="nt">from</span> <span class="nt">structures</span> <span class="nt">with</span> <span class="nt">equal</span> <span class="nt">fields</span>
+
+   <span class="nt">STRUCT_OUT</span> <span class="o">=</span> <span class="nt">vlt</span><span class="p">.</span><span class="nc">data</span><span class="p">.</span><span class="nc">catstructfields</span><span class="o">(</span><span class="nt">STRUCT1</span><span class="o">,</span><span class="nt">STRUCT2</span><span class="cp">[</span><span class="p">,</span><span class="nx">DIMENSION</span><span class="cp">]</span><span class="o">)</span>
+
+   <span class="nt">This</span> <span class="nt">function</span> <span class="nt">concatenates</span> <span class="nt">the</span> <span class="nt">contents</span> <span class="nt">of</span> <span class="nt">the</span> <span class="nt">field</span> <span class="nt">values</span> <span class="nt">of</span>
+   <span class="nt">STRUCT1</span> <span class="nt">and</span> <span class="nt">STRUCT2</span><span class="o">.</span>  <span class="nt">STRUCT1</span> <span class="nt">and</span> <span class="nt">STRUCT2</span> <span class="nt">must</span> <span class="nt">have</span> <span class="nt">identical</span> <span class="nt">fieldnames</span><span class="o">.</span>
+   <span class="nt">DIMENSION</span> <span class="nt">is</span> <span class="nt">the</span> <span class="nt">dimension</span> <span class="nt">over</span> <span class="nt">which</span> <span class="nt">the</span> <span class="nt">concatenation</span> <span class="nt">is</span> <span class="nt">performed</span><span class="o">.</span>
+   <span class="nt">If</span> <span class="nt">DIMENSION</span> <span class="nt">is</span> <span class="nt">not</span> <span class="nt">provided</span><span class="o">,</span> <span class="nt">then</span> <span class="nt">the</span> <span class="nt">function</span> <span class="nt">uses</span> <span class="nt">the</span> <span class="nt">largest</span>
+   <span class="nt">dimension</span> <span class="nt">of</span> <span class="nt">each</span> <span class="nt">field</span> <span class="nt">as</span> <span class="nt">the</span> <span class="nt">concatenation</span> <span class="nt">dimension</span><span class="o">.</span>
+
+   <span class="nt">Example</span><span class="o">:</span>
+     <span class="nt">a</span><span class="p">.</span><span class="nc">field1</span> <span class="o">=</span> <span class="cp">[</span> <span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span><span class="cp">]</span><span class="o">;</span>
+     <span class="nt">a</span><span class="p">.</span><span class="nc">field2</span> <span class="o">=</span> <span class="cp">[</span> <span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span><span class="cp">]</span><span class="o">;</span>
+     <span class="nt">b</span><span class="p">.</span><span class="nc">field1</span> <span class="o">=</span> <span class="cp">[</span> <span class="mi">4</span> <span class="mi">5</span> <span class="mi">6</span><span class="cp">]</span><span class="o">;</span>
+     <span class="nt">b</span><span class="p">.</span><span class="nc">field2</span> <span class="o">=</span> <span class="cp">[</span> <span class="mi">4</span> <span class="mi">5</span> <span class="mi">6</span><span class="cp">]</span><span class="o">;</span>
+     <span class="nt">c</span> <span class="o">=</span> <span class="nt">vlt</span><span class="p">.</span><span class="nc">data</span><span class="p">.</span><span class="nc">catstructfields</span><span class="o">(</span><span class="nt">a</span><span class="o">,</span><span class="nt">b</span><span class="o">);</span>
+     <span class="nt">c</span><span class="p">.</span><span class="nc">field1</span> <span class="o">%</span> <span class="nt">is</span> <span class="cp">[</span><span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span> <span class="mi">4</span> <span class="mi">5</span> <span class="mi">6</span><span class="cp">]</span>
+     <span class="nt">c</span><span class="p">.</span><span class="nc">field2</span> <span class="o">%</span> <span class="nt">is</span> <span class="cp">[</span><span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span> <span class="mi">4</span> <span class="mi">5</span> <span class="mi">6</span><span class="cp">]</span>
+</code></pre></div>
                 
               
               

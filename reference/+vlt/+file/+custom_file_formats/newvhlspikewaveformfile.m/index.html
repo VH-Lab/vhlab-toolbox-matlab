@@ -3227,6 +3227,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../../%2Bgit/git_stash.m/" class="md-nav__link">
+        vlt.git.git_stash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../../%2Bgit/git_status.m/" class="md-nav__link">
         vlt.git.git_status
       </a>
@@ -9239,32 +9251,35 @@
                 
                 
                 <h1 id="vltfilecustom_file_formatsnewvhlspikewaveformfile">vlt.file.custom_file_formats.newvhlspikewaveformfile<a class="headerlink" href="#vltfilecustom_file_formatsnewvhlspikewaveformfile" title="Permanent link">&para;</a></h1>
-<p>NEWVHLSPIKEWAVEFORMFILE - Create a binary file for storing spike waveforms</p>
-<div class="codehilite"><pre><span></span><code><span class="nv">FID</span> <span class="o">=</span> <span class="nv">vlt</span>.<span class="nv">file</span>.<span class="nv">custom_file_formats</span>.<span class="nv">newvhlspikewaveformfile</span><span class="ss">(</span><span class="nv">FID_OR_FILENAME</span>, <span class="nv">PARAMETERS</span><span class="ss">)</span>
+<div class="codehilite"><pre><span></span><code>  <span class="nv">NEWVHLSPIKEWAVEFORMFILE</span> <span class="o">-</span> <span class="nv">Create</span> <span class="nv">a</span> <span class="nv">binary</span> <span class="nv">file</span> <span class="k">for</span> <span class="nv">storing</span> <span class="nv">spike</span> <span class="nv">waveforms</span>
 
-<span class="nv">Creates</span> <span class="ss">(</span><span class="nv">or</span> <span class="nv">writes</span> <span class="nv">to</span><span class="ss">)</span> <span class="nv">a</span> <span class="nv">binary</span> <span class="nv">file</span> <span class="k">for</span> <span class="nv">storing</span> <span class="nv">spike</span> <span class="nv">waveforms</span>.
-<span class="nv">Data</span> <span class="nv">is</span> <span class="nv">stored</span> <span class="nv">as</span> <span class="nv">single</span> <span class="nv">precision</span> <span class="nv">big</span> <span class="nv">endian</span> <span class="nv">binary</span> <span class="k">if</span> <span class="nv">this</span> <span class="nv">function</span> <span class="nv">opens</span> <span class="nv">the</span> <span class="nv">file</span>.
+    <span class="nv">FID</span> <span class="o">=</span> <span class="nv">vlt</span>.<span class="nv">file</span>.<span class="nv">custom_file_formats</span>.<span class="nv">newvhlspikewaveformfile</span><span class="ss">(</span><span class="nv">FID_OR_FILENAME</span>, <span class="nv">PARAMETERS</span><span class="ss">)</span>
 
-<span class="nv">This</span> <span class="nv">function</span> <span class="nv">creates</span> <span class="nv">the</span> <span class="nv">header</span> <span class="nv">file</span> <span class="nv">that</span> <span class="k">include</span> <span class="nv">the</span> <span class="nv">following</span>
-<span class="nv">parameters</span>:
+    <span class="nv">Creates</span> <span class="ss">(</span><span class="nv">or</span> <span class="nv">writes</span> <span class="nv">to</span><span class="ss">)</span> <span class="nv">a</span> <span class="nv">binary</span> <span class="nv">file</span> <span class="k">for</span> <span class="nv">storing</span> <span class="nv">spike</span> <span class="nv">waveforms</span>.
+    <span class="nv">Data</span> <span class="nv">is</span> <span class="nv">stored</span> <span class="nv">as</span> <span class="nv">single</span> <span class="nv">precision</span> <span class="nv">big</span> <span class="nv">endian</span> <span class="nv">binary</span> <span class="k">if</span> <span class="nv">this</span> <span class="nv">function</span> <span class="nv">opens</span> <span class="nv">the</span> <span class="nv">file</span>.
 
-<span class="nv">NAME</span> <span class="ss">(</span><span class="nv">type</span><span class="ss">)</span>:                      <span class="nv">DESCRIPTION</span>         
-<span class="o">-------------------------------------------------------------------------</span>
-<span class="nv">parameters</span>.<span class="nv">numchannels</span> <span class="ss">(</span><span class="nv">uint8</span><span class="ss">)</span>    : <span class="nv">Number</span> <span class="nv">of</span> <span class="nv">channels</span>
-<span class="nv">parameters</span>.<span class="nv">S0</span> <span class="ss">(</span><span class="nv">int8</span><span class="ss">)</span>              : <span class="nv">Number</span> <span class="nv">of</span> <span class="nv">samples</span> <span class="nv">before</span> <span class="nv">spike</span> <span class="nv">center</span>
-                                  :  <span class="ss">(</span><span class="nv">usually</span> <span class="nv">negative</span><span class="ss">)</span>
-<span class="nv">parameters</span>.<span class="nv">S1</span> <span class="ss">(</span><span class="nv">int8</span><span class="ss">)</span>              : <span class="nv">Number</span> <span class="nv">of</span> <span class="nv">samples</span> <span class="nv">after</span> <span class="nv">spike</span> <span class="nv">center</span>
-                                  :  <span class="ss">(</span><span class="nv">usually</span> <span class="nv">positive</span><span class="ss">)</span>
-<span class="nv">parameters</span>.<span class="nv">name</span> <span class="ss">(</span><span class="mi">80</span><span class="nv">xchar</span><span class="ss">)</span>         : <span class="nv">Name</span> <span class="ss">(</span><span class="nv">up</span> <span class="nv">to</span> <span class="mi">80</span> <span class="nv">characters</span><span class="ss">)</span>
-<span class="nv">parameters</span>.<span class="nv">ref</span> <span class="ss">(</span><span class="nv">uint8</span><span class="ss">)</span>            : <span class="nv">Reference</span> <span class="nv">number</span>
-<span class="nv">parameters</span>.<span class="nv">comment</span> <span class="ss">(</span><span class="mi">80</span><span class="nv">xchar</span><span class="ss">)</span>      : <span class="nv">Up</span> <span class="nv">to</span> <span class="mi">80</span> <span class="nv">characters</span> <span class="nv">of</span> <span class="nv">comment</span>
-<span class="nv">parameters</span>.<span class="nv">samplingrate</span>           : <span class="nv">The</span> <span class="nv">sampling</span> <span class="nv">rate</span> <span class="ss">(</span><span class="nv">float32</span><span class="ss">)</span>
-<span class="ss">(</span><span class="nv">first</span> <span class="mi">512</span> <span class="nv">bytes</span> <span class="nv">are</span> <span class="nv">free</span> <span class="k">for</span> <span class="nv">additional</span> <span class="nv">header</span> <span class="nv">use</span><span class="ss">)</span>
+    <span class="nv">This</span> <span class="nv">function</span> <span class="nv">creates</span> <span class="nv">the</span> <span class="nv">header</span> <span class="nv">file</span> <span class="nv">that</span> <span class="k">include</span> <span class="nv">the</span> <span class="nv">following</span>
+    <span class="nv">parameters</span>:
+
+    <span class="nv">NAME</span> <span class="ss">(</span><span class="nv">type</span><span class="ss">)</span>:                      <span class="nv">DESCRIPTION</span>         
+    <span class="o">-------------------------------------------------------------------------</span>
+    <span class="nv">parameters</span>.<span class="nv">numchannels</span> <span class="ss">(</span><span class="nv">uint8</span><span class="ss">)</span>    : <span class="nv">Number</span> <span class="nv">of</span> <span class="nv">channels</span>
+    <span class="nv">parameters</span>.<span class="nv">S0</span> <span class="ss">(</span><span class="nv">int8</span><span class="ss">)</span>              : <span class="nv">Number</span> <span class="nv">of</span> <span class="nv">samples</span> <span class="nv">before</span> <span class="nv">spike</span> <span class="nv">center</span>
+                                      :  <span class="ss">(</span><span class="nv">usually</span> <span class="nv">negative</span><span class="ss">)</span>
+    <span class="nv">parameters</span>.<span class="nv">S1</span> <span class="ss">(</span><span class="nv">int8</span><span class="ss">)</span>              : <span class="nv">Number</span> <span class="nv">of</span> <span class="nv">samples</span> <span class="nv">after</span> <span class="nv">spike</span> <span class="nv">center</span>
+                                      :  <span class="ss">(</span><span class="nv">usually</span> <span class="nv">positive</span><span class="ss">)</span>
+    <span class="nv">parameters</span>.<span class="nv">name</span> <span class="ss">(</span><span class="mi">80</span><span class="nv">xchar</span><span class="ss">)</span>         : <span class="nv">Name</span> <span class="ss">(</span><span class="nv">up</span> <span class="nv">to</span> <span class="mi">80</span> <span class="nv">characters</span><span class="ss">)</span>
+    <span class="nv">parameters</span>.<span class="nv">ref</span> <span class="ss">(</span><span class="nv">uint8</span><span class="ss">)</span>            : <span class="nv">Reference</span> <span class="nv">number</span>
+    <span class="nv">parameters</span>.<span class="nv">comment</span> <span class="ss">(</span><span class="mi">80</span><span class="nv">xchar</span><span class="ss">)</span>      : <span class="nv">Up</span> <span class="nv">to</span> <span class="mi">80</span> <span class="nv">characters</span> <span class="nv">of</span> <span class="nv">comment</span>
+    <span class="nv">parameters</span>.<span class="nv">samplingrate</span>           : <span class="nv">The</span> <span class="nv">sampling</span> <span class="nv">rate</span> <span class="ss">(</span><span class="nv">float32</span><span class="ss">)</span>
+    <span class="ss">(</span><span class="nv">first</span> <span class="mi">512</span> <span class="nv">bytes</span> <span class="nv">are</span> <span class="nv">free</span> <span class="k">for</span> <span class="nv">additional</span> <span class="nv">header</span> <span class="nv">use</span><span class="ss">)</span>
+
+
+   <span class="nv">The</span> <span class="nv">resulting</span> <span class="nv">FID</span> <span class="ss">(</span><span class="nv">file</span> <span class="nv">identifier</span><span class="ss">)</span> <span class="nv">can</span> <span class="nv">be</span> <span class="nv">used</span> <span class="nv">to</span> <span class="nv">write</span> <span class="nv">waveforms</span> <span class="nv">to</span> <span class="nv">the</span>
+   <span class="nv">file</span> <span class="nv">with</span> <span class="nv">the</span> <span class="nv">function</span> <span class="nv">ADDVHSPIKEWAVEFORMFILE</span><span class="ss">(</span><span class="nv">FID</span>, <span class="nv">WAVES</span><span class="ss">)</span>
+
+   <span class="nv">NOTE</span>: <span class="nv">When</span> <span class="nv">one</span> <span class="nv">is</span> <span class="nv">done</span> <span class="nv">using</span> <span class="nv">the</span> <span class="nv">file</span>, <span class="nv">it</span> <span class="nv">must</span> <span class="nv">be</span> <span class="nv">closed</span> <span class="nv">with</span> <span class="nv">FCLOSE</span><span class="ss">(</span><span class="nv">FID</span><span class="ss">)</span>.
 </code></pre></div>
-
-<p>The resulting FID (file identifier) can be used to write waveforms to the
-   file with the function ADDVHSPIKEWAVEFORMFILE(FID, WAVES)</p>
-<p>NOTE: When one is done using the file, it must be closed with FCLOSE(FID).</p>
                 
               
               

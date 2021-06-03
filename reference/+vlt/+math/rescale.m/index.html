@@ -3213,6 +3213,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../%2Bgit/git_stash.m/" class="md-nav__link">
+        vlt.git.git_stash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../%2Bgit/git_status.m/" class="md-nav__link">
         vlt.git.git_status
       </a>
@@ -9237,17 +9249,18 @@
                 
                 
                 <h1 id="vltmathrescale">vlt.math.rescale<a class="headerlink" href="#vltmathrescale" title="Permanent link">&para;</a></h1>
-<p>vlt.math.rescale - Rescale a quantity to a new interval</p>
-<div class="codehilite"><pre><span></span><code> NEWVALS = vlt.math.rescale(VALS, INT1, INT2)
-</code></pre></div>
+<div class="codehilite"><pre><span></span><code>   <span class="n">vlt</span><span class="p">.</span><span class="n">math</span><span class="p">.</span><span class="n">rescale</span> <span class="o">-</span> <span class="n">Rescale</span> <span class="n">a</span> <span class="n">quantity</span> <span class="n">to</span> <span class="n">a</span> <span class="n">new</span> <span class="n">interval</span>
 
-<p>Takes values in an interval INT1 = [a b] and scales
-   them so they are now in an interval [c d].  Any values
-   less than a are set to c, and any values greater than b
-   are set to d.
-     NEWVALS = vlt.math.rescale(VALS, INT1, INT2, 'noclip')
-        will do the same as above but will not clip values
-        above b or below a.</p>
+     <span class="n">NEWVALS</span> <span class="o">=</span> <span class="n">vlt</span><span class="p">.</span><span class="n">math</span><span class="p">.</span><span class="n">rescale</span><span class="p">(</span><span class="n">VALS</span><span class="p">,</span> <span class="n">INT1</span><span class="p">,</span> <span class="n">INT2</span><span class="p">)</span>
+
+   <span class="n">Takes</span> <span class="n">values</span> <span class="k">in</span> <span class="n">an</span> <span class="n">interval</span> <span class="n">INT1</span> <span class="o">=</span> <span class="p">[</span><span class="n">a</span> <span class="n">b</span><span class="p">]</span> <span class="n">and</span> <span class="n">scales</span>
+   <span class="n">them</span> <span class="n">so</span> <span class="n">they</span> <span class="n">are</span> <span class="n">now</span> <span class="k">in</span> <span class="n">an</span> <span class="n">interval</span> <span class="p">[</span><span class="n">c</span> <span class="n">d</span><span class="p">].</span>  <span class="n">Any</span> <span class="n">values</span>
+   <span class="n">less</span> <span class="n">than</span> <span class="n">a</span> <span class="n">are</span> <span class="n">set</span> <span class="n">to</span> <span class="n">c</span><span class="p">,</span> <span class="n">and</span> <span class="n">any</span> <span class="n">values</span> <span class="n">greater</span> <span class="n">than</span> <span class="n">b</span>
+   <span class="n">are</span> <span class="n">set</span> <span class="n">to</span> <span class="n">d</span><span class="p">.</span>
+     <span class="n">NEWVALS</span> <span class="o">=</span> <span class="n">vlt</span><span class="p">.</span><span class="n">math</span><span class="p">.</span><span class="n">rescale</span><span class="p">(</span><span class="n">VALS</span><span class="p">,</span> <span class="n">INT1</span><span class="p">,</span> <span class="n">INT2</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">noclip</span><span class="err">&#39;</span><span class="p">)</span>
+        <span class="n">will</span> <span class="k">do</span> <span class="n">the</span> <span class="n">same</span> <span class="n">as</span> <span class="n">above</span> <span class="n">but</span> <span class="n">will</span> <span class="n">not</span> <span class="n">clip</span> <span class="n">values</span>
+        <span class="n">above</span> <span class="n">b</span> <span class="n">or</span> <span class="n">below</span> <span class="n">a</span><span class="p">.</span>
+</code></pre></div>
                 
               
               

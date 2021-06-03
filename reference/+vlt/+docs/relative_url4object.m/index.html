@@ -3225,6 +3225,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../%2Bgit/git_stash.m/" class="md-nav__link">
+        vlt.git.git_stash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../%2Bgit/git_status.m/" class="md-nav__link">
         vlt.git.git_status
       </a>
@@ -9237,16 +9249,20 @@
                 
                 
                 <h1 id="vltdocsrelative_url4object">vlt.docs.relative_url4object<a class="headerlink" href="#vltdocsrelative_url4object" title="Permanent link">&para;</a></h1>
-<p>vlt.docs.relative_url4object - compute the relative url name for an object, relative to the current path</p>
-<p>S = vlt.docs.relative_url4object(CURRENTPATH, OBJECTNAME)</p>
-<p>Given the CURRENTPATH (the current directory of a URL), produce a relative URL S for 
-  the object OBJECTNAME. OBJECTNAME should have the form 'package1.package2.{etc}.object' with no '.m' appended
-  to the end of the object.</p>
-<p><strong>Example</strong>:
-    currentPath = '+ndi/+app/'
-    objectName = 'ndi.time.timereference'
-    s = vlt.docs.relative_url4object(currentPath,objectName);
-      % s = '../+time/timereference.m.md'</p>
+<div class="codehilite"><pre><span></span><code><span class="w">  </span><span class="n">vlt</span><span class="p">.</span><span class="n">docs</span><span class="p">.</span><span class="n">relative_url4object</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">compute</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">relative</span><span class="w"> </span><span class="n">url</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">an</span><span class="w"> </span><span class="n">object</span><span class="p">,</span><span class="w"> </span><span class="n">relative</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">current</span><span class="w"> </span><span class="nb">path</span><span class="w"></span>
+
+<span class="w">  </span><span class="n">S</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">vlt</span><span class="p">.</span><span class="n">docs</span><span class="p">.</span><span class="n">relative_url4object</span><span class="p">(</span><span class="n">CURRENTPATH</span><span class="p">,</span><span class="w"> </span><span class="n">OBJECTNAME</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">  </span><span class="n">Given</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">CURRENTPATH</span><span class="w"> </span><span class="p">(</span><span class="n">the</span><span class="w"> </span><span class="n">current</span><span class="w"> </span><span class="n">directory</span><span class="w"> </span><span class="n">of</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">URL</span><span class="p">),</span><span class="w"> </span><span class="n">produce</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">relative</span><span class="w"> </span><span class="n">URL</span><span class="w"> </span><span class="n">S</span><span class="w"> </span><span class="k">for</span><span class="w"> </span>
+<span class="w">  </span><span class="n">the</span><span class="w"> </span><span class="n">object</span><span class="w"> </span><span class="n">OBJECTNAME</span><span class="p">.</span><span class="w"> </span><span class="n">OBJECTNAME</span><span class="w"> </span><span class="n">should</span><span class="w"> </span><span class="n">have</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">form</span><span class="w"> </span><span class="s">&#39;package1.package2.{etc}.object&#39;</span><span class="w"> </span><span class="n">with</span><span class="w"> </span><span class="n">no</span><span class="w"> </span><span class="s">&#39;.m&#39;</span><span class="w"> </span><span class="n">appended</span><span class="w"></span>
+<span class="w">  </span><span class="n">to</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="k">end</span><span class="w"> </span><span class="n">of</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">object</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">  </span><span class="o">**</span><span class="n">Example</span><span class="o">**</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="n">currentPath</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">&#39;+ndi/+app/&#39;</span><span class="w"></span>
+<span class="w">    </span><span class="n">objectName</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">&#39;ndi.time.timereference&#39;</span><span class="w"></span>
+<span class="w">    </span><span class="n">s</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">vlt</span><span class="p">.</span><span class="n">docs</span><span class="p">.</span><span class="n">relative_url4object</span><span class="p">(</span><span class="n">currentPath</span><span class="p">,</span><span class="n">objectName</span><span class="p">);</span><span class="w"></span>
+<span class="w">      </span><span class="c">% s = &#39;../+time/timereference.m.md&#39;</span><span class="w"></span>
+</code></pre></div>
                 
               
               

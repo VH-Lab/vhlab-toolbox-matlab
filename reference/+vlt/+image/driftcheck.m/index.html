@@ -3213,6 +3213,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../%2Bgit/git_stash.m/" class="md-nav__link">
+        vlt.git.git_stash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../%2Bgit/git_status.m/" class="md-nav__link">
         vlt.git.git_status
       </a>
@@ -9237,36 +9249,41 @@
                 
                 
                 <h1 id="vltimagedriftcheck">vlt.image.driftcheck<a class="headerlink" href="#vltimagedriftcheck" title="Permanent link">&para;</a></h1>
-<p>DRIFTCHECK - Checks for drift in image pair by correlation</p>
-<div class="codehilite"><pre><span></span><code>DR = DRIFTCHECK(IM1,IM2,SEARCHX,SEARCHY,...)
-</code></pre></div>
+<div class="codehilite"><pre><span></span><code>  <span class="n">DRIFTCHECK</span> <span class="o">-</span> <span class="n">Checks</span> <span class="k">for</span> <span class="n">drift</span> <span class="k">in</span> <span class="n">image</span> <span class="n">pair</span> <span class="n">by</span> <span class="n">correlation</span>
 
-<p>Checks for drift over the specific offset ranges
-   SEARCHX = [x1 x2 x3] and SEARCHY = [y1 y2 y3].
-   Positive shifts are rightward and upward with respect to
-   the original.</p>
-<p>This function accepts additional parameter as name/value pairs.
-   Parameter (default value) | Description</p>
-<hr />
-<p>subtractmean (0)          | (0/1) If 1, subtract the mean of each image
-                             |    before correcting
-   brightnessartifact (100)  | (0-100) Set all pixels above this percentile of
-                             |    brightness to the mean of the image (100 means
-                             |    no change)
-   darknessartifact (0)      | (0-100) Set all pixels below this percentile of
-                             |    brightness to the mean of the image (0 means
-                             |    no change)
-   brightnesscorrect (1)     | (0/1) If 1, images are normalized
-                             |    by their standard deviation before
-                             |    correlating. This allows accurate correlation
-                             |    where total image brightness has changed.
-   roicorrect (1)            |  (0/1) If 1, only the pixels above the 'mn' 
-                             |    are considered in the correlation.</p>
-<p>The best offset, as determined by correlation, is returned
-   in DR = [OFFSET_X OFFSET_Y].</p>
-<p>This function calls the xcorr2dlag MEX file; this function
-   will produce an error if this function is not compiled for
-   your platform.</p>
+    <span class="n">DR</span> <span class="o">=</span> <span class="n">DRIFTCHECK</span><span class="p">(</span><span class="n">IM1</span><span class="p">,</span><span class="n">IM2</span><span class="p">,</span><span class="n">SEARCHX</span><span class="p">,</span><span class="n">SEARCHY</span><span class="p">,...)</span>
+
+   <span class="n">Checks</span> <span class="k">for</span> <span class="n">drift</span> <span class="n">over</span> <span class="n">the</span> <span class="n">specific</span> <span class="n">offset</span> <span class="n">ranges</span>
+   <span class="n">SEARCHX</span> <span class="o">=</span> <span class="p">[</span><span class="n">x1</span> <span class="n">x2</span> <span class="n">x3</span><span class="p">]</span> <span class="n">and</span> <span class="n">SEARCHY</span> <span class="o">=</span> <span class="p">[</span><span class="n">y1</span> <span class="n">y2</span> <span class="n">y3</span><span class="p">].</span>
+   <span class="n">Positive</span> <span class="n">shifts</span> <span class="n">are</span> <span class="n">rightward</span> <span class="n">and</span> <span class="n">upward</span> <span class="n">with</span> <span class="n">respect</span> <span class="n">to</span>
+   <span class="n">the</span> <span class="n">original</span><span class="p">.</span>
+
+   <span class="n">This</span> <span class="n">function</span> <span class="n">accepts</span> <span class="n">additional</span> <span class="n">parameter</span> <span class="n">as</span> <span class="n">name</span><span class="o">/</span><span class="n">value</span> <span class="n">pairs</span><span class="p">.</span>
+   <span class="n">Parameter</span> <span class="p">(</span><span class="k">default</span> <span class="n">value</span><span class="p">)</span> <span class="o">|</span> <span class="n">Description</span>
+   <span class="o">-----------------------------------------------------------------</span>
+   <span class="n">subtractmean</span> <span class="p">(</span><span class="mi">0</span><span class="p">)</span>          <span class="o">|</span> <span class="p">(</span><span class="mi">0</span><span class="o">/</span><span class="mi">1</span><span class="p">)</span> <span class="n">If</span> <span class="mi">1</span><span class="p">,</span> <span class="n">subtract</span> <span class="n">the</span> <span class="n">mean</span> <span class="n">of</span> <span class="n">each</span> <span class="n">image</span>
+                             <span class="o">|</span>    <span class="n">before</span> <span class="n">correcting</span>
+   <span class="n">brightnessartifact</span> <span class="p">(</span><span class="mi">100</span><span class="p">)</span>  <span class="o">|</span> <span class="p">(</span><span class="mi">0-100</span><span class="p">)</span> <span class="n">Set</span> <span class="n">all</span> <span class="n">pixels</span> <span class="n">above</span> <span class="n">this</span> <span class="n">percentile</span> <span class="n">of</span>
+                             <span class="o">|</span>    <span class="n">brightness</span> <span class="n">to</span> <span class="n">the</span> <span class="n">mean</span> <span class="n">of</span> <span class="n">the</span> <span class="n">image</span> <span class="p">(</span><span class="mi">100</span> <span class="n">means</span>
+                             <span class="o">|</span>    <span class="n">no</span> <span class="n">change</span><span class="p">)</span>
+   <span class="n">darknessartifact</span> <span class="p">(</span><span class="mi">0</span><span class="p">)</span>      <span class="o">|</span> <span class="p">(</span><span class="mi">0-100</span><span class="p">)</span> <span class="n">Set</span> <span class="n">all</span> <span class="n">pixels</span> <span class="n">below</span> <span class="n">this</span> <span class="n">percentile</span> <span class="n">of</span>
+                             <span class="o">|</span>    <span class="n">brightness</span> <span class="n">to</span> <span class="n">the</span> <span class="n">mean</span> <span class="n">of</span> <span class="n">the</span> <span class="n">image</span> <span class="p">(</span><span class="mi">0</span> <span class="n">means</span>
+                             <span class="o">|</span>    <span class="n">no</span> <span class="n">change</span><span class="p">)</span>
+   <span class="n">brightnesscorrect</span> <span class="p">(</span><span class="mi">1</span><span class="p">)</span>     <span class="o">|</span> <span class="p">(</span><span class="mi">0</span><span class="o">/</span><span class="mi">1</span><span class="p">)</span> <span class="n">If</span> <span class="mi">1</span><span class="p">,</span> <span class="n">images</span> <span class="n">are</span> <span class="n">normalized</span>
+                             <span class="o">|</span>    <span class="n">by</span> <span class="n">their</span> <span class="n">standard</span> <span class="n">deviation</span> <span class="n">before</span>
+                             <span class="o">|</span>    <span class="n">correlating</span><span class="p">.</span> <span class="n">This</span> <span class="n">allows</span> <span class="n">accurate</span> <span class="n">correlation</span>
+                             <span class="o">|</span>    <span class="n">where</span> <span class="n">total</span> <span class="n">image</span> <span class="n">brightness</span> <span class="n">has</span> <span class="n">changed</span><span class="p">.</span>
+   <span class="n">roicorrect</span> <span class="p">(</span><span class="mi">1</span><span class="p">)</span>            <span class="o">|</span>  <span class="p">(</span><span class="mi">0</span><span class="o">/</span><span class="mi">1</span><span class="p">)</span> <span class="n">If</span> <span class="mi">1</span><span class="p">,</span> <span class="n">only</span> <span class="n">the</span> <span class="n">pixels</span> <span class="n">above</span> <span class="n">the</span> <span class="err">&#39;</span><span class="n">mn</span><span class="err">&#39;</span> 
+                             <span class="o">|</span>    <span class="n">are</span> <span class="n">considered</span> <span class="k">in</span> <span class="n">the</span> <span class="n">correlation</span><span class="p">.</span>
+
+
+   <span class="n">The</span> <span class="n">best</span> <span class="n">offset</span><span class="p">,</span> <span class="n">as</span> <span class="n">determined</span> <span class="n">by</span> <span class="n">correlation</span><span class="p">,</span> <span class="n">is</span> <span class="n">returned</span>
+   <span class="k">in</span> <span class="n">DR</span> <span class="o">=</span> <span class="p">[</span><span class="n">OFFSET_X</span> <span class="n">OFFSET_Y</span><span class="p">].</span>
+
+   <span class="n">This</span> <span class="n">function</span> <span class="n">calls</span> <span class="n">the</span> <span class="n">xcorr2dlag</span> <span class="n">MEX</span> <span class="n">file</span><span class="p">;</span> <span class="n">this</span> <span class="n">function</span>
+   <span class="n">will</span> <span class="n">produce</span> <span class="n">an</span> <span class="n">error</span> <span class="k">if</span> <span class="n">this</span> <span class="n">function</span> <span class="n">is</span> <span class="n">not</span> <span class="n">compiled</span> <span class="k">for</span>
+   <span class="n">your</span> <span class="n">platform</span><span class="p">.</span>
+</code></pre></div>
                 
               
               

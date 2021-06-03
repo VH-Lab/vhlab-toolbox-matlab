@@ -3213,6 +3213,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../%2Bgit/git_stash.m/" class="md-nav__link">
+        vlt.git.git_stash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../%2Bgit/git_status.m/" class="md-nav__link">
         vlt.git.git_status
       </a>
@@ -9237,41 +9249,51 @@
                 
                 
                 <h1 id="vltmathfouriercoeffs">vlt.math.fouriercoeffs<a class="headerlink" href="#vltmathfouriercoeffs" title="Permanent link">&para;</a></h1>
-<p>vlt.math.fouriercoeffs - find Fourier coefficients for data</p>
-<p>Uses FFT to compute the Fourier coefficients for a vector of data.</p>
-<p>[FC,FREQS]=vlt.math.fouriercoeffs(DATA,SI)</p>
-<p>where DATA is a vector of data and SI is the sampling interval (in seconds),
-   returns FC the Fourier coefficients and FREQS, the frequency of
-   each coefficient.</p>
-<p>The Fourier coefficients are defined [1] to be:
-     B0   = (1/T) * sum(data)   (returned in FC(1))
-     Bn   = (2/T) * integral(0,T,data.<em>cos(2</em>pi<em>n/T))  (returned in real(FC(n+1)))
-     An   = (2/T) * integral(0,T,data.</em>sin(2<em>pi</em>n/T))  (returned in imag(FC(n+1)))</p>
-<p>Each entry of FC is the sum of Bn+An*sqrt(-1) so that
-   Bn = real(FC(n+1)) and An = imag(FC(n+1))</p>
-<p>Note that these Fourier cofficients are normalized differently than those returned
-   by the Matlab function FFT.</p>
-<p>[1]: <em>Waves</em>, Berkeley Physics Course Volume 3, Crawford, 1968</p>
-<p>See also:  FFT</p>
-<p>Example:
-     t = 0:0.001:3;
-     f = 4; % 4 Hz
-     phase = pi/3;
-     s = 2+0.5<em>sin(2</em>pi<em>f</em>t+phase); % sinusoidal function with amplitude 0.5
-     [fc,freqs] = fouriercoeffs(s,0.001);
-     figure;
-     subplot(2,1,1); 
-     plot(t,s);
-     xlabel('Time(s)');
-     ylabel('Signal(a.u.)');
-     box off;
-     subplot(2,1,2);
-     plot(freqs,abs(fc),'o');
-     A=axis;
-     axis([0 10 0 3]);
-     xlabel('Frequency (Hz)');
-     ylabel('Magnitude of Fourier coefficient');
-     box off;</p>
+<div class="codehilite"><pre><span></span><code>   <span class="nt">vlt</span><span class="p">.</span><span class="nc">math</span><span class="p">.</span><span class="nc">fouriercoeffs</span> <span class="nt">-</span> <span class="nt">find</span> <span class="nt">Fourier</span> <span class="nt">coefficients</span> <span class="nt">for</span> <span class="nt">data</span>
+
+   <span class="nt">Uses</span> <span class="nt">FFT</span> <span class="nt">to</span> <span class="nt">compute</span> <span class="nt">the</span> <span class="nt">Fourier</span> <span class="nt">coefficients</span> <span class="nt">for</span> <span class="nt">a</span> <span class="nt">vector</span> <span class="nt">of</span> <span class="nt">data</span><span class="o">.</span>
+
+   <span class="cp">[</span><span class="nx">FC</span><span class="p">,</span><span class="nx">FREQS</span><span class="cp">]</span><span class="o">=</span><span class="nt">vlt</span><span class="p">.</span><span class="nc">math</span><span class="p">.</span><span class="nc">fouriercoeffs</span><span class="o">(</span><span class="nt">DATA</span><span class="o">,</span><span class="nt">SI</span><span class="o">)</span>
+
+   <span class="nt">where</span> <span class="nt">DATA</span> <span class="nt">is</span> <span class="nt">a</span> <span class="nt">vector</span> <span class="nt">of</span> <span class="nt">data</span> <span class="nt">and</span> <span class="nt">SI</span> <span class="nt">is</span> <span class="nt">the</span> <span class="nt">sampling</span> <span class="nt">interval</span> <span class="o">(</span><span class="nt">in</span> <span class="nt">seconds</span><span class="o">),</span>
+   <span class="nt">returns</span> <span class="nt">FC</span> <span class="nt">the</span> <span class="nt">Fourier</span> <span class="nt">coefficients</span> <span class="nt">and</span> <span class="nt">FREQS</span><span class="o">,</span> <span class="nt">the</span> <span class="nt">frequency</span> <span class="nt">of</span>
+   <span class="nt">each</span> <span class="nt">coefficient</span><span class="o">.</span>
+
+   <span class="nt">The</span> <span class="nt">Fourier</span> <span class="nt">coefficients</span> <span class="nt">are</span> <span class="nt">defined</span> <span class="cp">[</span><span class="mi">1</span><span class="cp">]</span> <span class="nt">to</span> <span class="nt">be</span><span class="o">:</span>
+     <span class="nt">B0</span>   <span class="o">=</span> <span class="o">(</span><span class="nt">1</span><span class="o">/</span><span class="nt">T</span><span class="o">)</span> <span class="o">*</span> <span class="nt">sum</span><span class="o">(</span><span class="nt">data</span><span class="o">)</span>   <span class="o">(</span><span class="nt">returned</span> <span class="nt">in</span> <span class="nt">FC</span><span class="o">(</span><span class="nt">1</span><span class="o">))</span>
+     <span class="nt">Bn</span>   <span class="o">=</span> <span class="o">(</span><span class="nt">2</span><span class="o">/</span><span class="nt">T</span><span class="o">)</span> <span class="o">*</span> <span class="nt">integral</span><span class="o">(</span><span class="nt">0</span><span class="o">,</span><span class="nt">T</span><span class="o">,</span><span class="nt">data</span><span class="o">.*</span><span class="nt">cos</span><span class="o">(</span><span class="nt">2</span><span class="o">*</span><span class="nt">pi</span><span class="o">*</span><span class="nt">n</span><span class="o">/</span><span class="nt">T</span><span class="o">))</span>  <span class="o">(</span><span class="nt">returned</span> <span class="nt">in</span> <span class="nt">real</span><span class="o">(</span><span class="nt">FC</span><span class="o">(</span><span class="nt">n</span><span class="o">+</span><span class="nt">1</span><span class="o">)))</span>
+     <span class="nt">An</span>   <span class="o">=</span> <span class="o">(</span><span class="nt">2</span><span class="o">/</span><span class="nt">T</span><span class="o">)</span> <span class="o">*</span> <span class="nt">integral</span><span class="o">(</span><span class="nt">0</span><span class="o">,</span><span class="nt">T</span><span class="o">,</span><span class="nt">data</span><span class="o">.*</span><span class="nt">sin</span><span class="o">(</span><span class="nt">2</span><span class="o">*</span><span class="nt">pi</span><span class="o">*</span><span class="nt">n</span><span class="o">/</span><span class="nt">T</span><span class="o">))</span>  <span class="o">(</span><span class="nt">returned</span> <span class="nt">in</span> <span class="nt">imag</span><span class="o">(</span><span class="nt">FC</span><span class="o">(</span><span class="nt">n</span><span class="o">+</span><span class="nt">1</span><span class="o">)))</span>
+
+   <span class="nt">Each</span> <span class="nt">entry</span> <span class="nt">of</span> <span class="nt">FC</span> <span class="nt">is</span> <span class="nt">the</span> <span class="nt">sum</span> <span class="nt">of</span> <span class="nt">Bn</span><span class="o">+</span><span class="nt">An</span><span class="o">*</span><span class="nt">sqrt</span><span class="o">(</span><span class="nt">-1</span><span class="o">)</span> <span class="nt">so</span> <span class="nt">that</span>
+   <span class="nt">Bn</span> <span class="o">=</span> <span class="nt">real</span><span class="o">(</span><span class="nt">FC</span><span class="o">(</span><span class="nt">n</span><span class="o">+</span><span class="nt">1</span><span class="o">))</span> <span class="nt">and</span> <span class="nt">An</span> <span class="o">=</span> <span class="nt">imag</span><span class="o">(</span><span class="nt">FC</span><span class="o">(</span><span class="nt">n</span><span class="o">+</span><span class="nt">1</span><span class="o">))</span>
+
+   <span class="nt">Note</span> <span class="nt">that</span> <span class="nt">these</span> <span class="nt">Fourier</span> <span class="nt">cofficients</span> <span class="nt">are</span> <span class="nt">normalized</span> <span class="nt">differently</span> <span class="nt">than</span> <span class="nt">those</span> <span class="nt">returned</span>
+   <span class="nt">by</span> <span class="nt">the</span> <span class="nt">Matlab</span> <span class="nt">function</span> <span class="nt">FFT</span><span class="o">.</span>
+
+   <span class="cp">[</span><span class="mi">1</span><span class="cp">]</span><span class="o">:</span> <span class="nt">_Waves_</span><span class="o">,</span> <span class="nt">Berkeley</span> <span class="nt">Physics</span> <span class="nt">Course</span> <span class="nt">Volume</span> <span class="nt">3</span><span class="o">,</span> <span class="nt">Crawford</span><span class="o">,</span> <span class="nt">1968</span>
+
+   <span class="nt">See</span> <span class="nt">also</span><span class="o">:</span>  <span class="nt">FFT</span>
+
+   <span class="nt">Example</span><span class="o">:</span>
+     <span class="nt">t</span> <span class="o">=</span> <span class="nt">0</span><span class="p">:</span><span class="nd">0</span><span class="p">.</span><span class="nc">001</span><span class="p">:</span><span class="nd">3</span><span class="o">;</span>
+     <span class="nt">f</span> <span class="o">=</span> <span class="nt">4</span><span class="o">;</span> <span class="o">%</span> <span class="nt">4</span> <span class="nt">Hz</span>
+     <span class="nt">phase</span> <span class="o">=</span> <span class="nt">pi</span><span class="o">/</span><span class="nt">3</span><span class="o">;</span>
+     <span class="nt">s</span> <span class="o">=</span> <span class="nt">2</span><span class="o">+</span><span class="nt">0</span><span class="p">.</span><span class="nc">5</span><span class="o">*</span><span class="nt">sin</span><span class="o">(</span><span class="nt">2</span><span class="o">*</span><span class="nt">pi</span><span class="o">*</span><span class="nt">f</span><span class="o">*</span><span class="nt">t</span><span class="o">+</span><span class="nt">phase</span><span class="o">);</span> <span class="o">%</span> <span class="nt">sinusoidal</span> <span class="nt">function</span> <span class="nt">with</span> <span class="nt">amplitude</span> <span class="nt">0</span><span class="p">.</span><span class="nc">5</span>
+     <span class="cp">[</span><span class="nx">fc</span><span class="p">,</span><span class="nx">freqs</span><span class="cp">]</span> <span class="o">=</span> <span class="nt">fouriercoeffs</span><span class="o">(</span><span class="nt">s</span><span class="o">,</span><span class="nt">0</span><span class="p">.</span><span class="nc">001</span><span class="o">);</span>
+     <span class="nt">figure</span><span class="o">;</span>
+     <span class="nt">subplot</span><span class="o">(</span><span class="nt">2</span><span class="o">,</span><span class="nt">1</span><span class="o">,</span><span class="nt">1</span><span class="o">);</span> 
+     <span class="nt">plot</span><span class="o">(</span><span class="nt">t</span><span class="o">,</span><span class="nt">s</span><span class="o">);</span>
+     <span class="nt">xlabel</span><span class="o">(</span><span class="s1">&#39;Time(s)&#39;</span><span class="o">);</span>
+     <span class="nt">ylabel</span><span class="o">(</span><span class="s1">&#39;Signal(a.u.)&#39;</span><span class="o">);</span>
+     <span class="nt">box</span> <span class="nt">off</span><span class="o">;</span>
+     <span class="nt">subplot</span><span class="o">(</span><span class="nt">2</span><span class="o">,</span><span class="nt">1</span><span class="o">,</span><span class="nt">2</span><span class="o">);</span>
+     <span class="nt">plot</span><span class="o">(</span><span class="nt">freqs</span><span class="o">,</span><span class="nt">abs</span><span class="o">(</span><span class="nt">fc</span><span class="o">),</span><span class="s1">&#39;o&#39;</span><span class="o">);</span>
+     <span class="nt">A</span><span class="o">=</span><span class="nt">axis</span><span class="o">;</span>
+     <span class="nt">axis</span><span class="o">(</span><span class="cp">[</span><span class="mi">0</span> <span class="mi">10</span> <span class="mi">0</span> <span class="mi">3</span><span class="cp">]</span><span class="o">);</span>
+     <span class="nt">xlabel</span><span class="o">(</span><span class="s1">&#39;Frequency (Hz)&#39;</span><span class="o">);</span>
+     <span class="nt">ylabel</span><span class="o">(</span><span class="s1">&#39;Magnitude of Fourier coefficient&#39;</span><span class="o">);</span>
+     <span class="nt">box</span> <span class="nt">off</span><span class="o">;</span>
+</code></pre></div>
                 
               
               

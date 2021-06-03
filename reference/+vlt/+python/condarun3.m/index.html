@@ -3213,6 +3213,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../%2Bgit/git_stash.m/" class="md-nav__link">
+        vlt.git.git_stash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../%2Bgit/git_status.m/" class="md-nav__link">
         vlt.git.git_status
       </a>
@@ -9237,14 +9249,18 @@
                 
                 
                 <h1 id="vltpythoncondarun3">vlt.python.condarun3<a class="headerlink" href="#vltpythoncondarun3" title="Permanent link">&para;</a></h1>
-<p>vlt.python.condarun3 - Run a python3 script in a conda environment</p>
-<p>[status,result] = vlt.python.condarun3(ENV, SCRIPT)</p>
-<p>Run a python3 script from the SYSTEM command in Matlab. The
-  command line program "conda" will be used to run the script.</p>
-<p>Example:
-   mydir = tempdir;
-   vlt.file.str2text([tempdir filesep 'myscript.py'], 'a=1; print("Running python"); ');
-   [status,result]=vlt.python.condarun3('base',[tempdir filesep 'myscript.py'])</p>
+<div class="codehilite"><pre><span></span><code>  <span class="nt">vlt</span><span class="p">.</span><span class="nc">python</span><span class="p">.</span><span class="nc">condarun3</span> <span class="nt">-</span> <span class="nt">Run</span> <span class="nt">a</span> <span class="nt">python3</span> <span class="nt">script</span> <span class="nt">in</span> <span class="nt">a</span> <span class="nt">conda</span> <span class="nt">environment</span>
+
+  <span class="cp">[</span><span class="nx">status</span><span class="p">,</span><span class="nx">result</span><span class="cp">]</span> <span class="o">=</span> <span class="nt">vlt</span><span class="p">.</span><span class="nc">python</span><span class="p">.</span><span class="nc">condarun3</span><span class="o">(</span><span class="nt">ENV</span><span class="o">,</span> <span class="nt">SCRIPT</span><span class="o">)</span>
+
+  <span class="nt">Run</span> <span class="nt">a</span> <span class="nt">python3</span> <span class="nt">script</span> <span class="nt">from</span> <span class="nt">the</span> <span class="nt">SYSTEM</span> <span class="nt">command</span> <span class="nt">in</span> <span class="nt">Matlab</span><span class="o">.</span> <span class="nt">The</span>
+  <span class="nt">command</span> <span class="nt">line</span> <span class="nt">program</span> <span class="s2">&quot;conda&quot;</span> <span class="nt">will</span> <span class="nt">be</span> <span class="nt">used</span> <span class="nt">to</span> <span class="nt">run</span> <span class="nt">the</span> <span class="nt">script</span><span class="o">.</span>
+
+  <span class="nt">Example</span><span class="o">:</span>
+   <span class="nt">mydir</span> <span class="o">=</span> <span class="nt">tempdir</span><span class="o">;</span>
+   <span class="nt">vlt</span><span class="p">.</span><span class="nc">file</span><span class="p">.</span><span class="nc">str2text</span><span class="o">(</span><span class="cp">[</span><span class="nx">tempdir</span> <span class="nx">filesep</span> <span class="s1">&#39;myscript.py&#39;</span><span class="cp">]</span><span class="o">,</span> <span class="s1">&#39;a=1; print(&quot;Running python&quot;); &#39;</span><span class="o">);</span>
+   <span class="cp">[</span><span class="nx">status</span><span class="p">,</span><span class="nx">result</span><span class="cp">]</span><span class="o">=</span><span class="nt">vlt</span><span class="p">.</span><span class="nc">python</span><span class="p">.</span><span class="nc">condarun3</span><span class="o">(</span><span class="s1">&#39;base&#39;</span><span class="o">,</span><span class="cp">[</span><span class="nx">tempdir</span> <span class="nx">filesep</span> <span class="s1">&#39;myscript.py&#39;</span><span class="cp">]</span><span class="o">)</span>
+</code></pre></div>
                 
               
               

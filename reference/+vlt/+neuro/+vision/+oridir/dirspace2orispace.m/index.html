@@ -3213,6 +3213,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../../../%2Bgit/git_stash.m/" class="md-nav__link">
+        vlt.git.git_stash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../../../%2Bgit/git_status.m/" class="md-nav__link">
         vlt.git.git_status
       </a>
@@ -9241,16 +9253,21 @@
                 
                 
                 <h1 id="vltneurovisionoridirdirspace2orispace">vlt.neuro.vision.oridir.dirspace2orispace<a class="headerlink" href="#vltneurovisionoridirdirspace2orispace" title="Permanent link">&para;</a></h1>
-<p>DIRSPACE2ORISPACE - Converts direction responses to orientation responses</p>
-<p>[ANGLES_ORI,RESPONSES_ORI] = vlt.neuro.vision.oridir.dirspace2orispace(ANGLES, RESPONSES)</p>
-<p>Converts direction responses and angles of stimulation into orientation space.</p>
-<p>Each angle in ANGLES that goes around the clock in direction space (ranging
-   from 0 to 360 degrees) is converted to an orientation ranging from 0 to 180
-   degrees and returned in ANGLES_ORI.  The new ANGLES_ORI is a column vector
-   (regardless of the form of the input ANGLES).</p>
-<p>RESPONSES_ORI(A,R) is a matrix of all RESPONSES R that map to the orientation 
-   A.  In the event that there are not an equal number of responses to each
-   orientation, extra entries in the matrix will be NaN.</p>
+<div class="codehilite"><pre><span></span><code>  <span class="n">DIRSPACE2ORISPACE</span> <span class="o">-</span> <span class="n">Converts</span> <span class="n">direction</span> <span class="n">responses</span> <span class="n">to</span> <span class="n">orientation</span> <span class="n">responses</span>
+
+   <span class="p">[</span><span class="n">ANGLES_ORI</span><span class="p">,</span><span class="n">RESPONSES_ORI</span><span class="p">]</span> <span class="o">=</span> <span class="n">vlt</span><span class="p">.</span><span class="n">neuro</span><span class="p">.</span><span class="n">vision</span><span class="p">.</span><span class="n">oridir</span><span class="p">.</span><span class="n">dirspace2orispace</span><span class="p">(</span><span class="n">ANGLES</span><span class="p">,</span> <span class="n">RESPONSES</span><span class="p">)</span>
+
+   <span class="n">Converts</span> <span class="n">direction</span> <span class="n">responses</span> <span class="k">and</span> <span class="n">angles</span> <span class="n">of</span> <span class="n">stimulation</span> <span class="n">into</span> <span class="n">orientation</span> <span class="n">space</span><span class="p">.</span>
+
+   <span class="n">Each</span> <span class="n">angle</span> <span class="n">in</span> <span class="n">ANGLES</span> <span class="n">that</span> <span class="n">goes</span> <span class="n">around</span> <span class="n">the</span> <span class="n">clock</span> <span class="n">in</span> <span class="n">direction</span> <span class="n">space</span> <span class="p">(</span><span class="n">ranging</span>
+   <span class="n">from</span> <span class="mh">0</span> <span class="n">to</span> <span class="mh">360</span> <span class="n">degrees</span><span class="p">)</span> <span class="n">is</span> <span class="n">converted</span> <span class="n">to</span> <span class="n">an</span> <span class="n">orientation</span> <span class="n">ranging</span> <span class="n">from</span> <span class="mh">0</span> <span class="n">to</span> <span class="mh">180</span>
+   <span class="n">degrees</span> <span class="k">and</span> <span class="n">returned</span> <span class="n">in</span> <span class="n">ANGLES_ORI</span><span class="p">.</span>  <span class="n">The</span> <span class="n">new</span> <span class="n">ANGLES_ORI</span> <span class="n">is</span> <span class="n">a</span> <span class="n">column</span> <span class="n">vector</span>
+   <span class="p">(</span><span class="n">regardless</span> <span class="n">of</span> <span class="n">the</span> <span class="n">form</span> <span class="n">of</span> <span class="n">the</span> <span class="k">input</span> <span class="n">ANGLES</span><span class="p">).</span>
+
+   <span class="n">RESPONSES_ORI</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="n">R</span><span class="p">)</span> <span class="n">is</span> <span class="n">a</span> <span class="n">matrix</span> <span class="n">of</span> <span class="n">all</span> <span class="n">RESPONSES</span> <span class="n">R</span> <span class="n">that</span> <span class="n">map</span> <span class="n">to</span> <span class="n">the</span> <span class="n">orientation</span> 
+   <span class="n">A</span><span class="p">.</span>  <span class="n">In</span> <span class="n">the</span> <span class="k">event</span> <span class="n">that</span> <span class="n">there</span> <span class="n">are</span> <span class="k">not</span> <span class="n">an</span> <span class="n">equal</span> <span class="n">number</span> <span class="n">of</span> <span class="n">responses</span> <span class="n">to</span> <span class="n">each</span>
+   <span class="n">orientation</span><span class="p">,</span> <span class="n">extra</span> <span class="n">entries</span> <span class="n">in</span> <span class="n">the</span> <span class="n">matrix</span> <span class="n">will</span> <span class="n">be</span> <span class="n">NaN</span><span class="p">.</span>
+</code></pre></div>
                 
               
               

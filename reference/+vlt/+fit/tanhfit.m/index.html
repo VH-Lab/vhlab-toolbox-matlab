@@ -3225,6 +3225,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../%2Bgit/git_stash.m/" class="md-nav__link">
+        vlt.git.git_stash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../%2Bgit/git_status.m/" class="md-nav__link">
         vlt.git.git_status
       </a>
@@ -9237,29 +9249,38 @@
                 
                 
                 <h1 id="vltfittanhfit">vlt.fit.tanhfit<a class="headerlink" href="#vltfittanhfit" title="Permanent link">&para;</a></h1>
-<p>TANHFIT - Fit a curve with a hyperbolic tangent tanh</p>
-<p>[FIT_CURVE, PARAMS, GOF, FITINFO] = vlt.fit.tanhfit(X, Y, ...)</p>
-<p>Finds a, b, c, d such that the error in the equation </p>
-<div class="codehilite"><pre><span></span><code>   Y = a + b * TANH( (X-c) / d)
-</code></pre></div>
+<div class="codehilite"><pre><span></span><code>  <span class="nv">TANHFIT</span> <span class="o">-</span> <span class="nv">Fit</span> <span class="nv">a</span> <span class="nv">curve</span> <span class="nv">with</span> <span class="nv">a</span> <span class="nv">hyperbolic</span> <span class="nv">tangent</span> <span class="nv">tanh</span>
 
-<p>is minimized in the least-squares sense.</p>
-<p>FIT_CURVE is a fit curve that is 100x2 (by default, see below)
-  where FIT_CURVE(:,1) is 100 equally spaced points between min(X)
-  and max(X), and FIT_CURVE(:,2) is the result of the fit.]
-  PARAMS is the parameters returned from Matlab's FIT function.</p>
-<p>This function also takes additional parameters in the form of name/value
-  pairs.
-  Parameter (default)     | Description</p>
-<hr />
-<p>NPTS_CURVE (100)        | Number of points to produce in the fit
-  a_range [-Inf Inf]      | Search range for fit parameter a
-  b_range [0 Inf]         | Search range for fit parameter b
-  c_range [-100 100]      | Search range for fit parameter c
-  d_range [1e-12 Inf]     | Search range for fit parameter d
-  startPoint [0 1 0 1]    | Starting point for the search</p>
-<p>Jason Osik 2016-2017</p>
-<p>See also: FIT, FITTYPE</p>
+  [<span class="nv">FIT_CURVE</span>, <span class="nb">PARAMS</span>, <span class="nv">GOF</span>, <span class="nv">FITINFO</span>] <span class="o">=</span> <span class="nv">vlt</span>.<span class="nv">fit</span>.<span class="nv">tanhfit</span><span class="ss">(</span><span class="nv">X</span>, <span class="nv">Y</span>, ...<span class="ss">)</span>
+
+  <span class="nv">Finds</span> <span class="nv">a</span>, <span class="nv">b</span>, <span class="nv">c</span>, <span class="nv">d</span> <span class="nv">such</span> <span class="nv">that</span> <span class="nv">the</span> <span class="nv">error</span> <span class="nv">in</span> <span class="nv">the</span> <span class="nv">equation</span> 
+
+       <span class="nv">Y</span> <span class="o">=</span> <span class="nv">a</span> <span class="o">+</span> <span class="nv">b</span> <span class="o">*</span> <span class="nv">TANH</span><span class="ss">(</span> <span class="ss">(</span><span class="nv">X</span><span class="o">-</span><span class="nv">c</span><span class="ss">)</span> <span class="o">/</span> <span class="nv">d</span><span class="ss">)</span>
+
+  <span class="nv">is</span> <span class="nv">minimized</span> <span class="nv">in</span> <span class="nv">the</span> <span class="nv">least</span><span class="o">-</span><span class="nv">squares</span> <span class="nv">sense</span>.
+
+  <span class="nv">FIT_CURVE</span> <span class="nv">is</span> <span class="nv">a</span> <span class="nv">fit</span> <span class="nv">curve</span> <span class="nv">that</span> <span class="nv">is</span> <span class="mi">100</span><span class="nv">x2</span> <span class="ss">(</span><span class="nv">by</span> <span class="nv">default</span>, <span class="nv">see</span> <span class="nv">below</span><span class="ss">)</span>
+  <span class="nv">where</span> <span class="nv">FIT_CURVE</span><span class="ss">(</span>:,<span class="mi">1</span><span class="ss">)</span> <span class="nv">is</span> <span class="mi">100</span> <span class="nv">equally</span> <span class="nv">spaced</span> <span class="nv">points</span> <span class="nv">between</span> <span class="nv">min</span><span class="ss">(</span><span class="nv">X</span><span class="ss">)</span>
+  <span class="nv">and</span> <span class="nv">max</span><span class="ss">(</span><span class="nv">X</span><span class="ss">)</span>, <span class="nv">and</span> <span class="nv">FIT_CURVE</span><span class="ss">(</span>:,<span class="mi">2</span><span class="ss">)</span> <span class="nv">is</span> <span class="nv">the</span> <span class="nb">result</span> <span class="nv">of</span> <span class="nv">the</span> <span class="nv">fit</span>.]
+  <span class="nb">PARAMS</span> <span class="nv">is</span> <span class="nv">the</span> <span class="nv">parameters</span> <span class="nv">returned</span> <span class="nv">from</span> <span class="nv">Matlab</span><span class="s1">&#39;</span><span class="s">s FIT function.</span>
+
+
+
+  <span class="nv">This</span> <span class="nv">function</span> <span class="nv">also</span> <span class="nv">takes</span> <span class="nv">additional</span> <span class="nv">parameters</span> <span class="nv">in</span> <span class="nv">the</span> <span class="nv">form</span> <span class="nv">of</span> <span class="nv">name</span><span class="o">/</span><span class="nv">value</span>
+  <span class="nv">pairs</span>.
+  <span class="nv">Parameter</span> <span class="ss">(</span><span class="nv">default</span><span class="ss">)</span>     <span class="o">|</span> <span class="nv">Description</span>
+  <span class="o">---------------------------------------------------------------</span>
+  <span class="nv">NPTS_CURVE</span> <span class="ss">(</span><span class="mi">100</span><span class="ss">)</span>        <span class="o">|</span> <span class="nv">Number</span> <span class="nv">of</span> <span class="nv">points</span> <span class="nv">to</span> <span class="nv">produce</span> <span class="nv">in</span> <span class="nv">the</span> <span class="nv">fit</span>
+  <span class="nv">a_range</span> [<span class="o">-</span><span class="nv">Inf</span> <span class="nv">Inf</span>]      <span class="o">|</span> <span class="nv">Search</span> <span class="nv">range</span> <span class="k">for</span> <span class="nv">fit</span> <span class="nv">parameter</span> <span class="nv">a</span>
+  <span class="nv">b_range</span> [<span class="mi">0</span> <span class="nv">Inf</span>]         <span class="o">|</span> <span class="nv">Search</span> <span class="nv">range</span> <span class="k">for</span> <span class="nv">fit</span> <span class="nv">parameter</span> <span class="nv">b</span>
+  <span class="nv">c_range</span> [<span class="o">-</span><span class="mi">100</span> <span class="mi">100</span>]      <span class="o">|</span> <span class="nv">Search</span> <span class="nv">range</span> <span class="k">for</span> <span class="nv">fit</span> <span class="nv">parameter</span> <span class="nv">c</span>
+  <span class="nv">d_range</span> [<span class="mi">1</span><span class="nv">e</span><span class="o">-</span><span class="mi">12</span> <span class="nv">Inf</span>]     <span class="o">|</span> <span class="nv">Search</span> <span class="nv">range</span> <span class="k">for</span> <span class="nv">fit</span> <span class="nv">parameter</span> <span class="nv">d</span>
+  <span class="nv">startPoint</span> [<span class="mi">0</span> <span class="mi">1</span> <span class="mi">0</span> <span class="mi">1</span>]    <span class="o">|</span> <span class="nv">Starting</span> <span class="nv">point</span> <span class="k">for</span> <span class="nv">the</span> <span class="nv">search</span>
+
+  <span class="nv">Jason</span> <span class="nv">Osik</span> <span class="mi">2016</span><span class="o">-</span><span class="mi">2017</span>
+
+  <span class="nv">See</span> <span class="nv">also</span>: <span class="nv">FIT</span>, <span class="nv">FITTYPE</span>
+</code></pre></div>
                 
               
               

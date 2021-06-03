@@ -3213,6 +3213,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../%2Bgit/git_stash.m/" class="md-nav__link">
+        vlt.git.git_stash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../%2Bgit/git_status.m/" class="md-nav__link">
         vlt.git.git_status
       </a>
@@ -9237,32 +9249,37 @@
                 
                 
                 <h1 id="vltplotmedian_within_between_plot">vlt.plot.median_within_between_plot<a class="headerlink" href="#vltplotmedian_within_between_plot" title="Permanent link">&para;</a></h1>
-<p>MEDIAN_WITHIN_BETWEEN_PLOT - Plot an index for many experiments, different conditions</p>
-<p>[H,DATAPOINTS]=vlt.plot.median_within_between_plot(DATA, EXPERIMENT_INDEXES, LABELS)</p>
-<p>Plots index values from individual experiments that are grouped into different
-   experimental conditions.  For each condition, indexes from individual animals
-   are plotted in columns. A bigger space is left between animals that are in 
-   different experimental groups.  Median values for each animal and each
-   group are highlighted with a horizontal bar.</p>
-<p>Inputs:  There are 2 ways of specifying the data.
-     Method 1: DATA should be a cell array of index values for different conditions.
-       If there N conditions, then DATA should have N entries.  Each entry DATA{n} should
-       have the index values from a single experimental condition.  EXPERIMENT_INDEXES{n} 
-       indicates the experiment number that produced each data point in DATA{n}.</p>
-<div class="codehilite"><pre><span></span><code> <span class="nt">Method</span> <span class="nt">2</span><span class="o">:</span> <span class="nt">DATA</span> <span class="nt">is</span> <span class="nt">an</span> <span class="nt">array</span> <span class="nt">of</span> <span class="nt">values</span><span class="o">.</span> <span class="nt">EXPERIMENT_INDEXES</span> <span class="nt">is</span> <span class="nt">an</span> <span class="nt">Mx2</span> <span class="nt">matrix</span><span class="o">;</span> <span class="nt">the</span> <span class="nt">first</span>
-   <span class="nt">column</span> <span class="nt">of</span> <span class="nt">EXPERIMENT_INDEXES</span> <span class="nt">should</span> <span class="nt">be</span> <span class="nt">the</span> <span class="nt">experiment</span> <span class="nt">index</span> <span class="nt">number</span><span class="o">,</span> <span class="nt">and</span> <span class="nt">the</span> <span class="nt">second</span>
-   <span class="nt">column</span> <span class="nt">of</span> <span class="nt">EXPERIMENT_INDEXES</span> <span class="nt">should</span> <span class="nt">be</span> <span class="nt">the</span> <span class="nt">condition</span> <span class="nt">number</span><span class="o">.</span>
-</code></pre></div>
+<div class="codehilite"><pre><span></span><code>  <span class="nt">MEDIAN_WITHIN_BETWEEN_PLOT</span> <span class="nt">-</span> <span class="nt">Plot</span> <span class="nt">an</span> <span class="nt">index</span> <span class="nt">for</span> <span class="nt">many</span> <span class="nt">experiments</span><span class="o">,</span> <span class="nt">different</span> <span class="nt">conditions</span>
 
-<p>LABELS{n} should be the label for the conditions.</p>
-<p>Outputs:
-      H is a set of handles to the plots.
-      DATAPOINTS is a structure with the following fields:
-         experiment: the experiment that corresponds to the point
-         condition:  the condition of the point
-         index:      the index of the point within the condition
-         x:          the x position on the plot
-         y:          the y position on the plot (might be transformed from the raw data)</p>
+   <span class="cp">[</span><span class="nx">H</span><span class="p">,</span><span class="nx">DATAPOINTS</span><span class="cp">]</span><span class="o">=</span><span class="nt">vlt</span><span class="p">.</span><span class="nc">plot</span><span class="p">.</span><span class="nc">median_within_between_plot</span><span class="o">(</span><span class="nt">DATA</span><span class="o">,</span> <span class="nt">EXPERIMENT_INDEXES</span><span class="o">,</span> <span class="nt">LABELS</span><span class="o">)</span>
+
+   <span class="nt">Plots</span> <span class="nt">index</span> <span class="nt">values</span> <span class="nt">from</span> <span class="nt">individual</span> <span class="nt">experiments</span> <span class="nt">that</span> <span class="nt">are</span> <span class="nt">grouped</span> <span class="nt">into</span> <span class="nt">different</span>
+   <span class="nt">experimental</span> <span class="nt">conditions</span><span class="o">.</span>  <span class="nt">For</span> <span class="nt">each</span> <span class="nt">condition</span><span class="o">,</span> <span class="nt">indexes</span> <span class="nt">from</span> <span class="nt">individual</span> <span class="nt">animals</span>
+   <span class="nt">are</span> <span class="nt">plotted</span> <span class="nt">in</span> <span class="nt">columns</span><span class="o">.</span> <span class="nt">A</span> <span class="nt">bigger</span> <span class="nt">space</span> <span class="nt">is</span> <span class="nt">left</span> <span class="nt">between</span> <span class="nt">animals</span> <span class="nt">that</span> <span class="nt">are</span> <span class="nt">in</span> 
+   <span class="nt">different</span> <span class="nt">experimental</span> <span class="nt">groups</span><span class="o">.</span>  <span class="nt">Median</span> <span class="nt">values</span> <span class="nt">for</span> <span class="nt">each</span> <span class="nt">animal</span> <span class="nt">and</span> <span class="nt">each</span>
+   <span class="nt">group</span> <span class="nt">are</span> <span class="nt">highlighted</span> <span class="nt">with</span> <span class="nt">a</span> <span class="nt">horizontal</span> <span class="nt">bar</span><span class="o">.</span>
+
+   <span class="nt">Inputs</span><span class="o">:</span>  <span class="nt">There</span> <span class="nt">are</span> <span class="nt">2</span> <span class="nt">ways</span> <span class="nt">of</span> <span class="nt">specifying</span> <span class="nt">the</span> <span class="nt">data</span><span class="o">.</span>
+     <span class="nt">Method</span> <span class="nt">1</span><span class="o">:</span> <span class="nt">DATA</span> <span class="nt">should</span> <span class="nt">be</span> <span class="nt">a</span> <span class="nt">cell</span> <span class="nt">array</span> <span class="nt">of</span> <span class="nt">index</span> <span class="nt">values</span> <span class="nt">for</span> <span class="nt">different</span> <span class="nt">conditions</span><span class="o">.</span>
+       <span class="nt">If</span> <span class="nt">there</span> <span class="nt">N</span> <span class="nt">conditions</span><span class="o">,</span> <span class="nt">then</span> <span class="nt">DATA</span> <span class="nt">should</span> <span class="nt">have</span> <span class="nt">N</span> <span class="nt">entries</span><span class="o">.</span>  <span class="nt">Each</span> <span class="nt">entry</span> <span class="nt">DATA</span><span class="p">{</span><span class="err">n</span><span class="p">}</span> <span class="nt">should</span>
+       <span class="nt">have</span> <span class="nt">the</span> <span class="nt">index</span> <span class="nt">values</span> <span class="nt">from</span> <span class="nt">a</span> <span class="nt">single</span> <span class="nt">experimental</span> <span class="nt">condition</span><span class="o">.</span>  <span class="nt">EXPERIMENT_INDEXES</span><span class="p">{</span><span class="err">n</span><span class="p">}</span> 
+       <span class="nt">indicates</span> <span class="nt">the</span> <span class="nt">experiment</span> <span class="nt">number</span> <span class="nt">that</span> <span class="nt">produced</span> <span class="nt">each</span> <span class="nt">data</span> <span class="nt">point</span> <span class="nt">in</span> <span class="nt">DATA</span><span class="p">{</span><span class="err">n</span><span class="p">}</span><span class="o">.</span>
+
+     <span class="nt">Method</span> <span class="nt">2</span><span class="o">:</span> <span class="nt">DATA</span> <span class="nt">is</span> <span class="nt">an</span> <span class="nt">array</span> <span class="nt">of</span> <span class="nt">values</span><span class="o">.</span> <span class="nt">EXPERIMENT_INDEXES</span> <span class="nt">is</span> <span class="nt">an</span> <span class="nt">Mx2</span> <span class="nt">matrix</span><span class="o">;</span> <span class="nt">the</span> <span class="nt">first</span>
+       <span class="nt">column</span> <span class="nt">of</span> <span class="nt">EXPERIMENT_INDEXES</span> <span class="nt">should</span> <span class="nt">be</span> <span class="nt">the</span> <span class="nt">experiment</span> <span class="nt">index</span> <span class="nt">number</span><span class="o">,</span> <span class="nt">and</span> <span class="nt">the</span> <span class="nt">second</span>
+       <span class="nt">column</span> <span class="nt">of</span> <span class="nt">EXPERIMENT_INDEXES</span> <span class="nt">should</span> <span class="nt">be</span> <span class="nt">the</span> <span class="nt">condition</span> <span class="nt">number</span><span class="o">.</span>
+
+   <span class="nt">LABELS</span><span class="p">{</span><span class="err">n</span><span class="p">}</span> <span class="nt">should</span> <span class="nt">be</span> <span class="nt">the</span> <span class="nt">label</span> <span class="nt">for</span> <span class="nt">the</span> <span class="nt">conditions</span><span class="o">.</span>
+
+   <span class="nt">Outputs</span><span class="o">:</span>
+      <span class="nt">H</span> <span class="nt">is</span> <span class="nt">a</span> <span class="nt">set</span> <span class="nt">of</span> <span class="nt">handles</span> <span class="nt">to</span> <span class="nt">the</span> <span class="nt">plots</span><span class="o">.</span>
+      <span class="nt">DATAPOINTS</span> <span class="nt">is</span> <span class="nt">a</span> <span class="nt">structure</span> <span class="nt">with</span> <span class="nt">the</span> <span class="nt">following</span> <span class="nt">fields</span><span class="o">:</span>
+         <span class="nt">experiment</span><span class="o">:</span> <span class="nt">the</span> <span class="nt">experiment</span> <span class="nt">that</span> <span class="nt">corresponds</span> <span class="nt">to</span> <span class="nt">the</span> <span class="nt">point</span>
+         <span class="nt">condition</span><span class="o">:</span>  <span class="nt">the</span> <span class="nt">condition</span> <span class="nt">of</span> <span class="nt">the</span> <span class="nt">point</span>
+         <span class="nt">index</span><span class="o">:</span>      <span class="nt">the</span> <span class="nt">index</span> <span class="nt">of</span> <span class="nt">the</span> <span class="nt">point</span> <span class="nt">within</span> <span class="nt">the</span> <span class="nt">condition</span>
+         <span class="nt">x</span><span class="o">:</span>          <span class="nt">the</span> <span class="nt">x</span> <span class="nt">position</span> <span class="nt">on</span> <span class="nt">the</span> <span class="nt">plot</span>
+         <span class="nt">y</span><span class="o">:</span>          <span class="nt">the</span> <span class="nt">y</span> <span class="nt">position</span> <span class="nt">on</span> <span class="nt">the</span> <span class="nt">plot</span> <span class="o">(</span><span class="nt">might</span> <span class="nt">be</span> <span class="nt">transformed</span> <span class="nt">from</span> <span class="nt">the</span> <span class="nt">raw</span> <span class="nt">data</span><span class="o">)</span>
+</code></pre></div>
                 
               
               

@@ -3213,6 +3213,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../%2Bgit/git_stash.m/" class="md-nav__link">
+        vlt.git.git_stash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../%2Bgit/git_status.m/" class="md-nav__link">
         vlt.git.git_status
       </a>
@@ -9237,26 +9249,31 @@
                 
                 
                 <h1 id="vltstringbracematch">vlt.string.bracematch<a class="headerlink" href="#vltstringbracematch" title="Permanent link">&para;</a></h1>
-<p>BRACEMATCH - Match parenthesis in a text string</p>
-<p>[POS_MATCH,BRACEDEPTH] = vlt.string.bracematch(STR, POS)</p>
-<p>Finds the right parenthesis ')' that matches the left paranthesis
-   '(' in string STR at position POS.</p>
-<p>One can modify the behavior of this function by passing name/value pairs:
-   Name (default):               | Description</p>
-<hr />
-<p>braceleft ('(')               | The character to be the left parenthesis
-                                 |   (other examples, '[', '{', '&lt;')
-   braceright (')')              | The character to be the right parenthesis
-                                 |   (other examples, ']', '}', '&gt;')
-   bracedepth ([])               | To save time, if one has computed the
-                                 |   brace level using the function vlt.string.bracelevel,
-                                 |   one can pass it here. If empty, the
-                                 |   brace level will be recalculated.
-   Examples:
-      str = 'this is (a test of (depth))';
-      match1=vlt.string.bracematch(str, 9)
-      match2=vlt.string.bracematch(str,20)</p>
-<p>See also:  vlt.string.bracelevel</p>
+<div class="codehilite"><pre><span></span><code>  <span class="nt">BRACEMATCH</span> <span class="nt">-</span> <span class="nt">Match</span> <span class="nt">parenthesis</span> <span class="nt">in</span> <span class="nt">a</span> <span class="nt">text</span> <span class="nt">string</span>
+
+   <span class="cp">[</span><span class="nx">POS_MATCH</span><span class="p">,</span><span class="nx">BRACEDEPTH</span><span class="cp">]</span> <span class="o">=</span> <span class="nt">vlt</span><span class="p">.</span><span class="nc">string</span><span class="p">.</span><span class="nc">bracematch</span><span class="o">(</span><span class="nt">STR</span><span class="o">,</span> <span class="nt">POS</span><span class="o">)</span>
+
+   <span class="nt">Finds</span> <span class="nt">the</span> <span class="nt">right</span> <span class="nt">parenthesis</span> <span class="s1">&#39;)&#39;</span> <span class="nt">that</span> <span class="nt">matches</span> <span class="nt">the</span> <span class="nt">left</span> <span class="nt">paranthesis</span>
+   <span class="s1">&#39;(&#39;</span> <span class="nt">in</span> <span class="nt">string</span> <span class="nt">STR</span> <span class="nt">at</span> <span class="nt">position</span> <span class="nt">POS</span><span class="o">.</span>
+
+   <span class="nt">One</span> <span class="nt">can</span> <span class="nt">modify</span> <span class="nt">the</span> <span class="nt">behavior</span> <span class="nt">of</span> <span class="nt">this</span> <span class="nt">function</span> <span class="nt">by</span> <span class="nt">passing</span> <span class="nt">name</span><span class="o">/</span><span class="nt">value</span> <span class="nt">pairs</span><span class="o">:</span>
+   <span class="nt">Name</span> <span class="o">(</span><span class="nt">default</span><span class="o">):</span>               <span class="o">|</span> <span class="nt">Description</span>
+   <span class="nt">---------------------------------------------------------------------</span>
+   <span class="nt">braceleft</span> <span class="o">(</span><span class="s1">&#39;(&#39;</span><span class="o">)</span>               <span class="o">|</span> <span class="nt">The</span> <span class="nt">character</span> <span class="nt">to</span> <span class="nt">be</span> <span class="nt">the</span> <span class="nt">left</span> <span class="nt">parenthesis</span>
+                                 <span class="o">|</span>   <span class="o">(</span><span class="nt">other</span> <span class="nt">examples</span><span class="o">,</span> <span class="s1">&#39;</span><span class="cp">[</span><span class="s1">&#39;, &#39;</span><span class="p">{</span><span class="s1">&#39;, &#39;</span><span class="o">&lt;</span><span class="s1">&#39;)</span>
+<span class="s1">   braceright (&#39;</span><span class="p">)</span><span class="s1">&#39;)              | The character to be the right parenthesis</span>
+<span class="s1">                                 |   (other examples, &#39;</span><span class="cp">]</span><span class="s1">&#39;</span><span class="o">,</span> <span class="s1">&#39;}&#39;</span><span class="o">,</span> <span class="s1">&#39;&gt;&#39;</span><span class="o">)</span>
+   <span class="nt">bracedepth</span> <span class="o">(</span><span class="cp">[]</span><span class="o">)</span>               <span class="o">|</span> <span class="nt">To</span> <span class="nt">save</span> <span class="nt">time</span><span class="o">,</span> <span class="nt">if</span> <span class="nt">one</span> <span class="nt">has</span> <span class="nt">computed</span> <span class="nt">the</span>
+                                 <span class="o">|</span>   <span class="nt">brace</span> <span class="nt">level</span> <span class="nt">using</span> <span class="nt">the</span> <span class="nt">function</span> <span class="nt">vlt</span><span class="p">.</span><span class="nc">string</span><span class="p">.</span><span class="nc">bracelevel</span><span class="o">,</span>
+                                 <span class="o">|</span>   <span class="nt">one</span> <span class="nt">can</span> <span class="nt">pass</span> <span class="nt">it</span> <span class="nt">here</span><span class="o">.</span> <span class="nt">If</span> <span class="nt">empty</span><span class="o">,</span> <span class="nt">the</span>
+                                 <span class="o">|</span>   <span class="nt">brace</span> <span class="nt">level</span> <span class="nt">will</span> <span class="nt">be</span> <span class="nt">recalculated</span><span class="o">.</span>
+   <span class="nt">Examples</span><span class="o">:</span>
+      <span class="nt">str</span> <span class="o">=</span> <span class="s1">&#39;this is (a test of (depth))&#39;</span><span class="o">;</span>
+      <span class="nt">match1</span><span class="o">=</span><span class="nt">vlt</span><span class="p">.</span><span class="nc">string</span><span class="p">.</span><span class="nc">bracematch</span><span class="o">(</span><span class="nt">str</span><span class="o">,</span> <span class="nt">9</span><span class="o">)</span>
+      <span class="nt">match2</span><span class="o">=</span><span class="nt">vlt</span><span class="p">.</span><span class="nc">string</span><span class="p">.</span><span class="nc">bracematch</span><span class="o">(</span><span class="nt">str</span><span class="o">,</span><span class="nt">20</span><span class="o">)</span>
+
+   <span class="nt">See</span> <span class="nt">also</span><span class="o">:</span>  <span class="nt">vlt</span><span class="p">.</span><span class="nc">string</span><span class="p">.</span><span class="nc">bracelevel</span>
+</code></pre></div>
                 
               
               

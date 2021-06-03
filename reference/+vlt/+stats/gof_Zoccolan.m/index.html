@@ -3213,6 +3213,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../%2Bgit/git_stash.m/" class="md-nav__link">
+        vlt.git.git_stash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../%2Bgit/git_status.m/" class="md-nav__link">
         vlt.git.git_status
       </a>
@@ -9237,20 +9249,27 @@
                 
                 
                 <h1 id="vltstatsgof_zoccolan">vlt.stats.gof_Zoccolan<a class="headerlink" href="#vltstatsgof_zoccolan" title="Permanent link">&para;</a></h1>
-<p>vlt.stats.gof_Zoccolan - Goodness of Fit from Zoccolan et al., 2005</p>
-<p>[GF,Vres,Vexpl,Vnoise] = vlt.stats.gof_Zoccolan(TRIALDATA, FIT)</p>
-<p>Returns goodness of fit that describes how much of the explainable
-  variation (i.e., that not due to noise across trials) is explained
-  by a given fit.</p>
-<p>TRIALDATA should have M columns and N rows.  Each column should have
-    individual responses for one particular stimulus.  If any values are
-    NAN then these trials are excluded.</p>
-<p>FIT is a fit to the mean response to each stimulus and should be 1xN.</p>
-<p>GF is the goodness of fit measure from 0 to 1
-  Vres is the residual variance left over from the fit
-  Vexpl is the explainable variance
-  Vnoise is the variance of the noise</p>
-<p>Ref:  Zoccolan DE, Cox DD, DiCarlo, JJ.  J Neurosci 25:8150-8164 2005.</p>
+<div class="codehilite"><pre><span></span><code>  <span class="n">vlt</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">gof_Zoccolan</span> <span class="o">-</span> <span class="n">Goodness</span> <span class="n">of</span> <span class="n">Fit</span> <span class="n">from</span> <span class="n">Zoccolan</span> <span class="n">et</span> <span class="n">al</span><span class="o">.</span><span class="p">,</span> <span class="mi">2005</span>
+
+   <span class="p">[</span><span class="n">GF</span><span class="p">,</span><span class="n">Vres</span><span class="p">,</span><span class="n">Vexpl</span><span class="p">,</span><span class="n">Vnoise</span><span class="p">]</span> <span class="o">=</span> <span class="n">vlt</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">gof_Zoccolan</span><span class="p">(</span><span class="n">TRIALDATA</span><span class="p">,</span> <span class="n">FIT</span><span class="p">)</span>
+
+  <span class="n">Returns</span> <span class="n">goodness</span> <span class="n">of</span> <span class="n">fit</span> <span class="n">that</span> <span class="n">describes</span> <span class="n">how</span> <span class="n">much</span> <span class="n">of</span> <span class="n">the</span> <span class="n">explainable</span>
+  <span class="n">variation</span> <span class="p">(</span><span class="n">i</span><span class="o">.</span><span class="n">e</span><span class="o">.</span><span class="p">,</span> <span class="n">that</span> <span class="ow">not</span> <span class="n">due</span> <span class="n">to</span> <span class="n">noise</span> <span class="n">across</span> <span class="n">trials</span><span class="p">)</span> <span class="k">is</span> <span class="n">explained</span>
+  <span class="n">by</span> <span class="n">a</span> <span class="n">given</span> <span class="n">fit</span><span class="o">.</span>
+
+  <span class="n">TRIALDATA</span> <span class="n">should</span> <span class="n">have</span> <span class="n">M</span> <span class="n">columns</span> <span class="ow">and</span> <span class="n">N</span> <span class="n">rows</span><span class="o">.</span>  <span class="n">Each</span> <span class="n">column</span> <span class="n">should</span> <span class="n">have</span>
+    <span class="n">individual</span> <span class="n">responses</span> <span class="k">for</span> <span class="n">one</span> <span class="n">particular</span> <span class="n">stimulus</span><span class="o">.</span>  <span class="n">If</span> <span class="n">any</span> <span class="n">values</span> <span class="n">are</span>
+    <span class="bp">NAN</span> <span class="n">then</span> <span class="n">these</span> <span class="n">trials</span> <span class="n">are</span> <span class="n">excluded</span><span class="o">.</span>
+
+  <span class="n">FIT</span> <span class="k">is</span> <span class="n">a</span> <span class="n">fit</span> <span class="n">to</span> <span class="n">the</span> <span class="n">mean</span> <span class="n">response</span> <span class="n">to</span> <span class="n">each</span> <span class="n">stimulus</span> <span class="ow">and</span> <span class="n">should</span> <span class="n">be</span> <span class="mi">1</span><span class="n">xN</span><span class="o">.</span>
+
+  <span class="n">GF</span> <span class="k">is</span> <span class="n">the</span> <span class="n">goodness</span> <span class="n">of</span> <span class="n">fit</span> <span class="n">measure</span> <span class="n">from</span> <span class="mi">0</span> <span class="n">to</span> <span class="mi">1</span>
+  <span class="n">Vres</span> <span class="k">is</span> <span class="n">the</span> <span class="n">residual</span> <span class="n">variance</span> <span class="n">left</span> <span class="n">over</span> <span class="n">from</span> <span class="n">the</span> <span class="n">fit</span>
+  <span class="n">Vexpl</span> <span class="k">is</span> <span class="n">the</span> <span class="n">explainable</span> <span class="n">variance</span>
+  <span class="n">Vnoise</span> <span class="k">is</span> <span class="n">the</span> <span class="n">variance</span> <span class="n">of</span> <span class="n">the</span> <span class="n">noise</span>
+
+  <span class="n">Ref</span><span class="p">:</span>  <span class="n">Zoccolan</span> <span class="n">DE</span><span class="p">,</span> <span class="n">Cox</span> <span class="n">DD</span><span class="p">,</span> <span class="n">DiCarlo</span><span class="p">,</span> <span class="n">JJ</span><span class="o">.</span>  <span class="n">J</span> <span class="n">Neurosci</span> <span class="mi">25</span><span class="p">:</span><span class="mi">8150</span><span class="o">-</span><span class="mi">8164</span> <span class="mf">2005.</span>
+</code></pre></div>
                 
               
               

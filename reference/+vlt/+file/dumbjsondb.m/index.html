@@ -3282,6 +3282,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../%2Bgit/git_stash.m/" class="md-nav__link">
+        vlt.git.git_stash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../%2Bgit/git_status.m/" class="md-nav__link">
         vlt.git.git_status
       </a>
@@ -9336,70 +9348,73 @@
                 
                 
                 <h1 id="class-vltfiledumbjsondb">CLASS vlt.file.dumbjsondb<a class="headerlink" href="#class-vltfiledumbjsondb" title="Permanent link">&para;</a></h1>
-<p>vlt.file.dumbjsondb - a very simple and slow JSON-based database with associated binary files</p>
-<p>DUMBJSONDB implements a very simple JSON-based document database. Each document is
-  represented as a JSON file. Each document also has an associated binary file that can
-  be read/written. The search capabilities of DUMBJSONDB are very rudimentory, and every
-  document is read in for examination. Therefore, searching DUMBJSONDB will be very slow.
-  Furthermore, as all of the documents are stored in a single directory, the database size
-  will be limited to the number of files that are permitted in a single directory by the
-  file system divided by 3 (there is a .JSON file, a binary file, and a metadata file for
-  each document). </p>
-<p>Example: Create and test a DUMBJSONDB object in the current directory.
-      % create a new db
-      db = vlt.file.dumbjsondb('new',[pwd filesep 'mydb.json']);</p>
-<div class="codehilite"><pre><span></span><code><span class="w">  </span><span class="o">%</span><span class="w"> </span><span class="k">add</span><span class="w"> </span><span class="ow">some</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">entries</span><span class="w"></span>
-<span class="w">  </span><span class="k">for</span><span class="w"> </span><span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="err">:</span><span class="mi">5</span><span class="p">,</span><span class="w"></span>
-<span class="w">      </span><span class="n">a</span><span class="p">.</span><span class="n">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2000</span><span class="o">+</span><span class="n">i</span><span class="p">;</span><span class="w"></span>
-<span class="w">      </span><span class="n">a</span><span class="p">.</span><span class="k">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">i</span><span class="p">;</span><span class="w"></span>
-<span class="w">      </span><span class="n">db</span><span class="p">.</span><span class="k">add</span><span class="p">(</span><span class="n">a</span><span class="p">);</span><span class="w"></span>
-<span class="w">  </span><span class="k">end</span><span class="p">;</span><span class="w"></span>
+<div class="codehilite"><pre><span></span><code><span class="w">  </span><span class="n">vlt</span><span class="p">.</span><span class="k">file</span><span class="p">.</span><span class="n">dumbjsondb</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">very</span><span class="w"> </span><span class="n">simple</span><span class="w"> </span><span class="ow">and</span><span class="w"> </span><span class="n">slow</span><span class="w"> </span><span class="n">JSON</span><span class="o">-</span><span class="n">based</span><span class="w"> </span><span class="k">database</span><span class="w"> </span><span class="k">with</span><span class="w"> </span><span class="n">associated</span><span class="w"> </span><span class="nc">binary</span><span class="w"> </span><span class="n">files</span><span class="w"></span>
 
-<span class="w">  </span><span class="o">%</span><span class="w"> </span><span class="k">read</span><span class="w"> </span><span class="n">latest</span><span class="w"> </span><span class="n">version</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="ow">all</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">entries</span><span class="w"></span>
-<span class="w">  </span><span class="n">ids</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">db</span><span class="p">.</span><span class="n">alldocids</span><span class="p">;</span><span class="w"></span>
-<span class="w">  </span><span class="k">for</span><span class="w"> </span><span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="err">:</span><span class="n">numel</span><span class="p">(</span><span class="n">ids</span><span class="p">),</span><span class="w"> </span>
-<span class="w">       </span><span class="n">db</span><span class="p">.</span><span class="k">read</span><span class="p">(</span><span class="n">ids</span><span class="err">{</span><span class="n">i</span><span class="err">}</span><span class="p">),</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="n">display</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">entry</span><span class="w"></span>
-<span class="w">  </span><span class="k">end</span><span class="w"></span>
+<span class="w">  </span><span class="n">DUMBJSONDB</span><span class="w"> </span><span class="n">implements</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">very</span><span class="w"> </span><span class="n">simple</span><span class="w"> </span><span class="n">JSON</span><span class="o">-</span><span class="n">based</span><span class="w"> </span><span class="n">document</span><span class="w"> </span><span class="k">database</span><span class="p">.</span><span class="w"> </span><span class="k">Each</span><span class="w"> </span><span class="n">document</span><span class="w"> </span><span class="k">is</span><span class="w"></span>
+<span class="w">  </span><span class="n">represented</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">JSON</span><span class="w"> </span><span class="k">file</span><span class="p">.</span><span class="w"> </span><span class="k">Each</span><span class="w"> </span><span class="n">document</span><span class="w"> </span><span class="n">also</span><span class="w"> </span><span class="n">has</span><span class="w"> </span><span class="n">an</span><span class="w"> </span><span class="n">associated</span><span class="w"> </span><span class="nc">binary</span><span class="w"> </span><span class="k">file</span><span class="w"> </span><span class="n">that</span><span class="w"> </span><span class="n">can</span><span class="w"></span>
+<span class="w">  </span><span class="n">be</span><span class="w"> </span><span class="k">read</span><span class="o">/</span><span class="n">written</span><span class="p">.</span><span class="w"> </span><span class="n">The</span><span class="w"> </span><span class="k">search</span><span class="w"> </span><span class="n">capabilities</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="n">DUMBJSONDB</span><span class="w"> </span><span class="k">are</span><span class="w"> </span><span class="n">very</span><span class="w"> </span><span class="n">rudimentory</span><span class="p">,</span><span class="w"> </span><span class="ow">and</span><span class="w"> </span><span class="k">every</span><span class="w"></span>
+<span class="w">  </span><span class="n">document</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="k">read</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">examination</span><span class="p">.</span><span class="w"> </span><span class="n">Therefore</span><span class="p">,</span><span class="w"> </span><span class="n">searching</span><span class="w"> </span><span class="n">DUMBJSONDB</span><span class="w"> </span><span class="n">will</span><span class="w"> </span><span class="n">be</span><span class="w"> </span><span class="n">very</span><span class="w"> </span><span class="n">slow</span><span class="p">.</span><span class="w"></span>
+<span class="w">  </span><span class="n">Furthermore</span><span class="p">,</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="ow">all</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">documents</span><span class="w"> </span><span class="k">are</span><span class="w"> </span><span class="n">stored</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">single</span><span class="w"> </span><span class="n">directory</span><span class="p">,</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="k">database</span><span class="w"> </span><span class="k">size</span><span class="w"></span>
+<span class="w">  </span><span class="n">will</span><span class="w"> </span><span class="n">be</span><span class="w"> </span><span class="n">limited</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">number</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="n">files</span><span class="w"> </span><span class="n">that</span><span class="w"> </span><span class="k">are</span><span class="w"> </span><span class="n">permitted</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">single</span><span class="w"> </span><span class="n">directory</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">the</span><span class="w"></span>
+<span class="w">  </span><span class="k">file</span><span class="w"> </span><span class="k">system</span><span class="w"> </span><span class="n">divided</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="p">(</span><span class="n">there</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="p">.</span><span class="n">JSON</span><span class="w"> </span><span class="k">file</span><span class="p">,</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="nc">binary</span><span class="w"> </span><span class="k">file</span><span class="p">,</span><span class="w"> </span><span class="ow">and</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">metadata</span><span class="w"> </span><span class="k">file</span><span class="w"> </span><span class="k">for</span><span class="w"></span>
+<span class="w">  </span><span class="k">each</span><span class="w"> </span><span class="n">document</span><span class="p">).</span><span class="w"> </span>
 
-<span class="w">  </span><span class="o">%</span><span class="w"> </span><span class="k">search</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">document</span><span class="w"></span>
-<span class="w">  </span><span class="o">[</span><span class="n">docs,doc_versions</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">db</span><span class="p">.</span><span class="k">search</span><span class="p">(</span><span class="err">{}</span><span class="p">,</span><span class="err">{</span><span class="s1">&#39;value&#39;</span><span class="p">,</span><span class="mi">5</span><span class="err">}</span><span class="p">)</span><span class="w"></span>
-<span class="w">  </span><span class="o">%</span><span class="w"> </span><span class="k">search</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">document</span><span class="w"> </span><span class="n">that</span><span class="w"> </span><span class="n">doesn</span><span class="s1">&#39;t exist because &#39;</span><span class="mi">5</span><span class="s1">&#39; is a string</span>
-<span class="s1">  [docs,doc_versions] = db.search({},{&#39;</span><span class="k">value</span><span class="s1">&#39;,&#39;</span><span class="mi">5</span><span class="s1">&#39;})</span>
-<span class="s1">  % use the struct version of search</span>
-<span class="s1">  [docs,doc_versions] = db.search({},struct(&#39;</span><span class="n">field</span><span class="s1">&#39;,&#39;</span><span class="k">value</span><span class="s1">&#39;,&#39;</span><span class="k">operation</span><span class="s1">&#39;,&#39;</span><span class="n">greaterthan</span><span class="s1">&#39;,&#39;</span><span class="n">param1</span><span class="s1">&#39;,1,&#39;</span><span class="n">param2</span><span class="s1">&#39;,[]))</span>
+<span class="w">  </span><span class="nl">Example</span><span class="p">:</span><span class="w"> </span><span class="k">Create</span><span class="w"> </span><span class="ow">and</span><span class="w"> </span><span class="n">test</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">DUMBJSONDB</span><span class="w"> </span><span class="k">object</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="k">current</span><span class="w"> </span><span class="n">directory</span><span class="p">.</span><span class="w"></span>
+<span class="w">      </span><span class="o">%</span><span class="w"> </span><span class="k">create</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">db</span><span class="w"></span>
+<span class="w">      </span><span class="n">db</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">vlt</span><span class="p">.</span><span class="k">file</span><span class="p">.</span><span class="n">dumbjsondb</span><span class="p">(</span><span class="s1">&#39;new&#39;</span><span class="p">,</span><span class="o">[</span><span class="n">pwd filesep &#39;mydb.json&#39;</span><span class="o">]</span><span class="p">);</span><span class="w"></span>
 
-<span class="s1">  % remove an entry</span>
-<span class="s1">  db.remove(2002);</span>
+<span class="w">      </span><span class="o">%</span><span class="w"> </span><span class="k">add</span><span class="w"> </span><span class="ow">some</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">entries</span><span class="w"></span>
+<span class="w">      </span><span class="k">for</span><span class="w"> </span><span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="err">:</span><span class="mi">5</span><span class="p">,</span><span class="w"></span>
+<span class="w">          </span><span class="n">a</span><span class="p">.</span><span class="n">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2000</span><span class="o">+</span><span class="n">i</span><span class="p">;</span><span class="w"></span>
+<span class="w">          </span><span class="n">a</span><span class="p">.</span><span class="k">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">i</span><span class="p">;</span><span class="w"></span>
+<span class="w">          </span><span class="n">db</span><span class="p">.</span><span class="k">add</span><span class="p">(</span><span class="n">a</span><span class="p">);</span><span class="w"></span>
+<span class="w">      </span><span class="k">end</span><span class="p">;</span><span class="w"></span>
 
-<span class="s1">  % update 2005 to new version, saving old version</span>
-<span class="s1">  a.value = 20;</span>
-<span class="s1">  db.add(a,&#39;</span><span class="n">Overwrite</span><span class="s1">&#39;,2); % will automatically update version number</span>
+<span class="w">      </span><span class="o">%</span><span class="w"> </span><span class="k">read</span><span class="w"> </span><span class="n">latest</span><span class="w"> </span><span class="n">version</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="ow">all</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">entries</span><span class="w"></span>
+<span class="w">      </span><span class="n">ids</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">db</span><span class="p">.</span><span class="n">alldocids</span><span class="p">;</span><span class="w"></span>
+<span class="w">      </span><span class="k">for</span><span class="w"> </span><span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="err">:</span><span class="n">numel</span><span class="p">(</span><span class="n">ids</span><span class="p">),</span><span class="w"> </span>
+<span class="w">           </span><span class="n">db</span><span class="p">.</span><span class="k">read</span><span class="p">(</span><span class="n">ids</span><span class="err">{</span><span class="n">i</span><span class="err">}</span><span class="p">),</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="n">display</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">entry</span><span class="w"></span>
+<span class="w">      </span><span class="k">end</span><span class="w"></span>
 
-<span class="s1">  % read first and latest version of all the entries</span>
-<span class="s1">  ids = db.alldocids;</span>
-<span class="s1">  for i=1:numel(ids), </span>
-<span class="s1">       disp([&#39;</span><span class="mi">0</span><span class="n">th</span><span class="w"> </span><span class="nl">version</span><span class="p">:</span><span class="s1">&#39;]);</span>
-<span class="s1">       db.read(ids{i},0), % display the 0th version</span>
-<span class="s1">       disp([&#39;</span><span class="n">Latest</span><span class="w"> </span><span class="nl">version</span><span class="p">:</span><span class="s1">&#39;]);</span>
-<span class="s1">       db.read(ids{i}), % display the entry</span>
-<span class="s1">  end</span>
+<span class="w">      </span><span class="o">%</span><span class="w"> </span><span class="k">search</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">document</span><span class="w"></span>
+<span class="w">      </span><span class="o">[</span><span class="n">docs,doc_versions</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">db</span><span class="p">.</span><span class="k">search</span><span class="p">(</span><span class="err">{}</span><span class="p">,</span><span class="err">{</span><span class="s1">&#39;value&#39;</span><span class="p">,</span><span class="mi">5</span><span class="err">}</span><span class="p">)</span><span class="w"></span>
+<span class="w">      </span><span class="o">%</span><span class="w"> </span><span class="k">search</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">document</span><span class="w"> </span><span class="n">that</span><span class="w"> </span><span class="n">doesn</span><span class="s1">&#39;t exist because &#39;</span><span class="mi">5</span><span class="s1">&#39; is a string</span>
+<span class="s1">      [docs,doc_versions] = db.search({},{&#39;</span><span class="k">value</span><span class="s1">&#39;,&#39;</span><span class="mi">5</span><span class="s1">&#39;})</span>
+<span class="s1">      % use the struct version of search</span>
+<span class="s1">      [docs,doc_versions] = db.search({},struct(&#39;</span><span class="n">field</span><span class="s1">&#39;,&#39;</span><span class="k">value</span><span class="s1">&#39;,&#39;</span><span class="k">operation</span><span class="s1">&#39;,&#39;</span><span class="n">greaterthan</span><span class="s1">&#39;,&#39;</span><span class="n">param1</span><span class="s1">&#39;,1,&#39;</span><span class="n">param2</span><span class="s1">&#39;,[]))</span>
 
-<span class="s1">  % add binary information to binary file</span>
-<span class="s1">  [fid,key] = db.openbinaryfile(2005);</span>
-<span class="s1">  if fid&gt;0,</span>
-<span class="s1">       fwrite(fid,&#39;</span><span class="n">this</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">test</span><span class="s1">&#39;,&#39;</span><span class="nc">char</span><span class="s1">&#39;);</span>
-<span class="s1">       [fid] = db.closebinaryfile(fid, key, 2005);</span>
-<span class="s1">  end</span>
-<span class="s1">  % read the binary file</span>
-<span class="s1">  [fid, key] = db.openbinaryfile(2005);</span>
-<span class="s1">  if fid&gt;0,</span>
-<span class="s1">       fseek(fid,0,&#39;</span><span class="n">bof</span><span class="s1">&#39;); % go to beginning of file</span>
-<span class="s1">       output=char(fread(fid,14,&#39;</span><span class="nc">char</span><span class="s1">&#39;))&#39;</span><span class="p">,</span><span class="w"></span>
-<span class="w">       </span><span class="o">[</span><span class="n">fid</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">db</span><span class="p">.</span><span class="n">closebinaryfile</span><span class="p">(</span><span class="n">fid</span><span class="p">,</span><span class="w"> </span><span class="k">key</span><span class="p">,</span><span class="w"> </span><span class="mi">2005</span><span class="p">);</span><span class="w"></span>
-<span class="w">  </span><span class="k">end</span><span class="w"></span>
+<span class="s1">      % remove an entry</span>
+<span class="s1">      db.remove(2002);</span>
 
-<span class="w">  </span><span class="o">%</span><span class="w"> </span><span class="n">remove</span><span class="w"> </span><span class="ow">all</span><span class="w"> </span><span class="n">entries</span><span class="w"></span>
-<span class="w">  </span><span class="n">db</span><span class="p">.</span><span class="n">clear</span><span class="p">(</span><span class="s1">&#39;Yes&#39;</span><span class="p">);</span><span class="w"></span>
+<span class="s1">      % update 2005 to new version, saving old version</span>
+<span class="s1">      a.value = 20;</span>
+<span class="s1">      db.add(a,&#39;</span><span class="n">Overwrite</span><span class="s1">&#39;,2); % will automatically update version number</span>
+
+<span class="s1">      % read first and latest version of all the entries</span>
+<span class="s1">      ids = db.alldocids;</span>
+<span class="s1">      for i=1:numel(ids), </span>
+<span class="s1">           disp([&#39;</span><span class="mi">0</span><span class="n">th</span><span class="w"> </span><span class="nl">version</span><span class="p">:</span><span class="s1">&#39;]);</span>
+<span class="s1">           db.read(ids{i},0), % display the 0th version</span>
+<span class="s1">           disp([&#39;</span><span class="n">Latest</span><span class="w"> </span><span class="nl">version</span><span class="p">:</span><span class="s1">&#39;]);</span>
+<span class="s1">           db.read(ids{i}), % display the entry</span>
+<span class="s1">      end</span>
+
+<span class="s1">      % add binary information to binary file</span>
+<span class="s1">      [fid,key] = db.openbinaryfile(2005);</span>
+<span class="s1">      if fid&gt;0,</span>
+<span class="s1">           fwrite(fid,&#39;</span><span class="n">this</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">test</span><span class="s1">&#39;,&#39;</span><span class="nc">char</span><span class="s1">&#39;);</span>
+<span class="s1">           [fid] = db.closebinaryfile(fid, key, 2005);</span>
+<span class="s1">      end</span>
+<span class="s1">      % read the binary file</span>
+<span class="s1">      [fid, key] = db.openbinaryfile(2005);</span>
+<span class="s1">      if fid&gt;0,</span>
+<span class="s1">           fseek(fid,0,&#39;</span><span class="n">bof</span><span class="s1">&#39;); % go to beginning of file</span>
+<span class="s1">           output=char(fread(fid,14,&#39;</span><span class="nc">char</span><span class="s1">&#39;))&#39;</span><span class="p">,</span><span class="w"></span>
+<span class="w">           </span><span class="o">[</span><span class="n">fid</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">db</span><span class="p">.</span><span class="n">closebinaryfile</span><span class="p">(</span><span class="n">fid</span><span class="p">,</span><span class="w"> </span><span class="k">key</span><span class="p">,</span><span class="w"> </span><span class="mi">2005</span><span class="p">);</span><span class="w"></span>
+<span class="w">      </span><span class="k">end</span><span class="w"></span>
+
+<span class="w">      </span><span class="o">%</span><span class="w"> </span><span class="n">remove</span><span class="w"> </span><span class="ow">all</span><span class="w"> </span><span class="n">entries</span><span class="w"></span>
+<span class="w">      </span><span class="n">db</span><span class="p">.</span><span class="n">clear</span><span class="p">(</span><span class="s1">&#39;Yes&#39;</span><span class="p">);</span><span class="w"></span>
 </code></pre></div>
 
 <h2 id="superclasses">Superclasses<a class="headerlink" href="#superclasses" title="Permanent link">&para;</a></h2>
@@ -9488,146 +9503,215 @@
 </table>
 <h3 id="methods-help">Methods help<a class="headerlink" href="#methods-help" title="Permanent link">&para;</a></h3>
 <p><strong>add</strong> - <em>add a document to a DUMBJSONDB</em></p>
-<p>DUMBJSONDB_OBJ = ADD(DUMBJSONDB_OBJ, DOC_OBJECT, ....)</p>
-<p>Add a document to the database DUMBJSONDB_OBJ.</p>
-<p>DOC_OBJECT should be a Matlab object. It will be encoded to a JSON
-  representation and saved.</p>
-<p>This function also accepts name/value pairs that modify the adding behavior:
-  Parameter (default)           | Description</p>
-<hr />
-<p>'Overwrite' (1)               | Use 1 to overwrite current version
-                                |   0 to return an error instead of overwriting
-                                |   2 to add the document as a new version
-  'doc_version' (latest)        | Use a specific number to write a specific version</p>
-<p>See also: DUMBJSONDB, DUMBJSONDB/READ, DUMBJSONDB/REMOVE, DUMBJSONDB/DOCVERSIONS, DUMBJSONDB/ALLDOCIDS</p>
+<div class="codehilite"><pre><span></span><code><span class="nv">DUMBJSONDB_OBJ</span> <span class="o">=</span> <span class="nv">ADD</span><span class="ss">(</span><span class="nv">DUMBJSONDB_OBJ</span>, <span class="nv">DOC_OBJECT</span>, ....<span class="ss">)</span>
+
+  <span class="nv">Add</span> <span class="nv">a</span> <span class="nv">document</span> <span class="nv">to</span> <span class="nv">the</span> <span class="nv">database</span> <span class="nv">DUMBJSONDB_OBJ</span>.
+
+  <span class="nv">DOC_OBJECT</span> <span class="nv">should</span> <span class="nv">be</span> <span class="nv">a</span> <span class="nv">Matlab</span> <span class="nv">object</span>. <span class="nv">It</span> <span class="nv">will</span> <span class="nv">be</span> <span class="nv">encoded</span> <span class="nv">to</span> <span class="nv">a</span> <span class="nv">JSON</span>
+  <span class="nv">representation</span> <span class="nv">and</span> <span class="nv">saved</span>.
+
+  <span class="nv">This</span> <span class="nv">function</span> <span class="nv">also</span> <span class="nv">accepts</span> <span class="nv">name</span><span class="o">/</span><span class="nv">value</span> <span class="nv">pairs</span> <span class="nv">that</span> <span class="nv">modify</span> <span class="nv">the</span> <span class="nv">adding</span> <span class="nv">behavior</span>:
+  <span class="nv">Parameter</span> <span class="ss">(</span><span class="nv">default</span><span class="ss">)</span>           <span class="o">|</span> <span class="nv">Description</span>
+  <span class="o">---------------------------------------------------------------------------</span>
+  <span class="s1">&#39;</span><span class="s">Overwrite</span><span class="s1">&#39;</span> <span class="ss">(</span><span class="mi">1</span><span class="ss">)</span>               <span class="o">|</span> <span class="nv">Use</span> <span class="mi">1</span> <span class="nv">to</span> <span class="nv">overwrite</span> <span class="nv">current</span> <span class="nv">version</span>
+                                <span class="o">|</span>   <span class="mi">0</span> <span class="nv">to</span> <span class="k">return</span> <span class="nv">an</span> <span class="nv">error</span> <span class="nv">instead</span> <span class="nv">of</span> <span class="nv">overwriting</span>
+                                <span class="o">|</span>   <span class="mi">2</span> <span class="nv">to</span> <span class="nv">add</span> <span class="nv">the</span> <span class="nv">document</span> <span class="nv">as</span> <span class="nv">a</span> <span class="nv">new</span> <span class="nv">version</span>
+  <span class="s1">&#39;</span><span class="s">doc_version</span><span class="s1">&#39;</span> <span class="ss">(</span><span class="nv">latest</span><span class="ss">)</span>        <span class="o">|</span> <span class="nv">Use</span> <span class="nv">a</span> <span class="nv">specific</span> <span class="nv">number</span> <span class="nv">to</span> <span class="nv">write</span> <span class="nv">a</span> <span class="nv">specific</span> <span class="nv">version</span>
+
+  <span class="nv">See</span> <span class="nv">also</span>: <span class="nv">DUMBJSONDB</span>, <span class="nv">DUMBJSONDB</span><span class="o">/</span><span class="nv">READ</span>, <span class="nv">DUMBJSONDB</span><span class="o">/</span><span class="nv">REMOVE</span>, <span class="nv">DUMBJSONDB</span><span class="o">/</span><span class="nv">DOCVERSIONS</span>, <span class="nv">DUMBJSONDB</span><span class="o">/</span><span class="nv">ALLDOCIDS</span>
+</code></pre></div>
+
 <hr />
 <p><strong>alldocids</strong> - <em>return all doc unique id numbers for a DUMBJSONDB</em></p>
-<p>DOC_UNIQUE_ID = ALLDOCIDS(DUMBJSONDB_OBJ)</p>
-<p>Return a cell array of all document unique ID(s) (char strings) for the
-  DUMBJSONDB object DUMBJSONDB_OBJ.</p>
+<div class="codehilite"><pre><span></span><code><span class="nv">DOC_UNIQUE_ID</span> <span class="o">=</span> <span class="nv">ALLDOCIDS</span><span class="ss">(</span><span class="nv">DUMBJSONDB_OBJ</span><span class="ss">)</span>
+
+  <span class="k">Return</span> <span class="nv">a</span> <span class="nv">cell</span> <span class="nv">array</span> <span class="nv">of</span> <span class="nv">all</span> <span class="nv">document</span> <span class="nv">unique</span> <span class="nv">ID</span><span class="ss">(</span><span class="nv">s</span><span class="ss">)</span> <span class="ss">(</span><span class="nv">char</span> <span class="nv">strings</span><span class="ss">)</span> <span class="k">for</span> <span class="nv">the</span>
+  <span class="nv">DUMBJSONDB</span> <span class="nv">object</span> <span class="nv">DUMBJSONDB_OBJ</span>.
+</code></pre></div>
+
 <hr />
 <p><strong>clear</strong> - <em>remove/delete all records from a DUBMJSONDB</em></p>
-<p>CLEAR(DUMBJSONDB_OBJ, [AREYOUSURE])</p>
-<p>Removes all documents from the DUMBJSONDB object.</p>
-<p>Use with care. If AREYOUSURE is 'yes' then the
-  function will proceed. Otherwise, it will not.</p>
-<p>See also: DUMBJSONDB/REMOVE</p>
+<div class="codehilite"><pre><span></span><code><span class="n">CLEAR</span><span class="p">(</span><span class="n">DUMBJSONDB_OBJ</span><span class="p">,</span><span class="w"> </span><span class="o">[</span><span class="n">AREYOUSURE</span><span class="o">]</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">  </span><span class="n">Removes</span><span class="w"> </span><span class="ow">all</span><span class="w"> </span><span class="n">documents</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">DUMBJSONDB</span><span class="w"> </span><span class="k">object</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">  </span><span class="k">Use</span><span class="w"> </span><span class="k">with</span><span class="w"> </span><span class="n">care</span><span class="p">.</span><span class="w"> </span><span class="k">If</span><span class="w"> </span><span class="n">AREYOUSURE</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="s1">&#39;yes&#39;</span><span class="w"> </span><span class="k">then</span><span class="w"> </span><span class="n">the</span><span class="w"></span>
+<span class="w">  </span><span class="k">function</span><span class="w"> </span><span class="n">will</span><span class="w"> </span><span class="n">proceed</span><span class="p">.</span><span class="w"> </span><span class="n">Otherwise</span><span class="p">,</span><span class="w"> </span><span class="n">it</span><span class="w"> </span><span class="n">will</span><span class="w"> </span><span class="ow">not</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">  </span><span class="n">See</span><span class="w"> </span><span class="nl">also</span><span class="p">:</span><span class="w"> </span><span class="n">DUMBJSONDB</span><span class="o">/</span><span class="n">REMOVE</span><span class="w"></span>
+</code></pre></div>
+
 <hr />
 <p><strong>closebinaryfile</strong> - <em>close and unlock the binary file associated with a DUMBJSONDB document</em></p>
-<p>[FID] = CLOSEBINARYFILE(DUMBJSONDB_OBJ, FID, KEY, DOC_UNIQUE_ID, [DOC_VERSION])</p>
-<p>Closes the binary file associated with DUMBJSONDB that has file identifier FID,
-  DOC_UNIQUE_ID and DOC_VERSION. If DOC_VERSION is not provided, the lastest will be used.
-  This function closes the file and deletes the lock file. KEY is the key that is returned
-  by OPENBINARYFILE, and is needed to release the lock on the binary file.</p>
-<p>FID is set to -1 on exit.</p>
-<p>See also: DUMBJSONDB/OPENBINARYFILE, CHECKOUT_LOCK_FILE</p>
-<p>if the file is open, close it</p>
+<div class="codehilite"><pre><span></span><code><span class="o">[</span><span class="n">FID</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">CLOSEBINARYFILE</span><span class="p">(</span><span class="n">DUMBJSONDB_OBJ</span><span class="p">,</span><span class="w"> </span><span class="n">FID</span><span class="p">,</span><span class="w"> </span><span class="k">KEY</span><span class="p">,</span><span class="w"> </span><span class="n">DOC_UNIQUE_ID</span><span class="p">,</span><span class="w"> </span><span class="o">[</span><span class="n">DOC_VERSION</span><span class="o">]</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">  </span><span class="n">Closes</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="nc">binary</span><span class="w"> </span><span class="k">file</span><span class="w"> </span><span class="n">associated</span><span class="w"> </span><span class="k">with</span><span class="w"> </span><span class="n">DUMBJSONDB</span><span class="w"> </span><span class="n">that</span><span class="w"> </span><span class="n">has</span><span class="w"> </span><span class="k">file</span><span class="w"> </span><span class="n">identifier</span><span class="w"> </span><span class="n">FID</span><span class="p">,</span><span class="w"></span>
+<span class="w">  </span><span class="n">DOC_UNIQUE_ID</span><span class="w"> </span><span class="ow">and</span><span class="w"> </span><span class="n">DOC_VERSION</span><span class="p">.</span><span class="w"> </span><span class="k">If</span><span class="w"> </span><span class="n">DOC_VERSION</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="ow">not</span><span class="w"> </span><span class="n">provided</span><span class="p">,</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">lastest</span><span class="w"> </span><span class="n">will</span><span class="w"> </span><span class="n">be</span><span class="w"> </span><span class="n">used</span><span class="p">.</span><span class="w"></span>
+<span class="w">  </span><span class="n">This</span><span class="w"> </span><span class="k">function</span><span class="w"> </span><span class="n">closes</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="k">file</span><span class="w"> </span><span class="ow">and</span><span class="w"> </span><span class="n">deletes</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">lock</span><span class="w"> </span><span class="k">file</span><span class="p">.</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="k">key</span><span class="w"> </span><span class="n">that</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="n">returned</span><span class="w"></span>
+<span class="w">  </span><span class="k">by</span><span class="w"> </span><span class="n">OPENBINARYFILE</span><span class="p">,</span><span class="w"> </span><span class="ow">and</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="n">needed</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="k">release</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">lock</span><span class="w"> </span><span class="k">on</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="nc">binary</span><span class="w"> </span><span class="k">file</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">  </span><span class="n">FID</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="o">-</span><span class="mi">1</span><span class="w"> </span><span class="k">on</span><span class="w"> </span><span class="k">exit</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">  </span><span class="n">See</span><span class="w"> </span><span class="nl">also</span><span class="p">:</span><span class="w"> </span><span class="n">DUMBJSONDB</span><span class="o">/</span><span class="n">OPENBINARYFILE</span><span class="p">,</span><span class="w"> </span><span class="n">CHECKOUT_LOCK_FILE</span><span class="w"></span>
+
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="k">file</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="k">open</span><span class="p">,</span><span class="w"> </span><span class="k">close</span><span class="w"> </span><span class="n">it</span><span class="w"></span>
+</code></pre></div>
+
 <hr />
 <p><strong>docstats</strong> - <em>document stats including document version and whether or not the document has a binary file</em></p>
-<p>[DOC_UNIQUE_ID, DOCBINARYFILE] = DOCSTATS(DUMBJSONDB_OBJ, DOCUMENT_OBJ)</p>
-<p>Returns several pieces of information about the Matlab structure/object DOCUMENT_OBJ:</p>
-<p>DOC_UNIQUE_ID is the document unique id (specified in the property 'document_unique_id' of
-       DUMBJSONDB_OBJ).
-  DOCBINARYFILE is 1 if and only if DOC has the field specified in property 'hasbinaryfilefield'
-       and the value is 1; otherwise DOCBINARYFILE is 0.</p>
+<div class="codehilite"><pre><span></span><code><span class="cp">[</span><span class="nx">DOC_UNIQUE_ID</span><span class="p">,</span> <span class="nx">DOCBINARYFILE</span><span class="cp">]</span> <span class="o">=</span> <span class="nt">DOCSTATS</span><span class="o">(</span><span class="nt">DUMBJSONDB_OBJ</span><span class="o">,</span> <span class="nt">DOCUMENT_OBJ</span><span class="o">)</span>
+
+  <span class="nt">Returns</span> <span class="nt">several</span> <span class="nt">pieces</span> <span class="nt">of</span> <span class="nt">information</span> <span class="nt">about</span> <span class="nt">the</span> <span class="nt">Matlab</span> <span class="nt">structure</span><span class="o">/</span><span class="nt">object</span> <span class="nt">DOCUMENT_OBJ</span><span class="o">:</span>
+
+  <span class="nt">DOC_UNIQUE_ID</span> <span class="nt">is</span> <span class="nt">the</span> <span class="nt">document</span> <span class="nt">unique</span> <span class="nt">id</span> <span class="o">(</span><span class="nt">specified</span> <span class="nt">in</span> <span class="nt">the</span> <span class="nt">property</span> <span class="s1">&#39;document_unique_id&#39;</span> <span class="nt">of</span>
+       <span class="nt">DUMBJSONDB_OBJ</span><span class="o">).</span>
+  <span class="nt">DOCBINARYFILE</span> <span class="nt">is</span> <span class="nt">1</span> <span class="nt">if</span> <span class="nt">and</span> <span class="nt">only</span> <span class="nt">if</span> <span class="nt">DOC</span> <span class="nt">has</span> <span class="nt">the</span> <span class="nt">field</span> <span class="nt">specified</span> <span class="nt">in</span> <span class="nt">property</span> <span class="s1">&#39;hasbinaryfilefield&#39;</span>
+       <span class="nt">and</span> <span class="nt">the</span> <span class="nt">value</span> <span class="nt">is</span> <span class="nt">1</span><span class="o">;</span> <span class="nt">otherwise</span> <span class="nt">DOCBINARYFILE</span> <span class="nt">is</span> <span class="nt">0</span><span class="o">.</span>
+</code></pre></div>
+
 <hr />
 <p><strong>docversions</strong> - <em>find all document versions for a DUMBJSONDB</em></p>
-<p>V = DOCVERSIONS(DUMBJSONDB_OBJ, DOC_UNIQUE_ID)</p>
-<p>Return all version numbers for a given DUMBJSONDB and a
-  DOC_UNIQUE_ID.</p>
-<p>Documents without version control that exist have version 0.</p>
-<p>V will be an array of integers with all version numbers. If there are no
-  documents that match DOC_UNIQUE_ID, then empty is returned.</p>
+<div class="codehilite"><pre><span></span><code><span class="nv">V</span> <span class="o">=</span> <span class="nv">DOCVERSIONS</span><span class="ss">(</span><span class="nv">DUMBJSONDB_OBJ</span>, <span class="nv">DOC_UNIQUE_ID</span><span class="ss">)</span>
+
+  <span class="k">Return</span> <span class="nv">all</span> <span class="nv">version</span> <span class="nv">numbers</span> <span class="k">for</span> <span class="nv">a</span> <span class="nv">given</span> <span class="nv">DUMBJSONDB</span> <span class="nv">and</span> <span class="nv">a</span>
+  <span class="nv">DOC_UNIQUE_ID</span>.
+
+  <span class="nv">Documents</span> <span class="nv">without</span> <span class="nv">version</span> <span class="nv">control</span> <span class="nv">that</span> <span class="nv">exist</span> <span class="nv">have</span> <span class="nv">version</span> <span class="mi">0</span>.
+
+  <span class="nv">V</span> <span class="nv">will</span> <span class="nv">be</span> <span class="nv">an</span> <span class="nv">array</span> <span class="nv">of</span> <span class="nv">integers</span> <span class="nv">with</span> <span class="nv">all</span> <span class="nv">version</span> <span class="nv">numbers</span>. <span class="k">If</span> <span class="nv">there</span> <span class="nv">are</span> <span class="nv">no</span>
+  <span class="nv">documents</span> <span class="nv">that</span> <span class="nv">match</span> <span class="nv">DOC_UNIQUE_ID</span>, <span class="k">then</span> <span class="nv">empty</span> <span class="nv">is</span> <span class="nv">returned</span>.
+</code></pre></div>
+
 <hr />
 <p><strong>dumbjsondb</strong> - <em>create a DUMBJSONDB object</em></p>
-<p>DUMBJSONDB_OBJ = DUMBJSONDB(COMMAND, ...)</p>
-<p>Create a DUMBJSONDB object via one of several routes.</p>
-<p>COMMAND options            | Description</p>
-<hr />
-<p>'Load'                     | Second argument should be full path filename of the saved parameter file
-  'New'                      | Second argument should be full path filename of the saved parameter file, 
-  (None)                     | Creates an empty object.</p>
-<p>This file also accepts additional name/value pairs for arguments 3..end. 
-  Parameter (default)           | Description</p>
-<hr />
-<p>dirname ('.dumbjsondb')       | The directory name, relative to the parameter file
-  unique_object_id_field ('id') | The field name in the database for the unique object identifier </p>
-<p>See also: DUMBJSONDB, DUMBJSONDB/READ, DUMBJSONDB/REMOVE, DUMBJSONDB/DOCVERSIONS, DUMBJSONDB/ALLDOCIDS</p>
+<div class="codehilite"><pre><span></span><code><span class="nv">DUMBJSONDB_OBJ</span> <span class="o">=</span> <span class="nv">DUMBJSONDB</span><span class="ss">(</span><span class="nv">COMMAND</span>, ...<span class="ss">)</span>
+
+  <span class="nv">Create</span> <span class="nv">a</span> <span class="nv">DUMBJSONDB</span> <span class="nv">object</span> <span class="nv">via</span> <span class="nv">one</span> <span class="nv">of</span> <span class="nv">several</span> <span class="nv">routes</span>.
+
+  <span class="nv">COMMAND</span> <span class="nv">options</span>            <span class="o">|</span> <span class="nv">Description</span>
+  <span class="o">----------------------------------------------------------------------------------------</span>
+  <span class="s1">&#39;</span><span class="s">Load</span><span class="s1">&#39;</span>                     <span class="o">|</span> <span class="nv">Second</span> <span class="nv">argument</span> <span class="nv">should</span> <span class="nv">be</span> <span class="nv">full</span> <span class="nv">path</span> <span class="nv">filename</span> <span class="nv">of</span> <span class="nv">the</span> <span class="nv">saved</span> <span class="nv">parameter</span> <span class="nv">file</span>
+  <span class="s1">&#39;</span><span class="s">New</span><span class="s1">&#39;</span>                      <span class="o">|</span> <span class="nv">Second</span> <span class="nv">argument</span> <span class="nv">should</span> <span class="nv">be</span> <span class="nv">full</span> <span class="nv">path</span> <span class="nv">filename</span> <span class="nv">of</span> <span class="nv">the</span> <span class="nv">saved</span> <span class="nv">parameter</span> <span class="nv">file</span>, 
+  <span class="ss">(</span><span class="nv">None</span><span class="ss">)</span>                     <span class="o">|</span> <span class="nv">Creates</span> <span class="nv">an</span> <span class="nv">empty</span> <span class="nv">object</span>.
+
+  <span class="nv">This</span> <span class="nv">file</span> <span class="nv">also</span> <span class="nv">accepts</span> <span class="nv">additional</span> <span class="nv">name</span><span class="o">/</span><span class="nv">value</span> <span class="nv">pairs</span> <span class="k">for</span> <span class="nv">arguments</span> <span class="mi">3</span>..<span class="k">end</span>. 
+  <span class="nv">Parameter</span> <span class="ss">(</span><span class="nv">default</span><span class="ss">)</span>           <span class="o">|</span> <span class="nv">Description</span>
+  <span class="o">----------------------------------------------------------------------------------------</span>
+  <span class="k">dirname</span> <span class="ss">(</span><span class="s1">&#39;</span><span class="s">.dumbjsondb</span><span class="s1">&#39;</span><span class="ss">)</span>       <span class="o">|</span> <span class="nv">The</span> <span class="nv">directory</span> <span class="nv">name</span>, <span class="nv">relative</span> <span class="nv">to</span> <span class="nv">the</span> <span class="nv">parameter</span> <span class="nv">file</span>
+  <span class="nv">unique_object_id_field</span> <span class="ss">(</span><span class="s1">&#39;</span><span class="s">id</span><span class="s1">&#39;</span><span class="ss">)</span> <span class="o">|</span> <span class="nv">The</span> <span class="nv">field</span> <span class="nv">name</span> <span class="nv">in</span> <span class="nv">the</span> <span class="nv">database</span> <span class="k">for</span> <span class="nv">the</span> <span class="nv">unique</span> <span class="nv">object</span> <span class="nv">identifier</span> 
+
+  <span class="nv">See</span> <span class="nv">also</span>: <span class="nv">DUMBJSONDB</span>, <span class="nv">DUMBJSONDB</span><span class="o">/</span><span class="nv">READ</span>, <span class="nv">DUMBJSONDB</span><span class="o">/</span><span class="nv">REMOVE</span>, <span class="nv">DUMBJSONDB</span><span class="o">/</span><span class="nv">DOCVERSIONS</span>, <span class="nv">DUMBJSONDB</span><span class="o">/</span><span class="nv">ALLDOCIDS</span>
+</code></pre></div>
+
 <hr />
 <p><strong>latestdocversion</strong> - <em>return most recent documnet version number</em></p>
-<p>[L, V] = LATESTDOCVERSION(DUMBJSONDB_OBJ, DOC_UNIQUE_ID)</p>
-<p>Return the latest version (L) of the document with the document unique ID equal to 
-  DOC_UNIQUE_ID. A full array of available version numbers V is also returned.
-  If there are no versions, L is empty.</p>
-<p>See also: DUMBJSONDB/DOCVERSIONS</p>
+<div class="codehilite"><pre><span></span><code>[<span class="nv">L</span>, <span class="nv">V</span>] <span class="o">=</span> <span class="nv">LATESTDOCVERSION</span><span class="ss">(</span><span class="nv">DUMBJSONDB_OBJ</span>, <span class="nv">DOC_UNIQUE_ID</span><span class="ss">)</span>
+
+  <span class="k">Return</span> <span class="nv">the</span> <span class="nv">latest</span> <span class="nv">version</span> <span class="ss">(</span><span class="nv">L</span><span class="ss">)</span> <span class="nv">of</span> <span class="nv">the</span> <span class="nv">document</span> <span class="nv">with</span> <span class="nv">the</span> <span class="nv">document</span> <span class="nv">unique</span> <span class="nv">ID</span> <span class="nv">equal</span> <span class="nv">to</span> 
+  <span class="nv">DOC_UNIQUE_ID</span>. <span class="nv">A</span> <span class="nv">full</span> <span class="nv">array</span> <span class="nv">of</span> <span class="nv">available</span> <span class="nv">version</span> <span class="nv">numbers</span> <span class="nv">V</span> <span class="nv">is</span> <span class="nv">also</span> <span class="nv">returned</span>.
+  <span class="k">If</span> <span class="nv">there</span> <span class="nv">are</span> <span class="nv">no</span> <span class="nv">versions</span>, <span class="nv">L</span> <span class="nv">is</span> <span class="nv">empty</span>.
+
+  <span class="nv">See</span> <span class="nv">also</span>: <span class="nv">DUMBJSONDB</span><span class="o">/</span><span class="nv">DOCVERSIONS</span>
+</code></pre></div>
+
 <hr />
 <p><strong>openbinaryfile</strong> - <em>return the FID for the binary file associated with a DUMBJSONDB document</em></p>
-<p>[FID, KEY, DOC_VERSION] = OPENBINARYFILE(DUMBJSONDB_OBJ, DOC_UNIQUE_ID[, DOC_VERSION])</p>
-<p>Attempts to obtain the lock and open the binary file associated with
-  DOC_UNIQUE_ID and DOC_VERSION for reading/writing. If DOC_VERSION is not present,
-  then the lastest version is used. All the binary files are in 'big-endian' format and 
-  are opened as such by OPENBINARYFILE. </p>
-<p>If there is no such file, an error is generated. If the file is locked by another program,
-  then FID is -1.</p>
-<p>File lock is achieved using CHECKOUT_LOCK_FILE. The lock file must be closed and deleted
-  after FID is closed so that other programs can use the file. This service is performed by
-  CLOSEBINARYFILE.</p>
-<p>KEY is a random key that is needed to close the file (releases the lock).</p>
-<p>Example:
-       [fid, key]=mydb.openbinaryfile(doc_unique_id);
-       if fid&gt;0,
-           try, 
-               % do something, e.g., fwrite(fid,'my data','char'); 
-               [fid] = mydb.closebinaryfile(fid, key, doc_unique_id);
-           catch, 
-               [fid] = mydb.closebinaryfile(fid, key, doc_unique_id);
-               error(['Could not do what I wanted to do.'])
-           end
-       end</p>
-<p>See also: DUMBJSONDB/CLOSEBINARYFILE, DUMBJSONDB/READ, CHECKOUT_LOCK_FILE, FREAD, FWRITE</p>
+<div class="codehilite"><pre><span></span><code><span class="o">[</span><span class="n">FID, KEY, DOC_VERSION</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">OPENBINARYFILE</span><span class="p">(</span><span class="n">DUMBJSONDB_OBJ</span><span class="p">,</span><span class="w"> </span><span class="n">DOC_UNIQUE_ID</span><span class="o">[</span><span class="n">, DOC_VERSION</span><span class="o">]</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">  </span><span class="n">Attempts</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="n">obtain</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">lock</span><span class="w"> </span><span class="ow">and</span><span class="w"> </span><span class="k">open</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="nc">binary</span><span class="w"> </span><span class="k">file</span><span class="w"> </span><span class="n">associated</span><span class="w"> </span><span class="k">with</span><span class="w"></span>
+<span class="w">  </span><span class="n">DOC_UNIQUE_ID</span><span class="w"> </span><span class="ow">and</span><span class="w"> </span><span class="n">DOC_VERSION</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">reading</span><span class="o">/</span><span class="n">writing</span><span class="p">.</span><span class="w"> </span><span class="k">If</span><span class="w"> </span><span class="n">DOC_VERSION</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="ow">not</span><span class="w"> </span><span class="n">present</span><span class="p">,</span><span class="w"></span>
+<span class="w">  </span><span class="k">then</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">lastest</span><span class="w"> </span><span class="n">version</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="n">used</span><span class="p">.</span><span class="w"> </span><span class="ow">All</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="nc">binary</span><span class="w"> </span><span class="n">files</span><span class="w"> </span><span class="k">are</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="s1">&#39;big-endian&#39;</span><span class="w"> </span><span class="nf">format</span><span class="w"> </span><span class="ow">and</span><span class="w"> </span>
+<span class="w">  </span><span class="k">are</span><span class="w"> </span><span class="n">opened</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">such</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">OPENBINARYFILE</span><span class="p">.</span><span class="w"> </span>
+
+<span class="w">  </span><span class="k">If</span><span class="w"> </span><span class="n">there</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="k">no</span><span class="w"> </span><span class="n">such</span><span class="w"> </span><span class="k">file</span><span class="p">,</span><span class="w"> </span><span class="n">an</span><span class="w"> </span><span class="n">error</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="n">generated</span><span class="p">.</span><span class="w"> </span><span class="k">If</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="k">file</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="n">locked</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">another</span><span class="w"> </span><span class="n">program</span><span class="p">,</span><span class="w"></span>
+<span class="w">  </span><span class="k">then</span><span class="w"> </span><span class="n">FID</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="o">-</span><span class="mf">1.</span><span class="w"></span>
+
+<span class="w">  </span><span class="k">File</span><span class="w"> </span><span class="n">lock</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="n">achieved</span><span class="w"> </span><span class="k">using</span><span class="w"> </span><span class="n">CHECKOUT_LOCK_FILE</span><span class="p">.</span><span class="w"> </span><span class="n">The</span><span class="w"> </span><span class="n">lock</span><span class="w"> </span><span class="k">file</span><span class="w"> </span><span class="n">must</span><span class="w"> </span><span class="n">be</span><span class="w"> </span><span class="n">closed</span><span class="w"> </span><span class="ow">and</span><span class="w"> </span><span class="n">deleted</span><span class="w"></span>
+<span class="w">  </span><span class="k">after</span><span class="w"> </span><span class="n">FID</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="n">closed</span><span class="w"> </span><span class="n">so</span><span class="w"> </span><span class="n">that</span><span class="w"> </span><span class="n">other</span><span class="w"> </span><span class="n">programs</span><span class="w"> </span><span class="n">can</span><span class="w"> </span><span class="k">use</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="k">file</span><span class="p">.</span><span class="w"> </span><span class="n">This</span><span class="w"> </span><span class="n">service</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="n">performed</span><span class="w"> </span><span class="k">by</span><span class="w"></span>
+<span class="w">  </span><span class="n">CLOSEBINARYFILE</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">  </span><span class="k">KEY</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">random</span><span class="w"> </span><span class="k">key</span><span class="w"> </span><span class="n">that</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="n">needed</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="k">close</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="k">file</span><span class="w"> </span><span class="p">(</span><span class="n">releases</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">lock</span><span class="p">).</span><span class="w"></span>
+
+<span class="w">  </span><span class="nl">Example</span><span class="p">:</span><span class="w"></span>
+<span class="w">       </span><span class="o">[</span><span class="n">fid, key</span><span class="o">]=</span><span class="n">mydb</span><span class="p">.</span><span class="n">openbinaryfile</span><span class="p">(</span><span class="n">doc_unique_id</span><span class="p">);</span><span class="w"></span>
+<span class="w">       </span><span class="k">if</span><span class="w"> </span><span class="n">fid</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">,</span><span class="w"></span>
+<span class="w">           </span><span class="k">try</span><span class="p">,</span><span class="w"> </span>
+<span class="w">               </span><span class="o">%</span><span class="w"> </span><span class="n">do</span><span class="w"> </span><span class="n">something</span><span class="p">,</span><span class="w"> </span><span class="n">e</span><span class="p">.</span><span class="n">g</span><span class="p">.,</span><span class="w"> </span><span class="n">fwrite</span><span class="p">(</span><span class="n">fid</span><span class="p">,</span><span class="s1">&#39;my data&#39;</span><span class="p">,</span><span class="s1">&#39;char&#39;</span><span class="p">);</span><span class="w"> </span>
+<span class="w">               </span><span class="o">[</span><span class="n">fid</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mydb</span><span class="p">.</span><span class="n">closebinaryfile</span><span class="p">(</span><span class="n">fid</span><span class="p">,</span><span class="w"> </span><span class="k">key</span><span class="p">,</span><span class="w"> </span><span class="n">doc_unique_id</span><span class="p">);</span><span class="w"></span>
+<span class="w">           </span><span class="k">catch</span><span class="p">,</span><span class="w"> </span>
+<span class="w">               </span><span class="o">[</span><span class="n">fid</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mydb</span><span class="p">.</span><span class="n">closebinaryfile</span><span class="p">(</span><span class="n">fid</span><span class="p">,</span><span class="w"> </span><span class="k">key</span><span class="p">,</span><span class="w"> </span><span class="n">doc_unique_id</span><span class="p">);</span><span class="w"></span>
+<span class="w">               </span><span class="n">error</span><span class="p">(</span><span class="o">[</span><span class="n">&#39;Could not do what I wanted to do.&#39;</span><span class="o">]</span><span class="p">)</span><span class="w"></span>
+<span class="w">           </span><span class="k">end</span><span class="w"></span>
+<span class="w">       </span><span class="k">end</span><span class="w"></span>
+
+
+<span class="w">  </span><span class="n">See</span><span class="w"> </span><span class="nl">also</span><span class="p">:</span><span class="w"> </span><span class="n">DUMBJSONDB</span><span class="o">/</span><span class="n">CLOSEBINARYFILE</span><span class="p">,</span><span class="w"> </span><span class="n">DUMBJSONDB</span><span class="o">/</span><span class="k">READ</span><span class="p">,</span><span class="w"> </span><span class="n">CHECKOUT_LOCK_FILE</span><span class="p">,</span><span class="w"> </span><span class="n">FREAD</span><span class="p">,</span><span class="w"> </span><span class="n">FWRITE</span><span class="w"></span>
+</code></pre></div>
+
 <hr />
 <p><strong>read</strong> - <em>READ the JSON document corresponding to a particular document unique id</em></p>
-<p>[DOCUMENT, VERSION] = READ(DUMBJSONDB_OBJ, DOC_UNIQUE_ID[, VERSION])</p>
-<p>Reads and decodes the document corresponding to the document unique id
-  DOC_UNIQUE_ID.</p>
-<p>If VERSION is provided, then the requested version is read. If it is not
-  provided, then the latest version is provided. VERSION can be between 0 and
-  hex2dec('FFFFF').</p>
-<p>DOCUMENT is the Matlab object generated by the decoded JSON file. VERSION is the
-  actual version that was read. If there is no such document, then DOCUMENT and VERSION
-  will be empty ([]).</p>
-<p>See also: DUMBJSONDB, DUMBJSONDB/ADD, DUMBJSONDB/REMOVE, DUMBJSONDB/DOCVERSIONS, DUMBJSONDB/ALLDOCIDS</p>
+<div class="codehilite"><pre><span></span><code>[<span class="nv">DOCUMENT</span>, <span class="nv">VERSION</span>] <span class="o">=</span> <span class="nv">READ</span><span class="ss">(</span><span class="nv">DUMBJSONDB_OBJ</span>, <span class="nv">DOC_UNIQUE_ID</span>[, <span class="nv">VERSION</span>]<span class="ss">)</span>
+
+  <span class="nv">Reads</span> <span class="nv">and</span> <span class="nv">decodes</span> <span class="nv">the</span> <span class="nv">document</span> <span class="nv">corresponding</span> <span class="nv">to</span> <span class="nv">the</span> <span class="nv">document</span> <span class="nv">unique</span> <span class="nv">id</span>
+  <span class="nv">DOC_UNIQUE_ID</span>.
+
+  <span class="k">If</span> <span class="nv">VERSION</span> <span class="nv">is</span> <span class="nv">provided</span>, <span class="k">then</span> <span class="nv">the</span> <span class="nv">requested</span> <span class="nv">version</span> <span class="nv">is</span> <span class="nv">read</span>. <span class="k">If</span> <span class="nv">it</span> <span class="nv">is</span> <span class="nv">not</span>
+  <span class="nv">provided</span>, <span class="k">then</span> <span class="nv">the</span> <span class="nv">latest</span> <span class="nv">version</span> <span class="nv">is</span> <span class="nv">provided</span>. <span class="nv">VERSION</span> <span class="nv">can</span> <span class="nv">be</span> <span class="nv">between</span> <span class="mi">0</span> <span class="nv">and</span>
+  <span class="nv">hex2dec</span><span class="ss">(</span><span class="s1">&#39;</span><span class="s">FFFFF</span><span class="s1">&#39;</span><span class="ss">)</span>.
+
+  <span class="nv">DOCUMENT</span> <span class="nv">is</span> <span class="nv">the</span> <span class="nv">Matlab</span> <span class="nv">object</span> <span class="nv">generated</span> <span class="nv">by</span> <span class="nv">the</span> <span class="nv">decoded</span> <span class="nv">JSON</span> <span class="nv">file</span>. <span class="nv">VERSION</span> <span class="nv">is</span> <span class="nv">the</span>
+  <span class="nv">actual</span> <span class="nv">version</span> <span class="nv">that</span> <span class="nv">was</span> <span class="nv">read</span>. <span class="k">If</span> <span class="nv">there</span> <span class="nv">is</span> <span class="nv">no</span> <span class="nv">such</span> <span class="nv">document</span>, <span class="k">then</span> <span class="nv">DOCUMENT</span> <span class="nv">and</span> <span class="nv">VERSION</span>
+  <span class="nv">will</span> <span class="nv">be</span> <span class="nv">empty</span> <span class="ss">(</span>[]<span class="ss">)</span>.
+
+  <span class="nv">See</span> <span class="nv">also</span>: <span class="nv">DUMBJSONDB</span>, <span class="nv">DUMBJSONDB</span><span class="o">/</span><span class="nv">ADD</span>, <span class="nv">DUMBJSONDB</span><span class="o">/</span><span class="nv">REMOVE</span>, <span class="nv">DUMBJSONDB</span><span class="o">/</span><span class="nv">DOCVERSIONS</span>, <span class="nv">DUMBJSONDB</span><span class="o">/</span><span class="nv">ALLDOCIDS</span>
+</code></pre></div>
+
 <hr />
 <p><strong>remove</strong> - <em>REMOVE or delete the JSON document corresponding to a particular document unique id</em></p>
-<p>DUMBJSONDB_OBJ = REMOVE(DUMBJSONDB_OBJ, DOC_UNIQUE_ID, VERSION)</p>
-<p>Removes the document corresponding to the document unique id
-  DOC_UNIQUE_ID and version VERSION.</p>
-<p>If VERSION is provided, then the requested version is removed. If it is not
-  provided, or is equal to the string 'all', then ALL versions are deleted.</p>
-<p>See also: DUMBJSONDB/CLEAR</p>
+<div class="codehilite"><pre><span></span><code><span class="nv">DUMBJSONDB_OBJ</span> <span class="o">=</span> <span class="nv">REMOVE</span><span class="ss">(</span><span class="nv">DUMBJSONDB_OBJ</span>, <span class="nv">DOC_UNIQUE_ID</span>, <span class="nv">VERSION</span><span class="ss">)</span>
+
+  <span class="nv">Removes</span> <span class="nv">the</span> <span class="nv">document</span> <span class="nv">corresponding</span> <span class="nv">to</span> <span class="nv">the</span> <span class="nv">document</span> <span class="nv">unique</span> <span class="nv">id</span>
+  <span class="nv">DOC_UNIQUE_ID</span> <span class="nv">and</span> <span class="nv">version</span> <span class="nv">VERSION</span>.
+
+  <span class="k">If</span> <span class="nv">VERSION</span> <span class="nv">is</span> <span class="nv">provided</span>, <span class="k">then</span> <span class="nv">the</span> <span class="nv">requested</span> <span class="nv">version</span> <span class="nv">is</span> <span class="nv">removed</span>. <span class="k">If</span> <span class="nv">it</span> <span class="nv">is</span> <span class="nv">not</span>
+  <span class="nv">provided</span>, <span class="nv">or</span> <span class="nv">is</span> <span class="nv">equal</span> <span class="nv">to</span> <span class="nv">the</span> <span class="nv">string</span> <span class="s1">&#39;</span><span class="s">all</span><span class="s1">&#39;</span>, <span class="k">then</span> <span class="nv">ALL</span> <span class="nv">versions</span> <span class="nv">are</span> <span class="nv">deleted</span>.
+
+  <span class="nv">See</span> <span class="nv">also</span>: <span class="nv">DUMBJSONDB</span><span class="o">/</span><span class="nv">CLEAR</span>
+</code></pre></div>
+
 <hr />
 <p><strong>search</strong> - <em>perform a search of DUMBJSONDB documents</em></p>
-<p>[DOCS, DOC_VERSIONS] = SEARCH(DUMBJSONDB_OBJ, SCOPE, SEARCHPARAMS)</p>
-<p>Performs a search of DUMBJSONDB_OBJ to find matching documents.</p>
-<p>SCOPE is a cell array of name/value pairs that modify the search
-  scope:
-  SCOPE parameter (default)    : Description</p>
-<hr />
-<p>version ('latest')           : Which versions should be searched? Can be
-                               :   a specific number, 'latest', or 'all'</p>
-<p>SEARCHPARAMS should be either be {'PARAM1', VALUE1, 'PARAM2', VALUE2, ... }
-   or a search structure appropriate for FIELDSEARCH.</p>
-<p>The document parameters PARAM1, PARAM2 are examined for matches.
-  If VALUEN is a string, then a regular expression
-  is evaluated to determine the match. If valueN is not a string, then the
-  the items must match exactly.</p>
-<p>DOCS is a cell array of JSON-decoded documents. DOC_VERSIONS is an array of
-  the corresponding document versions.</p>
-<p>Case is not considered.</p>
-<p>Examples:
-       indexes = search(mydb, 'type','nsd_spikedata');
-       indexes = search(mydb, 'type','nsd_spike(*.)');</p>
-<p>See also: REGEXPI</p>
+<div class="codehilite"><pre><span></span><code><span class="p">[</span><span class="n">DOCS</span><span class="p">,</span> <span class="n">DOC_VERSIONS</span><span class="p">]</span> <span class="o">=</span> <span class="n">SEARCH</span><span class="p">(</span><span class="n">DUMBJSONDB_OBJ</span><span class="p">,</span> <span class="n">SCOPE</span><span class="p">,</span> <span class="n">SEARCHPARAMS</span><span class="p">)</span>
+
+  <span class="n">Performs</span> <span class="n">a</span> <span class="n">search</span> <span class="n">of</span> <span class="n">DUMBJSONDB_OBJ</span> <span class="n">to</span> <span class="n">find</span> <span class="n">matching</span> <span class="n">documents</span><span class="p">.</span>
+
+  <span class="n">SCOPE</span> <span class="n">is</span> <span class="n">a</span> <span class="n">cell</span> <span class="n">array</span> <span class="n">of</span> <span class="n">name</span><span class="o">/</span><span class="n">value</span> <span class="n">pairs</span> <span class="n">that</span> <span class="n">modify</span> <span class="n">the</span> <span class="n">search</span>
+  <span class="nl">scope:</span>
+  <span class="n">SCOPE</span> <span class="k">parameter</span> <span class="p">(</span><span class="k">default</span><span class="p">)</span>    <span class="o">:</span> <span class="n">Description</span>
+  <span class="o">----------------------------------------------------------------------</span>
+  <span class="n">version</span> <span class="p">(&#39;</span><span class="n">latest</span><span class="p">&#39;)</span>           <span class="o">:</span> <span class="n">Which</span> <span class="n">versions</span> <span class="n">should</span> <span class="n">be</span> <span class="n">searched</span><span class="o">?</span> <span class="n">Can</span> <span class="n">be</span>
+                               <span class="o">:</span>   <span class="n">a</span> <span class="n">specific</span> <span class="n">number</span><span class="p">,</span> <span class="p">&#39;</span><span class="n">latest</span><span class="p">&#39;,</span> <span class="k">or</span> <span class="p">&#39;</span><span class="n">all</span><span class="p">&#39;</span>
+
+  <span class="n">SEARCHPARAMS</span> <span class="n">should</span> <span class="n">be</span> <span class="n">either</span> <span class="n">be</span> <span class="p">{&#39;</span><span class="n">PARAM1</span><span class="p">&#39;,</span> <span class="n">VALUE1</span><span class="p">,</span> <span class="p">&#39;</span><span class="n">PARAM2</span><span class="p">&#39;,</span> <span class="n">VALUE2</span><span class="p">,</span> <span class="p">...</span> <span class="p">}</span>
+   <span class="k">or</span> <span class="n">a</span> <span class="n">search</span> <span class="n">structure</span> <span class="n">appropriate</span> <span class="k">for</span> <span class="n">FIELDSEARCH</span><span class="p">.</span>
+
+  <span class="n">The</span> <span class="n">document</span> <span class="n">parameters</span> <span class="n">PARAM1</span><span class="p">,</span> <span class="n">PARAM2</span> <span class="n">are</span> <span class="n">examined</span> <span class="k">for</span> <span class="n">matches</span><span class="p">.</span>
+  <span class="n">If</span> <span class="n">VALUEN</span> <span class="n">is</span> <span class="n">a</span> <span class="k">string</span><span class="p">,</span> <span class="n">then</span> <span class="n">a</span> <span class="n">regular</span> <span class="n">expression</span>
+  <span class="n">is</span> <span class="n">evaluated</span> <span class="n">to</span> <span class="n">determine</span> <span class="n">the</span> <span class="n">match</span><span class="p">.</span> <span class="n">If</span> <span class="n">valueN</span> <span class="n">is</span> <span class="k">not</span> <span class="n">a</span> <span class="k">string</span><span class="p">,</span> <span class="n">then</span> <span class="n">the</span>
+  <span class="n">the</span> <span class="n">items</span> <span class="n">must</span> <span class="n">match</span> <span class="n">exactly</span><span class="p">.</span>
+
+  <span class="n">DOCS</span> <span class="n">is</span> <span class="n">a</span> <span class="n">cell</span> <span class="n">array</span> <span class="n">of</span> <span class="n">JSON</span><span class="o">-</span><span class="n">decoded</span> <span class="n">documents</span><span class="p">.</span> <span class="n">DOC_VERSIONS</span> <span class="n">is</span> <span class="n">an</span> <span class="n">array</span> <span class="n">of</span>
+  <span class="n">the</span> <span class="n">corresponding</span> <span class="n">document</span> <span class="n">versions</span><span class="p">.</span>
+
+  <span class="n">Case</span> <span class="n">is</span> <span class="k">not</span> <span class="n">considered</span><span class="p">.</span>
+
+  <span class="nl">Examples:</span>
+       <span class="n">indexes</span> <span class="o">=</span> <span class="n">search</span><span class="p">(</span><span class="n">mydb</span><span class="p">,</span> <span class="p">&#39;</span><span class="k">type</span><span class="sc">&#39;,&#39;</span><span class="n">nsd_spikedata</span><span class="p">&#39;);</span>
+       <span class="n">indexes</span> <span class="o">=</span> <span class="n">search</span><span class="p">(</span><span class="n">mydb</span><span class="p">,</span> <span class="p">&#39;</span><span class="k">type</span><span class="sc">&#39;,&#39;</span><span class="n">nsd_spike</span><span class="p">(</span><span class="o">*</span><span class="p">.)&#39;);</span>
+
+  <span class="n">See</span> <span class="nl">also:</span> <span class="n">REGEXPI</span>
+</code></pre></div>
+
 <hr />
                 
               

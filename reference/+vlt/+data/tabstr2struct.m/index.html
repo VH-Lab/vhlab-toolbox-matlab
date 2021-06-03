@@ -3225,6 +3225,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../%2Bgit/git_stash.m/" class="md-nav__link">
+        vlt.git.git_stash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../%2Bgit/git_status.m/" class="md-nav__link">
         vlt.git.git_status
       </a>
@@ -9237,26 +9249,32 @@
                 
                 
                 <h1 id="vltdatatabstr2struct">vlt.data.tabstr2struct<a class="headerlink" href="#vltdatatabstr2struct" title="Permanent link">&para;</a></h1>
-<p>TABSTR2STRUCT - convert a tab-separated set of strings to a STRUCT entry</p>
-<p>A = vlt.data.tabstr2struct(S, FIELDS)</p>
-<p>Given a cell array of strings FIELDS of field names, creates a STRUCT
-  array where the values of each field are specified in a tab-delimited string.</p>
-<p>Each string is first examined to see if it is a number (using STR2NUM).
-  If so, then the value is stored as a double. Otherwise, the value is
-  stored as a string.</p>
-<p>Exceptions: 
-    a) If the string happens to have two '/' characters or has the form 'yyyy-dd-mm', then it
-       is assumed to be a date and is interpreted as a string.</p>
-<div class="codehilite"><pre><span></span><code><span class="nv">b</span><span class="ss">)</span> <span class="k">If</span> <span class="nv">the</span> <span class="nv">string</span> <span class="nv">should</span> <span class="nv">happen</span> <span class="nv">to</span> <span class="nv">be</span> <span class="nv">correspond</span> <span class="nv">to</span> <span class="nv">a</span> <span class="nv">non</span><span class="o">-</span><span class="nv">numeric</span> <span class="nv">object</span> <span class="nv">in</span> <span class="nv">Matlab</span>,
-   <span class="nv">we</span> <span class="nv">assume</span> <span class="nv">the</span> <span class="nv">user</span> <span class="nv">wants</span> <span class="nv">to</span> <span class="nv">specify</span> <span class="nv">the</span> <span class="nv">string</span> <span class="nv">rather</span> <span class="nv">than</span> <span class="nv">an</span> <span class="nv">empty</span> <span class="nv">matlab</span> 
-   <span class="nv">type</span> <span class="ss">(</span><span class="k">for</span> <span class="nv">example</span>, <span class="nv">STR2NUM</span><span class="ss">(</span><span class="s1">&#39;</span><span class="s">struct</span><span class="s1">&#39;</span><span class="ss">)</span> <span class="nv">yields</span> <span class="nv">an</span> <span class="nv">empty</span> <span class="nv">structure</span><span class="ss">)</span>.
-</code></pre></div>
+<div class="codehilite"><pre><span></span><code>  <span class="n">TABSTR2STRUCT</span> <span class="o">-</span> <span class="nb">convert</span> <span class="n">a</span> <span class="n">tab</span><span class="o">-</span><span class="n">separated</span> <span class="n">set</span> <span class="n">of</span> <span class="n">strings</span> <span class="n">to</span> <span class="n">a</span> <span class="n">STRUCT</span> <span class="n">entry</span>
 
-<p>See also: vlt.file.loadStructArray, vlt.file.saveStructArray, DLMREAD, DLMWRITE, vlt.data.struct2tabstr</p>
-<p>Example:
-    s = ['5' char(9) 'my string data'];
-    fn = {'fielda','fieldb'};
-    a = vlt.data.tabstr2struct(s,fn)</p>
+  <span class="n">A</span> <span class="o">=</span> <span class="n">vlt</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">tabstr2struct</span><span class="p">(</span><span class="n">S</span><span class="p">,</span> <span class="n">FIELDS</span><span class="p">)</span>
+
+  <span class="n">Given</span> <span class="n">a</span> <span class="n">cell</span> <span class="n">array</span> <span class="n">of</span> <span class="n">strings</span> <span class="n">FIELDS</span> <span class="n">of</span> <span class="n">field</span> <span class="n">names</span><span class="p">,</span> <span class="n">creates</span> <span class="n">a</span> <span class="n">STRUCT</span>
+  <span class="n">array</span> <span class="n">where</span> <span class="n">the</span> <span class="n">values</span> <span class="n">of</span> <span class="n">each</span> <span class="n">field</span> <span class="n">are</span> <span class="n">specified</span> <span class="ow">in</span> <span class="n">a</span> <span class="n">tab</span><span class="o">-</span><span class="n">delimited</span> <span class="n">string</span><span class="o">.</span>
+
+  <span class="n">Each</span> <span class="n">string</span> <span class="k">is</span> <span class="n">first</span> <span class="n">examined</span> <span class="n">to</span> <span class="n">see</span> <span class="k">if</span> <span class="n">it</span> <span class="k">is</span> <span class="n">a</span> <span class="n">number</span> <span class="p">(</span><span class="n">using</span> <span class="n">STR2NUM</span><span class="p">)</span><span class="o">.</span>
+  <span class="n">If</span> <span class="n">so</span><span class="p">,</span> <span class="n">then</span> <span class="n">the</span> <span class="n">value</span> <span class="k">is</span> <span class="n">stored</span> <span class="k">as</span> <span class="n">a</span> <span class="n">double</span><span class="o">.</span> <span class="n">Otherwise</span><span class="p">,</span> <span class="n">the</span> <span class="n">value</span> <span class="k">is</span>
+  <span class="n">stored</span> <span class="k">as</span> <span class="n">a</span> <span class="n">string</span><span class="o">.</span>
+
+  <span class="n">Exceptions</span><span class="p">:</span> 
+    <span class="n">a</span><span class="p">)</span> <span class="n">If</span> <span class="n">the</span> <span class="n">string</span> <span class="n">happens</span> <span class="n">to</span> <span class="n">have</span> <span class="n">two</span> <span class="s1">&#39;/&#39;</span> <span class="n">characters</span> <span class="ow">or</span> <span class="n">has</span> <span class="n">the</span> <span class="n">form</span> <span class="s1">&#39;yyyy-dd-mm&#39;</span><span class="p">,</span> <span class="n">then</span> <span class="n">it</span>
+       <span class="k">is</span> <span class="n">assumed</span> <span class="n">to</span> <span class="n">be</span> <span class="n">a</span> <span class="n">date</span> <span class="ow">and</span> <span class="k">is</span> <span class="n">interpreted</span> <span class="k">as</span> <span class="n">a</span> <span class="n">string</span><span class="o">.</span>
+
+    <span class="n">b</span><span class="p">)</span> <span class="n">If</span> <span class="n">the</span> <span class="n">string</span> <span class="n">should</span> <span class="n">happen</span> <span class="n">to</span> <span class="n">be</span> <span class="n">correspond</span> <span class="n">to</span> <span class="n">a</span> <span class="n">non</span><span class="o">-</span><span class="n">numeric</span> <span class="n">object</span> <span class="ow">in</span> <span class="n">Matlab</span><span class="p">,</span>
+       <span class="n">we</span> <span class="n">assume</span> <span class="n">the</span> <span class="n">user</span> <span class="n">wants</span> <span class="n">to</span> <span class="n">specify</span> <span class="n">the</span> <span class="n">string</span> <span class="n">rather</span> <span class="n">than</span> <span class="n">an</span> <span class="n">empty</span> <span class="n">matlab</span> 
+       <span class="n">type</span> <span class="p">(</span><span class="k">for</span> <span class="n">example</span><span class="p">,</span> <span class="n">STR2NUM</span><span class="p">(</span><span class="s1">&#39;struct&#39;</span><span class="p">)</span> <span class="n">yields</span> <span class="n">an</span> <span class="n">empty</span> <span class="n">structure</span><span class="p">)</span><span class="o">.</span>
+
+  <span class="n">See</span> <span class="n">also</span><span class="p">:</span> <span class="n">vlt</span><span class="o">.</span><span class="n">file</span><span class="o">.</span><span class="n">loadStructArray</span><span class="p">,</span> <span class="n">vlt</span><span class="o">.</span><span class="n">file</span><span class="o">.</span><span class="n">saveStructArray</span><span class="p">,</span> <span class="n">DLMREAD</span><span class="p">,</span> <span class="n">DLMWRITE</span><span class="p">,</span> <span class="n">vlt</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">struct2tabstr</span>
+
+  <span class="n">Example</span><span class="p">:</span>
+    <span class="n">s</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;5&#39;</span> <span class="nb">char</span><span class="p">(</span><span class="mi">9</span><span class="p">)</span> <span class="s1">&#39;my string data&#39;</span><span class="p">];</span>
+    <span class="n">fn</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;fielda&#39;</span><span class="p">,</span><span class="s1">&#39;fieldb&#39;</span><span class="p">};</span>
+    <span class="n">a</span> <span class="o">=</span> <span class="n">vlt</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">tabstr2struct</span><span class="p">(</span><span class="n">s</span><span class="p">,</span><span class="n">fn</span><span class="p">)</span>
+</code></pre></div>
                 
               
               

@@ -3213,6 +3213,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../../%2Bgit/git_stash.m/" class="md-nav__link">
+        vlt.git.git_stash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../../%2Bgit/git_status.m/" class="md-nav__link">
         vlt.git.git_status
       </a>
@@ -9239,19 +9251,22 @@
                 
                 
                 <h1 id="vltimageroiroi_3d2dprojection">vlt.image.roi.ROI_3d2dprojection<a class="headerlink" href="#vltimageroiroi_3d2dprojection" title="Permanent link">&para;</a></h1>
-<p>ROI_3D2DPROJECTION - Project a 3D ROI onto a 2D projection</p>
-<div class="codehilite"><pre><span></span><code> [INDEXES2D, PERIMETER2D] = ROI3D2DPROJECTION(INDEXES3D, ...
-                          IMAGESIZE, ZDIM)
-</code></pre></div>
+<div class="codehilite"><pre><span></span><code>  <span class="n">ROI_3D2DPROJECTION</span> <span class="o">-</span> <span class="n">Project</span> <span class="n">a</span> <span class="mi">3</span><span class="n">D</span> <span class="n">ROI</span> <span class="n">onto</span> <span class="n">a</span> <span class="mi">2</span><span class="n">D</span> <span class="n">projection</span>
 
-<p>Identifies the 2D projection of a 3-dimensional ROI with
-   index values in 3D space called INDEXES3D. The INDEXES3D describe
-   the values within a 3D image of size IMAGESIZE = [NX NY NZ].</p>
-<p>The projection is made onto the Z dimension ZDIM, which can vary
-   from 1 to NZ.</p>
-<p>PERIMETER2D is a list of perimeter values around all pieces of the
-   3d ROI in the 2d representation.  It is a a cell list because the
-   object can exist in multiple distinct pieces within the 2d view.</p>
+     <span class="p">[</span><span class="n">INDEXES2D</span><span class="p">,</span> <span class="n">PERIMETER2D</span><span class="p">]</span> <span class="o">=</span> <span class="n">ROI3D2DPROJECTION</span><span class="p">(</span><span class="n">INDEXES3D</span><span class="p">,</span> <span class="o">...</span>
+                              <span class="n">IMAGESIZE</span><span class="p">,</span> <span class="n">ZDIM</span><span class="p">)</span>
+
+   <span class="n">Identifies</span> <span class="n">the</span> <span class="mi">2</span><span class="n">D</span> <span class="n">projection</span> <span class="n">of</span> <span class="n">a</span> <span class="mi">3</span><span class="o">-</span><span class="n">dimensional</span> <span class="n">ROI</span> <span class="n">with</span>
+   <span class="n">index</span> <span class="n">values</span> <span class="ow">in</span> <span class="mi">3</span><span class="n">D</span> <span class="n">space</span> <span class="n">called</span> <span class="n">INDEXES3D</span><span class="o">.</span> <span class="n">The</span> <span class="n">INDEXES3D</span> <span class="n">describe</span>
+   <span class="n">the</span> <span class="n">values</span> <span class="n">within</span> <span class="n">a</span> <span class="mi">3</span><span class="n">D</span> <span class="n">image</span> <span class="n">of</span> <span class="n">size</span> <span class="n">IMAGESIZE</span> <span class="o">=</span> <span class="p">[</span><span class="n">NX</span> <span class="n">NY</span> <span class="n">NZ</span><span class="p">]</span><span class="o">.</span>
+
+   <span class="n">The</span> <span class="n">projection</span> <span class="k">is</span> <span class="n">made</span> <span class="n">onto</span> <span class="n">the</span> <span class="n">Z</span> <span class="n">dimension</span> <span class="n">ZDIM</span><span class="p">,</span> <span class="n">which</span> <span class="n">can</span> <span class="n">vary</span>
+   <span class="n">from</span> <span class="mi">1</span> <span class="n">to</span> <span class="n">NZ</span><span class="o">.</span>
+
+   <span class="n">PERIMETER2D</span> <span class="k">is</span> <span class="n">a</span> <span class="n">list</span> <span class="n">of</span> <span class="n">perimeter</span> <span class="n">values</span> <span class="n">around</span> <span class="n">all</span> <span class="n">pieces</span> <span class="n">of</span> <span class="n">the</span>
+   <span class="mi">3</span><span class="n">d</span> <span class="n">ROI</span> <span class="ow">in</span> <span class="n">the</span> <span class="mi">2</span><span class="n">d</span> <span class="n">representation</span><span class="o">.</span>  <span class="n">It</span> <span class="k">is</span> <span class="n">a</span> <span class="n">a</span> <span class="n">cell</span> <span class="n">list</span> <span class="n">because</span> <span class="n">the</span>
+   <span class="n">object</span> <span class="n">can</span> <span class="n">exist</span> <span class="ow">in</span> <span class="n">multiple</span> <span class="n">distinct</span> <span class="n">pieces</span> <span class="n">within</span> <span class="n">the</span> <span class="mi">2</span><span class="n">d</span> <span class="n">view</span><span class="o">.</span>
+</code></pre></div>
                 
               
               

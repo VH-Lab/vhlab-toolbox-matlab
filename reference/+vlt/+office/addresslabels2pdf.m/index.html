@@ -3213,6 +3213,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../%2Bgit/git_stash.m/" class="md-nav__link">
+        vlt.git.git_stash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../%2Bgit/git_status.m/" class="md-nav__link">
         vlt.git.git_status
       </a>
@@ -9237,23 +9249,28 @@
                 
                 
                 <h1 id="vltofficeaddresslabels2pdf">vlt.office.addresslabels2pdf<a class="headerlink" href="#vltofficeaddresslabels2pdf" title="Permanent link">&para;</a></h1>
-<p>ADDRESSLABELS2PDF - print address labels to a set of PDFs following a template</p>
-<p>vlt.office.addresslabels2pdf(LABELS, ...)</p>
-<p>This prints address labels LABELS to many pieces of figure 'paper'. 
-  It follows the template described below. LABELS{i}{:} is a cell
-  array that contains each line of text for each label.</p>
-<p>This function accepts name/value pairs that modify its default behavior:</p>
-<p>Parameter (default)         | Description</p>
-<hr />
-<p>units ('inches')            | The units to use
-  first_label_Y (1.0)         | The location of the first label in X
-  first_label_X (1.5025)      | The location of the first label in Y
-  dX (2.75)                   | Offset between columns (center-to-center)
-  dY (1)                      | Offset between rows (center-to-center)
-  ncolumns (10)               | Number of columns per sheet
-  nrows (3)                   | Number of rows per sheet
-                              |   (These are for Avery Labels 8160)
-  fontsize (13)               | Fontsize to use</p>
+<div class="codehilite"><pre><span></span><code>  <span class="nv">ADDRESSLABELS2PDF</span> <span class="o">-</span> <span class="nv">print</span> <span class="nv">address</span> <span class="nv">labels</span> <span class="nv">to</span> <span class="nv">a</span> <span class="nv">set</span> <span class="nv">of</span> <span class="nv">PDFs</span> <span class="nv">following</span> <span class="nv">a</span> <span class="nv">template</span>
+
+  <span class="nv">vlt</span>.<span class="nv">office</span>.<span class="nv">addresslabels2pdf</span><span class="ss">(</span><span class="nv">LABELS</span>, ...<span class="ss">)</span>
+
+  <span class="nv">This</span> <span class="nv">prints</span> <span class="nv">address</span> <span class="nv">labels</span> <span class="nv">LABELS</span> <span class="nv">to</span> <span class="nv">many</span> <span class="nv">pieces</span> <span class="nv">of</span> <span class="nv">figure</span> <span class="s1">&#39;</span><span class="s">paper</span><span class="s1">&#39;</span>. 
+  <span class="nv">It</span> <span class="nv">follows</span> <span class="nv">the</span> <span class="nv">template</span> <span class="nv">described</span> <span class="nv">below</span>. <span class="nv">LABELS</span>{<span class="nv">i</span>}{:} <span class="nv">is</span> <span class="nv">a</span> <span class="nv">cell</span>
+  <span class="nv">array</span> <span class="nv">that</span> <span class="nv">contains</span> <span class="nv">each</span> <span class="nv">line</span> <span class="nv">of</span> <span class="nv">text</span> <span class="k">for</span> <span class="nv">each</span> <span class="nv">label</span>.
+
+  <span class="nv">This</span> <span class="nv">function</span> <span class="nv">accepts</span> <span class="nv">name</span><span class="o">/</span><span class="nv">value</span> <span class="nv">pairs</span> <span class="nv">that</span> <span class="nv">modify</span> <span class="nv">its</span> <span class="nv">default</span> <span class="nv">behavior</span>:
+
+  <span class="nv">Parameter</span> <span class="ss">(</span><span class="nv">default</span><span class="ss">)</span>         <span class="o">|</span> <span class="nv">Description</span>
+  <span class="o">-------------------------------------------------------------------------</span>
+  <span class="nv">units</span> <span class="ss">(</span><span class="s1">&#39;</span><span class="s">inches</span><span class="s1">&#39;</span><span class="ss">)</span>            <span class="o">|</span> <span class="nv">The</span> <span class="nv">units</span> <span class="nv">to</span> <span class="nv">use</span>
+  <span class="nv">first_label_Y</span> <span class="ss">(</span><span class="mi">1</span>.<span class="mi">0</span><span class="ss">)</span>         <span class="o">|</span> <span class="nv">The</span> <span class="nv">location</span> <span class="nv">of</span> <span class="nv">the</span> <span class="nv">first</span> <span class="nv">label</span> <span class="nv">in</span> <span class="nv">X</span>
+  <span class="nv">first_label_X</span> <span class="ss">(</span><span class="mi">1</span>.<span class="mi">5025</span><span class="ss">)</span>      <span class="o">|</span> <span class="nv">The</span> <span class="nv">location</span> <span class="nv">of</span> <span class="nv">the</span> <span class="nv">first</span> <span class="nv">label</span> <span class="nv">in</span> <span class="nv">Y</span>
+  <span class="nv">dX</span> <span class="ss">(</span><span class="mi">2</span>.<span class="mi">75</span><span class="ss">)</span>                   <span class="o">|</span> <span class="nv">Offset</span> <span class="nv">between</span> <span class="nv">columns</span> <span class="ss">(</span><span class="nv">center</span><span class="o">-</span><span class="nv">to</span><span class="o">-</span><span class="nv">center</span><span class="ss">)</span>
+  <span class="nv">dY</span> <span class="ss">(</span><span class="mi">1</span><span class="ss">)</span>                      <span class="o">|</span> <span class="nv">Offset</span> <span class="nv">between</span> <span class="nv">rows</span> <span class="ss">(</span><span class="nv">center</span><span class="o">-</span><span class="nv">to</span><span class="o">-</span><span class="nv">center</span><span class="ss">)</span>
+  <span class="nv">ncolumns</span> <span class="ss">(</span><span class="mi">10</span><span class="ss">)</span>               <span class="o">|</span> <span class="nv">Number</span> <span class="nv">of</span> <span class="nv">columns</span> <span class="nv">per</span> <span class="nv">sheet</span>
+  <span class="nv">nrows</span> <span class="ss">(</span><span class="mi">3</span><span class="ss">)</span>                   <span class="o">|</span> <span class="nv">Number</span> <span class="nv">of</span> <span class="nv">rows</span> <span class="nv">per</span> <span class="nv">sheet</span>
+                              <span class="o">|</span>   <span class="ss">(</span><span class="nv">These</span> <span class="nv">are</span> <span class="k">for</span> <span class="nv">Avery</span> <span class="nv">Labels</span> <span class="mi">8160</span><span class="ss">)</span>
+  <span class="nv">fontsize</span> <span class="ss">(</span><span class="mi">13</span><span class="ss">)</span>               <span class="o">|</span> <span class="nv">Fontsize</span> <span class="nv">to</span> <span class="nv">use</span>
+</code></pre></div>
                 
               
               

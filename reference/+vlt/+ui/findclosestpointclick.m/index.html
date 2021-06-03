@@ -3213,6 +3213,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../%2Bgit/git_stash.m/" class="md-nav__link">
+        vlt.git.git_stash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../%2Bgit/git_status.m/" class="md-nav__link">
         vlt.git.git_status
       </a>
@@ -9237,24 +9249,30 @@
                 
                 
                 <h1 id="vltuifindclosestpointclick">vlt.ui.findclosestpointclick<a class="headerlink" href="#vltuifindclosestpointclick" title="Permanent link">&para;</a></h1>
-<p>FINDCLOSESTPOINT - Find the closest point to where a user clicked</p>
-<p>[I,PT] = vlt.ui.findclosestpointclick(POINTLIST)
-     or 
-   [I,PT] = vlt.ui.findclosestpointclick(POINTLIST, SCALE)</p>
-<p>Examines the 'CurrentPoint' in the current axes, and sees
-   which of the points in POINTLIST is closest to the 'CurrentPoint'.
-   The index of the point in POINTLIST is returned in I, and the 
-   actual X/Y pair of the point are in PT.</p>
-<p>By default, the function does not use the absolute Euclidean distance
-   but rather scales the points by the current view on the axes. This is useful
-   if the X scale is very different from the Y scale; usually when clicking the
-   user wants the closest point in screen coordinates. One can modify this
-   behavior by passing SCALE and setting it to 0, and true Euclidean distance
-   will be used.  By default SCALE is 1.</p>
-<p>POINTLIST should be in the format of 1 point per row.
-   If POINTLIST is in 3-space (3D) then a 3D comparison is made.
-   If POINTLIST is in 2-space (2D) then a 2D comparison is made.</p>
-<p>See also: vlt.data.findclosest, vlt.data.findclosestpoint</p>
+<div class="codehilite"><pre><span></span><code>  <span class="nv">FINDCLOSESTPOINT</span> <span class="o">-</span> <span class="nv">Find</span> <span class="nv">the</span> <span class="nv">closest</span> <span class="nv">point</span> <span class="nv">to</span> <span class="nv">where</span> <span class="nv">a</span> <span class="nv">user</span> <span class="nv">clicked</span>
+
+   [<span class="nv">I</span>,<span class="nv">PT</span>] <span class="o">=</span> <span class="nv">vlt</span>.<span class="nv">ui</span>.<span class="nv">findclosestpointclick</span><span class="ss">(</span><span class="nv">POINTLIST</span><span class="ss">)</span>
+     <span class="nv">or</span> 
+   [<span class="nv">I</span>,<span class="nv">PT</span>] <span class="o">=</span> <span class="nv">vlt</span>.<span class="nv">ui</span>.<span class="nv">findclosestpointclick</span><span class="ss">(</span><span class="nv">POINTLIST</span>, <span class="nv">SCALE</span><span class="ss">)</span>
+
+   <span class="nv">Examines</span> <span class="nv">the</span> <span class="s1">&#39;</span><span class="s">CurrentPoint</span><span class="s1">&#39;</span> <span class="nv">in</span> <span class="nv">the</span> <span class="nv">current</span> <span class="nv">axes</span>, <span class="nv">and</span> <span class="nv">sees</span>
+   <span class="nv">which</span> <span class="nv">of</span> <span class="nv">the</span> <span class="nv">points</span> <span class="nv">in</span> <span class="nv">POINTLIST</span> <span class="nv">is</span> <span class="nv">closest</span> <span class="nv">to</span> <span class="nv">the</span> <span class="s1">&#39;</span><span class="s">CurrentPoint</span><span class="s1">&#39;</span>.
+   <span class="nv">The</span> <span class="nv">index</span> <span class="nv">of</span> <span class="nv">the</span> <span class="nv">point</span> <span class="nv">in</span> <span class="nv">POINTLIST</span> <span class="nv">is</span> <span class="nv">returned</span> <span class="nv">in</span> <span class="nv">I</span>, <span class="nv">and</span> <span class="nv">the</span> 
+   <span class="nv">actual</span> <span class="nv">X</span><span class="o">/</span><span class="nv">Y</span> <span class="nv">pair</span> <span class="nv">of</span> <span class="nv">the</span> <span class="nv">point</span> <span class="nv">are</span> <span class="nv">in</span> <span class="nv">PT</span>.
+
+   <span class="nv">By</span> <span class="nv">default</span>, <span class="nv">the</span> <span class="nv">function</span> <span class="nv">does</span> <span class="nv">not</span> <span class="nv">use</span> <span class="nv">the</span> <span class="nv">absolute</span> <span class="nv">Euclidean</span> <span class="nv">distance</span>
+   <span class="nv">but</span> <span class="nv">rather</span> <span class="nv">scales</span> <span class="nv">the</span> <span class="nv">points</span> <span class="nv">by</span> <span class="nv">the</span> <span class="nv">current</span> <span class="nv">view</span> <span class="nv">on</span> <span class="nv">the</span> <span class="nv">axes</span>. <span class="nv">This</span> <span class="nv">is</span> <span class="nv">useful</span>
+   <span class="k">if</span> <span class="nv">the</span> <span class="nv">X</span> <span class="nv">scale</span> <span class="nv">is</span> <span class="nv">very</span> <span class="nv">different</span> <span class="nv">from</span> <span class="nv">the</span> <span class="nv">Y</span> <span class="nv">scale</span><span class="c1">; usually when clicking the</span>
+   <span class="nv">user</span> <span class="nv">wants</span> <span class="nv">the</span> <span class="nv">closest</span> <span class="nv">point</span> <span class="nv">in</span> <span class="nv">screen</span> <span class="nv">coordinates</span>. <span class="nv">One</span> <span class="nv">can</span> <span class="nv">modify</span> <span class="nv">this</span>
+   <span class="nv">behavior</span> <span class="nv">by</span> <span class="nv">passing</span> <span class="nv">SCALE</span> <span class="nv">and</span> <span class="nv">setting</span> <span class="nv">it</span> <span class="nv">to</span> <span class="mi">0</span>, <span class="nv">and</span> <span class="nv">true</span> <span class="nv">Euclidean</span> <span class="nv">distance</span>
+   <span class="nv">will</span> <span class="nv">be</span> <span class="nv">used</span>.  <span class="nv">By</span> <span class="nv">default</span> <span class="nv">SCALE</span> <span class="nv">is</span> <span class="mi">1</span>.
+
+   <span class="nv">POINTLIST</span> <span class="nv">should</span> <span class="nv">be</span> <span class="nv">in</span> <span class="nv">the</span> <span class="nv">format</span> <span class="nv">of</span> <span class="mi">1</span> <span class="nv">point</span> <span class="nv">per</span> <span class="nv">row</span>.
+   <span class="k">If</span> <span class="nv">POINTLIST</span> <span class="nv">is</span> <span class="nv">in</span> <span class="mi">3</span><span class="o">-</span><span class="nv">space</span> <span class="ss">(</span><span class="mi">3</span><span class="nv">D</span><span class="ss">)</span> <span class="k">then</span> <span class="nv">a</span> <span class="mi">3</span><span class="nv">D</span> <span class="nv">comparison</span> <span class="nv">is</span> <span class="nv">made</span>.
+   <span class="k">If</span> <span class="nv">POINTLIST</span> <span class="nv">is</span> <span class="nv">in</span> <span class="mi">2</span><span class="o">-</span><span class="nv">space</span> <span class="ss">(</span><span class="mi">2</span><span class="nv">D</span><span class="ss">)</span> <span class="k">then</span> <span class="nv">a</span> <span class="mi">2</span><span class="nv">D</span> <span class="nv">comparison</span> <span class="nv">is</span> <span class="nv">made</span>.
+
+   <span class="nv">See</span> <span class="nv">also</span>: <span class="nv">vlt</span>.<span class="nv">data</span>.<span class="nv">findclosest</span>, <span class="nv">vlt</span>.<span class="nv">data</span>.<span class="nv">findclosestpoint</span>
+</code></pre></div>
                 
               
               

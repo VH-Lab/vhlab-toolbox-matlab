@@ -3213,6 +3213,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../../%2Bgit/git_stash.m/" class="md-nav__link">
+        vlt.git.git_stash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../../%2Bgit/git_status.m/" class="md-nav__link">
         vlt.git.git_status
       </a>
@@ -9239,25 +9251,26 @@
                 
                 
                 <h1 id="vltneurospiketrainsspiketimes_plot">vlt.neuro.spiketrains.spiketimes_plot<a class="headerlink" href="#vltneurospiketrainsspiketimes_plot" title="Permanent link">&para;</a></h1>
-<p>SPIKETIMES_PLOT - Plot a spike train as a bunch of hash ticks</p>
-<div class="codehilite"><pre><span></span><code> <span class="nv">H</span> <span class="o">=</span> <span class="nv">vlt</span>.<span class="nv">neuro</span>.<span class="nv">spiketrains</span>.<span class="nv">spiketimes_plot</span><span class="ss">(</span><span class="nv">SPIKETIMES</span><span class="ss">)</span>
+<div class="codehilite"><pre><span></span><code>  <span class="nv">SPIKETIMES_PLOT</span> <span class="o">-</span> <span class="nv">Plot</span> <span class="nv">a</span> <span class="nv">spike</span> <span class="nv">train</span> <span class="nv">as</span> <span class="nv">a</span> <span class="nv">bunch</span> <span class="nv">of</span> <span class="nv">hash</span> <span class="nv">ticks</span>
 
- <span class="nv">Plot</span> <span class="nv">a</span> <span class="nv">spiketrain</span> <span class="ss">(</span><span class="nv">with</span> <span class="nv">spike</span> <span class="nv">times</span> <span class="nv">SPIKETIMES</span><span class="ss">)</span> <span class="nv">on</span> <span class="nv">the</span> <span class="nv">current</span>
- <span class="nv">axes</span> <span class="nv">as</span> <span class="nv">a</span> <span class="nv">series</span> <span class="nv">of</span> <span class="nv">hash</span> <span class="nv">ticks</span>.
+     <span class="nv">H</span> <span class="o">=</span> <span class="nv">vlt</span>.<span class="nv">neuro</span>.<span class="nv">spiketrains</span>.<span class="nv">spiketimes_plot</span><span class="ss">(</span><span class="nv">SPIKETIMES</span><span class="ss">)</span>
 
- <span class="nv">One</span> <span class="nv">can</span> <span class="nv">also</span> <span class="nv">modify</span> <span class="nv">the</span> <span class="nv">plot</span> <span class="nv">using</span> <span class="nv">the</span> <span class="nv">following</span> <span class="nv">options</span> <span class="nv">passed</span>
- <span class="nv">as</span> <span class="nv">name</span><span class="o">/</span><span class="nv">value</span> <span class="nv">pairs</span>
- <span class="ss">(</span><span class="k">for</span> <span class="nv">example</span>, <span class="nv">h</span><span class="o">=</span><span class="nv">vlt</span>.<span class="nv">neuro</span>.<span class="nv">spiketrains</span>.<span class="nv">spiketimes_plot</span><span class="ss">(</span><span class="nv">spiketimes</span>,<span class="s1">&#39;</span><span class="s">color</span><span class="s1">&#39;</span>,[<span class="mi">1</span> <span class="mi">0</span> <span class="mi">0</span>]<span class="ss">)</span> <span class="nv">plots</span> <span class="nv">in</span>
- <span class="nv">red</span><span class="ss">)</span>:
+     <span class="nv">Plot</span> <span class="nv">a</span> <span class="nv">spiketrain</span> <span class="ss">(</span><span class="nv">with</span> <span class="nv">spike</span> <span class="nv">times</span> <span class="nv">SPIKETIMES</span><span class="ss">)</span> <span class="nv">on</span> <span class="nv">the</span> <span class="nv">current</span>
+     <span class="nv">axes</span> <span class="nv">as</span> <span class="nv">a</span> <span class="nv">series</span> <span class="nv">of</span> <span class="nv">hash</span> <span class="nv">ticks</span>.
 
- <span class="nv">Parameter</span> <span class="ss">(</span><span class="nv">default</span><span class="ss">)</span>  <span class="o">|</span>  <span class="nv">Description</span>
- <span class="o">---------------------------------------------------------------------</span>
- <span class="nv">color</span>      [<span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span>]   <span class="o">|</span>  <span class="nv">Hash</span> <span class="nv">color</span> <span class="ss">(</span>[<span class="nv">red</span> <span class="nv">green</span> <span class="nv">blue</span>], <span class="mi">0</span>..<span class="mi">1</span><span class="ss">)</span>
- <span class="nv">linewidth</span>        <span class="mi">1</span>   <span class="o">|</span>  <span class="nv">Line</span> <span class="nv">thickness</span>
- <span class="nv">hashheight</span>      <span class="mi">0</span>.<span class="mi">8</span>  <span class="o">|</span>  <span class="nv">Height</span> <span class="nv">of</span> <span class="nv">the</span> <span class="nv">hash</span> <span class="nv">marks</span> <span class="nv">in</span> <span class="nv">axis</span> <span class="nv">Y</span> <span class="nv">units</span>
- <span class="nv">hashcenter</span>      <span class="mi">0</span>.<span class="mi">5</span>  <span class="o">|</span>  <span class="nv">Center</span> <span class="nv">location</span> <span class="nv">of</span> <span class="nv">the</span> <span class="nv">hash</span> <span class="nv">marks</span>
+     <span class="nv">One</span> <span class="nv">can</span> <span class="nv">also</span> <span class="nv">modify</span> <span class="nv">the</span> <span class="nv">plot</span> <span class="nv">using</span> <span class="nv">the</span> <span class="nv">following</span> <span class="nv">options</span> <span class="nv">passed</span>
+     <span class="nv">as</span> <span class="nv">name</span><span class="o">/</span><span class="nv">value</span> <span class="nv">pairs</span>
+     <span class="ss">(</span><span class="k">for</span> <span class="nv">example</span>, <span class="nv">h</span><span class="o">=</span><span class="nv">vlt</span>.<span class="nv">neuro</span>.<span class="nv">spiketrains</span>.<span class="nv">spiketimes_plot</span><span class="ss">(</span><span class="nv">spiketimes</span>,<span class="s1">&#39;</span><span class="s">color</span><span class="s1">&#39;</span>,[<span class="mi">1</span> <span class="mi">0</span> <span class="mi">0</span>]<span class="ss">)</span> <span class="nv">plots</span> <span class="nv">in</span>
+     <span class="nv">red</span><span class="ss">)</span>:
 
-<span class="nv">Keywords</span>: <span class="nv">spiketrain</span> <span class="nv">spike</span> <span class="nv">train</span> <span class="nv">spiketimes</span> <span class="nv">times</span> <span class="nv">hash</span>
+     <span class="nv">Parameter</span> <span class="ss">(</span><span class="nv">default</span><span class="ss">)</span>  <span class="o">|</span>  <span class="nv">Description</span>
+     <span class="o">---------------------------------------------------------------------</span>
+     <span class="nv">color</span>      [<span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span>]   <span class="o">|</span>  <span class="nv">Hash</span> <span class="nv">color</span> <span class="ss">(</span>[<span class="nv">red</span> <span class="nv">green</span> <span class="nv">blue</span>], <span class="mi">0</span>..<span class="mi">1</span><span class="ss">)</span>
+     <span class="nv">linewidth</span>        <span class="mi">1</span>   <span class="o">|</span>  <span class="nv">Line</span> <span class="nv">thickness</span>
+     <span class="nv">hashheight</span>      <span class="mi">0</span>.<span class="mi">8</span>  <span class="o">|</span>  <span class="nv">Height</span> <span class="nv">of</span> <span class="nv">the</span> <span class="nv">hash</span> <span class="nv">marks</span> <span class="nv">in</span> <span class="nv">axis</span> <span class="nv">Y</span> <span class="nv">units</span>
+     <span class="nv">hashcenter</span>      <span class="mi">0</span>.<span class="mi">5</span>  <span class="o">|</span>  <span class="nv">Center</span> <span class="nv">location</span> <span class="nv">of</span> <span class="nv">the</span> <span class="nv">hash</span> <span class="nv">marks</span>
+
+    <span class="nv">Keywords</span>: <span class="nv">spiketrain</span> <span class="nv">spike</span> <span class="nv">train</span> <span class="nv">spiketimes</span> <span class="nv">times</span> <span class="nv">hash</span>
 </code></pre></div>
                 
               

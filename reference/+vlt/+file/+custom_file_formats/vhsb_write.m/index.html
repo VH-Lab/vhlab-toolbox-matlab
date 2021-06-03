@@ -3227,6 +3227,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../../%2Bgit/git_stash.m/" class="md-nav__link">
+        vlt.git.git_stash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../../%2Bgit/git_status.m/" class="md-nav__link">
         vlt.git.git_status
       </a>
@@ -9239,44 +9251,52 @@
                 
                 
                 <h1 id="vltfilecustom_file_formatsvhsb_write">vlt.file.custom_file_formats.vhsb_write<a class="headerlink" href="#vltfilecustom_file_formatsvhsb_write" title="Permanent link">&para;</a></h1>
-<p>VHSB_WRITE - write a VHLab series binary file</p>
-<p>B = vlt.file.custom_file_formats.vhsb_write(FO, X, Y, ...)</p>
-<p>Write series data to a VH series binary file.</p>
-<p>Inputs:
-     FO is the file description to write to; it can be a 
-          filename or an object of type FILEOBJ
-     X is a NUMSAMPLESx1 dataset, usually the independent variable.
-          X can be empty if an X_start and X_increment are provided
-     Y is an NUM_SAMPLESxXxYxZx... dataset with the Y samples that
-          are associated with each value of X.
-          X(i) is the ith sample of X, and Y(i,:,:,...) is the ith sample of Y</p>
-<p>Outputs: 
-     B is 1 if the file was written successfully, 0 otherwise</p>
-<p>The function accepts parameters that modify the default functionality
-  as name/value pairs.</p>
-<p>Parameter (default)                           | Description</p>
-<hr />
-<p>use_filelock (1)                              | Lock the file with vlt.file.checkout_lock_file
-  X_start (X(1))                                | The value of X in the first sample
-  X_increment (0)                               | The increment between subsequent values of X
-                                                |    (needs only be non-zero if X_constantinterval is 1)
-  X_stored (1)                                  | Should values of X be stored (1), or computed from X_start
-                                                |    and X_increment (0)?
-  X_constantinterval (0)                        | Is there a constant interval between X samples (1) or not (0) or
-                                                |    not necessarily (0)?
-  X_units ('')                                  | The units of X (a character string, up to 255 characters)
-  Y_units ('')                                  | The units of Y (a character string, up to 255 characters)
-  X_data_size (64)                              | The resolution (in bits) for X
-  X_data_type ('float')                         | The data type to be written for X ('char','uint','int','float')
-  Y_data_size (64)                              | The resolution (in bits) for Y
-  Y_data_type ('float')                         | The data type to be written for Y ('char','uint','int','float')
-  X_usescale (0)                                | Scale the X data before writing to disk (and after reading)?
-  Y_usescale (0)                                | Scale the Y data before writing to disk (and after reading)?
-  X_scale (1)                                   | The X scale factor to use to write samples to disk
-  X_offset (0)                                  | The X offset to use (Xdisk = X/X_scale + X_offset)
-  Y_scale (1)                                   | The Y scale factor to use
-  Y_offset (0)                                  | The Y offset to use (Ydisk = Y/Y_scale + X_offset)</p>
-<p>See also: vlt.data.namevaluepair</p>
+<div class="codehilite"><pre><span></span><code>  <span class="n">VHSB_WRITE</span> <span class="o">-</span> <span class="n">write</span> <span class="n">a</span> <span class="n">VHLab</span> <span class="n">series</span> <span class="n">binary</span> <span class="n">file</span>
+
+  <span class="n">B</span> <span class="o">=</span> <span class="n">vlt</span><span class="o">.</span><span class="n">file</span><span class="o">.</span><span class="n">custom_file_formats</span><span class="o">.</span><span class="n">vhsb_write</span><span class="p">(</span><span class="n">FO</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">,</span> <span class="o">...</span><span class="p">)</span>
+
+  <span class="n">Write</span> <span class="n">series</span> <span class="n">data</span> <span class="n">to</span> <span class="n">a</span> <span class="n">VH</span> <span class="n">series</span> <span class="n">binary</span> <span class="n">file</span><span class="o">.</span>
+
+  <span class="n">Inputs</span><span class="p">:</span>
+     <span class="n">FO</span> <span class="k">is</span> <span class="n">the</span> <span class="n">file</span> <span class="n">description</span> <span class="n">to</span> <span class="n">write</span> <span class="n">to</span><span class="p">;</span> <span class="n">it</span> <span class="n">can</span> <span class="n">be</span> <span class="n">a</span> 
+          <span class="n">filename</span> <span class="ow">or</span> <span class="n">an</span> <span class="n">object</span> <span class="n">of</span> <span class="n">type</span> <span class="n">FILEOBJ</span>
+     <span class="n">X</span> <span class="k">is</span> <span class="n">a</span> <span class="n">NUMSAMPLESx1</span> <span class="n">dataset</span><span class="p">,</span> <span class="n">usually</span> <span class="n">the</span> <span class="n">independent</span> <span class="n">variable</span><span class="o">.</span>
+          <span class="n">X</span> <span class="n">can</span> <span class="n">be</span> <span class="n">empty</span> <span class="k">if</span> <span class="n">an</span> <span class="n">X_start</span> <span class="ow">and</span> <span class="n">X_increment</span> <span class="n">are</span> <span class="n">provided</span>
+     <span class="n">Y</span> <span class="k">is</span> <span class="n">an</span> <span class="n">NUM_SAMPLESxXxYxZx</span><span class="o">...</span> <span class="n">dataset</span> <span class="n">with</span> <span class="n">the</span> <span class="n">Y</span> <span class="n">samples</span> <span class="n">that</span>
+          <span class="n">are</span> <span class="n">associated</span> <span class="n">with</span> <span class="n">each</span> <span class="n">value</span> <span class="n">of</span> <span class="n">X</span><span class="o">.</span>
+          <span class="n">X</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="k">is</span> <span class="n">the</span> <span class="n">ith</span> <span class="n">sample</span> <span class="n">of</span> <span class="n">X</span><span class="p">,</span> <span class="ow">and</span> <span class="n">Y</span><span class="p">(</span><span class="n">i</span><span class="p">,:,:,</span><span class="o">...</span><span class="p">)</span> <span class="k">is</span> <span class="n">the</span> <span class="n">ith</span> <span class="n">sample</span> <span class="n">of</span> <span class="n">Y</span>
+
+  <span class="n">Outputs</span><span class="p">:</span> 
+     <span class="n">B</span> <span class="k">is</span> <span class="mi">1</span> <span class="k">if</span> <span class="n">the</span> <span class="n">file</span> <span class="n">was</span> <span class="n">written</span> <span class="n">successfully</span><span class="p">,</span> <span class="mi">0</span> <span class="n">otherwise</span>
+
+  <span class="n">The</span> <span class="n">function</span> <span class="n">accepts</span> <span class="n">parameters</span> <span class="n">that</span> <span class="n">modify</span> <span class="n">the</span> <span class="n">default</span> <span class="n">functionality</span>
+  <span class="k">as</span> <span class="n">name</span><span class="o">/</span><span class="n">value</span> <span class="n">pairs</span><span class="o">.</span>
+
+  <span class="n">Parameter</span> <span class="p">(</span><span class="n">default</span><span class="p">)</span>                           <span class="o">|</span> <span class="n">Description</span>
+  <span class="o">------------------------------------------------------------------------------</span>
+  <span class="n">use_filelock</span> <span class="p">(</span><span class="mi">1</span><span class="p">)</span>                              <span class="o">|</span> <span class="n">Lock</span> <span class="n">the</span> <span class="n">file</span> <span class="n">with</span> <span class="n">vlt</span><span class="o">.</span><span class="n">file</span><span class="o">.</span><span class="n">checkout_lock_file</span>
+  <span class="n">X_start</span> <span class="p">(</span><span class="n">X</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>                                <span class="o">|</span> <span class="n">The</span> <span class="n">value</span> <span class="n">of</span> <span class="n">X</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">first</span> <span class="n">sample</span>
+  <span class="n">X_increment</span> <span class="p">(</span><span class="mi">0</span><span class="p">)</span>                               <span class="o">|</span> <span class="n">The</span> <span class="n">increment</span> <span class="n">between</span> <span class="n">subsequent</span> <span class="n">values</span> <span class="n">of</span> <span class="n">X</span>
+                                                <span class="o">|</span>    <span class="p">(</span><span class="n">needs</span> <span class="n">only</span> <span class="n">be</span> <span class="n">non</span><span class="o">-</span><span class="n">zero</span> <span class="k">if</span> <span class="n">X_constantinterval</span> <span class="k">is</span> <span class="mi">1</span><span class="p">)</span>
+  <span class="n">X_stored</span> <span class="p">(</span><span class="mi">1</span><span class="p">)</span>                                  <span class="o">|</span> <span class="n">Should</span> <span class="n">values</span> <span class="n">of</span> <span class="n">X</span> <span class="n">be</span> <span class="n">stored</span> <span class="p">(</span><span class="mi">1</span><span class="p">),</span> <span class="ow">or</span> <span class="n">computed</span> <span class="n">from</span> <span class="n">X_start</span>
+                                                <span class="o">|</span>    <span class="ow">and</span> <span class="n">X_increment</span> <span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="err">?</span>
+  <span class="n">X_constantinterval</span> <span class="p">(</span><span class="mi">0</span><span class="p">)</span>                        <span class="o">|</span> <span class="n">Is</span> <span class="n">there</span> <span class="n">a</span> <span class="n">constant</span> <span class="n">interval</span> <span class="n">between</span> <span class="n">X</span> <span class="n">samples</span> <span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="ow">or</span> <span class="ow">not</span> <span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="ow">or</span>
+                                                <span class="o">|</span>    <span class="ow">not</span> <span class="n">necessarily</span> <span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="err">?</span>
+  <span class="n">X_units</span> <span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>                                  <span class="o">|</span> <span class="n">The</span> <span class="n">units</span> <span class="n">of</span> <span class="n">X</span> <span class="p">(</span><span class="n">a</span> <span class="n">character</span> <span class="n">string</span><span class="p">,</span> <span class="n">up</span> <span class="n">to</span> <span class="mi">255</span> <span class="n">characters</span><span class="p">)</span>
+  <span class="n">Y_units</span> <span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>                                  <span class="o">|</span> <span class="n">The</span> <span class="n">units</span> <span class="n">of</span> <span class="n">Y</span> <span class="p">(</span><span class="n">a</span> <span class="n">character</span> <span class="n">string</span><span class="p">,</span> <span class="n">up</span> <span class="n">to</span> <span class="mi">255</span> <span class="n">characters</span><span class="p">)</span>
+  <span class="n">X_data_size</span> <span class="p">(</span><span class="mi">64</span><span class="p">)</span>                              <span class="o">|</span> <span class="n">The</span> <span class="n">resolution</span> <span class="p">(</span><span class="ow">in</span> <span class="n">bits</span><span class="p">)</span> <span class="k">for</span> <span class="n">X</span>
+  <span class="n">X_data_type</span> <span class="p">(</span><span class="s1">&#39;float&#39;</span><span class="p">)</span>                         <span class="o">|</span> <span class="n">The</span> <span class="n">data</span> <span class="n">type</span> <span class="n">to</span> <span class="n">be</span> <span class="n">written</span> <span class="k">for</span> <span class="n">X</span> <span class="p">(</span><span class="s1">&#39;char&#39;</span><span class="p">,</span><span class="s1">&#39;uint&#39;</span><span class="p">,</span><span class="s1">&#39;int&#39;</span><span class="p">,</span><span class="s1">&#39;float&#39;</span><span class="p">)</span>
+  <span class="n">Y_data_size</span> <span class="p">(</span><span class="mi">64</span><span class="p">)</span>                              <span class="o">|</span> <span class="n">The</span> <span class="n">resolution</span> <span class="p">(</span><span class="ow">in</span> <span class="n">bits</span><span class="p">)</span> <span class="k">for</span> <span class="n">Y</span>
+  <span class="n">Y_data_type</span> <span class="p">(</span><span class="s1">&#39;float&#39;</span><span class="p">)</span>                         <span class="o">|</span> <span class="n">The</span> <span class="n">data</span> <span class="n">type</span> <span class="n">to</span> <span class="n">be</span> <span class="n">written</span> <span class="k">for</span> <span class="n">Y</span> <span class="p">(</span><span class="s1">&#39;char&#39;</span><span class="p">,</span><span class="s1">&#39;uint&#39;</span><span class="p">,</span><span class="s1">&#39;int&#39;</span><span class="p">,</span><span class="s1">&#39;float&#39;</span><span class="p">)</span>
+  <span class="n">X_usescale</span> <span class="p">(</span><span class="mi">0</span><span class="p">)</span>                                <span class="o">|</span> <span class="n">Scale</span> <span class="n">the</span> <span class="n">X</span> <span class="n">data</span> <span class="n">before</span> <span class="n">writing</span> <span class="n">to</span> <span class="n">disk</span> <span class="p">(</span><span class="ow">and</span> <span class="n">after</span> <span class="n">reading</span><span class="p">)</span><span class="err">?</span>
+  <span class="n">Y_usescale</span> <span class="p">(</span><span class="mi">0</span><span class="p">)</span>                                <span class="o">|</span> <span class="n">Scale</span> <span class="n">the</span> <span class="n">Y</span> <span class="n">data</span> <span class="n">before</span> <span class="n">writing</span> <span class="n">to</span> <span class="n">disk</span> <span class="p">(</span><span class="ow">and</span> <span class="n">after</span> <span class="n">reading</span><span class="p">)</span><span class="err">?</span>
+  <span class="n">X_scale</span> <span class="p">(</span><span class="mi">1</span><span class="p">)</span>                                   <span class="o">|</span> <span class="n">The</span> <span class="n">X</span> <span class="n">scale</span> <span class="n">factor</span> <span class="n">to</span> <span class="n">use</span> <span class="n">to</span> <span class="n">write</span> <span class="n">samples</span> <span class="n">to</span> <span class="n">disk</span>
+  <span class="n">X_offset</span> <span class="p">(</span><span class="mi">0</span><span class="p">)</span>                                  <span class="o">|</span> <span class="n">The</span> <span class="n">X</span> <span class="n">offset</span> <span class="n">to</span> <span class="n">use</span> <span class="p">(</span><span class="n">Xdisk</span> <span class="o">=</span> <span class="n">X</span><span class="o">/</span><span class="n">X_scale</span> <span class="o">+</span> <span class="n">X_offset</span><span class="p">)</span>
+  <span class="n">Y_scale</span> <span class="p">(</span><span class="mi">1</span><span class="p">)</span>                                   <span class="o">|</span> <span class="n">The</span> <span class="n">Y</span> <span class="n">scale</span> <span class="n">factor</span> <span class="n">to</span> <span class="n">use</span>
+  <span class="n">Y_offset</span> <span class="p">(</span><span class="mi">0</span><span class="p">)</span>                                  <span class="o">|</span> <span class="n">The</span> <span class="n">Y</span> <span class="n">offset</span> <span class="n">to</span> <span class="n">use</span> <span class="p">(</span><span class="n">Ydisk</span> <span class="o">=</span> <span class="n">Y</span><span class="o">/</span><span class="n">Y_scale</span> <span class="o">+</span> <span class="n">X_offset</span><span class="p">)</span>
+
+  <span class="n">See</span> <span class="n">also</span><span class="p">:</span> <span class="n">vlt</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">namevaluepair</span>
+</code></pre></div>
                 
               
               

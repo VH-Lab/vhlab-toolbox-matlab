@@ -3213,6 +3213,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../../%2Bgit/git_stash.m/" class="md-nav__link">
+        vlt.git.git_stash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../../%2Bgit/git_status.m/" class="md-nav__link">
         vlt.git.git_status
       </a>
@@ -9239,43 +9251,47 @@
                 
                 
                 <h1 id="vltimageroiroi_3d_all_overlaps">vlt.image.roi.ROI_3d_all_overlaps<a class="headerlink" href="#vltimageroiroi_3d_all_overlaps" title="Permanent link">&para;</a></h1>
-<p>ROIS_3D_ALL_OVERLAPS - Compute overlaps between sets of 3D ROIs</p>
-<p>[OVERLAP_AB, OVERLAP_BA] = ROI_3D_ALL_OVERLAPS(ROIS3D_A, LA, ...
-            ROIS3D_B, LB, XRANGE, YRANGE, ZRANGE, ...);</p>
-<p>For 2 sets of ROIS, calculate the overlap of each ROI in A onto each ROI in B,
-   and vice-versa.</p>
-<p>Inputs: 
-      ROIS3D_A and ROIS3D_B are structures returned from a function
-        like BWBOUNDARIES with fields 
-        'ImageSize'    [1x3]   : the dimensions of the original image
-        'NumObjects'   [1x1]   : the number of objects N
-        'PixelIdxList' {1xN}   : a cell array of index values for each ROI
-      LA and LB are labeled image matrixes, the same size as the original
-        image. Each pixel should be labeled with a '0' if it contains no ROI, 
-         or i if it is part of the ith ROI. See also BWLABEL
-      XRANGE, YRANGE, ZRANGE: calculate the overlap over
-           shifts of the ROIs in X, Y, and Z. e.g., XRANGE = [ -5 : 1 : 5]
-           YRANGE = [ -5 : 1 : 5], ZRANGE = [ -5 : 1 5] computes the
-           overlap for all shifts in X, Y, and Z of 5 pixels (in all
-           directions).</p>
-<div class="codehilite"><pre><span></span><code><span class="n">Outputs</span><span class="o">:</span> 
-  <span class="n">OVERLAP_AB</span><span class="o">:</span> <span class="n">The</span> <span class="n">maximum</span> <span class="n">percentage</span> <span class="n">overlap</span> <span class="n">of</span> <span class="k">each</span> <span class="n">ROI</span> <span class="k">in</span> <span class="n">A</span> <span class="n">onto</span> <span class="n">B</span><span class="o">.</span> <span class="n">OVERLAP_AB</span><span class="o">(</span><span class="n">i</span><span class="o">,</span><span class="n">j</span><span class="o">)</span>
-    <span class="k">is</span> <span class="n">the</span> <span class="n">maximum</span> <span class="n">amount</span> <span class="n">of</span> <span class="n">the</span> <span class="n">ith</span> <span class="n">ROI</span> <span class="k">in</span> <span class="n">A</span> <span class="n">that</span> <span class="n">overlaps</span> <span class="n">the</span> <span class="n">jth</span> <span class="n">ROI</span> <span class="k">in</span> <span class="n">B</span><span class="o">,</span> <span class="k">for</span>
-    <span class="n">all</span> <span class="n">XRANGE</span><span class="o">,</span> <span class="n">YRANGE</span><span class="o">,</span> <span class="n">and</span> <span class="n">ZRANGE</span> <span class="n">shifts</span><span class="o">.</span>
-  <span class="n">OVERLAP_BA</span><span class="o">:</span> <span class="n">The</span> <span class="n">maximum</span> <span class="n">percentage</span> <span class="n">overlap</span> <span class="n">of</span> <span class="k">each</span> <span class="n">ROI</span> <span class="k">in</span> <span class="n">B</span> <span class="n">onto</span> <span class="n">A</span><span class="o">.</span> <span class="n">OVERLAP_BA</span><span class="o">(</span><span class="n">i</span><span class="o">,</span><span class="n">j</span><span class="o">)</span>
-    <span class="k">is</span> <span class="n">the</span> <span class="n">maximum</span> <span class="n">amount</span> <span class="n">of</span> <span class="n">the</span> <span class="n">ith</span> <span class="n">ROI</span> <span class="k">in</span> <span class="n">B</span> <span class="n">that</span> <span class="n">overlaps</span> <span class="n">the</span> <span class="n">jth</span> <span class="n">ROI</span> <span class="k">in</span> <span class="n">A</span><span class="o">,</span> <span class="k">for</span>
-    <span class="n">all</span> <span class="n">XRANGE</span><span class="o">,</span> <span class="n">YRANGE</span><span class="o">,</span> <span class="n">and</span> <span class="n">ZRANGE</span> <span class="n">shifts</span><span class="o">.</span>
+<div class="codehilite"><pre><span></span><code>  <span class="nv">ROIS_3D_ALL_OVERLAPS</span> <span class="o">-</span> <span class="nv">Compute</span> <span class="nv">overlaps</span> <span class="nv">between</span> <span class="nv">sets</span> <span class="nv">of</span> <span class="mi">3</span><span class="nv">D</span> <span class="nv">ROIs</span>
 
-<span class="n">This</span> <span class="kd">function</span> <span class="n">also</span> <span class="n">accepts</span> <span class="n">extra</span> <span class="n">name</span><span class="o">/</span><span class="n">value</span> <span class="n">pairs</span> <span class="n">that</span> <span class="n">modify</span> <span class="n">the</span> <span class="k">default</span>
-<span class="n">behavior</span> <span class="n">of</span> <span class="n">the</span> <span class="kd">function</span><span class="o">:</span>
+   [<span class="nv">OVERLAP_AB</span>, <span class="nv">OVERLAP_BA</span>] <span class="o">=</span> <span class="nv">ROI_3D_ALL_OVERLAPS</span><span class="ss">(</span><span class="nv">ROIS3D_A</span>, <span class="nv">LA</span>, ...
+            <span class="nv">ROIS3D_B</span>, <span class="nv">LB</span>, <span class="nv">XRANGE</span>, <span class="nv">YRANGE</span>, <span class="nv">ZRANGE</span>, ...<span class="ss">)</span><span class="c1">;</span>
 
-<span class="n">Parameter</span> <span class="n">name</span> <span class="o">(</span><span class="k">default</span><span class="o">)</span>   <span class="o">:</span> <span class="n">Description</span>
-<span class="o">---------------------------------------------------------------</span>
-<span class="n">ShowGraphicalProgress</span> <span class="o">(</span><span class="mi">1</span><span class="o">)</span>  <span class="o">:</span> <span class="mi">0</span><span class="o">/</span><span class="mi">1</span> <span class="n">Should</span> <span class="n">we</span> <span class="n">show</span> <span class="n">a</span> <span class="n">progress</span> <span class="n">bar</span><span class="o">?</span>
-<span class="n">Flare</span> <span class="n">MAX</span><span class="o">(</span><span class="n">MAX</span><span class="o">(</span><span class="n">ABS</span><span class="o">(</span><span class="n">XRANGE</span><span class="o">)),:</span> <span class="n">Integer</span>  <span class="n">How</span> <span class="n">much</span> <span class="n">should</span> <span class="n">we</span> <span class="n">flare</span> <span class="n">out</span> <span class="k">each</span>
-   <span class="n">MAX</span><span class="o">(</span><span class="n">MAX</span><span class="o">(</span><span class="n">ABS</span><span class="o">(</span><span class="n">YRANGE</span><span class="o">)),</span>   <span class="o">:</span>  <span class="n">ROI</span> <span class="k">in</span> <span class="n">A</span> <span class="n">to</span> <span class="n">check</span> <span class="k">for</span> <span class="n">overlaps</span> <span class="k">in</span> <span class="n">B</span><span class="o">?</span>
-     <span class="n">MAX</span><span class="o">(</span><span class="n">ABS</span><span class="o">(</span><span class="n">ZRANGE</span><span class="o">))</span> <span class="o">))</span>   <span class="o">:</span> <span class="o">(</span><span class="n">The</span> <span class="n">flare</span> <span class="n">expands</span> <span class="n">the</span> <span class="n">ROI</span> <span class="k">in</span> <span class="n">all</span> <span class="n">directions</span>
-                           <span class="o">:</span>  <span class="n">to</span> <span class="n">allow</span> <span class="n">us</span> <span class="n">to</span> <span class="n">look</span> <span class="k">for</span> <span class="n">overlapping</span> <span class="n">ROIs</span><span class="o">.)</span>
+   <span class="k">For</span> <span class="mi">2</span> <span class="nv">sets</span> <span class="nv">of</span> <span class="nv">ROIS</span>, <span class="nv">calculate</span> <span class="nv">the</span> <span class="nv">overlap</span> <span class="nv">of</span> <span class="nv">each</span> <span class="nv">ROI</span> <span class="nv">in</span> <span class="nv">A</span> <span class="nv">onto</span> <span class="nv">each</span> <span class="nv">ROI</span> <span class="nv">in</span> <span class="nv">B</span>,
+   <span class="nv">and</span> <span class="nv">vice</span><span class="o">-</span><span class="nv">versa</span>.
+
+   <span class="nv">Inputs</span>: 
+      <span class="nv">ROIS3D_A</span> <span class="nv">and</span> <span class="nv">ROIS3D_B</span> <span class="nv">are</span> <span class="nv">structures</span> <span class="nv">returned</span> <span class="nv">from</span> <span class="nv">a</span> <span class="nv">function</span>
+        <span class="nv">like</span> <span class="nv">BWBOUNDARIES</span> <span class="nv">with</span> <span class="nv">fields</span> 
+        <span class="s1">&#39;</span><span class="s">ImageSize</span><span class="s1">&#39;</span>    [<span class="mi">1</span><span class="nv">x3</span>]   : <span class="nv">the</span> <span class="nv">dimensions</span> <span class="nv">of</span> <span class="nv">the</span> <span class="nv">original</span> <span class="nv">image</span>
+        <span class="s1">&#39;</span><span class="s">NumObjects</span><span class="s1">&#39;</span>   [<span class="mi">1</span><span class="nv">x1</span>]   : <span class="nv">the</span> <span class="nv">number</span> <span class="nv">of</span> <span class="nv">objects</span> <span class="nv">N</span>
+        <span class="s1">&#39;</span><span class="s">PixelIdxList</span><span class="s1">&#39;</span> {<span class="mi">1</span><span class="nv">xN</span>}   : <span class="nv">a</span> <span class="nv">cell</span> <span class="nv">array</span> <span class="nv">of</span> <span class="nv">index</span> <span class="nv">values</span> <span class="k">for</span> <span class="nv">each</span> <span class="nv">ROI</span>
+      <span class="nv">LA</span> <span class="nv">and</span> <span class="nv">LB</span> <span class="nv">are</span> <span class="nv">labeled</span> <span class="nv">image</span> <span class="nv">matrixes</span>, <span class="nv">the</span> <span class="nv">same</span> <span class="nv">size</span> <span class="nv">as</span> <span class="nv">the</span> <span class="nv">original</span>
+        <span class="nv">image</span>. <span class="nv">Each</span> <span class="nv">pixel</span> <span class="nv">should</span> <span class="nv">be</span> <span class="nv">labeled</span> <span class="nv">with</span> <span class="nv">a</span> <span class="s1">&#39;</span><span class="s">0</span><span class="s1">&#39;</span> <span class="k">if</span> <span class="nv">it</span> <span class="nv">contains</span> <span class="nv">no</span> <span class="nv">ROI</span>, 
+         <span class="nv">or</span> <span class="nv">i</span> <span class="k">if</span> <span class="nv">it</span> <span class="nv">is</span> <span class="nv">part</span> <span class="nv">of</span> <span class="nv">the</span> <span class="nv">ith</span> <span class="nv">ROI</span>. <span class="nv">See</span> <span class="nv">also</span> <span class="nv">BWLABEL</span>
+      <span class="nv">XRANGE</span>, <span class="nv">YRANGE</span>, <span class="nv">ZRANGE</span>: <span class="nv">calculate</span> <span class="nv">the</span> <span class="nv">overlap</span> <span class="nv">over</span>
+           <span class="nv">shifts</span> <span class="nv">of</span> <span class="nv">the</span> <span class="nv">ROIs</span> <span class="nv">in</span> <span class="nv">X</span>, <span class="nv">Y</span>, <span class="nv">and</span> <span class="nv">Z</span>. <span class="nv">e</span>.<span class="nv">g</span>., <span class="nv">XRANGE</span> <span class="o">=</span> [ <span class="o">-</span><span class="mi">5</span> : <span class="mi">1</span> : <span class="mi">5</span>]
+           <span class="nv">YRANGE</span> <span class="o">=</span> [ <span class="o">-</span><span class="mi">5</span> : <span class="mi">1</span> : <span class="mi">5</span>], <span class="nv">ZRANGE</span> <span class="o">=</span> [ <span class="o">-</span><span class="mi">5</span> : <span class="mi">1</span> <span class="mi">5</span>] <span class="nv">computes</span> <span class="nv">the</span>
+           <span class="nv">overlap</span> <span class="k">for</span> <span class="nv">all</span> <span class="nv">shifts</span> <span class="nv">in</span> <span class="nv">X</span>, <span class="nv">Y</span>, <span class="nv">and</span> <span class="nv">Z</span> <span class="nv">of</span> <span class="mi">5</span> <span class="nv">pixels</span> <span class="ss">(</span><span class="nv">in</span> <span class="nv">all</span>
+           <span class="nv">directions</span><span class="ss">)</span>.
+
+    <span class="nv">Outputs</span>: 
+      <span class="nv">OVERLAP_AB</span>: <span class="nv">The</span> <span class="nv">maximum</span> <span class="nv">percentage</span> <span class="nv">overlap</span> <span class="nv">of</span> <span class="nv">each</span> <span class="nv">ROI</span> <span class="nv">in</span> <span class="nv">A</span> <span class="nv">onto</span> <span class="nv">B</span>. <span class="nv">OVERLAP_AB</span><span class="ss">(</span><span class="nv">i</span>,<span class="nv">j</span><span class="ss">)</span>
+        <span class="nv">is</span> <span class="nv">the</span> <span class="nv">maximum</span> <span class="nv">amount</span> <span class="nv">of</span> <span class="nv">the</span> <span class="nv">ith</span> <span class="nv">ROI</span> <span class="nv">in</span> <span class="nv">A</span> <span class="nv">that</span> <span class="nv">overlaps</span> <span class="nv">the</span> <span class="nv">jth</span> <span class="nv">ROI</span> <span class="nv">in</span> <span class="nv">B</span>, <span class="k">for</span>
+        <span class="nv">all</span> <span class="nv">XRANGE</span>, <span class="nv">YRANGE</span>, <span class="nv">and</span> <span class="nv">ZRANGE</span> <span class="nv">shifts</span>.
+      <span class="nv">OVERLAP_BA</span>: <span class="nv">The</span> <span class="nv">maximum</span> <span class="nv">percentage</span> <span class="nv">overlap</span> <span class="nv">of</span> <span class="nv">each</span> <span class="nv">ROI</span> <span class="nv">in</span> <span class="nv">B</span> <span class="nv">onto</span> <span class="nv">A</span>. <span class="nv">OVERLAP_BA</span><span class="ss">(</span><span class="nv">i</span>,<span class="nv">j</span><span class="ss">)</span>
+        <span class="nv">is</span> <span class="nv">the</span> <span class="nv">maximum</span> <span class="nv">amount</span> <span class="nv">of</span> <span class="nv">the</span> <span class="nv">ith</span> <span class="nv">ROI</span> <span class="nv">in</span> <span class="nv">B</span> <span class="nv">that</span> <span class="nv">overlaps</span> <span class="nv">the</span> <span class="nv">jth</span> <span class="nv">ROI</span> <span class="nv">in</span> <span class="nv">A</span>, <span class="k">for</span>
+        <span class="nv">all</span> <span class="nv">XRANGE</span>, <span class="nv">YRANGE</span>, <span class="nv">and</span> <span class="nv">ZRANGE</span> <span class="nv">shifts</span>.
+
+    <span class="nv">This</span> <span class="nv">function</span> <span class="nv">also</span> <span class="nv">accepts</span> <span class="nv">extra</span> <span class="nv">name</span><span class="o">/</span><span class="nv">value</span> <span class="nv">pairs</span> <span class="nv">that</span> <span class="nv">modify</span> <span class="nv">the</span> <span class="nv">default</span>
+    <span class="nv">behavior</span> <span class="nv">of</span> <span class="nv">the</span> <span class="nv">function</span>:
+
+    <span class="nv">Parameter</span> <span class="nv">name</span> <span class="ss">(</span><span class="nv">default</span><span class="ss">)</span>   : <span class="nv">Description</span>
+    <span class="o">---------------------------------------------------------------</span>
+    <span class="nv">ShowGraphicalProgress</span> <span class="ss">(</span><span class="mi">1</span><span class="ss">)</span>  : <span class="mi">0</span><span class="o">/</span><span class="mi">1</span> <span class="nv">Should</span> <span class="nv">we</span> <span class="k">show</span> <span class="nv">a</span> <span class="nv">progress</span> <span class="nv">bar</span>?
+    <span class="nv">Flare</span> <span class="nv">MAX</span><span class="ss">(</span><span class="nv">MAX</span><span class="ss">(</span><span class="nv">ABS</span><span class="ss">(</span><span class="nv">XRANGE</span><span class="ss">))</span>,: <span class="nv">Integer</span>  <span class="nv">How</span> <span class="nv">much</span> <span class="nv">should</span> <span class="nv">we</span> <span class="nv">flare</span> <span class="nv">out</span> <span class="nv">each</span>
+       <span class="nv">MAX</span><span class="ss">(</span><span class="nv">MAX</span><span class="ss">(</span><span class="nv">ABS</span><span class="ss">(</span><span class="nv">YRANGE</span><span class="ss">))</span>,   :  <span class="nv">ROI</span> <span class="nv">in</span> <span class="nv">A</span> <span class="nv">to</span> <span class="nv">check</span> <span class="k">for</span> <span class="nv">overlaps</span> <span class="nv">in</span> <span class="nv">B</span>?
+         <span class="nv">MAX</span><span class="ss">(</span><span class="nv">ABS</span><span class="ss">(</span><span class="nv">ZRANGE</span><span class="ss">))</span> <span class="ss">))</span>   : <span class="ss">(</span><span class="nv">The</span> <span class="nv">flare</span> <span class="nv">expands</span> <span class="nv">the</span> <span class="nv">ROI</span> <span class="nv">in</span> <span class="nv">all</span> <span class="nv">directions</span>
+                               :  <span class="nv">to</span> <span class="nv">allow</span> <span class="nv">us</span> <span class="nv">to</span> <span class="nv">look</span> <span class="k">for</span> <span class="nv">overlapping</span> <span class="nv">ROIs</span>.<span class="ss">)</span>
 </code></pre></div>
                 
               

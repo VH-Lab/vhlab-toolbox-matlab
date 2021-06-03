@@ -3213,6 +3213,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../%2Bgit/git_stash.m/" class="md-nav__link">
+        vlt.git.git_stash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../%2Bgit/git_status.m/" class="md-nav__link">
         vlt.git.git_status
       </a>
@@ -9237,22 +9249,29 @@
                 
                 
                 <h1 id="vltmatlabfindfunctionusedir">vlt.matlab.findfunctionusedir<a class="headerlink" href="#vltmatlabfindfunctionusedir" title="Permanent link">&para;</a></h1>
-<p>FINDFUNCTIONUSEDIR determine where a function is called in a directory of m-files</p>
-<p>FUSE = FINDFUNCTIONUSEDIR(DIRNAME, MINFO)</p>
-<p>Searches the directory DIRNAME for uses of a Matlab function
-  described by minfo returned by vlt.matlab.mfileinfo.</p>
-<p>This function searches for instances of [MINFO.NAME]
-  Note that it may identify instances in the comments, or instances where the
-  user has defined their own internal function of the same name.</p>
-<p>Returns the structure described in vlt.matlab.findfunctionusefile.</p>
-<p>This function takes extra parameters as name/value pairs:
-  Parameter (default)         | Description</p>
-<hr />
-<p>IgnorePackages (0)          | 0/1; should we ignore package directories that
-                              |   begin with a '+' ?
-  IgnoreClassDirs (0)         | 0/1: should we ignore class directories that
-                              |   begin with a '@' ?</p>
-<p>See also: vlt.matlab.mfileinfo, vlt.matlab.findfunctionusefile, vlt.data.namevaluepair</p>
+<div class="codehilite"><pre><span></span><code>  <span class="nt">FINDFUNCTIONUSEDIR</span> <span class="nt">determine</span> <span class="nt">where</span> <span class="nt">a</span> <span class="nt">function</span> <span class="nt">is</span> <span class="nt">called</span> <span class="nt">in</span> <span class="nt">a</span> <span class="nt">directory</span> <span class="nt">of</span> <span class="nt">m-files</span>
+
+  <span class="nt">FUSE</span> <span class="o">=</span> <span class="nt">FINDFUNCTIONUSEDIR</span><span class="o">(</span><span class="nt">DIRNAME</span><span class="o">,</span> <span class="nt">MINFO</span><span class="o">)</span>
+
+  <span class="nt">Searches</span> <span class="nt">the</span> <span class="nt">directory</span> <span class="nt">DIRNAME</span> <span class="nt">for</span> <span class="nt">uses</span> <span class="nt">of</span> <span class="nt">a</span> <span class="nt">Matlab</span> <span class="nt">function</span>
+  <span class="nt">described</span> <span class="nt">by</span> <span class="nt">minfo</span> <span class="nt">returned</span> <span class="nt">by</span> <span class="nt">vlt</span><span class="p">.</span><span class="nc">matlab</span><span class="p">.</span><span class="nc">mfileinfo</span><span class="o">.</span>
+
+  <span class="nt">This</span> <span class="nt">function</span> <span class="nt">searches</span> <span class="nt">for</span> <span class="nt">instances</span> <span class="nt">of</span> <span class="cp">[</span><span class="nx">MINFO.NAME</span><span class="cp">]</span>
+  <span class="nt">Note</span> <span class="nt">that</span> <span class="nt">it</span> <span class="nt">may</span> <span class="nt">identify</span> <span class="nt">instances</span> <span class="nt">in</span> <span class="nt">the</span> <span class="nt">comments</span><span class="o">,</span> <span class="nt">or</span> <span class="nt">instances</span> <span class="nt">where</span> <span class="nt">the</span>
+  <span class="nt">user</span> <span class="nt">has</span> <span class="nt">defined</span> <span class="nt">their</span> <span class="nt">own</span> <span class="nt">internal</span> <span class="nt">function</span> <span class="nt">of</span> <span class="nt">the</span> <span class="nt">same</span> <span class="nt">name</span><span class="o">.</span>
+
+  <span class="nt">Returns</span> <span class="nt">the</span> <span class="nt">structure</span> <span class="nt">described</span> <span class="nt">in</span> <span class="nt">vlt</span><span class="p">.</span><span class="nc">matlab</span><span class="p">.</span><span class="nc">findfunctionusefile</span><span class="o">.</span>
+
+  <span class="nt">This</span> <span class="nt">function</span> <span class="nt">takes</span> <span class="nt">extra</span> <span class="nt">parameters</span> <span class="nt">as</span> <span class="nt">name</span><span class="o">/</span><span class="nt">value</span> <span class="nt">pairs</span><span class="o">:</span>
+  <span class="nt">Parameter</span> <span class="o">(</span><span class="nt">default</span><span class="o">)</span>         <span class="o">|</span> <span class="nt">Description</span>
+  <span class="nt">----------------------------------------------------------------------</span>
+  <span class="nt">IgnorePackages</span> <span class="o">(</span><span class="nt">0</span><span class="o">)</span>          <span class="o">|</span> <span class="nt">0</span><span class="o">/</span><span class="nt">1</span><span class="o">;</span> <span class="nt">should</span> <span class="nt">we</span> <span class="nt">ignore</span> <span class="nt">package</span> <span class="nt">directories</span> <span class="nt">that</span>
+                              <span class="o">|</span>   <span class="nt">begin</span> <span class="nt">with</span> <span class="nt">a</span> <span class="s1">&#39;+&#39;</span> <span class="o">?</span>
+  <span class="nt">IgnoreClassDirs</span> <span class="o">(</span><span class="nt">0</span><span class="o">)</span>         <span class="o">|</span> <span class="nt">0</span><span class="o">/</span><span class="nt">1</span><span class="o">:</span> <span class="nt">should</span> <span class="nt">we</span> <span class="nt">ignore</span> <span class="nt">class</span> <span class="nt">directories</span> <span class="nt">that</span>
+                              <span class="o">|</span>   <span class="nt">begin</span> <span class="nt">with</span> <span class="nt">a</span> <span class="s1">&#39;@&#39;</span> <span class="o">?</span>
+
+  <span class="nt">See</span> <span class="nt">also</span><span class="o">:</span> <span class="nt">vlt</span><span class="p">.</span><span class="nc">matlab</span><span class="p">.</span><span class="nc">mfileinfo</span><span class="o">,</span> <span class="nt">vlt</span><span class="p">.</span><span class="nc">matlab</span><span class="p">.</span><span class="nc">findfunctionusefile</span><span class="o">,</span> <span class="nt">vlt</span><span class="p">.</span><span class="nc">data</span><span class="p">.</span><span class="nc">namevaluepair</span>
+</code></pre></div>
                 
               
               

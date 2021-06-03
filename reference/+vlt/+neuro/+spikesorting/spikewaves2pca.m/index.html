@@ -3213,6 +3213,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../../%2Bgit/git_stash.m/" class="md-nav__link">
+        vlt.git.git_stash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../../%2Bgit/git_status.m/" class="md-nav__link">
         vlt.git.git_status
       </a>
@@ -9239,18 +9251,23 @@
                 
                 
                 <h1 id="vltneurospikesortingspikewaves2pca">vlt.neuro.spikesorting.spikewaves2pca<a class="headerlink" href="#vltneurospikesortingspikewaves2pca" title="Permanent link">&para;</a></h1>
-<p>SPIKEWAVES2PCA - Compute first N principle components of spike waveforms</p>
-<p>FEATURES = vlt.neuro.spikesorting.spikewaves2pca(WAVES, N, [RANGE])</p>
-<p>Creates a set of "features" of the spike waveform WAVES by
-   calculating the values of the first N principle components.</p>
-<p>Inputs:
-   WAVES: A NumSamples x NumChannels x NumSpikes list of spike
-    waveforms. 
-   N:  the number of principle components to include
-   Optional input:
-   RANGE: A 2 element vector with the START and STOP range to examine</p>
-<p>Outputs:
-   FEATURES:   An N x NumSpikes list of features.</p>
+<div class="codehilite"><pre><span></span><code><span class="w">  </span><span class="n">SPIKEWAVES2PCA</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="k">Compute</span><span class="w"> </span><span class="k">first</span><span class="w"> </span><span class="n">N</span><span class="w"> </span><span class="n">principle</span><span class="w"> </span><span class="n">components</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="n">spike</span><span class="w"> </span><span class="n">waveforms</span><span class="w"></span>
+
+<span class="w">   </span><span class="n">FEATURES</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">vlt</span><span class="p">.</span><span class="n">neuro</span><span class="p">.</span><span class="n">spikesorting</span><span class="p">.</span><span class="n">spikewaves2pca</span><span class="p">(</span><span class="n">WAVES</span><span class="p">,</span><span class="w"> </span><span class="n">N</span><span class="p">,</span><span class="w"> </span><span class="o">[</span><span class="n">RANGE</span><span class="o">]</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">   </span><span class="n">Creates</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="ss">&quot;features&quot;</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">spike</span><span class="w"> </span><span class="n">waveform</span><span class="w"> </span><span class="n">WAVES</span><span class="w"> </span><span class="k">by</span><span class="w"></span>
+<span class="w">   </span><span class="n">calculating</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="k">values</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="k">first</span><span class="w"> </span><span class="n">N</span><span class="w"> </span><span class="n">principle</span><span class="w"> </span><span class="n">components</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">   </span><span class="nl">Inputs</span><span class="p">:</span><span class="w"></span>
+<span class="w">   </span><span class="nl">WAVES</span><span class="p">:</span><span class="w"> </span><span class="n">A</span><span class="w"> </span><span class="n">NumSamples</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="n">NumChannels</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="n">NumSpikes</span><span class="w"> </span><span class="n">list</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="n">spike</span><span class="w"></span>
+<span class="w">    </span><span class="n">waveforms</span><span class="p">.</span><span class="w"> </span>
+<span class="w">   </span><span class="nl">N</span><span class="p">:</span><span class="w">  </span><span class="n">the</span><span class="w"> </span><span class="n">number</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="n">principle</span><span class="w"> </span><span class="n">components</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="k">include</span><span class="w"></span>
+<span class="w">   </span><span class="n">Optional</span><span class="w"> </span><span class="k">input</span><span class="err">:</span><span class="w"></span>
+<span class="w">   </span><span class="k">RANGE</span><span class="err">:</span><span class="w"> </span><span class="n">A</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="k">element</span><span class="w"> </span><span class="n">vector</span><span class="w"> </span><span class="k">with</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="k">START</span><span class="w"> </span><span class="ow">and</span><span class="w"> </span><span class="n">STOP</span><span class="w"> </span><span class="k">range</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="n">examine</span><span class="w"></span>
+
+<span class="w">   </span><span class="nl">Outputs</span><span class="p">:</span><span class="w"></span>
+<span class="w">   </span><span class="nl">FEATURES</span><span class="p">:</span><span class="w">   </span><span class="n">An</span><span class="w"> </span><span class="n">N</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="n">NumSpikes</span><span class="w"> </span><span class="n">list</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="n">features</span><span class="p">.</span><span class="w"></span>
+</code></pre></div>
                 
               
               

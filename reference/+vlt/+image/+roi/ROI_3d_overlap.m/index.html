@@ -3213,6 +3213,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../../%2Bgit/git_stash.m/" class="md-nav__link">
+        vlt.git.git_stash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../../%2Bgit/git_status.m/" class="md-nav__link">
         vlt.git.git_status
       </a>
@@ -9239,24 +9251,26 @@
                 
                 
                 <h1 id="vltimageroiroi_3d_overlap">vlt.image.roi.ROI_3d_overlap<a class="headerlink" href="#vltimageroiroi_3d_overlap" title="Permanent link">&para;</a></h1>
-<p>ROI_3D_OVERLAP - Computes overlap between 3D ROIS in 3D space for different shifts</p>
-<p>[OVERLAPA, OVERLAPB] = ROI_3D_OVERLAP(ROIS3D1, ROIS3D2, XRANGE, YRANGE,...
-      ZRANGE, IMSIZE)</p>
-<div class="codehilite"><pre><span></span><code><span class="n">Inputs</span><span class="o">:</span><span class="n">ROIS3D1</span><span class="o">,</span> <span class="n">ROIS3D2</span> <span class="n">are</span> <span class="n">indexes</span>
-       <span class="n">SPOTDETECTOR3</span><span class="o">.</span> <span class="n">It</span> <span class="n">has</span> <span class="n">the</span> <span class="n">following</span> <span class="n">fields</span><span class="o">:</span>
-       <span class="n">XRANGE</span><span class="o">,</span> <span class="n">YRANGE</span><span class="o">,</span> <span class="n">ZRANGE</span><span class="o">:</span> <span class="n">we</span> <span class="n">will</span> <span class="n">calculate</span> <span class="n">the</span> <span class="n">overlap</span> <span class="n">over</span>
-       <span class="n">shifts</span> <span class="n">of</span> <span class="n">the</span> <span class="n">ROIs</span> <span class="k">in</span> <span class="n">X</span><span class="o">,</span> <span class="n">Y</span><span class="o">,</span> <span class="n">and</span> <span class="n">Z</span><span class="o">.</span> <span class="n">e</span><span class="o">.</span><span class="na">g</span><span class="o">.,</span> <span class="n">XRANGE</span> <span class="o">=</span> <span class="o">[</span> <span class="o">-</span><span class="mi">5</span> <span class="o">:</span> <span class="mi">1</span> <span class="o">:</span> <span class="mi">5</span><span class="o">]</span>
-       <span class="n">YRANGE</span> <span class="o">=</span> <span class="o">[</span> <span class="o">-</span><span class="mi">5</span> <span class="o">:</span> <span class="mi">1</span> <span class="o">:</span> <span class="mi">5</span><span class="o">],</span> <span class="n">ZRANGE</span> <span class="o">=</span> <span class="o">[</span> <span class="o">-</span><span class="mi">5</span> <span class="o">:</span> <span class="mi">1</span> <span class="mi">5</span><span class="o">]</span> <span class="n">computes</span> <span class="n">the</span>
-       <span class="n">overlap</span> <span class="k">for</span> <span class="n">all</span> <span class="n">shifts</span> <span class="k">in</span> <span class="n">X</span><span class="o">,</span> <span class="n">Y</span><span class="o">,</span> <span class="n">and</span> <span class="n">Z</span> <span class="n">of</span> <span class="mi">5</span> <span class="n">pixels</span> <span class="o">(</span><span class="k">in</span> <span class="n">all</span>
-       <span class="n">directions</span><span class="o">).</span>
-       <span class="n">IMSIZE</span> <span class="o">-</span> <span class="n">The</span> <span class="n">image</span> <span class="n">size</span> <span class="k">in</span> <span class="n">pixels</span> <span class="o">[</span><span class="n">NX</span> <span class="n">NY</span> <span class="n">NZ</span><span class="o">]</span>
-<span class="n">Outputs</span><span class="o">:</span>
-       <span class="n">OVERLAPA</span><span class="o">(</span><span class="n">x</span><span class="o">,</span><span class="n">y</span><span class="o">,</span><span class="n">z</span><span class="o">)</span> <span class="k">is</span> <span class="n">the</span> <span class="n">fraction</span> <span class="n">of</span> <span class="n">roi3d1</span> <span class="n">that</span> <span class="n">overlaps</span> <span class="n">roi3d2</span> <span class="n">when</span>
-              <span class="n">roi3d1</span> <span class="k">is</span> <span class="n">shifted</span> <span class="n">by</span> <span class="n">XRANGE</span><span class="o">(</span><span class="n">x</span><span class="o">),</span> <span class="n">YRANGE</span><span class="o">(</span><span class="n">y</span><span class="o">),</span> <span class="n">ZRANGE</span><span class="o">(</span><span class="n">z</span><span class="o">)</span> <span class="n">pixels</span>
-       <span class="n">OVERLAPB</span><span class="o">(</span><span class="n">x</span><span class="o">,</span><span class="n">y</span><span class="o">,</span><span class="n">z</span><span class="o">)</span> <span class="k">is</span> <span class="n">the</span> <span class="n">fraction</span> <span class="n">of</span> <span class="n">roi3d2</span> <span class="n">that</span> <span class="n">overlaps</span> <span class="n">roi3d1</span> <span class="n">when</span>
-              <span class="n">roi3d1</span> <span class="k">is</span> <span class="n">shifted</span> <span class="n">by</span> <span class="n">XRANGE</span><span class="o">(</span><span class="n">x</span><span class="o">),</span> <span class="n">YRANGE</span><span class="o">(</span><span class="n">y</span><span class="o">),</span> <span class="n">ZRANGE</span><span class="o">(</span><span class="n">z</span><span class="o">)</span> <span class="n">pixels</span>
+<div class="codehilite"><pre><span></span><code>  <span class="nv">ROI_3D_OVERLAP</span> <span class="o">-</span> <span class="nv">Computes</span> <span class="nv">overlap</span> <span class="nv">between</span> <span class="mi">3</span><span class="nv">D</span> <span class="nv">ROIS</span> <span class="nv">in</span> <span class="mi">3</span><span class="nv">D</span> <span class="nv">space</span> <span class="k">for</span> <span class="nv">different</span> <span class="nv">shifts</span>
 
-<span class="n">See</span> <span class="n">also</span><span class="o">:</span> <span class="n">ROI_3D_ALL_OVERLAPS</span>
+  [<span class="nv">OVERLAPA</span>, <span class="nv">OVERLAPB</span>] <span class="o">=</span> <span class="nv">ROI_3D_OVERLAP</span><span class="ss">(</span><span class="nv">ROIS3D1</span>, <span class="nv">ROIS3D2</span>, <span class="nv">XRANGE</span>, <span class="nv">YRANGE</span>,...
+      <span class="nv">ZRANGE</span>, <span class="nv">IMSIZE</span><span class="ss">)</span>
+
+    <span class="nv">Inputs</span>:<span class="nv">ROIS3D1</span>, <span class="nv">ROIS3D2</span> <span class="nv">are</span> <span class="nv">indexes</span>
+           <span class="nv">SPOTDETECTOR3</span>. <span class="nv">It</span> <span class="nv">has</span> <span class="nv">the</span> <span class="nv">following</span> <span class="nv">fields</span>:
+           <span class="nv">XRANGE</span>, <span class="nv">YRANGE</span>, <span class="nv">ZRANGE</span>: <span class="nv">we</span> <span class="nv">will</span> <span class="nv">calculate</span> <span class="nv">the</span> <span class="nv">overlap</span> <span class="nv">over</span>
+           <span class="nv">shifts</span> <span class="nv">of</span> <span class="nv">the</span> <span class="nv">ROIs</span> <span class="nv">in</span> <span class="nv">X</span>, <span class="nv">Y</span>, <span class="nv">and</span> <span class="nv">Z</span>. <span class="nv">e</span>.<span class="nv">g</span>., <span class="nv">XRANGE</span> <span class="o">=</span> [ <span class="o">-</span><span class="mi">5</span> : <span class="mi">1</span> : <span class="mi">5</span>]
+           <span class="nv">YRANGE</span> <span class="o">=</span> [ <span class="o">-</span><span class="mi">5</span> : <span class="mi">1</span> : <span class="mi">5</span>], <span class="nv">ZRANGE</span> <span class="o">=</span> [ <span class="o">-</span><span class="mi">5</span> : <span class="mi">1</span> <span class="mi">5</span>] <span class="nv">computes</span> <span class="nv">the</span>
+           <span class="nv">overlap</span> <span class="k">for</span> <span class="nv">all</span> <span class="nv">shifts</span> <span class="nv">in</span> <span class="nv">X</span>, <span class="nv">Y</span>, <span class="nv">and</span> <span class="nv">Z</span> <span class="nv">of</span> <span class="mi">5</span> <span class="nv">pixels</span> <span class="ss">(</span><span class="nv">in</span> <span class="nv">all</span>
+           <span class="nv">directions</span><span class="ss">)</span>.
+           <span class="nv">IMSIZE</span> <span class="o">-</span> <span class="nv">The</span> <span class="nv">image</span> <span class="nv">size</span> <span class="nv">in</span> <span class="nv">pixels</span> [<span class="nv">NX</span> <span class="nv">NY</span> <span class="nv">NZ</span>]
+    <span class="nv">Outputs</span>:
+           <span class="nv">OVERLAPA</span><span class="ss">(</span><span class="nv">x</span>,<span class="nv">y</span>,<span class="nv">z</span><span class="ss">)</span> <span class="nv">is</span> <span class="nv">the</span> <span class="nv">fraction</span> <span class="nv">of</span> <span class="nv">roi3d1</span> <span class="nv">that</span> <span class="nv">overlaps</span> <span class="nv">roi3d2</span> <span class="nv">when</span>
+                  <span class="nv">roi3d1</span> <span class="nv">is</span> <span class="nv">shifted</span> <span class="nv">by</span> <span class="nv">XRANGE</span><span class="ss">(</span><span class="nv">x</span><span class="ss">)</span>, <span class="nv">YRANGE</span><span class="ss">(</span><span class="nv">y</span><span class="ss">)</span>, <span class="nv">ZRANGE</span><span class="ss">(</span><span class="nv">z</span><span class="ss">)</span> <span class="nv">pixels</span>
+           <span class="nv">OVERLAPB</span><span class="ss">(</span><span class="nv">x</span>,<span class="nv">y</span>,<span class="nv">z</span><span class="ss">)</span> <span class="nv">is</span> <span class="nv">the</span> <span class="nv">fraction</span> <span class="nv">of</span> <span class="nv">roi3d2</span> <span class="nv">that</span> <span class="nv">overlaps</span> <span class="nv">roi3d1</span> <span class="nv">when</span>
+                  <span class="nv">roi3d1</span> <span class="nv">is</span> <span class="nv">shifted</span> <span class="nv">by</span> <span class="nv">XRANGE</span><span class="ss">(</span><span class="nv">x</span><span class="ss">)</span>, <span class="nv">YRANGE</span><span class="ss">(</span><span class="nv">y</span><span class="ss">)</span>, <span class="nv">ZRANGE</span><span class="ss">(</span><span class="nv">z</span><span class="ss">)</span> <span class="nv">pixels</span>
+
+    <span class="nv">See</span> <span class="nv">also</span>: <span class="nv">ROI_3D_ALL_OVERLAPS</span>
 </code></pre></div>
                 
               

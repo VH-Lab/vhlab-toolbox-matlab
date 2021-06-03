@@ -3213,6 +3213,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../../%2Bgit/git_stash.m/" class="md-nav__link">
+        vlt.git.git_stash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../../%2Bgit/git_status.m/" class="md-nav__link">
         vlt.git.git_status
       </a>
@@ -9239,31 +9251,37 @@
                 
                 
                 <h1 id="vltneurospiketrainsspiketrain_powerspectrum">vlt.neuro.spiketrains.spiketrain_powerspectrum<a class="headerlink" href="#vltneurospiketrainsspiketrain_powerspectrum" title="Permanent link">&para;</a></h1>
-<p>SPIKETRAIN_POWERSPECTRUM - Compute power spectrum of a spiketrain using pmtm</p>
-<p>[Pxx,Pxxc,F] = vlt.neuro.spiketrains.spiketrain_powerspectrum(SPIKETIMES, TIME_RESOLUTION)</p>
-<p>Use the Tomson Multi-Taper method (see help pmtm) to calculate the 
-   power spectrum of a list of SPIKETIMES, sampled with time resolution
-   TIME_RESOLUTION (e.g., 0.001 for 1/1000 of the units of SPIKETIMES).</p>
-<p>One may modify the behavior of the function by passing name/value
-   pairs:
-   Parameter (default value) :  Description</p>
-<hr />
-<p>NFFT ([])                 :  Number of points to include in the FFT
-                             :     (see HELP PMTM)</p>
-<p>Example:
-     dt = 0.001;
-     t = 0:dt:100;  % 100 seconds long
-     rate = 10<em>vlt.math.rectify(cos(2</em>pi<em>0.5</em>t)*dt); % 
-     spiketimes = t(find(rand(size(rate))&lt;rate)); 
-     [Pxx,Pxxc,F] = vlt.neuro.spiketrains.spiketrain_powerspectrum(spiketimes,0.01);
-     figure;
-     loglog(F,Pxx); 
-     hold on;
-     loglog(F,Pxxc(:,1),'r-');
-     loglog(F,Pxxc(:,2),'r-');
-     title('Tomson Multitaper Power Spectral Density Estimate');
-     xlabel('Frequency (Hz)');
-     ylabel('Power/frequency (dB/Hz)');</p>
+<div class="codehilite"><pre><span></span><code>  <span class="nt">SPIKETRAIN_POWERSPECTRUM</span> <span class="nt">-</span> <span class="nt">Compute</span> <span class="nt">power</span> <span class="nt">spectrum</span> <span class="nt">of</span> <span class="nt">a</span> <span class="nt">spiketrain</span> <span class="nt">using</span> <span class="nt">pmtm</span>
+
+   <span class="cp">[</span><span class="nx">Pxx</span><span class="p">,</span><span class="nx">Pxxc</span><span class="p">,</span><span class="nx">F</span><span class="cp">]</span> <span class="o">=</span> <span class="nt">vlt</span><span class="p">.</span><span class="nc">neuro</span><span class="p">.</span><span class="nc">spiketrains</span><span class="p">.</span><span class="nc">spiketrain_powerspectrum</span><span class="o">(</span><span class="nt">SPIKETIMES</span><span class="o">,</span> <span class="nt">TIME_RESOLUTION</span><span class="o">)</span>
+
+   <span class="nt">Use</span> <span class="nt">the</span> <span class="nt">Tomson</span> <span class="nt">Multi-Taper</span> <span class="nt">method</span> <span class="o">(</span><span class="nt">see</span> <span class="nt">help</span> <span class="nt">pmtm</span><span class="o">)</span> <span class="nt">to</span> <span class="nt">calculate</span> <span class="nt">the</span> 
+   <span class="nt">power</span> <span class="nt">spectrum</span> <span class="nt">of</span> <span class="nt">a</span> <span class="nt">list</span> <span class="nt">of</span> <span class="nt">SPIKETIMES</span><span class="o">,</span> <span class="nt">sampled</span> <span class="nt">with</span> <span class="nt">time</span> <span class="nt">resolution</span>
+   <span class="nt">TIME_RESOLUTION</span> <span class="o">(</span><span class="nt">e</span><span class="p">.</span><span class="nc">g</span><span class="o">.,</span> <span class="nt">0</span><span class="p">.</span><span class="nc">001</span> <span class="nt">for</span> <span class="nt">1</span><span class="o">/</span><span class="nt">1000</span> <span class="nt">of</span> <span class="nt">the</span> <span class="nt">units</span> <span class="nt">of</span> <span class="nt">SPIKETIMES</span><span class="o">).</span>
+
+   <span class="nt">One</span> <span class="nt">may</span> <span class="nt">modify</span> <span class="nt">the</span> <span class="nt">behavior</span> <span class="nt">of</span> <span class="nt">the</span> <span class="nt">function</span> <span class="nt">by</span> <span class="nt">passing</span> <span class="nt">name</span><span class="o">/</span><span class="nt">value</span>
+   <span class="nt">pairs</span><span class="o">:</span>
+   <span class="nt">Parameter</span> <span class="o">(</span><span class="nt">default</span> <span class="nt">value</span><span class="o">)</span> <span class="o">:</span>  <span class="nt">Description</span>
+   <span class="nt">------------------------------------------------------------------------</span>
+   <span class="nt">NFFT</span> <span class="o">(</span><span class="cp">[]</span><span class="o">)</span>                 <span class="o">:</span>  <span class="nt">Number</span> <span class="nt">of</span> <span class="nt">points</span> <span class="nt">to</span> <span class="nt">include</span> <span class="nt">in</span> <span class="nt">the</span> <span class="nt">FFT</span>
+                             <span class="o">:</span>     <span class="o">(</span><span class="nt">see</span> <span class="nt">HELP</span> <span class="nt">PMTM</span><span class="o">)</span>
+
+
+   <span class="nt">Example</span><span class="o">:</span>
+     <span class="nt">dt</span> <span class="o">=</span> <span class="nt">0</span><span class="p">.</span><span class="nc">001</span><span class="o">;</span>
+     <span class="nt">t</span> <span class="o">=</span> <span class="nt">0</span><span class="p">:</span><span class="nd">dt</span><span class="p">:</span><span class="nd">100</span><span class="o">;</span>  <span class="o">%</span> <span class="nt">100</span> <span class="nt">seconds</span> <span class="nt">long</span>
+     <span class="nt">rate</span> <span class="o">=</span> <span class="nt">10</span><span class="o">*</span><span class="nt">vlt</span><span class="p">.</span><span class="nc">math</span><span class="p">.</span><span class="nc">rectify</span><span class="o">(</span><span class="nt">cos</span><span class="o">(</span><span class="nt">2</span><span class="o">*</span><span class="nt">pi</span><span class="o">*</span><span class="nt">0</span><span class="p">.</span><span class="nc">5</span><span class="o">*</span><span class="nt">t</span><span class="o">)*</span><span class="nt">dt</span><span class="o">);</span> <span class="o">%</span> 
+     <span class="nt">spiketimes</span> <span class="o">=</span> <span class="nt">t</span><span class="o">(</span><span class="nt">find</span><span class="o">(</span><span class="nt">rand</span><span class="o">(</span><span class="nt">size</span><span class="o">(</span><span class="nt">rate</span><span class="o">))&lt;</span><span class="nt">rate</span><span class="o">));</span> 
+     <span class="cp">[</span><span class="nx">Pxx</span><span class="p">,</span><span class="nx">Pxxc</span><span class="p">,</span><span class="nx">F</span><span class="cp">]</span> <span class="o">=</span> <span class="nt">vlt</span><span class="p">.</span><span class="nc">neuro</span><span class="p">.</span><span class="nc">spiketrains</span><span class="p">.</span><span class="nc">spiketrain_powerspectrum</span><span class="o">(</span><span class="nt">spiketimes</span><span class="o">,</span><span class="nt">0</span><span class="p">.</span><span class="nc">01</span><span class="o">);</span>
+     <span class="nt">figure</span><span class="o">;</span>
+     <span class="nt">loglog</span><span class="o">(</span><span class="nt">F</span><span class="o">,</span><span class="nt">Pxx</span><span class="o">);</span> 
+     <span class="nt">hold</span> <span class="nt">on</span><span class="o">;</span>
+     <span class="nt">loglog</span><span class="o">(</span><span class="nt">F</span><span class="o">,</span><span class="nt">Pxxc</span><span class="o">(:,</span><span class="nt">1</span><span class="o">),</span><span class="s1">&#39;r-&#39;</span><span class="o">);</span>
+     <span class="nt">loglog</span><span class="o">(</span><span class="nt">F</span><span class="o">,</span><span class="nt">Pxxc</span><span class="o">(:,</span><span class="nt">2</span><span class="o">),</span><span class="s1">&#39;r-&#39;</span><span class="o">);</span>
+     <span class="nt">title</span><span class="o">(</span><span class="s1">&#39;Tomson Multitaper Power Spectral Density Estimate&#39;</span><span class="o">);</span>
+     <span class="nt">xlabel</span><span class="o">(</span><span class="s1">&#39;Frequency (Hz)&#39;</span><span class="o">);</span>
+     <span class="nt">ylabel</span><span class="o">(</span><span class="s1">&#39;Power/frequency (dB/Hz)&#39;</span><span class="o">);</span>
+</code></pre></div>
                 
               
               

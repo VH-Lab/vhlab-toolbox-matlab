@@ -3213,6 +3213,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../%2Bgit/git_stash.m/" class="md-nav__link">
+        vlt.git.git_stash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../%2Bgit/git_status.m/" class="md-nav__link">
         vlt.git.git_status
       </a>
@@ -9237,21 +9249,24 @@
                 
                 
                 <h1 id="vltstatsmwustat">vlt.stats.mwustat<a class="headerlink" href="#vltstatsmwustat" title="Permanent link">&para;</a></h1>
-<p>[u,z,P] = mwustat(data1,data2)
-  vlt.stats.mwustat.m: given vectors data1 and data2, the Mann-Whitney U statistic is
-  returned along with the significance statistic Z.  The Z value should be
-  compared to T(alpha,infinity) for samples larger than 40 data points,
-  otherwise The U value should be compared to a table of the U distribution.
-  This implementation assumes a precision in measurements that renders
-  tie values (i.e., &gt; 1 occurence of the same value) unlikely.  If tie
-  values are expected, this function should be modified.</p>
-<p>Adapted from Biostatistical Analysis, Zar JH, Prentice-Hall, 1974.
-  This script was written by Carsten D. Hohnke, currently at BCS at MIT</p>
-<p>u - the U statistic
-  z - the z-score for U
-  P - the p-value for that z
-  thesign - the sign of the difference (data2 - data1): +1 if Rank2&gt;Rank1
-  NOTE: Is this the correct order?</p>
+<div class="codehilite"><pre><span></span><code>  [<span class="nv">u</span>,<span class="nv">z</span>,<span class="nv">P</span>] <span class="o">=</span> <span class="nv">mwustat</span><span class="ss">(</span><span class="nv">data1</span>,<span class="nv">data2</span><span class="ss">)</span>
+  <span class="nv">vlt</span>.<span class="nv">stats</span>.<span class="nv">mwustat</span>.<span class="nv">m</span>: <span class="nv">given</span> <span class="nv">vectors</span> <span class="nv">data1</span> <span class="nv">and</span> <span class="nv">data2</span>, <span class="nv">the</span> <span class="nv">Mann</span><span class="o">-</span><span class="nv">Whitney</span> <span class="nv">U</span> <span class="nv">statistic</span> <span class="nv">is</span>
+  <span class="nv">returned</span> <span class="nv">along</span> <span class="nv">with</span> <span class="nv">the</span> <span class="nv">significance</span> <span class="nv">statistic</span> <span class="nv">Z</span>.  <span class="nv">The</span> <span class="nv">Z</span> <span class="nv">value</span> <span class="nv">should</span> <span class="nv">be</span>
+  <span class="nv">compared</span> <span class="nv">to</span> <span class="nv">T</span><span class="ss">(</span><span class="nv">alpha</span>,<span class="nv">infinity</span><span class="ss">)</span> <span class="k">for</span> <span class="nv">samples</span> <span class="nv">larger</span> <span class="nv">than</span> <span class="mi">40</span> <span class="nv">data</span> <span class="nv">points</span>,
+  <span class="nv">otherwise</span> <span class="nv">The</span> <span class="nv">U</span> <span class="nv">value</span> <span class="nv">should</span> <span class="nv">be</span> <span class="nv">compared</span> <span class="nv">to</span> <span class="nv">a</span> <span class="nv">table</span> <span class="nv">of</span> <span class="nv">the</span> <span class="nv">U</span> <span class="nv">distribution</span>.
+  <span class="nv">This</span> <span class="nv">implementation</span> <span class="nv">assumes</span> <span class="nv">a</span> <span class="nv">precision</span> <span class="nv">in</span> <span class="nv">measurements</span> <span class="nv">that</span> <span class="nv">renders</span>
+  <span class="nv">tie</span> <span class="nv">values</span> <span class="ss">(</span><span class="nv">i</span>.<span class="nv">e</span>., <span class="o">&gt;</span> <span class="mi">1</span> <span class="nv">occurence</span> <span class="nv">of</span> <span class="nv">the</span> <span class="nv">same</span> <span class="nv">value</span><span class="ss">)</span> <span class="nv">unlikely</span>.  <span class="k">If</span> <span class="nv">tie</span>
+  <span class="nv">values</span> <span class="nv">are</span> <span class="nv">expected</span>, <span class="nv">this</span> <span class="nv">function</span> <span class="nv">should</span> <span class="nv">be</span> <span class="nv">modified</span>.
+
+  <span class="nv">Adapted</span> <span class="nv">from</span> <span class="nv">Biostatistical</span> <span class="nv">Analysis</span>, <span class="nv">Zar</span> <span class="nv">JH</span>, <span class="nv">Prentice</span><span class="o">-</span><span class="nv">Hall</span>, <span class="mi">1974</span>.
+  <span class="nv">This</span> <span class="nv">script</span> <span class="nv">was</span> <span class="nv">written</span> <span class="nv">by</span> <span class="nv">Carsten</span> <span class="nv">D</span>. <span class="nv">Hohnke</span>, <span class="nv">currently</span> <span class="nv">at</span> <span class="nv">BCS</span> <span class="nv">at</span> <span class="nv">MIT</span>
+
+  <span class="nv">u</span> <span class="o">-</span> <span class="nv">the</span> <span class="nv">U</span> <span class="nv">statistic</span>
+  <span class="nv">z</span> <span class="o">-</span> <span class="nv">the</span> <span class="nv">z</span><span class="o">-</span><span class="nv">score</span> <span class="k">for</span> <span class="nv">U</span>
+  <span class="nv">P</span> <span class="o">-</span> <span class="nv">the</span> <span class="nv">p</span><span class="o">-</span><span class="nv">value</span> <span class="k">for</span> <span class="nv">that</span> <span class="nv">z</span>
+  <span class="nv">thesign</span> <span class="o">-</span> <span class="nv">the</span> <span class="nv">sign</span> <span class="nv">of</span> <span class="nv">the</span> <span class="nv">difference</span> <span class="ss">(</span><span class="nv">data2</span> <span class="o">-</span> <span class="nv">data1</span><span class="ss">)</span>: <span class="o">+</span><span class="mi">1</span> <span class="k">if</span> <span class="nv">Rank2</span><span class="o">&gt;</span><span class="nv">Rank1</span>
+  <span class="nv">NOTE</span>: <span class="nv">Is</span> <span class="nv">this</span> <span class="nv">the</span> <span class="nv">correct</span> <span class="nv">order</span>?
+</code></pre></div>
                 
               
               

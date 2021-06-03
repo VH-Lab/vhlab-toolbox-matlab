@@ -3213,6 +3213,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../%2Bgit/git_stash.m/" class="md-nav__link">
+        vlt.git.git_stash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../%2Bgit/git_status.m/" class="md-nav__link">
         vlt.git.git_status
       </a>
@@ -9237,38 +9249,44 @@
                 
                 
                 <h1 id="vltmathfouriercoeffs_2d">vlt.math.fouriercoeffs_2d<a class="headerlink" href="#vltmathfouriercoeffs_2d" title="Permanent link">&para;</a></h1>
-<p>FOURIERCOEFFS_2D - calculate Fourier coeffients for 2-d fourier analysis</p>
-<p>[Y, FX, FY, R, FR] = vlt.math.fouriercoeffs_2d(X, PIXELSIZE)</p>
-<p>Given a 2-dimensional signal X (such as an image) and the pixel size in meters (PIXELSIZE), then
-  the following are computed:</p>
-<p>Y = shifted discrete 2d fourier transform of X (shifted with fftshift)
-       These coefficients are normalized so that a<em>exp(-sqrt(-1)</em>2<em>pi</em>n/T)) has coefficient of a
-       This differs from the default normalization (none) of the discrete 2d fourier transform
-   FX - the frequencies examined in the first dimension (shifted)
-   FY - the frequencies examined in the second dimension (shifted)
-   R - the Fourier cofficients at fixed radii
-   FR - the Fourier frequencies at fixed radii</p>
-<p>A progress bar is shown during radial averaging.</p>
-<p>Example:
-      % a grating
-      X_1 = 0:0.001:1; % 1 mm steps to 1 meter
-      X_2 = 0:0.001:1; % 1 mm steps to 1 meter
-      f1 = 3; % 3 cycles per meter
-      f2 = 10; % 10 cycles per meter
-      f3 = 5; % 5 cycles per meter
-      [X1,X2] = meshgrid(X_1,X_2);
-      X = 1 + 0.5 * sin(2<em>pi</em>f1*X1);
-      vlt.plot.imagedisplay(X);</p>
-<div class="codehilite"><pre><span></span><code>  X_ = 1+ 0.5 * sin(2*pi*f2*X2+2*pi*f3*X1) + X;
-  vlt.plot.imagedisplay(X_);
-  [Y,FX,FY,R,FR] = vlt.math.fouriercoeffs_2d(X,0.001);
-  [Y_,FX_,FY_,R_,FR_] = vlt.math.fouriercoeffs_2d(X_,0.001);
-  figure; 
-  plot(FR,abs(R),&#39;mo&#39;); % average spatial frequency tuning across all directions
-  hold on; 
-  plot(FR_,abs(R_),&#39;bo&#39;);  % average spatial frequency tuning across all directions
-  xlabel(&#39;Spatial frequency (cycles/unit)&#39;);
-  ylabel(&#39;Magnitude&#39;);
+<div class="codehilite"><pre><span></span><code>  <span class="n">FOURIERCOEFFS_2D</span> <span class="o">-</span> <span class="n">calculate</span> <span class="n">Fourier</span> <span class="n">coeffients</span> <span class="k">for</span> <span class="mi">2</span><span class="o">-</span><span class="n">d</span> <span class="n">fourier</span> <span class="n">analysis</span>
+
+  <span class="p">[</span><span class="n">Y</span><span class="p">,</span> <span class="n">FX</span><span class="p">,</span> <span class="n">FY</span><span class="p">,</span> <span class="n">R</span><span class="p">,</span> <span class="n">FR</span><span class="p">]</span> <span class="o">=</span> <span class="n">vlt</span><span class="o">.</span><span class="n">math</span><span class="o">.</span><span class="n">fouriercoeffs_2d</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">PIXELSIZE</span><span class="p">)</span>
+
+  <span class="n">Given</span> <span class="n">a</span> <span class="mi">2</span><span class="o">-</span><span class="n">dimensional</span> <span class="k">signal</span> <span class="n">X</span> <span class="p">(</span><span class="n">such</span> <span class="k">as</span> <span class="n">an</span> <span class="n">image</span><span class="p">)</span> <span class="ow">and</span> <span class="n">the</span> <span class="n">pixel</span> <span class="n">size</span> <span class="ow">in</span> <span class="n">meters</span> <span class="p">(</span><span class="n">PIXELSIZE</span><span class="p">),</span> <span class="n">then</span>
+  <span class="n">the</span> <span class="n">following</span> <span class="n">are</span> <span class="n">computed</span><span class="p">:</span>
+
+   <span class="n">Y</span> <span class="o">=</span> <span class="n">shifted</span> <span class="n">discrete</span> <span class="mi">2</span><span class="n">d</span> <span class="n">fourier</span> <span class="n">transform</span> <span class="n">of</span> <span class="n">X</span> <span class="p">(</span><span class="n">shifted</span> <span class="n">with</span> <span class="n">fftshift</span><span class="p">)</span>
+       <span class="n">These</span> <span class="n">coefficients</span> <span class="n">are</span> <span class="n">normalized</span> <span class="n">so</span> <span class="n">that</span> <span class="n">a</span><span class="o">*</span><span class="nb">exp</span><span class="p">(</span><span class="o">-</span><span class="nb">sqrt</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="mi">2</span><span class="o">*</span><span class="n">pi</span><span class="o">*</span><span class="n">n</span><span class="o">/</span><span class="n">T</span><span class="p">))</span> <span class="n">has</span> <span class="n">coefficient</span> <span class="n">of</span> <span class="n">a</span>
+       <span class="n">This</span> <span class="n">differs</span> <span class="n">from</span> <span class="n">the</span> <span class="n">default</span> <span class="n">normalization</span> <span class="p">(</span><span class="n">none</span><span class="p">)</span> <span class="n">of</span> <span class="n">the</span> <span class="n">discrete</span> <span class="mi">2</span><span class="n">d</span> <span class="n">fourier</span> <span class="n">transform</span>
+   <span class="n">FX</span> <span class="o">-</span> <span class="n">the</span> <span class="n">frequencies</span> <span class="n">examined</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">first</span> <span class="n">dimension</span> <span class="p">(</span><span class="n">shifted</span><span class="p">)</span>
+   <span class="n">FY</span> <span class="o">-</span> <span class="n">the</span> <span class="n">frequencies</span> <span class="n">examined</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">second</span> <span class="n">dimension</span> <span class="p">(</span><span class="n">shifted</span><span class="p">)</span>
+   <span class="n">R</span> <span class="o">-</span> <span class="n">the</span> <span class="n">Fourier</span> <span class="n">cofficients</span> <span class="n">at</span> <span class="n">fixed</span> <span class="n">radii</span>
+   <span class="n">FR</span> <span class="o">-</span> <span class="n">the</span> <span class="n">Fourier</span> <span class="n">frequencies</span> <span class="n">at</span> <span class="n">fixed</span> <span class="n">radii</span>
+
+   <span class="n">A</span> <span class="n">progress</span> <span class="n">bar</span> <span class="k">is</span> <span class="n">shown</span> <span class="n">during</span> <span class="n">radial</span> <span class="n">averaging</span><span class="o">.</span>
+
+   <span class="n">Example</span><span class="p">:</span>
+      <span class="o">%</span> <span class="n">a</span> <span class="n">grating</span>
+      <span class="n">X_1</span> <span class="o">=</span> <span class="mi">0</span><span class="p">:</span><span class="mf">0.001</span><span class="p">:</span><span class="mi">1</span><span class="p">;</span> <span class="o">%</span> <span class="mi">1</span> <span class="n">mm</span> <span class="n">steps</span> <span class="n">to</span> <span class="mi">1</span> <span class="n">meter</span>
+      <span class="n">X_2</span> <span class="o">=</span> <span class="mi">0</span><span class="p">:</span><span class="mf">0.001</span><span class="p">:</span><span class="mi">1</span><span class="p">;</span> <span class="o">%</span> <span class="mi">1</span> <span class="n">mm</span> <span class="n">steps</span> <span class="n">to</span> <span class="mi">1</span> <span class="n">meter</span>
+      <span class="n">f1</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span> <span class="o">%</span> <span class="mi">3</span> <span class="n">cycles</span> <span class="n">per</span> <span class="n">meter</span>
+      <span class="n">f2</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span> <span class="o">%</span> <span class="mi">10</span> <span class="n">cycles</span> <span class="n">per</span> <span class="n">meter</span>
+      <span class="n">f3</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span> <span class="o">%</span> <span class="mi">5</span> <span class="n">cycles</span> <span class="n">per</span> <span class="n">meter</span>
+      <span class="p">[</span><span class="n">X1</span><span class="p">,</span><span class="n">X2</span><span class="p">]</span> <span class="o">=</span> <span class="n">meshgrid</span><span class="p">(</span><span class="n">X_1</span><span class="p">,</span><span class="n">X_2</span><span class="p">);</span>
+      <span class="n">X</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">+</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="nb">sin</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">pi</span><span class="o">*</span><span class="n">f1</span><span class="o">*</span><span class="n">X1</span><span class="p">);</span>
+      <span class="n">vlt</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">imagedisplay</span><span class="p">(</span><span class="n">X</span><span class="p">);</span>
+
+      <span class="n">X_</span> <span class="o">=</span> <span class="mi">1</span><span class="o">+</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="nb">sin</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">pi</span><span class="o">*</span><span class="n">f2</span><span class="o">*</span><span class="n">X2</span><span class="o">+</span><span class="mi">2</span><span class="o">*</span><span class="n">pi</span><span class="o">*</span><span class="n">f3</span><span class="o">*</span><span class="n">X1</span><span class="p">)</span> <span class="o">+</span> <span class="n">X</span><span class="p">;</span>
+      <span class="n">vlt</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">imagedisplay</span><span class="p">(</span><span class="n">X_</span><span class="p">);</span>
+      <span class="p">[</span><span class="n">Y</span><span class="p">,</span><span class="n">FX</span><span class="p">,</span><span class="n">FY</span><span class="p">,</span><span class="n">R</span><span class="p">,</span><span class="n">FR</span><span class="p">]</span> <span class="o">=</span> <span class="n">vlt</span><span class="o">.</span><span class="n">math</span><span class="o">.</span><span class="n">fouriercoeffs_2d</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="mf">0.001</span><span class="p">);</span>
+      <span class="p">[</span><span class="n">Y_</span><span class="p">,</span><span class="n">FX_</span><span class="p">,</span><span class="n">FY_</span><span class="p">,</span><span class="n">R_</span><span class="p">,</span><span class="n">FR_</span><span class="p">]</span> <span class="o">=</span> <span class="n">vlt</span><span class="o">.</span><span class="n">math</span><span class="o">.</span><span class="n">fouriercoeffs_2d</span><span class="p">(</span><span class="n">X_</span><span class="p">,</span><span class="mf">0.001</span><span class="p">);</span>
+      <span class="n">figure</span><span class="p">;</span> 
+      <span class="n">plot</span><span class="p">(</span><span class="n">FR</span><span class="p">,</span><span class="nb">abs</span><span class="p">(</span><span class="n">R</span><span class="p">),</span><span class="s1">&#39;mo&#39;</span><span class="p">);</span> <span class="o">%</span> <span class="n">average</span> <span class="n">spatial</span> <span class="n">frequency</span> <span class="n">tuning</span> <span class="n">across</span> <span class="n">all</span> <span class="n">directions</span>
+      <span class="n">hold</span> <span class="n">on</span><span class="p">;</span> 
+      <span class="n">plot</span><span class="p">(</span><span class="n">FR_</span><span class="p">,</span><span class="nb">abs</span><span class="p">(</span><span class="n">R_</span><span class="p">),</span><span class="s1">&#39;bo&#39;</span><span class="p">);</span>  <span class="o">%</span> <span class="n">average</span> <span class="n">spatial</span> <span class="n">frequency</span> <span class="n">tuning</span> <span class="n">across</span> <span class="n">all</span> <span class="n">directions</span>
+      <span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Spatial frequency (cycles/unit)&#39;</span><span class="p">);</span>
+      <span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Magnitude&#39;</span><span class="p">);</span>
 </code></pre></div>
                 
               

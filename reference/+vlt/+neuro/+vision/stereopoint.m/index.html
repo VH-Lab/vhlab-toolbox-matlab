@@ -3213,6 +3213,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../../%2Bgit/git_stash.m/" class="md-nav__link">
+        vlt.git.git_stash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../../%2Bgit/git_status.m/" class="md-nav__link">
         vlt.git.git_status
       </a>
@@ -9239,21 +9251,22 @@
                 
                 
                 <h1 id="vltneurovisionstereopoint">vlt.neuro.vision.stereopoint<a class="headerlink" href="#vltneurovisionstereopoint" title="Permanent link">&para;</a></h1>
-<p>vlt.neuro.vision.stereopoint - Compute shifts for a point in space for making a stereograph</p>
-<div class="codehilite"><pre><span></span><code>[<span class="nv">LEFTOFFSET</span>,<span class="nv">RIGHTOFFSET</span>]<span class="o">=</span><span class="nv">vlt</span>.<span class="nv">neuro</span>.<span class="nv">vision</span>.<span class="nv">stereopoint</span><span class="ss">(</span><span class="nv">VIEWDIST</span>,<span class="nv">EYEDIST</span>,<span class="nv">XOFFSET</span>,<span class="nv">DOFFSET</span><span class="ss">)</span>
+<div class="codehilite"><pre><span></span><code>  <span class="nv">vlt</span>.<span class="nv">neuro</span>.<span class="nv">vision</span>.<span class="nv">stereopoint</span> <span class="o">-</span> <span class="nv">Compute</span> <span class="nv">shifts</span> <span class="k">for</span> <span class="nv">a</span> <span class="nv">point</span> <span class="nv">in</span> <span class="nv">space</span> <span class="k">for</span> <span class="nv">making</span> <span class="nv">a</span> <span class="nv">stereograph</span>
+
+    [<span class="nv">LEFTOFFSET</span>,<span class="nv">RIGHTOFFSET</span>]<span class="o">=</span><span class="nv">vlt</span>.<span class="nv">neuro</span>.<span class="nv">vision</span>.<span class="nv">stereopoint</span><span class="ss">(</span><span class="nv">VIEWDIST</span>,<span class="nv">EYEDIST</span>,<span class="nv">XOFFSET</span>,<span class="nv">DOFFSET</span><span class="ss">)</span>
 
 
-<span class="nv">Computes</span> <span class="nv">projections</span> <span class="nv">onto</span> <span class="nv">the</span> <span class="nv">two</span> <span class="nv">eyes</span> <span class="k">for</span> <span class="nv">a</span> <span class="nv">point</span> <span class="nv">in</span> <span class="mi">3</span><span class="nv">D</span> <span class="nv">space</span>.
+    <span class="nv">Computes</span> <span class="nv">projections</span> <span class="nv">onto</span> <span class="nv">the</span> <span class="nv">two</span> <span class="nv">eyes</span> <span class="k">for</span> <span class="nv">a</span> <span class="nv">point</span> <span class="nv">in</span> <span class="mi">3</span><span class="nv">D</span> <span class="nv">space</span>.
 
-<span class="nv">VIEWDIST</span> <span class="nv">is</span> <span class="nv">the</span> <span class="nv">distance</span> <span class="nv">to</span> <span class="nv">the</span> <span class="nv">focal</span> <span class="nv">point</span> <span class="ss">(</span><span class="nv">or</span> <span class="nv">the</span> <span class="nv">screen</span><span class="ss">)</span>.
-<span class="nv">EYEDIST</span> <span class="nv">is</span> <span class="nv">the</span> <span class="nv">distance</span> <span class="nv">between</span> <span class="nv">the</span> <span class="nv">eyes</span> <span class="ss">(</span><span class="nv">same</span> <span class="nv">units</span> <span class="nv">as</span> <span class="nv">VIEWDIST</span><span class="ss">)</span>.
+    <span class="nv">VIEWDIST</span> <span class="nv">is</span> <span class="nv">the</span> <span class="nv">distance</span> <span class="nv">to</span> <span class="nv">the</span> <span class="nv">focal</span> <span class="nv">point</span> <span class="ss">(</span><span class="nv">or</span> <span class="nv">the</span> <span class="nv">screen</span><span class="ss">)</span>.
+    <span class="nv">EYEDIST</span> <span class="nv">is</span> <span class="nv">the</span> <span class="nv">distance</span> <span class="nv">between</span> <span class="nv">the</span> <span class="nv">eyes</span> <span class="ss">(</span><span class="nv">same</span> <span class="nv">units</span> <span class="nv">as</span> <span class="nv">VIEWDIST</span><span class="ss">)</span>.
 
-<span class="nv">XOFFSET</span> <span class="nv">is</span> <span class="nv">the</span> <span class="nv">X</span> <span class="nv">offset</span> <span class="nv">between</span> <span class="nv">the</span> <span class="nv">focal</span> <span class="nv">point</span> <span class="nv">and</span> <span class="nv">the</span> <span class="nv">point</span> <span class="nv">in</span> <span class="mi">3</span> <span class="nv">space</span>
-  <span class="k">for</span> <span class="nv">which</span> <span class="nv">to</span> <span class="nv">compute</span> <span class="nv">shifts</span>. <span class="nv">Positive</span> <span class="nv">values</span> <span class="nv">are</span> <span class="nv">to</span> <span class="nv">the</span> <span class="nv">right</span>, <span class="nv">use</span> 
-  <span class="nv">same</span> <span class="nv">units</span> <span class="nv">as</span> <span class="nv">VIEWDIST</span>.
+    <span class="nv">XOFFSET</span> <span class="nv">is</span> <span class="nv">the</span> <span class="nv">X</span> <span class="nv">offset</span> <span class="nv">between</span> <span class="nv">the</span> <span class="nv">focal</span> <span class="nv">point</span> <span class="nv">and</span> <span class="nv">the</span> <span class="nv">point</span> <span class="nv">in</span> <span class="mi">3</span> <span class="nv">space</span>
+      <span class="k">for</span> <span class="nv">which</span> <span class="nv">to</span> <span class="nv">compute</span> <span class="nv">shifts</span>. <span class="nv">Positive</span> <span class="nv">values</span> <span class="nv">are</span> <span class="nv">to</span> <span class="nv">the</span> <span class="nv">right</span>, <span class="nv">use</span> 
+      <span class="nv">same</span> <span class="nv">units</span> <span class="nv">as</span> <span class="nv">VIEWDIST</span>.
 
-<span class="nv">DOFFSET</span> <span class="nv">is</span> <span class="nv">the</span> <span class="nv">depth</span> <span class="nv">offset</span> <span class="nv">between</span> <span class="nv">the</span> <span class="nv">focal</span> <span class="nv">point</span> <span class="nv">and</span> <span class="nv">the</span> <span class="nv">point</span> <span class="k">for</span> <span class="nv">which</span>
-  <span class="nv">to</span> <span class="nv">compute</span> <span class="nv">shifts</span>.
+    <span class="nv">DOFFSET</span> <span class="nv">is</span> <span class="nv">the</span> <span class="nv">depth</span> <span class="nv">offset</span> <span class="nv">between</span> <span class="nv">the</span> <span class="nv">focal</span> <span class="nv">point</span> <span class="nv">and</span> <span class="nv">the</span> <span class="nv">point</span> <span class="k">for</span> <span class="nv">which</span>
+      <span class="nv">to</span> <span class="nv">compute</span> <span class="nv">shifts</span>.
 </code></pre></div>
                 
               

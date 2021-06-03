@@ -3225,6 +3225,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../%2Bgit/git_stash.m/" class="md-nav__link">
+        vlt.git.git_stash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../%2Bgit/git_status.m/" class="md-nav__link">
         vlt.git.git_status
       </a>
@@ -9237,33 +9249,34 @@
                 
                 
                 <h1 id="vltdatasimpletable">vlt.data.simpletable<a class="headerlink" href="#vltdatasimpletable" title="Permanent link">&para;</a></h1>
-<p>SIMPLETABLE - Simple X/Y numeric table</p>
-<div class="codehilite"><pre><span></span><code><span class="p">[</span><span class="n">NEWSIMPLETABLE</span><span class="p">,</span><span class="n">NEWCATEGORYLABELS</span><span class="p">]</span> <span class="o">=</span> <span class="n">vlt</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">simpletable</span><span class="p">(</span><span class="n">OLDSIMPLETABLE</span><span class="p">,</span><span class="o">...</span>
-     <span class="n">OLDCATEGORIES</span><span class="p">,</span> <span class="n">THIS_ENTRY</span><span class="p">,</span> <span class="n">THIS_CATEGORIES</span><span class="p">)</span>
+<div class="codehilite"><pre><span></span><code>  <span class="n">SIMPLETABLE</span> <span class="o">-</span> <span class="n">Simple</span> <span class="n">X</span><span class="o">/</span><span class="n">Y</span> <span class="n">numeric</span> <span class="n">table</span>
 
-<span class="n">Builds</span> <span class="n">a</span> <span class="n">simple</span> <span class="n">row</span><span class="o">-</span><span class="n">based</span> <span class="n">table</span> <span class="n">of</span> <span class="n">data</span> <span class="n">values</span> <span class="k">for</span> <span class="n">specified</span> <span class="n">numerical</span> <span class="n">categories</span><span class="o">.</span>
-<span class="n">The</span> <span class="n">function</span> <span class="n">takes</span> <span class="n">an</span> <span class="n">existing</span> <span class="n">table</span> <span class="p">(</span><span class="n">OLDSIMPLETABLE</span><span class="p">)</span> <span class="n">with</span> <span class="n">numeric</span> <span class="n">categories</span>
-<span class="n">listed</span> <span class="ow">in</span> <span class="n">OLDCATEGORIES</span><span class="p">,</span> <span class="ow">and</span> <span class="n">adds</span> <span class="n">a</span> <span class="n">row</span> <span class="n">THIS_ENTRY</span> <span class="n">with</span> <span class="n">a</span> <span class="n">possibly</span> <span class="n">different</span>
-<span class="n">set</span> <span class="n">of</span> <span class="n">numeric</span> <span class="n">categories</span> <span class="n">THIS_CATEGORIES</span><span class="o">.</span>
+    <span class="p">[</span><span class="n">NEWSIMPLETABLE</span><span class="p">,</span><span class="n">NEWCATEGORYLABELS</span><span class="p">]</span> <span class="o">=</span> <span class="n">vlt</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">simpletable</span><span class="p">(</span><span class="n">OLDSIMPLETABLE</span><span class="p">,</span><span class="o">...</span>
+         <span class="n">OLDCATEGORIES</span><span class="p">,</span> <span class="n">THIS_ENTRY</span><span class="p">,</span> <span class="n">THIS_CATEGORIES</span><span class="p">)</span>
 
-<span class="n">If</span> <span class="n">the</span> <span class="n">catogories</span> <span class="n">being</span> <span class="n">added</span> <span class="n">do</span> <span class="ow">not</span> <span class="n">exist</span><span class="p">,</span> <span class="n">then</span> <span class="n">these</span> <span class="n">entries</span> <span class="n">are</span>
-<span class="n">added</span> <span class="n">to</span> <span class="n">NEWCATEGORYLABELS</span> <span class="ow">and</span> <span class="n">the</span> <span class="n">preceding</span> <span class="n">entries</span> <span class="n">are</span> <span class="n">filled</span> <span class="n">with</span> <span class="n">NaN</span>
-<span class="k">for</span> <span class="n">that</span> <span class="n">category</span><span class="o">.</span>
+    <span class="n">Builds</span> <span class="n">a</span> <span class="n">simple</span> <span class="n">row</span><span class="o">-</span><span class="n">based</span> <span class="n">table</span> <span class="n">of</span> <span class="n">data</span> <span class="n">values</span> <span class="k">for</span> <span class="n">specified</span> <span class="n">numerical</span> <span class="n">categories</span><span class="o">.</span>
+    <span class="n">The</span> <span class="n">function</span> <span class="n">takes</span> <span class="n">an</span> <span class="n">existing</span> <span class="n">table</span> <span class="p">(</span><span class="n">OLDSIMPLETABLE</span><span class="p">)</span> <span class="n">with</span> <span class="n">numeric</span> <span class="n">categories</span>
+    <span class="n">listed</span> <span class="ow">in</span> <span class="n">OLDCATEGORIES</span><span class="p">,</span> <span class="ow">and</span> <span class="n">adds</span> <span class="n">a</span> <span class="n">row</span> <span class="n">THIS_ENTRY</span> <span class="n">with</span> <span class="n">a</span> <span class="n">possibly</span> <span class="n">different</span>
+    <span class="n">set</span> <span class="n">of</span> <span class="n">numeric</span> <span class="n">categories</span> <span class="n">THIS_CATEGORIES</span><span class="o">.</span>
 
-<span class="n">At</span> <span class="n">the</span> <span class="n">end</span> <span class="n">of</span> <span class="n">the</span> <span class="n">function</span><span class="p">,</span> <span class="n">the</span> <span class="n">table</span> <span class="k">is</span> <span class="n">sorted</span> <span class="ow">in</span> <span class="n">ascending</span> <span class="n">order</span>
-<span class="n">by</span> <span class="n">NEWCATEGORYLABELS</span><span class="o">.</span>
+    <span class="n">If</span> <span class="n">the</span> <span class="n">catogories</span> <span class="n">being</span> <span class="n">added</span> <span class="n">do</span> <span class="ow">not</span> <span class="n">exist</span><span class="p">,</span> <span class="n">then</span> <span class="n">these</span> <span class="n">entries</span> <span class="n">are</span>
+    <span class="n">added</span> <span class="n">to</span> <span class="n">NEWCATEGORYLABELS</span> <span class="ow">and</span> <span class="n">the</span> <span class="n">preceding</span> <span class="n">entries</span> <span class="n">are</span> <span class="n">filled</span> <span class="n">with</span> <span class="n">NaN</span>
+    <span class="k">for</span> <span class="n">that</span> <span class="n">category</span><span class="o">.</span>
 
-<span class="n">Notes</span><span class="p">:</span> <span class="n">OLDCATEGORIES</span> <span class="ow">and</span> <span class="n">THIS_CATEGORIES</span> <span class="n">must</span> <span class="n">each</span> <span class="n">contain</span> <span class="n">no</span> <span class="n">repeats</span>
-<span class="p">(</span><span class="n">the</span> <span class="n">same</span> <span class="n">number</span> <span class="n">can</span> <span class="n">appear</span> <span class="ow">in</span> <span class="n">both</span> <span class="n">variables</span><span class="p">,</span> <span class="n">but</span> <span class="n">cannot</span> <span class="n">appear</span> <span class="n">twice</span> <span class="ow">in</span> <span class="n">either</span><span class="p">)</span><span class="o">.</span>
+    <span class="n">At</span> <span class="n">the</span> <span class="n">end</span> <span class="n">of</span> <span class="n">the</span> <span class="n">function</span><span class="p">,</span> <span class="n">the</span> <span class="n">table</span> <span class="k">is</span> <span class="n">sorted</span> <span class="ow">in</span> <span class="n">ascending</span> <span class="n">order</span>
+    <span class="n">by</span> <span class="n">NEWCATEGORYLABELS</span><span class="o">.</span>
 
-<span class="n">Example</span><span class="p">:</span> 
-    <span class="n">oldcategories</span> <span class="o">=</span> <span class="p">[</span> <span class="mi">0</span><span class="p">:</span><span class="n">pi</span><span class="o">/</span><span class="mi">2</span><span class="p">:</span><span class="mi">2</span><span class="o">*</span><span class="n">pi</span> <span class="p">];</span>
-    <span class="n">oldsimpletable</span> <span class="o">=</span> <span class="p">[</span> <span class="mi">1</span><span class="p">:</span><span class="mi">5</span> <span class="p">];</span>
-    <span class="n">X2</span> <span class="o">=</span> <span class="p">[</span> <span class="mi">0</span><span class="p">:</span><span class="n">pi</span><span class="o">/</span><span class="mi">4</span><span class="p">:</span><span class="mi">2</span><span class="o">*</span><span class="n">pi</span><span class="p">];</span>
-    <span class="n">Y2</span> <span class="o">=</span> <span class="p">[</span> <span class="mi">1</span><span class="p">:</span><span class="mf">0.5</span><span class="p">:</span><span class="mi">5</span> <span class="p">]</span> <span class="o">+</span> <span class="mi">5</span><span class="p">;</span>
-    <span class="p">[</span><span class="n">newtable</span><span class="p">,</span><span class="n">newcats</span><span class="p">]</span> <span class="o">=</span> <span class="n">vlt</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">simpletable</span><span class="p">(</span><span class="n">oldsimpletable</span><span class="p">,</span><span class="n">oldcategories</span><span class="p">,</span><span class="n">Y2</span><span class="p">,</span><span class="n">X2</span><span class="p">),</span>
+    <span class="n">Notes</span><span class="p">:</span> <span class="n">OLDCATEGORIES</span> <span class="ow">and</span> <span class="n">THIS_CATEGORIES</span> <span class="n">must</span> <span class="n">each</span> <span class="n">contain</span> <span class="n">no</span> <span class="n">repeats</span>
+    <span class="p">(</span><span class="n">the</span> <span class="n">same</span> <span class="n">number</span> <span class="n">can</span> <span class="n">appear</span> <span class="ow">in</span> <span class="n">both</span> <span class="n">variables</span><span class="p">,</span> <span class="n">but</span> <span class="n">cannot</span> <span class="n">appear</span> <span class="n">twice</span> <span class="ow">in</span> <span class="n">either</span><span class="p">)</span><span class="o">.</span>
 
-<span class="n">See</span> <span class="n">also</span><span class="p">:</span> <span class="n">TABLE</span>
+    <span class="n">Example</span><span class="p">:</span> 
+        <span class="n">oldcategories</span> <span class="o">=</span> <span class="p">[</span> <span class="mi">0</span><span class="p">:</span><span class="n">pi</span><span class="o">/</span><span class="mi">2</span><span class="p">:</span><span class="mi">2</span><span class="o">*</span><span class="n">pi</span> <span class="p">];</span>
+        <span class="n">oldsimpletable</span> <span class="o">=</span> <span class="p">[</span> <span class="mi">1</span><span class="p">:</span><span class="mi">5</span> <span class="p">];</span>
+        <span class="n">X2</span> <span class="o">=</span> <span class="p">[</span> <span class="mi">0</span><span class="p">:</span><span class="n">pi</span><span class="o">/</span><span class="mi">4</span><span class="p">:</span><span class="mi">2</span><span class="o">*</span><span class="n">pi</span><span class="p">];</span>
+        <span class="n">Y2</span> <span class="o">=</span> <span class="p">[</span> <span class="mi">1</span><span class="p">:</span><span class="mf">0.5</span><span class="p">:</span><span class="mi">5</span> <span class="p">]</span> <span class="o">+</span> <span class="mi">5</span><span class="p">;</span>
+        <span class="p">[</span><span class="n">newtable</span><span class="p">,</span><span class="n">newcats</span><span class="p">]</span> <span class="o">=</span> <span class="n">vlt</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">simpletable</span><span class="p">(</span><span class="n">oldsimpletable</span><span class="p">,</span><span class="n">oldcategories</span><span class="p">,</span><span class="n">Y2</span><span class="p">,</span><span class="n">X2</span><span class="p">),</span>
+
+    <span class="n">See</span> <span class="n">also</span><span class="p">:</span> <span class="n">TABLE</span>
 </code></pre></div>
                 
               

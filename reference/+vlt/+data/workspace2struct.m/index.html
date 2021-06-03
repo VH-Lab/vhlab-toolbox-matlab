@@ -3225,6 +3225,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../%2Bgit/git_stash.m/" class="md-nav__link">
+        vlt.git.git_stash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../%2Bgit/git_status.m/" class="md-nav__link">
         vlt.git.git_status
       </a>
@@ -9237,17 +9249,22 @@
                 
                 
                 <h1 id="vltdataworkspace2struct">vlt.data.workspace2struct<a class="headerlink" href="#vltdataworkspace2struct" title="Permanent link">&para;</a></h1>
-<p>vlt.data.workspace2struct - Export the current workspace to a structure</p>
-<p>OUTPUT = vlt.data.workspace2struct</p>
-<p>Saves the local workspace as a structure for easy export.</p>
-<p>Each variable is added a field to the structure OUTPUT.</p>
-<p>Example:
-      Imagine your workspace has one variable A, equal to 5.
-      output = vlt.data.workspace2struct</p>
-<div class="codehilite"><pre><span></span><code>    produces
+<div class="codehilite"><pre><span></span><code>  <span class="n">vlt</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">workspace2struct</span> <span class="o">-</span> <span class="n">Export</span> <span class="n">the</span> <span class="n">current</span> <span class="n">workspace</span> <span class="n">to</span> <span class="n">a</span> <span class="n">structure</span>
 
-  output = 
-     a: 5
+   <span class="n">OUTPUT</span> <span class="o">=</span> <span class="n">vlt</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">workspace2struct</span>
+
+   <span class="n">Saves</span> <span class="n">the</span> <span class="n">local</span> <span class="n">workspace</span> <span class="k">as</span> <span class="n">a</span> <span class="n">structure</span> <span class="k">for</span> <span class="n">easy</span> <span class="k">export</span><span class="o">.</span>
+
+   <span class="n">Each</span> <span class="n">variable</span> <span class="k">is</span> <span class="n">added</span> <span class="n">a</span> <span class="n">field</span> <span class="n">to</span> <span class="n">the</span> <span class="n">structure</span> <span class="n">OUTPUT</span><span class="o">.</span>
+
+   <span class="n">Example</span><span class="p">:</span>
+      <span class="n">Imagine</span> <span class="n">your</span> <span class="n">workspace</span> <span class="n">has</span> <span class="n">one</span> <span class="n">variable</span> <span class="n">A</span><span class="p">,</span> <span class="n">equal</span> <span class="n">to</span> <span class="mf">5.</span>
+      <span class="n">output</span> <span class="o">=</span> <span class="n">vlt</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">workspace2struct</span>
+
+        <span class="n">produces</span>
+
+      <span class="n">output</span> <span class="o">=</span> 
+         <span class="n">a</span><span class="p">:</span> <span class="mi">5</span>
 </code></pre></div>
                 
               

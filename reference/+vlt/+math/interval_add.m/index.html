@@ -3213,6 +3213,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../%2Bgit/git_stash.m/" class="md-nav__link">
+        vlt.git.git_stash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../%2Bgit/git_status.m/" class="md-nav__link">
         vlt.git.git_status
       </a>
@@ -9237,16 +9249,20 @@
                 
                 
                 <h1 id="vltmathinterval_add">vlt.math.interval_add<a class="headerlink" href="#vltmathinterval_add" title="Permanent link">&para;</a></h1>
-<p>INTERVAL_ADD - add intervals </p>
-<p>I_OUT = vlt.math.interval_add(I_IN, I_ADD)</p>
-<p>Given a matrix of intervals I_IN = [T1_0 T1_1; T2_0 T2_1 ; ... ] 
-  where T is increasing (that is, where T(i)_0 &gt; T(i-1)_0 and Ti_0&lt;Ti_1 for all i),
-  produce another matrix of intervals I_OUT that includes the interval I_ADD = [S0 S1].
-  I_IN can be empty.</p>
-<p>Examples:
-     i_out = vlt.math.interval_add([0 3],[3 6])  % yields [ 0 6]
-     i_out = vlt.math.interval_add([0 2],[3 4])  % yields [ 0 2; 3 4]
-     i_out = vlt.math.interval_add([0 10],[0 2]) % yields [ 0 10]</p>
+<div class="codehilite"><pre><span></span><code>  <span class="n">INTERVAL_ADD</span> <span class="o">-</span> <span class="n">add</span> <span class="n">intervals</span> 
+
+  <span class="n">I_OUT</span> <span class="o">=</span> <span class="n">vlt</span><span class="p">.</span><span class="n">math</span><span class="p">.</span><span class="n">interval_add</span><span class="p">(</span><span class="n">I_IN</span><span class="p">,</span> <span class="n">I_ADD</span><span class="p">)</span>
+
+  <span class="n">Given</span> <span class="n">a</span> <span class="n">matrix</span> <span class="n">of</span> <span class="n">intervals</span> <span class="n">I_IN</span> <span class="o">=</span> <span class="p">[</span><span class="n">T1_0</span> <span class="n">T1_1</span><span class="p">;</span> <span class="n">T2_0</span> <span class="n">T2_1</span> <span class="p">;</span> <span class="p">...</span> <span class="p">]</span> 
+  <span class="n">where</span> <span class="n">T</span> <span class="n">is</span> <span class="n">increasing</span> <span class="p">(</span><span class="n">that</span> <span class="n">is</span><span class="p">,</span> <span class="n">where</span> <span class="n">T</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="n">_0</span> <span class="o">&gt;</span> <span class="n">T</span><span class="p">(</span><span class="n">i</span><span class="mi">-1</span><span class="p">)</span><span class="n">_0</span> <span class="n">and</span> <span class="n">Ti_0</span><span class="o">&lt;</span><span class="n">Ti_1</span> <span class="k">for</span> <span class="n">all</span> <span class="n">i</span><span class="p">),</span>
+  <span class="n">produce</span> <span class="n">another</span> <span class="n">matrix</span> <span class="n">of</span> <span class="n">intervals</span> <span class="n">I_OUT</span> <span class="n">that</span> <span class="n">includes</span> <span class="n">the</span> <span class="n">interval</span> <span class="n">I_ADD</span> <span class="o">=</span> <span class="p">[</span><span class="n">S0</span> <span class="n">S1</span><span class="p">].</span>
+  <span class="n">I_IN</span> <span class="n">can</span> <span class="n">be</span> <span class="n">empty</span><span class="p">.</span>
+
+  <span class="nl">Examples</span><span class="p">:</span>
+     <span class="n">i_out</span> <span class="o">=</span> <span class="n">vlt</span><span class="p">.</span><span class="n">math</span><span class="p">.</span><span class="n">interval_add</span><span class="p">([</span><span class="mi">0</span> <span class="mi">3</span><span class="p">],[</span><span class="mi">3</span> <span class="mi">6</span><span class="p">])</span>  <span class="o">%</span> <span class="n">yields</span> <span class="p">[</span> <span class="mi">0</span> <span class="mi">6</span><span class="p">]</span>
+     <span class="n">i_out</span> <span class="o">=</span> <span class="n">vlt</span><span class="p">.</span><span class="n">math</span><span class="p">.</span><span class="n">interval_add</span><span class="p">([</span><span class="mi">0</span> <span class="mi">2</span><span class="p">],[</span><span class="mi">3</span> <span class="mi">4</span><span class="p">])</span>  <span class="o">%</span> <span class="n">yields</span> <span class="p">[</span> <span class="mi">0</span> <span class="mi">2</span><span class="p">;</span> <span class="mi">3</span> <span class="mi">4</span><span class="p">]</span>
+     <span class="n">i_out</span> <span class="o">=</span> <span class="n">vlt</span><span class="p">.</span><span class="n">math</span><span class="p">.</span><span class="n">interval_add</span><span class="p">([</span><span class="mi">0</span> <span class="mi">10</span><span class="p">],[</span><span class="mi">0</span> <span class="mi">2</span><span class="p">])</span> <span class="o">%</span> <span class="n">yields</span> <span class="p">[</span> <span class="mi">0</span> <span class="mi">10</span><span class="p">]</span>
+</code></pre></div>
                 
               
               

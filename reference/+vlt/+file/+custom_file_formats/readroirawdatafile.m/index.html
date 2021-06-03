@@ -3227,6 +3227,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../../%2Bgit/git_stash.m/" class="md-nav__link">
+        vlt.git.git_stash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../../%2Bgit/git_status.m/" class="md-nav__link">
         vlt.git.git_status
       </a>
@@ -9239,27 +9251,33 @@
                 
                 
                 <h1 id="vltfilecustom_file_formatsreadroirawdatafile">vlt.file.custom_file_formats.readroirawdatafile<a class="headerlink" href="#vltfilecustom_file_formatsreadroirawdatafile" title="Permanent link">&para;</a></h1>
-<p>READROIRAWDATAFILE - Read spike waveforms from binary file</p>
-<div class="codehilite"><pre><span></span><code> ******NOT FUNCTIONAL YET**********
-</code></pre></div>
+<div class="codehilite"><pre><span></span><code>  <span class="n">READROIRAWDATAFILE</span> <span class="o">-</span> <span class="n">Read</span> <span class="n">spike</span> <span class="n">waveforms</span> <span class="n">from</span> <span class="n">binary</span> <span class="n">file</span>
 
-<p>[ROIDATA, HEADER] = vlt.file.custom_file_formats.readroirawdatafile(FID_OR_FILENAME)
-     or 
-   [ROIDATA, HEADER] = vlt.file.custom_file_formats.readroirawdatafile(FID_OR_FILENAME,...
-      ROI_START,ROI_END)</p>
-<p>Attempts to read spikewaves from ROI_START to ROI_END from the binary file
-   whose name is given as the first argument, or from the file descriptor (FID).
-   The header is parsed and returned in HEADER.</p>
-<p>ROI_END can be INF to indicate that waves should be read to the end of the file.
-   The waves are numbered from 1 .. MAX, so ROI_START needs to be at least 1.</p>
-<p>If ROI_START and ROI_END are not provided, then all waves are read.</p>
-<p>If ROI_START is less than 1, then only the header is read.</p>
-<p>The ROI data is returned in a structure list ROIDATA with the following fields:
-        roi:  the roi number (integer)
-      frame:  the roi frame number (integer)
-          N:  number of points in the image that overlapped the ROI (integer)
-    indexes:  the index values of these points (if they were stored) (N integers)
-       data:  the actual data values (N doubles)</p>
+     <span class="o">******</span><span class="n">NOT</span> <span class="n">FUNCTIONAL</span> <span class="n">YET</span><span class="o">**********</span>
+
+   <span class="p">[</span><span class="n">ROIDATA</span><span class="p">,</span> <span class="n">HEADER</span><span class="p">]</span> <span class="o">=</span> <span class="n">vlt</span><span class="p">.</span><span class="n">file</span><span class="p">.</span><span class="n">custom_file_formats</span><span class="p">.</span><span class="n">readroirawdatafile</span><span class="p">(</span><span class="n">FID_OR_FILENAME</span><span class="p">)</span>
+     <span class="n">or</span> 
+   <span class="p">[</span><span class="n">ROIDATA</span><span class="p">,</span> <span class="n">HEADER</span><span class="p">]</span> <span class="o">=</span> <span class="n">vlt</span><span class="p">.</span><span class="n">file</span><span class="p">.</span><span class="n">custom_file_formats</span><span class="p">.</span><span class="n">readroirawdatafile</span><span class="p">(</span><span class="n">FID_OR_FILENAME</span><span class="p">,...</span>
+      <span class="n">ROI_START</span><span class="p">,</span><span class="n">ROI_END</span><span class="p">)</span>
+
+   <span class="n">Attempts</span> <span class="n">to</span> <span class="n">read</span> <span class="n">spikewaves</span> <span class="n">from</span> <span class="n">ROI_START</span> <span class="n">to</span> <span class="n">ROI_END</span> <span class="n">from</span> <span class="n">the</span> <span class="n">binary</span> <span class="n">file</span>
+   <span class="n">whose</span> <span class="n">name</span> <span class="n">is</span> <span class="n">given</span> <span class="n">as</span> <span class="n">the</span> <span class="n">first</span> <span class="n">argument</span><span class="p">,</span> <span class="n">or</span> <span class="n">from</span> <span class="n">the</span> <span class="n">file</span> <span class="n">descriptor</span> <span class="p">(</span><span class="n">FID</span><span class="p">).</span>
+   <span class="n">The</span> <span class="n">header</span> <span class="n">is</span> <span class="n">parsed</span> <span class="n">and</span> <span class="n">returned</span> <span class="n">in</span> <span class="n">HEADER</span><span class="p">.</span>
+
+   <span class="n">ROI_END</span> <span class="n">can</span> <span class="n">be</span> <span class="kc">INF</span> <span class="n">to</span> <span class="n">indicate</span> <span class="n">that</span> <span class="n">waves</span> <span class="n">should</span> <span class="n">be</span> <span class="n">read</span> <span class="n">to</span> <span class="n">the</span> <span class="n">end</span> <span class="n">of</span> <span class="n">the</span> <span class="n">file</span><span class="p">.</span>
+   <span class="n">The</span> <span class="n">waves</span> <span class="n">are</span> <span class="n">numbered</span> <span class="n">from</span> <span class="mi">1</span> <span class="p">..</span> <span class="kr">MAX</span><span class="p">,</span> <span class="n">so</span> <span class="n">ROI_START</span> <span class="n">needs</span> <span class="n">to</span> <span class="n">be</span> <span class="n">at</span> <span class="n">least</span> <span class="mi">1</span><span class="p">.</span>
+
+   <span class="n">If</span> <span class="n">ROI_START</span> <span class="n">and</span> <span class="n">ROI_END</span> <span class="n">are</span> <span class="n">not</span> <span class="n">provided</span><span class="p">,</span> <span class="n">then</span> <span class="n">all</span> <span class="n">waves</span> <span class="n">are</span> <span class="n">read</span><span class="p">.</span>
+
+   <span class="n">If</span> <span class="n">ROI_START</span> <span class="n">is</span> <span class="n">less</span> <span class="n">than</span> <span class="mi">1</span><span class="p">,</span> <span class="n">then</span> <span class="n">only</span> <span class="n">the</span> <span class="n">header</span> <span class="n">is</span> <span class="n">read</span><span class="p">.</span>
+
+   <span class="n">The</span> <span class="n">ROI</span> <span class="n">data</span> <span class="n">is</span> <span class="n">returned</span> <span class="n">in</span> <span class="n">a</span> <span class="n">structure</span> <span class="n">list</span> <span class="n">ROIDATA</span> <span class="n">with</span> <span class="n">the</span> <span class="n">following</span> <span class="n">fields</span><span class="p">:</span>
+        <span class="n">roi</span><span class="p">:</span>  <span class="n">the</span> <span class="n">roi</span> <span class="n">number</span> <span class="p">(</span><span class="n">integer</span><span class="p">)</span>
+      <span class="n">frame</span><span class="p">:</span>  <span class="n">the</span> <span class="n">roi</span> <span class="n">frame</span> <span class="n">number</span> <span class="p">(</span><span class="n">integer</span><span class="p">)</span>
+          <span class="n">N</span><span class="p">:</span>  <span class="n">number</span> <span class="n">of</span> <span class="n">points</span> <span class="n">in</span> <span class="n">the</span> <span class="n">image</span> <span class="n">that</span> <span class="n">overlapped</span> <span class="n">the</span> <span class="n">ROI</span> <span class="p">(</span><span class="n">integer</span><span class="p">)</span>
+    <span class="n">indexes</span><span class="p">:</span>  <span class="n">the</span> <span class="n">index</span> <span class="n">values</span> <span class="n">of</span> <span class="n">these</span> <span class="n">points</span> <span class="p">(</span><span class="n">if</span> <span class="n">they</span> <span class="n">were</span> <span class="n">stored</span><span class="p">)</span> <span class="p">(</span><span class="n">N</span> <span class="n">integers</span><span class="p">)</span>
+       <span class="n">data</span><span class="p">:</span>  <span class="n">the</span> <span class="n">actual</span> <span class="n">data</span> <span class="n">values</span> <span class="p">(</span><span class="n">N</span> <span class="n">doubles</span><span class="p">)</span>
+</code></pre></div>
                 
               
               

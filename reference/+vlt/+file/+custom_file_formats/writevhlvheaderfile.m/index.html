@@ -3227,6 +3227,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../../%2Bgit/git_stash.m/" class="md-nav__link">
+        vlt.git.git_stash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../../%2Bgit/git_status.m/" class="md-nav__link">
         vlt.git.git_status
       </a>
@@ -9239,20 +9251,22 @@
                 
                 
                 <h1 id="vltfilecustom_file_formatswritevhlvheaderfile">vlt.file.custom_file_formats.writevhlvheaderfile<a class="headerlink" href="#vltfilecustom_file_formatswritevhlvheaderfile" title="Permanent link">&para;</a></h1>
-<p>WRITEVHLVHEADERFILE - Write a VHLV header file</p>
-<div class="codehilite"><pre><span></span><code>vlt.file.custom_file_formats.writevhlvheaderfile(HEADERSTRUCT, FILENAME)
-</code></pre></div>
+<div class="codehilite"><pre><span></span><code>  <span class="nv">WRITEVHLVHEADERFILE</span> <span class="o">-</span> <span class="nv">Write</span> <span class="nv">a</span> <span class="nv">VHLV</span> <span class="nv">header</span> <span class="nv">file</span>
 
-<p>Writes a header file for the VH LabView Multichannel
-   binary file format. Should have an extension of '.vlh'.</p>
-<p>It expects HEADERSTRUCT to be the name of a Matlab structure.
-   The expected fields are 'ChannelString', which indicates the
-   channel names that were acquired in the LabView system, 'NumChans', the number
-   of channels that were acquired, 'SamplingRate', the sampling rate of each
-   channel in Hz, and 'SamplesPerChunk', which indicates how many samples were
-   written to disk in each burst of recording, 'precision', which indicates the
-   binary data type ('double','single','int16', for example), and 'Scale', which
-   indicates any scale factor that should be applied to the data upon reading.</p>
+    <span class="nv">vlt</span>.<span class="nv">file</span>.<span class="nv">custom_file_formats</span>.<span class="nv">writevhlvheaderfile</span><span class="ss">(</span><span class="nv">HEADERSTRUCT</span>, <span class="nv">FILENAME</span><span class="ss">)</span>
+
+   <span class="nv">Writes</span> <span class="nv">a</span> <span class="nv">header</span> <span class="nv">file</span> <span class="k">for</span> <span class="nv">the</span> <span class="nv">VH</span> <span class="nv">LabView</span> <span class="nv">Multichannel</span>
+   <span class="nv">binary</span> <span class="nv">file</span> <span class="nv">format</span>. <span class="nv">Should</span> <span class="nv">have</span> <span class="nv">an</span> <span class="nv">extension</span> <span class="nv">of</span> <span class="s1">&#39;</span><span class="s">.vlh</span><span class="s1">&#39;</span>.
+
+   <span class="nv">It</span> <span class="nv">expects</span> <span class="nv">HEADERSTRUCT</span> <span class="nv">to</span> <span class="nv">be</span> <span class="nv">the</span> <span class="nv">name</span> <span class="nv">of</span> <span class="nv">a</span> <span class="nv">Matlab</span> <span class="nv">structure</span>.
+   <span class="nv">The</span> <span class="nv">expected</span> <span class="nv">fields</span> <span class="nv">are</span> <span class="s1">&#39;</span><span class="s">ChannelString</span><span class="s1">&#39;</span>, <span class="nv">which</span> <span class="nv">indicates</span> <span class="nv">the</span>
+   <span class="nv">channel</span> <span class="nv">names</span> <span class="nv">that</span> <span class="nv">were</span> <span class="nv">acquired</span> <span class="nv">in</span> <span class="nv">the</span> <span class="nv">LabView</span> <span class="nv">system</span>, <span class="s1">&#39;</span><span class="s">NumChans</span><span class="s1">&#39;</span>, <span class="nv">the</span> <span class="nv">number</span>
+   <span class="nv">of</span> <span class="nv">channels</span> <span class="nv">that</span> <span class="nv">were</span> <span class="nv">acquired</span>, <span class="s1">&#39;</span><span class="s">SamplingRate</span><span class="s1">&#39;</span>, <span class="nv">the</span> <span class="nv">sampling</span> <span class="nv">rate</span> <span class="nv">of</span> <span class="nv">each</span>
+   <span class="nv">channel</span> <span class="nv">in</span> <span class="nv">Hz</span>, <span class="nv">and</span> <span class="s1">&#39;</span><span class="s">SamplesPerChunk</span><span class="s1">&#39;</span>, <span class="nv">which</span> <span class="nv">indicates</span> <span class="nv">how</span> <span class="nv">many</span> <span class="nv">samples</span> <span class="nv">were</span>
+   <span class="nv">written</span> <span class="nv">to</span> <span class="nv">disk</span> <span class="nv">in</span> <span class="nv">each</span> <span class="nv">burst</span> <span class="nv">of</span> <span class="nv">recording</span>, <span class="s1">&#39;</span><span class="s">precision</span><span class="s1">&#39;</span>, <span class="nv">which</span> <span class="nv">indicates</span> <span class="nv">the</span>
+   <span class="nv">binary</span> <span class="nv">data</span> <span class="nv">type</span> <span class="ss">(</span><span class="s1">&#39;</span><span class="s">double</span><span class="s1">&#39;</span>,<span class="s1">&#39;</span><span class="s">single</span><span class="s1">&#39;</span>,<span class="s1">&#39;</span><span class="s">int16</span><span class="s1">&#39;</span>, <span class="k">for</span> <span class="nv">example</span><span class="ss">)</span>, <span class="nv">and</span> <span class="s1">&#39;</span><span class="s">Scale</span><span class="s1">&#39;</span>, <span class="nv">which</span>
+   <span class="nv">indicates</span> <span class="nv">any</span> <span class="nv">scale</span> <span class="nv">factor</span> <span class="nv">that</span> <span class="nv">should</span> <span class="nv">be</span> <span class="nv">applied</span> <span class="nv">to</span> <span class="nv">the</span> <span class="nv">data</span> <span class="nv">upon</span> <span class="nv">reading</span>.
+</code></pre></div>
                 
               
               

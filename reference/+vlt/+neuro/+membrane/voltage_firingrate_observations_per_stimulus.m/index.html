@@ -3213,6 +3213,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../../%2Bgit/git_stash.m/" class="md-nav__link">
+        vlt.git.git_stash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../../%2Bgit/git_status.m/" class="md-nav__link">
         vlt.git.git_status
       </a>
@@ -9239,22 +9251,27 @@
                 
                 
                 <h1 id="vltneuromembranevoltage_firingrate_observations_per_stimulus">vlt.neuro.membrane.voltage_firingrate_observations_per_stimulus<a class="headerlink" href="#vltneuromembranevoltage_firingrate_observations_per_stimulus" title="Permanent link">&para;</a></h1>
-<p>VOLTAGE_FIRINGRATE_OBSERVATIONS - calculate voltage and firing rate observations for a stimulus (mean, mean at a frequency)</p>
-<p>[MEAN_V, MEAN_FR, STIMID, STIMPRES, VMOPSPERSTIM, FROBSPERSTIM] = vlt.neuro.membrane.voltage_firingrate_observations_per_stimulus(...
-         VM, SPIKERATE, TIME, STIM_ONSETOFFSETID, ...)</p>
-<p>Calculates the mean response across each stimulus presentation described in STIM_ONSETOFFSETID for both voltage (VM)
-  and SPIKERATE. SPIKERATE should be the firing rate at each time point T, VM is the voltage at each time point T.
-  STIM_ONSETOFFSETID should have 1 row per stimulus and each row should contain [stim_onset_time stim_offset_time stimid]
-  where the times are in units of 'TIME' (such as seconds). STIMPRES is the stimulus presentation number.</p>
-<p>VMOPSPERSTIM is a cell array containing the voltage observations for each stimulus (F1 empty only).
-  FROBSPERSTIM is a cell array containing the voltage observations for each stimulus (F1 empty only).</p>
-<p>This function also takes NAME/VALUE parameter pairs that modify its behavior.
-  Parameter (default value)        | Description</p>
-<hr />
-<p>PRETIME ([])                     | If not empty, the voltage PRETIME seconds before each
-                                   |    stimulus is subtracted from the response. 
-  F1 ([])                          | If not empty, then the responses is taken to be the
-                                   |    magnitude of the fourier transform at the frequency F1.</p>
+<div class="codehilite"><pre><span></span><code>  <span class="nv">VOLTAGE_FIRINGRATE_OBSERVATIONS</span> <span class="o">-</span> <span class="nv">calculate</span> <span class="nv">voltage</span> <span class="nv">and</span> <span class="nv">firing</span> <span class="nv">rate</span> <span class="nv">observations</span> <span class="k">for</span> <span class="nv">a</span> <span class="nv">stimulus</span> <span class="ss">(</span><span class="nv">mean</span>, <span class="nv">mean</span> <span class="nv">at</span> <span class="nv">a</span> <span class="nv">frequency</span><span class="ss">)</span>
+
+  [<span class="nv">MEAN_V</span>, <span class="nv">MEAN_FR</span>, <span class="nv">STIMID</span>, <span class="nv">STIMPRES</span>, <span class="nv">VMOPSPERSTIM</span>, <span class="nv">FROBSPERSTIM</span>] <span class="o">=</span> <span class="nv">vlt</span>.<span class="nv">neuro</span>.<span class="nv">membrane</span>.<span class="nv">voltage_firingrate_observations_per_stimulus</span><span class="ss">(</span>...
+         <span class="nv">VM</span>, <span class="nv">SPIKERATE</span>, <span class="nv">TIME</span>, <span class="nv">STIM_ONSETOFFSETID</span>, ...<span class="ss">)</span>
+
+  <span class="nv">Calculates</span> <span class="nv">the</span> <span class="nv">mean</span> <span class="nv">response</span> <span class="nv">across</span> <span class="nv">each</span> <span class="nv">stimulus</span> <span class="nv">presentation</span> <span class="nv">described</span> <span class="nv">in</span> <span class="nv">STIM_ONSETOFFSETID</span> <span class="k">for</span> <span class="nv">both</span> <span class="nv">voltage</span> <span class="ss">(</span><span class="nv">VM</span><span class="ss">)</span>
+  <span class="nv">and</span> <span class="nv">SPIKERATE</span>. <span class="nv">SPIKERATE</span> <span class="nv">should</span> <span class="nv">be</span> <span class="nv">the</span> <span class="nv">firing</span> <span class="nv">rate</span> <span class="nv">at</span> <span class="nv">each</span> <span class="nv">time</span> <span class="nv">point</span> <span class="nv">T</span>, <span class="nv">VM</span> <span class="nv">is</span> <span class="nv">the</span> <span class="nv">voltage</span> <span class="nv">at</span> <span class="nv">each</span> <span class="nv">time</span> <span class="nv">point</span> <span class="nv">T</span>.
+  <span class="nv">STIM_ONSETOFFSETID</span> <span class="nv">should</span> <span class="nv">have</span> <span class="mi">1</span> <span class="nv">row</span> <span class="nv">per</span> <span class="nv">stimulus</span> <span class="nv">and</span> <span class="nv">each</span> <span class="nv">row</span> <span class="nv">should</span> <span class="nv">contain</span> [<span class="nv">stim_onset_time</span> <span class="nv">stim_offset_time</span> <span class="nv">stimid</span>]
+  <span class="nv">where</span> <span class="nv">the</span> <span class="nv">times</span> <span class="nv">are</span> <span class="nv">in</span> <span class="nv">units</span> <span class="nv">of</span> <span class="s1">&#39;</span><span class="s">TIME</span><span class="s1">&#39;</span> <span class="ss">(</span><span class="nv">such</span> <span class="nv">as</span> <span class="nv">seconds</span><span class="ss">)</span>. <span class="nv">STIMPRES</span> <span class="nv">is</span> <span class="nv">the</span> <span class="nv">stimulus</span> <span class="nv">presentation</span> <span class="nv">number</span>.
+
+  <span class="nv">VMOPSPERSTIM</span> <span class="nv">is</span> <span class="nv">a</span> <span class="nv">cell</span> <span class="nv">array</span> <span class="nv">containing</span> <span class="nv">the</span> <span class="nv">voltage</span> <span class="nv">observations</span> <span class="k">for</span> <span class="nv">each</span> <span class="nv">stimulus</span> <span class="ss">(</span><span class="nv">F1</span> <span class="nv">empty</span> <span class="nv">only</span><span class="ss">)</span>.
+  <span class="nv">FROBSPERSTIM</span> <span class="nv">is</span> <span class="nv">a</span> <span class="nv">cell</span> <span class="nv">array</span> <span class="nv">containing</span> <span class="nv">the</span> <span class="nv">voltage</span> <span class="nv">observations</span> <span class="k">for</span> <span class="nv">each</span> <span class="nv">stimulus</span> <span class="ss">(</span><span class="nv">F1</span> <span class="nv">empty</span> <span class="nv">only</span><span class="ss">)</span>.
+
+  <span class="nv">This</span> <span class="nv">function</span> <span class="nv">also</span> <span class="nv">takes</span> <span class="nv">NAME</span><span class="o">/</span><span class="nv">VALUE</span> <span class="nv">parameter</span> <span class="nv">pairs</span> <span class="nv">that</span> <span class="nv">modify</span> <span class="nv">its</span> <span class="nv">behavior</span>.
+  <span class="nv">Parameter</span> <span class="ss">(</span><span class="nv">default</span> <span class="nv">value</span><span class="ss">)</span>        <span class="o">|</span> <span class="nv">Description</span>
+  <span class="o">-----------------------------------------------------------------------------</span>
+  <span class="nv">PRETIME</span> <span class="ss">(</span>[]<span class="ss">)</span>                     <span class="o">|</span> <span class="k">If</span> <span class="nv">not</span> <span class="nv">empty</span>, <span class="nv">the</span> <span class="nv">voltage</span> <span class="nv">PRETIME</span> <span class="nv">seconds</span> <span class="nv">before</span> <span class="nv">each</span>
+                                   <span class="o">|</span>    <span class="nv">stimulus</span> <span class="nv">is</span> <span class="nv">subtracted</span> <span class="nv">from</span> <span class="nv">the</span> <span class="nv">response</span>. 
+  <span class="nv">F1</span> <span class="ss">(</span>[]<span class="ss">)</span>                          <span class="o">|</span> <span class="k">If</span> <span class="nv">not</span> <span class="nv">empty</span>, <span class="k">then</span> <span class="nv">the</span> <span class="nv">responses</span> <span class="nv">is</span> <span class="nv">taken</span> <span class="nv">to</span> <span class="nv">be</span> <span class="nv">the</span>
+                                   <span class="o">|</span>    <span class="nv">magnitude</span> <span class="nv">of</span> <span class="nv">the</span> <span class="nv">fourier</span> <span class="nv">transform</span> <span class="nv">at</span> <span class="nv">the</span> <span class="nv">frequency</span> <span class="nv">F1</span>.
+</code></pre></div>
                 
               
               

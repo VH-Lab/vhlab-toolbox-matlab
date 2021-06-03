@@ -3213,6 +3213,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../%2Bgit/git_stash.m/" class="md-nav__link">
+        vlt.git.git_stash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../%2Bgit/git_status.m/" class="md-nav__link">
         vlt.git.git_status
       </a>
@@ -9237,64 +9249,65 @@
                 
                 
                 <h1 id="vltsignalremove60hz">vlt.signal.remove60hz<a class="headerlink" href="#vltsignalremove60hz" title="Permanent link">&para;</a></h1>
-<p>REMOVE60HZ remove 60Hz noise</p>
-<div class="codehilite"><pre><span></span><code><span class="n">DATA_OUT</span> <span class="o">=</span> <span class="n">vlt</span><span class="o">.</span><span class="k">signal</span><span class="o">.</span><span class="n">remove60hz</span><span class="p">(</span><span class="n">DATA_IN</span><span class="p">,</span> <span class="n">SAMPLERATE</span><span class="p">)</span>
+<div class="codehilite"><pre><span></span><code>  <span class="n">REMOVE60HZ</span> <span class="n">remove</span> <span class="mi">60</span><span class="n">Hz</span> <span class="n">noise</span>
 
-<span class="n">Removes</span> <span class="mi">60</span><span class="n">Hz</span> <span class="n">noise</span> <span class="n">via</span> <span class="n">filtering</span> <span class="n">with</span> <span class="n">the</span> <span class="n">methods</span> <span class="ow">and</span> 
-<span class="n">parameters</span> <span class="n">described</span> <span class="n">below</span><span class="o">.</span> <span class="n">DATA_IN</span> <span class="n">must</span> <span class="n">be</span> <span class="n">a</span> <span class="n">vector</span><span class="o">.</span>
+    <span class="n">DATA_OUT</span> <span class="o">=</span> <span class="n">vlt</span><span class="o">.</span><span class="k">signal</span><span class="o">.</span><span class="n">remove60hz</span><span class="p">(</span><span class="n">DATA_IN</span><span class="p">,</span> <span class="n">SAMPLERATE</span><span class="p">)</span>
 
-<span class="n">User</span> <span class="n">beware</span><span class="p">:</span> <span class="n">check</span> <span class="n">the</span> <span class="n">output</span> <span class="n">of</span> <span class="n">this</span> <span class="n">function</span> <span class="n">carefully</span>
-<span class="n">with</span> <span class="n">your</span> <span class="n">data</span><span class="p">,</span> <span class="n">to</span> <span class="n">be</span> <span class="n">sure</span> <span class="n">that</span> <span class="n">it</span> <span class="n">doesn</span><span class="s1">&#39;t produce garbage.</span>
-<span class="n">High</span> <span class="n">frequencies</span> <span class="p">(</span><span class="n">like</span> <span class="n">spikes</span><span class="p">)</span> <span class="n">can</span> <span class="n">often</span> <span class="n">be</span> <span class="n">disturbed</span> <span class="n">by</span>
-<span class="n">certain</span> <span class="n">methods</span> <span class="n">employed</span> <span class="n">here</span> <span class="p">(</span><span class="s1">&#39;sgolay&#39;</span><span class="p">),</span> <span class="n">so</span> <span class="n">this</span> <span class="k">is</span> <span class="n">best</span>
-<span class="n">done</span> <span class="n">on</span> <span class="n">low</span> <span class="n">frequency</span> <span class="n">data</span> <span class="p">(</span><span class="k">for</span> <span class="n">example</span><span class="p">,</span> <span class="n">membrane</span> <span class="n">potential</span>
-<span class="n">with</span> <span class="n">spikes</span> <span class="n">removed</span><span class="p">)</span><span class="o">.</span>
+    <span class="n">Removes</span> <span class="mi">60</span><span class="n">Hz</span> <span class="n">noise</span> <span class="n">via</span> <span class="n">filtering</span> <span class="n">with</span> <span class="n">the</span> <span class="n">methods</span> <span class="ow">and</span> 
+    <span class="n">parameters</span> <span class="n">described</span> <span class="n">below</span><span class="o">.</span> <span class="n">DATA_IN</span> <span class="n">must</span> <span class="n">be</span> <span class="n">a</span> <span class="n">vector</span><span class="o">.</span>
 
-<span class="n">The</span> <span class="n">method</span> <span class="ow">and</span> <span class="n">parameters</span> <span class="n">of</span> <span class="n">the</span> <span class="n">function</span> <span class="n">can</span> <span class="n">be</span> <span class="n">modified</span>
-<span class="n">with</span> <span class="n">name</span><span class="o">/</span><span class="n">value</span> <span class="n">pairs</span><span class="p">:</span>
+    <span class="n">User</span> <span class="n">beware</span><span class="p">:</span> <span class="n">check</span> <span class="n">the</span> <span class="n">output</span> <span class="n">of</span> <span class="n">this</span> <span class="n">function</span> <span class="n">carefully</span>
+    <span class="n">with</span> <span class="n">your</span> <span class="n">data</span><span class="p">,</span> <span class="n">to</span> <span class="n">be</span> <span class="n">sure</span> <span class="n">that</span> <span class="n">it</span> <span class="n">doesn</span><span class="s1">&#39;t produce garbage.</span>
+    <span class="n">High</span> <span class="n">frequencies</span> <span class="p">(</span><span class="n">like</span> <span class="n">spikes</span><span class="p">)</span> <span class="n">can</span> <span class="n">often</span> <span class="n">be</span> <span class="n">disturbed</span> <span class="n">by</span>
+    <span class="n">certain</span> <span class="n">methods</span> <span class="n">employed</span> <span class="n">here</span> <span class="p">(</span><span class="s1">&#39;sgolay&#39;</span><span class="p">),</span> <span class="n">so</span> <span class="n">this</span> <span class="k">is</span> <span class="n">best</span>
+    <span class="n">done</span> <span class="n">on</span> <span class="n">low</span> <span class="n">frequency</span> <span class="n">data</span> <span class="p">(</span><span class="k">for</span> <span class="n">example</span><span class="p">,</span> <span class="n">membrane</span> <span class="n">potential</span>
+    <span class="n">with</span> <span class="n">spikes</span> <span class="n">removed</span><span class="p">)</span><span class="o">.</span>
 
-<span class="n">Parameter</span> <span class="p">(</span><span class="n">default</span><span class="p">):</span>           <span class="o">|</span>  <span class="n">Description</span> 
-<span class="o">--------------------------------------------------------------</span>
-<span class="n">METHOD</span> <span class="p">(</span><span class="s1">&#39;sgolay&#39;</span><span class="p">)</span>              <span class="o">|</span>  <span class="n">If</span> <span class="s1">&#39;sgolay&#39;</span><span class="p">:</span>
-                               <span class="o">|</span>      <span class="n">Use</span> <span class="n">Savitzky</span><span class="o">-</span><span class="n">Golay</span> <span class="n">filter</span>
-                               <span class="o">|</span>      <span class="n">Relies</span> <span class="n">on</span> <span class="n">SOGOLAYFILT</span>
-                               <span class="o">|</span>  <span class="n">If</span> <span class="s1">&#39;cheby1&#39;</span><span class="p">:</span>
-                               <span class="o">|</span>      <span class="n">Use</span> <span class="n">chebychev1</span> <span class="n">type</span> <span class="n">filter</span>
-                               <span class="o">|</span>      <span class="n">Relies</span> <span class="n">on</span> <span class="n">CHEBY1</span> <span class="ow">and</span> <span class="n">FILTFILT</span>
-                               <span class="o">|</span>      <span class="p">(</span><span class="n">Signal</span> <span class="n">Processing</span> <span class="n">Toolbox</span><span class="p">)</span>
-                               <span class="o">|</span>  <span class="n">If</span> <span class="s1">&#39;ellip&#39;</span><span class="p">:</span>
-                               <span class="o">|</span>      <span class="n">Use</span> <span class="n">elliptical</span> <span class="n">filter</span>
-                               <span class="o">|</span>      <span class="n">Relies</span> <span class="n">on</span> <span class="n">ELLIP</span> <span class="ow">and</span> <span class="n">FILTFILT</span>
-                               <span class="o">|</span>  <span class="n">If</span> <span class="s1">&#39;ellip+sgolay&#39;</span><span class="p">,</span> <span class="n">then</span> <span class="n">the</span> <span class="n">algorithm</span>
-                               <span class="o">|</span>      <span class="n">uses</span> <span class="n">a</span> <span class="n">blend</span> <span class="n">of</span> <span class="n">the</span> <span class="s1">&#39;ellip&#39;</span> <span class="ow">and</span> 
-                               <span class="o">|</span>      <span class="s1">&#39;sgolay&#39;</span> <span class="n">methods</span><span class="o">.</span> <span class="n">The</span> <span class="k">signal</span> <span class="k">is</span> 
-                               <span class="o">|</span>      <span class="n">first</span> <span class="n">high</span><span class="o">-</span><span class="k">pass</span> <span class="n">filtered</span> <span class="n">above</span>
-                               <span class="o">|</span>      <span class="s1">&#39;ellipsgolay_high&#39;</span><span class="o">.</span> <span class="n">This</span> <span class="n">high</span><span class="o">-</span><span class="k">pass</span>
-                               <span class="o">|</span>      <span class="k">signal</span> <span class="k">is</span> <span class="n">then</span> <span class="n">removed</span> <span class="n">from</span> <span class="n">the</span> <span class="n">data</span><span class="p">,</span>
-                               <span class="o">|</span>      <span class="ow">and</span> <span class="n">the</span> <span class="n">remaining</span> <span class="n">low</span><span class="o">-</span><span class="k">pass</span> <span class="k">signal</span>
-                               <span class="o">|</span>      <span class="k">is</span> <span class="n">passed</span> <span class="n">through</span> <span class="n">the</span> <span class="n">standard</span>
-                               <span class="o">|</span>      <span class="s1">&#39;sgolay&#39;</span> <span class="n">mode</span><span class="o">.</span> <span class="n">Finally</span><span class="p">,</span> <span class="n">the</span> <span class="n">high</span>
-                               <span class="o">|</span>      <span class="n">frequencies</span> <span class="n">that</span> <span class="n">were</span> <span class="n">identified</span>
-                               <span class="o">|</span>      <span class="ow">in</span> <span class="n">the</span> <span class="s1">&#39;high-pass&#39;</span> <span class="n">filter</span> <span class="n">are</span> <span class="n">added</span> <span class="n">back</span><span class="o">.</span>
-<span class="n">sgolay_freq</span> <span class="p">(</span><span class="mi">60</span><span class="p">)</span>               <span class="o">|</span>  <span class="n">For</span> <span class="s1">&#39;sgolay&#39;</span><span class="p">,</span> <span class="n">the</span> <span class="n">frequency</span> <span class="n">to</span> <span class="n">remove</span><span class="o">.</span>
-                               <span class="o">|</span>      
-<span class="n">Stop</span> <span class="p">([</span><span class="mi">55</span> <span class="mi">65</span><span class="p">])</span>                 <span class="o">|</span>  <span class="n">For</span> <span class="s1">&#39;cheby1&#39;</span> <span class="ow">and</span> <span class="s1">&#39;ellip&#39;</span><span class="p">,</span> <span class="n">the</span>
-                               <span class="o">|</span>      <span class="n">stop</span> <span class="n">filter</span> <span class="n">frequencies</span>
-<span class="n">R</span> <span class="p">(</span><span class="mf">0.5</span><span class="p">)</span>                        <span class="o">|</span>  <span class="n">For</span> <span class="s1">&#39;cheby1&#39;</span> <span class="ow">and</span> <span class="s1">&#39;ellip&#39;</span><span class="p">,</span> <span class="n">R</span>
-                               <span class="o">|</span>      <span class="n">decibles</span> <span class="n">of</span> <span class="n">peak</span><span class="o">-</span>
-                               <span class="o">|</span>      <span class="n">to</span><span class="o">-</span><span class="n">peak</span> <span class="n">ripple</span> <span class="ow">in</span> <span class="n">passband</span>
-<span class="n">Rs</span> <span class="p">(</span><span class="mi">20</span><span class="p">)</span>                        <span class="o">|</span>  <span class="n">For</span> <span class="s1">&#39;ellip&#39;</span><span class="p">,</span> <span class="n">at</span> <span class="n">least</span> <span class="n">Rs</span> <span class="n">decibles</span>
-                               <span class="o">|</span>      <span class="n">of</span> <span class="n">attentuation</span>
-                                      <span class="ow">in</span> <span class="n">the</span> <span class="n">stop</span> <span class="n">band</span>
-<span class="n">Order</span> <span class="p">(</span><span class="mi">3</span><span class="p">)</span>                      <span class="o">|</span>  <span class="n">For</span> <span class="s1">&#39;cheby1&#39;</span> <span class="ow">and</span> <span class="s1">&#39;ellip&#39;</span><span class="p">,</span> <span class="n">the</span> <span class="n">filter</span>
-                               <span class="o">|</span>      <span class="n">order</span>
-<span class="n">ellipsgolay_high</span> <span class="p">(</span><span class="mi">65</span><span class="p">)</span>          <span class="o">|</span>  <span class="n">For</span> <span class="s1">&#39;ellip+sgolay&#39;</span><span class="p">,</span> <span class="n">the</span> <span class="n">high</span> <span class="k">pass</span> <span class="n">frequency</span>
+    <span class="n">The</span> <span class="n">method</span> <span class="ow">and</span> <span class="n">parameters</span> <span class="n">of</span> <span class="n">the</span> <span class="n">function</span> <span class="n">can</span> <span class="n">be</span> <span class="n">modified</span>
+    <span class="n">with</span> <span class="n">name</span><span class="o">/</span><span class="n">value</span> <span class="n">pairs</span><span class="p">:</span>
+
+    <span class="n">Parameter</span> <span class="p">(</span><span class="n">default</span><span class="p">):</span>           <span class="o">|</span>  <span class="n">Description</span> 
+    <span class="o">--------------------------------------------------------------</span>
+    <span class="n">METHOD</span> <span class="p">(</span><span class="s1">&#39;sgolay&#39;</span><span class="p">)</span>              <span class="o">|</span>  <span class="n">If</span> <span class="s1">&#39;sgolay&#39;</span><span class="p">:</span>
+                                   <span class="o">|</span>      <span class="n">Use</span> <span class="n">Savitzky</span><span class="o">-</span><span class="n">Golay</span> <span class="n">filter</span>
+                                   <span class="o">|</span>      <span class="n">Relies</span> <span class="n">on</span> <span class="n">SOGOLAYFILT</span>
+                                   <span class="o">|</span>  <span class="n">If</span> <span class="s1">&#39;cheby1&#39;</span><span class="p">:</span>
+                                   <span class="o">|</span>      <span class="n">Use</span> <span class="n">chebychev1</span> <span class="n">type</span> <span class="n">filter</span>
+                                   <span class="o">|</span>      <span class="n">Relies</span> <span class="n">on</span> <span class="n">CHEBY1</span> <span class="ow">and</span> <span class="n">FILTFILT</span>
+                                   <span class="o">|</span>      <span class="p">(</span><span class="n">Signal</span> <span class="n">Processing</span> <span class="n">Toolbox</span><span class="p">)</span>
+                                   <span class="o">|</span>  <span class="n">If</span> <span class="s1">&#39;ellip&#39;</span><span class="p">:</span>
+                                   <span class="o">|</span>      <span class="n">Use</span> <span class="n">elliptical</span> <span class="n">filter</span>
+                                   <span class="o">|</span>      <span class="n">Relies</span> <span class="n">on</span> <span class="n">ELLIP</span> <span class="ow">and</span> <span class="n">FILTFILT</span>
+                                   <span class="o">|</span>  <span class="n">If</span> <span class="s1">&#39;ellip+sgolay&#39;</span><span class="p">,</span> <span class="n">then</span> <span class="n">the</span> <span class="n">algorithm</span>
+                                   <span class="o">|</span>      <span class="n">uses</span> <span class="n">a</span> <span class="n">blend</span> <span class="n">of</span> <span class="n">the</span> <span class="s1">&#39;ellip&#39;</span> <span class="ow">and</span> 
+                                   <span class="o">|</span>      <span class="s1">&#39;sgolay&#39;</span> <span class="n">methods</span><span class="o">.</span> <span class="n">The</span> <span class="k">signal</span> <span class="k">is</span> 
+                                   <span class="o">|</span>      <span class="n">first</span> <span class="n">high</span><span class="o">-</span><span class="k">pass</span> <span class="n">filtered</span> <span class="n">above</span>
+                                   <span class="o">|</span>      <span class="s1">&#39;ellipsgolay_high&#39;</span><span class="o">.</span> <span class="n">This</span> <span class="n">high</span><span class="o">-</span><span class="k">pass</span>
+                                   <span class="o">|</span>      <span class="k">signal</span> <span class="k">is</span> <span class="n">then</span> <span class="n">removed</span> <span class="n">from</span> <span class="n">the</span> <span class="n">data</span><span class="p">,</span>
+                                   <span class="o">|</span>      <span class="ow">and</span> <span class="n">the</span> <span class="n">remaining</span> <span class="n">low</span><span class="o">-</span><span class="k">pass</span> <span class="k">signal</span>
+                                   <span class="o">|</span>      <span class="k">is</span> <span class="n">passed</span> <span class="n">through</span> <span class="n">the</span> <span class="n">standard</span>
+                                   <span class="o">|</span>      <span class="s1">&#39;sgolay&#39;</span> <span class="n">mode</span><span class="o">.</span> <span class="n">Finally</span><span class="p">,</span> <span class="n">the</span> <span class="n">high</span>
+                                   <span class="o">|</span>      <span class="n">frequencies</span> <span class="n">that</span> <span class="n">were</span> <span class="n">identified</span>
+                                   <span class="o">|</span>      <span class="ow">in</span> <span class="n">the</span> <span class="s1">&#39;high-pass&#39;</span> <span class="n">filter</span> <span class="n">are</span> <span class="n">added</span> <span class="n">back</span><span class="o">.</span>
+    <span class="n">sgolay_freq</span> <span class="p">(</span><span class="mi">60</span><span class="p">)</span>               <span class="o">|</span>  <span class="n">For</span> <span class="s1">&#39;sgolay&#39;</span><span class="p">,</span> <span class="n">the</span> <span class="n">frequency</span> <span class="n">to</span> <span class="n">remove</span><span class="o">.</span>
+                                   <span class="o">|</span>      
+    <span class="n">Stop</span> <span class="p">([</span><span class="mi">55</span> <span class="mi">65</span><span class="p">])</span>                 <span class="o">|</span>  <span class="n">For</span> <span class="s1">&#39;cheby1&#39;</span> <span class="ow">and</span> <span class="s1">&#39;ellip&#39;</span><span class="p">,</span> <span class="n">the</span>
+                                   <span class="o">|</span>      <span class="n">stop</span> <span class="n">filter</span> <span class="n">frequencies</span>
+    <span class="n">R</span> <span class="p">(</span><span class="mf">0.5</span><span class="p">)</span>                        <span class="o">|</span>  <span class="n">For</span> <span class="s1">&#39;cheby1&#39;</span> <span class="ow">and</span> <span class="s1">&#39;ellip&#39;</span><span class="p">,</span> <span class="n">R</span>
+                                   <span class="o">|</span>      <span class="n">decibles</span> <span class="n">of</span> <span class="n">peak</span><span class="o">-</span>
+                                   <span class="o">|</span>      <span class="n">to</span><span class="o">-</span><span class="n">peak</span> <span class="n">ripple</span> <span class="ow">in</span> <span class="n">passband</span>
+    <span class="n">Rs</span> <span class="p">(</span><span class="mi">20</span><span class="p">)</span>                        <span class="o">|</span>  <span class="n">For</span> <span class="s1">&#39;ellip&#39;</span><span class="p">,</span> <span class="n">at</span> <span class="n">least</span> <span class="n">Rs</span> <span class="n">decibles</span>
+                                   <span class="o">|</span>      <span class="n">of</span> <span class="n">attentuation</span>
+                                          <span class="ow">in</span> <span class="n">the</span> <span class="n">stop</span> <span class="n">band</span>
+    <span class="n">Order</span> <span class="p">(</span><span class="mi">3</span><span class="p">)</span>                      <span class="o">|</span>  <span class="n">For</span> <span class="s1">&#39;cheby1&#39;</span> <span class="ow">and</span> <span class="s1">&#39;ellip&#39;</span><span class="p">,</span> <span class="n">the</span> <span class="n">filter</span>
+                                   <span class="o">|</span>      <span class="n">order</span>
+    <span class="n">ellipsgolay_high</span> <span class="p">(</span><span class="mi">65</span><span class="p">)</span>          <span class="o">|</span>  <span class="n">For</span> <span class="s1">&#39;ellip+sgolay&#39;</span><span class="p">,</span> <span class="n">the</span> <span class="n">high</span> <span class="k">pass</span> <span class="n">frequency</span>
 
 
 
-<span class="n">If</span> <span class="n">you</span> <span class="n">get</span> <span class="n">NaN</span> <span class="k">for</span> <span class="n">your</span> <span class="n">output</span> <span class="n">data</span><span class="p">,</span> <span class="n">try</span> <span class="n">reducing</span> <span class="n">the</span> <span class="n">filter</span> <span class="n">order</span><span class="o">.</span>
+    <span class="n">If</span> <span class="n">you</span> <span class="n">get</span> <span class="n">NaN</span> <span class="k">for</span> <span class="n">your</span> <span class="n">output</span> <span class="n">data</span><span class="p">,</span> <span class="n">try</span> <span class="n">reducing</span> <span class="n">the</span> <span class="n">filter</span> <span class="n">order</span><span class="o">.</span>
 
-<span class="n">Contributions</span><span class="p">:</span> <span class="n">Wes</span> <span class="n">Alford</span><span class="p">,</span> <span class="n">Steve</span> <span class="n">Van</span> <span class="n">Hooser</span>
+    <span class="n">Contributions</span><span class="p">:</span> <span class="n">Wes</span> <span class="n">Alford</span><span class="p">,</span> <span class="n">Steve</span> <span class="n">Van</span> <span class="n">Hooser</span>
 </code></pre></div>
                 
               

@@ -3213,6 +3213,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../../%2Bgit/git_stash.m/" class="md-nav__link">
+        vlt.git.git_stash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../../%2Bgit/git_status.m/" class="md-nav__link">
         vlt.git.git_status
       </a>
@@ -9239,30 +9251,39 @@
                 
                 
                 <h1 id="vltneuromembranespikekink">vlt.neuro.membrane.spikekink<a class="headerlink" href="#vltneuromembranespikekink" title="Permanent link">&para;</a></h1>
-<p>SPIKEKINK - find the "kink" inflection point in spike waveforms, and maximum dv/dt after Azouz and Gray 1999</p>
-<p>[KINK_VM, MAX_DVDT, KINK_INDEX_] = vlt.neuro.membrane.spikekink(SPIKE_TRACE, T, SPIKE_INDEXES, ...)</p>
-<p>Inputs:      <br />
-  SPIKE_WAVE      | 1D vector containing values for voltage at every
-                  |    timestep in spike_wave (units V)
-  T_VEC           | 1D vector containing timestamps in seconds
-  SPIKE_INDEXES   | Sample index values of approximate spike peaks in SPIKE_TRACE
-                  | and can be in either row or column vector form</p>
-<p>Calculates the "kink" in spike waveforms where spike begins to take off.
-  See Azouz and Gray, J. Neurosci 1999.</p>
-<p>SPIKE_LOCATIONS that are greater than </p>
-<p>Outputs:
-  KINK_VM         | Vector of voltage at each spike kink
-  MAX_DVDT        | Vector of maximum DV/DT for each spike (volts/sec)
-  KINK_INDEX      | Vector of times of each spike kink</p>
-<p>This function also takes additional parameters in the form of name/value
-  pairs.</p>
-<p>Parameter (default)     | Description</p>
-<hr />
-<p>slope_criterion (0.033) | Fraction of peak dV/dt, calibrated by visual
-                          |    inspection to match threshold
-  search_interval (0.004) | How much before each spike_location to begin
-                          |    the search for the kink (in seconds)</p>
-<p>Jason Osik 2016-2017, slight mods by SDV, DPL</p>
+<div class="codehilite"><pre><span></span><code>  <span class="nv">SPIKEKINK</span> <span class="o">-</span> <span class="nv">find</span> <span class="nv">the</span> <span class="s2">&quot;</span><span class="s">kink</span><span class="s2">&quot;</span> <span class="nv">inflection</span> <span class="nv">point</span> <span class="nv">in</span> <span class="nv">spike</span> <span class="nv">waveforms</span>, <span class="nv">and</span> <span class="nv">maximum</span> <span class="nv">dv</span><span class="o">/</span><span class="nv">dt</span> <span class="nv">after</span> <span class="nv">Azouz</span> <span class="nv">and</span> <span class="nv">Gray</span> <span class="mi">1999</span>
+
+  [<span class="nv">KINK_VM</span>, <span class="nv">MAX_DVDT</span>, <span class="nv">KINK_INDEX_</span>] <span class="o">=</span> <span class="nv">vlt</span>.<span class="nv">neuro</span>.<span class="nv">membrane</span>.<span class="nv">spikekink</span><span class="ss">(</span><span class="nv">SPIKE_TRACE</span>, <span class="nv">T</span>, <span class="nv">SPIKE_INDEXES</span>, ...<span class="ss">)</span>
+
+  <span class="nv">Inputs</span>:        
+  <span class="nv">SPIKE_WAVE</span>      <span class="o">|</span> <span class="mi">1</span><span class="nv">D</span> <span class="nv">vector</span> <span class="nv">containing</span> <span class="nv">values</span> <span class="k">for</span> <span class="nv">voltage</span> <span class="nv">at</span> <span class="nv">every</span>
+                  <span class="o">|</span>    <span class="nv">timestep</span> <span class="nv">in</span> <span class="nv">spike_wave</span> <span class="ss">(</span><span class="nv">units</span> <span class="nv">V</span><span class="ss">)</span>
+  <span class="nv">T_VEC</span>           <span class="o">|</span> <span class="mi">1</span><span class="nv">D</span> <span class="nv">vector</span> <span class="nv">containing</span> <span class="nv">timestamps</span> <span class="nv">in</span> <span class="nv">seconds</span>
+  <span class="nv">SPIKE_INDEXES</span>   <span class="o">|</span> <span class="nv">Sample</span> <span class="nv">index</span> <span class="nv">values</span> <span class="nv">of</span> <span class="nv">approximate</span> <span class="nv">spike</span> <span class="nv">peaks</span> <span class="nv">in</span> <span class="nv">SPIKE_TRACE</span>
+                  <span class="o">|</span> <span class="nv">and</span> <span class="nv">can</span> <span class="nv">be</span> <span class="nv">in</span> <span class="nv">either</span> <span class="nv">row</span> <span class="nv">or</span> <span class="nv">column</span> <span class="nv">vector</span> <span class="nv">form</span>
+
+  <span class="nv">Calculates</span> <span class="nv">the</span> <span class="s2">&quot;</span><span class="s">kink</span><span class="s2">&quot;</span> <span class="nv">in</span> <span class="nv">spike</span> <span class="nv">waveforms</span> <span class="nv">where</span> <span class="nv">spike</span> <span class="nv">begins</span> <span class="nv">to</span> <span class="nv">take</span> <span class="nv">off</span>.
+  <span class="nv">See</span> <span class="nv">Azouz</span> <span class="nv">and</span> <span class="nv">Gray</span>, <span class="nv">J</span>. <span class="nv">Neurosci</span> <span class="mi">1999</span>.
+
+  <span class="nv">SPIKE_LOCATIONS</span> <span class="nv">that</span> <span class="nv">are</span> <span class="nv">greater</span> <span class="nv">than</span> 
+
+  <span class="nv">Outputs</span>:
+  <span class="nv">KINK_VM</span>         <span class="o">|</span> <span class="nv">Vector</span> <span class="nv">of</span> <span class="nv">voltage</span> <span class="nv">at</span> <span class="nv">each</span> <span class="nv">spike</span> <span class="nv">kink</span>
+  <span class="nv">MAX_DVDT</span>        <span class="o">|</span> <span class="nv">Vector</span> <span class="nv">of</span> <span class="nv">maximum</span> <span class="nv">DV</span><span class="o">/</span><span class="nv">DT</span> <span class="k">for</span> <span class="nv">each</span> <span class="nv">spike</span> <span class="ss">(</span><span class="nv">volts</span><span class="o">/</span><span class="nv">sec</span><span class="ss">)</span>
+  <span class="nv">KINK_INDEX</span>      <span class="o">|</span> <span class="nv">Vector</span> <span class="nv">of</span> <span class="nv">times</span> <span class="nv">of</span> <span class="nv">each</span> <span class="nv">spike</span> <span class="nv">kink</span>
+
+  <span class="nv">This</span> <span class="nv">function</span> <span class="nv">also</span> <span class="nv">takes</span> <span class="nv">additional</span> <span class="nv">parameters</span> <span class="nv">in</span> <span class="nv">the</span> <span class="nv">form</span> <span class="nv">of</span> <span class="nv">name</span><span class="o">/</span><span class="nv">value</span>
+  <span class="nv">pairs</span>.
+
+  <span class="nv">Parameter</span> <span class="ss">(</span><span class="nv">default</span><span class="ss">)</span>     <span class="o">|</span> <span class="nv">Description</span>
+  <span class="o">---------------------------------------------------------------</span>
+  <span class="nv">slope_criterion</span> <span class="ss">(</span><span class="mi">0</span>.<span class="mi">033</span><span class="ss">)</span> <span class="o">|</span> <span class="nv">Fraction</span> <span class="nv">of</span> <span class="nv">peak</span> <span class="nv">dV</span><span class="o">/</span><span class="nv">dt</span>, <span class="nv">calibrated</span> <span class="nv">by</span> <span class="nv">visual</span>
+                          <span class="o">|</span>    <span class="nv">inspection</span> <span class="nv">to</span> <span class="nv">match</span> <span class="nv">threshold</span>
+  <span class="nv">search_interval</span> <span class="ss">(</span><span class="mi">0</span>.<span class="mi">004</span><span class="ss">)</span> <span class="o">|</span> <span class="nv">How</span> <span class="nv">much</span> <span class="nv">before</span> <span class="nv">each</span> <span class="nv">spike_location</span> <span class="nv">to</span> <span class="nv">begin</span>
+                          <span class="o">|</span>    <span class="nv">the</span> <span class="nv">search</span> <span class="k">for</span> <span class="nv">the</span> <span class="nv">kink</span> <span class="ss">(</span><span class="nv">in</span> <span class="nv">seconds</span><span class="ss">)</span>
+
+  <span class="nv">Jason</span> <span class="nv">Osik</span> <span class="mi">2016</span><span class="o">-</span><span class="mi">2017</span>, <span class="nv">slight</span> <span class="nv">mods</span> <span class="nv">by</span> <span class="nv">SDV</span>, <span class="nv">DPL</span>
+</code></pre></div>
                 
               
               

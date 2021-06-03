@@ -3227,6 +3227,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../../%2Bgit/git_stash.m/" class="md-nav__link">
+        vlt.git.git_stash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../../%2Bgit/git_status.m/" class="md-nav__link">
         vlt.git.git_status
       </a>
@@ -9239,27 +9251,32 @@
                 
                 
                 <h1 id="vltfilecustom_file_formatsvhsb_read">vlt.file.custom_file_formats.vhsb_read<a class="headerlink" href="#vltfilecustom_file_formatsvhsb_read" title="Permanent link">&para;</a></h1>
-<p>VHSB_READ - write a VHLab series binary file</p>
-<p>[Y,X] = vlt.file.custom_file_formats.vhsb_read(FO, X0, X1, OUT_OF_BOUNDS_ERR, ...)</p>
-<p>Read Y series data from a VH series binary file from closest X sample
-  to value X0 to closest X sample to value X1.</p>
-<p>Inputs:
-     FO is the file description to write to; it can be a 
-          filename or an object of type vlt.file.fileobj
-     X0 is the value of X that indicates where to start reading. Can be -Inf to 
-          indicate the beginning of the samples in the file.
-     X1 is the value of X that indicates where to stop reading. Can be Inf to indicate
-          the end of the file.
-     OUT_OF_BOUNDS_ERR indicates whether an error should be triggered if X0 or X1 are
-          more than one half-sample away from a value of X that is actually in the dataset.
-          If OUT_OF_BOUNDS_ERR is 1, then an error is triggered; otherwise, the closest sample
-          is returned but no error is given.</p>
-<p>Outputs: 
-     X is NUMSAMPLESx1, where NUMSAMPLES is the number of samples between
-          X0 and X1.
-     Y is an NUM_SAMPLESxXxYxZx... dataset with the Y samples that
-          are associated with each value of X.
-          X(i) is the ith sample returned of X, and Y(i,:,:,...) is the ith sample returned of Y</p>
+<div class="codehilite"><pre><span></span><code>  <span class="nt">VHSB_READ</span> <span class="nt">-</span> <span class="nt">write</span> <span class="nt">a</span> <span class="nt">VHLab</span> <span class="nt">series</span> <span class="nt">binary</span> <span class="nt">file</span>
+
+  <span class="cp">[</span><span class="nx">Y</span><span class="p">,</span><span class="nx">X</span><span class="cp">]</span> <span class="o">=</span> <span class="nt">vlt</span><span class="p">.</span><span class="nc">file</span><span class="p">.</span><span class="nc">custom_file_formats</span><span class="p">.</span><span class="nc">vhsb_read</span><span class="o">(</span><span class="nt">FO</span><span class="o">,</span> <span class="nt">X0</span><span class="o">,</span> <span class="nt">X1</span><span class="o">,</span> <span class="nt">OUT_OF_BOUNDS_ERR</span><span class="o">,</span> <span class="o">...)</span>
+
+  <span class="nt">Read</span> <span class="nt">Y</span> <span class="nt">series</span> <span class="nt">data</span> <span class="nt">from</span> <span class="nt">a</span> <span class="nt">VH</span> <span class="nt">series</span> <span class="nt">binary</span> <span class="nt">file</span> <span class="nt">from</span> <span class="nt">closest</span> <span class="nt">X</span> <span class="nt">sample</span>
+  <span class="nt">to</span> <span class="nt">value</span> <span class="nt">X0</span> <span class="nt">to</span> <span class="nt">closest</span> <span class="nt">X</span> <span class="nt">sample</span> <span class="nt">to</span> <span class="nt">value</span> <span class="nt">X1</span><span class="o">.</span>
+
+  <span class="nt">Inputs</span><span class="o">:</span>
+     <span class="nt">FO</span> <span class="nt">is</span> <span class="nt">the</span> <span class="nt">file</span> <span class="nt">description</span> <span class="nt">to</span> <span class="nt">write</span> <span class="nt">to</span><span class="o">;</span> <span class="nt">it</span> <span class="nt">can</span> <span class="nt">be</span> <span class="nt">a</span> 
+          <span class="nt">filename</span> <span class="nt">or</span> <span class="nt">an</span> <span class="nt">object</span> <span class="nt">of</span> <span class="nt">type</span> <span class="nt">vlt</span><span class="p">.</span><span class="nc">file</span><span class="p">.</span><span class="nc">fileobj</span>
+     <span class="nt">X0</span> <span class="nt">is</span> <span class="nt">the</span> <span class="nt">value</span> <span class="nt">of</span> <span class="nt">X</span> <span class="nt">that</span> <span class="nt">indicates</span> <span class="nt">where</span> <span class="nt">to</span> <span class="nt">start</span> <span class="nt">reading</span><span class="o">.</span> <span class="nt">Can</span> <span class="nt">be</span> <span class="nt">-Inf</span> <span class="nt">to</span> 
+          <span class="nt">indicate</span> <span class="nt">the</span> <span class="nt">beginning</span> <span class="nt">of</span> <span class="nt">the</span> <span class="nt">samples</span> <span class="nt">in</span> <span class="nt">the</span> <span class="nt">file</span><span class="o">.</span>
+     <span class="nt">X1</span> <span class="nt">is</span> <span class="nt">the</span> <span class="nt">value</span> <span class="nt">of</span> <span class="nt">X</span> <span class="nt">that</span> <span class="nt">indicates</span> <span class="nt">where</span> <span class="nt">to</span> <span class="nt">stop</span> <span class="nt">reading</span><span class="o">.</span> <span class="nt">Can</span> <span class="nt">be</span> <span class="nt">Inf</span> <span class="nt">to</span> <span class="nt">indicate</span>
+          <span class="nt">the</span> <span class="nt">end</span> <span class="nt">of</span> <span class="nt">the</span> <span class="nt">file</span><span class="o">.</span>
+     <span class="nt">OUT_OF_BOUNDS_ERR</span> <span class="nt">indicates</span> <span class="nt">whether</span> <span class="nt">an</span> <span class="nt">error</span> <span class="nt">should</span> <span class="nt">be</span> <span class="nt">triggered</span> <span class="nt">if</span> <span class="nt">X0</span> <span class="nt">or</span> <span class="nt">X1</span> <span class="nt">are</span>
+          <span class="nt">more</span> <span class="nt">than</span> <span class="nt">one</span> <span class="nt">half-sample</span> <span class="nt">away</span> <span class="nt">from</span> <span class="nt">a</span> <span class="nt">value</span> <span class="nt">of</span> <span class="nt">X</span> <span class="nt">that</span> <span class="nt">is</span> <span class="nt">actually</span> <span class="nt">in</span> <span class="nt">the</span> <span class="nt">dataset</span><span class="o">.</span>
+          <span class="nt">If</span> <span class="nt">OUT_OF_BOUNDS_ERR</span> <span class="nt">is</span> <span class="nt">1</span><span class="o">,</span> <span class="nt">then</span> <span class="nt">an</span> <span class="nt">error</span> <span class="nt">is</span> <span class="nt">triggered</span><span class="o">;</span> <span class="nt">otherwise</span><span class="o">,</span> <span class="nt">the</span> <span class="nt">closest</span> <span class="nt">sample</span>
+          <span class="nt">is</span> <span class="nt">returned</span> <span class="nt">but</span> <span class="nt">no</span> <span class="nt">error</span> <span class="nt">is</span> <span class="nt">given</span><span class="o">.</span>
+
+  <span class="nt">Outputs</span><span class="o">:</span> 
+     <span class="nt">X</span> <span class="nt">is</span> <span class="nt">NUMSAMPLESx1</span><span class="o">,</span> <span class="nt">where</span> <span class="nt">NUMSAMPLES</span> <span class="nt">is</span> <span class="nt">the</span> <span class="nt">number</span> <span class="nt">of</span> <span class="nt">samples</span> <span class="nt">between</span>
+          <span class="nt">X0</span> <span class="nt">and</span> <span class="nt">X1</span><span class="o">.</span>
+     <span class="nt">Y</span> <span class="nt">is</span> <span class="nt">an</span> <span class="nt">NUM_SAMPLESxXxYxZx</span><span class="o">...</span> <span class="nt">dataset</span> <span class="nt">with</span> <span class="nt">the</span> <span class="nt">Y</span> <span class="nt">samples</span> <span class="nt">that</span>
+          <span class="nt">are</span> <span class="nt">associated</span> <span class="nt">with</span> <span class="nt">each</span> <span class="nt">value</span> <span class="nt">of</span> <span class="nt">X</span><span class="o">.</span>
+          <span class="nt">X</span><span class="o">(</span><span class="nt">i</span><span class="o">)</span> <span class="nt">is</span> <span class="nt">the</span> <span class="nt">ith</span> <span class="nt">sample</span> <span class="nt">returned</span> <span class="nt">of</span> <span class="nt">X</span><span class="o">,</span> <span class="nt">and</span> <span class="nt">Y</span><span class="o">(</span><span class="nt">i</span><span class="o">,:,:,...)</span> <span class="nt">is</span> <span class="nt">the</span> <span class="nt">ith</span> <span class="nt">sample</span> <span class="nt">returned</span> <span class="nt">of</span> <span class="nt">Y</span>
+</code></pre></div>
                 
               
               

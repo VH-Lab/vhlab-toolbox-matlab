@@ -3227,6 +3227,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../../%2Bgit/git_stash.m/" class="md-nav__link">
+        vlt.git.git_stash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../../%2Bgit/git_status.m/" class="md-nav__link">
         vlt.git.git_status
       </a>
@@ -9239,19 +9251,26 @@
                 
                 
                 <h1 id="vltfilecustom_file_formatsreadvhlspikewaveformfile">vlt.file.custom_file_formats.readvhlspikewaveformfile<a class="headerlink" href="#vltfilecustom_file_formatsreadvhlspikewaveformfile" title="Permanent link">&para;</a></h1>
-<p>READVHLSPIKEWAVEFORMFILE - Read spike waveforms from binary file</p>
-<p>[WAVEFORMS, HEADER] = vlt.file.custom_file_formats.readvhlspikewaveformfile(FID_OR_FILENAME)
-     or 
-   [WAVEFORMS, HEADER] = vlt.file.custom_file_formats.readvhlspikewaveformfile(FID_OR_FILENAME,...
-      WAVE_START,WAVE_END)</p>
-<p>Attempts to read spikewaves from WAVE_START to WAVE_END from the binary file
-   whose name is given as the first argument, or from the file descriptor (FID).
-   The header is parsed and returned in HEADER.</p>
-<p>WAVE_END can be INF to indicate that waves should be read to the end of the file.
-   The waves are numbered from 1 .. MAX, so WAVE_START needs to be at least 1.</p>
-<p>If WAVE_START and WAVE_END are not provided, then all waves are read.</p>
-<p>If WAVE_START is less than 1, then only the header is read.</p>
-<p>The waveforms are output in the form NUM_SAMPLESxNUM_CHANNELSxNUM_WAVEFORMS</p>
+<div class="codehilite"><pre><span></span><code>  <span class="n">READVHLSPIKEWAVEFORMFILE</span> <span class="o">-</span> <span class="n">Read</span> <span class="n">spike</span> <span class="n">waveforms</span> <span class="n">from</span> <span class="n">binary</span> <span class="n">file</span>
+
+   <span class="p">[</span><span class="n">WAVEFORMS</span><span class="p">,</span> <span class="n">HEADER</span><span class="p">]</span> <span class="o">=</span> <span class="n">vlt</span><span class="p">.</span><span class="n">file</span><span class="p">.</span><span class="n">custom_file_formats</span><span class="p">.</span><span class="n">readvhlspikewaveformfile</span><span class="p">(</span><span class="n">FID_OR_FILENAME</span><span class="p">)</span>
+     <span class="n">or</span> 
+   <span class="p">[</span><span class="n">WAVEFORMS</span><span class="p">,</span> <span class="n">HEADER</span><span class="p">]</span> <span class="o">=</span> <span class="n">vlt</span><span class="p">.</span><span class="n">file</span><span class="p">.</span><span class="n">custom_file_formats</span><span class="p">.</span><span class="n">readvhlspikewaveformfile</span><span class="p">(</span><span class="n">FID_OR_FILENAME</span><span class="p">,...</span>
+      <span class="n">WAVE_START</span><span class="p">,</span><span class="n">WAVE_END</span><span class="p">)</span>
+
+   <span class="n">Attempts</span> <span class="n">to</span> <span class="n">read</span> <span class="n">spikewaves</span> <span class="n">from</span> <span class="n">WAVE_START</span> <span class="n">to</span> <span class="n">WAVE_END</span> <span class="n">from</span> <span class="n">the</span> <span class="n">binary</span> <span class="n">file</span>
+   <span class="n">whose</span> <span class="n">name</span> <span class="n">is</span> <span class="n">given</span> <span class="n">as</span> <span class="n">the</span> <span class="n">first</span> <span class="n">argument</span><span class="p">,</span> <span class="n">or</span> <span class="n">from</span> <span class="n">the</span> <span class="n">file</span> <span class="n">descriptor</span> <span class="p">(</span><span class="n">FID</span><span class="p">).</span>
+   <span class="n">The</span> <span class="n">header</span> <span class="n">is</span> <span class="n">parsed</span> <span class="n">and</span> <span class="n">returned</span> <span class="n">in</span> <span class="n">HEADER</span><span class="p">.</span>
+
+   <span class="n">WAVE_END</span> <span class="n">can</span> <span class="n">be</span> <span class="kc">INF</span> <span class="n">to</span> <span class="n">indicate</span> <span class="n">that</span> <span class="n">waves</span> <span class="n">should</span> <span class="n">be</span> <span class="n">read</span> <span class="n">to</span> <span class="n">the</span> <span class="n">end</span> <span class="n">of</span> <span class="n">the</span> <span class="n">file</span><span class="p">.</span>
+   <span class="n">The</span> <span class="n">waves</span> <span class="n">are</span> <span class="n">numbered</span> <span class="n">from</span> <span class="mi">1</span> <span class="p">..</span> <span class="kr">MAX</span><span class="p">,</span> <span class="n">so</span> <span class="n">WAVE_START</span> <span class="n">needs</span> <span class="n">to</span> <span class="n">be</span> <span class="n">at</span> <span class="n">least</span> <span class="mi">1</span><span class="p">.</span>
+
+   <span class="n">If</span> <span class="n">WAVE_START</span> <span class="n">and</span> <span class="n">WAVE_END</span> <span class="n">are</span> <span class="n">not</span> <span class="n">provided</span><span class="p">,</span> <span class="n">then</span> <span class="n">all</span> <span class="n">waves</span> <span class="n">are</span> <span class="n">read</span><span class="p">.</span>
+
+   <span class="n">If</span> <span class="n">WAVE_START</span> <span class="n">is</span> <span class="n">less</span> <span class="n">than</span> <span class="mi">1</span><span class="p">,</span> <span class="n">then</span> <span class="n">only</span> <span class="n">the</span> <span class="n">header</span> <span class="n">is</span> <span class="n">read</span><span class="p">.</span>
+
+   <span class="n">The</span> <span class="n">waveforms</span> <span class="n">are</span> <span class="n">output</span> <span class="n">in</span> <span class="n">the</span> <span class="n">form</span> <span class="n">NUM_SAMPLESxNUM_CHANNELSxNUM_WAVEFORMS</span>
+</code></pre></div>
                 
               
               

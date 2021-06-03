@@ -3213,6 +3213,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../%2Bgit/git_stash.m/" class="md-nav__link">
+        vlt.git.git_stash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../%2Bgit/git_status.m/" class="md-nav__link">
         vlt.git.git_status
       </a>
@@ -9237,24 +9249,30 @@
                 
                 
                 <h1 id="vltspreadsheetspreadsheet_multiplechoice">vlt.spreadsheet.spreadsheet_multiplechoice<a class="headerlink" href="#vltspreadsheetspreadsheet_multiplechoice" title="Permanent link">&para;</a></h1>
-<p>SPREADSHEET_MULTIPLECHOICE - Return answers to a multiple choice spreadsheet question</p>
-<p>ANSWERS = vlt.spreadsheet.spreadsheet_multiplechoice(SPREADSHEET, QUESTION, ...)</p>
-<p>Returns a structure with responses to a multiple choice "question"
-  in the header row of a spreadsheet. The header row is assumed to be the first
-  row.</p>
-<p>The structure ANSWERS has 3 fields: question (the question asked), choices
-  (a cell array of strings of the choices), and results (a vector of how many choices
-  of each type were made).</p>
-<p>This function can also take name/value pairs that modify its behavior:
-  Parameter (default)    | Description</p>
-<hr />
-<p>choices ([])           | If the user wishes to provide the choices, one
-                         |   can. This is useful for prescribing the order
-                         |   of the choices, or for indicating the possibility of
-                         |   choices that are not represented in the data. If empty,
-                         |   then choices will be determined empircally by the entries
-                         |   in the spreadsheet.</p>
-<p>See also: NAMEVALUEPAIRS</p>
+<div class="codehilite"><pre><span></span><code>  <span class="nv">SPREADSHEET_MULTIPLECHOICE</span> <span class="o">-</span> <span class="k">Return</span> <span class="nv">answers</span> <span class="nv">to</span> <span class="nv">a</span> <span class="nv">multiple</span> <span class="nv">choice</span> <span class="nv">spreadsheet</span> <span class="nv">question</span>
+
+  <span class="nv">ANSWERS</span> <span class="o">=</span> <span class="nv">vlt</span>.<span class="nv">spreadsheet</span>.<span class="nv">spreadsheet_multiplechoice</span><span class="ss">(</span><span class="nv">SPREADSHEET</span>, <span class="nv">QUESTION</span>, ...<span class="ss">)</span>
+
+  <span class="nv">Returns</span> <span class="nv">a</span> <span class="nv">structure</span> <span class="nv">with</span> <span class="nv">responses</span> <span class="nv">to</span> <span class="nv">a</span> <span class="nv">multiple</span> <span class="nv">choice</span> <span class="s2">&quot;</span><span class="s">question</span><span class="s2">&quot;</span>
+  <span class="nv">in</span> <span class="nv">the</span> <span class="nv">header</span> <span class="nv">row</span> <span class="nv">of</span> <span class="nv">a</span> <span class="nv">spreadsheet</span>. <span class="nv">The</span> <span class="nv">header</span> <span class="nv">row</span> <span class="nv">is</span> <span class="nv">assumed</span> <span class="nv">to</span> <span class="nv">be</span> <span class="nv">the</span> <span class="nv">first</span>
+  <span class="nv">row</span>.
+
+  <span class="nv">The</span> <span class="nv">structure</span> <span class="nv">ANSWERS</span> <span class="nv">has</span> <span class="mi">3</span> <span class="nv">fields</span>: <span class="nv">question</span> <span class="ss">(</span><span class="nv">the</span> <span class="nv">question</span> <span class="nv">asked</span><span class="ss">)</span>, <span class="nv">choices</span>
+  <span class="ss">(</span><span class="nv">a</span> <span class="nv">cell</span> <span class="nv">array</span> <span class="nv">of</span> <span class="nv">strings</span> <span class="nv">of</span> <span class="nv">the</span> <span class="nv">choices</span><span class="ss">)</span>, <span class="nv">and</span> <span class="nv">results</span> <span class="ss">(</span><span class="nv">a</span> <span class="nv">vector</span> <span class="nv">of</span> <span class="nv">how</span> <span class="nv">many</span> <span class="nv">choices</span>
+  <span class="nv">of</span> <span class="nv">each</span> <span class="nv">type</span> <span class="nv">were</span> <span class="nv">made</span><span class="ss">)</span>.
+
+  <span class="nv">This</span> <span class="nv">function</span> <span class="nv">can</span> <span class="nv">also</span> <span class="nv">take</span> <span class="nv">name</span><span class="o">/</span><span class="nv">value</span> <span class="nv">pairs</span> <span class="nv">that</span> <span class="nv">modify</span> <span class="nv">its</span> <span class="nv">behavior</span>:
+  <span class="nv">Parameter</span> <span class="ss">(</span><span class="nv">default</span><span class="ss">)</span>    <span class="o">|</span> <span class="nv">Description</span>
+  <span class="o">--------------------------------------------------------------------</span>
+  <span class="nv">choices</span> <span class="ss">(</span>[]<span class="ss">)</span>           <span class="o">|</span> <span class="k">If</span> <span class="nv">the</span> <span class="nv">user</span> <span class="nv">wishes</span> <span class="nv">to</span> <span class="nv">provide</span> <span class="nv">the</span> <span class="nv">choices</span>, <span class="nv">one</span>
+                         <span class="o">|</span>   <span class="nv">can</span>. <span class="nv">This</span> <span class="nv">is</span> <span class="nv">useful</span> <span class="k">for</span> <span class="nv">prescribing</span> <span class="nv">the</span> <span class="nv">order</span>
+                         <span class="o">|</span>   <span class="nv">of</span> <span class="nv">the</span> <span class="nv">choices</span>, <span class="nv">or</span> <span class="k">for</span> <span class="nv">indicating</span> <span class="nv">the</span> <span class="nv">possibility</span> <span class="nv">of</span>
+                         <span class="o">|</span>   <span class="nv">choices</span> <span class="nv">that</span> <span class="nv">are</span> <span class="nv">not</span> <span class="nv">represented</span> <span class="nv">in</span> <span class="nv">the</span> <span class="nv">data</span>. <span class="k">If</span> <span class="nv">empty</span>,
+                         <span class="o">|</span>   <span class="k">then</span> <span class="nv">choices</span> <span class="nv">will</span> <span class="nv">be</span> <span class="nv">determined</span> <span class="nv">empircally</span> <span class="nv">by</span> <span class="nv">the</span> <span class="nv">entries</span>
+                         <span class="o">|</span>   <span class="nv">in</span> <span class="nv">the</span> <span class="nv">spreadsheet</span>.
+
+  <span class="nv">See</span> <span class="nv">also</span>: <span class="nv">NAMEVALUEPAIRS</span>
+</code></pre></div>
                 
               
               

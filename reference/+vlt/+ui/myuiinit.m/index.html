@@ -3213,6 +3213,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../%2Bgit/git_stash.m/" class="md-nav__link">
+        vlt.git.git_stash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../%2Bgit/git_status.m/" class="md-nav__link">
         vlt.git.git_status
       </a>
@@ -9237,28 +9249,29 @@
                 
                 
                 <h1 id="vltuimyuiinit">vlt.ui.myuiinit<a class="headerlink" href="#vltuimyuiinit" title="Permanent link">&para;</a></h1>
-<p>MYUIINIT - a script to initialize workspace variables for user interfaces</p>
-<div class="codehilite"><pre><span></span><code><span class="n">Initializes</span> <span class="n">several</span> <span class="n">structure</span> <span class="n">variables</span> <span class="n">that</span> <span class="n">can</span> <span class="n">then</span> <span class="n">be</span> <span class="n">passed</span> <span class="n">to</span>
-<span class="n">UICONTROL</span><span class="o">.</span> <span class="n">These</span> <span class="n">variables</span> <span class="n">are</span> <span class="n">assigned</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">CALLER</span> <span class="p">(</span><span class="n">that</span> <span class="k">is</span><span class="p">,</span> <span class="k">if</span> <span class="n">you</span>
-<span class="n">call</span> <span class="n">this</span> <span class="n">function</span> <span class="n">from</span> <span class="n">another</span> <span class="n">function</span><span class="p">,</span> <span class="n">the</span> <span class="n">variable</span> <span class="n">names</span> <span class="n">below</span>
-<span class="n">will</span> <span class="n">be</span> <span class="n">assigned</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">function</span> <span class="n">that</span> <span class="n">calls</span> <span class="n">this</span> <span class="n">function</span><span class="p">)</span><span class="o">.</span>
+<div class="codehilite"><pre><span></span><code>  <span class="n">MYUIINIT</span> <span class="o">-</span> <span class="n">a</span> <span class="n">script</span> <span class="n">to</span> <span class="n">initialize</span> <span class="n">workspace</span> <span class="n">variables</span> <span class="k">for</span> <span class="n">user</span> <span class="n">interfaces</span>
 
-<span class="n">The</span> <span class="n">following</span> <span class="n">variables</span> <span class="n">are</span> <span class="n">initialized</span><span class="p">:</span>
-<span class="n">Name</span><span class="p">:</span>            <span class="o">|</span>  <span class="n">Description</span><span class="p">:</span>              
-<span class="o">-----------------------------------------------</span>
-<span class="s1">&#39;button&#39;</span>         <span class="o">|</span> <span class="n">Push</span> <span class="n">button</span> <span class="n">control</span><span class="o">*</span>
-<span class="s1">&#39;txt&#39;</span>            <span class="o">|</span> <span class="n">Static</span> <span class="n">text</span> <span class="n">control</span>
-<span class="s1">&#39;uiedit&#39;</span>         <span class="o">|</span> <span class="n">Editable</span> <span class="n">text</span> <span class="n">control</span>
-<span class="s1">&#39;popup&#39;</span>          <span class="o">|</span> <span class="n">Popup</span> <span class="n">menu</span> <span class="n">control</span><span class="o">*</span>
-<span class="s1">&#39;checkbox&#39;</span>       <span class="o">|</span> <span class="n">Checkbox</span> <span class="n">type</span> <span class="n">control</span><span class="o">*</span>
+    <span class="n">Initializes</span> <span class="n">several</span> <span class="n">structure</span> <span class="n">variables</span> <span class="n">that</span> <span class="n">can</span> <span class="n">then</span> <span class="n">be</span> <span class="n">passed</span> <span class="n">to</span>
+    <span class="n">UICONTROL</span><span class="o">.</span> <span class="n">These</span> <span class="n">variables</span> <span class="n">are</span> <span class="n">assigned</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">CALLER</span> <span class="p">(</span><span class="n">that</span> <span class="k">is</span><span class="p">,</span> <span class="k">if</span> <span class="n">you</span>
+    <span class="n">call</span> <span class="n">this</span> <span class="n">function</span> <span class="n">from</span> <span class="n">another</span> <span class="n">function</span><span class="p">,</span> <span class="n">the</span> <span class="n">variable</span> <span class="n">names</span> <span class="n">below</span>
+    <span class="n">will</span> <span class="n">be</span> <span class="n">assigned</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">function</span> <span class="n">that</span> <span class="n">calls</span> <span class="n">this</span> <span class="n">function</span><span class="p">)</span><span class="o">.</span>
 
-<span class="o">*</span> <span class="n">indicates</span> <span class="n">that</span> <span class="n">the</span> <span class="s1">&#39;callback&#39;</span> <span class="n">field</span> <span class="k">is</span> <span class="n">set</span> <span class="n">to</span> <span class="s1">&#39;vlt.ui.genercallback&#39;</span>
-<span class="n">Horizontal</span> <span class="n">alignment</span> <span class="n">of</span> <span class="s1">&#39;txt&#39;</span> <span class="ow">and</span> <span class="s1">&#39;edit&#39;</span> <span class="n">controls</span> <span class="k">is</span> <span class="n">set</span> <span class="n">to</span> <span class="s1">&#39;center&#39;</span>
-<span class="n">All</span> <span class="n">backgrounds</span> <span class="n">are</span> <span class="n">set</span> <span class="n">to</span> <span class="mf">0.8</span><span class="o">*</span><span class="p">[</span><span class="mi">1</span> <span class="mi">1</span> <span class="mi">1</span><span class="p">]</span> <span class="n">except</span> <span class="k">for</span> <span class="s1">&#39;edit&#39;</span><span class="p">,</span> <span class="n">which</span>
-<span class="k">is</span> <span class="n">set</span> <span class="n">to</span> <span class="p">[</span><span class="mi">1</span> <span class="mi">1</span> <span class="mi">1</span><span class="p">]</span>
+    <span class="n">The</span> <span class="n">following</span> <span class="n">variables</span> <span class="n">are</span> <span class="n">initialized</span><span class="p">:</span>
+    <span class="n">Name</span><span class="p">:</span>            <span class="o">|</span>  <span class="n">Description</span><span class="p">:</span>              
+    <span class="o">-----------------------------------------------</span>
+    <span class="s1">&#39;button&#39;</span>         <span class="o">|</span> <span class="n">Push</span> <span class="n">button</span> <span class="n">control</span><span class="o">*</span>
+    <span class="s1">&#39;txt&#39;</span>            <span class="o">|</span> <span class="n">Static</span> <span class="n">text</span> <span class="n">control</span>
+    <span class="s1">&#39;uiedit&#39;</span>         <span class="o">|</span> <span class="n">Editable</span> <span class="n">text</span> <span class="n">control</span>
+    <span class="s1">&#39;popup&#39;</span>          <span class="o">|</span> <span class="n">Popup</span> <span class="n">menu</span> <span class="n">control</span><span class="o">*</span>
+    <span class="s1">&#39;checkbox&#39;</span>       <span class="o">|</span> <span class="n">Checkbox</span> <span class="n">type</span> <span class="n">control</span><span class="o">*</span>
+
+    <span class="o">*</span> <span class="n">indicates</span> <span class="n">that</span> <span class="n">the</span> <span class="s1">&#39;callback&#39;</span> <span class="n">field</span> <span class="k">is</span> <span class="n">set</span> <span class="n">to</span> <span class="s1">&#39;vlt.ui.genercallback&#39;</span>
+    <span class="n">Horizontal</span> <span class="n">alignment</span> <span class="n">of</span> <span class="s1">&#39;txt&#39;</span> <span class="ow">and</span> <span class="s1">&#39;edit&#39;</span> <span class="n">controls</span> <span class="k">is</span> <span class="n">set</span> <span class="n">to</span> <span class="s1">&#39;center&#39;</span>
+    <span class="n">All</span> <span class="n">backgrounds</span> <span class="n">are</span> <span class="n">set</span> <span class="n">to</span> <span class="mf">0.8</span><span class="o">*</span><span class="p">[</span><span class="mi">1</span> <span class="mi">1</span> <span class="mi">1</span><span class="p">]</span> <span class="n">except</span> <span class="k">for</span> <span class="s1">&#39;edit&#39;</span><span class="p">,</span> <span class="n">which</span>
+    <span class="k">is</span> <span class="n">set</span> <span class="n">to</span> <span class="p">[</span><span class="mi">1</span> <span class="mi">1</span> <span class="mi">1</span><span class="p">]</span>
+
+   <span class="n">See</span> <span class="n">also</span><span class="p">:</span> <span class="n">UICONTROL</span><span class="p">,</span> <span class="n">vlt</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">genercallback</span><span class="p">,</span> <span class="n">ASSIGNIN</span>
 </code></pre></div>
-
-<p>See also: UICONTROL, vlt.ui.genercallback, ASSIGNIN</p>
                 
               
               

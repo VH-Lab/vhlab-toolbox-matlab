@@ -3225,6 +3225,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../%2Bgit/git_stash.m/" class="md-nav__link">
+        vlt.git.git_stash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../%2Bgit/git_status.m/" class="md-nav__link">
         vlt.git.git_status
       </a>
@@ -9237,27 +9249,33 @@
                 
                 
                 <h1 id="vltfilefilenamesearchreplace">vlt.file.filenamesearchreplace<a class="headerlink" href="#vltfilefilenamesearchreplace" title="Permanent link">&para;</a></h1>
-<p>FILENAMESEARCHREPLACE - Seach and replace filenames within a directory</p>
-<p>vlt.file.filenamesearchreplace(DIRNAME, SEARCHSTRS, REPLACESTRS, ...)</p>
-<p>This function searches all files in the directory DIRNAME for matches
-  of any string in the cell array of strings SEARCHSTRS. If it finds a match,
-  then it creates a new file with the search string replaced by the
-  corresponding entry in the cell array of strings REPLACESTRS.</p>
-<p>This function also can be modified by name/value pairs:
-  Parameter (default)      | Description</p>
-<hr />
-<p>deleteOriginals (0)      | Should original file be deleted?
-  useOutputDir (0)         | Should we write to a different output directory?
-  OutputDirPath (DIRNAME)  | The parent path of the output directory
-  OutputDir ('subfolder')  | The name of the output directry in OutputDirPath
-                           |   (will be created if it doesn't exist)
-  noOp (0)                 | If 1, this will not perform the operation but will
-                           |   display its intended action
-  recursive (0)            | Should we call this recursively on subdirectories?</p>
-<p>See also: vlt.data.namevaluepair</p>
-<p>Example: Suppose mydirname has a file '.ext1'.
-      vlt.file.filenamesearchreplace(mydirname,{'.ext1'},{'.ext2'}, 'deleteOriginals', 1)
-      % renames any files with '.ext1' to have '.ext2', deleting old files</p>
+<div class="codehilite"><pre><span></span><code><span class="w">  </span><span class="n">FILENAMESEARCHREPLACE</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">Seach</span><span class="w"> </span><span class="n">and</span><span class="w"> </span><span class="nb">replace</span><span class="w"> </span><span class="n">filenames</span><span class="w"> </span><span class="n">within</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">directory</span><span class="w"></span>
+
+<span class="w">  </span><span class="n">vlt</span><span class="p">.</span><span class="n">file</span><span class="p">.</span><span class="n">filenamesearchreplace</span><span class="p">(</span><span class="n">DIRNAME</span><span class="p">,</span><span class="w"> </span><span class="n">SEARCHSTRS</span><span class="p">,</span><span class="w"> </span><span class="n">REPLACESTRS</span><span class="p">,</span><span class="w"> </span><span class="k">...</span><span class="c">)</span><span class="w"></span>
+
+<span class="w">  </span><span class="n">This</span><span class="w"> </span><span class="k">function</span><span class="w"> </span><span class="n">searches</span><span class="w"> </span><span class="nb">all</span><span class="w"> </span><span class="n">files</span><span class="w"> </span><span class="n">in</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">directory</span><span class="w"> </span><span class="n">DIRNAME</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="nb">matches</span><span class="w"></span>
+<span class="w">  </span><span class="n">of</span><span class="w"> </span><span class="nb">any</span><span class="w"> </span><span class="nb">string</span><span class="w"> </span><span class="n">in</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="nb">cell</span><span class="w"> </span><span class="n">array</span><span class="w"> </span><span class="n">of</span><span class="w"> </span><span class="nb">strings</span><span class="w"> </span><span class="n">SEARCHSTRS</span><span class="p">.</span><span class="w"> </span><span class="n">If</span><span class="w"> </span><span class="n">it</span><span class="w"> </span><span class="n">finds</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">match</span><span class="p">,</span><span class="w"></span>
+<span class="w">  </span><span class="n">then</span><span class="w"> </span><span class="n">it</span><span class="w"> </span><span class="n">creates</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">new</span><span class="w"> </span><span class="n">file</span><span class="w"> </span><span class="n">with</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">search</span><span class="w"> </span><span class="nb">string</span><span class="w"> </span><span class="n">replaced</span><span class="w"> </span><span class="n">by</span><span class="w"> </span><span class="n">the</span><span class="w"></span>
+<span class="w">  </span><span class="n">corresponding</span><span class="w"> </span><span class="n">entry</span><span class="w"> </span><span class="n">in</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="nb">cell</span><span class="w"> </span><span class="n">array</span><span class="w"> </span><span class="n">of</span><span class="w"> </span><span class="nb">strings</span><span class="w"> </span><span class="n">REPLACESTRS</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">  </span><span class="n">This</span><span class="w"> </span><span class="k">function</span><span class="w"> </span><span class="n">also</span><span class="w"> </span><span class="n">can</span><span class="w"> </span><span class="n">be</span><span class="w"> </span><span class="n">modified</span><span class="w"> </span><span class="n">by</span><span class="w"> </span><span class="n">name</span><span class="o">/</span><span class="n">value</span><span class="w"> </span><span class="n">pairs</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="n">Parameter</span><span class="w"> </span><span class="p">(</span><span class="n">default</span><span class="p">)</span><span class="w">      </span><span class="o">|</span><span class="w"> </span><span class="n">Description</span><span class="w"></span>
+<span class="w">  </span><span class="o">----------------------------------------------------------------</span><span class="w"></span>
+<span class="w">  </span><span class="n">deleteOriginals</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="w">      </span><span class="o">|</span><span class="w"> </span><span class="n">Should</span><span class="w"> </span><span class="n">original</span><span class="w"> </span><span class="n">file</span><span class="w"> </span><span class="n">be</span><span class="w"> </span><span class="n">deleted</span>?<span class="w"></span>
+<span class="w">  </span><span class="n">useOutputDir</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="w">         </span><span class="o">|</span><span class="w"> </span><span class="n">Should</span><span class="w"> </span><span class="n">we</span><span class="w"> </span><span class="nb">write</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">different</span><span class="w"> </span><span class="n">output</span><span class="w"> </span><span class="n">directory</span>?<span class="w"></span>
+<span class="w">  </span><span class="n">OutputDirPath</span><span class="w"> </span><span class="p">(</span><span class="n">DIRNAME</span><span class="p">)</span><span class="w">  </span><span class="o">|</span><span class="w"> </span><span class="n">The</span><span class="w"> </span><span class="n">parent</span><span class="w"> </span><span class="nb">path</span><span class="w"> </span><span class="n">of</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">output</span><span class="w"> </span><span class="n">directory</span><span class="w"></span>
+<span class="w">  </span><span class="n">OutputDir</span><span class="w"> </span><span class="p">(</span><span class="s">&#39;subfolder&#39;</span><span class="p">)</span><span class="w">  </span><span class="o">|</span><span class="w"> </span><span class="n">The</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="n">of</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">output</span><span class="w"> </span><span class="n">directry</span><span class="w"> </span><span class="n">in</span><span class="w"> </span><span class="n">OutputDirPath</span><span class="w"></span>
+<span class="w">                           </span><span class="o">|</span><span class="w">   </span><span class="p">(</span><span class="n">will</span><span class="w"> </span><span class="n">be</span><span class="w"> </span><span class="n">created</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">it</span><span class="w"> </span><span class="n">doesn</span><span class="o">&#39;</span><span class="n">t</span><span class="w"> </span><span class="nb">exist</span><span class="p">)</span><span class="w"></span>
+<span class="w">  </span><span class="n">noOp</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="w">                 </span><span class="o">|</span><span class="w"> </span><span class="n">If</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">this</span><span class="w"> </span><span class="n">will</span><span class="w"> </span><span class="n">not</span><span class="w"> </span><span class="n">perform</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">operation</span><span class="w"> </span><span class="n">but</span><span class="w"> </span><span class="n">will</span><span class="w"></span>
+<span class="w">                           </span><span class="o">|</span><span class="w">   </span><span class="nb">display</span><span class="w"> </span><span class="n">its</span><span class="w"> </span><span class="n">intended</span><span class="w"> </span><span class="n">action</span><span class="w"></span>
+<span class="w">  </span><span class="n">recursive</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="w">            </span><span class="o">|</span><span class="w"> </span><span class="n">Should</span><span class="w"> </span><span class="n">we</span><span class="w"> </span><span class="n">call</span><span class="w"> </span><span class="n">this</span><span class="w"> </span><span class="n">recursively</span><span class="w"> </span><span class="n">on</span><span class="w"> </span><span class="n">subdirectories</span>?<span class="w"></span>
+
+<span class="w">  </span><span class="n">See</span><span class="w"> </span><span class="n">also</span><span class="p">:</span><span class="w"> </span><span class="n">vlt</span><span class="p">.</span><span class="n">data</span><span class="p">.</span><span class="n">namevaluepair</span><span class="w"></span>
+
+<span class="w">  </span><span class="n">Example</span><span class="p">:</span><span class="w"> </span><span class="n">Suppose</span><span class="w"> </span><span class="n">mydirname</span><span class="w"> </span><span class="n">has</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">file</span><span class="w"> </span><span class="s">&#39;.ext1&#39;</span><span class="p">.</span><span class="w"></span>
+<span class="w">      </span><span class="n">vlt</span><span class="p">.</span><span class="n">file</span><span class="p">.</span><span class="n">filenamesearchreplace</span><span class="p">(</span><span class="n">mydirname</span><span class="p">,{</span><span class="s">&#39;.ext1&#39;</span><span class="p">},{</span><span class="s">&#39;.ext2&#39;</span><span class="p">},</span><span class="w"> </span><span class="s">&#39;deleteOriginals&#39;</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"></span>
+<span class="w">      </span><span class="c">% renames any files with &#39;.ext1&#39; to have &#39;.ext2&#39;, deleting old files</span><span class="w"></span>
+</code></pre></div>
                 
               
               

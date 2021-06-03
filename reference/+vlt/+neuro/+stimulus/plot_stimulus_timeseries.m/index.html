@@ -3213,6 +3213,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../../%2Bgit/git_stash.m/" class="md-nav__link">
+        vlt.git.git_stash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../../%2Bgit/git_status.m/" class="md-nav__link">
         vlt.git.git_status
       </a>
@@ -9239,24 +9251,29 @@
                 
                 
                 <h1 id="vltneurostimulusplot_stimulus_timeseries">vlt.neuro.stimulus.plot_stimulus_timeseries<a class="headerlink" href="#vltneurostimulusplot_stimulus_timeseries" title="Permanent link">&para;</a></h1>
-<p>PLOT_STIMULUS_TIMESERIES - plot the occurence of a stimulus or stimuli as a thick bar on a time series plot</p>
-<p>[H,HTEXT] = vlt.neuro.stimulus.plot_stimulus_timeseries(Y, STIMON, STIMOFF, ...)</p>
-<p>Uses a thick horizontal bar to indicate the presentation time of a set of stimuli.
-  STIMON should be a vector containing all stimulus ON times.
-  STIMOFF should be a vector containing all stimulus OFF times.</p>
-<p>This function takes additional arguments in the form of name/value pairs:</p>
-<p>Parameter (default value)          | Description</p>
-<hr />
-<p>stimid ([])                        | Stimulus ID numbers for each entry in
-                                     |     STIMON/STIMOFF; if present, will be plotted
-                                     |     Can also be a cell array of string names
-  linewidth (2)                      | Line size
-  linecolor ([0 0 0])                | Line color
-  FontSize (12)                      | Font size for text (if 'stimid' is present)
-  FontWeight ('normal')              | Font weight
-  FontColor([0 0 0])                 | Text default color
-  textycoord (Y+1)                   | Text y coordinate
-  HorizontalAlignment ('center')     | Text horizontal alignment</p>
+<div class="codehilite"><pre><span></span><code>  <span class="nt">PLOT_STIMULUS_TIMESERIES</span> <span class="nt">-</span> <span class="nt">plot</span> <span class="nt">the</span> <span class="nt">occurence</span> <span class="nt">of</span> <span class="nt">a</span> <span class="nt">stimulus</span> <span class="nt">or</span> <span class="nt">stimuli</span> <span class="nt">as</span> <span class="nt">a</span> <span class="nt">thick</span> <span class="nt">bar</span> <span class="nt">on</span> <span class="nt">a</span> <span class="nt">time</span> <span class="nt">series</span> <span class="nt">plot</span>
+
+  <span class="cp">[</span><span class="nx">H</span><span class="p">,</span><span class="nx">HTEXT</span><span class="cp">]</span> <span class="o">=</span> <span class="nt">vlt</span><span class="p">.</span><span class="nc">neuro</span><span class="p">.</span><span class="nc">stimulus</span><span class="p">.</span><span class="nc">plot_stimulus_timeseries</span><span class="o">(</span><span class="nt">Y</span><span class="o">,</span> <span class="nt">STIMON</span><span class="o">,</span> <span class="nt">STIMOFF</span><span class="o">,</span> <span class="o">...)</span>
+
+  <span class="nt">Uses</span> <span class="nt">a</span> <span class="nt">thick</span> <span class="nt">horizontal</span> <span class="nt">bar</span> <span class="nt">to</span> <span class="nt">indicate</span> <span class="nt">the</span> <span class="nt">presentation</span> <span class="nt">time</span> <span class="nt">of</span> <span class="nt">a</span> <span class="nt">set</span> <span class="nt">of</span> <span class="nt">stimuli</span><span class="o">.</span>
+  <span class="nt">STIMON</span> <span class="nt">should</span> <span class="nt">be</span> <span class="nt">a</span> <span class="nt">vector</span> <span class="nt">containing</span> <span class="nt">all</span> <span class="nt">stimulus</span> <span class="nt">ON</span> <span class="nt">times</span><span class="o">.</span>
+  <span class="nt">STIMOFF</span> <span class="nt">should</span> <span class="nt">be</span> <span class="nt">a</span> <span class="nt">vector</span> <span class="nt">containing</span> <span class="nt">all</span> <span class="nt">stimulus</span> <span class="nt">OFF</span> <span class="nt">times</span><span class="o">.</span>
+
+  <span class="nt">This</span> <span class="nt">function</span> <span class="nt">takes</span> <span class="nt">additional</span> <span class="nt">arguments</span> <span class="nt">in</span> <span class="nt">the</span> <span class="nt">form</span> <span class="nt">of</span> <span class="nt">name</span><span class="o">/</span><span class="nt">value</span> <span class="nt">pairs</span><span class="o">:</span>
+
+  <span class="nt">Parameter</span> <span class="o">(</span><span class="nt">default</span> <span class="nt">value</span><span class="o">)</span>          <span class="o">|</span> <span class="nt">Description</span>
+  <span class="nt">---------------------------------------------------------------------------</span>
+  <span class="nt">stimid</span> <span class="o">(</span><span class="cp">[]</span><span class="o">)</span>                        <span class="o">|</span> <span class="nt">Stimulus</span> <span class="nt">ID</span> <span class="nt">numbers</span> <span class="nt">for</span> <span class="nt">each</span> <span class="nt">entry</span> <span class="nt">in</span>
+                                     <span class="o">|</span>     <span class="nt">STIMON</span><span class="o">/</span><span class="nt">STIMOFF</span><span class="o">;</span> <span class="nt">if</span> <span class="nt">present</span><span class="o">,</span> <span class="nt">will</span> <span class="nt">be</span> <span class="nt">plotted</span>
+                                     <span class="o">|</span>     <span class="nt">Can</span> <span class="nt">also</span> <span class="nt">be</span> <span class="nt">a</span> <span class="nt">cell</span> <span class="nt">array</span> <span class="nt">of</span> <span class="nt">string</span> <span class="nt">names</span>
+  <span class="nt">linewidth</span> <span class="o">(</span><span class="nt">2</span><span class="o">)</span>                      <span class="o">|</span> <span class="nt">Line</span> <span class="nt">size</span>
+  <span class="nt">linecolor</span> <span class="o">(</span><span class="cp">[</span><span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span><span class="cp">]</span><span class="o">)</span>                <span class="o">|</span> <span class="nt">Line</span> <span class="nt">color</span>
+  <span class="nt">FontSize</span> <span class="o">(</span><span class="nt">12</span><span class="o">)</span>                      <span class="o">|</span> <span class="nt">Font</span> <span class="nt">size</span> <span class="nt">for</span> <span class="nt">text</span> <span class="o">(</span><span class="nt">if</span> <span class="s1">&#39;stimid&#39;</span> <span class="nt">is</span> <span class="nt">present</span><span class="o">)</span>
+  <span class="nt">FontWeight</span> <span class="o">(</span><span class="s1">&#39;normal&#39;</span><span class="o">)</span>              <span class="o">|</span> <span class="nt">Font</span> <span class="nt">weight</span>
+  <span class="nt">FontColor</span><span class="o">(</span><span class="cp">[</span><span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span><span class="cp">]</span><span class="o">)</span>                 <span class="o">|</span> <span class="nt">Text</span> <span class="nt">default</span> <span class="nt">color</span>
+  <span class="nt">textycoord</span> <span class="o">(</span><span class="nt">Y</span><span class="o">+</span><span class="nt">1</span><span class="o">)</span>                   <span class="o">|</span> <span class="nt">Text</span> <span class="nt">y</span> <span class="nt">coordinate</span>
+  <span class="nt">HorizontalAlignment</span> <span class="o">(</span><span class="s1">&#39;center&#39;</span><span class="o">)</span>     <span class="o">|</span> <span class="nt">Text</span> <span class="nt">horizontal</span> <span class="nt">alignment</span>
+</code></pre></div>
                 
               
               

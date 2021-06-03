@@ -3213,6 +3213,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../%2Bgit/git_stash.m/" class="md-nav__link">
+        vlt.git.git_stash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../%2Bgit/git_status.m/" class="md-nav__link">
         vlt.git.git_status
       </a>
@@ -9237,28 +9249,33 @@
                 
                 
                 <h1 id="vltmathslidingwindowfunc">vlt.math.slidingwindowfunc<a class="headerlink" href="#vltmathslidingwindowfunc" title="Permanent link">&para;</a></h1>
-<p>vlt.math.slidingwindowfunc - Sliding window analysis for 1-dimensional data</p>
-<div class="codehilite"><pre><span></span><code><span class="w">    </span><span class="o">[</span><span class="n">Yn,Xn,Yint</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">vlt</span><span class="p">.</span><span class="n">math</span><span class="p">.</span><span class="n">slidingwindowfunc</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="w"> </span><span class="n">Y</span><span class="p">,</span><span class="w"> </span><span class="k">START</span><span class="p">,</span><span class="w"> </span><span class="n">STEPSIZE</span><span class="p">,</span><span class="w"> </span><span class="n">STOP</span><span class="p">,</span><span class="w"> </span><span class="n">WINDOWSIZE</span><span class="p">,...</span><span class="w"></span>
-<span class="w">          </span><span class="n">FUNC</span><span class="p">,</span><span class="n">ZEROPAD</span><span class="p">,</span><span class="o">[</span><span class="n">INTERVALFUNC</span><span class="o">]</span><span class="p">)</span><span class="w"></span>
-</code></pre></div>
+<div class="codehilite"><pre><span></span><code>  <span class="n">vlt</span><span class="o">.</span><span class="n">math</span><span class="o">.</span><span class="n">slidingwindowfunc</span> <span class="o">-</span> <span class="n">Sliding</span> <span class="n">window</span> <span class="n">analysis</span> <span class="k">for</span> <span class="mi">1</span><span class="o">-</span><span class="n">dimensional</span> <span class="n">data</span>
 
-<p>Slides a window of size WINDOWSIZE across the data and performs
-   the function FUNC on the set of ordered pairs defined in 
-   X and Y.  The window starts at location START and stops at
-   location STOP on X.  STEPSIZE determines how far the window is advanced at
-   each step.</p>
-<p>FUNC should be a string describing the function to be used.  For example:
-   'mean',  or 'median'.  </p>
-<p>If a third output argument is given, then the standard error of the mean
-   in each Xn bin is returned in Yint.  The user can optionally specify his
-   own interval function in INTERVALFUNC. The data to be analyzed are put
-   into a variable called 'y', so example INTERVALFUNC values are
-   'vlt.stats.stderr(y)' or 'diff(prctile(y,[33 66]))'.</p>
-<p>If ZEROPAD is 1, then a 0 is coded if no points are found within a given window.
-   If ZEROPAD is 0, and if no points are found within a given window, no Xn or Yn point
-      is added for that window.</p>
-<p>Xn is the center location of each window and Yn is the result of the
-   function in each window.</p>
+        <span class="p">[</span><span class="n">Yn</span><span class="p">,</span><span class="n">Xn</span><span class="p">,</span><span class="n">Yint</span><span class="p">]</span> <span class="o">=</span> <span class="n">vlt</span><span class="o">.</span><span class="n">math</span><span class="o">.</span><span class="n">slidingwindowfunc</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">,</span> <span class="n">START</span><span class="p">,</span> <span class="n">STEPSIZE</span><span class="p">,</span> <span class="n">STOP</span><span class="p">,</span> <span class="n">WINDOWSIZE</span><span class="p">,</span><span class="o">...</span>
+              <span class="n">FUNC</span><span class="p">,</span><span class="n">ZEROPAD</span><span class="p">,[</span><span class="n">INTERVALFUNC</span><span class="p">])</span>
+
+   <span class="n">Slides</span> <span class="n">a</span> <span class="n">window</span> <span class="n">of</span> <span class="n">size</span> <span class="n">WINDOWSIZE</span> <span class="n">across</span> <span class="n">the</span> <span class="n">data</span> <span class="ow">and</span> <span class="n">performs</span>
+   <span class="n">the</span> <span class="n">function</span> <span class="n">FUNC</span> <span class="n">on</span> <span class="n">the</span> <span class="n">set</span> <span class="n">of</span> <span class="n">ordered</span> <span class="n">pairs</span> <span class="n">defined</span> <span class="ow">in</span> 
+   <span class="n">X</span> <span class="ow">and</span> <span class="n">Y</span><span class="o">.</span>  <span class="n">The</span> <span class="n">window</span> <span class="n">starts</span> <span class="n">at</span> <span class="n">location</span> <span class="n">START</span> <span class="ow">and</span> <span class="n">stops</span> <span class="n">at</span>
+   <span class="n">location</span> <span class="n">STOP</span> <span class="n">on</span> <span class="n">X</span><span class="o">.</span>  <span class="n">STEPSIZE</span> <span class="n">determines</span> <span class="n">how</span> <span class="n">far</span> <span class="n">the</span> <span class="n">window</span> <span class="k">is</span> <span class="n">advanced</span> <span class="n">at</span>
+   <span class="n">each</span> <span class="n">step</span><span class="o">.</span>
+
+   <span class="n">FUNC</span> <span class="n">should</span> <span class="n">be</span> <span class="n">a</span> <span class="n">string</span> <span class="n">describing</span> <span class="n">the</span> <span class="n">function</span> <span class="n">to</span> <span class="n">be</span> <span class="n">used</span><span class="o">.</span>  <span class="n">For</span> <span class="n">example</span><span class="p">:</span>
+   <span class="s1">&#39;mean&#39;</span><span class="p">,</span>  <span class="ow">or</span> <span class="s1">&#39;median&#39;</span><span class="o">.</span>  
+
+   <span class="n">If</span> <span class="n">a</span> <span class="n">third</span> <span class="n">output</span> <span class="n">argument</span> <span class="k">is</span> <span class="n">given</span><span class="p">,</span> <span class="n">then</span> <span class="n">the</span> <span class="n">standard</span> <span class="n">error</span> <span class="n">of</span> <span class="n">the</span> <span class="n">mean</span>
+   <span class="ow">in</span> <span class="n">each</span> <span class="n">Xn</span> <span class="n">bin</span> <span class="k">is</span> <span class="n">returned</span> <span class="ow">in</span> <span class="n">Yint</span><span class="o">.</span>  <span class="n">The</span> <span class="n">user</span> <span class="n">can</span> <span class="n">optionally</span> <span class="n">specify</span> <span class="n">his</span>
+   <span class="n">own</span> <span class="n">interval</span> <span class="n">function</span> <span class="ow">in</span> <span class="n">INTERVALFUNC</span><span class="o">.</span> <span class="n">The</span> <span class="n">data</span> <span class="n">to</span> <span class="n">be</span> <span class="n">analyzed</span> <span class="n">are</span> <span class="n">put</span>
+   <span class="n">into</span> <span class="n">a</span> <span class="n">variable</span> <span class="n">called</span> <span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="n">so</span> <span class="n">example</span> <span class="n">INTERVALFUNC</span> <span class="n">values</span> <span class="n">are</span>
+   <span class="s1">&#39;vlt.stats.stderr(y)&#39;</span> <span class="ow">or</span> <span class="s1">&#39;diff(prctile(y,[33 66]))&#39;</span><span class="o">.</span>
+
+   <span class="n">If</span> <span class="n">ZEROPAD</span> <span class="k">is</span> <span class="mi">1</span><span class="p">,</span> <span class="n">then</span> <span class="n">a</span> <span class="mi">0</span> <span class="k">is</span> <span class="n">coded</span> <span class="k">if</span> <span class="n">no</span> <span class="n">points</span> <span class="n">are</span> <span class="n">found</span> <span class="n">within</span> <span class="n">a</span> <span class="n">given</span> <span class="n">window</span><span class="o">.</span>
+   <span class="n">If</span> <span class="n">ZEROPAD</span> <span class="k">is</span> <span class="mi">0</span><span class="p">,</span> <span class="ow">and</span> <span class="k">if</span> <span class="n">no</span> <span class="n">points</span> <span class="n">are</span> <span class="n">found</span> <span class="n">within</span> <span class="n">a</span> <span class="n">given</span> <span class="n">window</span><span class="p">,</span> <span class="n">no</span> <span class="n">Xn</span> <span class="ow">or</span> <span class="n">Yn</span> <span class="n">point</span>
+      <span class="k">is</span> <span class="n">added</span> <span class="k">for</span> <span class="n">that</span> <span class="n">window</span><span class="o">.</span>
+
+   <span class="n">Xn</span> <span class="k">is</span> <span class="n">the</span> <span class="n">center</span> <span class="n">location</span> <span class="n">of</span> <span class="n">each</span> <span class="n">window</span> <span class="ow">and</span> <span class="n">Yn</span> <span class="k">is</span> <span class="n">the</span> <span class="n">result</span> <span class="n">of</span> <span class="n">the</span>
+   <span class="n">function</span> <span class="ow">in</span> <span class="n">each</span> <span class="n">window</span><span class="o">.</span>
+</code></pre></div>
                 
               
               

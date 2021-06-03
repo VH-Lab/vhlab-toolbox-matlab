@@ -3225,6 +3225,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../%2Bgit/git_stash.m/" class="md-nav__link">
+        vlt.git.git_stash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../%2Bgit/git_status.m/" class="md-nav__link">
         vlt.git.git_status
       </a>
@@ -9237,22 +9249,27 @@
                 
                 
                 <h1 id="vltfilewritelabviewarray">vlt.file.writelabviewarray<a class="headerlink" href="#vltfilewritelabviewarray" title="Permanent link">&para;</a></h1>
-<p>vlt.file.writelabviewarray - Write a LabView array into Matlab</p>
-<p>vlt.file.writelabviewarray(FNAME, A, DATASIZE, MACHINEFORMAT)</p>
-<p>Write values in matrix A to a LabView array file.</p>
-<p>DATASIZE is the size of the data; the argument should be 
-   a size suitable for using in the function FWRITE (e.g.,
-   'double', 'int', etc)</p>
-<p>MACHINEFORMAT is the one of the following strings, as 
-   described in the FOPEN help (default is 'b'):
-     'ieee-le'     or 'l' - IEEE floating point with little-endian
-                            byte ordering
-     'ieee-be'     or 'b' - IEEE floating point with big-endian
-                            byte ordering
-     'ieee-le.l64' or 'a' - IEEE floating point with little-endian
-                            byte ordering and 64 bit long data type
-     'ieee-be.l64' or 's' - IEEE floating point with big-endian byte
-                            ordering and 64 bit long data type.</p>
+<div class="codehilite"><pre><span></span><code>  <span class="nv">vlt</span>.<span class="nv">file</span>.<span class="nv">writelabviewarray</span> <span class="o">-</span> <span class="nv">Write</span> <span class="nv">a</span> <span class="nv">LabView</span> <span class="nv">array</span> <span class="nv">into</span> <span class="nv">Matlab</span>
+
+   <span class="nv">vlt</span>.<span class="nv">file</span>.<span class="nv">writelabviewarray</span><span class="ss">(</span><span class="nv">FNAME</span>, <span class="nv">A</span>, <span class="nv">DATASIZE</span>, <span class="nv">MACHINEFORMAT</span><span class="ss">)</span>
+
+   <span class="nv">Write</span> <span class="nv">values</span> <span class="nv">in</span> <span class="nv">matrix</span> <span class="nv">A</span> <span class="nv">to</span> <span class="nv">a</span> <span class="nv">LabView</span> <span class="nv">array</span> <span class="nv">file</span>.
+
+   <span class="nv">DATASIZE</span> <span class="nv">is</span> <span class="nv">the</span> <span class="nv">size</span> <span class="nv">of</span> <span class="nv">the</span> <span class="nv">data</span><span class="c1">; the argument should be </span>
+   <span class="nv">a</span> <span class="nv">size</span> <span class="nv">suitable</span> <span class="k">for</span> <span class="nv">using</span> <span class="nv">in</span> <span class="nv">the</span> <span class="nv">function</span> <span class="nv">FWRITE</span> <span class="ss">(</span><span class="nv">e</span>.<span class="nv">g</span>.,
+   <span class="s1">&#39;</span><span class="s">double</span><span class="s1">&#39;</span>, <span class="s1">&#39;</span><span class="s">int</span><span class="s1">&#39;</span>, <span class="nv">etc</span><span class="ss">)</span>
+
+   <span class="nv">MACHINEFORMAT</span> <span class="nv">is</span> <span class="nv">the</span> <span class="nv">one</span> <span class="nv">of</span> <span class="nv">the</span> <span class="nv">following</span> <span class="nv">strings</span>, <span class="nv">as</span> 
+   <span class="nv">described</span> <span class="nv">in</span> <span class="nv">the</span> <span class="nv">FOPEN</span> <span class="nv">help</span> <span class="ss">(</span><span class="nv">default</span> <span class="nv">is</span> <span class="s1">&#39;</span><span class="s">b</span><span class="s1">&#39;</span><span class="ss">)</span>:
+     <span class="s1">&#39;</span><span class="s">ieee-le</span><span class="s1">&#39;</span>     <span class="nv">or</span> <span class="s1">&#39;</span><span class="s">l</span><span class="s1">&#39;</span> <span class="o">-</span> <span class="nv">IEEE</span> <span class="nv">floating</span> <span class="nv">point</span> <span class="nv">with</span> <span class="nv">little</span><span class="o">-</span><span class="nv">endian</span>
+                            <span class="nv">byte</span> <span class="nv">ordering</span>
+     <span class="s1">&#39;</span><span class="s">ieee-be</span><span class="s1">&#39;</span>     <span class="nv">or</span> <span class="s1">&#39;</span><span class="s">b</span><span class="s1">&#39;</span> <span class="o">-</span> <span class="nv">IEEE</span> <span class="nv">floating</span> <span class="nv">point</span> <span class="nv">with</span> <span class="nv">big</span><span class="o">-</span><span class="nv">endian</span>
+                            <span class="nv">byte</span> <span class="nv">ordering</span>
+     <span class="s1">&#39;</span><span class="s">ieee-le.l64</span><span class="s1">&#39;</span> <span class="nv">or</span> <span class="s1">&#39;</span><span class="s">a</span><span class="s1">&#39;</span> <span class="o">-</span> <span class="nv">IEEE</span> <span class="nv">floating</span> <span class="nv">point</span> <span class="nv">with</span> <span class="nv">little</span><span class="o">-</span><span class="nv">endian</span>
+                            <span class="nv">byte</span> <span class="nv">ordering</span> <span class="nv">and</span> <span class="mi">64</span> <span class="nv">bit</span> <span class="nv">long</span> <span class="nv">data</span> <span class="nv">type</span>
+     <span class="s1">&#39;</span><span class="s">ieee-be.l64</span><span class="s1">&#39;</span> <span class="nv">or</span> <span class="s1">&#39;</span><span class="s">s</span><span class="s1">&#39;</span> <span class="o">-</span> <span class="nv">IEEE</span> <span class="nv">floating</span> <span class="nv">point</span> <span class="nv">with</span> <span class="nv">big</span><span class="o">-</span><span class="nv">endian</span> <span class="nv">byte</span>
+                            <span class="nv">ordering</span> <span class="nv">and</span> <span class="mi">64</span> <span class="nv">bit</span> <span class="nv">long</span> <span class="nv">data</span> <span class="nv">type</span>.
+</code></pre></div>
                 
               
               

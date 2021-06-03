@@ -3213,6 +3213,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../%2Bgit/git_stash.m/" class="md-nav__link">
+        vlt.git.git_stash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../%2Bgit/git_status.m/" class="md-nav__link">
         vlt.git.git_status
       </a>
@@ -9237,22 +9249,23 @@
                 
                 
                 <h1 id="vltstatsmyanova1">vlt.stats.myanova1<a class="headerlink" href="#vltstatsmyanova1" title="Permanent link">&para;</a></h1>
-<p>ANOVA1 One-way analysis of variance (ANOVA).
-    ANOVA1 performs a one-way ANOVA for comparing the means of two or more 
-    groups of data. It returns the p-value for the null hypothesis that the
-    means of the groups are equal.</p>
-<div class="codehilite"><pre><span></span><code><span class="nv">P</span> <span class="o">=</span> <span class="nv">ANOVA1</span><span class="ss">(</span><span class="nv">X</span><span class="ss">)</span> <span class="k">for</span> <span class="nv">matrix</span>, <span class="nv">X</span>, <span class="nv">treats</span> <span class="nv">each</span> <span class="nv">column</span> <span class="nv">as</span> <span class="nv">a</span> <span class="nv">separate</span> <span class="nv">group</span>,  
-<span class="nv">and</span> <span class="nv">determines</span> <span class="nv">whether</span> <span class="nv">the</span> <span class="nv">population</span> <span class="nv">means</span> <span class="nv">of</span> <span class="nv">the</span> <span class="nv">columns</span> <span class="nv">are</span> <span class="nv">equal</span>.   
-<span class="nv">This</span> <span class="nv">one</span><span class="o">-</span><span class="nv">input</span> <span class="nv">form</span> <span class="nv">of</span> <span class="nv">ANOVA1</span> <span class="nv">is</span> <span class="nv">appropriate</span> <span class="nv">when</span> <span class="nv">each</span> <span class="nv">group</span> <span class="nv">has</span> <span class="nv">the</span>
-<span class="nv">same</span> <span class="nv">number</span> <span class="nv">of</span> <span class="nv">elements</span> <span class="ss">(</span><span class="nv">balanced</span> <span class="nv">ANOVA</span><span class="ss">)</span>.
+<div class="codehilite"><pre><span></span><code> <span class="n">ANOVA1</span> <span class="n">One</span><span class="o">-</span><span class="n">way</span> <span class="n">analysis</span> <span class="n">of</span> <span class="n">variance</span> <span class="p">(</span><span class="n">ANOVA</span><span class="p">)</span><span class="o">.</span>
+    <span class="n">ANOVA1</span> <span class="n">performs</span> <span class="n">a</span> <span class="n">one</span><span class="o">-</span><span class="n">way</span> <span class="n">ANOVA</span> <span class="k">for</span> <span class="n">comparing</span> <span class="n">the</span> <span class="n">means</span> <span class="n">of</span> <span class="n">two</span> <span class="ow">or</span> <span class="n">more</span> 
+    <span class="n">groups</span> <span class="n">of</span> <span class="n">data</span><span class="o">.</span> <span class="n">It</span> <span class="n">returns</span> <span class="n">the</span> <span class="n">p</span><span class="o">-</span><span class="n">value</span> <span class="k">for</span> <span class="n">the</span> <span class="nb nb-Type">null</span> <span class="n">hypothesis</span> <span class="n">that</span> <span class="n">the</span>
+    <span class="n">means</span> <span class="n">of</span> <span class="n">the</span> <span class="n">groups</span> <span class="n">are</span> <span class="n">equal</span><span class="o">.</span>
 
-<span class="nv">P</span> <span class="o">=</span> <span class="nv">ANOVA1</span><span class="ss">(</span><span class="nv">X</span>,<span class="nv">GROUP</span><span class="ss">)</span> <span class="nv">has</span> <span class="nv">vector</span> <span class="nv">inputs</span> <span class="nv">X</span> <span class="nv">and</span> <span class="nv">GROUP</span>. <span class="nv">The</span> <span class="nv">vector</span>, <span class="nv">GROUP</span>, 
-<span class="nv">identifies</span> <span class="nv">the</span> <span class="nv">group</span> <span class="nv">of</span> <span class="nv">the</span> <span class="nv">corresponding</span> <span class="nv">element</span> <span class="nv">of</span> <span class="nv">X</span>. <span class="nv">This</span> <span class="nv">two</span><span class="o">-</span><span class="nv">input</span>
-<span class="nv">form</span> <span class="nv">of</span> <span class="nv">ANOVA1</span> <span class="nv">has</span> <span class="nv">no</span> <span class="nv">restrictions</span> <span class="nv">on</span> <span class="nv">the</span> <span class="nv">number</span> <span class="nv">of</span> <span class="nv">elements</span> <span class="nv">in</span> <span class="nv">each</span>
-<span class="nv">group</span>.
+    <span class="n">P</span> <span class="o">=</span> <span class="n">ANOVA1</span><span class="p">(</span><span class="n">X</span><span class="p">)</span> <span class="k">for</span> <span class="n">matrix</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">treats</span> <span class="n">each</span> <span class="n">column</span> <span class="k">as</span> <span class="n">a</span> <span class="n">separate</span> <span class="n">group</span><span class="p">,</span>  
+    <span class="ow">and</span> <span class="n">determines</span> <span class="n">whether</span> <span class="n">the</span> <span class="n">population</span> <span class="n">means</span> <span class="n">of</span> <span class="n">the</span> <span class="n">columns</span> <span class="n">are</span> <span class="n">equal</span><span class="o">.</span>   
+    <span class="n">This</span> <span class="n">one</span><span class="o">-</span><span class="n">input</span> <span class="n">form</span> <span class="n">of</span> <span class="n">ANOVA1</span> <span class="k">is</span> <span class="n">appropriate</span> <span class="n">when</span> <span class="n">each</span> <span class="n">group</span> <span class="n">has</span> <span class="n">the</span>
+    <span class="n">same</span> <span class="n">number</span> <span class="n">of</span> <span class="n">elements</span> <span class="p">(</span><span class="n">balanced</span> <span class="n">ANOVA</span><span class="p">)</span><span class="o">.</span>
 
-<span class="nv">ANOVA1</span> <span class="nv">prints</span> <span class="nv">the</span> <span class="nv">standard</span> <span class="nv">one</span><span class="o">-</span><span class="nv">way</span> <span class="nv">ANOVA</span> <span class="nv">table</span> <span class="nv">in</span> <span class="nv">Figure</span> <span class="mi">1</span> <span class="nv">and</span> <span class="nv">displays</span> 
-<span class="nv">a</span> <span class="nv">boxplot</span> <span class="nv">in</span> <span class="nv">Figure2</span>.
+    <span class="n">P</span> <span class="o">=</span> <span class="n">ANOVA1</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">GROUP</span><span class="p">)</span> <span class="n">has</span> <span class="n">vector</span> <span class="n">inputs</span> <span class="n">X</span> <span class="ow">and</span> <span class="n">GROUP</span><span class="o">.</span> <span class="n">The</span> <span class="n">vector</span><span class="p">,</span> <span class="n">GROUP</span><span class="p">,</span> 
+    <span class="n">identifies</span> <span class="n">the</span> <span class="n">group</span> <span class="n">of</span> <span class="n">the</span> <span class="n">corresponding</span> <span class="n">element</span> <span class="n">of</span> <span class="n">X</span><span class="o">.</span> <span class="n">This</span> <span class="n">two</span><span class="o">-</span><span class="n">input</span>
+    <span class="n">form</span> <span class="n">of</span> <span class="n">ANOVA1</span> <span class="n">has</span> <span class="n">no</span> <span class="n">restrictions</span> <span class="n">on</span> <span class="n">the</span> <span class="n">number</span> <span class="n">of</span> <span class="n">elements</span> <span class="ow">in</span> <span class="n">each</span>
+    <span class="n">group</span><span class="o">.</span>    
+
+    <span class="n">ANOVA1</span> <span class="nb">prints</span> <span class="n">the</span> <span class="n">standard</span> <span class="n">one</span><span class="o">-</span><span class="n">way</span> <span class="n">ANOVA</span> <span class="n">table</span> <span class="ow">in</span> <span class="n">Figure</span> <span class="mi">1</span> <span class="ow">and</span> <span class="n">displays</span> 
+    <span class="n">a</span> <span class="n">boxplot</span> <span class="ow">in</span> <span class="n">Figure2</span><span class="o">.</span>
 </code></pre></div>
                 
               

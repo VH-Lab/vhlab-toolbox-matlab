@@ -3213,6 +3213,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../%2Bgit/git_stash.m/" class="md-nav__link">
+        vlt.git.git_stash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../%2Bgit/git_status.m/" class="md-nav__link">
         vlt.git.git_status
       </a>
@@ -9237,21 +9249,26 @@
                 
                 
                 <h1 id="vltstatskruskal_wallis_mv">vlt.stats.kruskal_wallis_mv<a class="headerlink" href="#vltstatskruskal_wallis_mv" title="Permanent link">&para;</a></h1>
-<p>KRUSKAL_WALLIS_MV(VARARGIN)
-   Perform a Kruskal-Wallis one-factor 'analysis of variance' for multivariate
-   data.</p>
-<p>[PVAL,KW,DF] = vlt.stats.kruskal_wallis_mv(X1, ..., XK)</p>
-<p>Returns the probability (PVAL) of the null hypothesis that the
-   distributions of X1, ..., XK are equal.  The multivariate points Xi should
-   be arranged in column form.  The KW statistic and degrees of freedom DF
-   are returned.  The Kruskal-Wallis test is a rank
-   test based on the order of the datapoints rather than their value
-   (see ANOVA1).  We implement the test described by Choi and Marden and
-   choose the kernel to be (X-Y)/||(X-Y)|| (see the reference).</p>
-<p>Reference: Choi and Marden, J. Amer. Stat. Assoc., 92:1581-1590</p>
-<p>warning: this has been tested for normal distributions and seems to
-   perform reasonably, but I could not find example data for which the
-   authors had performed analysis; upshot: this is not 100% tested</p>
+<div class="codehilite"><pre><span></span><code>   <span class="n">KRUSKAL_WALLIS_MV</span><span class="p">(</span><span class="n">VARARGIN</span><span class="p">)</span>
+   <span class="n">Perform</span> <span class="n">a</span> <span class="n">Kruskal</span><span class="o">-</span><span class="n">Wallis</span> <span class="n">one</span><span class="o">-</span><span class="n">factor</span> <span class="s1">&#39;analysis of variance&#39;</span> <span class="k">for</span> <span class="n">multivariate</span>
+   <span class="n">data</span><span class="o">.</span>
+
+   <span class="p">[</span><span class="n">PVAL</span><span class="p">,</span><span class="n">KW</span><span class="p">,</span><span class="n">DF</span><span class="p">]</span> <span class="o">=</span> <span class="n">vlt</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">kruskal_wallis_mv</span><span class="p">(</span><span class="n">X1</span><span class="p">,</span> <span class="o">...</span><span class="p">,</span> <span class="n">XK</span><span class="p">)</span>
+
+   <span class="n">Returns</span> <span class="n">the</span> <span class="n">probability</span> <span class="p">(</span><span class="n">PVAL</span><span class="p">)</span> <span class="n">of</span> <span class="n">the</span> <span class="nb nb-Type">null</span> <span class="n">hypothesis</span> <span class="n">that</span> <span class="n">the</span>
+   <span class="n">distributions</span> <span class="n">of</span> <span class="n">X1</span><span class="p">,</span> <span class="o">...</span><span class="p">,</span> <span class="n">XK</span> <span class="n">are</span> <span class="n">equal</span><span class="o">.</span>  <span class="n">The</span> <span class="n">multivariate</span> <span class="n">points</span> <span class="n">Xi</span> <span class="n">should</span>
+   <span class="n">be</span> <span class="n">arranged</span> <span class="ow">in</span> <span class="n">column</span> <span class="n">form</span><span class="o">.</span>  <span class="n">The</span> <span class="n">KW</span> <span class="n">statistic</span> <span class="ow">and</span> <span class="n">degrees</span> <span class="n">of</span> <span class="n">freedom</span> <span class="n">DF</span>
+   <span class="n">are</span> <span class="n">returned</span><span class="o">.</span>  <span class="n">The</span> <span class="n">Kruskal</span><span class="o">-</span><span class="n">Wallis</span> <span class="n">test</span> <span class="k">is</span> <span class="n">a</span> <span class="n">rank</span>
+   <span class="n">test</span> <span class="n">based</span> <span class="n">on</span> <span class="n">the</span> <span class="n">order</span> <span class="n">of</span> <span class="n">the</span> <span class="n">datapoints</span> <span class="n">rather</span> <span class="n">than</span> <span class="n">their</span> <span class="n">value</span>
+   <span class="p">(</span><span class="n">see</span> <span class="n">ANOVA1</span><span class="p">)</span><span class="o">.</span>  <span class="n">We</span> <span class="n">implement</span> <span class="n">the</span> <span class="n">test</span> <span class="n">described</span> <span class="n">by</span> <span class="n">Choi</span> <span class="ow">and</span> <span class="n">Marden</span> <span class="ow">and</span>
+   <span class="n">choose</span> <span class="n">the</span> <span class="n">kernel</span> <span class="n">to</span> <span class="n">be</span> <span class="p">(</span><span class="n">X</span><span class="o">-</span><span class="n">Y</span><span class="p">)</span><span class="o">/||</span><span class="p">(</span><span class="n">X</span><span class="o">-</span><span class="n">Y</span><span class="p">)</span><span class="o">||</span> <span class="p">(</span><span class="n">see</span> <span class="n">the</span> <span class="n">reference</span><span class="p">)</span><span class="o">.</span>
+
+   <span class="n">Reference</span><span class="p">:</span> <span class="n">Choi</span> <span class="ow">and</span> <span class="n">Marden</span><span class="p">,</span> <span class="n">J</span><span class="o">.</span> <span class="n">Amer</span><span class="o">.</span> <span class="n">Stat</span><span class="o">.</span> <span class="n">Assoc</span><span class="o">.</span><span class="p">,</span> <span class="mi">92</span><span class="p">:</span><span class="mi">1581</span><span class="o">-</span><span class="mi">1590</span>
+
+   <span class="n">warning</span><span class="p">:</span> <span class="n">this</span> <span class="n">has</span> <span class="n">been</span> <span class="n">tested</span> <span class="k">for</span> <span class="n">normal</span> <span class="n">distributions</span> <span class="ow">and</span> <span class="n">seems</span> <span class="n">to</span>
+   <span class="n">perform</span> <span class="n">reasonably</span><span class="p">,</span> <span class="n">but</span> <span class="n">I</span> <span class="n">could</span> <span class="ow">not</span> <span class="n">find</span> <span class="n">example</span> <span class="n">data</span> <span class="k">for</span> <span class="n">which</span> <span class="n">the</span>
+   <span class="n">authors</span> <span class="n">had</span> <span class="n">performed</span> <span class="n">analysis</span><span class="p">;</span> <span class="n">upshot</span><span class="p">:</span> <span class="n">this</span> <span class="k">is</span> <span class="ow">not</span> <span class="mi">100</span><span class="o">%</span> <span class="n">tested</span>
+</code></pre></div>
                 
               
               

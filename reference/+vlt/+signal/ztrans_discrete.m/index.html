@@ -3213,6 +3213,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../%2Bgit/git_stash.m/" class="md-nav__link">
+        vlt.git.git_stash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../%2Bgit/git_status.m/" class="md-nav__link">
         vlt.git.git_status
       </a>
@@ -9237,13 +9249,17 @@
                 
                 
                 <h1 id="vltsignalztrans_discrete">vlt.signal.ztrans_discrete<a class="headerlink" href="#vltsignalztrans_discrete" title="Permanent link">&para;</a></h1>
-<p>ZTRANS_DISCRETE Evaluate the discrete Z transform for a value of z</p>
-<p>OUT = vlt.signal.ztrans_discrete(N, V, Z)</p>
-<p>Given an array of sample locations N and an array of
-   corresponding values V, computes the Z-transform and evaluates
-   the result at Z.  Z can be an array.</p>
-<p>The Z-transform is</p>
-<div class="codehilite"><pre><span></span><code>  X(Z) = sum{all_N}{V(n)*z^(-n)}
+<div class="codehilite"><pre><span></span><code>  <span class="n">ZTRANS_DISCRETE</span> <span class="n">Evaluate</span> <span class="n">the</span> <span class="n">discrete</span> <span class="n">Z</span> <span class="n">transform</span> <span class="k">for</span> <span class="n">a</span> <span class="n">value</span> <span class="n">of</span> <span class="n">z</span>
+
+   <span class="n">OUT</span> <span class="o">=</span> <span class="n">vlt</span><span class="o">.</span><span class="k">signal</span><span class="o">.</span><span class="n">ztrans_discrete</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">V</span><span class="p">,</span> <span class="n">Z</span><span class="p">)</span>
+
+   <span class="n">Given</span> <span class="n">an</span> <span class="n">array</span> <span class="n">of</span> <span class="n">sample</span> <span class="n">locations</span> <span class="n">N</span> <span class="ow">and</span> <span class="n">an</span> <span class="n">array</span> <span class="n">of</span>
+   <span class="n">corresponding</span> <span class="n">values</span> <span class="n">V</span><span class="p">,</span> <span class="n">computes</span> <span class="n">the</span> <span class="n">Z</span><span class="o">-</span><span class="n">transform</span> <span class="ow">and</span> <span class="n">evaluates</span>
+   <span class="n">the</span> <span class="n">result</span> <span class="n">at</span> <span class="n">Z</span><span class="o">.</span>  <span class="n">Z</span> <span class="n">can</span> <span class="n">be</span> <span class="n">an</span> <span class="n">array</span><span class="o">.</span>
+
+   <span class="n">The</span> <span class="n">Z</span><span class="o">-</span><span class="n">transform</span> <span class="k">is</span>
+
+      <span class="n">X</span><span class="p">(</span><span class="n">Z</span><span class="p">)</span> <span class="o">=</span> <span class="n">sum</span><span class="p">{</span><span class="n">all_N</span><span class="p">}{</span><span class="n">V</span><span class="p">(</span><span class="n">n</span><span class="p">)</span><span class="o">*</span><span class="n">z</span><span class="o">^</span><span class="p">(</span><span class="o">-</span><span class="n">n</span><span class="p">)}</span>
 </code></pre></div>
                 
               

@@ -3213,6 +3213,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../%2Bgit/git_stash.m/" class="md-nav__link">
+        vlt.git.git_stash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../%2Bgit/git_status.m/" class="md-nav__link">
         vlt.git.git_status
       </a>
@@ -9237,27 +9249,33 @@
                 
                 
                 <h1 id="vltsignaldual_led_filters">vlt.signal.dual_led_filters<a class="headerlink" href="#vltsignaldual_led_filters" title="Permanent link">&para;</a></h1>
-<p>LED2FILTERS - Design filters for detecting dual LEDs</p>
-<p>[FILTERS,X,Y] = vlt.signal.dual_led_filters(DA, SEP, RAD)</p>
-<p>Designs a pair of circular filters, at a range of orientations, for detecting a pair of
-   bright LEDs in an image.</p>
-<p>Input arguments: 
-   DA - The separation between different filters in orientation (e.g., 22.5)
-   SEP - The physical separation between the the circles, in pixels (e.g., 85)
-   RAD - The radius of each circle (e.g., 15)</p>
-<p>Outputs:
-   Filters - the output filters, as a 3d stack of filters. Each 2d element of the 2d
-   stack contains the filter for one possible orientation of the dual LEDs.
-   X - An X coordinate mesh for the filters
-   Y - A Y coordinate mesh for the filters</p>
-<p>Example:  Create a family of filters and display them
-    [filters,x,y] = vlt.signal.dual_led_filters(22.5,85,15);
-    figure;
-    colormap(gray(256));
-    for i=1:size(filters,3),
-        image(x(:),y(:),255*filters(:,:,i));
-        pause(1);
-    end;</p>
+<div class="codehilite"><pre><span></span><code>  <span class="n">LED2FILTERS</span> <span class="o">-</span> <span class="n">Design</span> <span class="n">filters</span> <span class="k">for</span> <span class="n">detecting</span> <span class="n">dual</span> <span class="n">LEDs</span>
+
+   <span class="p">[</span><span class="n">FILTERS</span><span class="p">,</span><span class="n">X</span><span class="p">,</span><span class="n">Y</span><span class="p">]</span> <span class="o">=</span> <span class="n">vlt</span><span class="o">.</span><span class="k">signal</span><span class="o">.</span><span class="n">dual_led_filters</span><span class="p">(</span><span class="n">DA</span><span class="p">,</span> <span class="n">SEP</span><span class="p">,</span> <span class="n">RAD</span><span class="p">)</span>
+
+   <span class="n">Designs</span> <span class="n">a</span> <span class="n">pair</span> <span class="n">of</span> <span class="n">circular</span> <span class="n">filters</span><span class="p">,</span> <span class="n">at</span> <span class="n">a</span> <span class="nb">range</span> <span class="n">of</span> <span class="n">orientations</span><span class="p">,</span> <span class="k">for</span> <span class="n">detecting</span> <span class="n">a</span> <span class="n">pair</span> <span class="n">of</span>
+   <span class="n">bright</span> <span class="n">LEDs</span> <span class="ow">in</span> <span class="n">an</span> <span class="n">image</span><span class="o">.</span>
+
+   <span class="n">Input</span> <span class="n">arguments</span><span class="p">:</span> 
+   <span class="n">DA</span> <span class="o">-</span> <span class="n">The</span> <span class="n">separation</span> <span class="n">between</span> <span class="n">different</span> <span class="n">filters</span> <span class="ow">in</span> <span class="n">orientation</span> <span class="p">(</span><span class="n">e</span><span class="o">.</span><span class="n">g</span><span class="o">.</span><span class="p">,</span> <span class="mf">22.5</span><span class="p">)</span>
+   <span class="n">SEP</span> <span class="o">-</span> <span class="n">The</span> <span class="n">physical</span> <span class="n">separation</span> <span class="n">between</span> <span class="n">the</span> <span class="n">the</span> <span class="n">circles</span><span class="p">,</span> <span class="ow">in</span> <span class="n">pixels</span> <span class="p">(</span><span class="n">e</span><span class="o">.</span><span class="n">g</span><span class="o">.</span><span class="p">,</span> <span class="mi">85</span><span class="p">)</span>
+   <span class="n">RAD</span> <span class="o">-</span> <span class="n">The</span> <span class="n">radius</span> <span class="n">of</span> <span class="n">each</span> <span class="n">circle</span> <span class="p">(</span><span class="n">e</span><span class="o">.</span><span class="n">g</span><span class="o">.</span><span class="p">,</span> <span class="mi">15</span><span class="p">)</span>
+
+   <span class="n">Outputs</span><span class="p">:</span>
+   <span class="n">Filters</span> <span class="o">-</span> <span class="n">the</span> <span class="n">output</span> <span class="n">filters</span><span class="p">,</span> <span class="k">as</span> <span class="n">a</span> <span class="mi">3</span><span class="n">d</span> <span class="n">stack</span> <span class="n">of</span> <span class="n">filters</span><span class="o">.</span> <span class="n">Each</span> <span class="mi">2</span><span class="n">d</span> <span class="n">element</span> <span class="n">of</span> <span class="n">the</span> <span class="mi">2</span><span class="n">d</span>
+   <span class="n">stack</span> <span class="n">contains</span> <span class="n">the</span> <span class="n">filter</span> <span class="k">for</span> <span class="n">one</span> <span class="n">possible</span> <span class="n">orientation</span> <span class="n">of</span> <span class="n">the</span> <span class="n">dual</span> <span class="n">LEDs</span><span class="o">.</span>
+   <span class="n">X</span> <span class="o">-</span> <span class="n">An</span> <span class="n">X</span> <span class="n">coordinate</span> <span class="n">mesh</span> <span class="k">for</span> <span class="n">the</span> <span class="n">filters</span>
+   <span class="n">Y</span> <span class="o">-</span> <span class="n">A</span> <span class="n">Y</span> <span class="n">coordinate</span> <span class="n">mesh</span> <span class="k">for</span> <span class="n">the</span> <span class="n">filters</span>
+
+   <span class="n">Example</span><span class="p">:</span>  <span class="n">Create</span> <span class="n">a</span> <span class="n">family</span> <span class="n">of</span> <span class="n">filters</span> <span class="ow">and</span> <span class="n">display</span> <span class="n">them</span>
+    <span class="p">[</span><span class="n">filters</span><span class="p">,</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">]</span> <span class="o">=</span> <span class="n">vlt</span><span class="o">.</span><span class="k">signal</span><span class="o">.</span><span class="n">dual_led_filters</span><span class="p">(</span><span class="mf">22.5</span><span class="p">,</span><span class="mi">85</span><span class="p">,</span><span class="mi">15</span><span class="p">);</span>
+    <span class="n">figure</span><span class="p">;</span>
+    <span class="n">colormap</span><span class="p">(</span><span class="n">gray</span><span class="p">(</span><span class="mi">256</span><span class="p">));</span>
+    <span class="k">for</span> <span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">:</span><span class="n">size</span><span class="p">(</span><span class="n">filters</span><span class="p">,</span><span class="mi">3</span><span class="p">),</span>
+        <span class="n">image</span><span class="p">(</span><span class="n">x</span><span class="p">(:),</span><span class="n">y</span><span class="p">(:),</span><span class="mi">255</span><span class="o">*</span><span class="n">filters</span><span class="p">(:,:,</span><span class="n">i</span><span class="p">));</span>
+        <span class="n">pause</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+    <span class="n">end</span><span class="p">;</span>
+</code></pre></div>
                 
               
               

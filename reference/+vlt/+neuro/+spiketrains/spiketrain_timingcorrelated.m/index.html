@@ -3213,6 +3213,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../../%2Bgit/git_stash.m/" class="md-nav__link">
+        vlt.git.git_stash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../../%2Bgit/git_status.m/" class="md-nav__link">
         vlt.git.git_status
       </a>
@@ -9239,17 +9251,19 @@
                 
                 
                 <h1 id="vltneurospiketrainsspiketrain_timingcorrelated">vlt.neuro.spiketrains.spiketrain_timingcorrelated<a class="headerlink" href="#vltneurospiketrainsspiketrain_timingcorrelated" title="Permanent link">&para;</a></h1>
-<p>SPIKETRAIN_TIMINGCORRELATED - Make spike train that is correlated in spike timing with an input spike train</p>
-<div class="codehilite"><pre><span></span><code>[CORRELATED_TRAIN, CORR] = vlt.neuro.spiketrains.spiketrain_timingcorrelated(INPUT_TRAIN, C)
-</code></pre></div>
+<div class="codehilite"><pre><span></span><code>  <span class="nv">SPIKETRAIN_TIMINGCORRELATED</span> <span class="o">-</span> <span class="nv">Make</span> <span class="nv">spike</span> <span class="nv">train</span> <span class="nv">that</span> <span class="nv">is</span> <span class="nv">correlated</span> <span class="nv">in</span> <span class="nv">spike</span> <span class="nv">timing</span> <span class="nv">with</span> <span class="nv">an</span> <span class="nv">input</span> <span class="nv">spike</span> <span class="nv">train</span>
 
-<p>Creates a spike train that is correlated with the spike train INPUT_TRAIN.
-   INPUT_TRAIN should be a list of spike times in seconds.
-   C indicates how correlated the spike trains should be in terms of 1ms spike timing,
-   from 0 (all spikes different) to 1 (all spikes the same).  CORRELATED_TRAIN will have the
-   same number of spikes as INPUT_TRAIN.</p>
-<p>CORR is the actual correlation that was achieved.  This may differ slightly from the requested
-   correlation if the fraction correlation requested times the number of spikes is not an integer.</p>
+    [<span class="nv">CORRELATED_TRAIN</span>, <span class="nv">CORR</span>] <span class="o">=</span> <span class="nv">vlt</span>.<span class="nv">neuro</span>.<span class="nv">spiketrains</span>.<span class="nv">spiketrain_timingcorrelated</span><span class="ss">(</span><span class="nv">INPUT_TRAIN</span>, <span class="nv">C</span><span class="ss">)</span>
+
+   <span class="nv">Creates</span> <span class="nv">a</span> <span class="nv">spike</span> <span class="nv">train</span> <span class="nv">that</span> <span class="nv">is</span> <span class="nv">correlated</span> <span class="nv">with</span> <span class="nv">the</span> <span class="nv">spike</span> <span class="nv">train</span> <span class="nv">INPUT_TRAIN</span>.
+   <span class="nv">INPUT_TRAIN</span> <span class="nv">should</span> <span class="nv">be</span> <span class="nv">a</span> <span class="nv">list</span> <span class="nv">of</span> <span class="nv">spike</span> <span class="nv">times</span> <span class="nv">in</span> <span class="nv">seconds</span>.
+   <span class="nv">C</span> <span class="nv">indicates</span> <span class="nv">how</span> <span class="nv">correlated</span> <span class="nv">the</span> <span class="nv">spike</span> <span class="nv">trains</span> <span class="nv">should</span> <span class="nv">be</span> <span class="nv">in</span> <span class="nv">terms</span> <span class="nv">of</span> <span class="mi">1</span><span class="nv">ms</span> <span class="nv">spike</span> <span class="nv">timing</span>,
+   <span class="nv">from</span> <span class="mi">0</span> <span class="ss">(</span><span class="nv">all</span> <span class="nv">spikes</span> <span class="nv">different</span><span class="ss">)</span> <span class="nv">to</span> <span class="mi">1</span> <span class="ss">(</span><span class="nv">all</span> <span class="nv">spikes</span> <span class="nv">the</span> <span class="nv">same</span><span class="ss">)</span>.  <span class="nv">CORRELATED_TRAIN</span> <span class="nv">will</span> <span class="nv">have</span> <span class="nv">the</span>
+   <span class="nv">same</span> <span class="nv">number</span> <span class="nv">of</span> <span class="nv">spikes</span> <span class="nv">as</span> <span class="nv">INPUT_TRAIN</span>.
+
+   <span class="nv">CORR</span> <span class="nv">is</span> <span class="nv">the</span> <span class="nv">actual</span> <span class="nv">correlation</span> <span class="nv">that</span> <span class="nv">was</span> <span class="nv">achieved</span>.  <span class="nv">This</span> <span class="nv">may</span> <span class="nv">differ</span> <span class="nv">slightly</span> <span class="nv">from</span> <span class="nv">the</span> <span class="nv">requested</span>
+   <span class="nv">correlation</span> <span class="k">if</span> <span class="nv">the</span> <span class="nv">fraction</span> <span class="nv">correlation</span> <span class="nv">requested</span> <span class="nv">times</span> <span class="nv">the</span> <span class="nv">number</span> <span class="nv">of</span> <span class="nv">spikes</span> <span class="nv">is</span> <span class="nv">not</span> <span class="nv">an</span> <span class="nv">integer</span>.
+</code></pre></div>
                 
               
               

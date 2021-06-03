@@ -3213,6 +3213,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../%2Bgit/git_stash.m/" class="md-nav__link">
+        vlt.git.git_stash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../%2Bgit/git_status.m/" class="md-nav__link">
         vlt.git.git_status
       </a>
@@ -9237,33 +9249,41 @@
                 
                 
                 <h1 id="vltstatsstd_from_median">vlt.stats.std_from_median<a class="headerlink" href="#vltstatsstd_from_median" title="Permanent link">&para;</a></h1>
-<p>STD_FROM_MEDIAN - calculate standard deviation of gaussian process from median</p>
-<p>SD = vlt.stats.std_from_median(X, ...)</p>
-<p>Estimates the standard deviation SD of a gaussian process that generated
-  samples X using the median method.</p>
-<p>SD = MEDIAN(ABS(X),...)/0.6745</p>
-<p>Any additional arguments to vlt.stats.std_from_median are passed to MEDIAN, so
-  that the median can be taken across rows, columns, or other dimensions
-  (see HELP MEDIAN).</p>
-<p>Proof: 
-    Recall: the median is the 0.5 point of a cumulative density function.
-    The cumulative density function for a gaussian-distributed random variable
-    is 0.5 * [1 + ERF(X/SQRT(2<em>sd^2))]. This CDF is based on the symmetry of
-    the ERF() function. It starst at 0.5 and adds or substracts the value of
-    ERF as necessary. For the CDF of the absolute value of X, we can simply take
-    twice the portion that depends on ERF(X):
-    CDF(|X|) = ERF(X/(SQRT(2</em>SD^2))). Now we want to find the X that corresponds
-    to the median or:
-    CDF(|X|) == 0.5 == ERF(X/SQRT(2<em>SD^2)). 
-    Let x = N * SD. Then,
-    0.5 == ERF(N</em>SD/SQRT(2*SD^2)) == ERF(N/SQRT(2)). This is solved
-    numerically and N = 0.6745. So at the median X is 0.6745 * SD.
-    Analyically, MEDIAN(|X|) = 0.6745 * SD, or SD = MEDIAN(|X|)/0.6745.</p>
-<p>Ref:  Quiroga RQ, Nadasdy Z, Ben-Shaul Y.
-        Neural Comput. 2004 Aug;16(8):1661-87.
-        Unsupervised spike detection and sorting with wavelets and
-        superparamagnetic clustering.</p>
-<p>See also: MEDIAN</p>
+<div class="codehilite"><pre><span></span><code>  <span class="n">STD_FROM_MEDIAN</span> <span class="o">-</span> <span class="n">calculate</span> <span class="n">standard</span> <span class="n">deviation</span> <span class="n">of</span> <span class="n">gaussian</span> <span class="n">process</span> <span class="n">from</span> <span class="n">median</span>
+
+  <span class="n">SD</span> <span class="o">=</span> <span class="n">vlt</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">std_from_median</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="o">...</span><span class="p">)</span>
+
+  <span class="n">Estimates</span> <span class="n">the</span> <span class="n">standard</span> <span class="n">deviation</span> <span class="n">SD</span> <span class="n">of</span> <span class="n">a</span> <span class="n">gaussian</span> <span class="n">process</span> <span class="n">that</span> <span class="n">generated</span>
+  <span class="n">samples</span> <span class="n">X</span> <span class="n">using</span> <span class="n">the</span> <span class="n">median</span> <span class="n">method</span><span class="o">.</span>
+
+  <span class="n">SD</span> <span class="o">=</span> <span class="n">MEDIAN</span><span class="p">(</span><span class="n">ABS</span><span class="p">(</span><span class="n">X</span><span class="p">),</span><span class="o">...</span><span class="p">)</span><span class="o">/</span><span class="mf">0.6745</span>
+
+  <span class="n">Any</span> <span class="n">additional</span> <span class="n">arguments</span> <span class="n">to</span> <span class="n">vlt</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">std_from_median</span> <span class="n">are</span> <span class="n">passed</span> <span class="n">to</span> <span class="n">MEDIAN</span><span class="p">,</span> <span class="n">so</span>
+  <span class="n">that</span> <span class="n">the</span> <span class="n">median</span> <span class="n">can</span> <span class="n">be</span> <span class="n">taken</span> <span class="n">across</span> <span class="n">rows</span><span class="p">,</span> <span class="n">columns</span><span class="p">,</span> <span class="ow">or</span> <span class="n">other</span> <span class="n">dimensions</span>
+  <span class="p">(</span><span class="n">see</span> <span class="n">HELP</span> <span class="n">MEDIAN</span><span class="p">)</span><span class="o">.</span>
+
+  <span class="n">Proof</span><span class="p">:</span> 
+    <span class="n">Recall</span><span class="p">:</span> <span class="n">the</span> <span class="n">median</span> <span class="k">is</span> <span class="n">the</span> <span class="mf">0.5</span> <span class="n">point</span> <span class="n">of</span> <span class="n">a</span> <span class="n">cumulative</span> <span class="n">density</span> <span class="n">function</span><span class="o">.</span>
+    <span class="n">The</span> <span class="n">cumulative</span> <span class="n">density</span> <span class="n">function</span> <span class="k">for</span> <span class="n">a</span> <span class="n">gaussian</span><span class="o">-</span><span class="n">distributed</span> <span class="n">random</span> <span class="n">variable</span>
+    <span class="k">is</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="p">[</span><span class="mi">1</span> <span class="o">+</span> <span class="n">ERF</span><span class="p">(</span><span class="n">X</span><span class="o">/</span><span class="n">SQRT</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">sd</span><span class="o">^</span><span class="mi">2</span><span class="p">))]</span><span class="o">.</span> <span class="n">This</span> <span class="n">CDF</span> <span class="k">is</span> <span class="n">based</span> <span class="n">on</span> <span class="n">the</span> <span class="n">symmetry</span> <span class="n">of</span>
+    <span class="n">the</span> <span class="n">ERF</span><span class="p">()</span> <span class="n">function</span><span class="o">.</span> <span class="n">It</span> <span class="n">starst</span> <span class="n">at</span> <span class="mf">0.5</span> <span class="ow">and</span> <span class="n">adds</span> <span class="ow">or</span> <span class="n">substracts</span> <span class="n">the</span> <span class="n">value</span> <span class="n">of</span>
+    <span class="n">ERF</span> <span class="k">as</span> <span class="n">necessary</span><span class="o">.</span> <span class="n">For</span> <span class="n">the</span> <span class="n">CDF</span> <span class="n">of</span> <span class="n">the</span> <span class="n">absolute</span> <span class="n">value</span> <span class="n">of</span> <span class="n">X</span><span class="p">,</span> <span class="n">we</span> <span class="n">can</span> <span class="n">simply</span> <span class="n">take</span>
+    <span class="n">twice</span> <span class="n">the</span> <span class="n">portion</span> <span class="n">that</span> <span class="n">depends</span> <span class="n">on</span> <span class="n">ERF</span><span class="p">(</span><span class="n">X</span><span class="p">):</span>
+    <span class="n">CDF</span><span class="p">(</span><span class="o">|</span><span class="n">X</span><span class="o">|</span><span class="p">)</span> <span class="o">=</span> <span class="n">ERF</span><span class="p">(</span><span class="n">X</span><span class="o">/</span><span class="p">(</span><span class="n">SQRT</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">SD</span><span class="o">^</span><span class="mi">2</span><span class="p">)))</span><span class="o">.</span> <span class="n">Now</span> <span class="n">we</span> <span class="n">want</span> <span class="n">to</span> <span class="n">find</span> <span class="n">the</span> <span class="n">X</span> <span class="n">that</span> <span class="n">corresponds</span>
+    <span class="n">to</span> <span class="n">the</span> <span class="n">median</span> <span class="ow">or</span><span class="p">:</span>
+    <span class="n">CDF</span><span class="p">(</span><span class="o">|</span><span class="n">X</span><span class="o">|</span><span class="p">)</span> <span class="o">==</span> <span class="mf">0.5</span> <span class="o">==</span> <span class="n">ERF</span><span class="p">(</span><span class="n">X</span><span class="o">/</span><span class="n">SQRT</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">SD</span><span class="o">^</span><span class="mi">2</span><span class="p">))</span><span class="o">.</span> 
+    <span class="n">Let</span> <span class="n">x</span> <span class="o">=</span> <span class="n">N</span> <span class="o">*</span> <span class="n">SD</span><span class="o">.</span> <span class="n">Then</span><span class="p">,</span>
+    <span class="mf">0.5</span> <span class="o">==</span> <span class="n">ERF</span><span class="p">(</span><span class="n">N</span><span class="o">*</span><span class="n">SD</span><span class="o">/</span><span class="n">SQRT</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">SD</span><span class="o">^</span><span class="mi">2</span><span class="p">))</span> <span class="o">==</span> <span class="n">ERF</span><span class="p">(</span><span class="n">N</span><span class="o">/</span><span class="n">SQRT</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span><span class="o">.</span> <span class="n">This</span> <span class="k">is</span> <span class="n">solved</span>
+    <span class="n">numerically</span> <span class="ow">and</span> <span class="n">N</span> <span class="o">=</span> <span class="mf">0.6745</span><span class="o">.</span> <span class="n">So</span> <span class="n">at</span> <span class="n">the</span> <span class="n">median</span> <span class="n">X</span> <span class="k">is</span> <span class="mf">0.6745</span> <span class="o">*</span> <span class="n">SD</span><span class="o">.</span>
+    <span class="n">Analyically</span><span class="p">,</span> <span class="n">MEDIAN</span><span class="p">(</span><span class="o">|</span><span class="n">X</span><span class="o">|</span><span class="p">)</span> <span class="o">=</span> <span class="mf">0.6745</span> <span class="o">*</span> <span class="n">SD</span><span class="p">,</span> <span class="ow">or</span> <span class="n">SD</span> <span class="o">=</span> <span class="n">MEDIAN</span><span class="p">(</span><span class="o">|</span><span class="n">X</span><span class="o">|</span><span class="p">)</span><span class="o">/</span><span class="mf">0.6745</span><span class="o">.</span>
+
+  <span class="n">Ref</span><span class="p">:</span>  <span class="n">Quiroga</span> <span class="n">RQ</span><span class="p">,</span> <span class="n">Nadasdy</span> <span class="n">Z</span><span class="p">,</span> <span class="n">Ben</span><span class="o">-</span><span class="n">Shaul</span> <span class="n">Y</span><span class="o">.</span>
+        <span class="n">Neural</span> <span class="n">Comput</span><span class="o">.</span> <span class="mi">2004</span> <span class="n">Aug</span><span class="p">;</span><span class="mi">16</span><span class="p">(</span><span class="mi">8</span><span class="p">):</span><span class="mi">1661</span><span class="o">-</span><span class="mf">87.</span>
+        <span class="n">Unsupervised</span> <span class="n">spike</span> <span class="n">detection</span> <span class="ow">and</span> <span class="n">sorting</span> <span class="n">with</span> <span class="n">wavelets</span> <span class="ow">and</span>
+        <span class="n">superparamagnetic</span> <span class="n">clustering</span><span class="o">.</span>
+
+  <span class="n">See</span> <span class="n">also</span><span class="p">:</span> <span class="n">MEDIAN</span>
+</code></pre></div>
                 
               
               

@@ -3213,6 +3213,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../../%2Bgit/git_stash.m/" class="md-nav__link">
+        vlt.git.git_stash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../../%2Bgit/git_status.m/" class="md-nav__link">
         vlt.git.git_status
       </a>
@@ -9239,47 +9251,54 @@
                 
                 
                 <h1 id="vltneurostimulusstimulus_response_stats">vlt.neuro.stimulus.stimulus_response_stats<a class="headerlink" href="#vltneurostimulusstimulus_response_stats" title="Permanent link">&para;</a></h1>
-<p>STIMULUS_RESPONSE_SUMMARY - compute a stimulus response summary for timeseries data</p>
-<p>STATS = vlt.neuro.stimulus.stimulus_response_stats(RESPONSES,...)</p>
-<p>RESPONSES is a structure returned from vlt.neuro.stimulus.stimulus_response_scalar that has fields
-  Field name:                   | Description</p>
-<hr />
-<p>stimid                        | Stimulus id number for each stimulus presentation
-  response                      | Computed scalar response for each stimulus presentation
-  control_response              | Computed scalar response to a control stimulus (could be empty)
-  controlstimnumber             | The stimulus number that was used as the control stimulus for
-                                |     each stimulus presentation
-  parameters                    | A structure of parameters used in the computation
-                                |     (see HELP vlt.neuro.stimulus.stimulus_response_scalar)  </p>
-<p>Computes a structure STATS with fields:
-  Field name:                   | Description:</p>
-<hr />
-<p>stimid                        | The stimulus id of each stimulus observed
-  mean                          | The mean response of TIMESERIES across stimulus
-                                |     presentations [stimid(1) stimid(2) ...]
-  stddev                        | The standard deviation of TIMESERIES across stimulus
-                                |     presentations [stimid(1) stimid(2) ...]
-  vlt.stats.stderr                        | The standard error of the mean of TIMESERIES
-                                |     across stimulus presentations [stimid(1) stimid(2) ...]
-  individual                    | A cell array with the individual responses to each stimulus
-                                |    individual_responses{i}(j) has the jth response to stimulus with stimid(i)
-  control_mean                  | The mean response of TIMESERIES to the control stimulus, if one is
-                                |    specified with RESPONSES.parameters.control_stimulus
-  control_stddev                | The standard deviation of the response of TIMESERIES to the control stimulus,
-                                |    if one is specified with RESPONSES.parameters.control_stimulus
-  control_stderr                | The standard error of the mean of the responses of TIMESERIES to the control stimulus,
-                                |    if one is specified with RESPONSES.parameters.control_stimulus
-  control_individual            | The individual responses of TIMESERIES to the control stimulus, 
-                                |    if one is specified with RESPONSES.parameters.control_stimulus</p>
-<p>The behavior of the function can be modified by name/value pairs:
-  Parameter (default value)     | Description: </p>
-<hr />
-<p>control_normalization ([])    | Normalize the stimulus response based on the prestimulus measurement.
-                                | [] or 0) No normalization 
-                                |       1) Subtract: Response := Response - PrestimResponse
-                                |       2) Fractional change Response:= ((Response-PrestimResponse)/PrestimResponse)
-                                |       3) Divide: Response:= Response ./ PreStimResponse</p>
-<p>See also: vlt.data.namevaluepair</p>
+<div class="codehilite"><pre><span></span><code>  <span class="nv">STIMULUS_RESPONSE_SUMMARY</span> <span class="o">-</span> <span class="nv">compute</span> <span class="nv">a</span> <span class="nv">stimulus</span> <span class="nv">response</span> <span class="nv">summary</span> <span class="k">for</span> <span class="nv">timeseries</span> <span class="nv">data</span>
+
+  <span class="nv">STATS</span> <span class="o">=</span> <span class="nv">vlt</span>.<span class="nv">neuro</span>.<span class="nv">stimulus</span>.<span class="nv">stimulus_response_stats</span><span class="ss">(</span><span class="nv">RESPONSES</span>,...<span class="ss">)</span>
+
+  <span class="nv">RESPONSES</span> <span class="nv">is</span> <span class="nv">a</span> <span class="nv">structure</span> <span class="nv">returned</span> <span class="nv">from</span> <span class="nv">vlt</span>.<span class="nv">neuro</span>.<span class="nv">stimulus</span>.<span class="nv">stimulus_response_scalar</span> <span class="nv">that</span> <span class="nv">has</span> <span class="nv">fields</span>
+  <span class="nv">Field</span> <span class="nv">name</span>:                   <span class="o">|</span> <span class="nv">Description</span>
+  <span class="o">--------------------------------------------------------------------------------</span>
+  <span class="nv">stimid</span>                        <span class="o">|</span> <span class="nv">Stimulus</span> <span class="nv">id</span> <span class="nv">number</span> <span class="k">for</span> <span class="nv">each</span> <span class="nv">stimulus</span> <span class="nv">presentation</span>
+  <span class="nv">response</span>                      <span class="o">|</span> <span class="nv">Computed</span> <span class="nv">scalar</span> <span class="nv">response</span> <span class="k">for</span> <span class="nv">each</span> <span class="nv">stimulus</span> <span class="nv">presentation</span>
+  <span class="nv">control_response</span>              <span class="o">|</span> <span class="nv">Computed</span> <span class="nv">scalar</span> <span class="nv">response</span> <span class="nv">to</span> <span class="nv">a</span> <span class="nv">control</span> <span class="nv">stimulus</span> <span class="ss">(</span><span class="nv">could</span> <span class="nv">be</span> <span class="nv">empty</span><span class="ss">)</span>
+  <span class="nv">controlstimnumber</span>             <span class="o">|</span> <span class="nv">The</span> <span class="nv">stimulus</span> <span class="nv">number</span> <span class="nv">that</span> <span class="nv">was</span> <span class="nv">used</span> <span class="nv">as</span> <span class="nv">the</span> <span class="nv">control</span> <span class="nv">stimulus</span> <span class="k">for</span>
+                                <span class="o">|</span>     <span class="nv">each</span> <span class="nv">stimulus</span> <span class="nv">presentation</span>
+  <span class="nv">parameters</span>                    <span class="o">|</span> <span class="nv">A</span> <span class="nv">structure</span> <span class="nv">of</span> <span class="nv">parameters</span> <span class="nv">used</span> <span class="nv">in</span> <span class="nv">the</span> <span class="nv">computation</span>
+                                <span class="o">|</span>     <span class="ss">(</span><span class="nv">see</span> <span class="nv">HELP</span> <span class="nv">vlt</span>.<span class="nv">neuro</span>.<span class="nv">stimulus</span>.<span class="nv">stimulus_response_scalar</span><span class="ss">)</span>  
+
+  <span class="nv">Computes</span> <span class="nv">a</span> <span class="nv">structure</span> <span class="nv">STATS</span> <span class="nv">with</span> <span class="nv">fields</span>:
+  <span class="nv">Field</span> <span class="nv">name</span>:                   <span class="o">|</span> <span class="nv">Description</span>:
+  <span class="o">------------------------------------------------------------------------</span>
+  <span class="nv">stimid</span>                        <span class="o">|</span> <span class="nv">The</span> <span class="nv">stimulus</span> <span class="nv">id</span> <span class="nv">of</span> <span class="nv">each</span> <span class="nv">stimulus</span> <span class="nv">observed</span>
+  <span class="nv">mean</span>                          <span class="o">|</span> <span class="nv">The</span> <span class="nv">mean</span> <span class="nv">response</span> <span class="nv">of</span> <span class="nv">TIMESERIES</span> <span class="nv">across</span> <span class="nv">stimulus</span>
+                                <span class="o">|</span>     <span class="nv">presentations</span> [<span class="nv">stimid</span><span class="ss">(</span><span class="mi">1</span><span class="ss">)</span> <span class="nv">stimid</span><span class="ss">(</span><span class="mi">2</span><span class="ss">)</span> ...]
+  <span class="nv">stddev</span>                        <span class="o">|</span> <span class="nv">The</span> <span class="nv">standard</span> <span class="nv">deviation</span> <span class="nv">of</span> <span class="nv">TIMESERIES</span> <span class="nv">across</span> <span class="nv">stimulus</span>
+                                <span class="o">|</span>     <span class="nv">presentations</span> [<span class="nv">stimid</span><span class="ss">(</span><span class="mi">1</span><span class="ss">)</span> <span class="nv">stimid</span><span class="ss">(</span><span class="mi">2</span><span class="ss">)</span> ...]
+  <span class="nv">vlt</span>.<span class="nv">stats</span>.<span class="nv">stderr</span>                        <span class="o">|</span> <span class="nv">The</span> <span class="nv">standard</span> <span class="nv">error</span> <span class="nv">of</span> <span class="nv">the</span> <span class="nv">mean</span> <span class="nv">of</span> <span class="nv">TIMESERIES</span>
+                                <span class="o">|</span>     <span class="nv">across</span> <span class="nv">stimulus</span> <span class="nv">presentations</span> [<span class="nv">stimid</span><span class="ss">(</span><span class="mi">1</span><span class="ss">)</span> <span class="nv">stimid</span><span class="ss">(</span><span class="mi">2</span><span class="ss">)</span> ...]
+  <span class="nv">individual</span>                    <span class="o">|</span> <span class="nv">A</span> <span class="nv">cell</span> <span class="nv">array</span> <span class="nv">with</span> <span class="nv">the</span> <span class="nv">individual</span> <span class="nv">responses</span> <span class="nv">to</span> <span class="nv">each</span> <span class="nv">stimulus</span>
+                                <span class="o">|</span>    <span class="nv">individual_responses</span>{<span class="nv">i</span>}<span class="ss">(</span><span class="nv">j</span><span class="ss">)</span> <span class="nv">has</span> <span class="nv">the</span> <span class="nv">jth</span> <span class="nv">response</span> <span class="nv">to</span> <span class="nv">stimulus</span> <span class="nv">with</span> <span class="nv">stimid</span><span class="ss">(</span><span class="nv">i</span><span class="ss">)</span>
+  <span class="nv">control_mean</span>                  <span class="o">|</span> <span class="nv">The</span> <span class="nv">mean</span> <span class="nv">response</span> <span class="nv">of</span> <span class="nv">TIMESERIES</span> <span class="nv">to</span> <span class="nv">the</span> <span class="nv">control</span> <span class="nv">stimulus</span>, <span class="k">if</span> <span class="nv">one</span> <span class="nv">is</span>
+                                <span class="o">|</span>    <span class="nv">specified</span> <span class="nv">with</span> <span class="nv">RESPONSES</span>.<span class="nv">parameters</span>.<span class="nv">control_stimulus</span>
+  <span class="nv">control_stddev</span>                <span class="o">|</span> <span class="nv">The</span> <span class="nv">standard</span> <span class="nv">deviation</span> <span class="nv">of</span> <span class="nv">the</span> <span class="nv">response</span> <span class="nv">of</span> <span class="nv">TIMESERIES</span> <span class="nv">to</span> <span class="nv">the</span> <span class="nv">control</span> <span class="nv">stimulus</span>,
+                                <span class="o">|</span>    <span class="k">if</span> <span class="nv">one</span> <span class="nv">is</span> <span class="nv">specified</span> <span class="nv">with</span> <span class="nv">RESPONSES</span>.<span class="nv">parameters</span>.<span class="nv">control_stimulus</span>
+  <span class="nv">control_stderr</span>                <span class="o">|</span> <span class="nv">The</span> <span class="nv">standard</span> <span class="nv">error</span> <span class="nv">of</span> <span class="nv">the</span> <span class="nv">mean</span> <span class="nv">of</span> <span class="nv">the</span> <span class="nv">responses</span> <span class="nv">of</span> <span class="nv">TIMESERIES</span> <span class="nv">to</span> <span class="nv">the</span> <span class="nv">control</span> <span class="nv">stimulus</span>,
+                                <span class="o">|</span>    <span class="k">if</span> <span class="nv">one</span> <span class="nv">is</span> <span class="nv">specified</span> <span class="nv">with</span> <span class="nv">RESPONSES</span>.<span class="nv">parameters</span>.<span class="nv">control_stimulus</span>
+  <span class="nv">control_individual</span>            <span class="o">|</span> <span class="nv">The</span> <span class="nv">individual</span> <span class="nv">responses</span> <span class="nv">of</span> <span class="nv">TIMESERIES</span> <span class="nv">to</span> <span class="nv">the</span> <span class="nv">control</span> <span class="nv">stimulus</span>, 
+                                <span class="o">|</span>    <span class="k">if</span> <span class="nv">one</span> <span class="nv">is</span> <span class="nv">specified</span> <span class="nv">with</span> <span class="nv">RESPONSES</span>.<span class="nv">parameters</span>.<span class="nv">control_stimulus</span>
+
+  <span class="nv">The</span> <span class="nv">behavior</span> <span class="nv">of</span> <span class="nv">the</span> <span class="nv">function</span> <span class="nv">can</span> <span class="nv">be</span> <span class="nv">modified</span> <span class="nv">by</span> <span class="nv">name</span><span class="o">/</span><span class="nv">value</span> <span class="nv">pairs</span>:
+  <span class="nv">Parameter</span> <span class="ss">(</span><span class="nv">default</span> <span class="nv">value</span><span class="ss">)</span>     <span class="o">|</span> <span class="nv">Description</span>: 
+  <span class="o">------------------------------------------------------------------------</span>
+  <span class="nv">control_normalization</span> <span class="ss">(</span>[]<span class="ss">)</span>    <span class="o">|</span> <span class="nv">Normalize</span> <span class="nv">the</span> <span class="nv">stimulus</span> <span class="nv">response</span> <span class="nv">based</span> <span class="nv">on</span> <span class="nv">the</span> <span class="nv">prestimulus</span> <span class="nv">measurement</span>.
+                                <span class="o">|</span> [] <span class="nv">or</span> <span class="mi">0</span><span class="ss">)</span> <span class="nv">No</span> <span class="nv">normalization</span> 
+                                <span class="o">|</span>       <span class="mi">1</span><span class="ss">)</span> <span class="nv">Subtract</span>: <span class="nv">Response</span> :<span class="o">=</span> <span class="nv">Response</span> <span class="o">-</span> <span class="nv">PrestimResponse</span>
+                                <span class="o">|</span>       <span class="mi">2</span><span class="ss">)</span> <span class="nv">Fractional</span> <span class="nv">change</span> <span class="nv">Response</span>:<span class="o">=</span> <span class="ss">((</span><span class="nv">Response</span><span class="o">-</span><span class="nv">PrestimResponse</span><span class="ss">)</span><span class="o">/</span><span class="nv">PrestimResponse</span><span class="ss">)</span>
+                                <span class="o">|</span>       <span class="mi">3</span><span class="ss">)</span> <span class="nv">Divide</span>: <span class="nv">Response</span>:<span class="o">=</span> <span class="nv">Response</span> .<span class="o">/</span> <span class="nv">PreStimResponse</span>
+
+
+  <span class="nv">See</span> <span class="nv">also</span>: <span class="nv">vlt</span>.<span class="nv">data</span>.<span class="nv">namevaluepair</span>
+</code></pre></div>
                 
               
               

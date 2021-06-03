@@ -3213,6 +3213,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../%2Bgit/git_stash.m/" class="md-nav__link">
+        vlt.git.git_stash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../%2Bgit/git_status.m/" class="md-nav__link">
         vlt.git.git_status
       </a>
@@ -9237,19 +9249,28 @@
                 
                 
                 <h1 id="vltuisimplepopupmenucallback">vlt.ui.simplepopupmenucallback<a class="headerlink" href="#vltuisimplepopupmenucallback" title="Permanent link">&para;</a></h1>
-<p>SIMPLEPOPUPMENUCALLBACK - Evaluates an expression based on the value of a popup list</p>
-<p>vlt.ui.simplepopupmenucallback(CALLBACKLIST[, VALUE])</p>
-<p>Evaluates the expression at the VALUE index of
-  the cell array of strings CALLBACKLIST (that is,
-  evalutes CALLBACKLIST{VALUE}).</p>
-<p>If VALUE is not provided, then it is obtained from the 'value' field
-  of the current callback object as obtained by the function GCBO.</p>
-<p>Example: </p>
-<p>uicontol('Style','popup','String',{'Option 1','Option 2'},...
-     'callback','vlt.ui.simplepopupmenucallback({''func1'',''func2''});');</p>
-<p>When Option 1 is chosen, 'func1' is called by EVAL, when Option 2
-   is chosen, 'func2' is called by EVAL.</p>
-<p>See also: GCBO, SUBREF, EVAL, vlt.ui.genercallback</p>
+<div class="codehilite"><pre><span></span><code>  <span class="nt">SIMPLEPOPUPMENUCALLBACK</span> <span class="nt">-</span> <span class="nt">Evaluates</span> <span class="nt">an</span> <span class="nt">expression</span> <span class="nt">based</span> <span class="nt">on</span> <span class="nt">the</span> <span class="nt">value</span> <span class="nt">of</span> <span class="nt">a</span> <span class="nt">popup</span> <span class="nt">list</span>
+
+  <span class="nt">vlt</span><span class="p">.</span><span class="nc">ui</span><span class="p">.</span><span class="nc">simplepopupmenucallback</span><span class="o">(</span><span class="nt">CALLBACKLIST</span><span class="cp">[</span><span class="p">,</span> <span class="nx">VALUE</span><span class="cp">]</span><span class="o">)</span>
+
+  <span class="nt">Evaluates</span> <span class="nt">the</span> <span class="nt">expression</span> <span class="nt">at</span> <span class="nt">the</span> <span class="nt">VALUE</span> <span class="nt">index</span> <span class="nt">of</span>
+  <span class="nt">the</span> <span class="nt">cell</span> <span class="nt">array</span> <span class="nt">of</span> <span class="nt">strings</span> <span class="nt">CALLBACKLIST</span> <span class="o">(</span><span class="nt">that</span> <span class="nt">is</span><span class="o">,</span>
+  <span class="nt">evalutes</span> <span class="nt">CALLBACKLIST</span><span class="p">{</span><span class="err">VALUE</span><span class="p">}</span><span class="o">).</span>
+
+  <span class="nt">If</span> <span class="nt">VALUE</span> <span class="nt">is</span> <span class="nt">not</span> <span class="nt">provided</span><span class="o">,</span> <span class="nt">then</span> <span class="nt">it</span> <span class="nt">is</span> <span class="nt">obtained</span> <span class="nt">from</span> <span class="nt">the</span> <span class="s1">&#39;value&#39;</span> <span class="nt">field</span>
+  <span class="nt">of</span> <span class="nt">the</span> <span class="nt">current</span> <span class="nt">callback</span> <span class="nt">object</span> <span class="nt">as</span> <span class="nt">obtained</span> <span class="nt">by</span> <span class="nt">the</span> <span class="nt">function</span> <span class="nt">GCBO</span><span class="o">.</span>
+
+  <span class="nt">Example</span><span class="o">:</span> 
+
+   <span class="nt">uicontol</span><span class="o">(</span><span class="s1">&#39;Style&#39;</span><span class="o">,</span><span class="s1">&#39;popup&#39;</span><span class="o">,</span><span class="s1">&#39;String&#39;</span><span class="o">,</span><span class="p">{</span><span class="err">&#39;Option</span> <span class="err">1&#39;,&#39;Option</span> <span class="err">2&#39;</span><span class="p">}</span><span class="o">,...</span>
+     <span class="s1">&#39;callback&#39;</span><span class="o">,</span><span class="s1">&#39;vlt.ui.simplepopupmenucallback({&#39;&#39;func1&#39;&#39;,&#39;&#39;func2&#39;&#39;});&#39;</span><span class="o">);</span>
+
+   <span class="nt">When</span> <span class="nt">Option</span> <span class="nt">1</span> <span class="nt">is</span> <span class="nt">chosen</span><span class="o">,</span> <span class="s1">&#39;func1&#39;</span> <span class="nt">is</span> <span class="nt">called</span> <span class="nt">by</span> <span class="nt">EVAL</span><span class="o">,</span> <span class="nt">when</span> <span class="nt">Option</span> <span class="nt">2</span>
+   <span class="nt">is</span> <span class="nt">chosen</span><span class="o">,</span> <span class="s1">&#39;func2&#39;</span> <span class="nt">is</span> <span class="nt">called</span> <span class="nt">by</span> <span class="nt">EVAL</span><span class="o">.</span>
+
+
+   <span class="nt">See</span> <span class="nt">also</span><span class="o">:</span> <span class="nt">GCBO</span><span class="o">,</span> <span class="nt">SUBREF</span><span class="o">,</span> <span class="nt">EVAL</span><span class="o">,</span> <span class="nt">vlt</span><span class="p">.</span><span class="nc">ui</span><span class="p">.</span><span class="nc">genercallback</span>
+</code></pre></div>
                 
               
               

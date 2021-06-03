@@ -3213,6 +3213,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../../../../%2Bgit/git_stash.m/" class="md-nav__link">
+        vlt.git.git_stash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../../../../%2Bgit/git_status.m/" class="md-nav__link">
         vlt.git.git_status
       </a>
@@ -9243,19 +9255,21 @@
                 
                 
                 <h1 id="vltneurovisionoridirindexfit2fitdidiffsum">vlt.neuro.vision.oridir.index.fit2fitdidiffsum<a class="headerlink" href="#vltneurovisionoridirindexfit2fitdidiffsum" title="Permanent link">&para;</a></h1>
-<p>FIT2FITDIDIFFSUM - direction selectivity index (DSI) from double gaussian fit of direction tuning curve</p>
-<p>DIIND = vlt.neuro.vision.oridir.index.fit2fitdidiffsum(R)</p>
-<div class="codehilite"><pre><span></span><code> <span class="nv">Calculates</span> <span class="nv">the</span> <span class="nv">direction</span> <span class="nv">selectivity</span> <span class="nv">index</span> <span class="ss">(</span><span class="nv">DSI</span><span class="ss">)</span> <span class="nv">from</span> <span class="nv">a</span> <span class="nv">double</span> <span class="nv">gaussian</span> <span class="nv">fit</span>
- <span class="nv">of</span> <span class="nv">a</span> <span class="nv">direction</span> <span class="nv">tuning</span> <span class="nv">curve</span>.
- <span class="nv">The</span> <span class="nv">DSI</span> <span class="nv">is</span> <span class="nv">defined</span> <span class="nv">as</span> <span class="nv">DSI</span> <span class="o">=</span> <span class="ss">(</span><span class="nv">Rpref</span> <span class="o">-</span> <span class="nv">Rnull</span><span class="ss">)</span> <span class="o">/</span> <span class="ss">(</span><span class="nv">Rpref</span> <span class="o">+</span> <span class="nv">Rnull</span><span class="ss">)</span>
- <span class="nv">where</span> <span class="nv">Rpref</span> <span class="nv">is</span> <span class="nv">the</span> <span class="nv">response</span> <span class="nv">to</span> <span class="nv">the</span> <span class="nv">preferred</span> <span class="nv">direction</span> <span class="nv">and</span> <span class="nv">Rnull</span> <span class="nv">is</span> <span class="nv">the</span> <span class="nv">response</span>
- <span class="nv">to</span> <span class="nv">the</span> <span class="nv">direction</span> <span class="nv">opposite</span> <span class="nv">to</span> <span class="nv">the</span> <span class="nv">preferred</span> <span class="nv">direction</span> <span class="ss">(</span><span class="nv">that</span> <span class="nv">is</span>, <span class="nv">the</span> <span class="nv">null</span> <span class="nv">direction</span><span class="ss">)</span>.
+<div class="codehilite"><pre><span></span><code>  <span class="nv">FIT2FITDIDIFFSUM</span> <span class="o">-</span> <span class="nv">direction</span> <span class="nv">selectivity</span> <span class="nv">index</span> <span class="ss">(</span><span class="nv">DSI</span><span class="ss">)</span> <span class="nv">from</span> <span class="nv">double</span> <span class="nv">gaussian</span> <span class="nv">fit</span> <span class="nv">of</span> <span class="nv">direction</span> <span class="nv">tuning</span> <span class="nv">curve</span>
 
- <span class="nv">R</span> <span class="nv">is</span> <span class="nv">a</span> <span class="mi">2</span><span class="o">-</span><span class="nv">row</span> <span class="nv">vector</span>. <span class="nv">The</span> <span class="nv">first</span> <span class="nv">row</span> <span class="nv">is</span> <span class="nv">the</span> <span class="nv">directions</span> <span class="nv">that</span> <span class="nv">were</span> <span class="nv">evaluated</span> <span class="nv">by</span> <span class="nv">the</span>
- <span class="nv">fit</span> <span class="ss">(</span><span class="nv">e</span>.<span class="nv">g</span>., [<span class="mi">0</span>:<span class="mi">359</span>] <span class="nv">is</span> <span class="nv">the</span> <span class="nv">most</span> <span class="nv">common</span> <span class="k">for</span> <span class="mi">1</span> <span class="nv">degree</span> <span class="nv">steps</span> <span class="nv">between</span> <span class="mi">0</span> <span class="nv">and</span> <span class="mi">359</span><span class="ss">)</span>, <span class="nv">and</span>
- <span class="nv">the</span> <span class="nv">second</span> <span class="nv">row</span> <span class="nv">is</span> <span class="nv">the</span> <span class="nv">response</span> <span class="nv">of</span> <span class="nv">the</span> <span class="nv">fit</span> <span class="k">for</span> <span class="nv">each</span> <span class="nv">angle</span>.
+   <span class="nv">DIIND</span> <span class="o">=</span> <span class="nv">vlt</span>.<span class="nv">neuro</span>.<span class="nv">vision</span>.<span class="nv">oridir</span>.<span class="nv">index</span>.<span class="nv">fit2fitdidiffsum</span><span class="ss">(</span><span class="nv">R</span><span class="ss">)</span>
 
- <span class="nv">See</span> <span class="nv">also</span>: <span class="nv">vlt</span>.<span class="nv">fit</span>.<span class="nv">otfit_carandini</span>, <span class="nv">vlt</span>.<span class="nv">neuro</span>.<span class="nv">vision</span>.<span class="nv">oridir</span>.<span class="nv">index</span>.<span class="nv">fit2fitoi</span>, <span class="nv">vlt</span>.<span class="nv">neuro</span>.<span class="nv">vision</span>.<span class="nv">oridir</span>.<span class="nv">index</span>.<span class="nv">fit2fitdibr</span>, <span class="nv">vlt</span>.<span class="nv">neuro</span>.<span class="nv">vision</span>.<span class="nv">oridir</span>.<span class="nv">index</span>.<span class="nv">fit2fitdi</span>
+     <span class="nv">Calculates</span> <span class="nv">the</span> <span class="nv">direction</span> <span class="nv">selectivity</span> <span class="nv">index</span> <span class="ss">(</span><span class="nv">DSI</span><span class="ss">)</span> <span class="nv">from</span> <span class="nv">a</span> <span class="nv">double</span> <span class="nv">gaussian</span> <span class="nv">fit</span>
+     <span class="nv">of</span> <span class="nv">a</span> <span class="nv">direction</span> <span class="nv">tuning</span> <span class="nv">curve</span>.
+     <span class="nv">The</span> <span class="nv">DSI</span> <span class="nv">is</span> <span class="nv">defined</span> <span class="nv">as</span> <span class="nv">DSI</span> <span class="o">=</span> <span class="ss">(</span><span class="nv">Rpref</span> <span class="o">-</span> <span class="nv">Rnull</span><span class="ss">)</span> <span class="o">/</span> <span class="ss">(</span><span class="nv">Rpref</span> <span class="o">+</span> <span class="nv">Rnull</span><span class="ss">)</span>
+     <span class="nv">where</span> <span class="nv">Rpref</span> <span class="nv">is</span> <span class="nv">the</span> <span class="nv">response</span> <span class="nv">to</span> <span class="nv">the</span> <span class="nv">preferred</span> <span class="nv">direction</span> <span class="nv">and</span> <span class="nv">Rnull</span> <span class="nv">is</span> <span class="nv">the</span> <span class="nv">response</span>
+     <span class="nv">to</span> <span class="nv">the</span> <span class="nv">direction</span> <span class="nv">opposite</span> <span class="nv">to</span> <span class="nv">the</span> <span class="nv">preferred</span> <span class="nv">direction</span> <span class="ss">(</span><span class="nv">that</span> <span class="nv">is</span>, <span class="nv">the</span> <span class="nv">null</span> <span class="nv">direction</span><span class="ss">)</span>.
+
+     <span class="nv">R</span> <span class="nv">is</span> <span class="nv">a</span> <span class="mi">2</span><span class="o">-</span><span class="nv">row</span> <span class="nv">vector</span>. <span class="nv">The</span> <span class="nv">first</span> <span class="nv">row</span> <span class="nv">is</span> <span class="nv">the</span> <span class="nv">directions</span> <span class="nv">that</span> <span class="nv">were</span> <span class="nv">evaluated</span> <span class="nv">by</span> <span class="nv">the</span>
+     <span class="nv">fit</span> <span class="ss">(</span><span class="nv">e</span>.<span class="nv">g</span>., [<span class="mi">0</span>:<span class="mi">359</span>] <span class="nv">is</span> <span class="nv">the</span> <span class="nv">most</span> <span class="nv">common</span> <span class="k">for</span> <span class="mi">1</span> <span class="nv">degree</span> <span class="nv">steps</span> <span class="nv">between</span> <span class="mi">0</span> <span class="nv">and</span> <span class="mi">359</span><span class="ss">)</span>, <span class="nv">and</span>
+     <span class="nv">the</span> <span class="nv">second</span> <span class="nv">row</span> <span class="nv">is</span> <span class="nv">the</span> <span class="nv">response</span> <span class="nv">of</span> <span class="nv">the</span> <span class="nv">fit</span> <span class="k">for</span> <span class="nv">each</span> <span class="nv">angle</span>.
+
+     <span class="nv">See</span> <span class="nv">also</span>: <span class="nv">vlt</span>.<span class="nv">fit</span>.<span class="nv">otfit_carandini</span>, <span class="nv">vlt</span>.<span class="nv">neuro</span>.<span class="nv">vision</span>.<span class="nv">oridir</span>.<span class="nv">index</span>.<span class="nv">fit2fitoi</span>, <span class="nv">vlt</span>.<span class="nv">neuro</span>.<span class="nv">vision</span>.<span class="nv">oridir</span>.<span class="nv">index</span>.<span class="nv">fit2fitdibr</span>, <span class="nv">vlt</span>.<span class="nv">neuro</span>.<span class="nv">vision</span>.<span class="nv">oridir</span>.<span class="nv">index</span>.<span class="nv">fit2fitdi</span>
 </code></pre></div>
                 
               

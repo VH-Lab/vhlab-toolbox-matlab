@@ -3213,6 +3213,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../%2Bgit/git_stash.m/" class="md-nav__link">
+        vlt.git.git_stash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../%2Bgit/git_status.m/" class="md-nav__link">
         vlt.git.git_status
       </a>
@@ -9237,17 +9249,18 @@
                 
                 
                 <h1 id="vltimagetiff16bit28bit">vlt.image.tiff16bit28bit<a class="headerlink" href="#vltimagetiff16bit28bit" title="Permanent link">&para;</a></h1>
-<p>TIFF16BIT28BIT Convert 16bit TIFF to 8-bit</p>
-<div class="codehilite"><pre><span></span><code>[<span class="nv">IMG1</span>,<span class="nv">IMG2</span>] <span class="o">=</span> <span class="nv">TIFF16BIT28BIT</span><span class="ss">(</span><span class="nv">FILENAME</span><span class="ss">)</span>
- <span class="nv">or</span>
-[<span class="nv">IMG1</span>,<span class="nv">IMG2</span>] <span class="o">=</span> <span class="nv">TIFF16BIT28BIT</span><span class="ss">(</span><span class="nv">FILENAME</span>, <span class="nv">WRITEIT</span><span class="ss">)</span>
+<div class="codehilite"><pre><span></span><code>  <span class="nv">TIFF16BIT28BIT</span> <span class="nv">Convert</span> <span class="mi">16</span><span class="nv">bit</span> <span class="nv">TIFF</span> <span class="nv">to</span> <span class="mi">8</span><span class="o">-</span><span class="nv">bit</span>
 
-<span class="nv">Opens</span> <span class="nv">the</span> <span class="nv">TIFF</span> <span class="nv">file</span> <span class="nv">with</span> <span class="nv">name</span> <span class="nv">FILENAME</span>.  <span class="nv">The</span> <span class="nv">file</span> <span class="nv">is</span> <span class="nv">assumed</span> <span class="nv">to</span>
-<span class="nv">be</span> <span class="nv">grayscale</span>.  <span class="nv">The</span> <span class="nv">original</span> <span class="nv">image</span> <span class="nv">is</span> <span class="nv">returned</span> <span class="nv">in</span> <span class="nv">IMG1</span>.  <span class="nv">The</span> <span class="nv">image</span> <span class="nv">is</span>
-<span class="k">then</span> <span class="nv">scaled</span> <span class="nv">between</span> <span class="mi">0</span> <span class="nv">and</span> <span class="mi">255</span> <span class="nv">and</span> <span class="nv">returned</span> <span class="nv">as</span> <span class="nv">IMG2</span>.  <span class="k">If</span> <span class="s1">&#39;</span><span class="s">WRITEIT</span><span class="s1">&#39;</span> <span class="nv">is</span>
-<span class="nv">provided</span>, <span class="k">then</span> <span class="nv">the</span> <span class="nv">image</span> <span class="nv">is</span> <span class="nv">saved</span> <span class="nv">as</span> <span class="nv">FILENAME_8bit</span>.<span class="nv">TIFF</span>.
+    [<span class="nv">IMG1</span>,<span class="nv">IMG2</span>] <span class="o">=</span> <span class="nv">TIFF16BIT28BIT</span><span class="ss">(</span><span class="nv">FILENAME</span><span class="ss">)</span>
+     <span class="nv">or</span>
+    [<span class="nv">IMG1</span>,<span class="nv">IMG2</span>] <span class="o">=</span> <span class="nv">TIFF16BIT28BIT</span><span class="ss">(</span><span class="nv">FILENAME</span>, <span class="nv">WRITEIT</span><span class="ss">)</span>
 
-<span class="k">If</span> <span class="nv">the</span> <span class="nv">file</span> <span class="nv">is</span> <span class="nv">not</span> <span class="nv">a</span> <span class="nv">grayscale</span> <span class="nv">image</span> <span class="k">then</span> <span class="nv">an</span> <span class="nv">error</span> <span class="nv">is</span> <span class="nv">generated</span>.
+    <span class="nv">Opens</span> <span class="nv">the</span> <span class="nv">TIFF</span> <span class="nv">file</span> <span class="nv">with</span> <span class="nv">name</span> <span class="nv">FILENAME</span>.  <span class="nv">The</span> <span class="nv">file</span> <span class="nv">is</span> <span class="nv">assumed</span> <span class="nv">to</span>
+    <span class="nv">be</span> <span class="nv">grayscale</span>.  <span class="nv">The</span> <span class="nv">original</span> <span class="nv">image</span> <span class="nv">is</span> <span class="nv">returned</span> <span class="nv">in</span> <span class="nv">IMG1</span>.  <span class="nv">The</span> <span class="nv">image</span> <span class="nv">is</span>
+    <span class="k">then</span> <span class="nv">scaled</span> <span class="nv">between</span> <span class="mi">0</span> <span class="nv">and</span> <span class="mi">255</span> <span class="nv">and</span> <span class="nv">returned</span> <span class="nv">as</span> <span class="nv">IMG2</span>.  <span class="k">If</span> <span class="s1">&#39;</span><span class="s">WRITEIT</span><span class="s1">&#39;</span> <span class="nv">is</span>
+    <span class="nv">provided</span>, <span class="k">then</span> <span class="nv">the</span> <span class="nv">image</span> <span class="nv">is</span> <span class="nv">saved</span> <span class="nv">as</span> <span class="nv">FILENAME_8bit</span>.<span class="nv">TIFF</span>.
+
+    <span class="k">If</span> <span class="nv">the</span> <span class="nv">file</span> <span class="nv">is</span> <span class="nv">not</span> <span class="nv">a</span> <span class="nv">grayscale</span> <span class="nv">image</span> <span class="k">then</span> <span class="nv">an</span> <span class="nv">error</span> <span class="nv">is</span> <span class="nv">generated</span>.
 </code></pre></div>
                 
               

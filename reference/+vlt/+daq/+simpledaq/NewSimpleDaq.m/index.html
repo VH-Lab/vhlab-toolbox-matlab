@@ -3227,6 +3227,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../../%2Bgit/git_stash.m/" class="md-nav__link">
+        vlt.git.git_stash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../../%2Bgit/git_status.m/" class="md-nav__link">
         vlt.git.git_status
       </a>
@@ -9239,17 +9251,22 @@
                 
                 
                 <h1 id="vltdaqsimpledaqnewsimpledaq">vlt.daq.simpledaq.NewSimpleDaq<a class="headerlink" href="#vltdaqsimpledaqnewsimpledaq" title="Permanent link">&para;</a></h1>
-<p>vlt.daq.simpledaq.NewSimpleDaq - Creates a new SimpleDaq object</p>
-<p>SD = vlt.daq.simpledaq.NewSimpleDaq(DAQNAME, PARAMETERS)</p>
-<p>Returns a structure with fieldnames 'daqname' and 'parameters', set to
-   the string DAQNAME and the variable PARAMETERS, respectfully.</p>
-<p>This structure can then be passed to the SimpleDAQ commands such as
-      vlt.daq.simpledaq.OpenSimpleDaq
-      vlt.daq.simpledaq.CloseSimpleDaq
-      vlt.daq.simpledaq.AcquireSimpleDaq</p>
-<p>SimpleDaq is a wrapper class for many types of aqcusition devices.  When
-   one calls vlt.daq.simpledaq.OpenSimpleDaq, vlt.daq.simpledaq.OpenSimpleDaq will in turn call
-     DAQNAME_OpenSimpleDaq(DAQNAME, PARAMETERS)</p>
+<div class="codehilite"><pre><span></span><code>  <span class="n">vlt</span><span class="o">.</span><span class="n">daq</span><span class="o">.</span><span class="n">simpledaq</span><span class="o">.</span><span class="n">NewSimpleDaq</span> <span class="o">-</span> <span class="n">Creates</span> <span class="n">a</span> <span class="n">new</span> <span class="n">SimpleDaq</span> <span class="n">object</span>
+
+   <span class="n">SD</span> <span class="o">=</span> <span class="n">vlt</span><span class="o">.</span><span class="n">daq</span><span class="o">.</span><span class="n">simpledaq</span><span class="o">.</span><span class="n">NewSimpleDaq</span><span class="p">(</span><span class="n">DAQNAME</span><span class="p">,</span> <span class="n">PARAMETERS</span><span class="p">)</span>
+
+   <span class="n">Returns</span> <span class="n">a</span> <span class="n">structure</span> <span class="n">with</span> <span class="n">fieldnames</span> <span class="s1">&#39;daqname&#39;</span> <span class="ow">and</span> <span class="s1">&#39;parameters&#39;</span><span class="p">,</span> <span class="n">set</span> <span class="n">to</span>
+   <span class="n">the</span> <span class="n">string</span> <span class="n">DAQNAME</span> <span class="ow">and</span> <span class="n">the</span> <span class="n">variable</span> <span class="n">PARAMETERS</span><span class="p">,</span> <span class="n">respectfully</span><span class="o">.</span>
+
+   <span class="n">This</span> <span class="n">structure</span> <span class="n">can</span> <span class="n">then</span> <span class="n">be</span> <span class="n">passed</span> <span class="n">to</span> <span class="n">the</span> <span class="n">SimpleDAQ</span> <span class="n">commands</span> <span class="n">such</span> <span class="k">as</span>
+      <span class="n">vlt</span><span class="o">.</span><span class="n">daq</span><span class="o">.</span><span class="n">simpledaq</span><span class="o">.</span><span class="n">OpenSimpleDaq</span>
+      <span class="n">vlt</span><span class="o">.</span><span class="n">daq</span><span class="o">.</span><span class="n">simpledaq</span><span class="o">.</span><span class="n">CloseSimpleDaq</span>
+      <span class="n">vlt</span><span class="o">.</span><span class="n">daq</span><span class="o">.</span><span class="n">simpledaq</span><span class="o">.</span><span class="n">AcquireSimpleDaq</span>
+
+   <span class="n">SimpleDaq</span> <span class="k">is</span> <span class="n">a</span> <span class="n">wrapper</span> <span class="k">class</span> <span class="k">for</span> <span class="n">many</span> <span class="n">types</span> <span class="n">of</span> <span class="n">aqcusition</span> <span class="n">devices</span><span class="o">.</span>  <span class="n">When</span>
+   <span class="n">one</span> <span class="n">calls</span> <span class="n">vlt</span><span class="o">.</span><span class="n">daq</span><span class="o">.</span><span class="n">simpledaq</span><span class="o">.</span><span class="n">OpenSimpleDaq</span><span class="p">,</span> <span class="n">vlt</span><span class="o">.</span><span class="n">daq</span><span class="o">.</span><span class="n">simpledaq</span><span class="o">.</span><span class="n">OpenSimpleDaq</span> <span class="n">will</span> <span class="ow">in</span> <span class="n">turn</span> <span class="n">call</span>
+     <span class="n">DAQNAME_OpenSimpleDaq</span><span class="p">(</span><span class="n">DAQNAME</span><span class="p">,</span> <span class="n">PARAMETERS</span><span class="p">)</span>
+</code></pre></div>
                 
               
               

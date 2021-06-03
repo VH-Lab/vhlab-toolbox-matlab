@@ -3225,6 +3225,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../%2Bgit/git_stash.m/" class="md-nav__link">
+        vlt.git.git_stash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../%2Bgit/git_status.m/" class="md-nav__link">
         vlt.git.git_status
       </a>
@@ -9237,35 +9249,45 @@
                 
                 
                 <h1 id="vltfitlinethresholdfit">vlt.fit.linethresholdfit<a class="headerlink" href="#vltfitlinethresholdfit" title="Permanent link">&para;</a></h1>
-<p>LINETHRESHOLDFIT - Fit a linear function with a threshold</p>
-<p>[SLOPE, THRESHOLD, CURVE, GOF, FITINFO] = 
-       vlt.fit.linethresholdfit(X, Y, ...)</p>
-<p>Performs a nonlinear fit to find the best parameters for a function of the form
-   Y = SLOPE * vlt.math.rectify(X - THRESHOLD)</p>
-<p>X and Y should be vectors with the same length. SLOPE and THRESHOLD are the
-   best fit values.  CURVE is the fit values of Y for the values of
-   X used to generate the fit. GOF and FITINFO are the Matlab goodness-of-fit
-   and fitinfo structures that are returned by the Matlab function FIT.</p>
-<p>Initial parameters and ranges can be modified by passing name/value pairs.</p>
-<p>This function can also take name/value pairs that modify default behaviors:
-  Parameter (default)               | Description</p>
-<hr />
-<p>threshold_start (min(x))               | Iniitial starting point for THRESHOLD fit
-  thresholdrange [(min(x)-1) max(x)+1)]  | THRESHOLD fit range
-  slope_start (from vlt.stats.quickregression)     | Initial starting point for SLOPE fit
-  slope_range [-Inf Inf]                 | SLOPE fit range</p>
-<p>Example:
-      x = sort(rand(20,1));
-      y = vlt.fit.linepowerthreshold(x,3,0,0.5,1);
-         % limit search to exponents = 1
-      [slope,t,thefit]=vlt.fit.linethresholdfit(x,y);
-      figure;
-      plot(x,y,'bo');
-      hold on;
-      plot(x,thefit,'rx-');
-      box off;</p>
-<p>See also: vlt.stats.quickregression (simple linear fit), FIT, vlt.fit.linepowerthreshold, vlt.fit.linepowerthresholdfit</p>
-<p>Jason Osik and Steve Van Hooser</p>
+<div class="codehilite"><pre><span></span><code><span class="w">  </span><span class="n">LINETHRESHOLDFIT</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">Fit</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">linear</span><span class="w"> </span><span class="k">function</span><span class="w"> </span><span class="n">with</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">threshold</span><span class="w"></span>
+
+<span class="w">   </span><span class="p">[</span><span class="n">SLOPE</span><span class="p">,</span><span class="w"> </span><span class="n">THRESHOLD</span><span class="p">,</span><span class="w"> </span><span class="n">CURVE</span><span class="p">,</span><span class="w"> </span><span class="n">GOF</span><span class="p">,</span><span class="w"> </span><span class="n">FITINFO</span><span class="p">]</span><span class="w"> </span><span class="p">=</span><span class="w"> </span>
+<span class="w">       </span><span class="n">vlt</span><span class="p">.</span><span class="n">fit</span><span class="p">.</span><span class="n">linethresholdfit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="w"> </span><span class="n">Y</span><span class="p">,</span><span class="w"> </span><span class="k">...</span><span class="c">)</span><span class="w"></span>
+
+<span class="w">   </span><span class="n">Performs</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">nonlinear</span><span class="w"> </span><span class="n">fit</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="nb">find</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">best</span><span class="w"> </span><span class="n">parameters</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="k">function</span><span class="w"> </span><span class="n">of</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">form</span><span class="w"></span>
+<span class="w">   </span><span class="n">Y</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">SLOPE</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">vlt</span><span class="p">.</span><span class="n">math</span><span class="p">.</span><span class="n">rectify</span><span class="p">(</span><span class="n">X</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">THRESHOLD</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">   </span><span class="n">X</span><span class="w"> </span><span class="n">and</span><span class="w"> </span><span class="n">Y</span><span class="w"> </span><span class="n">should</span><span class="w"> </span><span class="n">be</span><span class="w"> </span><span class="n">vectors</span><span class="w"> </span><span class="n">with</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">same</span><span class="w"> </span><span class="nb">length</span><span class="p">.</span><span class="w"> </span><span class="n">SLOPE</span><span class="w"> </span><span class="n">and</span><span class="w"> </span><span class="n">THRESHOLD</span><span class="w"> </span><span class="n">are</span><span class="w"> </span><span class="n">the</span><span class="w"></span>
+<span class="w">   </span><span class="n">best</span><span class="w"> </span><span class="n">fit</span><span class="w"> </span><span class="nb">values</span><span class="p">.</span><span class="w">  </span><span class="n">CURVE</span><span class="w"> </span><span class="n">is</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">fit</span><span class="w"> </span><span class="nb">values</span><span class="w"> </span><span class="n">of</span><span class="w"> </span><span class="n">Y</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="nb">values</span><span class="w"> </span><span class="n">of</span><span class="w"></span>
+<span class="w">   </span><span class="n">X</span><span class="w"> </span><span class="n">used</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="n">generate</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">fit</span><span class="p">.</span><span class="w"> </span><span class="n">GOF</span><span class="w"> </span><span class="n">and</span><span class="w"> </span><span class="n">FITINFO</span><span class="w"> </span><span class="n">are</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">Matlab</span><span class="w"> </span><span class="n">goodness</span><span class="o">-</span><span class="n">of</span><span class="o">-</span><span class="n">fit</span><span class="w"></span>
+<span class="w">   </span><span class="n">and</span><span class="w"> </span><span class="n">fitinfo</span><span class="w"> </span><span class="n">structures</span><span class="w"> </span><span class="n">that</span><span class="w"> </span><span class="n">are</span><span class="w"> </span><span class="n">returned</span><span class="w"> </span><span class="n">by</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">Matlab</span><span class="w"> </span><span class="k">function</span><span class="w"> </span><span class="n">FIT</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">   </span><span class="n">Initial</span><span class="w"> </span><span class="n">parameters</span><span class="w"> </span><span class="n">and</span><span class="w"> </span><span class="n">ranges</span><span class="w"> </span><span class="n">can</span><span class="w"> </span><span class="n">be</span><span class="w"> </span><span class="n">modified</span><span class="w"> </span><span class="n">by</span><span class="w"> </span><span class="n">passing</span><span class="w"> </span><span class="n">name</span><span class="o">/</span><span class="n">value</span><span class="w"> </span><span class="n">pairs</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">  </span><span class="n">This</span><span class="w"> </span><span class="k">function</span><span class="w"> </span><span class="n">can</span><span class="w"> </span><span class="n">also</span><span class="w"> </span><span class="n">take</span><span class="w"> </span><span class="n">name</span><span class="o">/</span><span class="n">value</span><span class="w"> </span><span class="n">pairs</span><span class="w"> </span><span class="n">that</span><span class="w"> </span><span class="n">modify</span><span class="w"> </span><span class="n">default</span><span class="w"> </span><span class="n">behaviors</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="n">Parameter</span><span class="w"> </span><span class="p">(</span><span class="n">default</span><span class="p">)</span><span class="w">               </span><span class="o">|</span><span class="w"> </span><span class="n">Description</span><span class="w"></span>
+<span class="w">  </span><span class="o">---------------------------------------------------------------------------</span><span class="w"></span>
+<span class="w">  </span><span class="n">threshold_start</span><span class="w"> </span><span class="p">(</span><span class="nb">min</span><span class="p">(</span><span class="n">x</span><span class="p">))</span><span class="w">               </span><span class="o">|</span><span class="w"> </span><span class="n">Iniitial</span><span class="w"> </span><span class="n">starting</span><span class="w"> </span><span class="n">point</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">THRESHOLD</span><span class="w"> </span><span class="n">fit</span><span class="w"></span>
+<span class="w">  </span><span class="n">thresholdrange</span><span class="w"> </span><span class="p">[(</span><span class="nb">min</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="nb">max</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">)]</span><span class="w">  </span><span class="o">|</span><span class="w"> </span><span class="n">THRESHOLD</span><span class="w"> </span><span class="n">fit</span><span class="w"> </span><span class="n">range</span><span class="w"></span>
+<span class="w">  </span><span class="n">slope_start</span><span class="w"> </span><span class="p">(</span><span class="n">from</span><span class="w"> </span><span class="n">vlt</span><span class="p">.</span><span class="n">stats</span><span class="p">.</span><span class="n">quickregression</span><span class="p">)</span><span class="w">     </span><span class="o">|</span><span class="w"> </span><span class="n">Initial</span><span class="w"> </span><span class="n">starting</span><span class="w"> </span><span class="n">point</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">SLOPE</span><span class="w"> </span><span class="n">fit</span><span class="w"></span>
+<span class="w">  </span><span class="n">slope_range</span><span class="w"> </span><span class="p">[</span><span class="o">-</span><span class="nb">Inf</span><span class="w"> </span><span class="nb">Inf</span><span class="p">]</span><span class="w">                 </span><span class="o">|</span><span class="w"> </span><span class="n">SLOPE</span><span class="w"> </span><span class="n">fit</span><span class="w"> </span><span class="n">range</span><span class="w"></span>
+
+
+<span class="w">  </span><span class="n">Example</span><span class="p">:</span><span class="w"></span>
+<span class="w">      </span><span class="n">x</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">sort</span><span class="p">(</span><span class="nb">rand</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span><span class="mi">1</span><span class="p">));</span><span class="w"></span>
+<span class="w">      </span><span class="n">y</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">vlt</span><span class="p">.</span><span class="n">fit</span><span class="p">.</span><span class="n">linepowerthreshold</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.5</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span><span class="w"></span>
+<span class="w">         </span><span class="c">% limit search to exponents = 1</span><span class="w"></span>
+<span class="w">      </span><span class="p">[</span><span class="n">slope</span><span class="p">,</span><span class="n">t</span><span class="p">,</span><span class="n">thefit</span><span class="p">]=</span><span class="n">vlt</span><span class="p">.</span><span class="n">fit</span><span class="p">.</span><span class="n">linethresholdfit</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">);</span><span class="w"></span>
+<span class="w">      </span><span class="nb">figure</span><span class="p">;</span><span class="w"></span>
+<span class="w">      </span><span class="nb">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="s">&#39;bo&#39;</span><span class="p">);</span><span class="w"></span>
+<span class="w">      </span><span class="n">hold</span><span class="w"> </span><span class="s">on</span><span class="p">;</span><span class="w"></span>
+<span class="w">      </span><span class="nb">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">thefit</span><span class="p">,</span><span class="s">&#39;rx-&#39;</span><span class="p">);</span><span class="w"></span>
+<span class="w">      </span><span class="n">box</span><span class="w"> </span><span class="s">off</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">  </span><span class="n">See</span><span class="w"> </span><span class="s">also:</span><span class="w"> </span><span class="s">vlt.stats.quickregression</span><span class="w"> </span><span class="s">(simple</span><span class="w"> </span><span class="s">linear</span><span class="w"> </span><span class="s">fit),</span><span class="w"> </span><span class="s">FIT,</span><span class="w"> </span><span class="s">vlt.fit.linepowerthreshold,</span><span class="w"> </span><span class="s">vlt.fit.linepowerthresholdfit</span><span class="w"></span>
+
+<span class="w">  </span><span class="n">Jason</span><span class="w"> </span><span class="n">Osik</span><span class="w"> </span><span class="n">and</span><span class="w"> </span><span class="n">Steve</span><span class="w"> </span><span class="n">Van</span><span class="w"> </span><span class="n">Hooser</span><span class="w"></span>
+</code></pre></div>
                 
               
               

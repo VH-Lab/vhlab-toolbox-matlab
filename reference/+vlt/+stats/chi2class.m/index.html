@@ -3213,6 +3213,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../%2Bgit/git_stash.m/" class="md-nav__link">
+        vlt.git.git_stash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../%2Bgit/git_status.m/" class="md-nav__link">
         vlt.git.git_status
       </a>
@@ -9237,24 +9249,25 @@
                 
                 
                 <h1 id="vltstatschi2class">vlt.stats.chi2class<a class="headerlink" href="#vltstatschi2class" title="Permanent link">&para;</a></h1>
-<p>CHI2CLASS - Tests whether observations are distributed equally among classes</p>
-<div class="codehilite"><pre><span></span><code><span class="cp">[</span><span class="nx">P</span><span class="p">,</span><span class="nx">CHI2</span><span class="p">,</span><span class="nx">E</span><span class="cp">]</span> <span class="o">=</span> <span class="nt">vlt</span><span class="p">.</span><span class="nc">stats</span><span class="p">.</span><span class="nc">chi2class</span><span class="o">(</span><span class="nt">D</span><span class="o">)</span>
+<div class="codehilite"><pre><span></span><code>  <span class="nt">CHI2CLASS</span> <span class="nt">-</span> <span class="nt">Tests</span> <span class="nt">whether</span> <span class="nt">observations</span> <span class="nt">are</span> <span class="nt">distributed</span> <span class="nt">equally</span> <span class="nt">among</span> <span class="nt">classes</span>
 
-<span class="nt">Returns</span> <span class="nt">the</span> <span class="nt">p</span> <span class="nt">value</span> <span class="nt">and</span> <span class="nt">chi-square</span> <span class="nt">value</span> <span class="nt">of</span> <span class="nt">the</span> <span class="nt">test</span> <span class="nt">of</span> <span class="nt">the</span> <span class="nt">null</span>
-<span class="nt">hypothesis</span> <span class="nt">that</span> <span class="nt">cells</span> <span class="nt">are</span> <span class="nt">distributed</span> <span class="nt">equally</span> <span class="nt">among</span> <span class="nt">classes</span> <span class="nt">in</span> <span class="nt">several</span>
-<span class="nt">groups</span><span class="o">.</span>  <span class="nt">E</span> <span class="nt">is</span> <span class="nt">the</span> <span class="nt">expected</span> <span class="nt">number</span> <span class="nt">of</span> <span class="nt">members</span> <span class="nt">of</span> <span class="nt">each</span> <span class="nt">group</span> <span class="nt">if</span> <span class="nt">there</span>
-<span class="nt">are</span> <span class="nt">no</span> <span class="nt">differences</span> <span class="nt">among</span> <span class="nt">the</span> <span class="nt">experimental</span> <span class="nt">groups</span><span class="o">.</span>
+    <span class="cp">[</span><span class="nx">P</span><span class="p">,</span><span class="nx">CHI2</span><span class="p">,</span><span class="nx">E</span><span class="cp">]</span> <span class="o">=</span> <span class="nt">vlt</span><span class="p">.</span><span class="nc">stats</span><span class="p">.</span><span class="nc">chi2class</span><span class="o">(</span><span class="nt">D</span><span class="o">)</span>
 
-<span class="nt">D</span> <span class="nt">should</span> <span class="nt">be</span> <span class="nt">the</span> <span class="nt">grouping</span> <span class="nt">matrix</span><span class="o">.</span>  <span class="nt">Each</span> <span class="nt">row</span> <span class="nt">of</span> <span class="nt">D</span> <span class="nt">should</span> <span class="nt">have</span> <span class="nt">the</span>
-<span class="nt">class</span> <span class="nt">memberships</span> <span class="nt">for</span> <span class="nt">an</span> <span class="nt">experimental</span> <span class="nt">group</span><span class="o">.</span>
+    <span class="nt">Returns</span> <span class="nt">the</span> <span class="nt">p</span> <span class="nt">value</span> <span class="nt">and</span> <span class="nt">chi-square</span> <span class="nt">value</span> <span class="nt">of</span> <span class="nt">the</span> <span class="nt">test</span> <span class="nt">of</span> <span class="nt">the</span> <span class="nt">null</span>
+    <span class="nt">hypothesis</span> <span class="nt">that</span> <span class="nt">cells</span> <span class="nt">are</span> <span class="nt">distributed</span> <span class="nt">equally</span> <span class="nt">among</span> <span class="nt">classes</span> <span class="nt">in</span> <span class="nt">several</span>
+    <span class="nt">groups</span><span class="o">.</span>  <span class="nt">E</span> <span class="nt">is</span> <span class="nt">the</span> <span class="nt">expected</span> <span class="nt">number</span> <span class="nt">of</span> <span class="nt">members</span> <span class="nt">of</span> <span class="nt">each</span> <span class="nt">group</span> <span class="nt">if</span> <span class="nt">there</span>
+    <span class="nt">are</span> <span class="nt">no</span> <span class="nt">differences</span> <span class="nt">among</span> <span class="nt">the</span> <span class="nt">experimental</span> <span class="nt">groups</span><span class="o">.</span>
 
-<span class="nt">Example</span><span class="o">:</span>  <span class="nt">Suppose</span> <span class="nt">we</span> <span class="nt">want</span> <span class="nt">to</span> <span class="nt">examine</span> <span class="nt">whether</span> <span class="nt">the</span> <span class="nt">gender</span> <span class="nt">distribution</span>
-<span class="nt">of</span> <span class="nt">computer</span> <span class="nt">science</span> <span class="nt">majors</span> <span class="nt">differs</span> <span class="nt">from</span> <span class="nt">that</span> <span class="nt">of</span> <span class="nt">English</span> <span class="nt">majors</span> <span class="nt">in</span> <span class="nt">a</span> 
-<span class="nt">small</span> <span class="nt">college</span><span class="o">.</span>  <span class="nt">Suppose</span> <span class="nt">that</span> <span class="nt">there</span> <span class="nt">are</span> <span class="nt">90</span> <span class="nt">male</span> <span class="nt">and</span> <span class="nt">10</span> <span class="nt">female</span> <span class="nt">computer</span>
-<span class="nt">science</span> <span class="nt">majors</span> <span class="nt">and</span> <span class="nt">40</span> <span class="nt">male</span> <span class="nt">and</span> <span class="nt">60</span> <span class="nt">female</span> <span class="nt">English</span> <span class="nt">majors</span><span class="o">.</span>
+    <span class="nt">D</span> <span class="nt">should</span> <span class="nt">be</span> <span class="nt">the</span> <span class="nt">grouping</span> <span class="nt">matrix</span><span class="o">.</span>  <span class="nt">Each</span> <span class="nt">row</span> <span class="nt">of</span> <span class="nt">D</span> <span class="nt">should</span> <span class="nt">have</span> <span class="nt">the</span>
+    <span class="nt">class</span> <span class="nt">memberships</span> <span class="nt">for</span> <span class="nt">an</span> <span class="nt">experimental</span> <span class="nt">group</span><span class="o">.</span>
 
-<span class="nt">D</span> <span class="o">=</span> <span class="cp">[</span> <span class="mi">90</span> <span class="mi">10</span> <span class="p">;</span> <span class="mi">40</span> <span class="mi">60</span> <span class="cp">]</span><span class="o">;</span>
-<span class="cp">[</span><span class="nx">p</span><span class="p">,</span><span class="nx">chi2</span><span class="p">,</span><span class="nx">E</span><span class="cp">]</span> <span class="o">=</span> <span class="nt">vlt</span><span class="p">.</span><span class="nc">stats</span><span class="p">.</span><span class="nc">chi2class</span><span class="o">(</span><span class="nt">D</span><span class="o">)</span>
+    <span class="nt">Example</span><span class="o">:</span>  <span class="nt">Suppose</span> <span class="nt">we</span> <span class="nt">want</span> <span class="nt">to</span> <span class="nt">examine</span> <span class="nt">whether</span> <span class="nt">the</span> <span class="nt">gender</span> <span class="nt">distribution</span>
+    <span class="nt">of</span> <span class="nt">computer</span> <span class="nt">science</span> <span class="nt">majors</span> <span class="nt">differs</span> <span class="nt">from</span> <span class="nt">that</span> <span class="nt">of</span> <span class="nt">English</span> <span class="nt">majors</span> <span class="nt">in</span> <span class="nt">a</span> 
+    <span class="nt">small</span> <span class="nt">college</span><span class="o">.</span>  <span class="nt">Suppose</span> <span class="nt">that</span> <span class="nt">there</span> <span class="nt">are</span> <span class="nt">90</span> <span class="nt">male</span> <span class="nt">and</span> <span class="nt">10</span> <span class="nt">female</span> <span class="nt">computer</span>
+    <span class="nt">science</span> <span class="nt">majors</span> <span class="nt">and</span> <span class="nt">40</span> <span class="nt">male</span> <span class="nt">and</span> <span class="nt">60</span> <span class="nt">female</span> <span class="nt">English</span> <span class="nt">majors</span><span class="o">.</span>
+
+    <span class="nt">D</span> <span class="o">=</span> <span class="cp">[</span> <span class="mi">90</span> <span class="mi">10</span> <span class="p">;</span> <span class="mi">40</span> <span class="mi">60</span> <span class="cp">]</span><span class="o">;</span>
+    <span class="cp">[</span><span class="nx">p</span><span class="p">,</span><span class="nx">chi2</span><span class="p">,</span><span class="nx">E</span><span class="cp">]</span> <span class="o">=</span> <span class="nt">vlt</span><span class="p">.</span><span class="nc">stats</span><span class="p">.</span><span class="nc">chi2class</span><span class="o">(</span><span class="nt">D</span><span class="o">)</span>
 </code></pre></div>
                 
               

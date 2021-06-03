@@ -3225,6 +3225,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../%2Bgit/git_stash.m/" class="md-nav__link">
+        vlt.git.git_stash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../%2Bgit/git_status.m/" class="md-nav__link">
         vlt.git.git_status
       </a>
@@ -9237,15 +9249,21 @@
                 
                 
                 <h1 id="vltdataislikevarname">vlt.data.islikevarname<a class="headerlink" href="#vltdataislikevarname" title="Permanent link">&para;</a></h1>
-<p>ISLIKEVARNAME - Is a string like a Matlab variable name (begin with letter)?</p>
-<p>[B, ERRORMSG] = vlt.data.islikevarname(NAME)</p>
-<p>Checks to see if NAME is a like a valid Matlab variable name. It must
-      a) begin with a letter
-      b) not have any whitespace</p>
-<p>Unlike real Matlab variables, NAME may be a Matlab keyword.</p>
-<p>B is 1 if NAME meets the criteria and is 0 otherwise.
-   ERRORMSG is a text message describing the problem.</p>
-<p>See also: ISVARNAME, vlt.data.valid_varname</p>
+<div class="codehilite"><pre><span></span><code>  <span class="n">ISLIKEVARNAME</span> <span class="o">-</span> <span class="n">Is</span> <span class="n">a</span> <span class="n">string</span> <span class="n">like</span> <span class="n">a</span> <span class="n">Matlab</span> <span class="n">variable</span> <span class="n">name</span> <span class="p">(</span><span class="n">begin</span> <span class="n">with</span> <span class="n">letter</span><span class="p">)</span><span class="err">?</span>
+
+   <span class="p">[</span><span class="n">B</span><span class="p">,</span> <span class="n">ERRORMSG</span><span class="p">]</span> <span class="o">=</span> <span class="n">vlt</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">islikevarname</span><span class="p">(</span><span class="n">NAME</span><span class="p">)</span>
+
+   <span class="n">Checks</span> <span class="n">to</span> <span class="n">see</span> <span class="k">if</span> <span class="n">NAME</span> <span class="k">is</span> <span class="n">a</span> <span class="n">like</span> <span class="n">a</span> <span class="n">valid</span> <span class="n">Matlab</span> <span class="n">variable</span> <span class="n">name</span><span class="o">.</span> <span class="n">It</span> <span class="n">must</span>
+      <span class="n">a</span><span class="p">)</span> <span class="n">begin</span> <span class="n">with</span> <span class="n">a</span> <span class="n">letter</span>
+      <span class="n">b</span><span class="p">)</span> <span class="ow">not</span> <span class="n">have</span> <span class="n">any</span> <span class="n">whitespace</span>
+
+   <span class="n">Unlike</span> <span class="n">real</span> <span class="n">Matlab</span> <span class="n">variables</span><span class="p">,</span> <span class="n">NAME</span> <span class="n">may</span> <span class="n">be</span> <span class="n">a</span> <span class="n">Matlab</span> <span class="n">keyword</span><span class="o">.</span>
+
+   <span class="n">B</span> <span class="k">is</span> <span class="mi">1</span> <span class="k">if</span> <span class="n">NAME</span> <span class="n">meets</span> <span class="n">the</span> <span class="n">criteria</span> <span class="ow">and</span> <span class="k">is</span> <span class="mi">0</span> <span class="n">otherwise</span><span class="o">.</span>
+   <span class="n">ERRORMSG</span> <span class="k">is</span> <span class="n">a</span> <span class="n">text</span> <span class="n">message</span> <span class="n">describing</span> <span class="n">the</span> <span class="n">problem</span><span class="o">.</span>
+
+   <span class="n">See</span> <span class="n">also</span><span class="p">:</span> <span class="n">ISVARNAME</span><span class="p">,</span> <span class="n">vlt</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">valid_varname</span>
+</code></pre></div>
                 
               
               

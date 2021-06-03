@@ -3213,6 +3213,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../%2Bgit/git_stash.m/" class="md-nav__link">
+        vlt.git.git_stash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../%2Bgit/git_status.m/" class="md-nav__link">
         vlt.git.git_status
       </a>
@@ -9237,29 +9249,32 @@
                 
                 
                 <h1 id="vltsignalxcorr_stepfuncstepfunc">vlt.signal.xcorr_stepfuncstepfunc<a class="headerlink" href="#vltsignalxcorr_stepfuncstepfunc" title="Permanent link">&para;</a></h1>
-<p>XCORR_STEPFUNC - Perform correlation between a step function and a step function</p>
-<p>[CORR,LAGS] = vlt.signal.xcorr_stepfuncstepfunc(TE, T1, SIGNAL1, MAXLAG, T2, SIGNAL2)</p>
-<p>Computes the discrete approximation to the correlation
-    between an N step-function SIGNAL1 that changes values at times T1
-    and is at times T1, and the N step-function signal SIGNAL2,
-    which change values at times T2.  SIGNAL2 does not have to
-    have the same sample interval (sample rate) as SIGNAL1.
-    Note that values of SIGNAL1 and SIGNAL2 that are out of the range
-    are set to 0.</p>
-<div class="codehilite"><pre><span></span><code><span class="nv">TE</span> <span class="nv">are</span> <span class="nv">the</span> <span class="nv">times</span> <span class="nv">over</span> <span class="nv">which</span> <span class="nv">to</span> <span class="nv">evalute</span> <span class="nv">the</span> <span class="nv">step</span> <span class="nv">functions</span>, <span class="nv">and</span>
-<span class="nv">the</span> <span class="nv">time</span> <span class="nv">between</span> <span class="nv">successive</span> <span class="nv">values</span> <span class="nv">of</span> <span class="nv">TE</span> <span class="nv">is</span> <span class="nv">equal</span> <span class="nv">to</span> <span class="mi">1</span> <span class="nv">sample</span> <span class="nv">in</span> <span class="nv">the</span>
-<span class="nv">returned</span> <span class="nv">cross</span><span class="o">-</span><span class="nv">correlation</span>.
+<div class="codehilite"><pre><span></span><code>  <span class="n">XCORR_STEPFUNC</span> <span class="o">-</span> <span class="n">Perform</span> <span class="n">correlation</span> <span class="n">between</span> <span class="n">a</span> <span class="n">step</span> <span class="n">function</span> <span class="ow">and</span> <span class="n">a</span> <span class="n">step</span> <span class="n">function</span>
 
-<span class="nv">MAXLAG</span> <span class="nv">is</span> <span class="nv">the</span> <span class="nv">maximum</span> <span class="nv">lag</span> <span class="nv">to</span> <span class="nv">examine</span> <span class="ss">(</span><span class="nv">in</span> <span class="nv">samples</span> <span class="nv">of</span> <span class="nv">TE</span><span class="ss">)</span>. <span class="nv">The</span> <span class="nv">XCORR</span>
-<span class="nv">normalization</span> <span class="nv">is</span> <span class="s1">&#39;</span><span class="s">biased</span><span class="s1">&#39;</span>.
+  <span class="p">[</span><span class="n">CORR</span><span class="p">,</span><span class="n">LAGS</span><span class="p">]</span> <span class="o">=</span> <span class="n">vlt</span><span class="o">.</span><span class="k">signal</span><span class="o">.</span><span class="n">xcorr_stepfuncstepfunc</span><span class="p">(</span><span class="n">TE</span><span class="p">,</span> <span class="n">T1</span><span class="p">,</span> <span class="n">SIGNAL1</span><span class="p">,</span> <span class="n">MAXLAG</span><span class="p">,</span> <span class="n">T2</span><span class="p">,</span> <span class="n">SIGNAL2</span><span class="p">)</span>
 
-<span class="nv">The</span> <span class="nv">correlation</span> <span class="nv">is</span> <span class="nv">returned</span> <span class="nv">in</span> <span class="nv">CORR</span>. <span class="nv">It</span> <span class="nv">has</span> <span class="mi">1</span> <span class="nv">column</span> <span class="nv">per</span> <span class="nv">dimension</span> <span class="nv">of</span> <span class="nv">the</span>
-<span class="nv">two</span> <span class="nv">step</span> <span class="nv">functions</span>.
+   <span class="n">Computes</span> <span class="n">the</span> <span class="n">discrete</span> <span class="n">approximation</span> <span class="n">to</span> <span class="n">the</span> <span class="n">correlation</span>
+    <span class="n">between</span> <span class="n">an</span> <span class="n">N</span> <span class="n">step</span><span class="o">-</span><span class="n">function</span> <span class="n">SIGNAL1</span> <span class="n">that</span> <span class="n">changes</span> <span class="n">values</span> <span class="n">at</span> <span class="n">times</span> <span class="n">T1</span>
+    <span class="ow">and</span> <span class="k">is</span> <span class="n">at</span> <span class="n">times</span> <span class="n">T1</span><span class="p">,</span> <span class="ow">and</span> <span class="n">the</span> <span class="n">N</span> <span class="n">step</span><span class="o">-</span><span class="n">function</span> <span class="k">signal</span> <span class="n">SIGNAL2</span><span class="p">,</span>
+    <span class="n">which</span> <span class="n">change</span> <span class="n">values</span> <span class="n">at</span> <span class="n">times</span> <span class="n">T2</span><span class="o">.</span>  <span class="n">SIGNAL2</span> <span class="n">does</span> <span class="ow">not</span> <span class="n">have</span> <span class="n">to</span>
+    <span class="n">have</span> <span class="n">the</span> <span class="n">same</span> <span class="n">sample</span> <span class="n">interval</span> <span class="p">(</span><span class="n">sample</span> <span class="n">rate</span><span class="p">)</span> <span class="k">as</span> <span class="n">SIGNAL1</span><span class="o">.</span>
+    <span class="n">Note</span> <span class="n">that</span> <span class="n">values</span> <span class="n">of</span> <span class="n">SIGNAL1</span> <span class="ow">and</span> <span class="n">SIGNAL2</span> <span class="n">that</span> <span class="n">are</span> <span class="n">out</span> <span class="n">of</span> <span class="n">the</span> <span class="nb">range</span>
+    <span class="n">are</span> <span class="n">set</span> <span class="n">to</span> <span class="mf">0.</span>
 
-<span class="ss">(</span><span class="nv">Programmer</span> <span class="nv">note</span>: <span class="nv">there</span> <span class="nv">is</span> <span class="nv">a</span> <span class="nv">probably</span> <span class="nv">a</span> <span class="nv">better</span> <span class="nv">algorithm</span> <span class="k">for</span> <span class="nv">this</span>.<span class="ss">)</span>
+    <span class="n">TE</span> <span class="n">are</span> <span class="n">the</span> <span class="n">times</span> <span class="n">over</span> <span class="n">which</span> <span class="n">to</span> <span class="n">evalute</span> <span class="n">the</span> <span class="n">step</span> <span class="n">functions</span><span class="p">,</span> <span class="ow">and</span>
+    <span class="n">the</span> <span class="n">time</span> <span class="n">between</span> <span class="n">successive</span> <span class="n">values</span> <span class="n">of</span> <span class="n">TE</span> <span class="k">is</span> <span class="n">equal</span> <span class="n">to</span> <span class="mi">1</span> <span class="n">sample</span> <span class="ow">in</span> <span class="n">the</span>
+    <span class="n">returned</span> <span class="n">cross</span><span class="o">-</span><span class="n">correlation</span><span class="o">.</span>
+
+    <span class="n">MAXLAG</span> <span class="k">is</span> <span class="n">the</span> <span class="n">maximum</span> <span class="n">lag</span> <span class="n">to</span> <span class="n">examine</span> <span class="p">(</span><span class="ow">in</span> <span class="n">samples</span> <span class="n">of</span> <span class="n">TE</span><span class="p">)</span><span class="o">.</span> <span class="n">The</span> <span class="n">XCORR</span>
+    <span class="n">normalization</span> <span class="k">is</span> <span class="s1">&#39;biased&#39;</span><span class="o">.</span>
+
+    <span class="n">The</span> <span class="n">correlation</span> <span class="k">is</span> <span class="n">returned</span> <span class="ow">in</span> <span class="n">CORR</span><span class="o">.</span> <span class="n">It</span> <span class="n">has</span> <span class="mi">1</span> <span class="n">column</span> <span class="n">per</span> <span class="n">dimension</span> <span class="n">of</span> <span class="n">the</span>
+    <span class="n">two</span> <span class="n">step</span> <span class="n">functions</span><span class="o">.</span>
+
+    <span class="p">(</span><span class="n">Programmer</span> <span class="n">note</span><span class="p">:</span> <span class="n">there</span> <span class="k">is</span> <span class="n">a</span> <span class="n">probably</span> <span class="n">a</span> <span class="n">better</span> <span class="n">algorithm</span> <span class="k">for</span> <span class="n">this</span><span class="o">.</span><span class="p">)</span>
+
+   <span class="n">See</span> <span class="n">also</span><span class="p">:</span> <span class="n">XCORR</span><span class="p">,</span> <span class="n">vlt</span><span class="o">.</span><span class="k">signal</span><span class="o">.</span><span class="n">xcorr_stepfunc</span><span class="p">,</span> <span class="n">vlt</span><span class="o">.</span><span class="n">math</span><span class="o">.</span><span class="n">stepfunc</span><span class="p">,</span> <span class="n">vlt</span><span class="o">.</span><span class="k">signal</span><span class="o">.</span><span class="n">correlation_stepfunc</span>
 </code></pre></div>
-
-<p>See also: XCORR, vlt.signal.xcorr_stepfunc, vlt.math.stepfunc, vlt.signal.correlation_stepfunc</p>
                 
               
               

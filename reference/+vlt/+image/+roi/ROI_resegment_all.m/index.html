@@ -3213,6 +3213,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../../%2Bgit/git_stash.m/" class="md-nav__link">
+        vlt.git.git_stash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../../%2Bgit/git_status.m/" class="md-nav__link">
         vlt.git.git_status
       </a>
@@ -9239,26 +9251,32 @@
                 
                 
                 <h1 id="vltimageroiroi_resegment_all">vlt.image.roi.ROI_resegment_all<a class="headerlink" href="#vltimageroiroi_resegment_all" title="Permanent link">&para;</a></h1>
-<p>ROI_RESEGMENT_ALL - resegment ROIs from an image (such as with WATERSHED), updating ROIs and labeled image</p>
-<p>[CC, L] = ROI_RESEGMENT_ALL(CC, L, IM, ...)</p>
-<p>Returns a modified set of ROIs given a labeled image L, a list of ROIs returned from BWCONNCOMP (CC)
-  and the original image IM. </p>
-<p>This function takes parameters as name/value pairs that modify its behavior:
-  Parameter (default)                 | Description</p>
-<hr />
-<p>resegment_namevaluepairs ({})       | Name/value pairs to pass to ROI_resegment
-                                      |   (see HELP ROI_RESEGMENT)
-  rois_to_update ([1:CC.NumObjects])  | Index values of ROIs to update (can be a subset)
-  UseProgressBar (1)                  | Should we use a progress bar? (0/1)</p>
-<p>Example:
-      myimg = ROI_imageexample;
-      imagedisplay(myimg);
-      BW = myimg&gt;1e-3;
-      CC_orig = bwconncomp(BW);
-      L_orig = labelmatrix(CC_orig);
-      figure, imshow(label2rgb(L_orig));
-      [CC_new,L_new] = ROI_resegment_all(CC_orig, L_orig, myimg);
-      figure, imshow(label2rgb(L_new));</p>
+<div class="codehilite"><pre><span></span><code>  <span class="nt">ROI_RESEGMENT_ALL</span> <span class="nt">-</span> <span class="nt">resegment</span> <span class="nt">ROIs</span> <span class="nt">from</span> <span class="nt">an</span> <span class="nt">image</span> <span class="o">(</span><span class="nt">such</span> <span class="nt">as</span> <span class="nt">with</span> <span class="nt">WATERSHED</span><span class="o">),</span> <span class="nt">updating</span> <span class="nt">ROIs</span> <span class="nt">and</span> <span class="nt">labeled</span> <span class="nt">image</span>
+
+  <span class="cp">[</span><span class="nx">CC</span><span class="p">,</span> <span class="nx">L</span><span class="cp">]</span> <span class="o">=</span> <span class="nt">ROI_RESEGMENT_ALL</span><span class="o">(</span><span class="nt">CC</span><span class="o">,</span> <span class="nt">L</span><span class="o">,</span> <span class="nt">IM</span><span class="o">,</span> <span class="o">...)</span>
+
+  <span class="nt">Returns</span> <span class="nt">a</span> <span class="nt">modified</span> <span class="nt">set</span> <span class="nt">of</span> <span class="nt">ROIs</span> <span class="nt">given</span> <span class="nt">a</span> <span class="nt">labeled</span> <span class="nt">image</span> <span class="nt">L</span><span class="o">,</span> <span class="nt">a</span> <span class="nt">list</span> <span class="nt">of</span> <span class="nt">ROIs</span> <span class="nt">returned</span> <span class="nt">from</span> <span class="nt">BWCONNCOMP</span> <span class="o">(</span><span class="nt">CC</span><span class="o">)</span>
+  <span class="nt">and</span> <span class="nt">the</span> <span class="nt">original</span> <span class="nt">image</span> <span class="nt">IM</span><span class="o">.</span> 
+
+  <span class="nt">This</span> <span class="nt">function</span> <span class="nt">takes</span> <span class="nt">parameters</span> <span class="nt">as</span> <span class="nt">name</span><span class="o">/</span><span class="nt">value</span> <span class="nt">pairs</span> <span class="nt">that</span> <span class="nt">modify</span> <span class="nt">its</span> <span class="nt">behavior</span><span class="o">:</span>
+  <span class="nt">Parameter</span> <span class="o">(</span><span class="nt">default</span><span class="o">)</span>                 <span class="o">|</span> <span class="nt">Description</span>
+  <span class="nt">------------------------------------------------------------------------------</span>
+  <span class="nt">resegment_namevaluepairs</span> <span class="o">(</span><span class="p">{}</span><span class="o">)</span>       <span class="o">|</span> <span class="nt">Name</span><span class="o">/</span><span class="nt">value</span> <span class="nt">pairs</span> <span class="nt">to</span> <span class="nt">pass</span> <span class="nt">to</span> <span class="nt">ROI_resegment</span>
+                                      <span class="o">|</span>   <span class="o">(</span><span class="nt">see</span> <span class="nt">HELP</span> <span class="nt">ROI_RESEGMENT</span><span class="o">)</span>
+  <span class="nt">rois_to_update</span> <span class="o">(</span><span class="cp">[</span><span class="mi">1</span><span class="p">:</span><span class="nx">CC.NumObjects</span><span class="cp">]</span><span class="o">)</span>  <span class="o">|</span> <span class="nt">Index</span> <span class="nt">values</span> <span class="nt">of</span> <span class="nt">ROIs</span> <span class="nt">to</span> <span class="nt">update</span> <span class="o">(</span><span class="nt">can</span> <span class="nt">be</span> <span class="nt">a</span> <span class="nt">subset</span><span class="o">)</span>
+  <span class="nt">UseProgressBar</span> <span class="o">(</span><span class="nt">1</span><span class="o">)</span>                  <span class="o">|</span> <span class="nt">Should</span> <span class="nt">we</span> <span class="nt">use</span> <span class="nt">a</span> <span class="nt">progress</span> <span class="nt">bar</span><span class="o">?</span> <span class="o">(</span><span class="nt">0</span><span class="o">/</span><span class="nt">1</span><span class="o">)</span>
+
+
+  <span class="nt">Example</span><span class="o">:</span>
+      <span class="nt">myimg</span> <span class="o">=</span> <span class="nt">ROI_imageexample</span><span class="o">;</span>
+      <span class="nt">imagedisplay</span><span class="o">(</span><span class="nt">myimg</span><span class="o">);</span>
+      <span class="nt">BW</span> <span class="o">=</span> <span class="nt">myimg</span><span class="o">&gt;</span><span class="nt">1e-3</span><span class="o">;</span>
+      <span class="nt">CC_orig</span> <span class="o">=</span> <span class="nt">bwconncomp</span><span class="o">(</span><span class="nt">BW</span><span class="o">);</span>
+      <span class="nt">L_orig</span> <span class="o">=</span> <span class="nt">labelmatrix</span><span class="o">(</span><span class="nt">CC_orig</span><span class="o">);</span>
+      <span class="nt">figure</span><span class="o">,</span> <span class="nt">imshow</span><span class="o">(</span><span class="nt">label2rgb</span><span class="o">(</span><span class="nt">L_orig</span><span class="o">));</span>
+      <span class="cp">[</span><span class="nx">CC_new</span><span class="p">,</span><span class="nx">L_new</span><span class="cp">]</span> <span class="o">=</span> <span class="nt">ROI_resegment_all</span><span class="o">(</span><span class="nt">CC_orig</span><span class="o">,</span> <span class="nt">L_orig</span><span class="o">,</span> <span class="nt">myimg</span><span class="o">);</span>
+      <span class="nt">figure</span><span class="o">,</span> <span class="nt">imshow</span><span class="o">(</span><span class="nt">label2rgb</span><span class="o">(</span><span class="nt">L_new</span><span class="o">));</span>
+</code></pre></div>
                 
               
               

@@ -3225,6 +3225,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../%2Bgit/git_stash.m/" class="md-nav__link">
+        vlt.git.git_stash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../%2Bgit/git_status.m/" class="md-nav__link">
         vlt.git.git_status
       </a>
@@ -9237,18 +9249,25 @@
                 
                 
                 <h1 id="vltdatasortstruct">vlt.data.sortstruct<a class="headerlink" href="#vltdatasortstruct" title="Permanent link">&para;</a></h1>
-<p>SORTSTRUCT - sort structure by fieldname values</p>
-<p>[S_sorted, indexes] = vlt.data.sortstruct(S, 'sign_fieldname1', 'sign_fieldname2', ...)</p>
-<p>Sorts the structure S according to the values in successive fieldnames.</p>
-<p>Given a structure S, S_sorted is the sorted version according to the values
-  in fieldname1, fieldname2, etc. </p>
-<p>sign should either be +1 or -1 depending upon if the data are to be sorted in
-  ascending or descending order.</p>
-<p>Example: 
-     s = struct('test1',[1],'test2',5);
-     s(2) = struct('test1',[1],'test2',4); </p>
-<div class="codehilite"><pre><span></span><code><span class="p">[</span><span class="n">S_sorted</span><span class="p">,</span><span class="n">indexes</span><span class="p">]</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">vlt</span><span class="p">.</span><span class="n">data</span><span class="p">.</span><span class="n">sortstruct</span><span class="p">(</span><span class="n">s</span><span class="p">,</span><span class="s">&#39;+test1&#39;</span><span class="p">,</span><span class="s">&#39;+test2&#39;</span><span class="p">);</span><span class="w"></span>
-<span class="w"> </span><span class="c">% indexes == [2;1] and S_sorted = s([2;1])</span><span class="w"></span>
+<div class="codehilite"><pre><span></span><code><span class="w">  </span><span class="n">SORTSTRUCT</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nb">sort</span><span class="w"> </span><span class="n">structure</span><span class="w"> </span><span class="n">by</span><span class="w"> </span><span class="n">fieldname</span><span class="w"> </span><span class="nb">values</span><span class="w"></span>
+
+<span class="w">  </span><span class="p">[</span><span class="n">S_sorted</span><span class="p">,</span><span class="w"> </span><span class="n">indexes</span><span class="p">]</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">vlt</span><span class="p">.</span><span class="n">data</span><span class="p">.</span><span class="n">sortstruct</span><span class="p">(</span><span class="n">S</span><span class="p">,</span><span class="w"> </span><span class="s">&#39;sign_fieldname1&#39;</span><span class="p">,</span><span class="w"> </span><span class="s">&#39;sign_fieldname2&#39;</span><span class="p">,</span><span class="w"> </span><span class="k">...</span><span class="c">)</span><span class="w"></span>
+
+<span class="w">  </span><span class="n">Sorts</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">structure</span><span class="w"> </span><span class="n">S</span><span class="w"> </span><span class="n">according</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="nb">values</span><span class="w"> </span><span class="n">in</span><span class="w"> </span><span class="n">successive</span><span class="w"> </span><span class="nb">fieldnames</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">  </span><span class="n">Given</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">structure</span><span class="w"> </span><span class="n">S</span><span class="p">,</span><span class="w"> </span><span class="n">S_sorted</span><span class="w"> </span><span class="n">is</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">sorted</span><span class="w"> </span><span class="nb">version</span><span class="w"> </span><span class="n">according</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="nb">values</span><span class="w"></span>
+<span class="w">  </span><span class="n">in</span><span class="w"> </span><span class="n">fieldname1</span><span class="p">,</span><span class="w"> </span><span class="n">fieldname2</span><span class="p">,</span><span class="w"> </span><span class="n">etc</span><span class="p">.</span><span class="w"> </span>
+
+<span class="w">  </span><span class="nb">sign</span><span class="w"> </span><span class="n">should</span><span class="w"> </span><span class="n">either</span><span class="w"> </span><span class="n">be</span><span class="w"> </span><span class="o">+</span><span class="mi">1</span><span class="w"> </span><span class="n">or</span><span class="w"> </span><span class="o">-</span><span class="mi">1</span><span class="w"> </span><span class="n">depending</span><span class="w"> </span><span class="n">upon</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">data</span><span class="w"> </span><span class="n">are</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="n">be</span><span class="w"> </span><span class="n">sorted</span><span class="w"> </span><span class="n">in</span><span class="w"></span>
+<span class="w">  </span><span class="n">ascending</span><span class="w"> </span><span class="n">or</span><span class="w"> </span><span class="n">descending</span><span class="w"> </span><span class="n">order</span><span class="p">.</span><span class="w"></span>
+
+
+<span class="w">  </span><span class="n">Example</span><span class="p">:</span><span class="w"> </span>
+<span class="w">     </span><span class="n">s</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">struct</span><span class="p">(</span><span class="s">&#39;test1&#39;</span><span class="p">,[</span><span class="mi">1</span><span class="p">],</span><span class="s">&#39;test2&#39;</span><span class="p">,</span><span class="mi">5</span><span class="p">);</span><span class="w"></span>
+<span class="w">     </span><span class="n">s</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">struct</span><span class="p">(</span><span class="s">&#39;test1&#39;</span><span class="p">,[</span><span class="mi">1</span><span class="p">],</span><span class="s">&#39;test2&#39;</span><span class="p">,</span><span class="mi">4</span><span class="p">);</span><span class="w"> </span>
+
+<span class="w">    </span><span class="p">[</span><span class="n">S_sorted</span><span class="p">,</span><span class="n">indexes</span><span class="p">]</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">vlt</span><span class="p">.</span><span class="n">data</span><span class="p">.</span><span class="n">sortstruct</span><span class="p">(</span><span class="n">s</span><span class="p">,</span><span class="s">&#39;+test1&#39;</span><span class="p">,</span><span class="s">&#39;+test2&#39;</span><span class="p">);</span><span class="w"></span>
+<span class="w">     </span><span class="c">% indexes == [2;1] and S_sorted = s([2;1])</span><span class="w"></span>
 </code></pre></div>
                 
               

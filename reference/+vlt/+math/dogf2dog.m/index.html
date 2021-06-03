@@ -3213,6 +3213,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../%2Bgit/git_stash.m/" class="md-nav__link">
+        vlt.git.git_stash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../%2Bgit/git_status.m/" class="md-nav__link">
         vlt.git.git_status
       </a>
@@ -9237,21 +9249,29 @@
                 
                 
                 <h1 id="vltmathdogf2dog">vlt.math.dogf2dog<a class="headerlink" href="#vltmathdogf2dog" title="Permanent link">&para;</a></h1>
-<p>vlt.math.dogf2dog - convert difference of gaussian parameters in frequency space to real space </p>
-<p>P_DOG = vlt.math.dogf2dog(P_DOGF)</p>
-<p>Given parameters for a difference of gaussians function in frequency space, where f is cycles/units
-  P_DOGF = [ a1 b1 a2 b2], where
-  vlt.math.dog(F,P_DOG) = [ a1<em>exp(-f.^2/(2</em>b1^2)) - a2<em>exp(-f.^2/(2</em>b2^2)) ], 
-  this function computes the parameters for calculating the curve in real space (1/f units)
-  which is</p>
-<p>sqrt(2<em>pi)</em>[a1<em>b1</em>exp(-0.5<em>b1^2</em>x^2)-a1<em>b2</em>exp(-0.5<em>b2^2</em>x^2)</p>
-<p>This function is itself a difference of gaussian function. Therefore, to express these values in 
-  terms of the original P_DOG, the parameters are converted to be
-  P_DOGF = [sqrt(2<em>pi)</em>a1<em>b1 1/(2</em>pi<em>b1) sqrt(2</em>pi)<em>a2</em>b2 1/(2<em>pi</em>b2)]</p>
-<p>Through the miracle of math, this function is also it's own inverse:
-  p_dog = vlt.math.dog2dofg(vlt.math.dog2dogf(p_dog))</p>
-<p>This function just calls vlt.math.dog2dogf, as it is its own inverse.</p>
-<p>See also: vlt.math.dog, vlt.math.dog2dogf</p>
+<div class="codehilite"><pre><span></span><code>  <span class="nv">vlt</span>.<span class="nv">math</span>.<span class="nv">dogf2dog</span> <span class="o">-</span> <span class="nv">convert</span> <span class="nv">difference</span> <span class="nv">of</span> <span class="nv">gaussian</span> <span class="nv">parameters</span> <span class="nv">in</span> <span class="nv">frequency</span> <span class="nv">space</span> <span class="nv">to</span> <span class="nv">real</span> <span class="nv">space</span> 
+
+  <span class="nv">P_DOG</span> <span class="o">=</span> <span class="nv">vlt</span>.<span class="nv">math</span>.<span class="nv">dogf2dog</span><span class="ss">(</span><span class="nv">P_DOGF</span><span class="ss">)</span>
+
+  <span class="nv">Given</span> <span class="nv">parameters</span> <span class="k">for</span> <span class="nv">a</span> <span class="nv">difference</span> <span class="nv">of</span> <span class="nv">gaussians</span> <span class="nv">function</span> <span class="nv">in</span> <span class="nv">frequency</span> <span class="nv">space</span>, <span class="nv">where</span> <span class="nv">f</span> <span class="nv">is</span> <span class="nv">cycles</span><span class="o">/</span><span class="nv">units</span>
+  <span class="nv">P_DOGF</span> <span class="o">=</span> [ <span class="nv">a1</span> <span class="nv">b1</span> <span class="nv">a2</span> <span class="nv">b2</span>], <span class="nv">where</span>
+  <span class="nv">vlt</span>.<span class="nv">math</span>.<span class="nv">dog</span><span class="ss">(</span><span class="nv">F</span>,<span class="nv">P_DOG</span><span class="ss">)</span> <span class="o">=</span> [ <span class="nv">a1</span><span class="o">*</span><span class="nv">exp</span><span class="ss">(</span><span class="o">-</span><span class="nv">f</span>.<span class="o">^</span><span class="mi">2</span><span class="o">/</span><span class="ss">(</span><span class="mi">2</span><span class="o">*</span><span class="nv">b1</span><span class="o">^</span><span class="mi">2</span><span class="ss">))</span> <span class="o">-</span> <span class="nv">a2</span><span class="o">*</span><span class="nv">exp</span><span class="ss">(</span><span class="o">-</span><span class="nv">f</span>.<span class="o">^</span><span class="mi">2</span><span class="o">/</span><span class="ss">(</span><span class="mi">2</span><span class="o">*</span><span class="nv">b2</span><span class="o">^</span><span class="mi">2</span><span class="ss">))</span> ], 
+  <span class="nv">this</span> <span class="nv">function</span> <span class="nv">computes</span> <span class="nv">the</span> <span class="nv">parameters</span> <span class="k">for</span> <span class="nv">calculating</span> <span class="nv">the</span> <span class="nv">curve</span> <span class="nv">in</span> <span class="nv">real</span> <span class="nv">space</span> <span class="ss">(</span><span class="mi">1</span><span class="o">/</span><span class="nv">f</span> <span class="nv">units</span><span class="ss">)</span>
+  <span class="nv">which</span> <span class="nv">is</span>
+
+  <span class="nv">sqrt</span><span class="ss">(</span><span class="mi">2</span><span class="o">*</span><span class="nv">pi</span><span class="ss">)</span><span class="o">*</span>[<span class="nv">a1</span><span class="o">*</span><span class="nv">b1</span><span class="o">*</span><span class="nv">exp</span><span class="ss">(</span><span class="o">-</span><span class="mi">0</span>.<span class="mi">5</span><span class="o">*</span><span class="nv">b1</span><span class="o">^</span><span class="mi">2</span><span class="o">*</span><span class="nv">x</span><span class="o">^</span><span class="mi">2</span><span class="ss">)</span><span class="o">-</span><span class="nv">a1</span><span class="o">*</span><span class="nv">b2</span><span class="o">*</span><span class="nv">exp</span><span class="ss">(</span><span class="o">-</span><span class="mi">0</span>.<span class="mi">5</span><span class="o">*</span><span class="nv">b2</span><span class="o">^</span><span class="mi">2</span><span class="o">*</span><span class="nv">x</span><span class="o">^</span><span class="mi">2</span><span class="ss">)</span>
+
+  <span class="nv">This</span> <span class="nv">function</span> <span class="nv">is</span> <span class="nv">itself</span> <span class="nv">a</span> <span class="nv">difference</span> <span class="nv">of</span> <span class="nv">gaussian</span> <span class="nv">function</span>. <span class="nv">Therefore</span>, <span class="nv">to</span> <span class="nv">express</span> <span class="nv">these</span> <span class="nv">values</span> <span class="nv">in</span> 
+  <span class="nv">terms</span> <span class="nv">of</span> <span class="nv">the</span> <span class="nv">original</span> <span class="nv">P_DOG</span>, <span class="nv">the</span> <span class="nv">parameters</span> <span class="nv">are</span> <span class="nv">converted</span> <span class="nv">to</span> <span class="nv">be</span>
+  <span class="nv">P_DOGF</span> <span class="o">=</span> [<span class="nv">sqrt</span><span class="ss">(</span><span class="mi">2</span><span class="o">*</span><span class="nv">pi</span><span class="ss">)</span><span class="o">*</span><span class="nv">a1</span><span class="o">*</span><span class="nv">b1</span> <span class="mi">1</span><span class="o">/</span><span class="ss">(</span><span class="mi">2</span><span class="o">*</span><span class="nv">pi</span><span class="o">*</span><span class="nv">b1</span><span class="ss">)</span> <span class="nv">sqrt</span><span class="ss">(</span><span class="mi">2</span><span class="o">*</span><span class="nv">pi</span><span class="ss">)</span><span class="o">*</span><span class="nv">a2</span><span class="o">*</span><span class="nv">b2</span> <span class="mi">1</span><span class="o">/</span><span class="ss">(</span><span class="mi">2</span><span class="o">*</span><span class="nv">pi</span><span class="o">*</span><span class="nv">b2</span><span class="ss">)</span>]
+
+  <span class="nv">Through</span> <span class="nv">the</span> <span class="nv">miracle</span> <span class="nv">of</span> <span class="nv">math</span>, <span class="nv">this</span> <span class="nv">function</span> <span class="nv">is</span> <span class="nv">also</span> <span class="nv">it</span><span class="s1">&#39;</span><span class="s">s own inverse:</span>
+  <span class="nv">p_dog</span> <span class="o">=</span> <span class="nv">vlt</span>.<span class="nv">math</span>.<span class="nv">dog2dofg</span><span class="ss">(</span><span class="nv">vlt</span>.<span class="nv">math</span>.<span class="nv">dog2dogf</span><span class="ss">(</span><span class="nv">p_dog</span><span class="ss">))</span>
+
+  <span class="nv">This</span> <span class="nv">function</span> <span class="nv">just</span> <span class="nv">calls</span> <span class="nv">vlt</span>.<span class="nv">math</span>.<span class="nv">dog2dogf</span>, <span class="nv">as</span> <span class="nv">it</span> <span class="nv">is</span> <span class="nv">its</span> <span class="nv">own</span> <span class="nv">inverse</span>.
+
+  <span class="nv">See</span> <span class="nv">also</span>: <span class="nv">vlt</span>.<span class="nv">math</span>.<span class="nv">dog</span>, <span class="nv">vlt</span>.<span class="nv">math</span>.<span class="nv">dog2dogf</span>
+</code></pre></div>
                 
               
               

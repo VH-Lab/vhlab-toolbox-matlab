@@ -3213,6 +3213,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../%2Bgit/git_stash.m/" class="md-nav__link">
+        vlt.git.git_stash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../%2Bgit/git_status.m/" class="md-nav__link">
         vlt.git.git_status
       </a>
@@ -9237,26 +9249,30 @@
                 
                 
                 <h1 id="vlthtmlvhlab_people_html">vlt.html.vhlab_people_html<a class="headerlink" href="#vlthtmlvhlab_people_html" title="Permanent link">&para;</a></h1>
-<p>VHLAB_PEOPLE_HTML - Generate the VHLAB people page given a datebase of members</p>
-<p>vlt.html.vhlab_people_html(DBTABLE_FILENAME, OUTPUT_FILENAME)</p>
-<p>Generates the 'people' page for vhlab.org.</p>
-<p>Input: DBTABLE_FILENAME, the filename of a tab-delimited text structure
-  file with first row field names and every other row comprised of values.
-  The headers/fields of the table should be:
-  Fieldname                | Description</p>
-<hr />
-<p>year                     | The year the person left the lab (if they are gone), empty otherwise
-  lastname                 | The person's last name (used for alphabetical sorting)
-  name                     | The person's name as it should appear on the page
-  namelink                 | If not empty, a link that should be related to the person's name
-  alumni                   | 0/1; is the person an alum? (that is, have they left the lab?)
-  Group                    | Employment category; 'UG', 'STAFF', 'GS', 'PD', 'PI'
-  title                    | Job title
-  Years                    | String containing the years of service in the lab (e.g., '2010-2017')
-  email                    | Email address string, person at brandeis dot edu
-  paragraph                | HTML string containing a paragraph(s) of research interests.
-  Links                    | Any links (current personnel only)
-  imagefile                | Image link to the person's picture</p>
+<div class="codehilite"><pre><span></span><code>  <span class="nt">VHLAB_PEOPLE_HTML</span> <span class="nt">-</span> <span class="nt">Generate</span> <span class="nt">the</span> <span class="nt">VHLAB</span> <span class="nt">people</span> <span class="nt">page</span> <span class="nt">given</span> <span class="nt">a</span> <span class="nt">datebase</span> <span class="nt">of</span> <span class="nt">members</span>
+
+  <span class="nt">vlt</span><span class="p">.</span><span class="nc">html</span><span class="p">.</span><span class="nc">vhlab_people_html</span><span class="o">(</span><span class="nt">DBTABLE_FILENAME</span><span class="o">,</span> <span class="nt">OUTPUT_FILENAME</span><span class="o">)</span>
+
+  <span class="nt">Generates</span> <span class="nt">the</span> <span class="s1">&#39;people&#39;</span> <span class="nt">page</span> <span class="nt">for</span> <span class="nt">vhlab</span><span class="p">.</span><span class="nc">org</span><span class="o">.</span>
+
+  <span class="nt">Input</span><span class="o">:</span> <span class="nt">DBTABLE_FILENAME</span><span class="o">,</span> <span class="nt">the</span> <span class="nt">filename</span> <span class="nt">of</span> <span class="nt">a</span> <span class="nt">tab-delimited</span> <span class="nt">text</span> <span class="nt">structure</span>
+  <span class="nt">file</span> <span class="nt">with</span> <span class="nt">first</span> <span class="nt">row</span> <span class="nt">field</span> <span class="nt">names</span> <span class="nt">and</span> <span class="nt">every</span> <span class="nt">other</span> <span class="nt">row</span> <span class="nt">comprised</span> <span class="nt">of</span> <span class="nt">values</span><span class="o">.</span>
+  <span class="nt">The</span> <span class="nt">headers</span><span class="o">/</span><span class="nt">fields</span> <span class="nt">of</span> <span class="nt">the</span> <span class="nt">table</span> <span class="nt">should</span> <span class="nt">be</span><span class="o">:</span>
+  <span class="nt">Fieldname</span>                <span class="o">|</span> <span class="nt">Description</span>
+  <span class="nt">--------------------------------------------------------</span>
+  <span class="nt">year</span>                     <span class="o">|</span> <span class="nt">The</span> <span class="nt">year</span> <span class="nt">the</span> <span class="nt">person</span> <span class="nt">left</span> <span class="nt">the</span> <span class="nt">lab</span> <span class="o">(</span><span class="nt">if</span> <span class="nt">they</span> <span class="nt">are</span> <span class="nt">gone</span><span class="o">),</span> <span class="nt">empty</span> <span class="nt">otherwise</span>
+  <span class="nt">lastname</span>                 <span class="o">|</span> <span class="nt">The</span> <span class="nt">person</span><span class="s1">&#39;s last name (used for alphabetical sorting)</span>
+<span class="s1">  name                     | The person&#39;</span><span class="nt">s</span> <span class="nt">name</span> <span class="nt">as</span> <span class="nt">it</span> <span class="nt">should</span> <span class="nt">appear</span> <span class="nt">on</span> <span class="nt">the</span> <span class="nt">page</span>
+  <span class="nt">namelink</span>                 <span class="o">|</span> <span class="nt">If</span> <span class="nt">not</span> <span class="nt">empty</span><span class="o">,</span> <span class="nt">a</span> <span class="nt">link</span> <span class="nt">that</span> <span class="nt">should</span> <span class="nt">be</span> <span class="nt">related</span> <span class="nt">to</span> <span class="nt">the</span> <span class="nt">person</span><span class="s1">&#39;s name</span>
+<span class="s1">  alumni                   | 0/1; is the person an alum? (that is, have they left the lab?)</span>
+<span class="s1">  Group                    | Employment category; &#39;</span><span class="nt">UG</span><span class="s1">&#39;, &#39;</span><span class="nt">STAFF</span><span class="s1">&#39;, &#39;</span><span class="nt">GS</span><span class="s1">&#39;, &#39;</span><span class="nt">PD</span><span class="s1">&#39;, &#39;</span><span class="nt">PI</span><span class="s1">&#39;</span>
+<span class="s1">  title                    | Job title</span>
+<span class="s1">  Years                    | String containing the years of service in the lab (e.g., &#39;</span><span class="nt">2010-2017</span><span class="s1">&#39;)</span>
+<span class="s1">  email                    | Email address string, person at brandeis dot edu</span>
+<span class="s1">  paragraph                | HTML string containing a paragraph(s) of research interests.</span>
+<span class="s1">  Links                    | Any links (current personnel only)</span>
+<span class="s1">  imagefile                | Image link to the person&#39;</span><span class="nt">s</span> <span class="nt">picture</span>
+</code></pre></div>
                 
               
               

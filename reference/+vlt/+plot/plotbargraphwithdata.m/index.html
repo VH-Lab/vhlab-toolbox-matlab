@@ -3213,6 +3213,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../%2Bgit/git_stash.m/" class="md-nav__link">
+        vlt.git.git_stash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../%2Bgit/git_status.m/" class="md-nav__link">
         vlt.git.git_status
       </a>
@@ -9237,30 +9249,34 @@
                 
                 
                 <h1 id="vltplotplotbargraphwithdata">vlt.plot.plotbargraphwithdata<a class="headerlink" href="#vltplotplotbargraphwithdata" title="Permanent link">&para;</a></h1>
-<p>PLOTMEANBAR - Plot a bar graph indicating mean, standard error, and raw data</p>
-<p>H = vlt.plot.plotbargraphwithdata(DATA, ...)</p>
-<p>Plots a bar graph with height equals to the mean value of the the mean value
-  of each dataset in the cell array DATA{i}. The standard error of the mean is
-  shown with error bars offset by XOFFSET. The raw data is plotted offset by
-  XOFFSET.</p>
-<p>This function can be modified by name/value pairs:
-  Parameter (default value)    | Description</p>
-<hr />
-<p>xloc (linspace(1,...         | The location on the x axis where the bars
-     numel(data),,numel(data)))|    should be drawn ([xstart xend])
-  barcolor ([0.4 0.4 0.4])     | Color of the bar graph (RGB)
-  datacolor ([0 0 0])          | Color of the raw data (RGB)
-  stderrcolor ([0 0 0])        | Color of the std error bars (RGB)
-  usestderr (1)                | 0/1 Should we plot an error bar showing
-                               |    standard error of the mean?
-  userawdata (1)               | 0/1 Should we plot the raw data?
-  useholdon (1)                | 0/1 Should we call 'hold on'?
-  linewidth (2)                | Linewidth for mean bar plot
-  linewidth_stderr (1)         | Linewidth for standard error plot
-  symbolsize (6)               | Symbol size
-  symbol ('o')                 | Symbol to use
-  xoffset (0.25)               | X offset for plotting standard error, raw data
-  measure ('nanmean(data(:))') | Function to call to obtain mean; could be 'median', e.g.</p>
+<div class="codehilite"><pre><span></span><code>  <span class="n">PLOTMEANBAR</span> <span class="o">-</span> <span class="n">Plot</span> <span class="n">a</span> <span class="n">bar</span> <span class="n">graph</span> <span class="n">indicating</span> <span class="n">mean</span><span class="p">,</span> <span class="n">standard</span> <span class="n">error</span><span class="p">,</span> <span class="n">and</span> <span class="n">raw</span> <span class="n">data</span>
+
+  <span class="n">H</span> <span class="o">=</span> <span class="n">vlt</span><span class="p">.</span><span class="n">plot</span><span class="p">.</span><span class="n">plotbargraphwithdata</span><span class="p">(</span><span class="n">DATA</span><span class="p">,</span> <span class="p">...)</span>
+
+  <span class="n">Plots</span> <span class="n">a</span> <span class="n">bar</span> <span class="n">graph</span> <span class="n">with</span> <span class="n">height</span> <span class="n">equals</span> <span class="n">to</span> <span class="n">the</span> <span class="n">mean</span> <span class="n">value</span> <span class="n">of</span> <span class="n">the</span> <span class="n">the</span> <span class="n">mean</span> <span class="n">value</span>
+  <span class="n">of</span> <span class="n">each</span> <span class="n">dataset</span> <span class="k">in</span> <span class="n">the</span> <span class="n">cell</span> <span class="n">array</span> <span class="n">DATA</span><span class="p">{</span><span class="n">i</span><span class="p">}.</span> <span class="n">The</span> <span class="n">standard</span> <span class="n">error</span> <span class="n">of</span> <span class="n">the</span> <span class="n">mean</span> <span class="n">is</span>
+  <span class="n">shown</span> <span class="n">with</span> <span class="n">error</span> <span class="n">bars</span> <span class="n">offset</span> <span class="n">by</span> <span class="n">XOFFSET</span><span class="p">.</span> <span class="n">The</span> <span class="n">raw</span> <span class="n">data</span> <span class="n">is</span> <span class="n">plotted</span> <span class="n">offset</span> <span class="n">by</span>
+  <span class="n">XOFFSET</span><span class="p">.</span>
+
+  <span class="n">This</span> <span class="n">function</span> <span class="n">can</span> <span class="n">be</span> <span class="n">modified</span> <span class="n">by</span> <span class="n">name</span><span class="o">/</span><span class="n">value</span> <span class="nl">pairs</span><span class="p">:</span>
+  <span class="n">Parameter</span> <span class="p">(</span><span class="k">default</span> <span class="n">value</span><span class="p">)</span>    <span class="o">|</span> <span class="n">Description</span>
+  <span class="o">--------------------------------------------------------------</span>
+  <span class="n">xloc</span> <span class="p">(</span><span class="n">linspace</span><span class="p">(</span><span class="mi">1</span><span class="p">,...</span>         <span class="o">|</span> <span class="n">The</span> <span class="n">location</span> <span class="n">on</span> <span class="n">the</span> <span class="n">x</span> <span class="n">axis</span> <span class="n">where</span> <span class="n">the</span> <span class="n">bars</span>
+     <span class="n">numel</span><span class="p">(</span><span class="n">data</span><span class="p">),,</span><span class="n">numel</span><span class="p">(</span><span class="n">data</span><span class="p">)))</span><span class="o">|</span>    <span class="n">should</span> <span class="n">be</span> <span class="n">drawn</span> <span class="p">([</span><span class="n">xstart</span> <span class="n">xend</span><span class="p">])</span>
+  <span class="n">barcolor</span> <span class="p">([</span><span class="mf">0.4</span> <span class="mf">0.4</span> <span class="mf">0.4</span><span class="p">])</span>     <span class="o">|</span> <span class="n">Color</span> <span class="n">of</span> <span class="n">the</span> <span class="n">bar</span> <span class="n">graph</span> <span class="p">(</span><span class="n">RGB</span><span class="p">)</span>
+  <span class="n">datacolor</span> <span class="p">([</span><span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span><span class="p">])</span>          <span class="o">|</span> <span class="n">Color</span> <span class="n">of</span> <span class="n">the</span> <span class="n">raw</span> <span class="n">data</span> <span class="p">(</span><span class="n">RGB</span><span class="p">)</span>
+  <span class="n">stderrcolor</span> <span class="p">([</span><span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span><span class="p">])</span>        <span class="o">|</span> <span class="n">Color</span> <span class="n">of</span> <span class="n">the</span> <span class="n">std</span> <span class="n">error</span> <span class="n">bars</span> <span class="p">(</span><span class="n">RGB</span><span class="p">)</span>
+  <span class="n">usestderr</span> <span class="p">(</span><span class="mi">1</span><span class="p">)</span>                <span class="o">|</span> <span class="mi">0</span><span class="o">/</span><span class="mi">1</span> <span class="n">Should</span> <span class="n">we</span> <span class="n">plot</span> <span class="n">an</span> <span class="n">error</span> <span class="n">bar</span> <span class="n">showing</span>
+                               <span class="o">|</span>    <span class="n">standard</span> <span class="n">error</span> <span class="n">of</span> <span class="n">the</span> <span class="n">mean</span><span class="o">?</span>
+  <span class="n">userawdata</span> <span class="p">(</span><span class="mi">1</span><span class="p">)</span>               <span class="o">|</span> <span class="mi">0</span><span class="o">/</span><span class="mi">1</span> <span class="n">Should</span> <span class="n">we</span> <span class="n">plot</span> <span class="n">the</span> <span class="n">raw</span> <span class="n">data</span><span class="o">?</span>
+  <span class="n">useholdon</span> <span class="p">(</span><span class="mi">1</span><span class="p">)</span>                <span class="o">|</span> <span class="mi">0</span><span class="o">/</span><span class="mi">1</span> <span class="n">Should</span> <span class="n">we</span> <span class="n">call</span> <span class="err">&#39;</span><span class="n">hold</span> <span class="n">on</span><span class="err">&#39;</span><span class="o">?</span>
+  <span class="n">linewidth</span> <span class="p">(</span><span class="mi">2</span><span class="p">)</span>                <span class="o">|</span> <span class="n">Linewidth</span> <span class="k">for</span> <span class="n">mean</span> <span class="n">bar</span> <span class="n">plot</span>
+  <span class="n">linewidth_stderr</span> <span class="p">(</span><span class="mi">1</span><span class="p">)</span>         <span class="o">|</span> <span class="n">Linewidth</span> <span class="k">for</span> <span class="n">standard</span> <span class="n">error</span> <span class="n">plot</span>
+  <span class="n">symbolsize</span> <span class="p">(</span><span class="mi">6</span><span class="p">)</span>               <span class="o">|</span> <span class="n">Symbol</span> <span class="n">size</span>
+  <span class="n">symbol</span> <span class="p">(</span><span class="sc">&#39;o&#39;</span><span class="p">)</span>                 <span class="o">|</span> <span class="n">Symbol</span> <span class="n">to</span> <span class="n">use</span>
+  <span class="n">xoffset</span> <span class="p">(</span><span class="mf">0.25</span><span class="p">)</span>               <span class="o">|</span> <span class="n">X</span> <span class="n">offset</span> <span class="k">for</span> <span class="n">plotting</span> <span class="n">standard</span> <span class="n">error</span><span class="p">,</span> <span class="n">raw</span> <span class="n">data</span>
+  <span class="n">measure</span> <span class="p">(</span><span class="err">&#39;</span><span class="n">nanmean</span><span class="p">(</span><span class="n">data</span><span class="p">(</span><span class="o">:</span><span class="p">))</span><span class="err">&#39;</span><span class="p">)</span> <span class="o">|</span> <span class="n">Function</span> <span class="n">to</span> <span class="n">call</span> <span class="n">to</span> <span class="n">obtain</span> <span class="n">mean</span><span class="p">;</span> <span class="n">could</span> <span class="n">be</span> <span class="err">&#39;</span><span class="n">median</span><span class="err">&#39;</span><span class="p">,</span> <span class="n">e</span><span class="p">.</span><span class="n">g</span><span class="p">.</span>
+</code></pre></div>
                 
               
               

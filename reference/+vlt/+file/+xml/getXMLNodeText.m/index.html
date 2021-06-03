@@ -3227,6 +3227,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../../%2Bgit/git_stash.m/" class="md-nav__link">
+        vlt.git.git_stash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../../%2Bgit/git_status.m/" class="md-nav__link">
         vlt.git.git_status
       </a>
@@ -9239,18 +9251,25 @@
                 
                 
                 <h1 id="vltfilexmlgetxmlnodetext">vlt.file.xml.getXMLNodeText<a class="headerlink" href="#vltfilexmlgetxmlnodetext" title="Permanent link">&para;</a></h1>
-<p>vlt.file.xml.getXMLNodeText - Read Node Text from XML</p>
-<p>VALUES = vlt.file.xml.getXMLNodeText(XDOC, LISTITEM, SUBITEM, ISNUMBER)</p>
-<p>Returns node text from the XML document XDOC.  XDOC can
-   be read from a file with the Matlab command XMLREAD.</p>
-<p>LISTITEM is a string corresponding to the list item(s) requested,
-     and subitem is a strong corresponding to the subitem to be
-     returned.</p>
-<p>VALUES is a cell list of returned data (one cell element for each
-     occurrence of LISTITEM in XDOC).  If ISNUMBER is 0, then string
-     data is returned, but if ISNUMBER is 1, then the strings
-     are evaluated with EVAL and the result is returned.</p>
-<p>Developer note: Who wrote this?? Was it Steve or Mark Mazurek?</p>
+<div class="codehilite"><pre><span></span><code>  <span class="nv">vlt</span>.<span class="nv">file</span>.<span class="nv">xml</span>.<span class="nv">getXMLNodeText</span> <span class="o">-</span> <span class="nv">Read</span> <span class="nv">Node</span> <span class="nv">Text</span> <span class="nv">from</span> <span class="nv">XML</span>
+
+   <span class="nv">VALUES</span> <span class="o">=</span> <span class="nv">vlt</span>.<span class="nv">file</span>.<span class="nv">xml</span>.<span class="nv">getXMLNodeText</span><span class="ss">(</span><span class="nv">XDOC</span>, <span class="nv">LISTITEM</span>, <span class="nv">SUBITEM</span>, <span class="nv">ISNUMBER</span><span class="ss">)</span>
+
+   <span class="nv">Returns</span> <span class="nv">node</span> <span class="nv">text</span> <span class="nv">from</span> <span class="nv">the</span> <span class="nv">XML</span> <span class="nv">document</span> <span class="nv">XDOC</span>.  <span class="nv">XDOC</span> <span class="nv">can</span>
+   <span class="nv">be</span> <span class="nv">read</span> <span class="nv">from</span> <span class="nv">a</span> <span class="nv">file</span> <span class="nv">with</span> <span class="nv">the</span> <span class="nv">Matlab</span> <span class="nv">command</span> <span class="nv">XMLREAD</span>.
+
+   <span class="nv">LISTITEM</span> <span class="nv">is</span> <span class="nv">a</span> <span class="nv">string</span> <span class="nv">corresponding</span> <span class="nv">to</span> <span class="nv">the</span> <span class="nv">list</span> <span class="nv">item</span><span class="ss">(</span><span class="nv">s</span><span class="ss">)</span> <span class="nv">requested</span>,
+     <span class="nv">and</span> <span class="nv">subitem</span> <span class="nv">is</span> <span class="nv">a</span> <span class="nv">strong</span> <span class="nv">corresponding</span> <span class="nv">to</span> <span class="nv">the</span> <span class="nv">subitem</span> <span class="nv">to</span> <span class="nv">be</span>
+     <span class="nv">returned</span>.
+
+   <span class="nv">VALUES</span> <span class="nv">is</span> <span class="nv">a</span> <span class="nv">cell</span> <span class="nv">list</span> <span class="nv">of</span> <span class="nv">returned</span> <span class="nv">data</span> <span class="ss">(</span><span class="nv">one</span> <span class="nv">cell</span> <span class="nv">element</span> <span class="k">for</span> <span class="nv">each</span>
+     <span class="nv">occurrence</span> <span class="nv">of</span> <span class="nv">LISTITEM</span> <span class="nv">in</span> <span class="nv">XDOC</span><span class="ss">)</span>.  <span class="k">If</span> <span class="nv">ISNUMBER</span> <span class="nv">is</span> <span class="mi">0</span>, <span class="k">then</span> <span class="nv">string</span>
+     <span class="nv">data</span> <span class="nv">is</span> <span class="nv">returned</span>, <span class="nv">but</span> <span class="k">if</span> <span class="nv">ISNUMBER</span> <span class="nv">is</span> <span class="mi">1</span>, <span class="k">then</span> <span class="nv">the</span> <span class="nv">strings</span>
+     <span class="nv">are</span> <span class="nv">evaluated</span> <span class="nv">with</span> <span class="nv">EVAL</span> <span class="nv">and</span> <span class="nv">the</span> <span class="nb">result</span> <span class="nv">is</span> <span class="nv">returned</span>.
+
+
+   <span class="nv">Developer</span> <span class="nv">note</span>: <span class="nv">Who</span> <span class="nv">wrote</span> <span class="nv">this</span>?? <span class="nv">Was</span> <span class="nv">it</span> <span class="nv">Steve</span> <span class="nv">or</span> <span class="nv">Mark</span> <span class="nv">Mazurek</span>?
+</code></pre></div>
                 
               
               

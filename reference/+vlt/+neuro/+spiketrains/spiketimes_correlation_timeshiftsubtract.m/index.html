@@ -3213,6 +3213,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../../%2Bgit/git_stash.m/" class="md-nav__link">
+        vlt.git.git_stash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../../%2Bgit/git_status.m/" class="md-nav__link">
         vlt.git.git_status
       </a>
@@ -9239,24 +9251,29 @@
                 
                 
                 <h1 id="vltneurospiketrainsspiketimes_correlation_timeshiftsubtract">vlt.neuro.spiketrains.spiketimes_correlation_timeshiftsubtract<a class="headerlink" href="#vltneurospiketrainsspiketimes_correlation_timeshiftsubtract" title="Permanent link">&para;</a></h1>
-<p>SPIKETIMES_CORRELATION_TIMESHIFTSUBTRACT - Correlation that subtracts correlation not due to precise times</p>
-<p>[XCORR_ACTUAL, XCORR_SHIFTED, XCORR_PERCENTILE, LAGS] = 
-     vlt.neuro.spiketrains.spiketimes_correlation_timeshiftsubtract(TRAIN1, TRAIN2, BINSIZE,...
-     MAXLAG, SHIFT, TRIALS)</p>
-<p>Computes both the standard spike train correlation (XCORR_ACTUAL) between
-   TRAIN1 and TRAIN2, lists of spike times, using vlt.neuro.spiketrains.spiketimes_correlation, and
-   computes an estimate of the amount of this correlation that is due to slow
-   covarying spike rates with a time scale of SHIFT.</p>
-<p>BINSIZE is the resolution (e.g., 0.002 for 2ms bins), and MAXLAG is the
-   maximum lag between the two trains TRAIN1 and TRAIN2 that will be computed.
-   (See help vlt.neuro.spiketrains.spiketimes_correlation)</p>
-<p>The estimate of the amount of correlation that is due to slow covarying
-   spike rates is computed over TRIALS trials (e.g., 100), during which
-   each spike in the trains is time-shifted by a variable amount between 0 
-   and SHIFT (uniform distribution). SHIFT might be 0.100 to shift 100ms, 
-   for example.  This estimate is returned in XCORR_SHIFTED.  The percentile
-   distribution of XCORR_SHIFTED is returned in XCORR_PERCENTILE. Each Nth
-   row of XCORR_PERCENTILE is the N-1th percentile of the distribution.</p>
+<div class="codehilite"><pre><span></span><code>  <span class="n">SPIKETIMES_CORRELATION_TIMESHIFTSUBTRACT</span> <span class="o">-</span> <span class="n">Correlation</span> <span class="n">that</span> <span class="n">subtracts</span> <span class="n">correlation</span> <span class="ow">not</span> <span class="n">due</span> <span class="n">to</span> <span class="n">precise</span> <span class="n">times</span>
+
+   <span class="p">[</span><span class="n">XCORR_ACTUAL</span><span class="p">,</span> <span class="n">XCORR_SHIFTED</span><span class="p">,</span> <span class="n">XCORR_PERCENTILE</span><span class="p">,</span> <span class="n">LAGS</span><span class="p">]</span> <span class="o">=</span> 
+     <span class="n">vlt</span><span class="o">.</span><span class="n">neuro</span><span class="o">.</span><span class="n">spiketrains</span><span class="o">.</span><span class="n">spiketimes_correlation_timeshiftsubtract</span><span class="p">(</span><span class="n">TRAIN1</span><span class="p">,</span> <span class="n">TRAIN2</span><span class="p">,</span> <span class="n">BINSIZE</span><span class="p">,</span><span class="o">...</span>
+     <span class="n">MAXLAG</span><span class="p">,</span> <span class="n">SHIFT</span><span class="p">,</span> <span class="n">TRIALS</span><span class="p">)</span>
+
+   <span class="n">Computes</span> <span class="n">both</span> <span class="n">the</span> <span class="n">standard</span> <span class="n">spike</span> <span class="n">train</span> <span class="n">correlation</span> <span class="p">(</span><span class="n">XCORR_ACTUAL</span><span class="p">)</span> <span class="n">between</span>
+   <span class="n">TRAIN1</span> <span class="ow">and</span> <span class="n">TRAIN2</span><span class="p">,</span> <span class="n">lists</span> <span class="n">of</span> <span class="n">spike</span> <span class="n">times</span><span class="p">,</span> <span class="n">using</span> <span class="n">vlt</span><span class="o">.</span><span class="n">neuro</span><span class="o">.</span><span class="n">spiketrains</span><span class="o">.</span><span class="n">spiketimes_correlation</span><span class="p">,</span> <span class="ow">and</span>
+   <span class="n">computes</span> <span class="n">an</span> <span class="n">estimate</span> <span class="n">of</span> <span class="n">the</span> <span class="n">amount</span> <span class="n">of</span> <span class="n">this</span> <span class="n">correlation</span> <span class="n">that</span> <span class="k">is</span> <span class="n">due</span> <span class="n">to</span> <span class="n">slow</span>
+   <span class="n">covarying</span> <span class="n">spike</span> <span class="n">rates</span> <span class="n">with</span> <span class="n">a</span> <span class="n">time</span> <span class="n">scale</span> <span class="n">of</span> <span class="n">SHIFT</span><span class="o">.</span>
+
+   <span class="n">BINSIZE</span> <span class="k">is</span> <span class="n">the</span> <span class="n">resolution</span> <span class="p">(</span><span class="n">e</span><span class="o">.</span><span class="n">g</span><span class="o">.</span><span class="p">,</span> <span class="mf">0.002</span> <span class="k">for</span> <span class="mi">2</span><span class="n">ms</span> <span class="n">bins</span><span class="p">),</span> <span class="ow">and</span> <span class="n">MAXLAG</span> <span class="k">is</span> <span class="n">the</span>
+   <span class="n">maximum</span> <span class="n">lag</span> <span class="n">between</span> <span class="n">the</span> <span class="n">two</span> <span class="n">trains</span> <span class="n">TRAIN1</span> <span class="ow">and</span> <span class="n">TRAIN2</span> <span class="n">that</span> <span class="n">will</span> <span class="n">be</span> <span class="n">computed</span><span class="o">.</span>
+   <span class="p">(</span><span class="n">See</span> <span class="n">help</span> <span class="n">vlt</span><span class="o">.</span><span class="n">neuro</span><span class="o">.</span><span class="n">spiketrains</span><span class="o">.</span><span class="n">spiketimes_correlation</span><span class="p">)</span>
+
+   <span class="n">The</span> <span class="n">estimate</span> <span class="n">of</span> <span class="n">the</span> <span class="n">amount</span> <span class="n">of</span> <span class="n">correlation</span> <span class="n">that</span> <span class="k">is</span> <span class="n">due</span> <span class="n">to</span> <span class="n">slow</span> <span class="n">covarying</span>
+   <span class="n">spike</span> <span class="n">rates</span> <span class="k">is</span> <span class="n">computed</span> <span class="n">over</span> <span class="n">TRIALS</span> <span class="n">trials</span> <span class="p">(</span><span class="n">e</span><span class="o">.</span><span class="n">g</span><span class="o">.</span><span class="p">,</span> <span class="mi">100</span><span class="p">),</span> <span class="n">during</span> <span class="n">which</span>
+   <span class="n">each</span> <span class="n">spike</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">trains</span> <span class="k">is</span> <span class="n">time</span><span class="o">-</span><span class="n">shifted</span> <span class="n">by</span> <span class="n">a</span> <span class="n">variable</span> <span class="n">amount</span> <span class="n">between</span> <span class="mi">0</span> 
+   <span class="ow">and</span> <span class="n">SHIFT</span> <span class="p">(</span><span class="n">uniform</span> <span class="n">distribution</span><span class="p">)</span><span class="o">.</span> <span class="n">SHIFT</span> <span class="n">might</span> <span class="n">be</span> <span class="mf">0.100</span> <span class="n">to</span> <span class="n">shift</span> <span class="mi">100</span><span class="n">ms</span><span class="p">,</span> 
+   <span class="k">for</span> <span class="n">example</span><span class="o">.</span>  <span class="n">This</span> <span class="n">estimate</span> <span class="k">is</span> <span class="n">returned</span> <span class="ow">in</span> <span class="n">XCORR_SHIFTED</span><span class="o">.</span>  <span class="n">The</span> <span class="n">percentile</span>
+   <span class="n">distribution</span> <span class="n">of</span> <span class="n">XCORR_SHIFTED</span> <span class="k">is</span> <span class="n">returned</span> <span class="ow">in</span> <span class="n">XCORR_PERCENTILE</span><span class="o">.</span> <span class="n">Each</span> <span class="n">Nth</span>
+   <span class="n">row</span> <span class="n">of</span> <span class="n">XCORR_PERCENTILE</span> <span class="k">is</span> <span class="n">the</span> <span class="n">N</span><span class="o">-</span><span class="mi">1</span><span class="n">th</span> <span class="n">percentile</span> <span class="n">of</span> <span class="n">the</span> <span class="n">distribution</span><span class="o">.</span>
+</code></pre></div>
                 
               
               

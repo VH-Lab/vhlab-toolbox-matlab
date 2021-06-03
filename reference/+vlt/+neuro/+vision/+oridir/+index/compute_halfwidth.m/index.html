@@ -3213,6 +3213,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../../../../%2Bgit/git_stash.m/" class="md-nav__link">
+        vlt.git.git_stash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../../../../%2Bgit/git_status.m/" class="md-nav__link">
         vlt.git.git_status
       </a>
@@ -9243,15 +9255,16 @@
                 
                 
                 <h1 id="vltneurovisionoridirindexcompute_halfwidth">vlt.neuro.vision.oridir.index.compute_halfwidth<a class="headerlink" href="#vltneurovisionoridirindexcompute_halfwidth" title="Permanent link">&para;</a></h1>
-<p>COMPUTE_LOWHALFMAX
-      [LOW,MAX,HIGH] = vlt.neuro.vision.oridir.index.compute_halfwidth( X, Y )</p>
-<div class="codehilite"><pre><span></span><code>  <span class="nv">interpolates</span> <span class="nv">function</span> <span class="nv">by</span> <span class="nv">linearly</span> <span class="ss">(</span><span class="nv">splines</span> <span class="nv">goes</span> <span class="nv">strange</span> <span class="k">for</span> <span class="nv">small</span> <span class="nv">points</span><span class="ss">)</span>
-  <span class="nv">and</span> <span class="nv">returns</span> <span class="nv">MAX</span>, <span class="nv">where</span> <span class="nv">x</span> <span class="nv">position</span> <span class="nv">where</span> <span class="nv">function</span> <span class="nv">attains</span> <span class="nv">its</span> <span class="nv">maximum</span> <span class="nv">value</span>
-  <span class="nv">LOW</span> <span class="o">&lt;</span> <span class="nv">MAX</span>,  <span class="nv">where</span> <span class="nv">function</span> <span class="nv">attains</span> <span class="nv">half</span> <span class="nv">its</span> <span class="nv">maximum</span>
-  <span class="nv">HIGH</span> <span class="o">&gt;</span> <span class="nv">MAX</span>, <span class="nv">where</span> <span class="nv">function</span> <span class="nv">attains</span> <span class="nv">half</span> <span class="nv">its</span> <span class="nv">maximum</span>
-  <span class="nv">returns</span> <span class="nv">NAN</span> <span class="k">for</span> <span class="nv">LOW</span> <span class="nv">or</span><span class="o">/</span><span class="nv">and</span> <span class="nv">HIGH</span>, <span class="nv">when</span> <span class="nv">function</span> <span class="nv">does</span> <span class="nv">not</span> <span class="nv">come</span> <span class="nv">below</span> <span class="nv">the</span> <span class="nv">point</span>
+<div class="codehilite"><pre><span></span><code>  <span class="nv">COMPUTE_LOWHALFMAX</span>
+      [<span class="nv">LOW</span>,<span class="nv">MAX</span>,<span class="nv">HIGH</span>] <span class="o">=</span> <span class="nv">vlt</span>.<span class="nv">neuro</span>.<span class="nv">vision</span>.<span class="nv">oridir</span>.<span class="nv">index</span>.<span class="nv">compute_halfwidth</span><span class="ss">(</span> <span class="nv">X</span>, <span class="nv">Y</span> <span class="ss">)</span>
 
-  <span class="nv">note</span>: <span class="nv">ugly</span>,<span class="nv">slow</span> <span class="nv">and</span> <span class="nv">crude</span> <span class="nv">routine</span>,    <span class="nv">consider</span> <span class="nv">taking</span> <span class="nv">log</span> <span class="nv">x</span> <span class="nv">first</span>
+      <span class="nv">interpolates</span> <span class="nv">function</span> <span class="nv">by</span> <span class="nv">linearly</span> <span class="ss">(</span><span class="nv">splines</span> <span class="nv">goes</span> <span class="nv">strange</span> <span class="k">for</span> <span class="nv">small</span> <span class="nv">points</span><span class="ss">)</span>
+      <span class="nv">and</span> <span class="nv">returns</span> <span class="nv">MAX</span>, <span class="nv">where</span> <span class="nv">x</span> <span class="nv">position</span> <span class="nv">where</span> <span class="nv">function</span> <span class="nv">attains</span> <span class="nv">its</span> <span class="nv">maximum</span> <span class="nv">value</span>
+      <span class="nv">LOW</span> <span class="o">&lt;</span> <span class="nv">MAX</span>,  <span class="nv">where</span> <span class="nv">function</span> <span class="nv">attains</span> <span class="nv">half</span> <span class="nv">its</span> <span class="nv">maximum</span>
+      <span class="nv">HIGH</span> <span class="o">&gt;</span> <span class="nv">MAX</span>, <span class="nv">where</span> <span class="nv">function</span> <span class="nv">attains</span> <span class="nv">half</span> <span class="nv">its</span> <span class="nv">maximum</span>
+      <span class="nv">returns</span> <span class="nv">NAN</span> <span class="k">for</span> <span class="nv">LOW</span> <span class="nv">or</span><span class="o">/</span><span class="nv">and</span> <span class="nv">HIGH</span>, <span class="nv">when</span> <span class="nv">function</span> <span class="nv">does</span> <span class="nv">not</span> <span class="nv">come</span> <span class="nv">below</span> <span class="nv">the</span> <span class="nv">point</span>
+
+      <span class="nv">note</span>: <span class="nv">ugly</span>,<span class="nv">slow</span> <span class="nv">and</span> <span class="nv">crude</span> <span class="nv">routine</span>,    <span class="nv">consider</span> <span class="nv">taking</span> <span class="nv">log</span> <span class="nv">x</span> <span class="nv">first</span>
 </code></pre></div>
                 
               

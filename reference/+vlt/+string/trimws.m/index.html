@@ -3213,6 +3213,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../%2Bgit/git_stash.m/" class="md-nav__link">
+        vlt.git.git_stash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../%2Bgit/git_status.m/" class="md-nav__link">
         vlt.git.git_status
       </a>
@@ -9237,24 +9249,25 @@
                 
                 
                 <h1 id="vltstringtrimws">vlt.string.trimws<a class="headerlink" href="#vltstringtrimws" title="Permanent link">&para;</a></h1>
-<p>TRIMWS - Trim leading whitespace from a string</p>
-<div class="codehilite"><pre><span></span><code><span class="nv">NEWSTR</span> <span class="o">=</span> <span class="nv">vlt</span>.<span class="nv">string</span>.<span class="nv">trimws</span><span class="ss">(</span><span class="nv">STR</span><span class="ss">)</span>
+<div class="codehilite"><pre><span></span><code>  <span class="nv">TRIMWS</span> <span class="o">-</span> <span class="nv">Trim</span> <span class="nv">leading</span> <span class="nv">whitespace</span> <span class="nv">from</span> <span class="nv">a</span> <span class="nv">string</span>
 
-<span class="nv">Trims</span> <span class="nv">leading</span> <span class="nv">spaces</span> <span class="nv">from</span> <span class="nv">a</span> <span class="nv">string</span>.
+    <span class="nv">NEWSTR</span> <span class="o">=</span> <span class="nv">vlt</span>.<span class="nv">string</span>.<span class="nv">trimws</span><span class="ss">(</span><span class="nv">STR</span><span class="ss">)</span>
 
-<span class="nv">There</span> <span class="nv">is</span> <span class="nv">probably</span> <span class="nv">no</span> <span class="nv">reason</span> <span class="k">for</span> <span class="nv">this</span> <span class="nv">function</span> <span class="nv">to</span> <span class="nv">exist</span>, <span class="nv">as</span> <span class="nv">the</span> <span class="nv">Matlab</span> <span class="nv">function</span>
-<span class="k">STRTRIM</span> <span class="nv">seems</span> <span class="nv">to</span> <span class="nv">perform</span> <span class="nv">its</span> <span class="nv">function</span>.  <span class="nv">This</span> <span class="nv">function</span> <span class="nv">is</span> <span class="nv">provided</span> <span class="k">for</span> <span class="nv">backward</span>
-<span class="nv">compatibility</span>.  <span class="nv">I</span> <span class="nv">recommend</span> <span class="nv">simply</span> <span class="nv">using</span> <span class="k">STRTRIM</span> <span class="nv">rather</span> <span class="nv">than</span> <span class="nv">this</span> <span class="nv">function</span>, <span class="nv">as</span> <span class="nv">it</span>
-<span class="nv">will</span> <span class="nv">probably</span> <span class="nv">be</span> <span class="nv">removed</span> <span class="nv">in</span> <span class="nv">a</span> <span class="nv">future</span> <span class="nv">release</span>.
+    <span class="nv">Trims</span> <span class="nv">leading</span> <span class="nv">spaces</span> <span class="nv">from</span> <span class="nv">a</span> <span class="nv">string</span>.
 
-<span class="nv">The</span> <span class="nv">only</span> <span class="nv">difference</span> <span class="nv">between</span> <span class="k">STRTRIM</span> <span class="nv">and</span> <span class="nv">vlt</span>.<span class="nv">string</span>.<span class="nv">trimws</span> <span class="nv">is</span> <span class="nv">that</span> <span class="nv">vlt</span>.<span class="nv">string</span>.<span class="nv">trimws</span> <span class="nv">only</span> <span class="nv">operates</span> <span class="nv">on</span>
-<span class="nv">leading</span> <span class="nv">spaces</span>, <span class="nv">whereas</span> <span class="k">STRTRIM</span> <span class="nv">removes</span> <span class="nv">trailing</span> <span class="nv">whitespace</span> <span class="nv">and</span> <span class="nv">also</span> <span class="nv">operates</span> <span class="nv">on</span>
-<span class="nv">any</span> <span class="nv">whitespace</span> <span class="nv">character</span> <span class="nv">as</span> <span class="nv">defined</span> <span class="nv">by</span> <span class="nv">the</span> <span class="nv">function</span> <span class="nv">ISSPACE</span>.
+    <span class="nv">There</span> <span class="nv">is</span> <span class="nv">probably</span> <span class="nv">no</span> <span class="nv">reason</span> <span class="k">for</span> <span class="nv">this</span> <span class="nv">function</span> <span class="nv">to</span> <span class="nv">exist</span>, <span class="nv">as</span> <span class="nv">the</span> <span class="nv">Matlab</span> <span class="nv">function</span>
+    <span class="k">STRTRIM</span> <span class="nv">seems</span> <span class="nv">to</span> <span class="nv">perform</span> <span class="nv">its</span> <span class="nv">function</span>.  <span class="nv">This</span> <span class="nv">function</span> <span class="nv">is</span> <span class="nv">provided</span> <span class="k">for</span> <span class="nv">backward</span>
+    <span class="nv">compatibility</span>.  <span class="nv">I</span> <span class="nv">recommend</span> <span class="nv">simply</span> <span class="nv">using</span> <span class="k">STRTRIM</span> <span class="nv">rather</span> <span class="nv">than</span> <span class="nv">this</span> <span class="nv">function</span>, <span class="nv">as</span> <span class="nv">it</span>
+    <span class="nv">will</span> <span class="nv">probably</span> <span class="nv">be</span> <span class="nv">removed</span> <span class="nv">in</span> <span class="nv">a</span> <span class="nv">future</span> <span class="nv">release</span>.
 
-<span class="nv">Example</span>:
-    <span class="nv">m</span> <span class="o">=</span> <span class="nv">vlt</span>.<span class="nv">string</span>.<span class="nv">trimws</span><span class="ss">(</span><span class="s1">&#39;</span><span class="s">   this string has leading whitespace</span><span class="s1">&#39;</span><span class="ss">)</span>
+    <span class="nv">The</span> <span class="nv">only</span> <span class="nv">difference</span> <span class="nv">between</span> <span class="k">STRTRIM</span> <span class="nv">and</span> <span class="nv">vlt</span>.<span class="nv">string</span>.<span class="nv">trimws</span> <span class="nv">is</span> <span class="nv">that</span> <span class="nv">vlt</span>.<span class="nv">string</span>.<span class="nv">trimws</span> <span class="nv">only</span> <span class="nv">operates</span> <span class="nv">on</span>
+    <span class="nv">leading</span> <span class="nv">spaces</span>, <span class="nv">whereas</span> <span class="k">STRTRIM</span> <span class="nv">removes</span> <span class="nv">trailing</span> <span class="nv">whitespace</span> <span class="nv">and</span> <span class="nv">also</span> <span class="nv">operates</span> <span class="nv">on</span>
+    <span class="nv">any</span> <span class="nv">whitespace</span> <span class="nv">character</span> <span class="nv">as</span> <span class="nv">defined</span> <span class="nv">by</span> <span class="nv">the</span> <span class="nv">function</span> <span class="nv">ISSPACE</span>.
 
-<span class="nv">See</span> <span class="nv">also</span>:  <span class="k">STRTRIM</span>, <span class="nv">ISSPACE</span>
+    <span class="nv">Example</span>:
+        <span class="nv">m</span> <span class="o">=</span> <span class="nv">vlt</span>.<span class="nv">string</span>.<span class="nv">trimws</span><span class="ss">(</span><span class="s1">&#39;</span><span class="s">   this string has leading whitespace</span><span class="s1">&#39;</span><span class="ss">)</span>
+
+    <span class="nv">See</span> <span class="nv">also</span>:  <span class="k">STRTRIM</span>, <span class="nv">ISSPACE</span>
 </code></pre></div>
                 
               

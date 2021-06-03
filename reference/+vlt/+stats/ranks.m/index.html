@@ -3213,6 +3213,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../%2Bgit/git_stash.m/" class="md-nav__link">
+        vlt.git.git_stash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../%2Bgit/git_status.m/" class="md-nav__link">
         vlt.git.git_status
       </a>
@@ -9237,16 +9249,21 @@
                 
                 
                 <h1 id="vltstatsranks">vlt.stats.ranks<a class="headerlink" href="#vltstatsranks" title="Permanent link">&para;</a></h1>
-<p>RANKS - Returns vector of ranks of X adjusted for ties</p>
-<p>Y = vlt.stats.ranks(X)</p>
-<p>If X is a vector, return the (column) vector of ranks of
-  X adjusted for ties.</p>
-<p>If X is a matrix, do the above for each column of X</p>
-<p>[From Octave 2.5.1]
-  Author: KH <a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#75;&#117;&#114;&#116;&#46;&#72;&#111;&#114;&#110;&#105;&#107;&#64;&#99;&#105;&#46;&#116;&#117;&#119;&#105;&#101;&#110;&#46;&#97;&#99;&#46;&#97;&#116;">&#75;&#117;&#114;&#116;&#46;&#72;&#111;&#114;&#110;&#105;&#107;&#64;&#99;&#105;&#46;&#116;&#117;&#119;&#105;&#101;&#110;&#46;&#97;&#99;&#46;&#97;&#116;</a>
-  Description: Compute ranks
-  This code is rather ugly, but is there an easy way to get the ranks
-  adjusted for ties from sort?</p>
+<div class="codehilite"><pre><span></span><code><span class="w">  </span><span class="n">RANKS</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="k">Returns</span><span class="w"> </span><span class="n">vector</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="n">ranks</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="n">X</span><span class="w"> </span><span class="n">adjusted</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">ties</span><span class="w"></span>
+
+<span class="w">  </span><span class="n">Y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">vlt</span><span class="p">.</span><span class="n">stats</span><span class="p">.</span><span class="n">ranks</span><span class="p">(</span><span class="n">X</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">  </span><span class="k">If</span><span class="w"> </span><span class="n">X</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">vector</span><span class="p">,</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="p">(</span><span class="k">column</span><span class="p">)</span><span class="w"> </span><span class="n">vector</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="n">ranks</span><span class="w"> </span><span class="k">of</span><span class="w"></span>
+<span class="w">  </span><span class="n">X</span><span class="w"> </span><span class="n">adjusted</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">ties</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">  </span><span class="k">If</span><span class="w"> </span><span class="n">X</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">matrix</span><span class="p">,</span><span class="w"> </span><span class="n">do</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">above</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="k">each</span><span class="w"> </span><span class="k">column</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="n">X</span><span class="w"></span>
+
+<span class="w">  </span><span class="o">[</span><span class="n">From Octave 2.5.1</span><span class="o">]</span><span class="w"></span>
+<span class="w">  </span><span class="nl">Author</span><span class="p">:</span><span class="w"> </span><span class="n">KH</span><span class="w"> </span><span class="o">&lt;</span><span class="n">Kurt</span><span class="p">.</span><span class="n">Hornik</span><span class="nv">@ci</span><span class="p">.</span><span class="n">tuwien</span><span class="p">.</span><span class="n">ac</span><span class="p">.</span><span class="k">at</span><span class="o">&gt;</span><span class="w"></span>
+<span class="w">  </span><span class="nl">Description</span><span class="p">:</span><span class="w"> </span><span class="k">Compute</span><span class="w"> </span><span class="n">ranks</span><span class="w"></span>
+<span class="w">  </span><span class="n">This</span><span class="w"> </span><span class="n">code</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="n">rather</span><span class="w"> </span><span class="n">ugly</span><span class="p">,</span><span class="w"> </span><span class="n">but</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="n">there</span><span class="w"> </span><span class="n">an</span><span class="w"> </span><span class="n">easy</span><span class="w"> </span><span class="n">way</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="k">get</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">ranks</span><span class="w"></span>
+<span class="w">  </span><span class="n">adjusted</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">ties</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">sort</span><span class="vm">?</span><span class="w"></span>
+</code></pre></div>
                 
               
               

@@ -3213,6 +3213,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../%2Bgit/git_stash.m/" class="md-nav__link">
+        vlt.git.git_stash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../%2Bgit/git_status.m/" class="md-nav__link">
         vlt.git.git_status
       </a>
@@ -9237,39 +9249,49 @@
                 
                 
                 <h1 id="vltstringstrcmp_substitution">vlt.string.strcmp_substitution<a class="headerlink" href="#vltstringstrcmp_substitution" title="Permanent link">&para;</a></h1>
-<p>STRCMP_SUBSTITUTION - Checks strings for match with ability to substitute a symbol for a string</p>
-<p>[TF, MATCH_STRING, SUBSTITUTE_STRING] = vlt.string.strcmp_substitution(S1, S2, ...)</p>
-<p>Compares S1 and S2 and returns in TF a logical 1 if they are of the same form and logical 0 otherwise.
-   These strings are of the same form if
-      a) S1 and S2 are identical
-      b) S2 is a regular expression match of S1 (see REGEXP)
-      c) S2 matches S1 when the symbol '#' in S1 is replaced by some string in S2, either as a direct comparison
-         with STRCMP or a regular expression match with REGEXP. In this case, SUBSTITUTE_STRING, the string that
-         can replace the SubstituteStringSymbol '#' is also returned.
-   In any case, the entire matched string MATCH_STRING will be returned.</p>
-<p>The function also has the form:</p>
-<p>[TF, MATCH_STRING, SUBSTITUTE_STRING] = vlt.string.strcmp_substitution(S1, A, ...)</p>
-<div class="codehilite"><pre><span></span><code>where A is a cell array of strings. TF will be a vector of 0/1s the same length as A,
-and SUBSTITUTE_STRING will be a cell array of the suitable substitute strings.
-</code></pre></div>
+<div class="codehilite"><pre><span></span><code>  <span class="n">STRCMP_SUBSTITUTION</span> <span class="o">-</span> <span class="n">Checks</span> <span class="n">strings</span> <span class="k">for</span> <span class="k">match</span> <span class="n">with</span> <span class="n">ability</span> <span class="n">to</span> <span class="n">substitute</span> <span class="n">a</span> <span class="n">symbol</span> <span class="k">for</span> <span class="n">a</span> <span class="n">string</span>
 
-<p>One can also specify the substitute string to be used (that is, not allow it to vary)
-   by adding the name/value pair 'SubstituteString',THESTRING as extra arguments to the function.</p>
-<p>This file can be modified by passing name/value pairs:</p>
-<p>Parameter(default):         | Description:</p>
-<hr />
-<p>SubstituteStringSymbol('#') | The symbol to indicate the substitute string 
-   UseSubstituteString(1)      | Should we use the SubstituteString option?
-   SubstituteString('')        | Force the function to use this string as the only acceptable
-                               |    replacement for SubstituteStringSymbol
-   ForceCellOutput(0)          | 0/1 should we output a cell even if we receive single strings as S1, S2?</p>
-<p>Examples:
-             s1 = ['.<em>.ext>']; % equivalent of </em>.ext on the command line
-             s2 = { 'myfile1.ext' 'myfile2.ext' 'myotherfile.ext1'};
-             [tf, matchstring, substring] = vlt.string.strcmp_substitution(s1,s2,'UseSubstituteString',0)</p>
-<div class="codehilite"><pre><span></span><code>         s1 = [&#39;stimtimes#.txt&#39;];
-         s2 = { &#39;dummy.ext&#39; &#39;stimtimes123.txt&#39; &#39;stimtimes.txt&#39; &#39;stimtimes456.txt&#39;}
-         [tf, matchstring, substring] = vlt.string.strcmp_substitution(s1,s2)
+   <span class="p">[</span><span class="n">TF</span><span class="p">,</span> <span class="n">MATCH_STRING</span><span class="p">,</span> <span class="n">SUBSTITUTE_STRING</span><span class="p">]</span> <span class="o">=</span> <span class="n">vlt</span><span class="o">.</span><span class="n">string</span><span class="o">.</span><span class="n">strcmp_substitution</span><span class="p">(</span><span class="n">S1</span><span class="p">,</span> <span class="n">S2</span><span class="p">,</span> <span class="o">...</span><span class="p">)</span>
+
+   <span class="n">Compares</span> <span class="n">S1</span> <span class="ow">and</span> <span class="n">S2</span> <span class="ow">and</span> <span class="n">returns</span> <span class="ow">in</span> <span class="n">TF</span> <span class="n">a</span> <span class="n">logical</span> <span class="mi">1</span> <span class="k">if</span> <span class="n">they</span> <span class="n">are</span> <span class="n">of</span> <span class="n">the</span> <span class="n">same</span> <span class="n">form</span> <span class="ow">and</span> <span class="n">logical</span> <span class="mi">0</span> <span class="n">otherwise</span><span class="o">.</span>
+   <span class="n">These</span> <span class="n">strings</span> <span class="n">are</span> <span class="n">of</span> <span class="n">the</span> <span class="n">same</span> <span class="n">form</span> <span class="k">if</span>
+      <span class="n">a</span><span class="p">)</span> <span class="n">S1</span> <span class="ow">and</span> <span class="n">S2</span> <span class="n">are</span> <span class="n">identical</span>
+      <span class="n">b</span><span class="p">)</span> <span class="n">S2</span> <span class="k">is</span> <span class="n">a</span> <span class="n">regular</span> <span class="n">expression</span> <span class="k">match</span> <span class="n">of</span> <span class="n">S1</span> <span class="p">(</span><span class="n">see</span> <span class="n">REGEXP</span><span class="p">)</span>
+      <span class="n">c</span><span class="p">)</span> <span class="n">S2</span> <span class="n">matches</span> <span class="n">S1</span> <span class="n">when</span> <span class="n">the</span> <span class="n">symbol</span> <span class="s1">&#39;#&#39;</span> <span class="ow">in</span> <span class="n">S1</span> <span class="k">is</span> <span class="n">replaced</span> <span class="n">by</span> <span class="n">some</span> <span class="n">string</span> <span class="ow">in</span> <span class="n">S2</span><span class="p">,</span> <span class="n">either</span> <span class="k">as</span> <span class="n">a</span> <span class="n">direct</span> <span class="n">comparison</span>
+         <span class="n">with</span> <span class="n">STRCMP</span> <span class="ow">or</span> <span class="n">a</span> <span class="n">regular</span> <span class="n">expression</span> <span class="k">match</span> <span class="n">with</span> <span class="n">REGEXP</span><span class="o">.</span> <span class="n">In</span> <span class="n">this</span> <span class="n">case</span><span class="p">,</span> <span class="n">SUBSTITUTE_STRING</span><span class="p">,</span> <span class="n">the</span> <span class="n">string</span> <span class="n">that</span>
+         <span class="n">can</span> <span class="n">replace</span> <span class="n">the</span> <span class="n">SubstituteStringSymbol</span> <span class="s1">&#39;#&#39;</span> <span class="k">is</span> <span class="n">also</span> <span class="n">returned</span><span class="o">.</span>
+   <span class="n">In</span> <span class="n">any</span> <span class="n">case</span><span class="p">,</span> <span class="n">the</span> <span class="n">entire</span> <span class="n">matched</span> <span class="n">string</span> <span class="n">MATCH_STRING</span> <span class="n">will</span> <span class="n">be</span> <span class="n">returned</span><span class="o">.</span>
+
+
+   <span class="n">The</span> <span class="n">function</span> <span class="n">also</span> <span class="n">has</span> <span class="n">the</span> <span class="n">form</span><span class="p">:</span>
+
+   <span class="p">[</span><span class="n">TF</span><span class="p">,</span> <span class="n">MATCH_STRING</span><span class="p">,</span> <span class="n">SUBSTITUTE_STRING</span><span class="p">]</span> <span class="o">=</span> <span class="n">vlt</span><span class="o">.</span><span class="n">string</span><span class="o">.</span><span class="n">strcmp_substitution</span><span class="p">(</span><span class="n">S1</span><span class="p">,</span> <span class="n">A</span><span class="p">,</span> <span class="o">...</span><span class="p">)</span>
+
+    <span class="n">where</span> <span class="n">A</span> <span class="k">is</span> <span class="n">a</span> <span class="n">cell</span> <span class="n">array</span> <span class="n">of</span> <span class="n">strings</span><span class="o">.</span> <span class="n">TF</span> <span class="n">will</span> <span class="n">be</span> <span class="n">a</span> <span class="n">vector</span> <span class="n">of</span> <span class="mi">0</span><span class="o">/</span><span class="mi">1</span><span class="n">s</span> <span class="n">the</span> <span class="n">same</span> <span class="n">length</span> <span class="k">as</span> <span class="n">A</span><span class="p">,</span>
+    <span class="ow">and</span> <span class="n">SUBSTITUTE_STRING</span> <span class="n">will</span> <span class="n">be</span> <span class="n">a</span> <span class="n">cell</span> <span class="n">array</span> <span class="n">of</span> <span class="n">the</span> <span class="n">suitable</span> <span class="n">substitute</span> <span class="n">strings</span><span class="o">.</span>
+
+   <span class="n">One</span> <span class="n">can</span> <span class="n">also</span> <span class="n">specify</span> <span class="n">the</span> <span class="n">substitute</span> <span class="n">string</span> <span class="n">to</span> <span class="n">be</span> <span class="n">used</span> <span class="p">(</span><span class="n">that</span> <span class="k">is</span><span class="p">,</span> <span class="ow">not</span> <span class="n">allow</span> <span class="n">it</span> <span class="n">to</span> <span class="n">vary</span><span class="p">)</span>
+   <span class="n">by</span> <span class="n">adding</span> <span class="n">the</span> <span class="n">name</span><span class="o">/</span><span class="n">value</span> <span class="n">pair</span> <span class="s1">&#39;SubstituteString&#39;</span><span class="p">,</span><span class="n">THESTRING</span> <span class="k">as</span> <span class="n">extra</span> <span class="n">arguments</span> <span class="n">to</span> <span class="n">the</span> <span class="n">function</span><span class="o">.</span>
+
+   <span class="n">This</span> <span class="n">file</span> <span class="n">can</span> <span class="n">be</span> <span class="n">modified</span> <span class="n">by</span> <span class="n">passing</span> <span class="n">name</span><span class="o">/</span><span class="n">value</span> <span class="n">pairs</span><span class="p">:</span>
+
+   <span class="n">Parameter</span><span class="p">(</span><span class="n">default</span><span class="p">):</span>         <span class="o">|</span> <span class="n">Description</span><span class="p">:</span>
+   <span class="o">----------------------------------------------------------------------</span>
+   <span class="n">SubstituteStringSymbol</span><span class="p">(</span><span class="s1">&#39;#&#39;</span><span class="p">)</span> <span class="o">|</span> <span class="n">The</span> <span class="n">symbol</span> <span class="n">to</span> <span class="n">indicate</span> <span class="n">the</span> <span class="n">substitute</span> <span class="n">string</span> 
+   <span class="n">UseSubstituteString</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>      <span class="o">|</span> <span class="n">Should</span> <span class="n">we</span> <span class="n">use</span> <span class="n">the</span> <span class="n">SubstituteString</span> <span class="n">option</span><span class="err">?</span>
+   <span class="n">SubstituteString</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>        <span class="o">|</span> <span class="n">Force</span> <span class="n">the</span> <span class="n">function</span> <span class="n">to</span> <span class="n">use</span> <span class="n">this</span> <span class="n">string</span> <span class="k">as</span> <span class="n">the</span> <span class="n">only</span> <span class="n">acceptable</span>
+                               <span class="o">|</span>    <span class="n">replacement</span> <span class="k">for</span> <span class="n">SubstituteStringSymbol</span>
+   <span class="n">ForceCellOutput</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>          <span class="o">|</span> <span class="mi">0</span><span class="o">/</span><span class="mi">1</span> <span class="n">should</span> <span class="n">we</span> <span class="n">output</span> <span class="n">a</span> <span class="n">cell</span> <span class="n">even</span> <span class="k">if</span> <span class="n">we</span> <span class="n">receive</span> <span class="n">single</span> <span class="n">strings</span> <span class="k">as</span> <span class="n">S1</span><span class="p">,</span> <span class="n">S2</span><span class="err">?</span>
+
+
+   <span class="n">Examples</span><span class="p">:</span>
+             <span class="n">s1</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;.*\.ext\&gt;&#39;</span><span class="p">];</span> <span class="o">%</span> <span class="n">equivalent</span> <span class="n">of</span> <span class="o">*.</span><span class="n">ext</span> <span class="n">on</span> <span class="n">the</span> <span class="n">command</span> <span class="n">line</span>
+             <span class="n">s2</span> <span class="o">=</span> <span class="p">{</span> <span class="s1">&#39;myfile1.ext&#39;</span> <span class="s1">&#39;myfile2.ext&#39;</span> <span class="s1">&#39;myotherfile.ext1&#39;</span><span class="p">};</span>
+             <span class="p">[</span><span class="n">tf</span><span class="p">,</span> <span class="n">matchstring</span><span class="p">,</span> <span class="n">substring</span><span class="p">]</span> <span class="o">=</span> <span class="n">vlt</span><span class="o">.</span><span class="n">string</span><span class="o">.</span><span class="n">strcmp_substitution</span><span class="p">(</span><span class="n">s1</span><span class="p">,</span><span class="n">s2</span><span class="p">,</span><span class="s1">&#39;UseSubstituteString&#39;</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
+
+             <span class="n">s1</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;stimtimes#.txt&#39;</span><span class="p">];</span>
+             <span class="n">s2</span> <span class="o">=</span> <span class="p">{</span> <span class="s1">&#39;dummy.ext&#39;</span> <span class="s1">&#39;stimtimes123.txt&#39;</span> <span class="s1">&#39;stimtimes.txt&#39;</span> <span class="s1">&#39;stimtimes456.txt&#39;</span><span class="p">}</span>
+             <span class="p">[</span><span class="n">tf</span><span class="p">,</span> <span class="n">matchstring</span><span class="p">,</span> <span class="n">substring</span><span class="p">]</span> <span class="o">=</span> <span class="n">vlt</span><span class="o">.</span><span class="n">string</span><span class="o">.</span><span class="n">strcmp_substitution</span><span class="p">(</span><span class="n">s1</span><span class="p">,</span><span class="n">s2</span><span class="p">)</span>
 </code></pre></div>
                 
               

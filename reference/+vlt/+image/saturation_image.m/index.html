@@ -3213,6 +3213,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../%2Bgit/git_stash.m/" class="md-nav__link">
+        vlt.git.git_stash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../%2Bgit/git_status.m/" class="md-nav__link">
         vlt.git.git_status
       </a>
@@ -9237,34 +9249,41 @@
                 
                 
                 <h1 id="vltimagesaturation_image">vlt.image.saturation_image<a class="headerlink" href="#vltimagesaturation_image" title="Permanent link">&para;</a></h1>
-<p>SATURATION_IMAGE - Scale an image to allow a saturation plot</p>
-<p>IM_OUT = SATURATION_IMAGE(IM_IN, ...)</p>
-<p>Scales the image to be in the range 2 ... ColorMapSize-1 so that
-  color map entries 1 and ColorMapSize can be used for saturation values.</p>
-<p>If HighSaturation is Inf, then, at the high edge, the image is scaled from
-  its empirical max to ColorMapSize-1. Otherwise, the image is scaled from
-  the value HighSaturation onto ColorMapSize-1.</p>
-<p>If LowSaturation is -Inf, then the image is scaled from its empirical min
-  to 2. Otherwise, the image is scaled from LowSaturation to 2.</p>
-<p>Example:
-      myData = 40*membrane(1,25); % MathWorks logo
-      myImage = saturation_image(myData,'LowSaturation',0,'HighSaturation',20);
-      myColorMap = [ 0 0 0; jet(254); 1 1 1];
-      figure;
-      image(myImage);
-      colormap(myColorMap);</p>
-<p>This function also takes name/value pairs that modifies its behavior:
-  Parameter (default)   | Description</p>
-<hr />
-<p>ColorMapSize (256)    | Size of the colormap; also, value used for the high
-                        |   saturation index value
-  HighSaturation (Inf)  | Value which, if exceeded, is set to be saturating
-                        |   on the high side
-  LowSaturation (-Inf)  | Value, which, if not achieved, is set to be 
-                        |   saturating on the low side.
-  LowSaturationValue (1)| Value used for the low saturation value
-  NaNSaturation (1)     | Should NaN entries be set to Low (-1), High (1), or
-                        |   be left alone (0)  ?</p>
+<div class="codehilite"><pre><span></span><code>  <span class="nt">SATURATION_IMAGE</span> <span class="nt">-</span> <span class="nt">Scale</span> <span class="nt">an</span> <span class="nt">image</span> <span class="nt">to</span> <span class="nt">allow</span> <span class="nt">a</span> <span class="nt">saturation</span> <span class="nt">plot</span>
+
+  <span class="nt">IM_OUT</span> <span class="o">=</span> <span class="nt">SATURATION_IMAGE</span><span class="o">(</span><span class="nt">IM_IN</span><span class="o">,</span> <span class="o">...)</span>
+
+  <span class="nt">Scales</span> <span class="nt">the</span> <span class="nt">image</span> <span class="nt">to</span> <span class="nt">be</span> <span class="nt">in</span> <span class="nt">the</span> <span class="nt">range</span> <span class="nt">2</span> <span class="o">...</span> <span class="nt">ColorMapSize-1</span> <span class="nt">so</span> <span class="nt">that</span>
+  <span class="nt">color</span> <span class="nt">map</span> <span class="nt">entries</span> <span class="nt">1</span> <span class="nt">and</span> <span class="nt">ColorMapSize</span> <span class="nt">can</span> <span class="nt">be</span> <span class="nt">used</span> <span class="nt">for</span> <span class="nt">saturation</span> <span class="nt">values</span><span class="o">.</span>
+
+  <span class="nt">If</span> <span class="nt">HighSaturation</span> <span class="nt">is</span> <span class="nt">Inf</span><span class="o">,</span> <span class="nt">then</span><span class="o">,</span> <span class="nt">at</span> <span class="nt">the</span> <span class="nt">high</span> <span class="nt">edge</span><span class="o">,</span> <span class="nt">the</span> <span class="nt">image</span> <span class="nt">is</span> <span class="nt">scaled</span> <span class="nt">from</span>
+  <span class="nt">its</span> <span class="nt">empirical</span> <span class="nt">max</span> <span class="nt">to</span> <span class="nt">ColorMapSize-1</span><span class="o">.</span> <span class="nt">Otherwise</span><span class="o">,</span> <span class="nt">the</span> <span class="nt">image</span> <span class="nt">is</span> <span class="nt">scaled</span> <span class="nt">from</span>
+  <span class="nt">the</span> <span class="nt">value</span> <span class="nt">HighSaturation</span> <span class="nt">onto</span> <span class="nt">ColorMapSize-1</span><span class="o">.</span>
+
+  <span class="nt">If</span> <span class="nt">LowSaturation</span> <span class="nt">is</span> <span class="nt">-Inf</span><span class="o">,</span> <span class="nt">then</span> <span class="nt">the</span> <span class="nt">image</span> <span class="nt">is</span> <span class="nt">scaled</span> <span class="nt">from</span> <span class="nt">its</span> <span class="nt">empirical</span> <span class="nt">min</span>
+  <span class="nt">to</span> <span class="nt">2</span><span class="o">.</span> <span class="nt">Otherwise</span><span class="o">,</span> <span class="nt">the</span> <span class="nt">image</span> <span class="nt">is</span> <span class="nt">scaled</span> <span class="nt">from</span> <span class="nt">LowSaturation</span> <span class="nt">to</span> <span class="nt">2</span><span class="o">.</span>
+
+  <span class="nt">Example</span><span class="o">:</span>
+      <span class="nt">myData</span> <span class="o">=</span> <span class="nt">40</span><span class="o">*</span><span class="nt">membrane</span><span class="o">(</span><span class="nt">1</span><span class="o">,</span><span class="nt">25</span><span class="o">);</span> <span class="o">%</span> <span class="nt">MathWorks</span> <span class="nt">logo</span>
+      <span class="nt">myImage</span> <span class="o">=</span> <span class="nt">saturation_image</span><span class="o">(</span><span class="nt">myData</span><span class="o">,</span><span class="s1">&#39;LowSaturation&#39;</span><span class="o">,</span><span class="nt">0</span><span class="o">,</span><span class="s1">&#39;HighSaturation&#39;</span><span class="o">,</span><span class="nt">20</span><span class="o">);</span>
+      <span class="nt">myColorMap</span> <span class="o">=</span> <span class="cp">[</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">jet</span><span class="p">(</span><span class="mi">254</span><span class="p">);</span> <span class="mi">1</span> <span class="mi">1</span> <span class="mi">1</span><span class="cp">]</span><span class="o">;</span>
+      <span class="nt">figure</span><span class="o">;</span>
+      <span class="nt">image</span><span class="o">(</span><span class="nt">myImage</span><span class="o">);</span>
+      <span class="nt">colormap</span><span class="o">(</span><span class="nt">myColorMap</span><span class="o">);</span>
+
+  <span class="nt">This</span> <span class="nt">function</span> <span class="nt">also</span> <span class="nt">takes</span> <span class="nt">name</span><span class="o">/</span><span class="nt">value</span> <span class="nt">pairs</span> <span class="nt">that</span> <span class="nt">modifies</span> <span class="nt">its</span> <span class="nt">behavior</span><span class="o">:</span>
+  <span class="nt">Parameter</span> <span class="o">(</span><span class="nt">default</span><span class="o">)</span>   <span class="o">|</span> <span class="nt">Description</span>
+  <span class="nt">---------------------------------------------------------------------</span>
+  <span class="nt">ColorMapSize</span> <span class="o">(</span><span class="nt">256</span><span class="o">)</span>    <span class="o">|</span> <span class="nt">Size</span> <span class="nt">of</span> <span class="nt">the</span> <span class="nt">colormap</span><span class="o">;</span> <span class="nt">also</span><span class="o">,</span> <span class="nt">value</span> <span class="nt">used</span> <span class="nt">for</span> <span class="nt">the</span> <span class="nt">high</span>
+                        <span class="o">|</span>   <span class="nt">saturation</span> <span class="nt">index</span> <span class="nt">value</span>
+  <span class="nt">HighSaturation</span> <span class="o">(</span><span class="nt">Inf</span><span class="o">)</span>  <span class="o">|</span> <span class="nt">Value</span> <span class="nt">which</span><span class="o">,</span> <span class="nt">if</span> <span class="nt">exceeded</span><span class="o">,</span> <span class="nt">is</span> <span class="nt">set</span> <span class="nt">to</span> <span class="nt">be</span> <span class="nt">saturating</span>
+                        <span class="o">|</span>   <span class="nt">on</span> <span class="nt">the</span> <span class="nt">high</span> <span class="nt">side</span>
+  <span class="nt">LowSaturation</span> <span class="o">(</span><span class="nt">-Inf</span><span class="o">)</span>  <span class="o">|</span> <span class="nt">Value</span><span class="o">,</span> <span class="nt">which</span><span class="o">,</span> <span class="nt">if</span> <span class="nt">not</span> <span class="nt">achieved</span><span class="o">,</span> <span class="nt">is</span> <span class="nt">set</span> <span class="nt">to</span> <span class="nt">be</span> 
+                        <span class="o">|</span>   <span class="nt">saturating</span> <span class="nt">on</span> <span class="nt">the</span> <span class="nt">low</span> <span class="nt">side</span><span class="o">.</span>
+  <span class="nt">LowSaturationValue</span> <span class="o">(</span><span class="nt">1</span><span class="o">)|</span> <span class="nt">Value</span> <span class="nt">used</span> <span class="nt">for</span> <span class="nt">the</span> <span class="nt">low</span> <span class="nt">saturation</span> <span class="nt">value</span>
+  <span class="nt">NaNSaturation</span> <span class="o">(</span><span class="nt">1</span><span class="o">)</span>     <span class="o">|</span> <span class="nt">Should</span> <span class="nt">NaN</span> <span class="nt">entries</span> <span class="nt">be</span> <span class="nt">set</span> <span class="nt">to</span> <span class="nt">Low</span> <span class="o">(</span><span class="nt">-1</span><span class="o">),</span> <span class="nt">High</span> <span class="o">(</span><span class="nt">1</span><span class="o">),</span> <span class="nt">or</span>
+                        <span class="o">|</span>   <span class="nt">be</span> <span class="nt">left</span> <span class="nt">alone</span> <span class="o">(</span><span class="nt">0</span><span class="o">)</span>  <span class="o">?</span>
+</code></pre></div>
                 
               
               

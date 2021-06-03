@@ -3213,6 +3213,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../%2Bgit/git_stash.m/" class="md-nav__link">
+        vlt.git.git_stash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../%2Bgit/git_status.m/" class="md-nav__link">
         vlt.git.git_status
       </a>
@@ -9237,15 +9249,19 @@
                 
                 
                 <h1 id="vltpythonrun3">vlt.python.run3<a class="headerlink" href="#vltpythonrun3" title="Permanent link">&para;</a></h1>
-<p>vlt.python.run3 - Run a python3 script</p>
-<p>[status,result] = vlt.python.run3(SCRIPT)</p>
-<p>Run a python3 script from the SYSTEM command in Matlab. The
-  character string SCRIPT will be run with the executable
-  that is returned from vlt.python.app3().</p>
-<p>Example:
-   mydir = tempdir;
-   vlt.file.str2text([tempdir filesep 'myscript.py'], 'a=1; print("Running python"); ');
-   [status,result]=vlt.python.run3([tempdir filesep 'myscript.py'])</p>
+<div class="codehilite"><pre><span></span><code>  <span class="nt">vlt</span><span class="p">.</span><span class="nc">python</span><span class="p">.</span><span class="nc">run3</span> <span class="nt">-</span> <span class="nt">Run</span> <span class="nt">a</span> <span class="nt">python3</span> <span class="nt">script</span>
+
+  <span class="cp">[</span><span class="nx">status</span><span class="p">,</span><span class="nx">result</span><span class="cp">]</span> <span class="o">=</span> <span class="nt">vlt</span><span class="p">.</span><span class="nc">python</span><span class="p">.</span><span class="nc">run3</span><span class="o">(</span><span class="nt">SCRIPT</span><span class="o">)</span>
+
+  <span class="nt">Run</span> <span class="nt">a</span> <span class="nt">python3</span> <span class="nt">script</span> <span class="nt">from</span> <span class="nt">the</span> <span class="nt">SYSTEM</span> <span class="nt">command</span> <span class="nt">in</span> <span class="nt">Matlab</span><span class="o">.</span> <span class="nt">The</span>
+  <span class="nt">character</span> <span class="nt">string</span> <span class="nt">SCRIPT</span> <span class="nt">will</span> <span class="nt">be</span> <span class="nt">run</span> <span class="nt">with</span> <span class="nt">the</span> <span class="nt">executable</span>
+  <span class="nt">that</span> <span class="nt">is</span> <span class="nt">returned</span> <span class="nt">from</span> <span class="nt">vlt</span><span class="p">.</span><span class="nc">python</span><span class="p">.</span><span class="nc">app3</span><span class="o">().</span>
+
+  <span class="nt">Example</span><span class="o">:</span>
+   <span class="nt">mydir</span> <span class="o">=</span> <span class="nt">tempdir</span><span class="o">;</span>
+   <span class="nt">vlt</span><span class="p">.</span><span class="nc">file</span><span class="p">.</span><span class="nc">str2text</span><span class="o">(</span><span class="cp">[</span><span class="nx">tempdir</span> <span class="nx">filesep</span> <span class="s1">&#39;myscript.py&#39;</span><span class="cp">]</span><span class="o">,</span> <span class="s1">&#39;a=1; print(&quot;Running python&quot;); &#39;</span><span class="o">);</span>
+   <span class="cp">[</span><span class="nx">status</span><span class="p">,</span><span class="nx">result</span><span class="cp">]</span><span class="o">=</span><span class="nt">vlt</span><span class="p">.</span><span class="nc">python</span><span class="p">.</span><span class="nc">run3</span><span class="o">(</span><span class="cp">[</span><span class="nx">tempdir</span> <span class="nx">filesep</span> <span class="s1">&#39;myscript.py&#39;</span><span class="cp">]</span><span class="o">)</span>
+</code></pre></div>
                 
               
               

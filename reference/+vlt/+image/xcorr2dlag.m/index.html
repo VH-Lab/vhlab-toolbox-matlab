@@ -3213,6 +3213,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../%2Bgit/git_stash.m/" class="md-nav__link">
+        vlt.git.git_stash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../%2Bgit/git_status.m/" class="md-nav__link">
         vlt.git.git_status
       </a>
@@ -9237,17 +9249,19 @@
                 
                 
                 <h1 id="vltimagexcorr2dlag">vlt.image.xcorr2dlag<a class="headerlink" href="#vltimagexcorr2dlag" title="Permanent link">&para;</a></h1>
-<p>XCORR2DLAG - 2-d cross-correlation computed at specified lags</p>
-<div class="codehilite"><pre><span></span><code>XC = XCORR2DLAG(W1,W2,XLAGS,YLAGS)
-</code></pre></div>
+<div class="codehilite"><pre><span></span><code>  <span class="nv">XCORR2DLAG</span> <span class="o">-</span> <span class="mi">2</span><span class="o">-</span><span class="nv">d</span> <span class="nv">cross</span><span class="o">-</span><span class="nv">correlation</span> <span class="nv">computed</span> <span class="nv">at</span> <span class="nv">specified</span> <span class="nv">lags</span>
 
-<p>Computes cross-correlation of two-dimensional matricies
-   W1 and W2 at the specified lags in x (XLAGS) and in y
-   (YLAGS).  On most platforms this function runs a MEX file
-   written for speed and therefore there is no error checking to
-   make sure W1 and W2 are the same size and that XLAGS and YLAGS
-   are in bounds.  </p>
-<p>XC is a matrix LENGTH(YLAGS)xLENGTH(XLAGS).</p>
+    <span class="nv">XC</span> <span class="o">=</span> <span class="nv">XCORR2DLAG</span><span class="ss">(</span><span class="nv">W1</span>,<span class="nv">W2</span>,<span class="nv">XLAGS</span>,<span class="nv">YLAGS</span><span class="ss">)</span>
+
+   <span class="nv">Computes</span> <span class="nv">cross</span><span class="o">-</span><span class="nv">correlation</span> <span class="nv">of</span> <span class="nv">two</span><span class="o">-</span><span class="nv">dimensional</span> <span class="nv">matricies</span>
+   <span class="nv">W1</span> <span class="nv">and</span> <span class="nv">W2</span> <span class="nv">at</span> <span class="nv">the</span> <span class="nv">specified</span> <span class="nv">lags</span> <span class="nv">in</span> <span class="nv">x</span> <span class="ss">(</span><span class="nv">XLAGS</span><span class="ss">)</span> <span class="nv">and</span> <span class="nv">in</span> <span class="nv">y</span>
+   <span class="ss">(</span><span class="nv">YLAGS</span><span class="ss">)</span>.  <span class="nv">On</span> <span class="nv">most</span> <span class="nv">platforms</span> <span class="nv">this</span> <span class="nv">function</span> <span class="nv">runs</span> <span class="nv">a</span> <span class="nv">MEX</span> <span class="nv">file</span>
+   <span class="nv">written</span> <span class="k">for</span> <span class="nv">speed</span> <span class="nv">and</span> <span class="nv">therefore</span> <span class="nv">there</span> <span class="nv">is</span> <span class="nv">no</span> <span class="nv">error</span> <span class="nv">checking</span> <span class="nv">to</span>
+   <span class="nv">make</span> <span class="nv">sure</span> <span class="nv">W1</span> <span class="nv">and</span> <span class="nv">W2</span> <span class="nv">are</span> <span class="nv">the</span> <span class="nv">same</span> <span class="nv">size</span> <span class="nv">and</span> <span class="nv">that</span> <span class="nv">XLAGS</span> <span class="nv">and</span> <span class="nv">YLAGS</span>
+   <span class="nv">are</span> <span class="nv">in</span> <span class="nv">bounds</span>.  
+
+   <span class="nv">XC</span> <span class="nv">is</span> <span class="nv">a</span> <span class="nv">matrix</span> <span class="nv">LENGTH</span><span class="ss">(</span><span class="nv">YLAGS</span><span class="ss">)</span><span class="nv">xLENGTH</span><span class="ss">(</span><span class="nv">XLAGS</span><span class="ss">)</span>.
+</code></pre></div>
                 
               
               

@@ -3213,6 +3213,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../%2Bgit/git_stash.m/" class="md-nav__link">
+        vlt.git.git_stash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../%2Bgit/git_status.m/" class="md-nav__link">
         vlt.git.git_status
       </a>
@@ -9237,14 +9249,20 @@
                 
                 
                 <h1 id="vltstatsquickregressionpvalue">vlt.stats.quickregressionpvalue<a class="headerlink" href="#vltstatsquickregressionpvalue" title="Permanent link">&para;</a></h1>
-<p>QUICKREGRESSSIONPVALUE - Estimate p value of the null hypothesis that slope==0</p>
-<p>P = vlt.stats.quickregressionpvalue(X,Y,[NUM_STEPS])</p>
-<p>Takes NUM_STEPS to estimate the P value that the slope of the regression
-  line between X and Y is 0.  This estimate is made by calling vlt.stats.quickregression
-  with different ALPHA values, and examining the confidence intervals.</p>
-<p>If NUM_STEPS is not provided, 30 steps are taken.</p>
-<p>NAN entries are ignored.</p>
-<p>See also: vlt.stats.quickregression, REGRESS</p>
+<div class="codehilite"><pre><span></span><code><span class="w">  </span><span class="n">QUICKREGRESSSIONPVALUE</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">Estimate</span><span class="w"> </span><span class="n">p</span><span class="w"> </span><span class="k">value</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="k">null</span><span class="w"> </span><span class="n">hypothesis</span><span class="w"> </span><span class="n">that</span><span class="w"> </span><span class="n">slope</span><span class="o">==</span><span class="mi">0</span><span class="w"></span>
+
+<span class="w">  </span><span class="n">P</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">vlt</span><span class="p">.</span><span class="n">stats</span><span class="p">.</span><span class="n">quickregressionpvalue</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">Y</span><span class="p">,</span><span class="o">[</span><span class="n">NUM_STEPS</span><span class="o">]</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">  </span><span class="n">Takes</span><span class="w"> </span><span class="n">NUM_STEPS</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="n">estimate</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">P</span><span class="w"> </span><span class="k">value</span><span class="w"> </span><span class="n">that</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">slope</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">regression</span><span class="w"></span>
+<span class="w">  </span><span class="n">line</span><span class="w"> </span><span class="ow">between</span><span class="w"> </span><span class="n">X</span><span class="w"> </span><span class="ow">and</span><span class="w"> </span><span class="n">Y</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="mf">0.</span><span class="w">  </span><span class="n">This</span><span class="w"> </span><span class="n">estimate</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="n">made</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">calling</span><span class="w"> </span><span class="n">vlt</span><span class="p">.</span><span class="n">stats</span><span class="p">.</span><span class="n">quickregression</span><span class="w"></span>
+<span class="w">  </span><span class="k">with</span><span class="w"> </span><span class="n">different</span><span class="w"> </span><span class="n">ALPHA</span><span class="w"> </span><span class="k">values</span><span class="p">,</span><span class="w"> </span><span class="ow">and</span><span class="w"> </span><span class="n">examining</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">confidence</span><span class="w"> </span><span class="n">intervals</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">  </span><span class="k">If</span><span class="w"> </span><span class="n">NUM_STEPS</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="ow">not</span><span class="w"> </span><span class="n">provided</span><span class="p">,</span><span class="w"> </span><span class="mi">30</span><span class="w"> </span><span class="n">steps</span><span class="w"> </span><span class="k">are</span><span class="w"> </span><span class="n">taken</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">  </span><span class="n">NAN</span><span class="w"> </span><span class="n">entries</span><span class="w"> </span><span class="k">are</span><span class="w"> </span><span class="n">ignored</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">  </span><span class="n">See</span><span class="w"> </span><span class="nl">also</span><span class="p">:</span><span class="w"> </span><span class="n">vlt</span><span class="p">.</span><span class="n">stats</span><span class="p">.</span><span class="n">quickregression</span><span class="p">,</span><span class="w"> </span><span class="n">REGRESS</span><span class="w"></span>
+</code></pre></div>
                 
               
               

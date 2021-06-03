@@ -3225,6 +3225,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../%2Bgit/git_stash.m/" class="md-nav__link">
+        vlt.git.git_stash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../%2Bgit/git_status.m/" class="md-nav__link">
         vlt.git.git_status
       </a>
@@ -9237,17 +9249,21 @@
                 
                 
                 <h1 id="vltfileloadigor">vlt.file.loadIgor<a class="headerlink" href="#vltfileloadigor" title="Permanent link">&para;</a></h1>
-<p>vlt.file.loadIgor Load Igor Binary file
-      DATA = vlt.file.loadIgor(FILENAME) loads data from an Igor binary data file.  The
-   data is assumed to be one dimentional, and the file is assumed to be from
-   a Macintosh computer (that is, the byte ordering is assumed to be
-   big-endian); this function, however, should work on any computer. </p>
-<p>One may also use
-      DATA = vlt.file.loadIgor(FILENAME,START,STOP)
-   This will only load data between samples START and STOP.  STOP may be Inf
-   to indicate the end of the file.  The first sample is numbered 1.</p>
-<p>Note:  This program has only been tested with float data.</p>
-<p>Developer note: Who wrote this? Was it Steve? Ken Sugino?</p>
+<div class="codehilite"><pre><span></span><code>   <span class="n">vlt</span><span class="o">.</span><span class="n">file</span><span class="o">.</span><span class="n">loadIgor</span> <span class="n">Load</span> <span class="n">Igor</span> <span class="n">Binary</span> <span class="n">file</span>
+      <span class="n">DATA</span> <span class="o">=</span> <span class="n">vlt</span><span class="o">.</span><span class="n">file</span><span class="o">.</span><span class="n">loadIgor</span><span class="p">(</span><span class="n">FILENAME</span><span class="p">)</span> <span class="n">loads</span> <span class="n">data</span> <span class="n">from</span> <span class="n">an</span> <span class="n">Igor</span> <span class="n">binary</span> <span class="n">data</span> <span class="n">file</span><span class="o">.</span>  <span class="n">The</span>
+   <span class="n">data</span> <span class="k">is</span> <span class="n">assumed</span> <span class="n">to</span> <span class="n">be</span> <span class="n">one</span> <span class="n">dimentional</span><span class="p">,</span> <span class="ow">and</span> <span class="n">the</span> <span class="n">file</span> <span class="k">is</span> <span class="n">assumed</span> <span class="n">to</span> <span class="n">be</span> <span class="n">from</span>
+   <span class="n">a</span> <span class="n">Macintosh</span> <span class="n">computer</span> <span class="p">(</span><span class="n">that</span> <span class="k">is</span><span class="p">,</span> <span class="n">the</span> <span class="n">byte</span> <span class="n">ordering</span> <span class="k">is</span> <span class="n">assumed</span> <span class="n">to</span> <span class="n">be</span>
+   <span class="n">big</span><span class="o">-</span><span class="n">endian</span><span class="p">);</span> <span class="n">this</span> <span class="n">function</span><span class="p">,</span> <span class="n">however</span><span class="p">,</span> <span class="n">should</span> <span class="n">work</span> <span class="n">on</span> <span class="n">any</span> <span class="n">computer</span><span class="o">.</span> 
+
+   <span class="n">One</span> <span class="n">may</span> <span class="n">also</span> <span class="n">use</span>
+      <span class="n">DATA</span> <span class="o">=</span> <span class="n">vlt</span><span class="o">.</span><span class="n">file</span><span class="o">.</span><span class="n">loadIgor</span><span class="p">(</span><span class="n">FILENAME</span><span class="p">,</span><span class="n">START</span><span class="p">,</span><span class="n">STOP</span><span class="p">)</span>
+   <span class="n">This</span> <span class="n">will</span> <span class="n">only</span> <span class="nb">load</span> <span class="n">data</span> <span class="n">between</span> <span class="n">samples</span> <span class="n">START</span> <span class="ow">and</span> <span class="n">STOP</span><span class="o">.</span>  <span class="n">STOP</span> <span class="n">may</span> <span class="n">be</span> <span class="n">Inf</span>
+   <span class="n">to</span> <span class="n">indicate</span> <span class="n">the</span> <span class="n">end</span> <span class="n">of</span> <span class="n">the</span> <span class="n">file</span><span class="o">.</span>  <span class="n">The</span> <span class="n">first</span> <span class="n">sample</span> <span class="k">is</span> <span class="n">numbered</span> <span class="mf">1.</span>
+
+   <span class="n">Note</span><span class="p">:</span>  <span class="n">This</span> <span class="n">program</span> <span class="n">has</span> <span class="n">only</span> <span class="n">been</span> <span class="n">tested</span> <span class="n">with</span> <span class="nb nb-Type">float</span> <span class="n">data</span><span class="o">.</span>
+
+   <span class="n">Developer</span> <span class="n">note</span><span class="p">:</span> <span class="n">Who</span> <span class="n">wrote</span> <span class="n">this</span><span class="err">?</span> <span class="n">Was</span> <span class="n">it</span> <span class="n">Steve</span><span class="err">?</span> <span class="n">Ken</span> <span class="n">Sugino</span><span class="err">?</span>
+</code></pre></div>
                 
               
               

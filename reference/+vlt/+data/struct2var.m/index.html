@@ -3225,6 +3225,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../%2Bgit/git_stash.m/" class="md-nav__link">
+        vlt.git.git_stash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../%2Bgit/git_status.m/" class="md-nav__link">
         vlt.git.git_status
       </a>
@@ -9237,20 +9249,25 @@
                 
                 
                 <h1 id="vltdatastruct2var">vlt.data.struct2var<a class="headerlink" href="#vltdatastruct2var" title="Permanent link">&para;</a></h1>
-<p>STRUCT2VAR - Assign variables to the fieldnames and data values of a structure</p>
-<p>vlt.data.struct2var(S)</p>
-<p>Assigns variables to have the name of all the fieldnames of structure S
-   with values equal to the corresponding value in structure S.</p>
-<p>If there are already variables with the given name, they are overwritten.</p>
-<p>Example:<br />
-      s.a = 5;
-      s.b = 6;</p>
-<div class="codehilite"><pre><span></span><code>  <span class="n">vlt</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">struct2var</span><span class="p">(</span><span class="n">s</span><span class="p">);</span>
-  <span class="n">a</span>   <span class="o">%</span> <span class="n">now</span> <span class="n">a</span><span class="o">=</span><span class="mi">5</span>
-  <span class="n">b</span>   <span class="o">%</span> <span class="n">now</span> <span class="n">b</span><span class="o">=</span><span class="mi">6</span>
-</code></pre></div>
+<div class="codehilite"><pre><span></span><code>  <span class="n">STRUCT2VAR</span> <span class="o">-</span> <span class="n">Assign</span> <span class="n">variables</span> <span class="n">to</span> <span class="n">the</span> <span class="n">fieldnames</span> <span class="ow">and</span> <span class="n">data</span> <span class="n">values</span> <span class="n">of</span> <span class="n">a</span> <span class="n">structure</span>
 
-<p>See also: vlt.data.var2struct</p>
+   <span class="n">vlt</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">struct2var</span><span class="p">(</span><span class="n">S</span><span class="p">)</span>
+
+   <span class="n">Assigns</span> <span class="n">variables</span> <span class="n">to</span> <span class="n">have</span> <span class="n">the</span> <span class="n">name</span> <span class="n">of</span> <span class="n">all</span> <span class="n">the</span> <span class="n">fieldnames</span> <span class="n">of</span> <span class="n">structure</span> <span class="n">S</span>
+   <span class="n">with</span> <span class="n">values</span> <span class="n">equal</span> <span class="n">to</span> <span class="n">the</span> <span class="n">corresponding</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">structure</span> <span class="n">S</span><span class="o">.</span>
+
+   <span class="n">If</span> <span class="n">there</span> <span class="n">are</span> <span class="n">already</span> <span class="n">variables</span> <span class="n">with</span> <span class="n">the</span> <span class="n">given</span> <span class="n">name</span><span class="p">,</span> <span class="n">they</span> <span class="n">are</span> <span class="n">overwritten</span><span class="o">.</span>
+
+   <span class="n">Example</span><span class="p">:</span>  
+      <span class="n">s</span><span class="o">.</span><span class="n">a</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>
+      <span class="n">s</span><span class="o">.</span><span class="n">b</span> <span class="o">=</span> <span class="mi">6</span><span class="p">;</span>
+
+      <span class="n">vlt</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">struct2var</span><span class="p">(</span><span class="n">s</span><span class="p">);</span>
+      <span class="n">a</span>   <span class="o">%</span> <span class="n">now</span> <span class="n">a</span><span class="o">=</span><span class="mi">5</span>
+      <span class="n">b</span>   <span class="o">%</span> <span class="n">now</span> <span class="n">b</span><span class="o">=</span><span class="mi">6</span>
+
+   <span class="n">See</span> <span class="n">also</span><span class="p">:</span> <span class="n">vlt</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">var2struct</span>
+</code></pre></div>
                 
               
               

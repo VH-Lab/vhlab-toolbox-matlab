@@ -3213,6 +3213,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../%2Bgit/git_stash.m/" class="md-nav__link">
+        vlt.git.git_stash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../%2Bgit/git_status.m/" class="md-nav__link">
         vlt.git.git_status
       </a>
@@ -9237,19 +9249,25 @@
                 
                 
                 <h1 id="vltmatlabmfileinfo">vlt.matlab.mfileinfo<a class="headerlink" href="#vltmatlabmfileinfo" title="Permanent link">&para;</a></h1>
-<p>MFILEINFO - return a structure with information about an m-file</p>
-<p>MINFO = MFILEINFO(FILENAME)</p>
-<p>Returns a structure with information about FILENAME with the following fields:
-  Field                 | Description</p>
-<hr />
-<p>fullfile              | File name with full path and extension
-  path                  | Full path to the file
-  name                  | File name without path and without extension
-  isfunction            | 0/1 is it a function?
-  isclass               | 0/1 is it a classdefinition?</p>
-<p>See also: vlt.matlab.isclassfile(), vlt.matlab.isfunctionfile()</p>
-<p>Example:
-    minfo = vlt.matlab.mfileinfo('table.m');</p>
+<div class="codehilite"><pre><span></span><code>  <span class="nt">MFILEINFO</span> <span class="nt">-</span> <span class="nt">return</span> <span class="nt">a</span> <span class="nt">structure</span> <span class="nt">with</span> <span class="nt">information</span> <span class="nt">about</span> <span class="nt">an</span> <span class="nt">m-file</span>
+
+  <span class="nt">MINFO</span> <span class="o">=</span> <span class="nt">MFILEINFO</span><span class="o">(</span><span class="nt">FILENAME</span><span class="o">)</span>
+
+  <span class="nt">Returns</span> <span class="nt">a</span> <span class="nt">structure</span> <span class="nt">with</span> <span class="nt">information</span> <span class="nt">about</span> <span class="nt">FILENAME</span> <span class="nt">with</span> <span class="nt">the</span> <span class="nt">following</span> <span class="nt">fields</span><span class="o">:</span>
+  <span class="nt">Field</span>                 <span class="o">|</span> <span class="nt">Description</span>
+  <span class="nt">--------------------------------------------------------------------</span>
+  <span class="nt">fullfile</span>              <span class="o">|</span> <span class="nt">File</span> <span class="nt">name</span> <span class="nt">with</span> <span class="nt">full</span> <span class="nt">path</span> <span class="nt">and</span> <span class="nt">extension</span>
+  <span class="nt">path</span>                  <span class="o">|</span> <span class="nt">Full</span> <span class="nt">path</span> <span class="nt">to</span> <span class="nt">the</span> <span class="nt">file</span>
+  <span class="nt">name</span>                  <span class="o">|</span> <span class="nt">File</span> <span class="nt">name</span> <span class="nt">without</span> <span class="nt">path</span> <span class="nt">and</span> <span class="nt">without</span> <span class="nt">extension</span>
+  <span class="nt">isfunction</span>            <span class="o">|</span> <span class="nt">0</span><span class="o">/</span><span class="nt">1</span> <span class="nt">is</span> <span class="nt">it</span> <span class="nt">a</span> <span class="nt">function</span><span class="o">?</span>
+  <span class="nt">isclass</span>               <span class="o">|</span> <span class="nt">0</span><span class="o">/</span><span class="nt">1</span> <span class="nt">is</span> <span class="nt">it</span> <span class="nt">a</span> <span class="nt">classdefinition</span><span class="o">?</span>
+
+
+  <span class="nt">See</span> <span class="nt">also</span><span class="o">:</span> <span class="nt">vlt</span><span class="p">.</span><span class="nc">matlab</span><span class="p">.</span><span class="nc">isclassfile</span><span class="o">(),</span> <span class="nt">vlt</span><span class="p">.</span><span class="nc">matlab</span><span class="p">.</span><span class="nc">isfunctionfile</span><span class="o">()</span>
+
+  <span class="nt">Example</span><span class="o">:</span>
+    <span class="nt">minfo</span> <span class="o">=</span> <span class="nt">vlt</span><span class="p">.</span><span class="nc">matlab</span><span class="p">.</span><span class="nc">mfileinfo</span><span class="o">(</span><span class="s1">&#39;table.m&#39;</span><span class="o">);</span>
+</code></pre></div>
                 
               
               

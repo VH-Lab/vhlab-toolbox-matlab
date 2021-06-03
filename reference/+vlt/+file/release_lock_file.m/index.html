@@ -3225,6 +3225,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../%2Bgit/git_stash.m/" class="md-nav__link">
+        vlt.git.git_stash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../%2Bgit/git_status.m/" class="md-nav__link">
         vlt.git.git_status
       </a>
@@ -9237,18 +9249,26 @@
                 
                 
                 <h1 id="vltfilerelease_lock_file">vlt.file.release_lock_file<a class="headerlink" href="#vltfilerelease_lock_file" title="Permanent link">&para;</a></h1>
-<p>RELEASE_LOCK_FILE - release a lock file with the key</p>
-<p>B = vlt.file.release_lock_file(FID_OR_FILENAME, KEY)</p>
-<p>Release a lock file given its FID or its FILENAME and the
-  correct KEY that was issued by the function vlt.file.checkout_lock_file.
-  Removes the file if the key matches.</p>
-<p>B is 1 if the lockfile is either not present or if it was removed
-  successfully.</p>
-<p>B is 0 if the key does not match (and the file is not removed.)</p>
-<p>An error is triggered if the lock file does not have the expected contents
-  (an expiration time and a key).</p>
-<p>See also: vlt.file.checkout_lock_file</p>
-<p>For an example, see vlt.file.checkout_lock_file</p>
+<div class="codehilite"><pre><span></span><code>  <span class="nv">RELEASE_LOCK_FILE</span> <span class="o">-</span> <span class="nv">release</span> <span class="nv">a</span> <span class="nv">lock</span> <span class="nv">file</span> <span class="nv">with</span> <span class="nv">the</span> <span class="nv">key</span>
+
+  <span class="nv">B</span> <span class="o">=</span> <span class="nv">vlt</span>.<span class="nv">file</span>.<span class="nv">release_lock_file</span><span class="ss">(</span><span class="nv">FID_OR_FILENAME</span>, <span class="nv">KEY</span><span class="ss">)</span>
+
+  <span class="nv">Release</span> <span class="nv">a</span> <span class="nv">lock</span> <span class="nv">file</span> <span class="nv">given</span> <span class="nv">its</span> <span class="nv">FID</span> <span class="nv">or</span> <span class="nv">its</span> <span class="nv">FILENAME</span> <span class="nv">and</span> <span class="nv">the</span>
+  <span class="nv">correct</span> <span class="nv">KEY</span> <span class="nv">that</span> <span class="nv">was</span> <span class="nv">issued</span> <span class="nv">by</span> <span class="nv">the</span> <span class="nv">function</span> <span class="nv">vlt</span>.<span class="nv">file</span>.<span class="nv">checkout_lock_file</span>.
+  <span class="nv">Removes</span> <span class="nv">the</span> <span class="nv">file</span> <span class="k">if</span> <span class="nv">the</span> <span class="nv">key</span> <span class="nv">matches</span>.
+
+  <span class="nv">B</span> <span class="nv">is</span> <span class="mi">1</span> <span class="k">if</span> <span class="nv">the</span> <span class="nv">lockfile</span> <span class="nv">is</span> <span class="nv">either</span> <span class="nv">not</span> <span class="nv">present</span> <span class="nv">or</span> <span class="k">if</span> <span class="nv">it</span> <span class="nv">was</span> <span class="nv">removed</span>
+  <span class="nv">successfully</span>.
+
+  <span class="nv">B</span> <span class="nv">is</span> <span class="mi">0</span> <span class="k">if</span> <span class="nv">the</span> <span class="nv">key</span> <span class="nv">does</span> <span class="nv">not</span> <span class="nv">match</span> <span class="ss">(</span><span class="nv">and</span> <span class="nv">the</span> <span class="nv">file</span> <span class="nv">is</span> <span class="nv">not</span> <span class="nv">removed</span>.<span class="ss">)</span>
+
+  <span class="nv">An</span> <span class="nv">error</span> <span class="nv">is</span> <span class="nv">triggered</span> <span class="k">if</span> <span class="nv">the</span> <span class="nv">lock</span> <span class="nv">file</span> <span class="nv">does</span> <span class="nv">not</span> <span class="nv">have</span> <span class="nv">the</span> <span class="nv">expected</span> <span class="nv">contents</span>
+  <span class="ss">(</span><span class="nv">an</span> <span class="nv">expiration</span> <span class="nv">time</span> <span class="nv">and</span> <span class="nv">a</span> <span class="nv">key</span><span class="ss">)</span>.
+
+  <span class="nv">See</span> <span class="nv">also</span>: <span class="nv">vlt</span>.<span class="nv">file</span>.<span class="nv">checkout_lock_file</span>
+
+  <span class="k">For</span> <span class="nv">an</span> <span class="nv">example</span>, <span class="nv">see</span> <span class="nv">vlt</span>.<span class="nv">file</span>.<span class="nv">checkout_lock_file</span>
+</code></pre></div>
                 
               
               

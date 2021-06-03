@@ -3213,6 +3213,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../%2Bgit/git_stash.m/" class="md-nav__link">
+        vlt.git.git_stash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../%2Bgit/git_status.m/" class="md-nav__link">
         vlt.git.git_status
       </a>
@@ -9237,16 +9249,18 @@
                 
                 
                 <h1 id="vltsignaloversample">vlt.signal.oversample<a class="headerlink" href="#vltsignaloversample" title="Permanent link">&para;</a></h1>
-<p>OVERSAMPLE - Calculate sample values for oversampling</p>
-<div class="codehilite"><pre><span></span><code><span class="n">XN</span> <span class="o">=</span> <span class="n">vlt</span><span class="o">.</span><span class="k">signal</span><span class="o">.</span><span class="n">oversample</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">N</span><span class="p">)</span>
-</code></pre></div>
+<div class="codehilite"><pre><span></span><code>  <span class="n">OVERSAMPLE</span> <span class="o">-</span> <span class="n">Calculate</span> <span class="n">sample</span> <span class="n">values</span> <span class="k">for</span> <span class="n">oversampling</span>
 
-<p>For a signal X that takes values X(1), X(2), etc, this function
-   calculates the linearly interpolated values of X with N times
-   oversampling. </p>
-<p>Example:
-       X = [ 0 1];
-       Xn = vlt.signal.oversample(X,5) % Xn is [0 0.25 0.5 0.75 1.0]</p>
+    <span class="n">XN</span> <span class="o">=</span> <span class="n">vlt</span><span class="o">.</span><span class="k">signal</span><span class="o">.</span><span class="n">oversample</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">N</span><span class="p">)</span>
+
+   <span class="n">For</span> <span class="n">a</span> <span class="k">signal</span> <span class="n">X</span> <span class="n">that</span> <span class="n">takes</span> <span class="n">values</span> <span class="n">X</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span> <span class="n">X</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span> <span class="n">etc</span><span class="p">,</span> <span class="n">this</span> <span class="n">function</span>
+   <span class="n">calculates</span> <span class="n">the</span> <span class="n">linearly</span> <span class="n">interpolated</span> <span class="n">values</span> <span class="n">of</span> <span class="n">X</span> <span class="n">with</span> <span class="n">N</span> <span class="n">times</span>
+   <span class="n">oversampling</span><span class="o">.</span> 
+
+   <span class="n">Example</span><span class="p">:</span>
+       <span class="n">X</span> <span class="o">=</span> <span class="p">[</span> <span class="mi">0</span> <span class="mi">1</span><span class="p">];</span>
+       <span class="n">Xn</span> <span class="o">=</span> <span class="n">vlt</span><span class="o">.</span><span class="k">signal</span><span class="o">.</span><span class="n">oversample</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="mi">5</span><span class="p">)</span> <span class="o">%</span> <span class="n">Xn</span> <span class="k">is</span> <span class="p">[</span><span class="mi">0</span> <span class="mf">0.25</span> <span class="mf">0.5</span> <span class="mf">0.75</span> <span class="mf">1.0</span><span class="p">]</span>
+</code></pre></div>
                 
               
               

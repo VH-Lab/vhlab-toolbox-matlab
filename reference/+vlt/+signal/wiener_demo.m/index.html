@@ -3213,6 +3213,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../%2Bgit/git_stash.m/" class="md-nav__link">
+        vlt.git.git_stash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../%2Bgit/git_status.m/" class="md-nav__link">
         vlt.git.git_status
       </a>
@@ -9237,18 +9249,22 @@
                 
                 
                 <h1 id="vltsignalwiener_demo">vlt.signal.wiener_demo<a class="headerlink" href="#vltsignalwiener_demo" title="Permanent link">&para;</a></h1>
-<p>WIENER_DEMO - Demonstration of filter reconstruction using Wiener filtering</p>
-<p>Given a signal x[n] that is filtered by some unknown process, derive the least
-   square best filter such that y[n] * myfilter +noise = x[n]</p>
-<p>modified from: Digital Signal Processing Using MATLAB for Students and Researchers
-   John W. Leis (Wiley, 2011)</p>
-<p>The following parameters of the example can be modified by passing name/value pairs:
-   Parameter (default)              | Description</p>
-<hr />
-<p>N (10000)                        | Number of points
-   b ([1 0.8 -0.4 0.1])             | Filter parameters (computed using filter)
-   L (4)                            | Coefficient length of divided signal
-   NewNoise (0)                     | Should we filter the original noise or new noise?</p>
+<div class="codehilite"><pre><span></span><code><span class="w">  </span><span class="n">WIENER_DEMO</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">Demonstration</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="k">filter</span><span class="w"> </span><span class="n">reconstruction</span><span class="w"> </span><span class="k">using</span><span class="w"> </span><span class="n">Wiener</span><span class="w"> </span><span class="n">filtering</span><span class="w"></span>
+
+<span class="w">   </span><span class="n">Given</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">signal</span><span class="w"> </span><span class="n">x</span><span class="o">[</span><span class="n">n</span><span class="o">]</span><span class="w"> </span><span class="n">that</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="n">filtered</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="ow">some</span><span class="w"> </span><span class="k">unknown</span><span class="w"> </span><span class="n">process</span><span class="p">,</span><span class="w"> </span><span class="n">derive</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">least</span><span class="w"></span>
+<span class="w">   </span><span class="nf">square</span><span class="w"> </span><span class="n">best</span><span class="w"> </span><span class="k">filter</span><span class="w"> </span><span class="n">such</span><span class="w"> </span><span class="n">that</span><span class="w"> </span><span class="n">y</span><span class="o">[</span><span class="n">n</span><span class="o">]</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">myfilter</span><span class="w"> </span><span class="o">+</span><span class="n">noise</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">x</span><span class="o">[</span><span class="n">n</span><span class="o">]</span><span class="w"></span>
+
+<span class="w">   </span><span class="n">modified</span><span class="w"> </span><span class="k">from</span><span class="err">:</span><span class="w"> </span><span class="n">Digital</span><span class="w"> </span><span class="n">Signal</span><span class="w"> </span><span class="n">Processing</span><span class="w"> </span><span class="k">Using</span><span class="w"> </span><span class="n">MATLAB</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">Students</span><span class="w"> </span><span class="ow">and</span><span class="w"> </span><span class="n">Researchers</span><span class="w"></span>
+<span class="w">   </span><span class="n">John</span><span class="w"> </span><span class="n">W</span><span class="p">.</span><span class="w"> </span><span class="n">Leis</span><span class="w"> </span><span class="p">(</span><span class="n">Wiley</span><span class="p">,</span><span class="w"> </span><span class="mi">2011</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">   </span><span class="n">The</span><span class="w"> </span><span class="n">following</span><span class="w"> </span><span class="k">parameters</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">example</span><span class="w"> </span><span class="n">can</span><span class="w"> </span><span class="n">be</span><span class="w"> </span><span class="n">modified</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">passing</span><span class="w"> </span><span class="n">name</span><span class="o">/</span><span class="k">value</span><span class="w"> </span><span class="nl">pairs</span><span class="p">:</span><span class="w"></span>
+<span class="w">   </span><span class="k">Parameter</span><span class="w"> </span><span class="p">(</span><span class="k">default</span><span class="p">)</span><span class="w">              </span><span class="o">|</span><span class="w"> </span><span class="n">Description</span><span class="w"></span>
+<span class="w">   </span><span class="o">----------------------------------------------------------------------------</span><span class="w"></span>
+<span class="w">   </span><span class="n">N</span><span class="w"> </span><span class="p">(</span><span class="mi">10000</span><span class="p">)</span><span class="w">                        </span><span class="o">|</span><span class="w"> </span><span class="n">Number</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="n">points</span><span class="w"></span>
+<span class="w">   </span><span class="n">b</span><span class="w"> </span><span class="p">(</span><span class="o">[</span><span class="n">1 0.8 -0.4 0.1</span><span class="o">]</span><span class="p">)</span><span class="w">             </span><span class="o">|</span><span class="w"> </span><span class="k">Filter</span><span class="w"> </span><span class="k">parameters</span><span class="w"> </span><span class="p">(</span><span class="n">computed</span><span class="w"> </span><span class="k">using</span><span class="w"> </span><span class="k">filter</span><span class="p">)</span><span class="w"></span>
+<span class="w">   </span><span class="n">L</span><span class="w"> </span><span class="p">(</span><span class="mi">4</span><span class="p">)</span><span class="w">                            </span><span class="o">|</span><span class="w"> </span><span class="n">Coefficient</span><span class="w"> </span><span class="n">length</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="n">divided</span><span class="w"> </span><span class="n">signal</span><span class="w"></span>
+<span class="w">   </span><span class="n">NewNoise</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="w">                     </span><span class="o">|</span><span class="w"> </span><span class="n">Should</span><span class="w"> </span><span class="n">we</span><span class="w"> </span><span class="k">filter</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">original</span><span class="w"> </span><span class="n">noise</span><span class="w"> </span><span class="ow">or</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">noise</span><span class="vm">?</span><span class="w"></span>
+</code></pre></div>
                 
               
               

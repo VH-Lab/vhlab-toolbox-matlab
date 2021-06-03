@@ -3213,6 +3213,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../%2Bgit/git_stash.m/" class="md-nav__link">
+        vlt.git.git_stash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../%2Bgit/git_status.m/" class="md-nav__link">
         vlt.git.git_status
       </a>
@@ -9237,28 +9249,34 @@
                 
                 
                 <h1 id="vltplotposterize">vlt.plot.posterize<a class="headerlink" href="#vltplotposterize" title="Permanent link">&para;</a></h1>
-<p>vlt.plot.posterize - Change plot characteristics appropriate for posters</p>
-<p>vlt.plot.posterize(FIGNUM, ...)</p>
-<p>Changes plot characteristics appropriate for a poster.  By default:
-   '_axes_fontsize' is set to 10
-   '_axes_xlabel_fontsize' is set to 13
-   '_axes_ylabel_fontsize' is set to 13
-   '_axes_title_fontsize' is set to 13
-   'fontname' is set to arial
-   '_axes_box' is set to 'off'</p>
-<p>If additional arguments are provided in name/value pairs, then
-   the function will attempt to set fields with each name to the
-   value specified.  If the variable name has the form '<em>TYPE_FIELDNAME',
-   then only fields of handles of type TYPE will be changed.  This can be
-   extended to '_TYPE_HANDLENAME_FIELDNAME' and
-   '_TYPE_HANDLENAME</em>..._HANDLE_NAME_FIELDNAME'</p>
-<p>Examples:</p>
-<p>vlt.plot.posterize(FIGNUM,'linewidth',2) will set the value of
-     the field 'linewidth' to 2 in all handles that possess it.
-   vlt.plot.posterize(FIGNUM,'_axes_fontsize',20) sets the value of the field
-     'fontsize' in all handles of type 'axes'.
-   vlt.plot.posterize(FIGNUM,'_axes_xlabel_fontsize',13) sets the value of the field
-     'fontsize' in all handles called 'xlabel' in objects of type 'axes'</p>
+<div class="codehilite"><pre><span></span><code>  <span class="n">vlt</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">posterize</span> <span class="o">-</span> <span class="n">Change</span> <span class="n">plot</span> <span class="n">characteristics</span> <span class="n">appropriate</span> <span class="k">for</span> <span class="n">posters</span>
+
+   <span class="n">vlt</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">posterize</span><span class="p">(</span><span class="n">FIGNUM</span><span class="p">,</span> <span class="o">...</span><span class="p">)</span>
+
+   <span class="n">Changes</span> <span class="n">plot</span> <span class="n">characteristics</span> <span class="n">appropriate</span> <span class="k">for</span> <span class="n">a</span> <span class="n">poster</span><span class="o">.</span>  <span class="n">By</span> <span class="n">default</span><span class="p">:</span>
+   <span class="s1">&#39;_axes_fontsize&#39;</span> <span class="k">is</span> <span class="n">set</span> <span class="n">to</span> <span class="mi">10</span>
+   <span class="s1">&#39;_axes_xlabel_fontsize&#39;</span> <span class="k">is</span> <span class="n">set</span> <span class="n">to</span> <span class="mi">13</span>
+   <span class="s1">&#39;_axes_ylabel_fontsize&#39;</span> <span class="k">is</span> <span class="n">set</span> <span class="n">to</span> <span class="mi">13</span>
+   <span class="s1">&#39;_axes_title_fontsize&#39;</span> <span class="k">is</span> <span class="n">set</span> <span class="n">to</span> <span class="mi">13</span>
+   <span class="s1">&#39;fontname&#39;</span> <span class="k">is</span> <span class="n">set</span> <span class="n">to</span> <span class="n">arial</span>
+   <span class="s1">&#39;_axes_box&#39;</span> <span class="k">is</span> <span class="n">set</span> <span class="n">to</span> <span class="s1">&#39;off&#39;</span>
+
+   <span class="n">If</span> <span class="n">additional</span> <span class="n">arguments</span> <span class="n">are</span> <span class="n">provided</span> <span class="ow">in</span> <span class="n">name</span><span class="o">/</span><span class="n">value</span> <span class="n">pairs</span><span class="p">,</span> <span class="n">then</span>
+   <span class="n">the</span> <span class="n">function</span> <span class="n">will</span> <span class="n">attempt</span> <span class="n">to</span> <span class="n">set</span> <span class="n">fields</span> <span class="n">with</span> <span class="n">each</span> <span class="n">name</span> <span class="n">to</span> <span class="n">the</span>
+   <span class="n">value</span> <span class="n">specified</span><span class="o">.</span>  <span class="n">If</span> <span class="n">the</span> <span class="n">variable</span> <span class="n">name</span> <span class="n">has</span> <span class="n">the</span> <span class="n">form</span> <span class="s1">&#39;_TYPE_FIELDNAME&#39;</span><span class="p">,</span>
+   <span class="n">then</span> <span class="n">only</span> <span class="n">fields</span> <span class="n">of</span> <span class="n">handles</span> <span class="n">of</span> <span class="n">type</span> <span class="n">TYPE</span> <span class="n">will</span> <span class="n">be</span> <span class="n">changed</span><span class="o">.</span>  <span class="n">This</span> <span class="n">can</span> <span class="n">be</span>
+   <span class="n">extended</span> <span class="n">to</span> <span class="s1">&#39;_TYPE_HANDLENAME_FIELDNAME&#39;</span> <span class="ow">and</span>
+   <span class="s1">&#39;_TYPE_HANDLENAME_..._HANDLE_NAME_FIELDNAME&#39;</span>
+
+   <span class="n">Examples</span><span class="p">:</span>
+
+   <span class="n">vlt</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">posterize</span><span class="p">(</span><span class="n">FIGNUM</span><span class="p">,</span><span class="s1">&#39;linewidth&#39;</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span> <span class="n">will</span> <span class="n">set</span> <span class="n">the</span> <span class="n">value</span> <span class="n">of</span>
+     <span class="n">the</span> <span class="n">field</span> <span class="s1">&#39;linewidth&#39;</span> <span class="n">to</span> <span class="mi">2</span> <span class="ow">in</span> <span class="n">all</span> <span class="n">handles</span> <span class="n">that</span> <span class="n">possess</span> <span class="n">it</span><span class="o">.</span>
+   <span class="n">vlt</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">posterize</span><span class="p">(</span><span class="n">FIGNUM</span><span class="p">,</span><span class="s1">&#39;_axes_fontsize&#39;</span><span class="p">,</span><span class="mi">20</span><span class="p">)</span> <span class="n">sets</span> <span class="n">the</span> <span class="n">value</span> <span class="n">of</span> <span class="n">the</span> <span class="n">field</span>
+     <span class="s1">&#39;fontsize&#39;</span> <span class="ow">in</span> <span class="n">all</span> <span class="n">handles</span> <span class="n">of</span> <span class="n">type</span> <span class="s1">&#39;axes&#39;</span><span class="o">.</span>
+   <span class="n">vlt</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">posterize</span><span class="p">(</span><span class="n">FIGNUM</span><span class="p">,</span><span class="s1">&#39;_axes_xlabel_fontsize&#39;</span><span class="p">,</span><span class="mi">13</span><span class="p">)</span> <span class="n">sets</span> <span class="n">the</span> <span class="n">value</span> <span class="n">of</span> <span class="n">the</span> <span class="n">field</span>
+     <span class="s1">&#39;fontsize&#39;</span> <span class="ow">in</span> <span class="n">all</span> <span class="n">handles</span> <span class="n">called</span> <span class="s1">&#39;xlabel&#39;</span> <span class="ow">in</span> <span class="n">objects</span> <span class="n">of</span> <span class="n">type</span> <span class="s1">&#39;axes&#39;</span>
+</code></pre></div>
                 
               
               

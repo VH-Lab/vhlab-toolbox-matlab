@@ -3213,6 +3213,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../%2Bgit/git_stash.m/" class="md-nav__link">
+        vlt.git.git_stash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../%2Bgit/git_status.m/" class="md-nav__link">
         vlt.git.git_status
       </a>
@@ -9237,25 +9249,26 @@
                 
                 
                 <h1 id="vltplotautohistogram">vlt.plot.autohistogram<a class="headerlink" href="#vltplotautohistogram" title="Permanent link">&para;</a></h1>
-<p>AUTOHISTOGRAM - Choose bins based on Freedman-Diaconis' choice
-   [COUNTS,BIN_CENTERS, BIN_EDGES, FULLCOUNTS] = vlt.plot.autohistogram(DATA)
-      Automatically chooses bin sizes based on Freedman-Diaconis' choice,
-         defined to be
-         WIDTH = 2*IQR(DATA)/CUBE ROOT OF NUMBER OF DATAPOINTS
-               (see Histogram on Wikipedia)</p>
-<div class="codehilite"><pre><span></span><code>  <span class="nv">In</span> <span class="nv">the</span> <span class="nv">event</span> <span class="nv">that</span> <span class="nv">the</span> <span class="nv">BIN_CENTERS</span> <span class="nv">would</span> <span class="nv">exceed</span> <span class="mi">100</span>,<span class="mi">000</span> <span class="nv">points</span>,
-  <span class="k">then</span> <span class="nv">the</span> <span class="nv">bins</span> <span class="nv">are</span> <span class="nv">trimmed</span> <span class="nv">at</span> <span class="nv">the</span> <span class="nv">edges</span> <span class="nv">in</span> <span class="mi">1</span> <span class="nv">percentile</span> <span class="nv">increments</span>
-  <span class="k">until</span> <span class="nv">the</span> <span class="nv">number</span> <span class="nv">of</span> <span class="nv">bins</span> <span class="nv">is</span> <span class="nv">fewer</span> <span class="nv">than</span> <span class="mi">100</span>,<span class="mi">000</span> <span class="nv">points</span>.
+<div class="codehilite"><pre><span></span><code> <span class="nv">AUTOHISTOGRAM</span> <span class="o">-</span> <span class="nv">Choose</span> <span class="nv">bins</span> <span class="nv">based</span> <span class="nv">on</span> <span class="nv">Freedman</span><span class="o">-</span><span class="nv">Diaconis</span><span class="s1">&#39;</span><span class="s"> choice</span>
+   [<span class="nv">COUNTS</span>,<span class="nv">BIN_CENTERS</span>, <span class="nv">BIN_EDGES</span>, <span class="nv">FULLCOUNTS</span>] <span class="o">=</span> <span class="nv">vlt</span>.<span class="nv">plot</span>.<span class="nv">autohistogram</span><span class="ss">(</span><span class="nv">DATA</span><span class="ss">)</span>
+      <span class="nv">Automatically</span> <span class="nv">chooses</span> <span class="nv">bin</span> <span class="nv">sizes</span> <span class="nv">based</span> <span class="nv">on</span> <span class="nv">Freedman</span><span class="o">-</span><span class="nv">Diaconis</span><span class="s1">&#39;</span><span class="s"> choice,</span>
+         <span class="nv">defined</span> <span class="nv">to</span> <span class="nv">be</span>
+         <span class="nv">WIDTH</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="nv">IQR</span><span class="ss">(</span><span class="nv">DATA</span><span class="ss">)</span><span class="o">/</span><span class="nv">CUBE</span> <span class="nv">ROOT</span> <span class="nv">OF</span> <span class="nv">NUMBER</span> <span class="nv">OF</span> <span class="nv">DATAPOINTS</span>
+               <span class="ss">(</span><span class="nv">see</span> <span class="nv">Histogram</span> <span class="nv">on</span> <span class="nv">Wikipedia</span><span class="ss">)</span>
 
-<span class="nv">Inputs</span>:  <span class="nv">DATA</span>, <span class="nv">a</span> <span class="nv">set</span> <span class="nv">of</span> <span class="nv">samples</span>
-<span class="nv">Outputs</span>: <span class="nv">COUNTS</span>, <span class="nv">the</span> <span class="nv">number</span> <span class="nv">of</span> <span class="nv">DATA</span> <span class="nv">samples</span> <span class="nv">in</span> <span class="nv">each</span> <span class="nv">bin</span>
-         <span class="nv">BIN_CENTERS</span> <span class="o">-</span> <span class="nv">the</span> <span class="nv">center</span> <span class="nv">location</span> <span class="nv">of</span> <span class="nv">each</span> <span class="nv">bin</span>
-         <span class="nv">BIN_EDGES</span> <span class="o">-</span> <span class="nv">the</span> <span class="nv">bin</span> <span class="nv">edges</span> <span class="nv">used</span>
-         <span class="nv">FULLCOUNTS</span> <span class="o">-</span> <span class="nv">the</span> <span class="nv">full</span> <span class="nv">counts</span> <span class="nv">returned</span> <span class="nv">from</span> <span class="nv">HISTC</span>. <span class="k">If</span> <span class="nv">the</span> <span class="nv">bins</span>
-         <span class="nv">were</span> <span class="nv">reduced</span> <span class="nv">at</span> <span class="nv">the</span> <span class="nv">edges</span> <span class="nv">so</span> <span class="nv">that</span> <span class="nv">the</span> <span class="nv">number</span> <span class="nv">of</span> <span class="nv">bins</span> <span class="nv">is</span> <span class="o">&lt;</span> <span class="mi">100000</span>
-         <span class="k">then</span> <span class="nv">BIN_EDGES</span> <span class="nv">and</span> <span class="nv">FULLCOUNTS</span> <span class="nv">allows</span> <span class="nv">the</span> <span class="nv">user</span> <span class="nv">to</span> <span class="nv">determine</span> <span class="nv">the</span>
-         <span class="nv">number</span> <span class="nv">of</span> <span class="nv">data</span> <span class="nv">points</span> <span class="nv">that</span> <span class="nv">fall</span> <span class="nv">below</span> <span class="nv">and</span> <span class="nv">above</span> <span class="nv">the</span> <span class="nv">bins</span>. <span class="ss">(</span><span class="nv">See</span>
-         <span class="nv">help</span> <span class="nv">HISTC</span><span class="ss">)</span>
+      <span class="nv">In</span> <span class="nv">the</span> <span class="nv">event</span> <span class="nv">that</span> <span class="nv">the</span> <span class="nv">BIN_CENTERS</span> <span class="nv">would</span> <span class="nv">exceed</span> <span class="mi">100</span>,<span class="mi">000</span> <span class="nv">points</span>,
+      <span class="k">then</span> <span class="nv">the</span> <span class="nv">bins</span> <span class="nv">are</span> <span class="nv">trimmed</span> <span class="nv">at</span> <span class="nv">the</span> <span class="nv">edges</span> <span class="nv">in</span> <span class="mi">1</span> <span class="nv">percentile</span> <span class="nv">increments</span>
+      <span class="k">until</span> <span class="nv">the</span> <span class="nv">number</span> <span class="nv">of</span> <span class="nv">bins</span> <span class="nv">is</span> <span class="nv">fewer</span> <span class="nv">than</span> <span class="mi">100</span>,<span class="mi">000</span> <span class="nv">points</span>.
+
+    <span class="nv">Inputs</span>:  <span class="nv">DATA</span>, <span class="nv">a</span> <span class="nv">set</span> <span class="nv">of</span> <span class="nv">samples</span>
+    <span class="nv">Outputs</span>: <span class="nv">COUNTS</span>, <span class="nv">the</span> <span class="nv">number</span> <span class="nv">of</span> <span class="nv">DATA</span> <span class="nv">samples</span> <span class="nv">in</span> <span class="nv">each</span> <span class="nv">bin</span>
+             <span class="nv">BIN_CENTERS</span> <span class="o">-</span> <span class="nv">the</span> <span class="nv">center</span> <span class="nv">location</span> <span class="nv">of</span> <span class="nv">each</span> <span class="nv">bin</span>
+             <span class="nv">BIN_EDGES</span> <span class="o">-</span> <span class="nv">the</span> <span class="nv">bin</span> <span class="nv">edges</span> <span class="nv">used</span>
+             <span class="nv">FULLCOUNTS</span> <span class="o">-</span> <span class="nv">the</span> <span class="nv">full</span> <span class="nv">counts</span> <span class="nv">returned</span> <span class="nv">from</span> <span class="nv">HISTC</span>. <span class="k">If</span> <span class="nv">the</span> <span class="nv">bins</span>
+             <span class="nv">were</span> <span class="nv">reduced</span> <span class="nv">at</span> <span class="nv">the</span> <span class="nv">edges</span> <span class="nv">so</span> <span class="nv">that</span> <span class="nv">the</span> <span class="nv">number</span> <span class="nv">of</span> <span class="nv">bins</span> <span class="nv">is</span> <span class="o">&lt;</span> <span class="mi">100000</span>
+             <span class="k">then</span> <span class="nv">BIN_EDGES</span> <span class="nv">and</span> <span class="nv">FULLCOUNTS</span> <span class="nv">allows</span> <span class="nv">the</span> <span class="nv">user</span> <span class="nv">to</span> <span class="nv">determine</span> <span class="nv">the</span>
+             <span class="nv">number</span> <span class="nv">of</span> <span class="nv">data</span> <span class="nv">points</span> <span class="nv">that</span> <span class="nv">fall</span> <span class="nv">below</span> <span class="nv">and</span> <span class="nv">above</span> <span class="nv">the</span> <span class="nv">bins</span>. <span class="ss">(</span><span class="nv">See</span>
+             <span class="nv">help</span> <span class="nv">HISTC</span><span class="ss">)</span>
 </code></pre></div>
                 
               

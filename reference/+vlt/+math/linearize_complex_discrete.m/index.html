@@ -3213,6 +3213,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../%2Bgit/git_stash.m/" class="md-nav__link">
+        vlt.git.git_stash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../%2Bgit/git_status.m/" class="md-nav__link">
         vlt.git.git_status
       </a>
@@ -9237,26 +9249,33 @@
                 
                 
                 <h1 id="vltmathlinearize_complex_discrete">vlt.math.linearize_complex_discrete<a class="headerlink" href="#vltmathlinearize_complex_discrete" title="Permanent link">&para;</a></h1>
-<p>LINEARIZE_COMPLEX_DISCRETE - create a linear plot by concatenating discrete complex elements</p>
-<p>[Y, INDEXES, SET] = vlt.math.linearize_complex_discrete(X, ...)</p>
-<p>Given an array X of complex-valued elements that correspond to discrete sets of real, imaginary pairs,
-  this function creates a linearized array Y where the real values are repeated in a linear fashion with
-  gap GAP. INDEXES indicate which entry in X corresponds to each entry in Y. SET indicates which set of the
-  imaginary values each point is associated with (where the imaginary values are sorted from least (first set)
-  to greatest (nth set)).</p>
-<p>If there is a real, imaginary pair value that is missing, then NaN will be filled in Y and INDEXES.</p>
-<p>This function can be modified by passing parameters as name/value pairs:
-  Parameter (default value)    | Description </p>
-<hr />
-<p>GAP (1)                      | The gap between successive steps of the imaginary values
-  EPSILON (1e-10)              | How close values must be in order to be considered the "same"</p>
-<p>See also: REAL, IMAG, vlt.data.namevaluepair</p>
-<p>Example:
-     X = [ [1 2 3] [1 2 3]+sqrt(-1) [1 2 3]+2*sqrt(-1) ]
-     [Y, IND] = vlt.math.linearize_complex_discrete(X, 1) 
-       % Y = [ [1 2 3]  [4 5 6] [7 8 9] ]', 
-       % IND = [ [1 2 3] [4 5 6] [7 8 9] ]', 
-       % SET = [ [1 1 1] [2 2 2] [3 3 3] ]'</p>
+<div class="codehilite"><pre><span></span><code><span class="w">  </span><span class="n">LINEARIZE_COMPLEX_DISCRETE</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">create</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">linear</span><span class="w"> </span><span class="nb">plot</span><span class="w"> </span><span class="n">by</span><span class="w"> </span><span class="n">concatenating</span><span class="w"> </span><span class="n">discrete</span><span class="w"> </span><span class="nb">complex</span><span class="w"> </span><span class="n">elements</span><span class="w"></span>
+
+<span class="w">  </span><span class="p">[</span><span class="n">Y</span><span class="p">,</span><span class="w"> </span><span class="n">INDEXES</span><span class="p">,</span><span class="w"> </span><span class="n">SET</span><span class="p">]</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">vlt</span><span class="p">.</span><span class="n">math</span><span class="p">.</span><span class="n">linearize_complex_discrete</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="w"> </span><span class="k">...</span><span class="c">)</span><span class="w"></span>
+
+<span class="w">  </span><span class="n">Given</span><span class="w"> </span><span class="n">an</span><span class="w"> </span><span class="n">array</span><span class="w"> </span><span class="n">X</span><span class="w"> </span><span class="n">of</span><span class="w"> </span><span class="nb">complex</span><span class="o">-</span><span class="n">valued</span><span class="w"> </span><span class="n">elements</span><span class="w"> </span><span class="n">that</span><span class="w"> </span><span class="n">correspond</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="n">discrete</span><span class="w"> </span><span class="n">sets</span><span class="w"> </span><span class="n">of</span><span class="w"> </span><span class="nb">real</span><span class="p">,</span><span class="w"> </span><span class="n">imaginary</span><span class="w"> </span><span class="n">pairs</span><span class="p">,</span><span class="w"></span>
+<span class="w">  </span><span class="n">this</span><span class="w"> </span><span class="k">function</span><span class="w"> </span><span class="n">creates</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">linearized</span><span class="w"> </span><span class="n">array</span><span class="w"> </span><span class="n">Y</span><span class="w"> </span><span class="n">where</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="nb">real</span><span class="w"> </span><span class="nb">values</span><span class="w"> </span><span class="n">are</span><span class="w"> </span><span class="n">repeated</span><span class="w"> </span><span class="n">in</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">linear</span><span class="w"> </span><span class="n">fashion</span><span class="w"> </span><span class="n">with</span><span class="w"></span>
+<span class="w">  </span><span class="n">gap</span><span class="w"> </span><span class="n">GAP</span><span class="p">.</span><span class="w"> </span><span class="n">INDEXES</span><span class="w"> </span><span class="n">indicate</span><span class="w"> </span><span class="nb">which</span><span class="w"> </span><span class="n">entry</span><span class="w"> </span><span class="n">in</span><span class="w"> </span><span class="n">X</span><span class="w"> </span><span class="n">corresponds</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="n">each</span><span class="w"> </span><span class="n">entry</span><span class="w"> </span><span class="n">in</span><span class="w"> </span><span class="n">Y</span><span class="p">.</span><span class="w"> </span><span class="n">SET</span><span class="w"> </span><span class="n">indicates</span><span class="w"> </span><span class="nb">which</span><span class="w"> </span><span class="nb">set</span><span class="w"> </span><span class="n">of</span><span class="w"> </span><span class="n">the</span><span class="w"></span>
+<span class="w">  </span><span class="n">imaginary</span><span class="w"> </span><span class="nb">values</span><span class="w"> </span><span class="n">each</span><span class="w"> </span><span class="n">point</span><span class="w"> </span><span class="n">is</span><span class="w"> </span><span class="n">associated</span><span class="w"> </span><span class="n">with</span><span class="w"> </span><span class="p">(</span><span class="n">where</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">imaginary</span><span class="w"> </span><span class="nb">values</span><span class="w"> </span><span class="n">are</span><span class="w"> </span><span class="n">sorted</span><span class="w"> </span><span class="n">from</span><span class="w"> </span><span class="n">least</span><span class="w"> </span><span class="p">(</span><span class="n">first</span><span class="w"> </span><span class="nb">set</span><span class="p">)</span><span class="w"></span>
+<span class="w">  </span><span class="n">to</span><span class="w"> </span><span class="n">greatest</span><span class="w"> </span><span class="p">(</span><span class="n">nth</span><span class="w"> </span><span class="nb">set</span><span class="p">)).</span><span class="w"></span>
+
+<span class="w">  </span><span class="n">If</span><span class="w"> </span><span class="n">there</span><span class="w"> </span><span class="n">is</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="nb">real</span><span class="p">,</span><span class="w"> </span><span class="n">imaginary</span><span class="w"> </span><span class="n">pair</span><span class="w"> </span><span class="n">value</span><span class="w"> </span><span class="n">that</span><span class="w"> </span><span class="n">is</span><span class="w"> </span><span class="nb">missing</span><span class="p">,</span><span class="w"> </span><span class="n">then</span><span class="w"> </span><span class="nb">NaN</span><span class="w"> </span><span class="n">will</span><span class="w"> </span><span class="n">be</span><span class="w"> </span><span class="n">filled</span><span class="w"> </span><span class="n">in</span><span class="w"> </span><span class="n">Y</span><span class="w"> </span><span class="n">and</span><span class="w"> </span><span class="n">INDEXES</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">  </span><span class="n">This</span><span class="w"> </span><span class="k">function</span><span class="w"> </span><span class="n">can</span><span class="w"> </span><span class="n">be</span><span class="w"> </span><span class="n">modified</span><span class="w"> </span><span class="n">by</span><span class="w"> </span><span class="n">passing</span><span class="w"> </span><span class="n">parameters</span><span class="w"> </span><span class="n">as</span><span class="w"> </span><span class="n">name</span><span class="o">/</span><span class="n">value</span><span class="w"> </span><span class="n">pairs</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="n">Parameter</span><span class="w"> </span><span class="p">(</span><span class="n">default</span><span class="w"> </span><span class="n">value</span><span class="p">)</span><span class="w">    </span><span class="o">|</span><span class="w"> </span><span class="n">Description</span><span class="w"> </span>
+<span class="w">  </span><span class="o">-----------------------------------------------------------------------</span><span class="w"></span>
+<span class="w">  </span><span class="n">GAP</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="w">                      </span><span class="o">|</span><span class="w"> </span><span class="n">The</span><span class="w"> </span><span class="n">gap</span><span class="w"> </span><span class="nb">between</span><span class="w"> </span><span class="n">successive</span><span class="w"> </span><span class="n">steps</span><span class="w"> </span><span class="n">of</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">imaginary</span><span class="w"> </span><span class="nb">values</span><span class="w"></span>
+<span class="w">  </span><span class="n">EPSILON</span><span class="w"> </span><span class="p">(</span><span class="mf">1e-10</span><span class="p">)</span><span class="w">              </span><span class="o">|</span><span class="w"> </span><span class="n">How</span><span class="w"> </span><span class="nb">close</span><span class="w"> </span><span class="nb">values</span><span class="w"> </span><span class="n">must</span><span class="w"> </span><span class="n">be</span><span class="w"> </span><span class="n">in</span><span class="w"> </span><span class="n">order</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="n">be</span><span class="w"> </span><span class="n">considered</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="s">&quot;same&quot;</span><span class="w"></span>
+
+<span class="w">  </span><span class="n">See</span><span class="w"> </span><span class="n">also</span><span class="p">:</span><span class="w"> </span><span class="n">REAL</span><span class="p">,</span><span class="w"> </span><span class="n">IMAG</span><span class="p">,</span><span class="w"> </span><span class="n">vlt</span><span class="p">.</span><span class="n">data</span><span class="p">.</span><span class="n">namevaluepair</span><span class="w"></span>
+
+<span class="w">  </span><span class="n">Example</span><span class="p">:</span><span class="w"></span>
+<span class="w">     </span><span class="n">X</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="p">[</span><span class="mi">1</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="mi">3</span><span class="p">]</span><span class="w"> </span><span class="p">[</span><span class="mi">1</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="mi">3</span><span class="p">]</span><span class="o">+</span><span class="nb">sqrt</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="p">[</span><span class="mi">1</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="mi">3</span><span class="p">]</span><span class="o">+</span><span class="mi">2</span><span class="o">*</span><span class="nb">sqrt</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="p">]</span><span class="w"></span>
+<span class="w">     </span><span class="p">[</span><span class="n">Y</span><span class="p">,</span><span class="w"> </span><span class="n">IND</span><span class="p">]</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">vlt</span><span class="p">.</span><span class="n">math</span><span class="p">.</span><span class="n">linearize_complex_discrete</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span>
+<span class="w">       </span><span class="c">% Y = [ [1 2 3]  [4 5 6] [7 8 9] ]&#39;, </span><span class="w"></span>
+<span class="w">       </span><span class="c">% IND = [ [1 2 3] [4 5 6] [7 8 9] ]&#39;, </span><span class="w"></span>
+<span class="w">       </span><span class="c">% SET = [ [1 1 1] [2 2 2] [3 3 3] ]&#39;</span><span class="w"></span>
+</code></pre></div>
                 
               
               

@@ -3213,6 +3213,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../%2Bgit/git_stash.m/" class="md-nav__link">
+        vlt.git.git_stash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../%2Bgit/git_status.m/" class="md-nav__link">
         vlt.git.git_status
       </a>
@@ -9237,16 +9249,17 @@
                 
                 
                 <h1 id="vltmathfouriercoeffs_tf">vlt.math.fouriercoeffs_tf<a class="headerlink" href="#vltmathfouriercoeffs_tf" title="Permanent link">&para;</a></h1>
-<p>FOURIERCOEFFS_TF  Fourier Transform at a particular frequency.
-    ft(response, tf, SAMPLERATE) is the product of response with
-    exp( 2<em>pi</em>i*tf/SAMPLERATE ). If tf is zero it returns the mean.
-    If response is two-dimensional, ft operates on the columns and
-    returns a row vector.
-    tf is expressed in whatever units SAMPLERATE is expressed in 
-    (I usually use Hz). Only the data within an integer number of periods 
-    are considered.
-    From Sooyoung Chung, from Matteo Carandini,modified slightly by
-    Steve Van Hooser</p>
+<div class="codehilite"><pre><span></span><code>  <span class="nv">FOURIERCOEFFS_TF</span>  <span class="nv">Fourier</span> <span class="nv">Transform</span> <span class="nv">at</span> <span class="nv">a</span> <span class="nv">particular</span> <span class="nv">frequency</span>.
+    <span class="nv">ft</span><span class="ss">(</span><span class="nv">response</span>, <span class="nv">tf</span>, <span class="nv">SAMPLERATE</span><span class="ss">)</span> <span class="nv">is</span> <span class="nv">the</span> <span class="nv">product</span> <span class="nv">of</span> <span class="nv">response</span> <span class="nv">with</span>
+    <span class="nv">exp</span><span class="ss">(</span> <span class="mi">2</span><span class="o">*</span><span class="nv">pi</span><span class="o">*</span><span class="nv">i</span><span class="o">*</span><span class="nv">tf</span><span class="o">/</span><span class="nv">SAMPLERATE</span> <span class="ss">)</span>. <span class="k">If</span> <span class="nv">tf</span> <span class="nv">is</span> <span class="nv">zero</span> <span class="nv">it</span> <span class="nv">returns</span> <span class="nv">the</span> <span class="nv">mean</span>.
+    <span class="k">If</span> <span class="nv">response</span> <span class="nv">is</span> <span class="nv">two</span><span class="o">-</span><span class="nv">dimensional</span>, <span class="nv">ft</span> <span class="nv">operates</span> <span class="nv">on</span> <span class="nv">the</span> <span class="nv">columns</span> <span class="nv">and</span>
+    <span class="nv">returns</span> <span class="nv">a</span> <span class="nv">row</span> <span class="nv">vector</span>.
+    <span class="nv">tf</span> <span class="nv">is</span> <span class="nv">expressed</span> <span class="nv">in</span> <span class="nv">whatever</span> <span class="nv">units</span> <span class="nv">SAMPLERATE</span> <span class="nv">is</span> <span class="nv">expressed</span> <span class="nv">in</span> 
+    <span class="ss">(</span><span class="nv">I</span> <span class="nv">usually</span> <span class="nv">use</span> <span class="nv">Hz</span><span class="ss">)</span>. <span class="nv">Only</span> <span class="nv">the</span> <span class="nv">data</span> <span class="nv">within</span> <span class="nv">an</span> <span class="nv">integer</span> <span class="nv">number</span> <span class="nv">of</span> <span class="nv">periods</span> 
+    <span class="nv">are</span> <span class="nv">considered</span>.
+    <span class="nv">From</span> <span class="nv">Sooyoung</span> <span class="nv">Chung</span>, <span class="nv">from</span> <span class="nv">Matteo</span> <span class="nv">Carandini</span>,<span class="nv">modified</span> <span class="nv">slightly</span> <span class="nv">by</span>
+    <span class="nv">Steve</span> <span class="nv">Van</span> <span class="nv">Hooser</span>
+</code></pre></div>
                 
               
               

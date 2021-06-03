@@ -3213,6 +3213,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../../%2Bgit/git_stash.m/" class="md-nav__link">
+        vlt.git.git_stash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../../%2Bgit/git_status.m/" class="md-nav__link">
         vlt.git.git_status
       </a>
@@ -9239,31 +9251,33 @@
                 
                 
                 <h1 id="vltneuromledenoisemle_poisgauss">vlt.neuro.mledenoise.MLE_PoisGauss<a class="headerlink" href="#vltneuromledenoisemle_poisgauss" title="Permanent link">&para;</a></h1>
-<p>MLE_PoisGauss - Calculate maximum likelihood of gain and average stimulus responses given raw responses</p>
-<div class="codehilite"><pre><span></span><code>[PARAMS,FVAL] = vlt.neuro.mledenoise.MLE_PoisGauss(STIM_CENTER_TIMES, STIM_DURATIONS, RESPONSES_OBSERVED, ...
-      SP, STIMLIST, MODEL, FIXPARAM, G_PARAMS, S_I_PARAMS, SMOOTHNESS);
-</code></pre></div>
+<div class="codehilite"><pre><span></span><code> <span class="n">MLE_PoisGauss</span> <span class="o">-</span> <span class="n">Calculate</span> <span class="n">maximum</span> <span class="n">likelihood</span> <span class="n">of</span> <span class="n">gain</span> <span class="ow">and</span> <span class="n">average</span> <span class="n">stimulus</span> <span class="n">responses</span> <span class="n">given</span> <span class="n">raw</span> <span class="n">responses</span>
 
-<p>Inputs:
-    STIM_CENTER_TIMES - The time points at which the stimuli were presented (middle of the stimuli)
-                        Note that this vector should be as long as the number of stimuli times the
-                        number of repetitions of those stimuli.
-    STIM_DURATIONS -    The duration of each stimulus (should be a vector)
-    RESPONSES_OBSERVED- The observed spike counts (for Poisson model) or rates (for Gaussian model)
-                         that occurred for stimulus presentation i
-                         (should be vector as long as number of stimui times number of repetitions)
-    SP - Sinwave parameters
-    STIMLIST - Stim ID numbers for all presented stimuli
-    MODEL - 'Poisson' or 'Gaussian'
-    FIXPARAM - Is the fixed parameter g (FIXPARAM==1) or s_i (FIXPARAM==0)?
-    G_PARAMS - A list of amplitudes for the 4 sinwaves
-    S_I_PARAMS - The estimated mean firing rate for the i different types of stimuli that were 
-                 presented (note that this is as long as the number of unique stimuli).
-    SMOOTHNESS - A constraint on the 2nd derivative (must be smoother than SMOOTHNESS)
-                 If Inf is provided, or empty ([]), then this constraint is not used.</p>
-<p>Outputs: 
-     PARAMS - The estimated parameters, either s_i (FIXPARAM==1) or g (FIXPARAM==0)
-     Fval - the value of the function to be minimized</p>
+    <span class="p">[</span><span class="n">PARAMS</span><span class="p">,</span><span class="n">FVAL</span><span class="p">]</span> <span class="o">=</span> <span class="n">vlt</span><span class="o">.</span><span class="n">neuro</span><span class="o">.</span><span class="n">mledenoise</span><span class="o">.</span><span class="n">MLE_PoisGauss</span><span class="p">(</span><span class="n">STIM_CENTER_TIMES</span><span class="p">,</span> <span class="n">STIM_DURATIONS</span><span class="p">,</span> <span class="n">RESPONSES_OBSERVED</span><span class="p">,</span> <span class="o">...</span>
+          <span class="n">SP</span><span class="p">,</span> <span class="n">STIMLIST</span><span class="p">,</span> <span class="n">MODEL</span><span class="p">,</span> <span class="n">FIXPARAM</span><span class="p">,</span> <span class="n">G_PARAMS</span><span class="p">,</span> <span class="n">S_I_PARAMS</span><span class="p">,</span> <span class="n">SMOOTHNESS</span><span class="p">);</span>
+
+   <span class="n">Inputs</span><span class="p">:</span>
+    <span class="n">STIM_CENTER_TIMES</span> <span class="o">-</span> <span class="n">The</span> <span class="n">time</span> <span class="n">points</span> <span class="n">at</span> <span class="n">which</span> <span class="n">the</span> <span class="n">stimuli</span> <span class="n">were</span> <span class="n">presented</span> <span class="p">(</span><span class="n">middle</span> <span class="n">of</span> <span class="n">the</span> <span class="n">stimuli</span><span class="p">)</span>
+                        <span class="n">Note</span> <span class="n">that</span> <span class="n">this</span> <span class="n">vector</span> <span class="n">should</span> <span class="n">be</span> <span class="k">as</span> <span class="n">long</span> <span class="k">as</span> <span class="n">the</span> <span class="n">number</span> <span class="n">of</span> <span class="n">stimuli</span> <span class="n">times</span> <span class="n">the</span>
+                        <span class="n">number</span> <span class="n">of</span> <span class="n">repetitions</span> <span class="n">of</span> <span class="n">those</span> <span class="n">stimuli</span><span class="o">.</span>
+    <span class="n">STIM_DURATIONS</span> <span class="o">-</span>    <span class="n">The</span> <span class="n">duration</span> <span class="n">of</span> <span class="n">each</span> <span class="n">stimulus</span> <span class="p">(</span><span class="n">should</span> <span class="n">be</span> <span class="n">a</span> <span class="n">vector</span><span class="p">)</span>
+    <span class="n">RESPONSES_OBSERVED</span><span class="o">-</span> <span class="n">The</span> <span class="n">observed</span> <span class="n">spike</span> <span class="n">counts</span> <span class="p">(</span><span class="k">for</span> <span class="n">Poisson</span> <span class="n">model</span><span class="p">)</span> <span class="ow">or</span> <span class="n">rates</span> <span class="p">(</span><span class="k">for</span> <span class="n">Gaussian</span> <span class="n">model</span><span class="p">)</span>
+                         <span class="n">that</span> <span class="n">occurred</span> <span class="k">for</span> <span class="n">stimulus</span> <span class="n">presentation</span> <span class="n">i</span>
+                         <span class="p">(</span><span class="n">should</span> <span class="n">be</span> <span class="n">vector</span> <span class="k">as</span> <span class="n">long</span> <span class="k">as</span> <span class="n">number</span> <span class="n">of</span> <span class="n">stimui</span> <span class="n">times</span> <span class="n">number</span> <span class="n">of</span> <span class="n">repetitions</span><span class="p">)</span>
+    <span class="n">SP</span> <span class="o">-</span> <span class="n">Sinwave</span> <span class="n">parameters</span>
+    <span class="n">STIMLIST</span> <span class="o">-</span> <span class="n">Stim</span> <span class="n">ID</span> <span class="n">numbers</span> <span class="k">for</span> <span class="n">all</span> <span class="n">presented</span> <span class="n">stimuli</span>
+    <span class="n">MODEL</span> <span class="o">-</span> <span class="s1">&#39;Poisson&#39;</span> <span class="ow">or</span> <span class="s1">&#39;Gaussian&#39;</span>
+    <span class="n">FIXPARAM</span> <span class="o">-</span> <span class="n">Is</span> <span class="n">the</span> <span class="n">fixed</span> <span class="n">parameter</span> <span class="n">g</span> <span class="p">(</span><span class="n">FIXPARAM</span><span class="o">==</span><span class="mi">1</span><span class="p">)</span> <span class="ow">or</span> <span class="n">s_i</span> <span class="p">(</span><span class="n">FIXPARAM</span><span class="o">==</span><span class="mi">0</span><span class="p">)</span><span class="err">?</span>
+    <span class="n">G_PARAMS</span> <span class="o">-</span> <span class="n">A</span> <span class="n">list</span> <span class="n">of</span> <span class="n">amplitudes</span> <span class="k">for</span> <span class="n">the</span> <span class="mi">4</span> <span class="n">sinwaves</span>
+    <span class="n">S_I_PARAMS</span> <span class="o">-</span> <span class="n">The</span> <span class="n">estimated</span> <span class="n">mean</span> <span class="n">firing</span> <span class="n">rate</span> <span class="k">for</span> <span class="n">the</span> <span class="n">i</span> <span class="n">different</span> <span class="n">types</span> <span class="n">of</span> <span class="n">stimuli</span> <span class="n">that</span> <span class="n">were</span> 
+                 <span class="n">presented</span> <span class="p">(</span><span class="n">note</span> <span class="n">that</span> <span class="n">this</span> <span class="k">is</span> <span class="k">as</span> <span class="n">long</span> <span class="k">as</span> <span class="n">the</span> <span class="n">number</span> <span class="n">of</span> <span class="n">unique</span> <span class="n">stimuli</span><span class="p">)</span><span class="o">.</span>
+    <span class="n">SMOOTHNESS</span> <span class="o">-</span> <span class="n">A</span> <span class="n">constraint</span> <span class="n">on</span> <span class="n">the</span> <span class="mi">2</span><span class="n">nd</span> <span class="n">derivative</span> <span class="p">(</span><span class="n">must</span> <span class="n">be</span> <span class="n">smoother</span> <span class="n">than</span> <span class="n">SMOOTHNESS</span><span class="p">)</span>
+                 <span class="n">If</span> <span class="n">Inf</span> <span class="k">is</span> <span class="n">provided</span><span class="p">,</span> <span class="ow">or</span> <span class="n">empty</span> <span class="p">([]),</span> <span class="n">then</span> <span class="n">this</span> <span class="n">constraint</span> <span class="k">is</span> <span class="ow">not</span> <span class="n">used</span><span class="o">.</span>
+
+   <span class="n">Outputs</span><span class="p">:</span> 
+     <span class="n">PARAMS</span> <span class="o">-</span> <span class="n">The</span> <span class="n">estimated</span> <span class="n">parameters</span><span class="p">,</span> <span class="n">either</span> <span class="n">s_i</span> <span class="p">(</span><span class="n">FIXPARAM</span><span class="o">==</span><span class="mi">1</span><span class="p">)</span> <span class="ow">or</span> <span class="n">g</span> <span class="p">(</span><span class="n">FIXPARAM</span><span class="o">==</span><span class="mi">0</span><span class="p">)</span>
+     <span class="n">Fval</span> <span class="o">-</span> <span class="n">the</span> <span class="n">value</span> <span class="n">of</span> <span class="n">the</span> <span class="n">function</span> <span class="n">to</span> <span class="n">be</span> <span class="n">minimized</span>
+</code></pre></div>
                 
               
               

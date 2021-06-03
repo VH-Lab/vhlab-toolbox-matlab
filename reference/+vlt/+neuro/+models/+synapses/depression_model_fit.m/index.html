@@ -3213,6 +3213,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../../../%2Bgit/git_stash.m/" class="md-nav__link">
+        vlt.git.git_stash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../../../%2Bgit/git_status.m/" class="md-nav__link">
         vlt.git.git_status
       </a>
@@ -9241,17 +9253,21 @@
                 
                 
                 <h1 id="vltneuromodelssynapsesdepression_model_fit">vlt.neuro.models.synapses.depression_model_fit<a class="headerlink" href="#vltneuromodelssynapsesdepression_model_fit" title="Permanent link">&para;</a></h1>
-<p>DEPRESSION_MODEL - Compute parameters of model for synaptic depression</p>
-<p>[A0,F,FTAU,D,TAU,ERR]=DEPRESSION_MODEL(SPIKETIMES,SYNAPTIC_CURRENT,...
-             FORDER,DORDER,[NUMATTEMPTS])</p>
-<p>Finds the best fit depression model with FORDER facilitating factors and
-   DORDER depressing factors for the synaptic currents measured in the array
-   SYNAPTIC_CURRENT at presynaptic spike times SPIKETIMES.  This program tries
-   NUMATTEMPTS different random starting positions (default 10) and picks the
-   best solution.</p>
-<p>See Varela, Sen, Gibson, Fost, Abbott, and Nelson, J. Neuroscience 17:7926-40
-   (1997) and 'help vlt.neuro.models.synapses.depression_model_comp' for details of the model and parameters.
-   ERR is the squared error over the whole data.</p>
+<div class="codehilite"><pre><span></span><code><span class="w">  </span><span class="n">DEPRESSION_MODEL</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="k">Compute</span><span class="w"> </span><span class="k">parameters</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="n">model</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">synaptic</span><span class="w"> </span><span class="n">depression</span><span class="w"></span>
+
+<span class="w">  </span><span class="o">[</span><span class="n">A0,F,FTAU,D,TAU,ERR</span><span class="o">]=</span><span class="n">DEPRESSION_MODEL</span><span class="p">(</span><span class="n">SPIKETIMES</span><span class="p">,</span><span class="n">SYNAPTIC_CURRENT</span><span class="p">,...</span><span class="w"></span>
+<span class="w">             </span><span class="n">FORDER</span><span class="p">,</span><span class="n">DORDER</span><span class="p">,</span><span class="o">[</span><span class="n">NUMATTEMPTS</span><span class="o">]</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">   </span><span class="n">Finds</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">best</span><span class="w"> </span><span class="n">fit</span><span class="w"> </span><span class="n">depression</span><span class="w"> </span><span class="n">model</span><span class="w"> </span><span class="k">with</span><span class="w"> </span><span class="n">FORDER</span><span class="w"> </span><span class="n">facilitating</span><span class="w"> </span><span class="n">factors</span><span class="w"> </span><span class="ow">and</span><span class="w"></span>
+<span class="w">   </span><span class="n">DORDER</span><span class="w"> </span><span class="n">depressing</span><span class="w"> </span><span class="n">factors</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">synaptic</span><span class="w"> </span><span class="n">currents</span><span class="w"> </span><span class="n">measured</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="k">array</span><span class="w"></span>
+<span class="w">   </span><span class="n">SYNAPTIC_CURRENT</span><span class="w"> </span><span class="k">at</span><span class="w"> </span><span class="n">presynaptic</span><span class="w"> </span><span class="n">spike</span><span class="w"> </span><span class="n">times</span><span class="w"> </span><span class="n">SPIKETIMES</span><span class="p">.</span><span class="w">  </span><span class="n">This</span><span class="w"> </span><span class="n">program</span><span class="w"> </span><span class="n">tries</span><span class="w"></span>
+<span class="w">   </span><span class="n">NUMATTEMPTS</span><span class="w"> </span><span class="n">different</span><span class="w"> </span><span class="n">random</span><span class="w"> </span><span class="n">starting</span><span class="w"> </span><span class="n">positions</span><span class="w"> </span><span class="p">(</span><span class="k">default</span><span class="w"> </span><span class="mi">10</span><span class="p">)</span><span class="w"> </span><span class="ow">and</span><span class="w"> </span><span class="n">picks</span><span class="w"> </span><span class="n">the</span><span class="w"></span>
+<span class="w">   </span><span class="n">best</span><span class="w"> </span><span class="n">solution</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">   </span><span class="n">See</span><span class="w"> </span><span class="n">Varela</span><span class="p">,</span><span class="w"> </span><span class="n">Sen</span><span class="p">,</span><span class="w"> </span><span class="n">Gibson</span><span class="p">,</span><span class="w"> </span><span class="n">Fost</span><span class="p">,</span><span class="w"> </span><span class="n">Abbott</span><span class="p">,</span><span class="w"> </span><span class="ow">and</span><span class="w"> </span><span class="n">Nelson</span><span class="p">,</span><span class="w"> </span><span class="n">J</span><span class="p">.</span><span class="w"> </span><span class="n">Neuroscience</span><span class="w"> </span><span class="mi">17</span><span class="err">:</span><span class="mi">7926</span><span class="o">-</span><span class="mi">40</span><span class="w"></span>
+<span class="w">   </span><span class="p">(</span><span class="mi">1997</span><span class="p">)</span><span class="w"> </span><span class="ow">and</span><span class="w"> </span><span class="s1">&#39;help vlt.neuro.models.synapses.depression_model_comp&#39;</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">details</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">model</span><span class="w"> </span><span class="ow">and</span><span class="w"> </span><span class="k">parameters</span><span class="p">.</span><span class="w"></span>
+<span class="w">   </span><span class="n">ERR</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">squared</span><span class="w"> </span><span class="n">error</span><span class="w"> </span><span class="k">over</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">whole</span><span class="w"> </span><span class="k">data</span><span class="p">.</span><span class="w"></span>
+</code></pre></div>
                 
               
               

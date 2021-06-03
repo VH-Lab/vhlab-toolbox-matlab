@@ -3213,6 +3213,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../%2Bgit/git_stash.m/" class="md-nav__link">
+        vlt.git.git_stash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../%2Bgit/git_status.m/" class="md-nav__link">
         vlt.git.git_status
       </a>
@@ -9237,14 +9249,16 @@
                 
                 
                 <h1 id="vltmathfouriercoeffs_tf_spikes">vlt.math.fouriercoeffs_tf_spikes<a class="headerlink" href="#vltmathfouriercoeffs_tf_spikes" title="Permanent link">&para;</a></h1>
-<p>FOURIERCOEFFS_TF_SPIKES  Fourier Transform of a spike train at a particular frequency.</p>
-<p>F = vlt.math.fouriercoeffs_tf_spikes(SPIKETIMES, TF, DURATION)
-      This function returns the normalized fourier coefficient of 
-      a spike train that is defined by an array of SPIKETIMES with a 
-      duration DURATION.</p>
-<div class="codehilite"><pre><span></span><code>  <span class="nv">The</span> <span class="nv">function</span> <span class="nv">calculates</span> <span class="ss">(</span><span class="mi">2</span><span class="o">/</span><span class="nv">DURATION</span><span class="ss">)</span> <span class="o">*</span> <span class="nv">exp</span><span class="ss">(</span><span class="o">-</span><span class="mi">2</span><span class="o">*</span><span class="nv">pi</span><span class="o">*</span><span class="nv">sqrt</span><span class="ss">(</span><span class="o">-</span><span class="mi">1</span><span class="ss">)</span><span class="o">*</span><span class="nv">tf</span><span class="ss">)</span>.
-  <span class="k">If</span> <span class="nv">tf</span> <span class="nv">is</span> <span class="nv">zero</span> <span class="nv">it</span> <span class="nv">returns</span> <span class="nv">the</span> <span class="nv">number</span> <span class="nv">of</span> <span class="nv">spikes</span> <span class="nv">times</span> <span class="nv">divided</span> <span class="nv">by</span> <span class="nv">the</span> <span class="nv">duration</span>.
-  <span class="nv">Modified</span> <span class="nv">from</span> <span class="nv">Sooyoung</span> <span class="nv">Chung</span>, <span class="nv">from</span> <span class="nv">Matteo</span> <span class="nv">Carandini</span>, <span class="nv">by</span> <span class="nv">Steve</span> <span class="nv">Van</span> <span class="nv">Hooser</span>
+<div class="codehilite"><pre><span></span><code>  <span class="nv">FOURIERCOEFFS_TF_SPIKES</span>  <span class="nv">Fourier</span> <span class="nv">Transform</span> <span class="nv">of</span> <span class="nv">a</span> <span class="nv">spike</span> <span class="nv">train</span> <span class="nv">at</span> <span class="nv">a</span> <span class="nv">particular</span> <span class="nv">frequency</span>.
+
+   <span class="nv">F</span> <span class="o">=</span> <span class="nv">vlt</span>.<span class="nv">math</span>.<span class="nv">fouriercoeffs_tf_spikes</span><span class="ss">(</span><span class="nv">SPIKETIMES</span>, <span class="nv">TF</span>, <span class="nv">DURATION</span><span class="ss">)</span>
+      <span class="nv">This</span> <span class="nv">function</span> <span class="nv">returns</span> <span class="nv">the</span> <span class="nv">normalized</span> <span class="nv">fourier</span> <span class="nv">coefficient</span> <span class="nv">of</span> 
+      <span class="nv">a</span> <span class="nv">spike</span> <span class="nv">train</span> <span class="nv">that</span> <span class="nv">is</span> <span class="nv">defined</span> <span class="nv">by</span> <span class="nv">an</span> <span class="nv">array</span> <span class="nv">of</span> <span class="nv">SPIKETIMES</span> <span class="nv">with</span> <span class="nv">a</span> 
+      <span class="nv">duration</span> <span class="nv">DURATION</span>.
+
+      <span class="nv">The</span> <span class="nv">function</span> <span class="nv">calculates</span> <span class="ss">(</span><span class="mi">2</span><span class="o">/</span><span class="nv">DURATION</span><span class="ss">)</span> <span class="o">*</span> <span class="nv">exp</span><span class="ss">(</span><span class="o">-</span><span class="mi">2</span><span class="o">*</span><span class="nv">pi</span><span class="o">*</span><span class="nv">sqrt</span><span class="ss">(</span><span class="o">-</span><span class="mi">1</span><span class="ss">)</span><span class="o">*</span><span class="nv">tf</span><span class="ss">)</span>.
+      <span class="k">If</span> <span class="nv">tf</span> <span class="nv">is</span> <span class="nv">zero</span> <span class="nv">it</span> <span class="nv">returns</span> <span class="nv">the</span> <span class="nv">number</span> <span class="nv">of</span> <span class="nv">spikes</span> <span class="nv">times</span> <span class="nv">divided</span> <span class="nv">by</span> <span class="nv">the</span> <span class="nv">duration</span>.
+      <span class="nv">Modified</span> <span class="nv">from</span> <span class="nv">Sooyoung</span> <span class="nv">Chung</span>, <span class="nv">from</span> <span class="nv">Matteo</span> <span class="nv">Carandini</span>, <span class="nv">by</span> <span class="nv">Steve</span> <span class="nv">Van</span> <span class="nv">Hooser</span>
 </code></pre></div>
                 
               

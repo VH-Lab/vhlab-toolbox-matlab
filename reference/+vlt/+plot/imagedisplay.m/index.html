@@ -3213,6 +3213,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../%2Bgit/git_stash.m/" class="md-nav__link">
+        vlt.git.git_stash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../%2Bgit/git_status.m/" class="md-nav__link">
         vlt.git.git_status
       </a>
@@ -9237,25 +9249,30 @@
                 
                 
                 <h1 id="vltplotimagedisplay">vlt.plot.imagedisplay<a class="headerlink" href="#vltplotimagedisplay" title="Permanent link">&para;</a></h1>
-<p>vlt.plot.imagedisplay - Display an image and allow user to adjust </p>
-<p>H = vlt.plot.imagedisplay(IMAGE, [...] )</p>
-<p>Displays the image IMAGE in the current figure.  There are
-   buttons provided for adjusting the image scale, including
-   an autoscale button.</p>
-<p>One may also provide additional arguments in name/value
-   pairs (e.g., 'InitialScale', [0 255]):</p>
-<p>'InitialScale'   [low high]  the high and low bounds for scaling
-                                (initially [0 255])
-   'AutoScale',     0/1         should autoscale button be visible?
-                                (initially 1)
-   'Units',                     Units of position (e.g., 'pixels'
-                                 or 'normalized'; default 'normalized')
-   'Position',                  position of image in figure
-                                (initially [0.1 0.1 0.8 0.8])
-   'ScaleEdits'   0/1          should scale edit boxes be visible?
-                                (initially 1)
-   'Title'                      A title string
-   'fig'                        The figure (new is created by default)</p>
+<div class="codehilite"><pre><span></span><code>   <span class="n">vlt</span><span class="p">.</span><span class="n">plot</span><span class="p">.</span><span class="n">imagedisplay</span> <span class="o">-</span> <span class="n">Display</span> <span class="n">an</span> <span class="n">image</span> <span class="n">and</span> <span class="n">allow</span> <span class="n">user</span> <span class="n">to</span> <span class="n">adjust</span> 
+
+   <span class="n">H</span> <span class="o">=</span> <span class="n">vlt</span><span class="p">.</span><span class="n">plot</span><span class="p">.</span><span class="n">imagedisplay</span><span class="p">(</span><span class="n">IMAGE</span><span class="p">,</span> <span class="p">[...]</span> <span class="p">)</span>
+
+   <span class="n">Displays</span> <span class="n">the</span> <span class="n">image</span> <span class="n">IMAGE</span> <span class="k">in</span> <span class="n">the</span> <span class="n">current</span> <span class="n">figure</span><span class="p">.</span>  <span class="n">There</span> <span class="n">are</span>
+   <span class="n">buttons</span> <span class="n">provided</span> <span class="k">for</span> <span class="n">adjusting</span> <span class="n">the</span> <span class="n">image</span> <span class="n">scale</span><span class="p">,</span> <span class="n">including</span>
+   <span class="n">an</span> <span class="n">autoscale</span> <span class="n">button</span><span class="p">.</span>
+
+   <span class="n">One</span> <span class="n">may</span> <span class="n">also</span> <span class="n">provide</span> <span class="n">additional</span> <span class="n">arguments</span> <span class="k">in</span> <span class="n">name</span><span class="o">/</span><span class="n">value</span>
+   <span class="n">pairs</span> <span class="p">(</span><span class="n">e</span><span class="p">.</span><span class="n">g</span><span class="p">.,</span> <span class="err">&#39;</span><span class="n">InitialScale</span><span class="err">&#39;</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span> <span class="mi">255</span><span class="p">])</span><span class="o">:</span>
+
+   <span class="err">&#39;</span><span class="n">InitialScale</span><span class="err">&#39;</span>   <span class="p">[</span><span class="n">low</span> <span class="n">high</span><span class="p">]</span>  <span class="n">the</span> <span class="n">high</span> <span class="n">and</span> <span class="n">low</span> <span class="n">bounds</span> <span class="k">for</span> <span class="n">scaling</span>
+                                <span class="p">(</span><span class="n">initially</span> <span class="p">[</span><span class="mi">0</span> <span class="mi">255</span><span class="p">])</span>
+   <span class="err">&#39;</span><span class="n">AutoScale</span><span class="err">&#39;</span><span class="p">,</span>     <span class="mi">0</span><span class="o">/</span><span class="mi">1</span>         <span class="n">should</span> <span class="n">autoscale</span> <span class="n">button</span> <span class="n">be</span> <span class="n">visible</span><span class="o">?</span>
+                                <span class="p">(</span><span class="n">initially</span> <span class="mi">1</span><span class="p">)</span>
+   <span class="err">&#39;</span><span class="n">Units</span><span class="err">&#39;</span><span class="p">,</span>                     <span class="n">Units</span> <span class="n">of</span> <span class="n">position</span> <span class="p">(</span><span class="n">e</span><span class="p">.</span><span class="n">g</span><span class="p">.,</span> <span class="err">&#39;</span><span class="n">pixels</span><span class="err">&#39;</span>
+                                 <span class="n">or</span> <span class="err">&#39;</span><span class="n">normalized</span><span class="err">&#39;</span><span class="p">;</span> <span class="k">default</span> <span class="err">&#39;</span><span class="n">normalized</span><span class="err">&#39;</span><span class="p">)</span>
+   <span class="err">&#39;</span><span class="n">Position</span><span class="err">&#39;</span><span class="p">,</span>                  <span class="n">position</span> <span class="n">of</span> <span class="n">image</span> <span class="k">in</span> <span class="n">figure</span>
+                                <span class="p">(</span><span class="n">initially</span> <span class="p">[</span><span class="mf">0.1</span> <span class="mf">0.1</span> <span class="mf">0.8</span> <span class="mf">0.8</span><span class="p">])</span>
+   <span class="err">&#39;</span><span class="n">ScaleEdits</span><span class="err">&#39;</span>   <span class="mi">0</span><span class="o">/</span><span class="mi">1</span>          <span class="n">should</span> <span class="n">scale</span> <span class="n">edit</span> <span class="n">boxes</span> <span class="n">be</span> <span class="n">visible</span><span class="o">?</span>
+                                <span class="p">(</span><span class="n">initially</span> <span class="mi">1</span><span class="p">)</span>
+   <span class="err">&#39;</span><span class="n">Title</span><span class="err">&#39;</span>                      <span class="n">A</span> <span class="n">title</span> <span class="n">string</span>
+   <span class="err">&#39;</span><span class="n">fig</span><span class="err">&#39;</span>                        <span class="n">The</span> <span class="n">figure</span> <span class="p">(</span><span class="n">new</span> <span class="n">is</span> <span class="n">created</span> <span class="n">by</span> <span class="k">default</span><span class="p">)</span>
+</code></pre></div>
                 
               
               

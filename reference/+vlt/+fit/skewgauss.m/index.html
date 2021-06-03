@@ -3225,6 +3225,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../%2Bgit/git_stash.m/" class="md-nav__link">
+        vlt.git.git_stash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../%2Bgit/git_status.m/" class="md-nav__link">
         vlt.git.git_status
       </a>
@@ -9237,14 +9249,20 @@
                 
                 
                 <h1 id="vltfitskewgauss">vlt.fit.skewgauss<a class="headerlink" href="#vltfitskewgauss" title="Permanent link">&para;</a></h1>
-<p>SKEWGAUSS - calculate the skew gaussian function</p>
-<p>Y = SKEWGAUSS(X, P)</p>
-<p>Evaluates 
-     Y = a+b<em>exp((x-c).^2/(2</em>d^2))<em>(1+erf(e</em>(x-c)/sqrt(2)));</p>
-<p>a is an offset parameter; b is a height parameter above the offset;
-  c is the peak location; d is the width; e is the degree of skewness (0 is none)</p>
-<p>The parameters are specified in a vector P = [a b c d e]</p>
-<p>See also: vlt.fit.skewgaussfit_constraints</p>
+<div class="codehilite"><pre><span></span><code>  <span class="n">SKEWGAUSS</span> <span class="o">-</span> <span class="n">calculate</span> <span class="n">the</span> <span class="n">skew</span> <span class="n">gaussian</span> <span class="n">function</span>
+
+  <span class="n">Y</span> <span class="o">=</span> <span class="n">SKEWGAUSS</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">P</span><span class="p">)</span>
+
+  <span class="n">Evaluates</span> 
+     <span class="n">Y</span> <span class="o">=</span> <span class="n">a</span><span class="o">+</span><span class="n">b</span><span class="o">*</span><span class="nb">exp</span><span class="p">((</span><span class="n">x</span><span class="o">-</span><span class="n">c</span><span class="p">)</span><span class="o">.^</span><span class="mi">2</span><span class="o">/</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">d</span><span class="o">^</span><span class="mi">2</span><span class="p">))</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="n">erf</span><span class="p">(</span><span class="n">e</span><span class="o">*</span><span class="p">(</span><span class="n">x</span><span class="o">-</span><span class="n">c</span><span class="p">)</span><span class="o">/</span><span class="nb">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="p">)));</span>
+
+  <span class="n">a</span> <span class="k">is</span> <span class="n">an</span> <span class="n">offset</span> <span class="n">parameter</span><span class="p">;</span> <span class="n">b</span> <span class="k">is</span> <span class="n">a</span> <span class="n">height</span> <span class="n">parameter</span> <span class="n">above</span> <span class="n">the</span> <span class="n">offset</span><span class="p">;</span>
+  <span class="n">c</span> <span class="k">is</span> <span class="n">the</span> <span class="n">peak</span> <span class="n">location</span><span class="p">;</span> <span class="n">d</span> <span class="k">is</span> <span class="n">the</span> <span class="n">width</span><span class="p">;</span> <span class="n">e</span> <span class="k">is</span> <span class="n">the</span> <span class="n">degree</span> <span class="n">of</span> <span class="n">skewness</span> <span class="p">(</span><span class="mi">0</span> <span class="k">is</span> <span class="n">none</span><span class="p">)</span>
+
+  <span class="n">The</span> <span class="n">parameters</span> <span class="n">are</span> <span class="n">specified</span> <span class="ow">in</span> <span class="n">a</span> <span class="n">vector</span> <span class="n">P</span> <span class="o">=</span> <span class="p">[</span><span class="n">a</span> <span class="n">b</span> <span class="n">c</span> <span class="n">d</span> <span class="n">e</span><span class="p">]</span>
+
+  <span class="n">See</span> <span class="n">also</span><span class="p">:</span> <span class="n">vlt</span><span class="o">.</span><span class="n">fit</span><span class="o">.</span><span class="n">skewgaussfit_constraints</span>
+</code></pre></div>
                 
               
               

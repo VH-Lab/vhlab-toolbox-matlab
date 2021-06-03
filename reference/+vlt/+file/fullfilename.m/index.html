@@ -3225,6 +3225,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../%2Bgit/git_stash.m/" class="md-nav__link">
+        vlt.git.git_stash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../%2Bgit/git_status.m/" class="md-nav__link">
         vlt.git.git_status
       </a>
@@ -9237,17 +9249,23 @@
                 
                 
                 <h1 id="vltfilefullfilename">vlt.file.fullfilename<a class="headerlink" href="#vltfilefullfilename" title="Permanent link">&para;</a></h1>
-<p>FULLFILENAME - return the full path file name of a file</p>
-<p>FULLNAME = vlt.file.fullfilename(FILENAME, [USEWHICH])</p>
-<p>Given either a full file name (with path) or just a filename
-  (without path), returns the full path filename FULLNAME.</p>
-<p>If FILENAME does not exist in the present working directory,
-  but is on the Matlab path, it is located using WHICH, unless
-  the user passes USEWHICH=0.</p>
-<p>See also: FILEPARTS, WHICH</p>
-<p>Example:
-    vlt.file.fullfilename('myfile.txt')  % returns [pwd filesep 'myfile.txt']
-    vlt.file.fullfilename('/Users/me/myfile.txt') % returns ['/Users/me/myfile.txt']</p>
+<div class="codehilite"><pre><span></span><code><span class="w">  </span><span class="n">FULLFILENAME</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="k">full</span><span class="w"> </span><span class="k">path</span><span class="w"> </span><span class="k">file</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="k">file</span><span class="w"></span>
+
+<span class="w">  </span><span class="n">FULLNAME</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">vlt</span><span class="p">.</span><span class="k">file</span><span class="p">.</span><span class="n">fullfilename</span><span class="p">(</span><span class="n">FILENAME</span><span class="p">,</span><span class="w"> </span><span class="o">[</span><span class="n">USEWHICH</span><span class="o">]</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">  </span><span class="n">Given</span><span class="w"> </span><span class="n">either</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="k">full</span><span class="w"> </span><span class="k">file</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="p">(</span><span class="k">with</span><span class="w"> </span><span class="k">path</span><span class="p">)</span><span class="w"> </span><span class="ow">or</span><span class="w"> </span><span class="n">just</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">filename</span><span class="w"></span>
+<span class="w">  </span><span class="p">(</span><span class="k">without</span><span class="w"> </span><span class="k">path</span><span class="p">),</span><span class="w"> </span><span class="k">returns</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="k">full</span><span class="w"> </span><span class="k">path</span><span class="w"> </span><span class="n">filename</span><span class="w"> </span><span class="n">FULLNAME</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">  </span><span class="k">If</span><span class="w"> </span><span class="n">FILENAME</span><span class="w"> </span><span class="n">does</span><span class="w"> </span><span class="ow">not</span><span class="w"> </span><span class="n">exist</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">present</span><span class="w"> </span><span class="n">working</span><span class="w"> </span><span class="n">directory</span><span class="p">,</span><span class="w"></span>
+<span class="w">  </span><span class="n">but</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="k">on</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">Matlab</span><span class="w"> </span><span class="k">path</span><span class="p">,</span><span class="w"> </span><span class="n">it</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="n">located</span><span class="w"> </span><span class="k">using</span><span class="w"> </span><span class="n">WHICH</span><span class="p">,</span><span class="w"> </span><span class="n">unless</span><span class="w"></span>
+<span class="w">  </span><span class="n">the</span><span class="w"> </span><span class="k">user</span><span class="w"> </span><span class="n">passes</span><span class="w"> </span><span class="n">USEWHICH</span><span class="o">=</span><span class="mf">0.</span><span class="w"></span>
+
+<span class="w">  </span><span class="n">See</span><span class="w"> </span><span class="nl">also</span><span class="p">:</span><span class="w"> </span><span class="n">FILEPARTS</span><span class="p">,</span><span class="w"> </span><span class="n">WHICH</span><span class="w"></span>
+
+<span class="w">  </span><span class="nl">Example</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="n">vlt</span><span class="p">.</span><span class="k">file</span><span class="p">.</span><span class="n">fullfilename</span><span class="p">(</span><span class="s1">&#39;myfile.txt&#39;</span><span class="p">)</span><span class="w">  </span><span class="o">%</span><span class="w"> </span><span class="k">returns</span><span class="w"> </span><span class="o">[</span><span class="n">pwd filesep &#39;myfile.txt&#39;</span><span class="o">]</span><span class="w"></span>
+<span class="w">    </span><span class="n">vlt</span><span class="p">.</span><span class="k">file</span><span class="p">.</span><span class="n">fullfilename</span><span class="p">(</span><span class="s1">&#39;/Users/me/myfile.txt&#39;</span><span class="p">)</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="k">returns</span><span class="w"> </span><span class="o">[</span><span class="n">&#39;/Users/me/myfile.txt&#39;</span><span class="o">]</span><span class="w"></span>
+</code></pre></div>
                 
               
               

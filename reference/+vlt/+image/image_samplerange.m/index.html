@@ -3213,6 +3213,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../%2Bgit/git_stash.m/" class="md-nav__link">
+        vlt.git.git_stash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../%2Bgit/git_status.m/" class="md-nav__link">
         vlt.git.git_status
       </a>
@@ -9237,28 +9249,35 @@
                 
                 
                 <h1 id="vltimageimage_samplerange">vlt.image.image_samplerange<a class="headerlink" href="#vltimageimage_samplerange" title="Permanent link">&para;</a></h1>
-<p>IMAGE_SAMPLERANGE - return the range of values in an image file</p>
-<p>[RANGE, IMSIZE, IMFILEINFO] = IMAGE_SAMPLERANGE(IMAGEFILE, ...)</p>
-<p>Reads in the image in IMAGEFILE and returns the range of sample values.
-   RANGE is an Nx2 vector that contains the range of values (column 1 is minimum,
-   column 2 is maximum) for each dimension of the image (e.g., 3 for an RGB image, 1
-   for a gray scale image). If IMAGEFILE describes an image with multiple frames, all
-   frames are read to find the maximum and minimum values.</p>
-<p>IMFILEINFO is the information returned from IMFINFO.</p>
-<p>This function can also be modified by name/value pairs:
-   Parameter (default value)   | Description</p>
-<hr />
-<p>UseRawData (1)              | Find the minimum and maximum from
-                               |   the raw data of the image.
-                               |   If this is 0, then the minimum and maximum
-                               |   are derived from the format of the data.
-                               |   (For example, for uint16, min is 0 and max is
-                               |    2^15-1.)
-   imfileinfo ([])             | Optionally, one can pass the output
-                               |   of the Matlab function IMFINFO 
-                               |   if that data has already been read; 
-                               |   this will save the time of re-reading it </p>
-<p>See also: IMAGE, IMFINFO, NAMEVALUEPAIR</p>
+<div class="codehilite"><pre><span></span><code>  <span class="nt">IMAGE_SAMPLERANGE</span> <span class="nt">-</span> <span class="nt">return</span> <span class="nt">the</span> <span class="nt">range</span> <span class="nt">of</span> <span class="nt">values</span> <span class="nt">in</span> <span class="nt">an</span> <span class="nt">image</span> <span class="nt">file</span>
+
+   <span class="cp">[</span><span class="nb">RANGE</span><span class="p">,</span> <span class="nx">IMSIZE</span><span class="p">,</span> <span class="nx">IMFILEINFO</span><span class="cp">]</span> <span class="o">=</span> <span class="nt">IMAGE_SAMPLERANGE</span><span class="o">(</span><span class="nt">IMAGEFILE</span><span class="o">,</span> <span class="o">...)</span>
+
+   <span class="nt">Reads</span> <span class="nt">in</span> <span class="nt">the</span> <span class="nt">image</span> <span class="nt">in</span> <span class="nt">IMAGEFILE</span> <span class="nt">and</span> <span class="nt">returns</span> <span class="nt">the</span> <span class="nt">range</span> <span class="nt">of</span> <span class="nt">sample</span> <span class="nt">values</span><span class="o">.</span>
+   <span class="nt">RANGE</span> <span class="nt">is</span> <span class="nt">an</span> <span class="nt">Nx2</span> <span class="nt">vector</span> <span class="nt">that</span> <span class="nt">contains</span> <span class="nt">the</span> <span class="nt">range</span> <span class="nt">of</span> <span class="nt">values</span> <span class="o">(</span><span class="nt">column</span> <span class="nt">1</span> <span class="nt">is</span> <span class="nt">minimum</span><span class="o">,</span>
+   <span class="nt">column</span> <span class="nt">2</span> <span class="nt">is</span> <span class="nt">maximum</span><span class="o">)</span> <span class="nt">for</span> <span class="nt">each</span> <span class="nt">dimension</span> <span class="nt">of</span> <span class="nt">the</span> <span class="nt">image</span> <span class="o">(</span><span class="nt">e</span><span class="p">.</span><span class="nc">g</span><span class="o">.,</span> <span class="nt">3</span> <span class="nt">for</span> <span class="nt">an</span> <span class="nt">RGB</span> <span class="nt">image</span><span class="o">,</span> <span class="nt">1</span>
+   <span class="nt">for</span> <span class="nt">a</span> <span class="nt">gray</span> <span class="nt">scale</span> <span class="nt">image</span><span class="o">).</span> <span class="nt">If</span> <span class="nt">IMAGEFILE</span> <span class="nt">describes</span> <span class="nt">an</span> <span class="nt">image</span> <span class="nt">with</span> <span class="nt">multiple</span> <span class="nt">frames</span><span class="o">,</span> <span class="nt">all</span>
+   <span class="nt">frames</span> <span class="nt">are</span> <span class="nt">read</span> <span class="nt">to</span> <span class="nt">find</span> <span class="nt">the</span> <span class="nt">maximum</span> <span class="nt">and</span> <span class="nt">minimum</span> <span class="nt">values</span><span class="o">.</span>
+
+   <span class="nt">IMFILEINFO</span> <span class="nt">is</span> <span class="nt">the</span> <span class="nt">information</span> <span class="nt">returned</span> <span class="nt">from</span> <span class="nt">IMFINFO</span><span class="o">.</span>
+
+   <span class="nt">This</span> <span class="nt">function</span> <span class="nt">can</span> <span class="nt">also</span> <span class="nt">be</span> <span class="nt">modified</span> <span class="nt">by</span> <span class="nt">name</span><span class="o">/</span><span class="nt">value</span> <span class="nt">pairs</span><span class="o">:</span>
+   <span class="nt">Parameter</span> <span class="o">(</span><span class="nt">default</span> <span class="nt">value</span><span class="o">)</span>   <span class="o">|</span> <span class="nt">Description</span>
+   <span class="nt">------------------------------------------------------------------</span>
+   <span class="nt">UseRawData</span> <span class="o">(</span><span class="nt">1</span><span class="o">)</span>              <span class="o">|</span> <span class="nt">Find</span> <span class="nt">the</span> <span class="nt">minimum</span> <span class="nt">and</span> <span class="nt">maximum</span> <span class="nt">from</span>
+                               <span class="o">|</span>   <span class="nt">the</span> <span class="nt">raw</span> <span class="nt">data</span> <span class="nt">of</span> <span class="nt">the</span> <span class="nt">image</span><span class="o">.</span>
+                               <span class="o">|</span>   <span class="nt">If</span> <span class="nt">this</span> <span class="nt">is</span> <span class="nt">0</span><span class="o">,</span> <span class="nt">then</span> <span class="nt">the</span> <span class="nt">minimum</span> <span class="nt">and</span> <span class="nt">maximum</span>
+                               <span class="o">|</span>   <span class="nt">are</span> <span class="nt">derived</span> <span class="nt">from</span> <span class="nt">the</span> <span class="nt">format</span> <span class="nt">of</span> <span class="nt">the</span> <span class="nt">data</span><span class="o">.</span>
+                               <span class="o">|</span>   <span class="o">(</span><span class="nt">For</span> <span class="nt">example</span><span class="o">,</span> <span class="nt">for</span> <span class="nt">uint16</span><span class="o">,</span> <span class="nt">min</span> <span class="nt">is</span> <span class="nt">0</span> <span class="nt">and</span> <span class="nt">max</span> <span class="nt">is</span>
+                               <span class="o">|</span>    <span class="nt">2</span><span class="o">^</span><span class="nt">15-1</span><span class="o">.)</span>
+   <span class="nt">imfileinfo</span> <span class="o">(</span><span class="cp">[]</span><span class="o">)</span>             <span class="o">|</span> <span class="nt">Optionally</span><span class="o">,</span> <span class="nt">one</span> <span class="nt">can</span> <span class="nt">pass</span> <span class="nt">the</span> <span class="nt">output</span>
+                               <span class="o">|</span>   <span class="nt">of</span> <span class="nt">the</span> <span class="nt">Matlab</span> <span class="nt">function</span> <span class="nt">IMFINFO</span> 
+                               <span class="o">|</span>   <span class="nt">if</span> <span class="nt">that</span> <span class="nt">data</span> <span class="nt">has</span> <span class="nt">already</span> <span class="nt">been</span> <span class="nt">read</span><span class="o">;</span> 
+                               <span class="o">|</span>   <span class="nt">this</span> <span class="nt">will</span> <span class="nt">save</span> <span class="nt">the</span> <span class="nt">time</span> <span class="nt">of</span> <span class="nt">re-reading</span> <span class="nt">it</span> 
+
+
+   <span class="nt">See</span> <span class="nt">also</span><span class="o">:</span> <span class="nt">IMAGE</span><span class="o">,</span> <span class="nt">IMFINFO</span><span class="o">,</span> <span class="nt">NAMEVALUEPAIR</span>
+</code></pre></div>
                 
               
               

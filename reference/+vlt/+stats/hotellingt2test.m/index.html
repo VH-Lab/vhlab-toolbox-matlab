@@ -3213,6 +3213,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../%2Bgit/git_stash.m/" class="md-nav__link">
+        vlt.git.git_stash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../%2Bgit/git_status.m/" class="md-nav__link">
         vlt.git.git_status
       </a>
@@ -9237,18 +9249,23 @@
                 
                 
                 <h1 id="vltstatshotellingt2test">vlt.stats.hotellingt2test<a class="headerlink" href="#vltstatshotellingt2test" title="Permanent link">&para;</a></h1>
-<p>vlt.stats.hotellingt2test - Hotelling T^2 test for multivariate samples</p>
-<p>[H,P] = vlt.stats.hotellingt2test(X,MU)
-   [H,P] = vlt.stats.hotellingt2test(X,MU,ALPHA)</p>
-<p>Performs Hotelling's T^2 test on multivariate samples X to determine
-   if the data have mean MU.  X should be a NxP matrix with N observations
-   of P-dimensional data, and the mean MU to be tested should be 1xP.
-   ALPHA, the significance level, is 0.05 by default.</p>
-<p>H is 1 if the null hypothesis (that the mean of X is equal to MU) can be
-   rejected at significance level ALPHA.  P is the actual P value.</p>
-<p>The code is based on HotellingT2.m by A. Trujillo-Ortiz and
-   R. Hernandez-Walls.  That software is available at TheMathWorks
-   free file exchange site.</p>
+<div class="codehilite"><pre><span></span><code>  <span class="n">vlt</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">hotellingt2test</span> <span class="o">-</span> <span class="n">Hotelling</span> <span class="n">T</span><span class="o">^</span><span class="mi">2</span> <span class="n">test</span> <span class="k">for</span> <span class="n">multivariate</span> <span class="n">samples</span>
+
+   <span class="p">[</span><span class="n">H</span><span class="p">,</span><span class="n">P</span><span class="p">]</span> <span class="o">=</span> <span class="n">vlt</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">hotellingt2test</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">MU</span><span class="p">)</span>
+   <span class="p">[</span><span class="n">H</span><span class="p">,</span><span class="n">P</span><span class="p">]</span> <span class="o">=</span> <span class="n">vlt</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">hotellingt2test</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">MU</span><span class="p">,</span><span class="n">ALPHA</span><span class="p">)</span>
+
+   <span class="n">Performs</span> <span class="n">Hotelling</span><span class="s1">&#39;s T^2 test on multivariate samples X to determine</span>
+   <span class="k">if</span> <span class="n">the</span> <span class="n">data</span> <span class="n">have</span> <span class="n">mean</span> <span class="n">MU</span><span class="o">.</span>  <span class="n">X</span> <span class="n">should</span> <span class="n">be</span> <span class="n">a</span> <span class="n">NxP</span> <span class="n">matrix</span> <span class="n">with</span> <span class="n">N</span> <span class="n">observations</span>
+   <span class="n">of</span> <span class="n">P</span><span class="o">-</span><span class="n">dimensional</span> <span class="n">data</span><span class="p">,</span> <span class="ow">and</span> <span class="n">the</span> <span class="n">mean</span> <span class="n">MU</span> <span class="n">to</span> <span class="n">be</span> <span class="n">tested</span> <span class="n">should</span> <span class="n">be</span> <span class="mi">1</span><span class="n">xP</span><span class="o">.</span>
+   <span class="n">ALPHA</span><span class="p">,</span> <span class="n">the</span> <span class="n">significance</span> <span class="n">level</span><span class="p">,</span> <span class="k">is</span> <span class="mf">0.05</span> <span class="n">by</span> <span class="n">default</span><span class="o">.</span>
+
+   <span class="n">H</span> <span class="k">is</span> <span class="mi">1</span> <span class="k">if</span> <span class="n">the</span> <span class="nb nb-Type">null</span> <span class="n">hypothesis</span> <span class="p">(</span><span class="n">that</span> <span class="n">the</span> <span class="n">mean</span> <span class="n">of</span> <span class="n">X</span> <span class="k">is</span> <span class="n">equal</span> <span class="n">to</span> <span class="n">MU</span><span class="p">)</span> <span class="n">can</span> <span class="n">be</span>
+   <span class="n">rejected</span> <span class="n">at</span> <span class="n">significance</span> <span class="n">level</span> <span class="n">ALPHA</span><span class="o">.</span>  <span class="n">P</span> <span class="k">is</span> <span class="n">the</span> <span class="n">actual</span> <span class="n">P</span> <span class="n">value</span><span class="o">.</span>
+
+   <span class="n">The</span> <span class="n">code</span> <span class="k">is</span> <span class="n">based</span> <span class="n">on</span> <span class="n">HotellingT2</span><span class="o">.</span><span class="n">m</span> <span class="n">by</span> <span class="n">A</span><span class="o">.</span> <span class="n">Trujillo</span><span class="o">-</span><span class="n">Ortiz</span> <span class="ow">and</span>
+   <span class="n">R</span><span class="o">.</span> <span class="n">Hernandez</span><span class="o">-</span><span class="n">Walls</span><span class="o">.</span>  <span class="n">That</span> <span class="n">software</span> <span class="k">is</span> <span class="n">available</span> <span class="n">at</span> <span class="n">TheMathWorks</span>
+   <span class="n">free</span> <span class="n">file</span> <span class="n">exchange</span> <span class="n">site</span><span class="o">.</span>
+</code></pre></div>
                 
               
               

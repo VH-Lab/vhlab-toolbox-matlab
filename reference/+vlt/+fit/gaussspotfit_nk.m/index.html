@@ -3225,6 +3225,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../%2Bgit/git_stash.m/" class="md-nav__link">
+        vlt.git.git_stash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../%2Bgit/git_status.m/" class="md-nav__link">
         vlt.git.git_status
       </a>
@@ -9237,24 +9249,28 @@
                 
                 
                 <h1 id="vltfitgaussspotfit_nk">vlt.fit.gaussspotfit_nk<a class="headerlink" href="#vltfitgaussspotfit_nk" title="Permanent link">&para;</a></h1>
-<p>GAUSSSPOTFIT - Fit a 2d gaussian to data</p>
-<p>[MU,C,AMP,C50, N, FIT_RESPONSES] = vlt.fit.gaussspotfit_nk(XRANGE, YRANGE, X_CTR,Y_CTR,...
-                        RADIUS,RESPONSE)</p>
-<p>Fits a 2d gaussian PDF to responses to circle stimulation at different positions, with
-   response amplitude modulated by the Naka-Rushton function.</p>
-<p>INPUTS:
-     XRANGE and YRANGE specify the size of the stimulus field. They should be vectors:
-     (e.g., XRANGE = 0:800; YRANGE=0:600).
-     X_CTR, Y_CTR, RADIUS, and RESPONSE are vectors that describe the stimulus circles.
-     X_CTR and Y_CTR contain center locations in X and Y; RADIUS has the diameter (SV NOTE: Did I write this?? Do I really mean diameter?)
-     RESPONSE is the response of the system to that circle.
-   OUTPUTS:
-     MU - The mean of the best-fit gaussian PDF, in X and Y
-     C  - The covariance matrix of the best-fit gaussian PDF
-     AMP - The amplitude of the response for each circle size.
-     C50 - 50% point of Naka Rushton response
-     N - N power of Naka Rushton response
-     FIT_RESPONSES - the fit responses</p>
+<div class="codehilite"><pre><span></span><code>  <span class="n">GAUSSSPOTFIT</span> <span class="o">-</span> <span class="n">Fit</span> <span class="n">a</span> <span class="mi">2</span><span class="n">d</span> <span class="n">gaussian</span> <span class="n">to</span> <span class="n">data</span>
+
+   <span class="p">[</span><span class="n">MU</span><span class="p">,</span><span class="n">C</span><span class="p">,</span><span class="n">AMP</span><span class="p">,</span><span class="n">C50</span><span class="p">,</span> <span class="n">N</span><span class="p">,</span> <span class="n">FIT_RESPONSES</span><span class="p">]</span> <span class="o">=</span> <span class="n">vlt</span><span class="o">.</span><span class="n">fit</span><span class="o">.</span><span class="n">gaussspotfit_nk</span><span class="p">(</span><span class="n">XRANGE</span><span class="p">,</span> <span class="n">YRANGE</span><span class="p">,</span> <span class="n">X_CTR</span><span class="p">,</span><span class="n">Y_CTR</span><span class="p">,</span><span class="o">...</span>
+                        <span class="n">RADIUS</span><span class="p">,</span><span class="n">RESPONSE</span><span class="p">)</span>
+
+   <span class="n">Fits</span> <span class="n">a</span> <span class="mi">2</span><span class="n">d</span> <span class="n">gaussian</span> <span class="n">PDF</span> <span class="n">to</span> <span class="n">responses</span> <span class="n">to</span> <span class="n">circle</span> <span class="n">stimulation</span> <span class="n">at</span> <span class="n">different</span> <span class="n">positions</span><span class="p">,</span> <span class="n">with</span>
+   <span class="n">response</span> <span class="n">amplitude</span> <span class="n">modulated</span> <span class="n">by</span> <span class="n">the</span> <span class="n">Naka</span><span class="o">-</span><span class="n">Rushton</span> <span class="n">function</span><span class="o">.</span>
+
+   <span class="n">INPUTS</span><span class="p">:</span>
+     <span class="n">XRANGE</span> <span class="ow">and</span> <span class="n">YRANGE</span> <span class="n">specify</span> <span class="n">the</span> <span class="n">size</span> <span class="n">of</span> <span class="n">the</span> <span class="n">stimulus</span> <span class="n">field</span><span class="o">.</span> <span class="n">They</span> <span class="n">should</span> <span class="n">be</span> <span class="n">vectors</span><span class="p">:</span>
+     <span class="p">(</span><span class="n">e</span><span class="o">.</span><span class="n">g</span><span class="o">.</span><span class="p">,</span> <span class="n">XRANGE</span> <span class="o">=</span> <span class="mi">0</span><span class="p">:</span><span class="mi">800</span><span class="p">;</span> <span class="n">YRANGE</span><span class="o">=</span><span class="mi">0</span><span class="p">:</span><span class="mi">600</span><span class="p">)</span><span class="o">.</span>
+     <span class="n">X_CTR</span><span class="p">,</span> <span class="n">Y_CTR</span><span class="p">,</span> <span class="n">RADIUS</span><span class="p">,</span> <span class="ow">and</span> <span class="n">RESPONSE</span> <span class="n">are</span> <span class="n">vectors</span> <span class="n">that</span> <span class="n">describe</span> <span class="n">the</span> <span class="n">stimulus</span> <span class="n">circles</span><span class="o">.</span>
+     <span class="n">X_CTR</span> <span class="ow">and</span> <span class="n">Y_CTR</span> <span class="n">contain</span> <span class="n">center</span> <span class="n">locations</span> <span class="ow">in</span> <span class="n">X</span> <span class="ow">and</span> <span class="n">Y</span><span class="p">;</span> <span class="n">RADIUS</span> <span class="n">has</span> <span class="n">the</span> <span class="n">diameter</span> <span class="p">(</span><span class="n">SV</span> <span class="n">NOTE</span><span class="p">:</span> <span class="n">Did</span> <span class="n">I</span> <span class="n">write</span> <span class="n">this</span><span class="err">??</span> <span class="n">Do</span> <span class="n">I</span> <span class="n">really</span> <span class="n">mean</span> <span class="n">diameter</span><span class="err">?</span><span class="p">)</span>
+     <span class="n">RESPONSE</span> <span class="k">is</span> <span class="n">the</span> <span class="n">response</span> <span class="n">of</span> <span class="n">the</span> <span class="n">system</span> <span class="n">to</span> <span class="n">that</span> <span class="n">circle</span><span class="o">.</span>
+   <span class="n">OUTPUTS</span><span class="p">:</span>
+     <span class="n">MU</span> <span class="o">-</span> <span class="n">The</span> <span class="n">mean</span> <span class="n">of</span> <span class="n">the</span> <span class="n">best</span><span class="o">-</span><span class="n">fit</span> <span class="n">gaussian</span> <span class="n">PDF</span><span class="p">,</span> <span class="ow">in</span> <span class="n">X</span> <span class="ow">and</span> <span class="n">Y</span>
+     <span class="n">C</span>  <span class="o">-</span> <span class="n">The</span> <span class="n">covariance</span> <span class="n">matrix</span> <span class="n">of</span> <span class="n">the</span> <span class="n">best</span><span class="o">-</span><span class="n">fit</span> <span class="n">gaussian</span> <span class="n">PDF</span>
+     <span class="n">AMP</span> <span class="o">-</span> <span class="n">The</span> <span class="n">amplitude</span> <span class="n">of</span> <span class="n">the</span> <span class="n">response</span> <span class="k">for</span> <span class="n">each</span> <span class="n">circle</span> <span class="n">size</span><span class="o">.</span>
+     <span class="n">C50</span> <span class="o">-</span> <span class="mi">50</span><span class="o">%</span> <span class="n">point</span> <span class="n">of</span> <span class="n">Naka</span> <span class="n">Rushton</span> <span class="n">response</span>
+     <span class="n">N</span> <span class="o">-</span> <span class="n">N</span> <span class="n">power</span> <span class="n">of</span> <span class="n">Naka</span> <span class="n">Rushton</span> <span class="n">response</span>
+     <span class="n">FIT_RESPONSES</span> <span class="o">-</span> <span class="n">the</span> <span class="n">fit</span> <span class="n">responses</span>
+</code></pre></div>
                 
               
               

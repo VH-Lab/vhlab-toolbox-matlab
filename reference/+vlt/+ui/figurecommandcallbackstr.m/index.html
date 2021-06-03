@@ -3213,6 +3213,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../%2Bgit/git_stash.m/" class="md-nav__link">
+        vlt.git.git_stash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../%2Bgit/git_status.m/" class="md-nav__link">
         vlt.git.git_status
       </a>
@@ -9237,15 +9249,21 @@
                 
                 
                 <h1 id="vltuifigurecommandcallbackstr">vlt.ui.figurecommandcallbackstr<a class="headerlink" href="#vltuifigurecommandcallbackstr" title="Permanent link">&para;</a></h1>
-<p>FIGURECOMMANDCALLBACKSTR - Callback string that calls function in figure tag with uicontrol command</p>
-<p>CALLBACKSTR = vlt.ui.figurecommandcallbackstr</p>
-<p>Returns a string that is a useful callback for uicontrols in graphical user interfaces.</p>
-<p>This string performs the following actions:
-        1)  Obtains the name of a function, located in the figure's tag field (say, 'myfunction')
-        2)  Calls this function with input arguments 'command', TAG, 'fig', f, where f is the
-            number of the current figure, and TAG is the tag of the uicontrol that was clicked.</p>
-<p>That is, this function calls myfunction('command',TAG,'fig',f)</p>
-<p>See also =: UICONTROL</p>
+<div class="codehilite"><pre><span></span><code>  <span class="nv">FIGURECOMMANDCALLBACKSTR</span> <span class="o">-</span> <span class="nv">Callback</span> <span class="nv">string</span> <span class="nv">that</span> <span class="nv">calls</span> <span class="nv">function</span> <span class="nv">in</span> <span class="nv">figure</span> <span class="nv">tag</span> <span class="nv">with</span> <span class="nv">uicontrol</span> <span class="nv">command</span>
+
+   <span class="nv">CALLBACKSTR</span> <span class="o">=</span> <span class="nv">vlt</span>.<span class="nv">ui</span>.<span class="nv">figurecommandcallbackstr</span>
+
+   <span class="nv">Returns</span> <span class="nv">a</span> <span class="nv">string</span> <span class="nv">that</span> <span class="nv">is</span> <span class="nv">a</span> <span class="nv">useful</span> <span class="nv">callback</span> <span class="k">for</span> <span class="nv">uicontrols</span> <span class="nv">in</span> <span class="nv">graphical</span> <span class="nv">user</span> <span class="nv">interfaces</span>.
+
+   <span class="nv">This</span> <span class="nv">string</span> <span class="nv">performs</span> <span class="nv">the</span> <span class="nv">following</span> <span class="nv">actions</span>:
+        <span class="mi">1</span><span class="ss">)</span>  <span class="nv">Obtains</span> <span class="nv">the</span> <span class="nv">name</span> <span class="nv">of</span> <span class="nv">a</span> <span class="nv">function</span>, <span class="nv">located</span> <span class="nv">in</span> <span class="nv">the</span> <span class="nv">figure</span><span class="s1">&#39;</span><span class="s">s tag field (say, </span><span class="s1">&#39;</span><span class="nv">myfunction</span><span class="s1">&#39;</span><span class="s">)</span>
+        <span class="mi">2</span><span class="ss">)</span>  <span class="nv">Calls</span> <span class="nv">this</span> <span class="nv">function</span> <span class="nv">with</span> <span class="nv">input</span> <span class="nv">arguments</span> <span class="s1">&#39;</span><span class="s">command</span><span class="s1">&#39;</span>, <span class="nv">TAG</span>, <span class="s1">&#39;</span><span class="s">fig</span><span class="s1">&#39;</span>, <span class="nv">f</span>, <span class="nv">where</span> <span class="nv">f</span> <span class="nv">is</span> <span class="nv">the</span>
+            <span class="nv">number</span> <span class="nv">of</span> <span class="nv">the</span> <span class="nv">current</span> <span class="nv">figure</span>, <span class="nv">and</span> <span class="nv">TAG</span> <span class="nv">is</span> <span class="nv">the</span> <span class="nv">tag</span> <span class="nv">of</span> <span class="nv">the</span> <span class="nv">uicontrol</span> <span class="nv">that</span> <span class="nv">was</span> <span class="nv">clicked</span>.
+
+   <span class="nv">That</span> <span class="nv">is</span>, <span class="nv">this</span> <span class="nv">function</span> <span class="nv">calls</span> <span class="nv">myfunction</span><span class="ss">(</span><span class="s1">&#39;</span><span class="s">command</span><span class="s1">&#39;</span>,<span class="nv">TAG</span>,<span class="s1">&#39;</span><span class="s">fig</span><span class="s1">&#39;</span>,<span class="nv">f</span><span class="ss">)</span>
+
+   <span class="nv">See</span> <span class="nv">also</span> <span class="o">=</span>: <span class="nv">UICONTROL</span>
+</code></pre></div>
                 
               
               

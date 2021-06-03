@@ -3213,6 +3213,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../../%2Bgit/git_stash.m/" class="md-nav__link">
+        vlt.git.git_stash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../../%2Bgit/git_status.m/" class="md-nav__link">
         vlt.git.git_status
       </a>
@@ -9239,24 +9251,34 @@
                 
                 
                 <h1 id="vltneurospiketrainsspiketrain_powerspectrum_window">vlt.neuro.spiketrains.spiketrain_powerspectrum_window<a class="headerlink" href="#vltneurospiketrainsspiketrain_powerspectrum_window" title="Permanent link">&para;</a></h1>
-<p>SPIKETRAIN_POWERSPECTRUM_WINDOW - calculate the power spectrum of a spike train using a sliding window</p>
-<p>[Pxx,Fxx, BANDVALUES, BANDS] = vlt.neuro.spiketrains.spiketrain_powerspectrum_window(SPIKETRAIN,...
-          [START WINDOWSIZE STEP STOP], ...)</p>
-<p>Returns the power spectrum Pxx at different frequencies Fxx.  The power spectrum is
-   calculated from time START to STOP using sliding windows of size WINDOWSIZE.  The
-   window is advanced STEP units each time.</p>
-<p>The power spectrum is calculated by calling the function vlt.neuro.spiketrains.spiketrain_powerspectrum.</p>
-<p>One can modify the default parameters by adding name/value pairs to the function:
-   Parameter (default value)  :  Description</p>
-<hr />
-<p>BINSIZE (0.002)            :  Bin size for spike trains (seconds)
-   NFFT (2^15)               :  Number of FFT values to use in powerspectrum
-   bands ([0.1 4;,...         :  Frequency bands for averaging.
-           4 8; ...
-           8 12; ...
-          12 30]);</p>
-<p>0.1-4 Hz, theta 4-8, alpha 8-12, beta 12-30</p>
-<p>See also: vlt.neuro.spiketrains.spiketrain_powerspectrum</p>
+<div class="codehilite"><pre><span></span><code>  <span class="nt">SPIKETRAIN_POWERSPECTRUM_WINDOW</span> <span class="nt">-</span> <span class="nt">calculate</span> <span class="nt">the</span> <span class="nt">power</span> <span class="nt">spectrum</span> <span class="nt">of</span> <span class="nt">a</span> <span class="nt">spike</span> <span class="nt">train</span> <span class="nt">using</span> <span class="nt">a</span> <span class="nt">sliding</span> <span class="nt">window</span>
+
+   <span class="cp">[</span><span class="nx">Pxx</span><span class="p">,</span><span class="nx">Fxx</span><span class="p">,</span> <span class="nx">BANDVALUES</span><span class="p">,</span> <span class="nx">BANDS</span><span class="cp">]</span> <span class="o">=</span> <span class="nt">vlt</span><span class="p">.</span><span class="nc">neuro</span><span class="p">.</span><span class="nc">spiketrains</span><span class="p">.</span><span class="nc">spiketrain_powerspectrum_window</span><span class="o">(</span><span class="nt">SPIKETRAIN</span><span class="o">,...</span>
+          <span class="cp">[</span><span class="nx">START</span> <span class="nx">WINDOWSIZE</span> <span class="nx">STEP</span> <span class="nx">STOP</span><span class="cp">]</span><span class="o">,</span> <span class="o">...)</span>
+
+   <span class="nt">Returns</span> <span class="nt">the</span> <span class="nt">power</span> <span class="nt">spectrum</span> <span class="nt">Pxx</span> <span class="nt">at</span> <span class="nt">different</span> <span class="nt">frequencies</span> <span class="nt">Fxx</span><span class="o">.</span>  <span class="nt">The</span> <span class="nt">power</span> <span class="nt">spectrum</span> <span class="nt">is</span>
+   <span class="nt">calculated</span> <span class="nt">from</span> <span class="nt">time</span> <span class="nt">START</span> <span class="nt">to</span> <span class="nt">STOP</span> <span class="nt">using</span> <span class="nt">sliding</span> <span class="nt">windows</span> <span class="nt">of</span> <span class="nt">size</span> <span class="nt">WINDOWSIZE</span><span class="o">.</span>  <span class="nt">The</span>
+   <span class="nt">window</span> <span class="nt">is</span> <span class="nt">advanced</span> <span class="nt">STEP</span> <span class="nt">units</span> <span class="nt">each</span> <span class="nt">time</span><span class="o">.</span>
+
+   <span class="nt">The</span> <span class="nt">power</span> <span class="nt">spectrum</span> <span class="nt">is</span> <span class="nt">calculated</span> <span class="nt">by</span> <span class="nt">calling</span> <span class="nt">the</span> <span class="nt">function</span> <span class="nt">vlt</span><span class="p">.</span><span class="nc">neuro</span><span class="p">.</span><span class="nc">spiketrains</span><span class="p">.</span><span class="nc">spiketrain_powerspectrum</span><span class="o">.</span>
+
+   <span class="nt">One</span> <span class="nt">can</span> <span class="nt">modify</span> <span class="nt">the</span> <span class="nt">default</span> <span class="nt">parameters</span> <span class="nt">by</span> <span class="nt">adding</span> <span class="nt">name</span><span class="o">/</span><span class="nt">value</span> <span class="nt">pairs</span> <span class="nt">to</span> <span class="nt">the</span> <span class="nt">function</span><span class="o">:</span>
+   <span class="nt">Parameter</span> <span class="o">(</span><span class="nt">default</span> <span class="nt">value</span><span class="o">)</span>  <span class="o">:</span>  <span class="nt">Description</span>
+   <span class="nt">--------------------------------------------------------------------------------</span>
+   <span class="nt">BINSIZE</span> <span class="o">(</span><span class="nt">0</span><span class="p">.</span><span class="nc">002</span><span class="o">)</span>            <span class="o">:</span>  <span class="nt">Bin</span> <span class="nt">size</span> <span class="nt">for</span> <span class="nt">spike</span> <span class="nt">trains</span> <span class="o">(</span><span class="nt">seconds</span><span class="o">)</span>
+   <span class="nt">NFFT</span> <span class="o">(</span><span class="nt">2</span><span class="o">^</span><span class="nt">15</span><span class="o">)</span>               <span class="o">:</span>  <span class="nt">Number</span> <span class="nt">of</span> <span class="nt">FFT</span> <span class="nt">values</span> <span class="nt">to</span> <span class="nt">use</span> <span class="nt">in</span> <span class="nt">powerspectrum</span>
+   <span class="nt">bands</span> <span class="o">(</span><span class="cp">[</span><span class="mf">0.1</span> <span class="mi">4</span><span class="p">;,</span><span class="nx">...</span>         <span class="p">:</span>  <span class="nx">Frequency</span> <span class="nx">bands</span> <span class="nx">for</span> <span class="nx">averaging.</span>
+           <span class="mi">4</span> <span class="mi">8</span><span class="p">;</span> <span class="nx">...</span>
+           <span class="mi">8</span> <span class="mi">12</span><span class="p">;</span> <span class="nx">...</span>
+          <span class="mi">12</span> <span class="mi">30</span><span class="cp">]</span><span class="o">);</span>
+
+
+
+  <span class="nt">0</span><span class="p">.</span><span class="nc">1-4</span> <span class="nt">Hz</span><span class="o">,</span> <span class="nt">theta</span> <span class="nt">4-8</span><span class="o">,</span> <span class="nt">alpha</span> <span class="nt">8-12</span><span class="o">,</span> <span class="nt">beta</span> <span class="nt">12-30</span>
+
+
+   <span class="nt">See</span> <span class="nt">also</span><span class="o">:</span> <span class="nt">vlt</span><span class="p">.</span><span class="nc">neuro</span><span class="p">.</span><span class="nc">spiketrains</span><span class="p">.</span><span class="nc">spiketrain_powerspectrum</span>
+</code></pre></div>
                 
               
               

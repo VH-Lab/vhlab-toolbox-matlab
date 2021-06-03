@@ -3225,6 +3225,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../%2Bgit/git_stash.m/" class="md-nav__link">
+        vlt.git.git_stash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../%2Bgit/git_status.m/" class="md-nav__link">
         vlt.git.git_status
       </a>
@@ -9237,28 +9249,36 @@
                 
                 
                 <h1 id="vltfitnaka_rushton">vlt.fit.naka_rushton<a class="headerlink" href="#vltfitnaka_rushton" title="Permanent link">&para;</a></h1>
-<p>NAKA_RUSHTON Naka-Rushton fit (for contrast curves)</p>
-<p>[RM,B] = vlt.fit.naka_rushton(C,DATA)</p>
-<p>Finds the best fit to the Naka-Rushton function
-     R(c) = Rm*c/(b+c)
-   where C is contrast (0-1), Rm is the maximum response, and b is the
-   half-maximum contrast.</p>
-<p>[RM,B,N] = vlt.fit.naka_rushton(C,DATA)</p>
-<p>Finds the best fit to the Naka-Rushton function
-     R(c) = Rm*c^n/(b+c^n)
-   where C is contrast (0-1), Rm is the maximum response, and b is the
-   half-maximum contrast.</p>
-<p>[RM,B,N,S] = vlt.fit.naka_rushton(C,DATA)</p>
-<p>Finds the best fit to the Naka-Rushton function
-     R(c) = Rm<em>c^n/(b^(s</em>n)+c^(s*n))
-   where C is contrast (0-1), Rm is the maximum response, and b is the
-   half-maximum contrast, and s is a saturation factor.</p>
-<p>References:
-     Naka_Rushton fit was first described in 
-     Naka, Rushton, J.Physiol. London 185: 536-555, 1966
-     and used to fit contrast data of cortical cells in<br />
-     Albrecht and Hamilton, J. Neurophys. 48: 217-237, 1982
-     The saturation form was described in Peirce 2007 J Vision</p>
+<div class="codehilite"><pre><span></span><code>  <span class="nv">NAKA_RUSHTON</span> <span class="nv">Naka</span><span class="o">-</span><span class="nv">Rushton</span> <span class="nv">fit</span> <span class="ss">(</span><span class="k">for</span> <span class="nv">contrast</span> <span class="nv">curves</span><span class="ss">)</span>
+
+   [<span class="nv">RM</span>,<span class="nv">B</span>] <span class="o">=</span> <span class="nv">vlt</span>.<span class="nv">fit</span>.<span class="nv">naka_rushton</span><span class="ss">(</span><span class="nv">C</span>,<span class="nv">DATA</span><span class="ss">)</span>
+
+   <span class="nv">Finds</span> <span class="nv">the</span> <span class="nv">best</span> <span class="nv">fit</span> <span class="nv">to</span> <span class="nv">the</span> <span class="nv">Naka</span><span class="o">-</span><span class="nv">Rushton</span> <span class="nv">function</span>
+     <span class="nv">R</span><span class="ss">(</span><span class="nv">c</span><span class="ss">)</span> <span class="o">=</span> <span class="nv">Rm</span><span class="o">*</span><span class="nv">c</span><span class="o">/</span><span class="ss">(</span><span class="nv">b</span><span class="o">+</span><span class="nv">c</span><span class="ss">)</span>
+   <span class="nv">where</span> <span class="nv">C</span> <span class="nv">is</span> <span class="nv">contrast</span> <span class="ss">(</span><span class="mi">0</span><span class="o">-</span><span class="mi">1</span><span class="ss">)</span>, <span class="nv">Rm</span> <span class="nv">is</span> <span class="nv">the</span> <span class="nv">maximum</span> <span class="nv">response</span>, <span class="nv">and</span> <span class="nv">b</span> <span class="nv">is</span> <span class="nv">the</span>
+   <span class="nv">half</span><span class="o">-</span><span class="nv">maximum</span> <span class="nv">contrast</span>.
+
+   [<span class="nv">RM</span>,<span class="nv">B</span>,<span class="nv">N</span>] <span class="o">=</span> <span class="nv">vlt</span>.<span class="nv">fit</span>.<span class="nv">naka_rushton</span><span class="ss">(</span><span class="nv">C</span>,<span class="nv">DATA</span><span class="ss">)</span>
+
+   <span class="nv">Finds</span> <span class="nv">the</span> <span class="nv">best</span> <span class="nv">fit</span> <span class="nv">to</span> <span class="nv">the</span> <span class="nv">Naka</span><span class="o">-</span><span class="nv">Rushton</span> <span class="nv">function</span>
+     <span class="nv">R</span><span class="ss">(</span><span class="nv">c</span><span class="ss">)</span> <span class="o">=</span> <span class="nv">Rm</span><span class="o">*</span><span class="nv">c</span><span class="o">^</span><span class="nv">n</span><span class="o">/</span><span class="ss">(</span><span class="nv">b</span><span class="o">+</span><span class="nv">c</span><span class="o">^</span><span class="nv">n</span><span class="ss">)</span>
+   <span class="nv">where</span> <span class="nv">C</span> <span class="nv">is</span> <span class="nv">contrast</span> <span class="ss">(</span><span class="mi">0</span><span class="o">-</span><span class="mi">1</span><span class="ss">)</span>, <span class="nv">Rm</span> <span class="nv">is</span> <span class="nv">the</span> <span class="nv">maximum</span> <span class="nv">response</span>, <span class="nv">and</span> <span class="nv">b</span> <span class="nv">is</span> <span class="nv">the</span>
+   <span class="nv">half</span><span class="o">-</span><span class="nv">maximum</span> <span class="nv">contrast</span>.
+
+   [<span class="nv">RM</span>,<span class="nv">B</span>,<span class="nv">N</span>,<span class="nv">S</span>] <span class="o">=</span> <span class="nv">vlt</span>.<span class="nv">fit</span>.<span class="nv">naka_rushton</span><span class="ss">(</span><span class="nv">C</span>,<span class="nv">DATA</span><span class="ss">)</span>
+
+   <span class="nv">Finds</span> <span class="nv">the</span> <span class="nv">best</span> <span class="nv">fit</span> <span class="nv">to</span> <span class="nv">the</span> <span class="nv">Naka</span><span class="o">-</span><span class="nv">Rushton</span> <span class="nv">function</span>
+     <span class="nv">R</span><span class="ss">(</span><span class="nv">c</span><span class="ss">)</span> <span class="o">=</span> <span class="nv">Rm</span><span class="o">*</span><span class="nv">c</span><span class="o">^</span><span class="nv">n</span><span class="o">/</span><span class="ss">(</span><span class="nv">b</span><span class="o">^</span><span class="ss">(</span><span class="nv">s</span><span class="o">*</span><span class="nv">n</span><span class="ss">)</span><span class="o">+</span><span class="nv">c</span><span class="o">^</span><span class="ss">(</span><span class="nv">s</span><span class="o">*</span><span class="nv">n</span><span class="ss">))</span>
+   <span class="nv">where</span> <span class="nv">C</span> <span class="nv">is</span> <span class="nv">contrast</span> <span class="ss">(</span><span class="mi">0</span><span class="o">-</span><span class="mi">1</span><span class="ss">)</span>, <span class="nv">Rm</span> <span class="nv">is</span> <span class="nv">the</span> <span class="nv">maximum</span> <span class="nv">response</span>, <span class="nv">and</span> <span class="nv">b</span> <span class="nv">is</span> <span class="nv">the</span>
+   <span class="nv">half</span><span class="o">-</span><span class="nv">maximum</span> <span class="nv">contrast</span>, <span class="nv">and</span> <span class="nv">s</span> <span class="nv">is</span> <span class="nv">a</span> <span class="nv">saturation</span> <span class="nv">factor</span>.
+
+   <span class="nv">References</span>:
+     <span class="nv">Naka_Rushton</span> <span class="nv">fit</span> <span class="nv">was</span> <span class="nv">first</span> <span class="nv">described</span> <span class="nv">in</span> 
+     <span class="nv">Naka</span>, <span class="nv">Rushton</span>, <span class="nv">J</span>.<span class="nv">Physiol</span>. <span class="nv">London</span> <span class="mi">185</span>: <span class="mi">536</span><span class="o">-</span><span class="mi">555</span>, <span class="mi">1966</span>
+     <span class="nv">and</span> <span class="nv">used</span> <span class="nv">to</span> <span class="nv">fit</span> <span class="nv">contrast</span> <span class="nv">data</span> <span class="nv">of</span> <span class="nv">cortical</span> <span class="nv">cells</span> <span class="nv">in</span>  
+     <span class="nv">Albrecht</span> <span class="nv">and</span> <span class="nv">Hamilton</span>, <span class="nv">J</span>. <span class="nv">Neurophys</span>. <span class="mi">48</span>: <span class="mi">217</span><span class="o">-</span><span class="mi">237</span>, <span class="mi">1982</span>
+     <span class="nv">The</span> <span class="nv">saturation</span> <span class="nv">form</span> <span class="nv">was</span> <span class="nv">described</span> <span class="nv">in</span> <span class="nv">Peirce</span> <span class="mi">2007</span> <span class="nv">J</span> <span class="nv">Vision</span>
+</code></pre></div>
                 
               
               

@@ -3213,6 +3213,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../%2Bgit/git_stash.m/" class="md-nav__link">
+        vlt.git.git_stash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../%2Bgit/git_status.m/" class="md-nav__link">
         vlt.git.git_status
       </a>
@@ -9237,17 +9249,23 @@
                 
                 
                 <h1 id="vltmathptontovector">vlt.math.ptontovector<a class="headerlink" href="#vltmathptontovector" title="Permanent link">&para;</a></h1>
-<p>PTONTOVECTOR - Find distance between point and a vector</p>
-<p>[D, CPT] = vlt.math.ptontovector(OFFSET, VECTOR_DIR, PT)</p>
-<p>Calculates the Euclidean distance D between a vector that is specified
-  by the line</p>
-<p>X = OFFSET + VECTOR_DIR * t for all t</p>
-<p>and the given PT. The closest point on the line X, CPT, is returned.</p>
-<p>This function accepts additional arguments in the form of name/value pairs.
-  Parameter (default)      | Description</p>
-<hr />
-<p>Segment (0)              | Only calculate distance to points within the
-                           |   segment from offset to offset + vector_dir</p>
+<div class="codehilite"><pre><span></span><code>  <span class="nv">PTONTOVECTOR</span> <span class="o">-</span> <span class="nv">Find</span> <span class="nv">distance</span> <span class="nv">between</span> <span class="nv">point</span> <span class="nv">and</span> <span class="nv">a</span> <span class="nv">vector</span>
+
+  [<span class="nv">D</span>, <span class="nv">CPT</span>] <span class="o">=</span> <span class="nv">vlt</span>.<span class="nv">math</span>.<span class="nv">ptontovector</span><span class="ss">(</span><span class="nv">OFFSET</span>, <span class="nv">VECTOR_DIR</span>, <span class="nv">PT</span><span class="ss">)</span>
+
+  <span class="nv">Calculates</span> <span class="nv">the</span> <span class="nv">Euclidean</span> <span class="nv">distance</span> <span class="nv">D</span> <span class="nv">between</span> <span class="nv">a</span> <span class="nv">vector</span> <span class="nv">that</span> <span class="nv">is</span> <span class="nv">specified</span>
+  <span class="nv">by</span> <span class="nv">the</span> <span class="nv">line</span>
+
+  <span class="nv">X</span> <span class="o">=</span> <span class="nv">OFFSET</span> <span class="o">+</span> <span class="nv">VECTOR_DIR</span> <span class="o">*</span> <span class="nv">t</span> <span class="k">for</span> <span class="nv">all</span> <span class="nv">t</span>
+
+  <span class="nv">and</span> <span class="nv">the</span> <span class="nv">given</span> <span class="nv">PT</span>. <span class="nv">The</span> <span class="nv">closest</span> <span class="nv">point</span> <span class="nv">on</span> <span class="nv">the</span> <span class="nv">line</span> <span class="nv">X</span>, <span class="nv">CPT</span>, <span class="nv">is</span> <span class="nv">returned</span>.
+
+  <span class="nv">This</span> <span class="nv">function</span> <span class="nv">accepts</span> <span class="nv">additional</span> <span class="nv">arguments</span> <span class="nv">in</span> <span class="nv">the</span> <span class="nv">form</span> <span class="nv">of</span> <span class="nv">name</span><span class="o">/</span><span class="nv">value</span> <span class="nv">pairs</span>.
+  <span class="nv">Parameter</span> <span class="ss">(</span><span class="nv">default</span><span class="ss">)</span>      <span class="o">|</span> <span class="nv">Description</span>
+  <span class="o">----------------------------------------------------------------------</span>
+  <span class="nv">Segment</span> <span class="ss">(</span><span class="mi">0</span><span class="ss">)</span>              <span class="o">|</span> <span class="nv">Only</span> <span class="nv">calculate</span> <span class="nv">distance</span> <span class="nv">to</span> <span class="nv">points</span> <span class="nv">within</span> <span class="nv">the</span>
+                           <span class="o">|</span>   <span class="nv">segment</span> <span class="nv">from</span> <span class="nv">offset</span> <span class="nv">to</span> <span class="nv">offset</span> <span class="o">+</span> <span class="nv">vector_dir</span>
+</code></pre></div>
                 
               
               

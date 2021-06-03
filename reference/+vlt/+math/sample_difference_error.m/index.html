@@ -3213,6 +3213,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../%2Bgit/git_stash.m/" class="md-nav__link">
+        vlt.git.git_stash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../%2Bgit/git_status.m/" class="md-nav__link">
         vlt.git.git_status
       </a>
@@ -9237,34 +9249,40 @@
                 
                 
                 <h1 id="vltmathsample_difference_error">vlt.math.sample_difference_error<a class="headerlink" href="#vltmathsample_difference_error" title="Permanent link">&para;</a></h1>
-<p>SAMPLE_DIFFERENCE_ERROR - calculate the uncertainty in the difference between 2 samples</p>
-<p>[SD, SDE] = vlt.math.sample_difference_error(X1, X2, ...)</p>
-<p>Computes the mean sample difference SD and the "error" or "uncertainty" in that
-  difference SDE in the mean of X2 minus the mean of X1.</p>
-<p>This function takes name/value pairs that modify the behavior of the function.
-  Parameter (default)            | Description</p>
-<hr />
-<p>algorithm ('assume_normality') | If 'assume_normality', then
-                                 |  uses standard error based on 'normal' assumption
-                                 |  (that is, SDE = sqrt(SME1^2 + SME2^2), where
-                                 |   SME is standard error of the mean.
-                                 | If 'bootstrap', then 
-                                 |  simulations are performed that draw from samples X1
-                                 |  and X2 with replacement (sample sizes remain fixed)
-                                 |  and the difference in means computed.
-  bootstrap_samples (10000)      | Number of simulations to perform when bootstrap is used
-  bootstrap_confidence ...       | The bootstrap confidence interval to report for SDE
-      ([cdf('norm',-1,0,1) ...   |   (the default is the percentiles that correspond to
-        cdf('norm', 1,0,1)])     |    +/-1 standard deviation around the normal
-                                 |    distribution). SDE is half of this
-                                 |    confidence interval.
-  meanfunction ('nanmean')       | The mean function to use (could use 'nanmedian')</p>
-<p>Example:
-     x1 = randn(50,1) + 5;
-     x2 = randn(50,1) + 0;
-     [sd,sde]=vlt.math.sample_difference_error(x1,x2),
-     % show the bootstrap version is similar to standard when data is normally distributed
-     [sdb,sdeb]=vlt.math.sample_difference_error(x1,x2,'algorithm','bootstrap'),</p>
+<div class="codehilite"><pre><span></span><code><span class="w">  </span><span class="n">SAMPLE_DIFFERENCE_ERROR</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">calculate</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">uncertainty</span><span class="w"> </span><span class="n">in</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">difference</span><span class="w"> </span><span class="nb">between</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="n">samples</span><span class="w"></span>
+
+<span class="w">  </span><span class="p">[</span><span class="n">SD</span><span class="p">,</span><span class="w"> </span><span class="n">SDE</span><span class="p">]</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">vlt</span><span class="p">.</span><span class="n">math</span><span class="p">.</span><span class="n">sample_difference_error</span><span class="p">(</span><span class="n">X1</span><span class="p">,</span><span class="w"> </span><span class="n">X2</span><span class="p">,</span><span class="w"> </span><span class="k">...</span><span class="c">)</span><span class="w"></span>
+
+<span class="w">  </span><span class="n">Computes</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="nb">mean</span><span class="w"> </span><span class="n">sample</span><span class="w"> </span><span class="n">difference</span><span class="w"> </span><span class="n">SD</span><span class="w"> </span><span class="n">and</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="s">&quot;error&quot;</span><span class="w"> </span><span class="n">or</span><span class="w"> </span><span class="s">&quot;uncertainty&quot;</span><span class="w"> </span><span class="n">in</span><span class="w"> </span><span class="n">that</span><span class="w"></span>
+<span class="w">  </span><span class="n">difference</span><span class="w"> </span><span class="n">SDE</span><span class="w"> </span><span class="n">in</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="nb">mean</span><span class="w"> </span><span class="n">of</span><span class="w"> </span><span class="n">X2</span><span class="w"> </span><span class="n">minus</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="nb">mean</span><span class="w"> </span><span class="n">of</span><span class="w"> </span><span class="n">X1</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">  </span><span class="n">This</span><span class="w"> </span><span class="k">function</span><span class="w"> </span><span class="n">takes</span><span class="w"> </span><span class="n">name</span><span class="o">/</span><span class="n">value</span><span class="w"> </span><span class="n">pairs</span><span class="w"> </span><span class="n">that</span><span class="w"> </span><span class="n">modify</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">behavior</span><span class="w"> </span><span class="n">of</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="k">function</span><span class="p">.</span><span class="w"></span>
+<span class="w">  </span><span class="n">Parameter</span><span class="w"> </span><span class="p">(</span><span class="n">default</span><span class="p">)</span><span class="w">            </span><span class="o">|</span><span class="w"> </span><span class="n">Description</span><span class="w"></span>
+<span class="w">  </span><span class="o">--------------------------------------------------------------------------------</span><span class="w"></span>
+<span class="w">  </span><span class="n">algorithm</span><span class="w"> </span><span class="p">(</span><span class="s">&#39;assume_normality&#39;</span><span class="p">)</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">If</span><span class="w"> </span><span class="s">&#39;assume_normality&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">then</span><span class="w"></span>
+<span class="w">                                 </span><span class="o">|</span><span class="w">  </span><span class="n">uses</span><span class="w"> </span><span class="n">standard</span><span class="w"> </span><span class="nb">error</span><span class="w"> </span><span class="n">based</span><span class="w"> </span><span class="n">on</span><span class="w"> </span><span class="s">&#39;normal&#39;</span><span class="w"> </span><span class="n">assumption</span><span class="w"></span>
+<span class="w">                                 </span><span class="o">|</span><span class="w">  </span><span class="p">(</span><span class="n">that</span><span class="w"> </span><span class="n">is</span><span class="p">,</span><span class="w"> </span><span class="n">SDE</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">sqrt</span><span class="p">(</span><span class="n">SME1</span>^<span class="mi">2</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">SME2</span>^<span class="mi">2</span><span class="p">),</span><span class="w"> </span><span class="n">where</span><span class="w"></span>
+<span class="w">                                 </span><span class="o">|</span><span class="w">   </span><span class="n">SME</span><span class="w"> </span><span class="n">is</span><span class="w"> </span><span class="n">standard</span><span class="w"> </span><span class="nb">error</span><span class="w"> </span><span class="n">of</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="nb">mean</span><span class="p">.</span><span class="w"></span>
+<span class="w">                                 </span><span class="o">|</span><span class="w"> </span><span class="n">If</span><span class="w"> </span><span class="s">&#39;bootstrap&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">then</span><span class="w"> </span>
+<span class="w">                                 </span><span class="o">|</span><span class="w">  </span><span class="n">simulations</span><span class="w"> </span><span class="n">are</span><span class="w"> </span><span class="n">performed</span><span class="w"> </span><span class="n">that</span><span class="w"> </span><span class="n">draw</span><span class="w"> </span><span class="n">from</span><span class="w"> </span><span class="n">samples</span><span class="w"> </span><span class="n">X1</span><span class="w"></span>
+<span class="w">                                 </span><span class="o">|</span><span class="w">  </span><span class="n">and</span><span class="w"> </span><span class="n">X2</span><span class="w"> </span><span class="n">with</span><span class="w"> </span><span class="n">replacement</span><span class="w"> </span><span class="p">(</span><span class="n">sample</span><span class="w"> </span><span class="n">sizes</span><span class="w"> </span><span class="n">remain</span><span class="w"> </span><span class="n">fixed</span><span class="p">)</span><span class="w"></span>
+<span class="w">                                 </span><span class="o">|</span><span class="w">  </span><span class="n">and</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">difference</span><span class="w"> </span><span class="n">in</span><span class="w"> </span><span class="n">means</span><span class="w"> </span><span class="n">computed</span><span class="p">.</span><span class="w"></span>
+<span class="w">  </span><span class="n">bootstrap_samples</span><span class="w"> </span><span class="p">(</span><span class="mi">10000</span><span class="p">)</span><span class="w">      </span><span class="o">|</span><span class="w"> </span><span class="n">Number</span><span class="w"> </span><span class="n">of</span><span class="w"> </span><span class="n">simulations</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="n">perform</span><span class="w"> </span><span class="n">when</span><span class="w"> </span><span class="n">bootstrap</span><span class="w"> </span><span class="n">is</span><span class="w"> </span><span class="n">used</span><span class="w"></span>
+<span class="w">  </span><span class="n">bootstrap_confidence</span><span class="w"> </span><span class="k">...</span><span class="c">       | The bootstrap confidence interval to report for SDE</span><span class="w"></span>
+<span class="w">      </span><span class="p">([</span><span class="n">cdf</span><span class="p">(</span><span class="s">&#39;norm&#39;</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="k">...</span><span class="c">   |   (the default is the percentiles that correspond to</span><span class="w"></span>
+<span class="w">        </span><span class="n">cdf</span><span class="p">(</span><span class="s">&#39;norm&#39;</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">)])</span><span class="w">     </span><span class="o">|</span><span class="w">    </span><span class="o">+/-</span><span class="mi">1</span><span class="w"> </span><span class="n">standard</span><span class="w"> </span><span class="n">deviation</span><span class="w"> </span><span class="n">around</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">normal</span><span class="w"></span>
+<span class="w">                                 </span><span class="o">|</span><span class="w">    </span><span class="n">distribution</span><span class="p">).</span><span class="w"> </span><span class="n">SDE</span><span class="w"> </span><span class="n">is</span><span class="w"> </span><span class="n">half</span><span class="w"> </span><span class="n">of</span><span class="w"> </span><span class="n">this</span><span class="w"></span>
+<span class="w">                                 </span><span class="o">|</span><span class="w">    </span><span class="n">confidence</span><span class="w"> </span><span class="n">interval</span><span class="p">.</span><span class="w"></span>
+<span class="w">  </span><span class="n">meanfunction</span><span class="w"> </span><span class="p">(</span><span class="s">&#39;nanmean&#39;</span><span class="p">)</span><span class="w">       </span><span class="o">|</span><span class="w"> </span><span class="n">The</span><span class="w"> </span><span class="nb">mean</span><span class="w"> </span><span class="k">function</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="n">use</span><span class="w"> </span><span class="p">(</span><span class="n">could</span><span class="w"> </span><span class="n">use</span><span class="w"> </span><span class="s">&#39;nanmedian&#39;</span><span class="p">)</span><span class="w"></span>
+
+
+<span class="w">  </span><span class="n">Example</span><span class="p">:</span><span class="w"></span>
+<span class="w">     </span><span class="n">x1</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">randn</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">5</span><span class="p">;</span><span class="w"></span>
+<span class="w">     </span><span class="n">x2</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">randn</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<span class="w">     </span><span class="p">[</span><span class="n">sd</span><span class="p">,</span><span class="n">sde</span><span class="p">]=</span><span class="n">vlt</span><span class="p">.</span><span class="n">math</span><span class="p">.</span><span class="n">sample_difference_error</span><span class="p">(</span><span class="n">x1</span><span class="p">,</span><span class="n">x2</span><span class="p">),</span><span class="w"></span>
+<span class="w">     </span><span class="c">% show the bootstrap version is similar to standard when data is normally distributed</span><span class="w"></span>
+<span class="w">     </span><span class="p">[</span><span class="n">sdb</span><span class="p">,</span><span class="n">sdeb</span><span class="p">]=</span><span class="n">vlt</span><span class="p">.</span><span class="n">math</span><span class="p">.</span><span class="n">sample_difference_error</span><span class="p">(</span><span class="n">x1</span><span class="p">,</span><span class="n">x2</span><span class="p">,</span><span class="s">&#39;algorithm&#39;</span><span class="p">,</span><span class="s">&#39;bootstrap&#39;</span><span class="p">),</span><span class="w"></span>
+</code></pre></div>
                 
               
               

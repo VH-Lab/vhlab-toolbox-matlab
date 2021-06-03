@@ -3225,6 +3225,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../%2Bgit/git_stash.m/" class="md-nav__link">
+        vlt.git.git_stash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../%2Bgit/git_status.m/" class="md-nav__link">
         vlt.git.git_status
       </a>
@@ -9237,16 +9249,22 @@
                 
                 
                 <h1 id="vltdocsclass2help">vlt.docs.class2help<a class="headerlink" href="#vltdocsclass2help" title="Permanent link">&para;</a></h1>
-<p>CLASS2HELP - get help information from a Matlab class .m file</p>
-<p>[CLASSHELP, PROP_STRUCT, METHODS_STRUCT, SUPERCLASSES] = CLASS2HELP(FILENAME)</p>
-<p>Returns the help string CLASSHELP, a list of properties and the
-  'doc' information for each property in PROP_STRUCT, and the name of each
-  method and the help in a structure called METHODS_STRUCT.</p>
-<p>PROP_STRUCT has fields 'property' and 'doc' that contain each property and
-  its 'doc' string.</p>
-<p>METHODS_STRUCT has fields 'method', 'description' (the first line from the
-  documentation), and 'help' (lines 2..n of the function 'help').</p>
-<p>SUPERCLASSES is a list of all superclasses for the file.</p>
+<div class="codehilite"><pre><span></span><code>  <span class="nv">CLASS2HELP</span> <span class="o">-</span> <span class="nv">get</span> <span class="nv">help</span> <span class="nv">information</span> <span class="nv">from</span> <span class="nv">a</span> <span class="nv">Matlab</span> <span class="nv">class</span> .<span class="nv">m</span> <span class="nv">file</span>
+
+  [<span class="nv">CLASSHELP</span>, <span class="nv">PROP_STRUCT</span>, <span class="nv">METHODS_STRUCT</span>, <span class="nv">SUPERCLASSES</span>] <span class="o">=</span> <span class="nv">CLASS2HELP</span><span class="ss">(</span><span class="nv">FILENAME</span><span class="ss">)</span>
+
+  <span class="nv">Returns</span> <span class="nv">the</span> <span class="nv">help</span> <span class="nv">string</span> <span class="nv">CLASSHELP</span>, <span class="nv">a</span> <span class="nv">list</span> <span class="nv">of</span> <span class="nv">properties</span> <span class="nv">and</span> <span class="nv">the</span>
+  <span class="s1">&#39;</span><span class="s">doc</span><span class="s1">&#39;</span> <span class="nv">information</span> <span class="k">for</span> <span class="nv">each</span> <span class="nv">property</span> <span class="nv">in</span> <span class="nv">PROP_STRUCT</span>, <span class="nv">and</span> <span class="nv">the</span> <span class="nv">name</span> <span class="nv">of</span> <span class="nv">each</span>
+  <span class="nv">method</span> <span class="nv">and</span> <span class="nv">the</span> <span class="nv">help</span> <span class="nv">in</span> <span class="nv">a</span> <span class="nv">structure</span> <span class="nv">called</span> <span class="nv">METHODS_STRUCT</span>.
+
+  <span class="nv">PROP_STRUCT</span> <span class="nv">has</span> <span class="nv">fields</span> <span class="s1">&#39;</span><span class="s">property</span><span class="s1">&#39;</span> <span class="nv">and</span> <span class="s1">&#39;</span><span class="s">doc</span><span class="s1">&#39;</span> <span class="nv">that</span> <span class="nv">contain</span> <span class="nv">each</span> <span class="nv">property</span> <span class="nv">and</span>
+  <span class="nv">its</span> <span class="s1">&#39;</span><span class="s">doc</span><span class="s1">&#39;</span> <span class="nv">string</span>.
+
+  <span class="nv">METHODS_STRUCT</span> <span class="nv">has</span> <span class="nv">fields</span> <span class="s1">&#39;</span><span class="s">method</span><span class="s1">&#39;</span>, <span class="s1">&#39;</span><span class="s">description</span><span class="s1">&#39;</span> <span class="ss">(</span><span class="nv">the</span> <span class="nv">first</span> <span class="nv">line</span> <span class="nv">from</span> <span class="nv">the</span>
+  <span class="nv">documentation</span><span class="ss">)</span>, <span class="nv">and</span> <span class="s1">&#39;</span><span class="s">help</span><span class="s1">&#39;</span> <span class="ss">(</span><span class="nv">lines</span> <span class="mi">2</span>..<span class="nv">n</span> <span class="nv">of</span> <span class="nv">the</span> <span class="nv">function</span> <span class="s1">&#39;</span><span class="s">help</span><span class="s1">&#39;</span><span class="ss">)</span>.
+
+  <span class="nv">SUPERCLASSES</span> <span class="nv">is</span> <span class="nv">a</span> <span class="nv">list</span> <span class="nv">of</span> <span class="nv">all</span> <span class="nv">superclasses</span> <span class="k">for</span> <span class="nv">the</span> <span class="nv">file</span>.
+</code></pre></div>
                 
               
               

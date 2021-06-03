@@ -3225,6 +3225,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../%2Bgit/git_stash.m/" class="md-nav__link">
+        vlt.git.git_stash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../%2Bgit/git_status.m/" class="md-nav__link">
         vlt.git.git_status
       </a>
@@ -9237,57 +9249,66 @@
                 
                 
                 <h1 id="vltfilefindfilegroups">vlt.file.findfilegroups<a class="headerlink" href="#vltfilefindfilegroups" title="Permanent link">&para;</a></h1>
-<p>FINDFILEGROUPS - Find a group of files based on parameters</p>
-<p>FILELIST = vlt.file.findfilegroups(PARENTDIR, FILEPARAMETERS, ...)</p>
-<p>Finds groups of files based on parameters.</p>
-<p>FILEPARAMETERS should be a cell list of file name search parameters.
-   These parameters can include regular expresion wildcards ('.*') and symbols
-   that indicate that the same string needs to be present across files ('#').
-   Searches will return matches of these groups of files in PARENTDIR and all
-   of its subdirectories.</p>
-<p>FILELIST is a cell array of all of the instances of these file groups.
-   That is, FILELIST{i} is the ith instance of these file groups.
-   The full path file names are returned in the entries of FILELIST{i}.
-   That is, FILELIST{i}{j} is the jth file in the ith instance of the file groups.</p>
-<p>The parent directory is searched first for matches, and then all subdirectories are searched.</p>
-<p>This file can be modified by passing name/value pairs:</p>
-<p>Parameter(default):         | Description:</p>
-<hr />
-<p>SameStringSearchSymbol('#') | The symbol to be used to indicate the the same
-                               |    string across files
-   UseSameStringSearchSymbol(1)| Should we use the same string search field?
-   UseLiteralCharacter(1)      | Use the LiteralCharacter
-   SearchParentFirst(1)        | Should we search the parent before the subdirectories of the
-                               |    parent? Otherwise, subdirectories are searched first.
-   SearchParent (1)            | Should we search the parent?
-   SearchDepth (Inf)           | How many directories 'deep' should we search?
-                               |   0 means parent only, 1 means one folder in, ...</p>
-<p>Examples:</p>
-<div class="codehilite"><pre><span></span><code>   <span class="n">ffg_prefix</span> <span class="o">=</span> <span class="p">[</span><span class="n">userpath</span> <span class="n">filesep</span> <span class="s1">&#39;tools&#39;</span> <span class="n">filesep</span> <span class="s1">&#39;vhlab-toolbox-matlab&#39;</span> <span class="o">...</span>
-    <span class="n">filesep</span> <span class="s1">&#39;file&#39;</span> <span class="n">filesep</span> <span class="s1">&#39;test_dirs&#39;</span> <span class="n">filesep</span><span class="p">];</span> <span class="o">%</span> <span class="n">location</span> <span class="n">of</span> <span class="n">test</span> <span class="n">directories</span>
+<div class="codehilite"><pre><span></span><code>  <span class="n">FINDFILEGROUPS</span> <span class="o">-</span> <span class="n">Find</span> <span class="n">a</span> <span class="n">group</span> <span class="n">of</span> <span class="n">files</span> <span class="n">based</span> <span class="n">on</span> <span class="n">parameters</span>
 
-   <span class="o">%</span> <span class="n">finds</span> <span class="n">all</span> <span class="n">files</span> <span class="n">with</span> <span class="s1">&#39;.ext&#39;</span> <span class="n">extension</span><span class="o">.</span>
-   <span class="n">fileparameters</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;.*\.ext\&gt;&#39;</span><span class="p">};</span>
-   <span class="n">filelist</span> <span class="o">=</span> <span class="n">vlt</span><span class="o">.</span><span class="n">file</span><span class="o">.</span><span class="n">findfilegroups</span><span class="p">([</span><span class="n">ffg_prefix</span> <span class="s1">&#39;findfilegroupstest1&#39;</span><span class="p">],</span><span class="n">fileparameters</span><span class="p">);</span>
-   <span class="o">%</span> <span class="n">list</span> <span class="n">all</span> <span class="n">files</span> <span class="n">to</span> <span class="n">see</span> <span class="n">which</span> <span class="n">subset</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="n">was</span><span class="p">(</span><span class="n">were</span><span class="p">)</span> <span class="n">selected</span><span class="p">:</span>
-   <span class="n">dir</span><span class="p">(([</span><span class="n">ffg_prefix</span> <span class="s1">&#39;findfilegroupstest1&#39;</span> <span class="n">filesep</span> <span class="s1">&#39;**/*&#39;</span><span class="p">]))</span>
+   <span class="n">FILELIST</span> <span class="o">=</span> <span class="n">vlt</span><span class="o">.</span><span class="n">file</span><span class="o">.</span><span class="n">findfilegroups</span><span class="p">(</span><span class="n">PARENTDIR</span><span class="p">,</span> <span class="n">FILEPARAMETERS</span><span class="p">,</span> <span class="o">...</span><span class="p">)</span>
 
-   <span class="o">%</span> <span class="n">finds</span> <span class="n">all</span> <span class="n">sets</span> <span class="n">of</span> <span class="n">files</span> <span class="s1">&#39;myfile.ext1&#39;</span> <span class="ow">and</span> <span class="s1">&#39;myfile.ext2&#39;</span> <span class="n">when</span> <span class="n">these</span> <span class="n">files</span>
-   <span class="o">%</span> <span class="n">co</span><span class="o">-</span><span class="n">occur</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">same</span> <span class="n">subdirectory</span> <span class="n">of</span> <span class="n">PARENTDIR</span>
-   <span class="n">fileparameters</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;myfile.ext1&#39;</span><span class="p">,</span><span class="s1">&#39;myfile.ext2&#39;</span><span class="p">};</span> <span class="o">%</span> <span class="n">finds</span> <span class="n">all</span> <span class="n">sets</span> <span class="n">of</span> <span class="n">files</span>
-   <span class="n">filelist</span> <span class="o">=</span> <span class="n">vlt</span><span class="o">.</span><span class="n">file</span><span class="o">.</span><span class="n">findfilegroups</span><span class="p">([</span><span class="n">ffg_prefix</span> <span class="s1">&#39;findfilegroupstest2&#39;</span><span class="p">],</span><span class="n">fileparameters</span><span class="p">);</span>
-   <span class="n">dir</span><span class="p">(([</span><span class="n">ffg_prefix</span> <span class="s1">&#39;findfilegroupstest2&#39;</span> <span class="n">filesep</span> <span class="s1">&#39;**/*&#39;</span><span class="p">]))</span>
+   <span class="n">Finds</span> <span class="n">groups</span> <span class="n">of</span> <span class="n">files</span> <span class="n">based</span> <span class="n">on</span> <span class="n">parameters</span><span class="o">.</span>
 
-   <span class="o">%</span> <span class="n">finds</span> <span class="n">all</span> <span class="n">sets</span> <span class="n">of</span> <span class="n">files</span> <span class="s1">&#39;myfile_#.ext1&#39;</span> <span class="ow">and</span> <span class="s1">&#39;myfile_#.ext2&#39;</span><span class="p">,</span> <span class="n">where</span> <span class="c1"># is </span>
-   <span class="o">%</span> <span class="n">the</span> <span class="n">same</span> <span class="n">string</span><span class="p">,</span> <span class="ow">and</span> <span class="n">when</span> <span class="n">these</span> <span class="n">files</span> <span class="n">co</span><span class="o">-</span><span class="n">occur</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">same</span> <span class="n">subdirectory</span><span class="o">.</span>
-   <span class="o">%</span> <span class="n">For</span> <span class="n">example</span><span class="p">,</span> <span class="k">if</span> <span class="n">the</span> <span class="n">files</span> <span class="s1">&#39;stimtimes1.txt&#39;</span> <span class="ow">and</span> <span class="s1">&#39;reference1.txt&#39;</span> <span class="n">were</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">same</span>
-   <span class="o">%</span> <span class="n">subdirectory</span><span class="p">,</span> <span class="n">these</span> <span class="n">would</span> <span class="n">be</span> <span class="n">returned</span> <span class="n">together</span><span class="o">.</span>
-   <span class="n">fileparameters</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;myfile_#.ext1&#39;</span><span class="p">,</span><span class="s1">&#39;myfile_#.ext2&#39;</span><span class="p">}</span>
-   <span class="n">filelist</span> <span class="o">=</span> <span class="n">vlt</span><span class="o">.</span><span class="n">file</span><span class="o">.</span><span class="n">findfilegroups</span><span class="p">([</span><span class="n">ffg_prefix</span> <span class="s1">&#39;findfilegroupstest3&#39;</span><span class="p">],</span><span class="n">fileparameters</span><span class="p">);</span>
-   <span class="n">dir</span><span class="p">(([</span><span class="n">ffg_prefix</span> <span class="s1">&#39;findfilegroupstest3&#39;</span> <span class="n">filesep</span> <span class="s1">&#39;**/*&#39;</span><span class="p">]))</span>
+   <span class="n">FILEPARAMETERS</span> <span class="n">should</span> <span class="n">be</span> <span class="n">a</span> <span class="n">cell</span> <span class="n">list</span> <span class="n">of</span> <span class="n">file</span> <span class="n">name</span> <span class="n">search</span> <span class="n">parameters</span><span class="o">.</span>
+   <span class="n">These</span> <span class="n">parameters</span> <span class="n">can</span> <span class="n">include</span> <span class="n">regular</span> <span class="n">expresion</span> <span class="n">wildcards</span> <span class="p">(</span><span class="s1">&#39;.*&#39;</span><span class="p">)</span> <span class="ow">and</span> <span class="n">symbols</span>
+   <span class="n">that</span> <span class="n">indicate</span> <span class="n">that</span> <span class="n">the</span> <span class="n">same</span> <span class="n">string</span> <span class="n">needs</span> <span class="n">to</span> <span class="n">be</span> <span class="n">present</span> <span class="n">across</span> <span class="n">files</span> <span class="p">(</span><span class="s1">&#39;#&#39;</span><span class="p">)</span><span class="o">.</span>
+   <span class="n">Searches</span> <span class="n">will</span> <span class="k">return</span> <span class="n">matches</span> <span class="n">of</span> <span class="n">these</span> <span class="n">groups</span> <span class="n">of</span> <span class="n">files</span> <span class="ow">in</span> <span class="n">PARENTDIR</span> <span class="ow">and</span> <span class="n">all</span>
+   <span class="n">of</span> <span class="n">its</span> <span class="n">subdirectories</span><span class="o">.</span>
+
+   <span class="n">FILELIST</span> <span class="k">is</span> <span class="n">a</span> <span class="n">cell</span> <span class="n">array</span> <span class="n">of</span> <span class="n">all</span> <span class="n">of</span> <span class="n">the</span> <span class="n">instances</span> <span class="n">of</span> <span class="n">these</span> <span class="n">file</span> <span class="n">groups</span><span class="o">.</span>
+   <span class="n">That</span> <span class="k">is</span><span class="p">,</span> <span class="n">FILELIST</span><span class="p">{</span><span class="n">i</span><span class="p">}</span> <span class="k">is</span> <span class="n">the</span> <span class="n">ith</span> <span class="n">instance</span> <span class="n">of</span> <span class="n">these</span> <span class="n">file</span> <span class="n">groups</span><span class="o">.</span>
+   <span class="n">The</span> <span class="n">full</span> <span class="n">path</span> <span class="n">file</span> <span class="n">names</span> <span class="n">are</span> <span class="n">returned</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">entries</span> <span class="n">of</span> <span class="n">FILELIST</span><span class="p">{</span><span class="n">i</span><span class="p">}</span><span class="o">.</span>
+   <span class="n">That</span> <span class="k">is</span><span class="p">,</span> <span class="n">FILELIST</span><span class="p">{</span><span class="n">i</span><span class="p">}{</span><span class="n">j</span><span class="p">}</span> <span class="k">is</span> <span class="n">the</span> <span class="n">jth</span> <span class="n">file</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">ith</span> <span class="n">instance</span> <span class="n">of</span> <span class="n">the</span> <span class="n">file</span> <span class="n">groups</span><span class="o">.</span>
+
+   <span class="n">The</span> <span class="n">parent</span> <span class="n">directory</span> <span class="k">is</span> <span class="n">searched</span> <span class="n">first</span> <span class="k">for</span> <span class="n">matches</span><span class="p">,</span> <span class="ow">and</span> <span class="n">then</span> <span class="n">all</span> <span class="n">subdirectories</span> <span class="n">are</span> <span class="n">searched</span><span class="o">.</span>
+
+   <span class="n">This</span> <span class="n">file</span> <span class="n">can</span> <span class="n">be</span> <span class="n">modified</span> <span class="n">by</span> <span class="n">passing</span> <span class="n">name</span><span class="o">/</span><span class="n">value</span> <span class="n">pairs</span><span class="p">:</span>
+
+   <span class="n">Parameter</span><span class="p">(</span><span class="n">default</span><span class="p">):</span>         <span class="o">|</span> <span class="n">Description</span><span class="p">:</span>
+   <span class="o">----------------------------------------------------------------------</span>
+   <span class="n">SameStringSearchSymbol</span><span class="p">(</span><span class="s1">&#39;#&#39;</span><span class="p">)</span> <span class="o">|</span> <span class="n">The</span> <span class="n">symbol</span> <span class="n">to</span> <span class="n">be</span> <span class="n">used</span> <span class="n">to</span> <span class="n">indicate</span> <span class="n">the</span> <span class="n">the</span> <span class="n">same</span>
+                               <span class="o">|</span>    <span class="n">string</span> <span class="n">across</span> <span class="n">files</span>
+   <span class="n">UseSameStringSearchSymbol</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">|</span> <span class="n">Should</span> <span class="n">we</span> <span class="n">use</span> <span class="n">the</span> <span class="n">same</span> <span class="n">string</span> <span class="n">search</span> <span class="n">field</span><span class="err">?</span>
+   <span class="n">UseLiteralCharacter</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>      <span class="o">|</span> <span class="n">Use</span> <span class="n">the</span> <span class="n">LiteralCharacter</span>
+   <span class="n">SearchParentFirst</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>        <span class="o">|</span> <span class="n">Should</span> <span class="n">we</span> <span class="n">search</span> <span class="n">the</span> <span class="n">parent</span> <span class="n">before</span> <span class="n">the</span> <span class="n">subdirectories</span> <span class="n">of</span> <span class="n">the</span>
+                               <span class="o">|</span>    <span class="n">parent</span><span class="err">?</span> <span class="n">Otherwise</span><span class="p">,</span> <span class="n">subdirectories</span> <span class="n">are</span> <span class="n">searched</span> <span class="n">first</span><span class="o">.</span>
+   <span class="n">SearchParent</span> <span class="p">(</span><span class="mi">1</span><span class="p">)</span>            <span class="o">|</span> <span class="n">Should</span> <span class="n">we</span> <span class="n">search</span> <span class="n">the</span> <span class="n">parent</span><span class="err">?</span>
+   <span class="n">SearchDepth</span> <span class="p">(</span><span class="n">Inf</span><span class="p">)</span>           <span class="o">|</span> <span class="n">How</span> <span class="n">many</span> <span class="n">directories</span> <span class="s1">&#39;deep&#39;</span> <span class="n">should</span> <span class="n">we</span> <span class="n">search</span><span class="err">?</span>
+                               <span class="o">|</span>   <span class="mi">0</span> <span class="n">means</span> <span class="n">parent</span> <span class="n">only</span><span class="p">,</span> <span class="mi">1</span> <span class="n">means</span> <span class="n">one</span> <span class="n">folder</span> <span class="ow">in</span><span class="p">,</span> <span class="o">...</span>
+
+   <span class="n">Examples</span><span class="p">:</span>
+
+       <span class="n">ffg_prefix</span> <span class="o">=</span> <span class="p">[</span><span class="n">userpath</span> <span class="n">filesep</span> <span class="s1">&#39;tools&#39;</span> <span class="n">filesep</span> <span class="s1">&#39;vhlab-toolbox-matlab&#39;</span> <span class="o">...</span>
+        <span class="n">filesep</span> <span class="s1">&#39;file&#39;</span> <span class="n">filesep</span> <span class="s1">&#39;test_dirs&#39;</span> <span class="n">filesep</span><span class="p">];</span> <span class="o">%</span> <span class="n">location</span> <span class="n">of</span> <span class="n">test</span> <span class="n">directories</span>
+
+       <span class="o">%</span> <span class="n">finds</span> <span class="n">all</span> <span class="n">files</span> <span class="n">with</span> <span class="s1">&#39;.ext&#39;</span> <span class="n">extension</span><span class="o">.</span>
+       <span class="n">fileparameters</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;.*\.ext\&gt;&#39;</span><span class="p">};</span>
+       <span class="n">filelist</span> <span class="o">=</span> <span class="n">vlt</span><span class="o">.</span><span class="n">file</span><span class="o">.</span><span class="n">findfilegroups</span><span class="p">([</span><span class="n">ffg_prefix</span> <span class="s1">&#39;findfilegroupstest1&#39;</span><span class="p">],</span><span class="n">fileparameters</span><span class="p">);</span>
+       <span class="o">%</span> <span class="n">list</span> <span class="n">all</span> <span class="n">files</span> <span class="n">to</span> <span class="n">see</span> <span class="n">which</span> <span class="n">subset</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="n">was</span><span class="p">(</span><span class="n">were</span><span class="p">)</span> <span class="n">selected</span><span class="p">:</span>
+       <span class="n">dir</span><span class="p">(([</span><span class="n">ffg_prefix</span> <span class="s1">&#39;findfilegroupstest1&#39;</span> <span class="n">filesep</span> <span class="s1">&#39;**/*&#39;</span><span class="p">]))</span>
+
+       <span class="o">%</span> <span class="n">finds</span> <span class="n">all</span> <span class="n">sets</span> <span class="n">of</span> <span class="n">files</span> <span class="s1">&#39;myfile.ext1&#39;</span> <span class="ow">and</span> <span class="s1">&#39;myfile.ext2&#39;</span> <span class="n">when</span> <span class="n">these</span> <span class="n">files</span>
+       <span class="o">%</span> <span class="n">co</span><span class="o">-</span><span class="n">occur</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">same</span> <span class="n">subdirectory</span> <span class="n">of</span> <span class="n">PARENTDIR</span>
+       <span class="n">fileparameters</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;myfile.ext1&#39;</span><span class="p">,</span><span class="s1">&#39;myfile.ext2&#39;</span><span class="p">};</span> <span class="o">%</span> <span class="n">finds</span> <span class="n">all</span> <span class="n">sets</span> <span class="n">of</span> <span class="n">files</span>
+       <span class="n">filelist</span> <span class="o">=</span> <span class="n">vlt</span><span class="o">.</span><span class="n">file</span><span class="o">.</span><span class="n">findfilegroups</span><span class="p">([</span><span class="n">ffg_prefix</span> <span class="s1">&#39;findfilegroupstest2&#39;</span><span class="p">],</span><span class="n">fileparameters</span><span class="p">);</span>
+       <span class="n">dir</span><span class="p">(([</span><span class="n">ffg_prefix</span> <span class="s1">&#39;findfilegroupstest2&#39;</span> <span class="n">filesep</span> <span class="s1">&#39;**/*&#39;</span><span class="p">]))</span>
+
+       <span class="o">%</span> <span class="n">finds</span> <span class="n">all</span> <span class="n">sets</span> <span class="n">of</span> <span class="n">files</span> <span class="s1">&#39;myfile_#.ext1&#39;</span> <span class="ow">and</span> <span class="s1">&#39;myfile_#.ext2&#39;</span><span class="p">,</span> <span class="n">where</span> <span class="c1"># is </span>
+       <span class="o">%</span> <span class="n">the</span> <span class="n">same</span> <span class="n">string</span><span class="p">,</span> <span class="ow">and</span> <span class="n">when</span> <span class="n">these</span> <span class="n">files</span> <span class="n">co</span><span class="o">-</span><span class="n">occur</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">same</span> <span class="n">subdirectory</span><span class="o">.</span>
+       <span class="o">%</span> <span class="n">For</span> <span class="n">example</span><span class="p">,</span> <span class="k">if</span> <span class="n">the</span> <span class="n">files</span> <span class="s1">&#39;stimtimes1.txt&#39;</span> <span class="ow">and</span> <span class="s1">&#39;reference1.txt&#39;</span> <span class="n">were</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">same</span>
+       <span class="o">%</span> <span class="n">subdirectory</span><span class="p">,</span> <span class="n">these</span> <span class="n">would</span> <span class="n">be</span> <span class="n">returned</span> <span class="n">together</span><span class="o">.</span>
+       <span class="n">fileparameters</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;myfile_#.ext1&#39;</span><span class="p">,</span><span class="s1">&#39;myfile_#.ext2&#39;</span><span class="p">}</span>
+       <span class="n">filelist</span> <span class="o">=</span> <span class="n">vlt</span><span class="o">.</span><span class="n">file</span><span class="o">.</span><span class="n">findfilegroups</span><span class="p">([</span><span class="n">ffg_prefix</span> <span class="s1">&#39;findfilegroupstest3&#39;</span><span class="p">],</span><span class="n">fileparameters</span><span class="p">);</span>
+       <span class="n">dir</span><span class="p">(([</span><span class="n">ffg_prefix</span> <span class="s1">&#39;findfilegroupstest3&#39;</span> <span class="n">filesep</span> <span class="s1">&#39;**/*&#39;</span><span class="p">]))</span>
+
+   <span class="n">See</span> <span class="n">also</span><span class="p">:</span> <span class="n">VLT</span><span class="o">.</span><span class="n">STRING</span><span class="o">.</span><span class="n">STRCMP_SUBSTITUTE</span>
 </code></pre></div>
-
-<p>See also: VLT.STRING.STRCMP_SUBSTITUTE</p>
                 
               
               

@@ -3213,6 +3213,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../%2Bgit/git_stash.m/" class="md-nav__link">
+        vlt.git.git_stash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../%2Bgit/git_status.m/" class="md-nav__link">
         vlt.git.git_status
       </a>
@@ -9237,24 +9249,31 @@
                 
                 
                 <h1 id="vltsignaldotdisc">vlt.signal.dotdisc<a class="headerlink" href="#vltsignaldotdisc" title="Permanent link">&para;</a></h1>
-<p>DOTDISC - Dot discriminator, an advanced window discriminator</p>
-<p>EVENT_SAMPLES = vlt.signal.dotdisc(DATA, DOTS)</p>
-<p>Detect events with "dots", a form of advanced window
-   discrimination.</p>
-<p>DATA the data to be examined.</p>
-<p>DOTS - An N x 3 matrix with the "dots" to be used for the
-   discrimination. The first row is [ THRESH  SIGN 0] indicating
-   that all events larger than THRESH (in the direction of SIGN,
-   which can be 1 or -1) will be considered.  Each additional
-   row is [THRESH SIGN OFFSET], and only events that have a
-   signal of size THRESH (in the direction of SIGN) at the sample
-   location OFFSET relative to the highest/lowest point that
-   was determined in the first row will be selected.</p>
-<p>EVENT_SAMPLES returns the sample numbers of events that 
-   are described by the DOTS. If more than one adjacent sample
-   passes the dot tests, then the sample number corresponds to
-   the point in the middle of the points that pass.</p>
-<p>This is implemented as a mex function.</p>
+<div class="codehilite"><pre><span></span><code> <span class="n">DOTDISC</span> <span class="o">-</span> <span class="n">Dot</span> <span class="n">discriminator</span><span class="p">,</span> <span class="n">an</span> <span class="n">advanced</span> <span class="n">window</span> <span class="n">discriminator</span>
+
+   <span class="n">EVENT_SAMPLES</span> <span class="o">=</span> <span class="n">vlt</span><span class="o">.</span><span class="k">signal</span><span class="o">.</span><span class="n">dotdisc</span><span class="p">(</span><span class="n">DATA</span><span class="p">,</span> <span class="n">DOTS</span><span class="p">)</span>
+
+   <span class="n">Detect</span> <span class="n">events</span> <span class="n">with</span> <span class="s2">&quot;dots&quot;</span><span class="p">,</span> <span class="n">a</span> <span class="n">form</span> <span class="n">of</span> <span class="n">advanced</span> <span class="n">window</span>
+   <span class="n">discrimination</span><span class="o">.</span>
+
+   <span class="n">DATA</span> <span class="n">the</span> <span class="n">data</span> <span class="n">to</span> <span class="n">be</span> <span class="n">examined</span><span class="o">.</span>
+
+   <span class="n">DOTS</span> <span class="o">-</span> <span class="n">An</span> <span class="n">N</span> <span class="n">x</span> <span class="mi">3</span> <span class="n">matrix</span> <span class="n">with</span> <span class="n">the</span> <span class="s2">&quot;dots&quot;</span> <span class="n">to</span> <span class="n">be</span> <span class="n">used</span> <span class="k">for</span> <span class="n">the</span>
+   <span class="n">discrimination</span><span class="o">.</span> <span class="n">The</span> <span class="n">first</span> <span class="n">row</span> <span class="k">is</span> <span class="p">[</span> <span class="n">THRESH</span>  <span class="n">SIGN</span> <span class="mi">0</span><span class="p">]</span> <span class="n">indicating</span>
+   <span class="n">that</span> <span class="n">all</span> <span class="n">events</span> <span class="n">larger</span> <span class="n">than</span> <span class="n">THRESH</span> <span class="p">(</span><span class="ow">in</span> <span class="n">the</span> <span class="n">direction</span> <span class="n">of</span> <span class="n">SIGN</span><span class="p">,</span>
+   <span class="n">which</span> <span class="n">can</span> <span class="n">be</span> <span class="mi">1</span> <span class="ow">or</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="n">will</span> <span class="n">be</span> <span class="n">considered</span><span class="o">.</span>  <span class="n">Each</span> <span class="n">additional</span>
+   <span class="n">row</span> <span class="k">is</span> <span class="p">[</span><span class="n">THRESH</span> <span class="n">SIGN</span> <span class="n">OFFSET</span><span class="p">],</span> <span class="ow">and</span> <span class="n">only</span> <span class="n">events</span> <span class="n">that</span> <span class="n">have</span> <span class="n">a</span>
+   <span class="k">signal</span> <span class="n">of</span> <span class="n">size</span> <span class="n">THRESH</span> <span class="p">(</span><span class="ow">in</span> <span class="n">the</span> <span class="n">direction</span> <span class="n">of</span> <span class="n">SIGN</span><span class="p">)</span> <span class="n">at</span> <span class="n">the</span> <span class="n">sample</span>
+   <span class="n">location</span> <span class="n">OFFSET</span> <span class="n">relative</span> <span class="n">to</span> <span class="n">the</span> <span class="n">highest</span><span class="o">/</span><span class="n">lowest</span> <span class="n">point</span> <span class="n">that</span>
+   <span class="n">was</span> <span class="n">determined</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">first</span> <span class="n">row</span> <span class="n">will</span> <span class="n">be</span> <span class="n">selected</span><span class="o">.</span>
+
+   <span class="n">EVENT_SAMPLES</span> <span class="n">returns</span> <span class="n">the</span> <span class="n">sample</span> <span class="n">numbers</span> <span class="n">of</span> <span class="n">events</span> <span class="n">that</span> 
+   <span class="n">are</span> <span class="n">described</span> <span class="n">by</span> <span class="n">the</span> <span class="n">DOTS</span><span class="o">.</span> <span class="n">If</span> <span class="n">more</span> <span class="n">than</span> <span class="n">one</span> <span class="n">adjacent</span> <span class="n">sample</span>
+   <span class="n">passes</span> <span class="n">the</span> <span class="n">dot</span> <span class="n">tests</span><span class="p">,</span> <span class="n">then</span> <span class="n">the</span> <span class="n">sample</span> <span class="n">number</span> <span class="n">corresponds</span> <span class="n">to</span>
+   <span class="n">the</span> <span class="n">point</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">middle</span> <span class="n">of</span> <span class="n">the</span> <span class="n">points</span> <span class="n">that</span> <span class="k">pass</span><span class="o">.</span>
+
+   <span class="n">This</span> <span class="k">is</span> <span class="n">implemented</span> <span class="k">as</span> <span class="n">a</span> <span class="n">mex</span> <span class="n">function</span><span class="o">.</span>
+</code></pre></div>
                 
               
               

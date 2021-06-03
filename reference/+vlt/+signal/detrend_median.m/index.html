@@ -3213,6 +3213,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../%2Bgit/git_stash.m/" class="md-nav__link">
+        vlt.git.git_stash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../%2Bgit/git_status.m/" class="md-nav__link">
         vlt.git.git_status
       </a>
@@ -9237,14 +9249,18 @@
                 
                 
                 <h1 id="vltsignaldetrend_median">vlt.signal.detrend_median<a class="headerlink" href="#vltsignaldetrend_median" title="Permanent link">&para;</a></h1>
-<p>DETREND_MEDIAN - Remove a median trend from data</p>
-<p>D = vlt.signal.detrend_median(S, SI, T)</p>
-<p>Removes the result of a sliding median function of duration T
-   from the sampled data S with sampling interval SI. The number of
-   samples used for the sliding median function will be rounded to
-   the nearest whole sample. The answer is returned in D. The median
-   is sampled at intervals equal to 1/10 the windowsize.</p>
-<p>See also: DETREND, vlt.math.slidingwindowfunc</p>
+<div class="codehilite"><pre><span></span><code> <span class="n">DETREND_MEDIAN</span> <span class="o">-</span> <span class="n">Remove</span> <span class="n">a</span> <span class="n">median</span> <span class="n">trend</span> <span class="n">from</span> <span class="n">data</span>
+
+   <span class="n">D</span> <span class="o">=</span> <span class="n">vlt</span><span class="o">.</span><span class="k">signal</span><span class="o">.</span><span class="n">detrend_median</span><span class="p">(</span><span class="n">S</span><span class="p">,</span> <span class="n">SI</span><span class="p">,</span> <span class="n">T</span><span class="p">)</span>
+
+   <span class="n">Removes</span> <span class="n">the</span> <span class="n">result</span> <span class="n">of</span> <span class="n">a</span> <span class="n">sliding</span> <span class="n">median</span> <span class="n">function</span> <span class="n">of</span> <span class="n">duration</span> <span class="n">T</span>
+   <span class="n">from</span> <span class="n">the</span> <span class="n">sampled</span> <span class="n">data</span> <span class="n">S</span> <span class="n">with</span> <span class="n">sampling</span> <span class="n">interval</span> <span class="n">SI</span><span class="o">.</span> <span class="n">The</span> <span class="n">number</span> <span class="n">of</span>
+   <span class="n">samples</span> <span class="n">used</span> <span class="k">for</span> <span class="n">the</span> <span class="n">sliding</span> <span class="n">median</span> <span class="n">function</span> <span class="n">will</span> <span class="n">be</span> <span class="n">rounded</span> <span class="n">to</span>
+   <span class="n">the</span> <span class="n">nearest</span> <span class="n">whole</span> <span class="n">sample</span><span class="o">.</span> <span class="n">The</span> <span class="n">answer</span> <span class="k">is</span> <span class="n">returned</span> <span class="ow">in</span> <span class="n">D</span><span class="o">.</span> <span class="n">The</span> <span class="n">median</span>
+   <span class="k">is</span> <span class="n">sampled</span> <span class="n">at</span> <span class="n">intervals</span> <span class="n">equal</span> <span class="n">to</span> <span class="mi">1</span><span class="o">/</span><span class="mi">10</span> <span class="n">the</span> <span class="n">windowsize</span><span class="o">.</span>
+
+  <span class="n">See</span> <span class="n">also</span><span class="p">:</span> <span class="n">DETREND</span><span class="p">,</span> <span class="n">vlt</span><span class="o">.</span><span class="n">math</span><span class="o">.</span><span class="n">slidingwindowfunc</span>
+</code></pre></div>
                 
               
               

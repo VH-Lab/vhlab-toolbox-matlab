@@ -3225,6 +3225,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../%2Bgit/git_stash.m/" class="md-nav__link">
+        vlt.git.git_stash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../%2Bgit/git_status.m/" class="md-nav__link">
         vlt.git.git_status
       </a>
@@ -9237,13 +9249,16 @@
                 
                 
                 <h1 id="vltfitseriesresfit">vlt.fit.seriesresfit<a class="headerlink" href="#vltfitseriesresfit" title="Permanent link">&para;</a></h1>
-<p>EXP_FIT Exponential fit</p>
-<p>[Re,taue,Rm,taum,err,fit] = vlt.fit.exp_fit(T,DATA,Iinj)</p>
-<p>Finds the best fit to 
-     V(t)/Iinj = Re(1-exp(-t/taue))+Rm(1-exp(-t/taum))
-   where T is an increasing vector of timevalues, Re is electrode 
-   resistance, taue is electrode time constant, Rm is membrane
-   resistance, and taum is membrane time constant.</p>
+<div class="codehilite"><pre><span></span><code>  <span class="n">EXP_FIT</span> <span class="n">Exponential</span> <span class="n">fit</span>
+
+   <span class="p">[</span><span class="n">Re</span><span class="p">,</span><span class="n">taue</span><span class="p">,</span><span class="n">Rm</span><span class="p">,</span><span class="n">taum</span><span class="p">,</span><span class="n">err</span><span class="p">,</span><span class="n">fit</span><span class="p">]</span> <span class="o">=</span> <span class="n">vlt</span><span class="o">.</span><span class="n">fit</span><span class="o">.</span><span class="n">exp_fit</span><span class="p">(</span><span class="n">T</span><span class="p">,</span><span class="n">DATA</span><span class="p">,</span><span class="n">Iinj</span><span class="p">)</span>
+
+   <span class="n">Finds</span> <span class="n">the</span> <span class="n">best</span> <span class="n">fit</span> <span class="n">to</span> 
+     <span class="n">V</span><span class="p">(</span><span class="n">t</span><span class="p">)</span><span class="o">/</span><span class="n">Iinj</span> <span class="o">=</span> <span class="n">Re</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="nb">exp</span><span class="p">(</span><span class="o">-</span><span class="n">t</span><span class="o">/</span><span class="n">taue</span><span class="p">))</span><span class="o">+</span><span class="n">Rm</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="nb">exp</span><span class="p">(</span><span class="o">-</span><span class="n">t</span><span class="o">/</span><span class="n">taum</span><span class="p">))</span>
+   <span class="n">where</span> <span class="n">T</span> <span class="k">is</span> <span class="n">an</span> <span class="n">increasing</span> <span class="n">vector</span> <span class="n">of</span> <span class="n">timevalues</span><span class="p">,</span> <span class="n">Re</span> <span class="k">is</span> <span class="n">electrode</span> 
+   <span class="n">resistance</span><span class="p">,</span> <span class="n">taue</span> <span class="k">is</span> <span class="n">electrode</span> <span class="n">time</span> <span class="n">constant</span><span class="p">,</span> <span class="n">Rm</span> <span class="k">is</span> <span class="n">membrane</span>
+   <span class="n">resistance</span><span class="p">,</span> <span class="ow">and</span> <span class="n">taum</span> <span class="k">is</span> <span class="n">membrane</span> <span class="n">time</span> <span class="n">constant</span><span class="o">.</span>
+</code></pre></div>
                 
               
               

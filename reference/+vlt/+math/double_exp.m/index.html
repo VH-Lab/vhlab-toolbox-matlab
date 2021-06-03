@@ -3213,6 +3213,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../%2Bgit/git_stash.m/" class="md-nav__link">
+        vlt.git.git_stash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../%2Bgit/git_status.m/" class="md-nav__link">
         vlt.git.git_status
       </a>
@@ -9237,14 +9249,16 @@
                 
                 
                 <h1 id="vltmathdouble_exp">vlt.math.double_exp<a class="headerlink" href="#vltmathdouble_exp" title="Permanent link">&para;</a></h1>
-<p>vlt.math.double_exp - Double exponential</p>
-<p>G = vlt.math.double_exp(T, TAU1, TAU2)</p>
-<div class="codehilite"><pre><span></span><code> <span class="n">Returns</span> <span class="p">((</span><span class="n">TAU1</span><span class="o">*</span><span class="n">TAU2</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">TAU1</span><span class="o">-</span><span class="n">TAU2</span><span class="p">))</span> <span class="o">*</span> <span class="p">(</span><span class="n">EXP</span><span class="p">(</span><span class="o">-</span><span class="n">T</span><span class="o">/</span><span class="n">TAU1</span><span class="p">)</span><span class="o">-</span><span class="n">EXP</span><span class="p">(</span><span class="o">-</span><span class="n">T</span><span class="o">/</span><span class="n">TAU2</span><span class="p">))</span>
+<div class="codehilite"><pre><span></span><code>  <span class="n">vlt</span><span class="o">.</span><span class="n">math</span><span class="o">.</span><span class="n">double_exp</span> <span class="o">-</span> <span class="n">Double</span> <span class="n">exponential</span>
 
- <span class="n">Roughly</span> <span class="n">speaking</span><span class="p">,</span> <span class="k">if</span> <span class="n">TAU1</span> <span class="ow">and</span> <span class="n">TAU2</span> <span class="n">are</span> <span class="n">very</span> <span class="n">different</span><span class="p">,</span> <span class="n">then</span>
- <span class="n">TAU1</span> <span class="k">is</span> <span class="n">an</span> <span class="n">onset</span> <span class="n">time</span> <span class="n">constant</span> <span class="ow">and</span> <span class="n">TAU2</span> <span class="k">is</span> <span class="n">an</span> <span class="n">offset</span> <span class="n">constant</span>
+   <span class="n">G</span> <span class="o">=</span> <span class="n">vlt</span><span class="o">.</span><span class="n">math</span><span class="o">.</span><span class="n">double_exp</span><span class="p">(</span><span class="n">T</span><span class="p">,</span> <span class="n">TAU1</span><span class="p">,</span> <span class="n">TAU2</span><span class="p">)</span>
 
- <span class="n">Time</span> <span class="n">to</span> <span class="n">peak</span> <span class="k">is</span> <span class="p">(</span><span class="n">TAU1</span><span class="o">*</span><span class="n">TAU2</span><span class="o">/</span><span class="p">(</span><span class="n">TAU1</span><span class="o">-</span><span class="n">TAU2</span><span class="p">))</span><span class="o">*</span><span class="n">LOG</span><span class="p">(</span><span class="n">TAU1</span><span class="o">/</span><span class="n">TAU2</span><span class="p">)</span>
+     <span class="n">Returns</span> <span class="p">((</span><span class="n">TAU1</span><span class="o">*</span><span class="n">TAU2</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">TAU1</span><span class="o">-</span><span class="n">TAU2</span><span class="p">))</span> <span class="o">*</span> <span class="p">(</span><span class="n">EXP</span><span class="p">(</span><span class="o">-</span><span class="n">T</span><span class="o">/</span><span class="n">TAU1</span><span class="p">)</span><span class="o">-</span><span class="n">EXP</span><span class="p">(</span><span class="o">-</span><span class="n">T</span><span class="o">/</span><span class="n">TAU2</span><span class="p">))</span>
+
+     <span class="n">Roughly</span> <span class="n">speaking</span><span class="p">,</span> <span class="k">if</span> <span class="n">TAU1</span> <span class="ow">and</span> <span class="n">TAU2</span> <span class="n">are</span> <span class="n">very</span> <span class="n">different</span><span class="p">,</span> <span class="n">then</span>
+     <span class="n">TAU1</span> <span class="k">is</span> <span class="n">an</span> <span class="n">onset</span> <span class="n">time</span> <span class="n">constant</span> <span class="ow">and</span> <span class="n">TAU2</span> <span class="k">is</span> <span class="n">an</span> <span class="n">offset</span> <span class="n">constant</span>
+
+     <span class="n">Time</span> <span class="n">to</span> <span class="n">peak</span> <span class="k">is</span> <span class="p">(</span><span class="n">TAU1</span><span class="o">*</span><span class="n">TAU2</span><span class="o">/</span><span class="p">(</span><span class="n">TAU1</span><span class="o">-</span><span class="n">TAU2</span><span class="p">))</span><span class="o">*</span><span class="n">LOG</span><span class="p">(</span><span class="n">TAU1</span><span class="o">/</span><span class="n">TAU2</span><span class="p">)</span>
 </code></pre></div>
                 
               

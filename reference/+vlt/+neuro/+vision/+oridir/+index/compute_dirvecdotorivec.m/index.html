@@ -3213,6 +3213,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../../../../%2Bgit/git_stash.m/" class="md-nav__link">
+        vlt.git.git_stash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../../../../%2Bgit/git_status.m/" class="md-nav__link">
         vlt.git.git_status
       </a>
@@ -9243,15 +9255,16 @@
                 
                 
                 <h1 id="vltneurovisionoridirindexcompute_dirvecdotorivec">vlt.neuro.vision.oridir.index.compute_dirvecdotorivec<a class="headerlink" href="#vltneurovisionoridirindexcompute_dirvecdotorivec" title="Permanent link">&para;</a></h1>
-<p>COMPUTE_DIRVECDOTORIVEC - Direction index based on dot product with computed orientation vector</p>
-<div class="codehilite"><pre><span></span><code>  <span class="nv">DI</span> <span class="o">=</span> <span class="nv">vlt</span>.<span class="nv">neuro</span>.<span class="nv">vision</span>.<span class="nv">oridir</span>.<span class="nv">index</span>.<span class="nv">compute_dirvecdotorivec</span><span class="ss">(</span> <span class="nv">ANGLES</span>, <span class="nv">RATES</span> <span class="ss">)</span>
+<div class="codehilite"><pre><span></span><code>  <span class="nv">COMPUTE_DIRVECDOTORIVEC</span> <span class="o">-</span> <span class="nv">Direction</span> <span class="nv">index</span> <span class="nv">based</span> <span class="nv">on</span> <span class="nv">dot</span> <span class="nv">product</span> <span class="nv">with</span> <span class="nv">computed</span> <span class="nv">orientation</span> <span class="nv">vector</span>
 
-  <span class="nv">Takes</span> <span class="nv">ANGLES</span> <span class="nv">in</span> <span class="nv">degrees</span>, <span class="nv">and</span> <span class="nv">RATES</span> <span class="nv">is</span> <span class="nv">the</span> <span class="nv">response</span> <span class="nv">to</span> <span class="nv">each</span> <span class="nv">angle</span>
-  <span class="nv">in</span> <span class="nv">a</span> <span class="nv">row</span> <span class="nv">vector</span>.
+      <span class="nv">DI</span> <span class="o">=</span> <span class="nv">vlt</span>.<span class="nv">neuro</span>.<span class="nv">vision</span>.<span class="nv">oridir</span>.<span class="nv">index</span>.<span class="nv">compute_dirvecdotorivec</span><span class="ss">(</span> <span class="nv">ANGLES</span>, <span class="nv">RATES</span> <span class="ss">)</span>
 
-  <span class="nv">DI</span> <span class="nv">is</span> <span class="nv">a</span> <span class="nv">modified</span> <span class="nv">vector</span> <span class="nv">index</span><span class="c1">; the function first finds the empirical</span>
-  <span class="nv">orientation</span> <span class="nv">vector</span> <span class="nv">and</span> <span class="k">then</span> <span class="nv">computes</span> <span class="nv">dot</span> <span class="nv">product</span> <span class="nv">of</span> <span class="nv">direction</span> <span class="nv">vector</span> <span class="nv">with</span> 
-  <span class="nv">unit</span> <span class="nv">orentation</span> <span class="nv">vector</span>
+      <span class="nv">Takes</span> <span class="nv">ANGLES</span> <span class="nv">in</span> <span class="nv">degrees</span>, <span class="nv">and</span> <span class="nv">RATES</span> <span class="nv">is</span> <span class="nv">the</span> <span class="nv">response</span> <span class="nv">to</span> <span class="nv">each</span> <span class="nv">angle</span>
+      <span class="nv">in</span> <span class="nv">a</span> <span class="nv">row</span> <span class="nv">vector</span>.
+
+      <span class="nv">DI</span> <span class="nv">is</span> <span class="nv">a</span> <span class="nv">modified</span> <span class="nv">vector</span> <span class="nv">index</span><span class="c1">; the function first finds the empirical</span>
+      <span class="nv">orientation</span> <span class="nv">vector</span> <span class="nv">and</span> <span class="k">then</span> <span class="nv">computes</span> <span class="nv">dot</span> <span class="nv">product</span> <span class="nv">of</span> <span class="nv">direction</span> <span class="nv">vector</span> <span class="nv">with</span> 
+      <span class="nv">unit</span> <span class="nv">orentation</span> <span class="nv">vector</span>
 </code></pre></div>
                 
               

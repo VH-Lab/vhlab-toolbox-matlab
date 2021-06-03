@@ -3213,6 +3213,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../%2Bgit/git_stash.m/" class="md-nav__link">
+        vlt.git.git_stash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../%2Bgit/git_status.m/" class="md-nav__link">
         vlt.git.git_status
       </a>
@@ -9237,30 +9249,31 @@
                 
                 
                 <h1 id="vltuidlg2struct">vlt.ui.dlg2struct<a class="headerlink" href="#vltuidlg2struct" title="Permanent link">&para;</a></h1>
-<p>DLG2STRUCT - Have a user fill in a structure with values</p>
-<div class="codehilite"><pre><span></span><code><span class="nt">S</span> <span class="o">=</span> <span class="nt">vlt</span><span class="p">.</span><span class="nc">ui</span><span class="p">.</span><span class="nc">dlg2struct</span><span class="o">(</span><span class="nt">WINDOWNAME</span><span class="o">,</span> <span class="nt">FN</span><span class="o">,</span> <span class="nt">DESCRIPTIONS</span><span class="o">,</span> <span class="nt">DEFAULTS</span><span class="o">)</span>
+<div class="codehilite"><pre><span></span><code>  <span class="nt">DLG2STRUCT</span> <span class="nt">-</span> <span class="nt">Have</span> <span class="nt">a</span> <span class="nt">user</span> <span class="nt">fill</span> <span class="nt">in</span> <span class="nt">a</span> <span class="nt">structure</span> <span class="nt">with</span> <span class="nt">values</span>
 
-<span class="nt">Prompts</span> <span class="nt">a</span> <span class="nt">user</span> <span class="nt">to</span> <span class="nt">fill</span> <span class="nt">in</span> <span class="nt">a</span> <span class="nt">structure</span> <span class="nt">with</span> <span class="nt">INPUTDLG</span><span class="o">.</span>
-<span class="nt">The</span> <span class="nt">fieldnames</span> <span class="nt">of</span> <span class="nt">the</span> <span class="nt">structure</span> <span class="nt">should</span> <span class="nt">be</span> <span class="nt">in</span> <span class="nt">the</span> <span class="nt">cell</span>
-<span class="nt">array</span> <span class="nt">of</span> <span class="nt">strings</span> <span class="nt">FN</span><span class="o">,</span> <span class="nt">and</span> <span class="nt">the</span> <span class="nt">human-readable</span> <span class="nt">descriptions</span>
-<span class="nt">of</span> <span class="nt">each</span> <span class="nt">field</span> <span class="nt">should</span> <span class="nt">be</span> <span class="nt">in</span> <span class="nt">the</span> <span class="nt">cell</span> <span class="nt">array</span> <span class="nt">of</span> <span class="nt">strings</span> <span class="nt">DESCRIPTIONS</span><span class="o">.</span>
-<span class="nt">Default</span> <span class="nt">values</span> <span class="nt">for</span> <span class="nt">each</span> <span class="nt">value</span> <span class="nt">should</span> <span class="nt">be</span> <span class="nt">the</span> <span class="nt">cell</span> <span class="nt">array</span> <span class="nt">DEFAULTS</span><span class="o">.</span>
-<span class="nt">Alternatively</span><span class="o">,</span> <span class="nt">DEFAULTS</span> <span class="nt">can</span> <span class="nt">be</span> <span class="nt">a</span> <span class="nt">structure</span> <span class="nt">with</span> <span class="nt">field</span> <span class="nt">names</span> <span class="nt">that</span> 
-<span class="nt">match</span> <span class="nt">those</span> <span class="nt">in</span> <span class="nt">FN</span><span class="o">.</span>
+    <span class="nt">S</span> <span class="o">=</span> <span class="nt">vlt</span><span class="p">.</span><span class="nc">ui</span><span class="p">.</span><span class="nc">dlg2struct</span><span class="o">(</span><span class="nt">WINDOWNAME</span><span class="o">,</span> <span class="nt">FN</span><span class="o">,</span> <span class="nt">DESCRIPTIONS</span><span class="o">,</span> <span class="nt">DEFAULTS</span><span class="o">)</span>
 
-<span class="nt">The</span> <span class="nt">dialog</span> <span class="nt">window</span> <span class="nt">will</span> <span class="nt">have</span> <span class="nt">a</span> <span class="nt">name</span> <span class="nt">WINDOWNAME</span><span class="o">.</span>
+    <span class="nt">Prompts</span> <span class="nt">a</span> <span class="nt">user</span> <span class="nt">to</span> <span class="nt">fill</span> <span class="nt">in</span> <span class="nt">a</span> <span class="nt">structure</span> <span class="nt">with</span> <span class="nt">INPUTDLG</span><span class="o">.</span>
+    <span class="nt">The</span> <span class="nt">fieldnames</span> <span class="nt">of</span> <span class="nt">the</span> <span class="nt">structure</span> <span class="nt">should</span> <span class="nt">be</span> <span class="nt">in</span> <span class="nt">the</span> <span class="nt">cell</span>
+    <span class="nt">array</span> <span class="nt">of</span> <span class="nt">strings</span> <span class="nt">FN</span><span class="o">,</span> <span class="nt">and</span> <span class="nt">the</span> <span class="nt">human-readable</span> <span class="nt">descriptions</span>
+    <span class="nt">of</span> <span class="nt">each</span> <span class="nt">field</span> <span class="nt">should</span> <span class="nt">be</span> <span class="nt">in</span> <span class="nt">the</span> <span class="nt">cell</span> <span class="nt">array</span> <span class="nt">of</span> <span class="nt">strings</span> <span class="nt">DESCRIPTIONS</span><span class="o">.</span>
+    <span class="nt">Default</span> <span class="nt">values</span> <span class="nt">for</span> <span class="nt">each</span> <span class="nt">value</span> <span class="nt">should</span> <span class="nt">be</span> <span class="nt">the</span> <span class="nt">cell</span> <span class="nt">array</span> <span class="nt">DEFAULTS</span><span class="o">.</span>
+    <span class="nt">Alternatively</span><span class="o">,</span> <span class="nt">DEFAULTS</span> <span class="nt">can</span> <span class="nt">be</span> <span class="nt">a</span> <span class="nt">structure</span> <span class="nt">with</span> <span class="nt">field</span> <span class="nt">names</span> <span class="nt">that</span> 
+    <span class="nt">match</span> <span class="nt">those</span> <span class="nt">in</span> <span class="nt">FN</span><span class="o">.</span>
 
-<span class="nt">S</span> <span class="nt">will</span> <span class="nt">be</span> <span class="nt">a</span> <span class="nt">struct</span> <span class="nt">with</span> <span class="nt">fields</span> <span class="nt">FN</span><span class="o">.</span> <span class="nt">If</span> <span class="nt">the</span> <span class="nt">user</span> <span class="nt">clicks</span> <span class="nt">cancel</span><span class="o">,</span> <span class="nt">then</span>
-<span class="nt">S</span> <span class="nt">will</span> <span class="nt">be</span> <span class="nt">empty</span> <span class="o">(</span><span class="cp">[]</span><span class="o">).</span>
+    <span class="nt">The</span> <span class="nt">dialog</span> <span class="nt">window</span> <span class="nt">will</span> <span class="nt">have</span> <span class="nt">a</span> <span class="nt">name</span> <span class="nt">WINDOWNAME</span><span class="o">.</span>
 
-<span class="nt">This</span> <span class="nt">function</span> <span class="nt">is</span> <span class="nt">only</span> <span class="nt">appropriate</span> <span class="nt">for</span> <span class="nt">simple</span> <span class="nt">structure</span> <span class="nt">values</span>
-<span class="nt">such</span> <span class="nt">as</span> <span class="nt">numbers</span> <span class="nt">and</span> <span class="nt">strings</span><span class="o">.</span>
+    <span class="nt">S</span> <span class="nt">will</span> <span class="nt">be</span> <span class="nt">a</span> <span class="nt">struct</span> <span class="nt">with</span> <span class="nt">fields</span> <span class="nt">FN</span><span class="o">.</span> <span class="nt">If</span> <span class="nt">the</span> <span class="nt">user</span> <span class="nt">clicks</span> <span class="nt">cancel</span><span class="o">,</span> <span class="nt">then</span>
+    <span class="nt">S</span> <span class="nt">will</span> <span class="nt">be</span> <span class="nt">empty</span> <span class="o">(</span><span class="cp">[]</span><span class="o">).</span>
 
-<span class="nt">Example</span><span class="o">:</span>
-   <span class="nt">mystruct</span><span class="p">.</span><span class="nc">a</span> <span class="o">=</span> <span class="nt">5</span><span class="o">;</span>
-   <span class="nt">mystruct</span><span class="p">.</span><span class="nc">b</span> <span class="o">=</span> <span class="nt">1</span><span class="o">;</span>
-   <span class="nt">desc</span> <span class="o">=</span> <span class="p">{</span><span class="err">&#39;Favorite</span> <span class="err">number</span> <span class="err">(1-10)&#39;,</span> <span class="err">&#39;2nd</span> <span class="err">favorite</span> <span class="err">number</span> <span class="err">(1-10)&#39;</span><span class="p">}</span><span class="o">;</span>
-   <span class="nt">s</span> <span class="o">=</span> <span class="nt">vlt</span><span class="p">.</span><span class="nc">ui</span><span class="p">.</span><span class="nc">dlg2struct</span><span class="o">(</span><span class="s1">&#39;Favorite numbers&#39;</span><span class="o">,</span><span class="nt">fieldnames</span><span class="o">(</span><span class="nt">mystruct</span><span class="o">),</span><span class="nt">desc</span><span class="o">,</span><span class="nt">mystruct</span><span class="o">);</span>
+    <span class="nt">This</span> <span class="nt">function</span> <span class="nt">is</span> <span class="nt">only</span> <span class="nt">appropriate</span> <span class="nt">for</span> <span class="nt">simple</span> <span class="nt">structure</span> <span class="nt">values</span>
+    <span class="nt">such</span> <span class="nt">as</span> <span class="nt">numbers</span> <span class="nt">and</span> <span class="nt">strings</span><span class="o">.</span>
+
+    <span class="nt">Example</span><span class="o">:</span>
+       <span class="nt">mystruct</span><span class="p">.</span><span class="nc">a</span> <span class="o">=</span> <span class="nt">5</span><span class="o">;</span>
+       <span class="nt">mystruct</span><span class="p">.</span><span class="nc">b</span> <span class="o">=</span> <span class="nt">1</span><span class="o">;</span>
+       <span class="nt">desc</span> <span class="o">=</span> <span class="p">{</span><span class="err">&#39;Favorite</span> <span class="err">number</span> <span class="err">(1-10)&#39;,</span> <span class="err">&#39;2nd</span> <span class="err">favorite</span> <span class="err">number</span> <span class="err">(1-10)&#39;</span><span class="p">}</span><span class="o">;</span>
+       <span class="nt">s</span> <span class="o">=</span> <span class="nt">vlt</span><span class="p">.</span><span class="nc">ui</span><span class="p">.</span><span class="nc">dlg2struct</span><span class="o">(</span><span class="s1">&#39;Favorite numbers&#39;</span><span class="o">,</span><span class="nt">fieldnames</span><span class="o">(</span><span class="nt">mystruct</span><span class="o">),</span><span class="nt">desc</span><span class="o">,</span><span class="nt">mystruct</span><span class="o">);</span>
 </code></pre></div>
                 
               

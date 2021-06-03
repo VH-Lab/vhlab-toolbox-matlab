@@ -3213,6 +3213,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../%2Bgit/git_stash.m/" class="md-nav__link">
+        vlt.git.git_stash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../%2Bgit/git_status.m/" class="md-nav__link">
         vlt.git.git_status
       </a>
@@ -9237,32 +9249,33 @@
                 
                 
                 <h1 id="vltplotscatterplot">vlt.plot.scatterplot<a class="headerlink" href="#vltplotscatterplot" title="Permanent link">&para;</a></h1>
-<p>SCATTERPLOT -- plot data points</p>
-<div class="codehilite"><pre><span></span><code><span class="nv">vlt</span>.<span class="nv">plot</span>.<span class="nv">scatterplot</span> <span class="ss">(</span><span class="nv">X</span><span class="ss">)</span> <span class="nv">draws</span> <span class="nv">a</span> <span class="nv">scatter</span> <span class="nv">plot</span> <span class="nv">with</span> <span class="nv">a</span> <span class="nv">dot</span> <span class="k">for</span> <span class="nv">each</span> <span class="nv">row</span>
-<span class="nv">in</span> <span class="nv">X</span>.  <span class="k">If</span> <span class="nv">X</span> <span class="nv">has</span> <span class="nv">more</span> <span class="nv">than</span> <span class="nv">two</span> <span class="nv">columns</span> <span class="k">then</span> <span class="nv">each</span> <span class="nv">dimension</span> <span class="nv">is</span>
-<span class="nv">plotted</span> <span class="nv">against</span> <span class="nv">each</span> <span class="nv">other</span> <span class="nv">one</span> <span class="nv">to</span> <span class="nv">form</span> <span class="nv">a</span> <span class="nv">triangular</span> <span class="nv">set</span> <span class="nv">of</span>
-<span class="nv">subplots</span> <span class="nv">in</span> <span class="nv">the</span> <span class="nv">current</span> <span class="nv">figure</span>.
+<div class="codehilite"><pre><span></span><code>  <span class="nv">SCATTERPLOT</span> <span class="o">--</span> <span class="nv">plot</span> <span class="nv">data</span> <span class="nv">points</span>
 
-<span class="nv">OPTIONS</span>:
+    <span class="nv">vlt</span>.<span class="nv">plot</span>.<span class="nv">scatterplot</span> <span class="ss">(</span><span class="nv">X</span><span class="ss">)</span> <span class="nv">draws</span> <span class="nv">a</span> <span class="nv">scatter</span> <span class="nv">plot</span> <span class="nv">with</span> <span class="nv">a</span> <span class="nv">dot</span> <span class="k">for</span> <span class="nv">each</span> <span class="nv">row</span>
+    <span class="nv">in</span> <span class="nv">X</span>.  <span class="k">If</span> <span class="nv">X</span> <span class="nv">has</span> <span class="nv">more</span> <span class="nv">than</span> <span class="nv">two</span> <span class="nv">columns</span> <span class="k">then</span> <span class="nv">each</span> <span class="nv">dimension</span> <span class="nv">is</span>
+    <span class="nv">plotted</span> <span class="nv">against</span> <span class="nv">each</span> <span class="nv">other</span> <span class="nv">one</span> <span class="nv">to</span> <span class="nv">form</span> <span class="nv">a</span> <span class="nv">triangular</span> <span class="nv">set</span> <span class="nv">of</span>
+    <span class="nv">subplots</span> <span class="nv">in</span> <span class="nv">the</span> <span class="nv">current</span> <span class="nv">figure</span>.
 
-<span class="s1">&#39;</span><span class="s">class</span><span class="s1">&#39;</span>     <span class="o">-</span> <span class="nv">vector</span> <span class="nv">containing</span> <span class="nv">a</span> <span class="nv">class</span> <span class="nv">label</span> <span class="k">for</span> <span class="nv">each</span>
-          <span class="nv">point</span>.  <span class="k">If</span> <span class="nv">any</span> <span class="ss">(</span><span class="nv">or</span> <span class="nv">all</span><span class="ss">)</span> <span class="nv">of</span> <span class="nv">markercolor</span>,
-          <span class="nv">markersize</span> <span class="nv">or</span> <span class="nv">markerstyle</span> <span class="nv">are</span> <span class="nv">cell</span> <span class="nv">arrays</span>
-          <span class="nv">the</span> <span class="nv">label</span> <span class="nv">is</span> <span class="nv">used</span> <span class="nv">to</span> <span class="nv">index</span> <span class="nv">the</span> <span class="nv">cell</span> <span class="nv">array</span> <span class="nv">to</span>
-          <span class="nv">set</span> <span class="nv">the</span> <span class="nv">marker</span> <span class="nv">appearance</span>.
-<span class="s1">&#39;</span><span class="s">color</span><span class="s1">&#39;</span>     <span class="o">-</span> <span class="nv">color</span> <span class="k">for</span> <span class="nv">marker</span> <span class="nv">border</span> <span class="nv">and</span> <span class="nv">fill</span> <span class="ss">(</span><span class="k">if</span> <span class="nv">used</span><span class="ss">)</span>.
-          <span class="nv">Defaults</span> <span class="nv">to</span> <span class="nv">cell</span> <span class="nv">array</span> <span class="nv">of</span> <span class="s1">&#39;</span><span class="s">ColorOrder</span><span class="s1">&#39;</span>
-          <span class="nv">property</span> <span class="nv">of</span> <span class="nv">axes</span>. 
-<span class="s1">&#39;</span><span class="s">fill</span><span class="s1">&#39;</span>      <span class="o">-</span> <span class="nv">boolean</span> <span class="nv">indicating</span> <span class="nv">whether</span> <span class="nv">to</span> <span class="nv">fill</span> <span class="nv">marker</span>
-<span class="s1">&#39;</span><span class="s">marker</span><span class="s1">&#39;</span>    <span class="o">-</span> <span class="nv">marker</span> <span class="nv">symbol</span> <span class="nv">to</span> <span class="nv">use</span>
-<span class="s1">&#39;</span><span class="s">markeredgecolor</span><span class="s1">&#39;</span> <span class="o">-</span> <span class="nv">color</span> <span class="k">for</span> <span class="nv">marker</span> <span class="nv">border</span>: <span class="nv">may</span> <span class="nv">be</span> <span class="nv">a</span> <span class="nv">string</span>
-          <span class="nv">or</span> [<span class="nv">r</span>,<span class="nv">g</span>,<span class="nv">b</span>] <span class="nv">vector</span> 
-<span class="s1">&#39;</span><span class="s">markerfacecolor</span><span class="s1">&#39;</span> <span class="o">-</span> <span class="nv">color</span> <span class="k">for</span> <span class="nv">marker</span> <span class="nv">fill</span>: <span class="nv">may</span> <span class="nv">be</span> <span class="nv">a</span> <span class="nv">string</span>
-          <span class="nv">or</span> [<span class="nv">r</span>,<span class="nv">g</span>,<span class="nv">b</span>] <span class="nv">vector</span>
-<span class="s1">&#39;</span><span class="s">markersize</span><span class="s1">&#39;</span>    <span class="o">-</span> <span class="nv">marker</span> <span class="nv">size</span> <span class="ss">(</span><span class="nv">default</span> <span class="nv">is</span> <span class="mi">1</span><span class="ss">)</span>
-<span class="s1">&#39;</span><span class="s">projection</span><span class="s1">&#39;</span>    <span class="o">-</span> <span class="nv">plot</span> <span class="nv">only</span> <span class="nv">the</span> <span class="nv">specified</span> <span class="nv">dimensions</span>
-<span class="s1">&#39;</span><span class="s">shrink</span><span class="s1">&#39;</span>    <span class="o">-</span> <span class="nv">resize</span> <span class="nv">the</span> <span class="nv">axes</span> <span class="nv">to</span> <span class="nv">exactly</span> <span class="nv">surround</span>
-          <span class="nv">the</span> <span class="nv">points</span> <span class="ss">(</span><span class="nv">on</span> <span class="nv">by</span> <span class="nv">default</span><span class="ss">)</span>
+    <span class="nv">OPTIONS</span>:
+
+    <span class="s1">&#39;</span><span class="s">class</span><span class="s1">&#39;</span>     <span class="o">-</span> <span class="nv">vector</span> <span class="nv">containing</span> <span class="nv">a</span> <span class="nv">class</span> <span class="nv">label</span> <span class="k">for</span> <span class="nv">each</span>
+              <span class="nv">point</span>.  <span class="k">If</span> <span class="nv">any</span> <span class="ss">(</span><span class="nv">or</span> <span class="nv">all</span><span class="ss">)</span> <span class="nv">of</span> <span class="nv">markercolor</span>,
+              <span class="nv">markersize</span> <span class="nv">or</span> <span class="nv">markerstyle</span> <span class="nv">are</span> <span class="nv">cell</span> <span class="nv">arrays</span>
+              <span class="nv">the</span> <span class="nv">label</span> <span class="nv">is</span> <span class="nv">used</span> <span class="nv">to</span> <span class="nv">index</span> <span class="nv">the</span> <span class="nv">cell</span> <span class="nv">array</span> <span class="nv">to</span>
+              <span class="nv">set</span> <span class="nv">the</span> <span class="nv">marker</span> <span class="nv">appearance</span>.
+    <span class="s1">&#39;</span><span class="s">color</span><span class="s1">&#39;</span>     <span class="o">-</span> <span class="nv">color</span> <span class="k">for</span> <span class="nv">marker</span> <span class="nv">border</span> <span class="nv">and</span> <span class="nv">fill</span> <span class="ss">(</span><span class="k">if</span> <span class="nv">used</span><span class="ss">)</span>.
+              <span class="nv">Defaults</span> <span class="nv">to</span> <span class="nv">cell</span> <span class="nv">array</span> <span class="nv">of</span> <span class="s1">&#39;</span><span class="s">ColorOrder</span><span class="s1">&#39;</span>
+              <span class="nv">property</span> <span class="nv">of</span> <span class="nv">axes</span>. 
+    <span class="s1">&#39;</span><span class="s">fill</span><span class="s1">&#39;</span>      <span class="o">-</span> <span class="nv">boolean</span> <span class="nv">indicating</span> <span class="nv">whether</span> <span class="nv">to</span> <span class="nv">fill</span> <span class="nv">marker</span>
+    <span class="s1">&#39;</span><span class="s">marker</span><span class="s1">&#39;</span>    <span class="o">-</span> <span class="nv">marker</span> <span class="nv">symbol</span> <span class="nv">to</span> <span class="nv">use</span>
+    <span class="s1">&#39;</span><span class="s">markeredgecolor</span><span class="s1">&#39;</span> <span class="o">-</span> <span class="nv">color</span> <span class="k">for</span> <span class="nv">marker</span> <span class="nv">border</span>: <span class="nv">may</span> <span class="nv">be</span> <span class="nv">a</span> <span class="nv">string</span>
+              <span class="nv">or</span> [<span class="nv">r</span>,<span class="nv">g</span>,<span class="nv">b</span>] <span class="nv">vector</span> 
+    <span class="s1">&#39;</span><span class="s">markerfacecolor</span><span class="s1">&#39;</span> <span class="o">-</span> <span class="nv">color</span> <span class="k">for</span> <span class="nv">marker</span> <span class="nv">fill</span>: <span class="nv">may</span> <span class="nv">be</span> <span class="nv">a</span> <span class="nv">string</span>
+              <span class="nv">or</span> [<span class="nv">r</span>,<span class="nv">g</span>,<span class="nv">b</span>] <span class="nv">vector</span>
+    <span class="s1">&#39;</span><span class="s">markersize</span><span class="s1">&#39;</span>    <span class="o">-</span> <span class="nv">marker</span> <span class="nv">size</span> <span class="ss">(</span><span class="nv">default</span> <span class="nv">is</span> <span class="mi">1</span><span class="ss">)</span>
+    <span class="s1">&#39;</span><span class="s">projection</span><span class="s1">&#39;</span>    <span class="o">-</span> <span class="nv">plot</span> <span class="nv">only</span> <span class="nv">the</span> <span class="nv">specified</span> <span class="nv">dimensions</span>
+    <span class="s1">&#39;</span><span class="s">shrink</span><span class="s1">&#39;</span>    <span class="o">-</span> <span class="nv">resize</span> <span class="nv">the</span> <span class="nv">axes</span> <span class="nv">to</span> <span class="nv">exactly</span> <span class="nv">surround</span>
+              <span class="nv">the</span> <span class="nv">points</span> <span class="ss">(</span><span class="nv">on</span> <span class="nv">by</span> <span class="nv">default</span><span class="ss">)</span>
 </code></pre></div>
                 
               

@@ -3225,6 +3225,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../%2Bgit/git_stash.m/" class="md-nav__link">
+        vlt.git.git_stash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../%2Bgit/git_status.m/" class="md-nav__link">
         vlt.git.git_status
       </a>
@@ -9237,39 +9249,49 @@
                 
                 
                 <h1 id="vltdatastruct2mlstr">vlt.data.struct2mlstr<a class="headerlink" href="#vltdatastruct2mlstr" title="Permanent link">&para;</a></h1>
-<p>STRUCT2MLSTR - Create a text string to fully characterize a structure</p>
-<p>STR = vlt.data.struct2mlstr(THESTRUCT)</p>
-<p>Produces a string representation of a structure that can be passed to
-   an external program to fully encapsulate the structure.  Character strings
-   are written directly, integers are written using MAT2STR, 
-   numbers are written using MAT2STR, cells are written using vlt.data.cell2mlstr.
-   Any other objects are written using the function DISP.</p>
-<p>The structure is written in the following way:
-   &lt;STRUCT size=[X Y Z ...] fields={ 'fieldname1','fieldname2',...} data=
-        &lt;<value1><value2>...<valuen>&gt;
-        &lt;<value1><value2>...<valuen>&gt;
-   /STRUCT&gt;</p>
-<p>where X,Y,Z are the dimension of the structure array
-   fieldname1, fieldname2, etc. are the fieldnames of the structure, and
-   data contains the data for each struct entry, inside &lt; and &gt;.  Within each data,
-   values for each field separated with &lt; and &gt; characters.
-   /STRUCT ends the structure.</p>
-<p>Newline characters are produced after 'data=' and after each variable entry
-   ('\n').</p>
-<p>The default parameters may be overridden by passing NAME/VALUE
-   pairs as additional arguments, as in:</p>
-<div class="codehilite"><pre><span></span><code>STR = vlt.data.struct2mlstr(THESTRUCT, &#39;NAME1&#39;, VALUE1,...)
-</code></pre></div>
+<div class="codehilite"><pre><span></span><code>  <span class="n">STRUCT2MLSTR</span> <span class="o">-</span> <span class="n">Create</span> <span class="n">a</span> <span class="n">text</span> <span class="n">string</span> <span class="n">to</span> <span class="n">fully</span> <span class="n">characterize</span> <span class="n">a</span> <span class="n">structure</span>
 
-<p>Parameters:             | Description</p>
-<hr />
-<p>precision               | Precision we should use for mat2str (default 15)
-                           |    (this is the number of digits we should use)
-   varname                 | Variable name, entered before data= line as name=
-   indent                  | Indentation (default 0)
-   indentshift             | How much to indent sub-structures (default 5)</p>
-<p>Consider also: JSONENCODE, JSONDECODE</p>
-<p>See also: vlt.data.mlstr2var, vlt.data.cell2mlstr, vlt.data.struct2str, JSONENCODE</p>
+   <span class="n">STR</span> <span class="o">=</span> <span class="n">vlt</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">struct2mlstr</span><span class="p">(</span><span class="n">THESTRUCT</span><span class="p">)</span>
+
+   <span class="n">Produces</span> <span class="n">a</span> <span class="n">string</span> <span class="n">representation</span> <span class="n">of</span> <span class="n">a</span> <span class="n">structure</span> <span class="n">that</span> <span class="n">can</span> <span class="n">be</span> <span class="n">passed</span> <span class="n">to</span>
+   <span class="n">an</span> <span class="n">external</span> <span class="n">program</span> <span class="n">to</span> <span class="n">fully</span> <span class="n">encapsulate</span> <span class="n">the</span> <span class="n">structure</span><span class="o">.</span>  <span class="n">Character</span> <span class="n">strings</span>
+   <span class="n">are</span> <span class="n">written</span> <span class="n">directly</span><span class="p">,</span> <span class="n">integers</span> <span class="n">are</span> <span class="n">written</span> <span class="n">using</span> <span class="n">MAT2STR</span><span class="p">,</span> 
+   <span class="n">numbers</span> <span class="n">are</span> <span class="n">written</span> <span class="n">using</span> <span class="n">MAT2STR</span><span class="p">,</span> <span class="n">cells</span> <span class="n">are</span> <span class="n">written</span> <span class="n">using</span> <span class="n">vlt</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">cell2mlstr</span><span class="o">.</span>
+   <span class="n">Any</span> <span class="n">other</span> <span class="n">objects</span> <span class="n">are</span> <span class="n">written</span> <span class="n">using</span> <span class="n">the</span> <span class="n">function</span> <span class="n">DISP</span><span class="o">.</span>
+
+   <span class="n">The</span> <span class="n">structure</span> <span class="k">is</span> <span class="n">written</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">following</span> <span class="n">way</span><span class="p">:</span>
+   <span class="o">&lt;</span><span class="n">STRUCT</span> <span class="n">size</span><span class="o">=</span><span class="p">[</span><span class="n">X</span> <span class="n">Y</span> <span class="n">Z</span> <span class="o">...</span><span class="p">]</span> <span class="n">fields</span><span class="o">=</span><span class="p">{</span> <span class="s1">&#39;fieldname1&#39;</span><span class="p">,</span><span class="s1">&#39;fieldname2&#39;</span><span class="p">,</span><span class="o">...</span><span class="p">}</span> <span class="n">data</span><span class="o">=</span>
+        <span class="o">&lt;&lt;</span><span class="n">value1</span><span class="o">&gt;&lt;</span><span class="n">value2</span><span class="o">&gt;...&lt;</span><span class="n">valuen</span><span class="o">&gt;&gt;</span>
+        <span class="o">&lt;&lt;</span><span class="n">value1</span><span class="o">&gt;&lt;</span><span class="n">value2</span><span class="o">&gt;...&lt;</span><span class="n">valuen</span><span class="o">&gt;&gt;</span>
+   <span class="o">/</span><span class="n">STRUCT</span><span class="o">&gt;</span>
+
+   <span class="n">where</span> <span class="n">X</span><span class="p">,</span><span class="n">Y</span><span class="p">,</span><span class="n">Z</span> <span class="n">are</span> <span class="n">the</span> <span class="n">dimension</span> <span class="n">of</span> <span class="n">the</span> <span class="n">structure</span> <span class="n">array</span>
+   <span class="n">fieldname1</span><span class="p">,</span> <span class="n">fieldname2</span><span class="p">,</span> <span class="n">etc</span><span class="o">.</span> <span class="n">are</span> <span class="n">the</span> <span class="n">fieldnames</span> <span class="n">of</span> <span class="n">the</span> <span class="n">structure</span><span class="p">,</span> <span class="ow">and</span>
+   <span class="n">data</span> <span class="n">contains</span> <span class="n">the</span> <span class="n">data</span> <span class="k">for</span> <span class="n">each</span> <span class="n">struct</span> <span class="n">entry</span><span class="p">,</span> <span class="n">inside</span> <span class="o">&lt;</span> <span class="ow">and</span> <span class="o">&gt;.</span>  <span class="n">Within</span> <span class="n">each</span> <span class="n">data</span><span class="p">,</span>
+   <span class="n">values</span> <span class="k">for</span> <span class="n">each</span> <span class="n">field</span> <span class="n">separated</span> <span class="n">with</span> <span class="o">&lt;</span> <span class="ow">and</span> <span class="o">&gt;</span> <span class="n">characters</span><span class="o">.</span>
+   <span class="o">/</span><span class="n">STRUCT</span> <span class="n">ends</span> <span class="n">the</span> <span class="n">structure</span><span class="o">.</span>
+
+   <span class="n">Newline</span> <span class="n">characters</span> <span class="n">are</span> <span class="n">produced</span> <span class="n">after</span> <span class="s1">&#39;data=&#39;</span> <span class="ow">and</span> <span class="n">after</span> <span class="n">each</span> <span class="n">variable</span> <span class="n">entry</span>
+   <span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span><span class="o">.</span>
+
+   <span class="n">The</span> <span class="n">default</span> <span class="n">parameters</span> <span class="n">may</span> <span class="n">be</span> <span class="n">overridden</span> <span class="n">by</span> <span class="n">passing</span> <span class="n">NAME</span><span class="o">/</span><span class="n">VALUE</span>
+   <span class="n">pairs</span> <span class="k">as</span> <span class="n">additional</span> <span class="n">arguments</span><span class="p">,</span> <span class="k">as</span> <span class="ow">in</span><span class="p">:</span>
+
+    <span class="n">STR</span> <span class="o">=</span> <span class="n">vlt</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">struct2mlstr</span><span class="p">(</span><span class="n">THESTRUCT</span><span class="p">,</span> <span class="s1">&#39;NAME1&#39;</span><span class="p">,</span> <span class="n">VALUE1</span><span class="p">,</span><span class="o">...</span><span class="p">)</span>
+
+   <span class="n">Parameters</span><span class="p">:</span>             <span class="o">|</span> <span class="n">Description</span>
+   <span class="o">---------------------------------------------------------------</span>
+   <span class="n">precision</span>               <span class="o">|</span> <span class="n">Precision</span> <span class="n">we</span> <span class="n">should</span> <span class="n">use</span> <span class="k">for</span> <span class="n">mat2str</span> <span class="p">(</span><span class="n">default</span> <span class="mi">15</span><span class="p">)</span>
+                           <span class="o">|</span>    <span class="p">(</span><span class="n">this</span> <span class="k">is</span> <span class="n">the</span> <span class="n">number</span> <span class="n">of</span> <span class="n">digits</span> <span class="n">we</span> <span class="n">should</span> <span class="n">use</span><span class="p">)</span>
+   <span class="n">varname</span>                 <span class="o">|</span> <span class="n">Variable</span> <span class="n">name</span><span class="p">,</span> <span class="n">entered</span> <span class="n">before</span> <span class="n">data</span><span class="o">=</span> <span class="n">line</span> <span class="k">as</span> <span class="n">name</span><span class="o">=</span>
+   <span class="n">indent</span>                  <span class="o">|</span> <span class="n">Indentation</span> <span class="p">(</span><span class="n">default</span> <span class="mi">0</span><span class="p">)</span>
+   <span class="n">indentshift</span>             <span class="o">|</span> <span class="n">How</span> <span class="n">much</span> <span class="n">to</span> <span class="n">indent</span> <span class="n">sub</span><span class="o">-</span><span class="n">structures</span> <span class="p">(</span><span class="n">default</span> <span class="mi">5</span><span class="p">)</span>
+
+
+   <span class="n">Consider</span> <span class="n">also</span><span class="p">:</span> <span class="n">JSONENCODE</span><span class="p">,</span> <span class="n">JSONDECODE</span>
+
+   <span class="n">See</span> <span class="n">also</span><span class="p">:</span> <span class="n">vlt</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">mlstr2var</span><span class="p">,</span> <span class="n">vlt</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">cell2mlstr</span><span class="p">,</span> <span class="n">vlt</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">struct2str</span><span class="p">,</span> <span class="n">JSONENCODE</span>
+</code></pre></div>
                 
               
               

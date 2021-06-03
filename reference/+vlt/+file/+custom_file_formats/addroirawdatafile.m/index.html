@@ -3227,6 +3227,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../../%2Bgit/git_stash.m/" class="md-nav__link">
+        vlt.git.git_stash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../../%2Bgit/git_status.m/" class="md-nav__link">
         vlt.git.git_status
       </a>
@@ -9239,24 +9251,29 @@
                 
                 
                 <h1 id="vltfilecustom_file_formatsaddroirawdatafile">vlt.file.custom_file_formats.addroirawdatafile<a class="headerlink" href="#vltfilecustom_file_formatsaddroirawdatafile" title="Permanent link">&para;</a></h1>
-<p>ADDVHLSPIKEWAVEFORMFILE - Add waveforms to a VHL spike waveform file</p>
-<div class="codehilite"><pre><span></span><code>******NOT FUNCTIONAL YET*********
+<div class="codehilite"><pre><span></span><code>   <span class="nv">ADDVHLSPIKEWAVEFORMFILE</span> <span class="o">-</span> <span class="nv">Add</span> <span class="nv">waveforms</span> <span class="nv">to</span> <span class="nv">a</span> <span class="nv">VHL</span> <span class="nv">spike</span> <span class="nv">waveform</span> <span class="nv">file</span>
 
- vlt.file.custom_file_formats.addvhlspikewaveformfile(FID_OR_FILENAME, WAVEFORMS)
+    <span class="o">******</span><span class="nv">NOT</span> <span class="nv">FUNCTIONAL</span> <span class="nv">YET</span><span class="o">*********</span>
+
+     <span class="nv">vlt</span>.<span class="nv">file</span>.<span class="nv">custom_file_formats</span>.<span class="nv">addvhlspikewaveformfile</span><span class="ss">(</span><span class="nv">FID_OR_FILENAME</span>, <span class="nv">WAVEFORMS</span><span class="ss">)</span>
+
+   <span class="nv">Add</span> <span class="nv">waveform</span> <span class="nv">data</span> <span class="nv">to</span> <span class="nv">a</span> <span class="nv">VHL</span> <span class="nv">spike</span> <span class="nv">waveform</span> <span class="nv">file</span>.
+
+   <span class="k">If</span> <span class="nv">an</span> <span class="nv">open</span> <span class="nv">FID</span> <span class="ss">(</span><span class="nv">file</span> <span class="nv">identifier</span><span class="ss">)</span> <span class="nv">is</span> <span class="nv">passed</span>, <span class="k">then</span> <span class="nv">the</span> <span class="nv">data</span> <span class="nv">is</span> 
+   <span class="nv">written</span> <span class="nv">to</span> <span class="nv">that</span> <span class="nv">file</span>.  <span class="nv">Note</span> <span class="nv">that</span> <span class="nv">in</span> <span class="nv">this</span> <span class="nv">case</span> <span class="nv">no</span> <span class="nv">checking</span> <span class="nv">is</span>
+   <span class="nv">performed</span> <span class="nv">to</span> <span class="nv">make</span> <span class="nv">sure</span> <span class="nv">that</span> <span class="nv">waveform</span> <span class="nv">sizes</span> <span class="nv">correspond</span> <span class="nv">to</span> <span class="nv">what</span>
+   <span class="nv">is</span> <span class="nv">contained</span> <span class="nv">in</span> <span class="nv">the</span> <span class="nv">file</span><span class="s1">&#39;</span><span class="s">s header, so make sure the waveform</span>
+   <span class="nv">sizes</span> <span class="nv">are</span> <span class="nv">accurate</span>.
+
+   <span class="k">If</span> <span class="nv">instead</span> <span class="nv">a</span> <span class="nv">FILENAME</span> <span class="nv">is</span> <span class="nv">passed</span>, <span class="k">then</span> <span class="nv">the</span> <span class="nv">function</span> <span class="nv">attempts</span> <span class="nv">to</span>
+   <span class="nv">open</span> <span class="nv">FILENAME</span> <span class="nv">and</span> <span class="nv">checks</span> <span class="nv">to</span> <span class="nv">make</span> <span class="nv">sure</span> <span class="nv">that</span> <span class="nv">WAVEFORMS</span> <span class="nv">matches</span>
+   <span class="nv">the</span> <span class="nv">header</span> <span class="nv">file</span> <span class="nv">parameters</span>.
+
+   <span class="nv">WAVEFORMS</span> <span class="nv">should</span> <span class="nv">be</span> <span class="nv">a</span> <span class="nv">matrix</span> <span class="nv">of</span> <span class="nv">size</span>:
+        <span class="nv">NUM_SAMPLES</span> <span class="nv">x</span> <span class="nv">NUM_CHANNELS</span> <span class="nv">X</span> <span class="nv">NUM_WAVEFORMS</span>. 
+
+   <span class="nv">See</span> <span class="nv">also</span>:  <span class="nv">vlt</span>.<span class="nv">file</span>.<span class="nv">custom_file_formats</span>.<span class="nv">newvhlspikewaveformfile</span>
 </code></pre></div>
-
-<p>Add waveform data to a VHL spike waveform file.</p>
-<p>If an open FID (file identifier) is passed, then the data is 
-   written to that file.  Note that in this case no checking is
-   performed to make sure that waveform sizes correspond to what
-   is contained in the file's header, so make sure the waveform
-   sizes are accurate.</p>
-<p>If instead a FILENAME is passed, then the function attempts to
-   open FILENAME and checks to make sure that WAVEFORMS matches
-   the header file parameters.</p>
-<p>WAVEFORMS should be a matrix of size:
-        NUM_SAMPLES x NUM_CHANNELS X NUM_WAVEFORMS. </p>
-<p>See also:  vlt.file.custom_file_formats.newvhlspikewaveformfile</p>
                 
               
               

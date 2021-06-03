@@ -3213,6 +3213,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../../../../%2Bgit/git_stash.m/" class="md-nav__link">
+        vlt.git.git_stash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../../../../%2Bgit/git_status.m/" class="md-nav__link">
         vlt.git.git_status
       </a>
@@ -9243,31 +9255,37 @@
                 
                 
                 <h1 id="vltneurovisionoridirindexoridir_vectorindexes">vlt.neuro.vision.oridir.index.oridir_vectorindexes<a class="headerlink" href="#vltneurovisionoridirindexoridir_vectorindexes" title="Permanent link">&para;</a></h1>
-<p>ORIDIR_VECTORINDEX - compute orientation/direction vector indexes</p>
-<p>VI = vlt.neuro.vision.oridir.index.oridir_vectorindexes(RESPSTRUCT)</p>
-<p>Computes orientation/direction index vector values from a response structure RESP.</p>
-<p>RESPSTRUCT is a structure  of response properties with fields:
-   Field    | Description</p>
-<hr />
-<p>curve    |    4xnumber of directions tested,
-            |      curve(1,:) is directions tested (degrees, compass coords.)
-            |      curve(2,:) is mean responses
-            |      curve(3,:) is standard deviation
-            |      curve(4,:) is standard error
-   ind      |    cell list of individual trial responses for each direction</p>
-<p>Returns a structure VI with fields:
-  Field                           | Description</p>
-<hr />
-<p>ot_HotellingT2_p                |   Hotelling's T^2 test of orientation vector data
-  ot_pref                         |   Angle preference in orientation space
-  ot_circularvariance             |   Magnitude of response in orientation space (see Ringach et al. 2002)
-  ot_index                        |   Orientation index ( (pref-orth)/pref) )
-  tuning_width                    |   Vector tuning width (see help vlt.neuro.vision.oridir.index.compute_tuningwidth)
-  dir_HotellingT2_p               |   Hotelling's T^2 test of direction vector data
-  dir_pref                        |   Angle preference in direction space
-  dir_circularvariance            |   Direction index in vector space
-  dir_dotproduct_sig_p            |   P value of dot product direction vector significance
-                                  |     method of Mazurek et al. 2014</p>
+<div class="codehilite"><pre><span></span><code>  <span class="n">ORIDIR_VECTORINDEX</span> <span class="o">-</span> <span class="n">compute</span> <span class="n">orientation</span><span class="o">/</span><span class="n">direction</span> <span class="n">vector</span> <span class="n">indexes</span>
+
+  <span class="n">VI</span> <span class="o">=</span> <span class="n">vlt</span><span class="o">.</span><span class="n">neuro</span><span class="o">.</span><span class="n">vision</span><span class="o">.</span><span class="n">oridir</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">oridir_vectorindexes</span><span class="p">(</span><span class="n">RESPSTRUCT</span><span class="p">)</span>
+
+  <span class="n">Computes</span> <span class="n">orientation</span><span class="o">/</span><span class="n">direction</span> <span class="n">index</span> <span class="n">vector</span> <span class="n">values</span> <span class="n">from</span> <span class="n">a</span> <span class="n">response</span> <span class="n">structure</span> <span class="n">RESP</span><span class="o">.</span>
+
+   <span class="n">RESPSTRUCT</span> <span class="k">is</span> <span class="n">a</span> <span class="n">structure</span>  <span class="n">of</span> <span class="n">response</span> <span class="n">properties</span> <span class="n">with</span> <span class="n">fields</span><span class="p">:</span>
+   <span class="n">Field</span>    <span class="o">|</span> <span class="n">Description</span>
+   <span class="o">-----------------------------------------------------------------------------</span>
+   <span class="n">curve</span>    <span class="o">|</span>    <span class="mi">4</span><span class="n">xnumber</span> <span class="n">of</span> <span class="n">directions</span> <span class="n">tested</span><span class="p">,</span>
+            <span class="o">|</span>      <span class="n">curve</span><span class="p">(</span><span class="mi">1</span><span class="p">,:)</span> <span class="k">is</span> <span class="n">directions</span> <span class="n">tested</span> <span class="p">(</span><span class="n">degrees</span><span class="p">,</span> <span class="n">compass</span> <span class="n">coords</span><span class="o">.</span><span class="p">)</span>
+            <span class="o">|</span>      <span class="n">curve</span><span class="p">(</span><span class="mi">2</span><span class="p">,:)</span> <span class="k">is</span> <span class="n">mean</span> <span class="n">responses</span>
+            <span class="o">|</span>      <span class="n">curve</span><span class="p">(</span><span class="mi">3</span><span class="p">,:)</span> <span class="k">is</span> <span class="n">standard</span> <span class="n">deviation</span>
+            <span class="o">|</span>      <span class="n">curve</span><span class="p">(</span><span class="mi">4</span><span class="p">,:)</span> <span class="k">is</span> <span class="n">standard</span> <span class="n">error</span>
+   <span class="n">ind</span>      <span class="o">|</span>    <span class="n">cell</span> <span class="n">list</span> <span class="n">of</span> <span class="n">individual</span> <span class="n">trial</span> <span class="n">responses</span> <span class="k">for</span> <span class="n">each</span> <span class="n">direction</span>
+
+
+  <span class="n">Returns</span> <span class="n">a</span> <span class="n">structure</span> <span class="n">VI</span> <span class="n">with</span> <span class="n">fields</span><span class="p">:</span>
+  <span class="n">Field</span>                           <span class="o">|</span> <span class="n">Description</span>
+  <span class="o">----------------------------------------------------------------------------------------</span>
+  <span class="n">ot_HotellingT2_p</span>                <span class="o">|</span>   <span class="n">Hotelling</span><span class="s1">&#39;s T^2 test of orientation vector data</span>
+  <span class="n">ot_pref</span>                         <span class="o">|</span>   <span class="n">Angle</span> <span class="n">preference</span> <span class="ow">in</span> <span class="n">orientation</span> <span class="n">space</span>
+  <span class="n">ot_circularvariance</span>             <span class="o">|</span>   <span class="n">Magnitude</span> <span class="n">of</span> <span class="n">response</span> <span class="ow">in</span> <span class="n">orientation</span> <span class="n">space</span> <span class="p">(</span><span class="n">see</span> <span class="n">Ringach</span> <span class="n">et</span> <span class="n">al</span><span class="o">.</span> <span class="mi">2002</span><span class="p">)</span>
+  <span class="n">ot_index</span>                        <span class="o">|</span>   <span class="n">Orientation</span> <span class="n">index</span> <span class="p">(</span> <span class="p">(</span><span class="n">pref</span><span class="o">-</span><span class="n">orth</span><span class="p">)</span><span class="o">/</span><span class="n">pref</span><span class="p">)</span> <span class="p">)</span>
+  <span class="n">tuning_width</span>                    <span class="o">|</span>   <span class="n">Vector</span> <span class="n">tuning</span> <span class="n">width</span> <span class="p">(</span><span class="n">see</span> <span class="n">help</span> <span class="n">vlt</span><span class="o">.</span><span class="n">neuro</span><span class="o">.</span><span class="n">vision</span><span class="o">.</span><span class="n">oridir</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">compute_tuningwidth</span><span class="p">)</span>
+  <span class="n">dir_HotellingT2_p</span>               <span class="o">|</span>   <span class="n">Hotelling</span><span class="s1">&#39;s T^2 test of direction vector data</span>
+  <span class="n">dir_pref</span>                        <span class="o">|</span>   <span class="n">Angle</span> <span class="n">preference</span> <span class="ow">in</span> <span class="n">direction</span> <span class="n">space</span>
+  <span class="n">dir_circularvariance</span>            <span class="o">|</span>   <span class="n">Direction</span> <span class="n">index</span> <span class="ow">in</span> <span class="n">vector</span> <span class="n">space</span>
+  <span class="n">dir_dotproduct_sig_p</span>            <span class="o">|</span>   <span class="n">P</span> <span class="n">value</span> <span class="n">of</span> <span class="n">dot</span> <span class="n">product</span> <span class="n">direction</span> <span class="n">vector</span> <span class="n">significance</span>
+                                  <span class="o">|</span>     <span class="n">method</span> <span class="n">of</span> <span class="n">Mazurek</span> <span class="n">et</span> <span class="n">al</span><span class="o">.</span> <span class="mi">2014</span>
+</code></pre></div>
                 
               
               

@@ -3213,6 +3213,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../%2Bgit/git_stash.m/" class="md-nav__link">
+        vlt.git.git_stash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../%2Bgit/git_status.m/" class="md-nav__link">
         vlt.git.git_status
       </a>
@@ -9237,16 +9249,21 @@
                 
                 
                 <h1 id="vltmathinterval2continuous">vlt.math.interval2continuous<a class="headerlink" href="#vltmathinterval2continuous" title="Permanent link">&para;</a></h1>
-<p>INTERVAL2CONTINUOUS - transform a discrete interval to continuous time at timesteps</p>
-<p>[DATA,T] = vlt.math.interval2continuous(TIMESTAMPS,DATAPOINTS,TRES)</p>
-<p>Transforms a discrete interval function to continuous time.  The function
-  is expressed as a set of TIMESTAMPS and values (DATAPOINTS), where the
-  function takes the value DATAPOINT(i) from TIMESTAMP(i) to TIMESTAMP(i+1).
-  Thus, length(TIMESTAMPS)=length(DATAPOINT)+1.  The data are sampled
-  continuously with sample difference TRES.  The data and sample times are
-  returned in DATA and T, respectively.</p>
-<p>Note: The function vlt.math.stepfunc does the same thing and is easier to understand.</p>
-<p>See also:  vlt.math.stepfunc</p>
+<div class="codehilite"><pre><span></span><code>  <span class="n">INTERVAL2CONTINUOUS</span> <span class="o">-</span> <span class="n">transform</span> <span class="n">a</span> <span class="n">discrete</span> <span class="n">interval</span> <span class="n">to</span> <span class="n">continuous</span> <span class="n">time</span> <span class="n">at</span> <span class="n">timesteps</span>
+
+  <span class="p">[</span><span class="n">DATA</span><span class="p">,</span><span class="n">T</span><span class="p">]</span> <span class="o">=</span> <span class="n">vlt</span><span class="o">.</span><span class="n">math</span><span class="o">.</span><span class="n">interval2continuous</span><span class="p">(</span><span class="n">TIMESTAMPS</span><span class="p">,</span><span class="n">DATAPOINTS</span><span class="p">,</span><span class="n">TRES</span><span class="p">)</span>
+
+  <span class="n">Transforms</span> <span class="n">a</span> <span class="n">discrete</span> <span class="n">interval</span> <span class="n">function</span> <span class="n">to</span> <span class="n">continuous</span> <span class="n">time</span><span class="o">.</span>  <span class="n">The</span> <span class="n">function</span>
+  <span class="k">is</span> <span class="n">expressed</span> <span class="k">as</span> <span class="n">a</span> <span class="n">set</span> <span class="n">of</span> <span class="n">TIMESTAMPS</span> <span class="ow">and</span> <span class="n">values</span> <span class="p">(</span><span class="n">DATAPOINTS</span><span class="p">),</span> <span class="n">where</span> <span class="n">the</span>
+  <span class="n">function</span> <span class="n">takes</span> <span class="n">the</span> <span class="n">value</span> <span class="n">DATAPOINT</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="n">from</span> <span class="n">TIMESTAMP</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="n">to</span> <span class="n">TIMESTAMP</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span>
+  <span class="n">Thus</span><span class="p">,</span> <span class="n">length</span><span class="p">(</span><span class="n">TIMESTAMPS</span><span class="p">)</span><span class="o">=</span><span class="n">length</span><span class="p">(</span><span class="n">DATAPOINT</span><span class="p">)</span><span class="o">+</span><span class="mf">1.</span>  <span class="n">The</span> <span class="n">data</span> <span class="n">are</span> <span class="n">sampled</span>
+  <span class="n">continuously</span> <span class="n">with</span> <span class="n">sample</span> <span class="n">difference</span> <span class="n">TRES</span><span class="o">.</span>  <span class="n">The</span> <span class="n">data</span> <span class="ow">and</span> <span class="n">sample</span> <span class="n">times</span> <span class="n">are</span>
+  <span class="n">returned</span> <span class="ow">in</span> <span class="n">DATA</span> <span class="ow">and</span> <span class="n">T</span><span class="p">,</span> <span class="n">respectively</span><span class="o">.</span>
+
+  <span class="n">Note</span><span class="p">:</span> <span class="n">The</span> <span class="n">function</span> <span class="n">vlt</span><span class="o">.</span><span class="n">math</span><span class="o">.</span><span class="n">stepfunc</span> <span class="n">does</span> <span class="n">the</span> <span class="n">same</span> <span class="n">thing</span> <span class="ow">and</span> <span class="k">is</span> <span class="n">easier</span> <span class="n">to</span> <span class="n">understand</span><span class="o">.</span>
+
+  <span class="n">See</span> <span class="n">also</span><span class="p">:</span>  <span class="n">vlt</span><span class="o">.</span><span class="n">math</span><span class="o">.</span><span class="n">stepfunc</span>
+</code></pre></div>
                 
               
               

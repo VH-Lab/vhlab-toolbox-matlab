@@ -3225,6 +3225,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../%2Bgit/git_stash.m/" class="md-nav__link">
+        vlt.git.git_stash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../%2Bgit/git_status.m/" class="md-nav__link">
         vlt.git.git_status
       </a>
@@ -9237,20 +9249,26 @@
                 
                 
                 <h1 id="vltdatastructmerge">vlt.data.structmerge<a class="headerlink" href="#vltdatastructmerge" title="Permanent link">&para;</a></h1>
-<p>STRUCTMERGE - Merge struct variables into a common struct</p>
-<p>S_OUT = vlt.data.structmerge(S1, S2, ...)</p>
-<p>Merges the structures S1 and S2 into a common structure S_OUT
-   such that S_OUT has all of the fields of S1 and S2. When 
-   S1 and S2 share the same fieldname, the value of S2 is taken.
-   The fieldnames will be re-ordered to be in alphabetical order.</p>
-<p>The behavior of the function can be altered by passing additional
-   arguments as name/value pairs. </p>
-<p>Parameter (default)     | Description</p>
-<hr />
-<p>ErrorIfNewField (0)     | (0/1) Is it an error if S2 contains a
-                           |  field that is not present in S1?
-   DoAlphabetical (1)      | (0/1) Alphabetize the field names in the result</p>
-<p>See also: STRUCT</p>
+<div class="codehilite"><pre><span></span><code>  <span class="n">STRUCTMERGE</span> <span class="o">-</span> <span class="n">Merge</span> <span class="n">struct</span> <span class="n">variables</span> <span class="n">into</span> <span class="n">a</span> <span class="n">common</span> <span class="n">struct</span>
+
+   <span class="n">S_OUT</span> <span class="o">=</span> <span class="n">vlt</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">structmerge</span><span class="p">(</span><span class="n">S1</span><span class="p">,</span> <span class="n">S2</span><span class="p">,</span> <span class="o">...</span><span class="p">)</span>
+
+   <span class="n">Merges</span> <span class="n">the</span> <span class="n">structures</span> <span class="n">S1</span> <span class="ow">and</span> <span class="n">S2</span> <span class="n">into</span> <span class="n">a</span> <span class="n">common</span> <span class="n">structure</span> <span class="n">S_OUT</span>
+   <span class="n">such</span> <span class="n">that</span> <span class="n">S_OUT</span> <span class="n">has</span> <span class="n">all</span> <span class="n">of</span> <span class="n">the</span> <span class="n">fields</span> <span class="n">of</span> <span class="n">S1</span> <span class="ow">and</span> <span class="n">S2</span><span class="o">.</span> <span class="n">When</span> 
+   <span class="n">S1</span> <span class="ow">and</span> <span class="n">S2</span> <span class="n">share</span> <span class="n">the</span> <span class="n">same</span> <span class="n">fieldname</span><span class="p">,</span> <span class="n">the</span> <span class="n">value</span> <span class="n">of</span> <span class="n">S2</span> <span class="k">is</span> <span class="n">taken</span><span class="o">.</span>
+   <span class="n">The</span> <span class="n">fieldnames</span> <span class="n">will</span> <span class="n">be</span> <span class="n">re</span><span class="o">-</span><span class="n">ordered</span> <span class="n">to</span> <span class="n">be</span> <span class="ow">in</span> <span class="n">alphabetical</span> <span class="n">order</span><span class="o">.</span>
+
+   <span class="n">The</span> <span class="n">behavior</span> <span class="n">of</span> <span class="n">the</span> <span class="n">function</span> <span class="n">can</span> <span class="n">be</span> <span class="n">altered</span> <span class="n">by</span> <span class="n">passing</span> <span class="n">additional</span>
+   <span class="n">arguments</span> <span class="k">as</span> <span class="n">name</span><span class="o">/</span><span class="n">value</span> <span class="n">pairs</span><span class="o">.</span> 
+
+   <span class="n">Parameter</span> <span class="p">(</span><span class="n">default</span><span class="p">)</span>     <span class="o">|</span> <span class="n">Description</span>
+   <span class="o">------------------------------------------------------------</span>
+   <span class="n">ErrorIfNewField</span> <span class="p">(</span><span class="mi">0</span><span class="p">)</span>     <span class="o">|</span> <span class="p">(</span><span class="mi">0</span><span class="o">/</span><span class="mi">1</span><span class="p">)</span> <span class="n">Is</span> <span class="n">it</span> <span class="n">an</span> <span class="n">error</span> <span class="k">if</span> <span class="n">S2</span> <span class="n">contains</span> <span class="n">a</span>
+                           <span class="o">|</span>  <span class="n">field</span> <span class="n">that</span> <span class="k">is</span> <span class="ow">not</span> <span class="n">present</span> <span class="ow">in</span> <span class="n">S1</span><span class="err">?</span>
+   <span class="n">DoAlphabetical</span> <span class="p">(</span><span class="mi">1</span><span class="p">)</span>      <span class="o">|</span> <span class="p">(</span><span class="mi">0</span><span class="o">/</span><span class="mi">1</span><span class="p">)</span> <span class="n">Alphabetize</span> <span class="n">the</span> <span class="n">field</span> <span class="n">names</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">result</span>
+
+   <span class="n">See</span> <span class="n">also</span><span class="p">:</span> <span class="n">STRUCT</span>
+</code></pre></div>
                 
               
               

@@ -3213,6 +3213,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../%2Bgit/git_stash.m/" class="md-nav__link">
+        vlt.git.git_stash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../%2Bgit/git_status.m/" class="md-nav__link">
         vlt.git.git_status
       </a>
@@ -9237,22 +9249,28 @@
                 
                 
                 <h1 id="vltstatsnestedftest">vlt.stats.nestedftest<a class="headerlink" href="#vltstatsnestedftest" title="Permanent link">&para;</a></h1>
-<p>NESTEDFTEST - Compute Nested F test statistic for 2 nested models</p>
-<p>[P,F] = vlt.stats.nestedftest(SE1, P1, SE2, P2, NDATA)</p>
-<p>Performs a Nested F test for 2 model fits to the same data, where
-   the first model is "nested" inside the second (that is, the first model
-   is a simplified version of the second, and can be obtained from the
-   second model by setting parameters in the second to particular values).</p>
-<p>SE1: The total squared error between the first model and the data.
-   P1:  The number of parameters in the first model.
-   SE2: The total squared error between the second model and the data.
-   P2:  The number of parameters in the second model.
-   NDATA: The number of data values used to calculate SE1, SE2.</p>
-<p>P:   The p-value of the F test.  If this is less than your alpha (say,
-        0.05) then the second model is a significantly better fit than the
-        first.
-   F:   The value of the F statistic.</p>
-<p>See: http://en.wikipedia.org/wiki/F-test#Regression_problems</p>
+<div class="codehilite"><pre><span></span><code>  <span class="n">NESTEDFTEST</span> - <span class="n">Compute</span> <span class="n">Nested</span> <span class="n">F</span> <span class="n">test</span> <span class="n">statistic</span> <span class="k">for</span> <span class="mi">2</span> <span class="n">nested</span> <span class="n">models</span>
+
+   [<span class="n">P</span>,<span class="n">F</span>] = <span class="n">vlt</span>.<span class="n">stats</span>.<span class="n">nestedftest</span>(<span class="n">SE1</span>, <span class="n">P1</span>, <span class="n">SE2</span>, <span class="n">P2</span>, <span class="n">NDATA</span>)
+
+   <span class="n">Performs</span> <span class="n">a</span> <span class="n">Nested</span> <span class="n">F</span> <span class="n">test</span> <span class="k">for</span> <span class="mi">2</span> <span class="n">model</span> <span class="n">fits</span> <span class="nb">to</span> <span class="n">the</span> <span class="n">same</span> <span class="n">data</span>, <span class="n">where</span>
+   <span class="n">the</span> <span class="nb">first</span> <span class="n">model</span> <span class="k">is</span> <span class="s">&quot;nested&quot;</span> <span class="n">inside</span> <span class="n">the</span> <span class="nb">second</span> (<span class="n">that</span> <span class="k">is</span>, <span class="n">the</span> <span class="nb">first</span> <span class="n">model</span>
+   <span class="k">is</span> <span class="n">a</span> <span class="n">simplified</span> <span class="nb">version</span> <span class="nb">of</span> <span class="n">the</span> <span class="nb">second</span>, <span class="o">and</span> <span class="nb">can</span> <span class="n">be</span> <span class="n">obtained</span> <span class="nb">from</span> <span class="n">the</span>
+   <span class="nb">second</span> <span class="n">model</span> <span class="n">by</span> <span class="n">setting</span> <span class="n">parameters</span> <span class="nb">in</span> <span class="n">the</span> <span class="nb">second</span> <span class="nb">to</span> <span class="n">particular</span> <span class="nb">values</span>).
+
+   <span class="n">SE1:</span> <span class="n">The</span> <span class="nb">total</span> <span class="n">squared</span> <span class="n">error</span> <span class="n">between</span> <span class="n">the</span> <span class="nb">first</span> <span class="n">model</span> <span class="o">and</span> <span class="n">the</span> <span class="n">data</span>.
+   <span class="n">P1:</span>  <span class="n">The</span> <span class="n">number</span> <span class="nb">of</span> <span class="n">parameters</span> <span class="nb">in</span> <span class="n">the</span> <span class="nb">first</span> <span class="n">model</span>.
+   <span class="n">SE2:</span> <span class="n">The</span> <span class="nb">total</span> <span class="n">squared</span> <span class="n">error</span> <span class="n">between</span> <span class="n">the</span> <span class="nb">second</span> <span class="n">model</span> <span class="o">and</span> <span class="n">the</span> <span class="n">data</span>.
+   <span class="n">P2:</span>  <span class="n">The</span> <span class="n">number</span> <span class="nb">of</span> <span class="n">parameters</span> <span class="nb">in</span> <span class="n">the</span> <span class="nb">second</span> <span class="n">model</span>.
+   <span class="n">NDATA:</span> <span class="n">The</span> <span class="n">number</span> <span class="nb">of</span> <span class="n">data</span> <span class="nb">values</span> <span class="n">used</span> <span class="nb">to</span> <span class="n">calculate</span> <span class="n">SE1</span>, <span class="n">SE2</span>.
+
+   <span class="n">P:</span>   <span class="n">The</span> <span class="n">p-value</span> <span class="nb">of</span> <span class="n">the</span> <span class="n">F</span> <span class="n">test</span>.  <span class="n">If</span> <span class="n">this</span> <span class="k">is</span> <span class="n">less</span> <span class="n">than</span> <span class="n">your</span> <span class="n">alpha</span> (<span class="nb">say</span>,
+        <span class="mf">0.05</span>) <span class="nb">then</span> <span class="n">the</span> <span class="nb">second</span> <span class="n">model</span> <span class="k">is</span> <span class="n">a</span> <span class="n">significantly</span> <span class="n">better</span> <span class="n">fit</span> <span class="n">than</span> <span class="n">the</span>
+        <span class="nb">first</span>.
+   <span class="n">F:</span>   <span class="n">The</span> <span class="nb">value</span> <span class="nb">of</span> <span class="n">the</span> <span class="n">F</span> <span class="n">statistic</span>.
+
+   <span class="n">See:</span> <span class="n">http:</span>//<span class="n">en</span>.<span class="n">wikipedia</span>.<span class="n">org</span><span class="o">/</span><span class="n">wiki</span><span class="o">/</span><span class="n">F-test</span><span class="c1">#Regression_problems</span>
+</code></pre></div>
                 
               
               

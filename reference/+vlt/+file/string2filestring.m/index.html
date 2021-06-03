@@ -3225,6 +3225,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../%2Bgit/git_stash.m/" class="md-nav__link">
+        vlt.git.git_stash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../%2Bgit/git_status.m/" class="md-nav__link">
         vlt.git.git_status
       </a>
@@ -9237,14 +9249,18 @@
                 
                 
                 <h1 id="vltfilestring2filestring">vlt.file.string2filestring<a class="headerlink" href="#vltfilestring2filestring" title="Permanent link">&para;</a></h1>
-<p>STRING2FILESTRING - edit a string so it its suitable for use as part of a filename (remove whitespace)</p>
-<p>FS = vlt.file.string2filestring(S)</p>
-<p>Modifies the string S so that it is suitable for use as part of a filename.
-  Removes any characters that are not letters ('A'-'Z', 'a'-'z') or digits ('0'-'9')
-  and replaces them with '_'.</p>
-<p>Example:
-     mystr = 'This is a variable name: 1234.';
-     vlt.file.string2filestring(mystr)  % returns 'This_is_a_variable_name__1234_'</p>
+<div class="codehilite"><pre><span></span><code>  <span class="n">STRING2FILESTRING</span> <span class="o">-</span> <span class="n">edit</span> <span class="n">a</span> <span class="n">string</span> <span class="n">so</span> <span class="n">it</span> <span class="n">its</span> <span class="n">suitable</span> <span class="k">for</span> <span class="n">use</span> <span class="k">as</span> <span class="n">part</span> <span class="n">of</span> <span class="n">a</span> <span class="n">filename</span> <span class="p">(</span><span class="n">remove</span> <span class="n">whitespace</span><span class="p">)</span>
+
+  <span class="n">FS</span> <span class="o">=</span> <span class="n">vlt</span><span class="o">.</span><span class="n">file</span><span class="o">.</span><span class="n">string2filestring</span><span class="p">(</span><span class="n">S</span><span class="p">)</span>
+
+  <span class="n">Modifies</span> <span class="n">the</span> <span class="n">string</span> <span class="n">S</span> <span class="n">so</span> <span class="n">that</span> <span class="n">it</span> <span class="k">is</span> <span class="n">suitable</span> <span class="k">for</span> <span class="n">use</span> <span class="k">as</span> <span class="n">part</span> <span class="n">of</span> <span class="n">a</span> <span class="n">filename</span><span class="o">.</span>
+  <span class="n">Removes</span> <span class="n">any</span> <span class="n">characters</span> <span class="n">that</span> <span class="n">are</span> <span class="ow">not</span> <span class="n">letters</span> <span class="p">(</span><span class="s1">&#39;A&#39;</span><span class="o">-</span><span class="s1">&#39;Z&#39;</span><span class="p">,</span> <span class="s1">&#39;a&#39;</span><span class="o">-</span><span class="s1">&#39;z&#39;</span><span class="p">)</span> <span class="ow">or</span> <span class="n">digits</span> <span class="p">(</span><span class="s1">&#39;0&#39;</span><span class="o">-</span><span class="s1">&#39;9&#39;</span><span class="p">)</span>
+  <span class="ow">and</span> <span class="n">replaces</span> <span class="n">them</span> <span class="n">with</span> <span class="s1">&#39;_&#39;</span><span class="o">.</span>
+
+  <span class="n">Example</span><span class="p">:</span>
+     <span class="n">mystr</span> <span class="o">=</span> <span class="s1">&#39;This is a variable name: 1234.&#39;</span><span class="p">;</span>
+     <span class="n">vlt</span><span class="o">.</span><span class="n">file</span><span class="o">.</span><span class="n">string2filestring</span><span class="p">(</span><span class="n">mystr</span><span class="p">)</span>  <span class="o">%</span> <span class="n">returns</span> <span class="s1">&#39;This_is_a_variable_name__1234_&#39;</span>
+</code></pre></div>
                 
               
               

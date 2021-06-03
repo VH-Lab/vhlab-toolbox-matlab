@@ -3225,6 +3225,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../%2Bgit/git_stash.m/" class="md-nav__link">
+        vlt.git.git_stash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../%2Bgit/git_status.m/" class="md-nav__link">
         vlt.git.git_status
       </a>
@@ -9237,18 +9249,25 @@
                 
                 
                 <h1 id="vltdataequnique">vlt.data.equnique<a class="headerlink" href="#vltdataequnique" title="Permanent link">&para;</a></h1>
-<p>EQUNIQUE - Return unique elements of an arbitrary class using EQ</p>
-<p>OUT = vlt.data.equnique(IN)</p>
-<p>Returns the unique elements of an object array IN as a column OUT.</p>
-<p>Uses EQ to test for equality.</p>
-<p>This function is a little more general than Matlab's UNIQUE in that it
-  can operate on any object that implements an EQ function, not just CELL arrays. 
-  It performs no sorting, and has no requirement that elements are ordered or sortable.</p>
-<p>Example:
-     A=struct('A',5,'B',6);
-     A = [A A A];
-     B = vlt.data.equnique(A); % B == A(1)</p>
-<p>See also: UNIQUE</p>
+<div class="codehilite"><pre><span></span><code>  <span class="nt">EQUNIQUE</span> <span class="nt">-</span> <span class="nt">Return</span> <span class="nt">unique</span> <span class="nt">elements</span> <span class="nt">of</span> <span class="nt">an</span> <span class="nt">arbitrary</span> <span class="nt">class</span> <span class="nt">using</span> <span class="nt">EQ</span>
+
+  <span class="nt">OUT</span> <span class="o">=</span> <span class="nt">vlt</span><span class="p">.</span><span class="nc">data</span><span class="p">.</span><span class="nc">equnique</span><span class="o">(</span><span class="nt">IN</span><span class="o">)</span>
+
+  <span class="nt">Returns</span> <span class="nt">the</span> <span class="nt">unique</span> <span class="nt">elements</span> <span class="nt">of</span> <span class="nt">an</span> <span class="nt">object</span> <span class="nt">array</span> <span class="nt">IN</span> <span class="nt">as</span> <span class="nt">a</span> <span class="nt">column</span> <span class="nt">OUT</span><span class="o">.</span>
+
+  <span class="nt">Uses</span> <span class="nt">EQ</span> <span class="nt">to</span> <span class="nt">test</span> <span class="nt">for</span> <span class="nt">equality</span><span class="o">.</span>
+
+  <span class="nt">This</span> <span class="nt">function</span> <span class="nt">is</span> <span class="nt">a</span> <span class="nt">little</span> <span class="nt">more</span> <span class="nt">general</span> <span class="nt">than</span> <span class="nt">Matlab</span><span class="s1">&#39;s UNIQUE in that it</span>
+<span class="s1">  can operate on any object that implements an EQ function, not just CELL arrays. </span>
+<span class="s1">  It performs no sorting, and has no requirement that elements are ordered or sortable.</span>
+
+<span class="s1">  Example:</span>
+<span class="s1">     A=struct(&#39;</span><span class="nt">A</span><span class="s1">&#39;,5,&#39;</span><span class="nt">B</span><span class="err">&#39;</span><span class="o">,</span><span class="nt">6</span><span class="o">);</span>
+     <span class="nt">A</span> <span class="o">=</span> <span class="cp">[</span><span class="nx">A</span> <span class="nx">A</span> <span class="nx">A</span><span class="cp">]</span><span class="o">;</span>
+     <span class="nt">B</span> <span class="o">=</span> <span class="nt">vlt</span><span class="p">.</span><span class="nc">data</span><span class="p">.</span><span class="nc">equnique</span><span class="o">(</span><span class="nt">A</span><span class="o">);</span> <span class="o">%</span> <span class="nt">B</span> <span class="o">==</span> <span class="nt">A</span><span class="o">(</span><span class="nt">1</span><span class="o">)</span>
+
+  <span class="nt">See</span> <span class="nt">also</span><span class="o">:</span> <span class="nt">UNIQUE</span>
+</code></pre></div>
                 
               
               

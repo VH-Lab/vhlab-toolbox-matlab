@@ -3227,6 +3227,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../../%2Bgit/git_stash.m/" class="md-nav__link">
+        vlt.git.git_stash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../../%2Bgit/git_status.m/" class="md-nav__link">
         vlt.git.git_status
       </a>
@@ -9239,23 +9251,24 @@
                 
                 
                 <h1 id="vltdaqsimpledaqacquiresimpledaq">vlt.daq.simpledaq.AcquireSimpleDaq<a class="headerlink" href="#vltdaqsimpledaqacquiresimpledaq" title="Permanent link">&para;</a></h1>
-<p>vlt.daq.simpledaq.AcquireSimpleDaq - Acquires a SimpleDaq device</p>
-<div class="codehilite"><pre><span></span><code>  [DATA,NEWSD] = vlt.daq.simpledaq.AcquireSimpleDaq(SD)
-</code></pre></div>
+<div class="codehilite"><pre><span></span><code>  <span class="nt">vlt</span><span class="p">.</span><span class="nc">daq</span><span class="p">.</span><span class="nc">simpledaq</span><span class="p">.</span><span class="nc">AcquireSimpleDaq</span> <span class="nt">-</span> <span class="nt">Acquires</span> <span class="nt">a</span> <span class="nt">SimpleDaq</span> <span class="nt">device</span>
 
-<p>Calls the acquire function for the SimpleDaq device SD.</p>
-<div class="codehilite"><pre><span></span><code> <span class="nt">Literally</span> <span class="nt">returns</span> <span class="cp">[</span><span class="nx">DATA</span><span class="p">,</span><span class="nx">NEWSD</span><span class="cp">]</span> <span class="o">=</span> <span class="nt">SD</span><span class="p">.</span><span class="nc">daqname_AcquireSimpleDaq</span><span class="o">(</span><span class="nt">SD</span><span class="o">)</span>
+      <span class="cp">[</span><span class="nx">DATA</span><span class="p">,</span><span class="nx">NEWSD</span><span class="cp">]</span> <span class="o">=</span> <span class="nt">vlt</span><span class="p">.</span><span class="nc">daq</span><span class="p">.</span><span class="nc">simpledaq</span><span class="p">.</span><span class="nc">AcquireSimpleDaq</span><span class="o">(</span><span class="nt">SD</span><span class="o">)</span>
 
-<span class="nt">The</span> <span class="nt">structure</span> <span class="nt">DATA</span> <span class="nt">will</span> <span class="nt">have</span> <span class="nt">the</span> <span class="nt">following</span> <span class="nt">fields</span><span class="o">:</span>
+   <span class="nt">Calls</span> <span class="nt">the</span> <span class="nt">acquire</span> <span class="nt">function</span> <span class="nt">for</span> <span class="nt">the</span> <span class="nt">SimpleDaq</span> <span class="nt">device</span> <span class="nt">SD</span><span class="o">.</span>
 
-   <span class="nt">starttime</span>   <span class="nt">--</span>  <span class="nt">the</span> <span class="s1">&#39;clock&#39;</span> <span class="nt">value</span> <span class="nt">at</span> <span class="nt">the</span> <span class="nt">beginning</span> <span class="nt">of</span> <span class="nt">the</span> <span class="nt">recording</span><span class="o">;</span>
-                      <span class="nt">this</span> <span class="nt">is</span> <span class="nt">the</span> <span class="nt">6</span> <span class="nt">element</span> <span class="nt">vector</span> <span class="nt">returned</span> <span class="nt">by</span> <span class="nt">the</span> <span class="nt">Matlab</span>
-                      <span class="nt">function</span> <span class="nt">CLOCK</span>
-   <span class="nt">data</span>        <span class="nt">--</span>  <span class="nt">a</span> <span class="nt">cell</span> <span class="nt">list</span> <span class="nt">of</span> <span class="nt">all</span> <span class="nt">data</span> <span class="nt">records</span><span class="o">,</span> <span class="nt">the</span> <span class="nt">ith</span> <span class="nt">of</span> <span class="nt">which</span> <span class="nt">is</span>
-                   <span class="nt">a</span> <span class="nt">matrix</span> <span class="nt">with</span> <span class="nt">entries</span> <span class="cp">[</span><span class="nx">t_i</span><span class="p">;</span> <span class="nx">data_i_1</span><span class="p">;</span> <span class="nx">data_i_2</span><span class="p">;</span> <span class="nx">...</span><span class="cp">]</span>
-                   <span class="nt">where</span> <span class="nt">t_i</span> <span class="nt">indicates</span> <span class="nt">the</span> <span class="nt">sample</span> <span class="nt">times</span> <span class="nt">of</span> <span class="nt">data</span> <span class="nt">record</span> <span class="nt">i</span>
-                   <span class="o">(</span><span class="nt">usually</span> <span class="nt">with</span> <span class="nt">respect</span> <span class="nt">to</span> <span class="nt">starttime</span><span class="o">;</span> <span class="nt">that</span> <span class="nt">is</span> <span class="nt">0</span><span class="o">==</span><span class="nt">starttime</span><span class="o">)</span>
-                   <span class="nt">and</span> <span class="nt">data_i_n</span> <span class="nt">is</span> <span class="nt">the</span> <span class="nt">value</span> <span class="nt">sampled</span> <span class="nt">on</span> <span class="nt">channel</span> <span class="nt">n</span><span class="o">.</span>
+     <span class="nt">Literally</span> <span class="nt">returns</span> <span class="cp">[</span><span class="nx">DATA</span><span class="p">,</span><span class="nx">NEWSD</span><span class="cp">]</span> <span class="o">=</span> <span class="nt">SD</span><span class="p">.</span><span class="nc">daqname_AcquireSimpleDaq</span><span class="o">(</span><span class="nt">SD</span><span class="o">)</span>
+
+    <span class="nt">The</span> <span class="nt">structure</span> <span class="nt">DATA</span> <span class="nt">will</span> <span class="nt">have</span> <span class="nt">the</span> <span class="nt">following</span> <span class="nt">fields</span><span class="o">:</span>
+
+       <span class="nt">starttime</span>   <span class="nt">--</span>  <span class="nt">the</span> <span class="s1">&#39;clock&#39;</span> <span class="nt">value</span> <span class="nt">at</span> <span class="nt">the</span> <span class="nt">beginning</span> <span class="nt">of</span> <span class="nt">the</span> <span class="nt">recording</span><span class="o">;</span>
+                          <span class="nt">this</span> <span class="nt">is</span> <span class="nt">the</span> <span class="nt">6</span> <span class="nt">element</span> <span class="nt">vector</span> <span class="nt">returned</span> <span class="nt">by</span> <span class="nt">the</span> <span class="nt">Matlab</span>
+                          <span class="nt">function</span> <span class="nt">CLOCK</span>
+       <span class="nt">data</span>        <span class="nt">--</span>  <span class="nt">a</span> <span class="nt">cell</span> <span class="nt">list</span> <span class="nt">of</span> <span class="nt">all</span> <span class="nt">data</span> <span class="nt">records</span><span class="o">,</span> <span class="nt">the</span> <span class="nt">ith</span> <span class="nt">of</span> <span class="nt">which</span> <span class="nt">is</span>
+                       <span class="nt">a</span> <span class="nt">matrix</span> <span class="nt">with</span> <span class="nt">entries</span> <span class="cp">[</span><span class="nx">t_i</span><span class="p">;</span> <span class="nx">data_i_1</span><span class="p">;</span> <span class="nx">data_i_2</span><span class="p">;</span> <span class="nx">...</span><span class="cp">]</span>
+                       <span class="nt">where</span> <span class="nt">t_i</span> <span class="nt">indicates</span> <span class="nt">the</span> <span class="nt">sample</span> <span class="nt">times</span> <span class="nt">of</span> <span class="nt">data</span> <span class="nt">record</span> <span class="nt">i</span>
+                       <span class="o">(</span><span class="nt">usually</span> <span class="nt">with</span> <span class="nt">respect</span> <span class="nt">to</span> <span class="nt">starttime</span><span class="o">;</span> <span class="nt">that</span> <span class="nt">is</span> <span class="nt">0</span><span class="o">==</span><span class="nt">starttime</span><span class="o">)</span>
+                       <span class="nt">and</span> <span class="nt">data_i_n</span> <span class="nt">is</span> <span class="nt">the</span> <span class="nt">value</span> <span class="nt">sampled</span> <span class="nt">on</span> <span class="nt">channel</span> <span class="nt">n</span><span class="o">.</span>
 </code></pre></div>
                 
               

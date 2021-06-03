@@ -3213,6 +3213,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../../../%2Bgit/git_stash.m/" class="md-nav__link">
+        vlt.git.git_stash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../../../%2Bgit/git_status.m/" class="md-nav__link">
         vlt.git.git_status
       </a>
@@ -9241,27 +9253,32 @@
                 
                 
                 <h1 id="vltneuromodelssynapsesdepression_model_comp">vlt.neuro.models.synapses.depression_model_comp<a class="headerlink" href="#vltneuromodelssynapsesdepression_model_comp" title="Permanent link">&para;</a></h1>
-<p>vlt.neuro.models.synapses.depression_model_comp-Computes synaptic currents for Varela depression model</p>
-<div class="codehilite"><pre><span></span><code> SYNCURRS = vlt.neuro.models.synapses.depression_model_comp(SPIKETIMES,A0,F,FTAU,D,DTAU)
-</code></pre></div>
+<div class="codehilite"><pre><span></span><code>   <span class="n">vlt</span><span class="o">.</span><span class="n">neuro</span><span class="o">.</span><span class="n">models</span><span class="o">.</span><span class="n">synapses</span><span class="o">.</span><span class="n">depression_model_comp</span><span class="o">-</span><span class="n">Computes</span> <span class="n">synaptic</span> <span class="n">currents</span> <span class="k">for</span> <span class="n">Varela</span> <span class="n">depression</span> <span class="n">model</span>
 
-<p>Computes synaptic currents for a facilitating and/or depressing synapse.
-   Presynaptic spike times are given in SPIKETIMES, and the unfacilitated,
-   undepressed amplitude of the synapse is A0.</p>
-<p>Synaptic currents are modeled as A = A0<em>F1</em>...<em>FN</em>D1<em>...</em>DN,
-     where F1...FN are facilitating factors and D1...DN are depressing
-   factors.</p>
-<p>After each presynaptic spike, Fi -&gt; Fi + fi, where fi is a positive
-   number, and Fi decays back to 1 with time constant fitau.
-   Input argument F is an array containing fi, and the length of F determines
-   the number of facilitating factors (use empty for none).  FTAU is an array
-   of the same length of F and contains the time constants fitau.</p>
-<p>After each presynaptic spike, Di -&gt; Di * di, where 0 &lt; di &lt;= 1, and Di
-   decays back to 1 with time constant ditau.  Input argument D is an array
-   containing di, and the length of D determines the number of facilitating
-   factors (use empty for none).  DTAU is an array of the same length of D
-   and contains the time constants ditau.</p>
-<p>See Varela,Sen,Gibson,Fost,Abbott,and Nelson,J.Neurosci.17:7926-40,1997.</p>
+     <span class="n">SYNCURRS</span> <span class="o">=</span> <span class="n">vlt</span><span class="o">.</span><span class="n">neuro</span><span class="o">.</span><span class="n">models</span><span class="o">.</span><span class="n">synapses</span><span class="o">.</span><span class="n">depression_model_comp</span><span class="p">(</span><span class="n">SPIKETIMES</span><span class="p">,</span><span class="n">A0</span><span class="p">,</span><span class="n">F</span><span class="p">,</span><span class="n">FTAU</span><span class="p">,</span><span class="n">D</span><span class="p">,</span><span class="n">DTAU</span><span class="p">)</span>
+
+   <span class="n">Computes</span> <span class="n">synaptic</span> <span class="n">currents</span> <span class="k">for</span> <span class="n">a</span> <span class="n">facilitating</span> <span class="ow">and</span><span class="o">/</span><span class="ow">or</span> <span class="n">depressing</span> <span class="n">synapse</span><span class="o">.</span>
+   <span class="n">Presynaptic</span> <span class="n">spike</span> <span class="n">times</span> <span class="n">are</span> <span class="n">given</span> <span class="ow">in</span> <span class="n">SPIKETIMES</span><span class="p">,</span> <span class="ow">and</span> <span class="n">the</span> <span class="n">unfacilitated</span><span class="p">,</span>
+   <span class="n">undepressed</span> <span class="n">amplitude</span> <span class="n">of</span> <span class="n">the</span> <span class="n">synapse</span> <span class="k">is</span> <span class="n">A0</span><span class="o">.</span>
+
+   <span class="n">Synaptic</span> <span class="n">currents</span> <span class="n">are</span> <span class="n">modeled</span> <span class="k">as</span> <span class="n">A</span> <span class="o">=</span> <span class="n">A0</span><span class="o">*</span><span class="n">F1</span><span class="o">*...*</span><span class="n">FN</span><span class="o">*</span><span class="n">D1</span><span class="o">*...*</span><span class="n">DN</span><span class="p">,</span>
+     <span class="n">where</span> <span class="n">F1</span><span class="o">...</span><span class="n">FN</span> <span class="n">are</span> <span class="n">facilitating</span> <span class="n">factors</span> <span class="ow">and</span> <span class="n">D1</span><span class="o">...</span><span class="n">DN</span> <span class="n">are</span> <span class="n">depressing</span>
+   <span class="n">factors</span><span class="o">.</span>
+
+   <span class="n">After</span> <span class="n">each</span> <span class="n">presynaptic</span> <span class="n">spike</span><span class="p">,</span> <span class="n">Fi</span> <span class="o">-&gt;</span> <span class="n">Fi</span> <span class="o">+</span> <span class="n">fi</span><span class="p">,</span> <span class="n">where</span> <span class="n">fi</span> <span class="k">is</span> <span class="n">a</span> <span class="n">positive</span>
+   <span class="n">number</span><span class="p">,</span> <span class="ow">and</span> <span class="n">Fi</span> <span class="n">decays</span> <span class="n">back</span> <span class="n">to</span> <span class="mi">1</span> <span class="n">with</span> <span class="n">time</span> <span class="n">constant</span> <span class="n">fitau</span><span class="o">.</span>
+   <span class="n">Input</span> <span class="n">argument</span> <span class="n">F</span> <span class="k">is</span> <span class="n">an</span> <span class="n">array</span> <span class="n">containing</span> <span class="n">fi</span><span class="p">,</span> <span class="ow">and</span> <span class="n">the</span> <span class="n">length</span> <span class="n">of</span> <span class="n">F</span> <span class="n">determines</span>
+   <span class="n">the</span> <span class="n">number</span> <span class="n">of</span> <span class="n">facilitating</span> <span class="n">factors</span> <span class="p">(</span><span class="n">use</span> <span class="n">empty</span> <span class="k">for</span> <span class="n">none</span><span class="p">)</span><span class="o">.</span>  <span class="n">FTAU</span> <span class="k">is</span> <span class="n">an</span> <span class="n">array</span>
+   <span class="n">of</span> <span class="n">the</span> <span class="n">same</span> <span class="n">length</span> <span class="n">of</span> <span class="n">F</span> <span class="ow">and</span> <span class="n">contains</span> <span class="n">the</span> <span class="n">time</span> <span class="n">constants</span> <span class="n">fitau</span><span class="o">.</span>
+
+   <span class="n">After</span> <span class="n">each</span> <span class="n">presynaptic</span> <span class="n">spike</span><span class="p">,</span> <span class="n">Di</span> <span class="o">-&gt;</span> <span class="n">Di</span> <span class="o">*</span> <span class="n">di</span><span class="p">,</span> <span class="n">where</span> <span class="mi">0</span> <span class="o">&lt;</span> <span class="n">di</span> <span class="o">&lt;=</span> <span class="mi">1</span><span class="p">,</span> <span class="ow">and</span> <span class="n">Di</span>
+   <span class="n">decays</span> <span class="n">back</span> <span class="n">to</span> <span class="mi">1</span> <span class="n">with</span> <span class="n">time</span> <span class="n">constant</span> <span class="n">ditau</span><span class="o">.</span>  <span class="n">Input</span> <span class="n">argument</span> <span class="n">D</span> <span class="k">is</span> <span class="n">an</span> <span class="n">array</span>
+   <span class="n">containing</span> <span class="n">di</span><span class="p">,</span> <span class="ow">and</span> <span class="n">the</span> <span class="n">length</span> <span class="n">of</span> <span class="n">D</span> <span class="n">determines</span> <span class="n">the</span> <span class="n">number</span> <span class="n">of</span> <span class="n">facilitating</span>
+   <span class="n">factors</span> <span class="p">(</span><span class="n">use</span> <span class="n">empty</span> <span class="k">for</span> <span class="n">none</span><span class="p">)</span><span class="o">.</span>  <span class="n">DTAU</span> <span class="k">is</span> <span class="n">an</span> <span class="n">array</span> <span class="n">of</span> <span class="n">the</span> <span class="n">same</span> <span class="n">length</span> <span class="n">of</span> <span class="n">D</span>
+   <span class="ow">and</span> <span class="n">contains</span> <span class="n">the</span> <span class="n">time</span> <span class="n">constants</span> <span class="n">ditau</span><span class="o">.</span>
+
+   <span class="n">See</span> <span class="n">Varela</span><span class="p">,</span><span class="n">Sen</span><span class="p">,</span><span class="n">Gibson</span><span class="p">,</span><span class="n">Fost</span><span class="p">,</span><span class="n">Abbott</span><span class="p">,</span><span class="ow">and</span> <span class="n">Nelson</span><span class="p">,</span><span class="n">J</span><span class="o">.</span><span class="n">Neurosci</span><span class="o">.</span><span class="mi">17</span><span class="p">:</span><span class="mi">7926</span><span class="o">-</span><span class="mi">40</span><span class="p">,</span><span class="mf">1997.</span>
+</code></pre></div>
                 
               
               

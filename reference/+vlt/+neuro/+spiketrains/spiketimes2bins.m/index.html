@@ -3213,6 +3213,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../../%2Bgit/git_stash.m/" class="md-nav__link">
+        vlt.git.git_stash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../../%2Bgit/git_status.m/" class="md-nav__link">
         vlt.git.git_status
       </a>
@@ -9239,29 +9251,30 @@
                 
                 
                 <h1 id="vltneurospiketrainsspiketimes2bins">vlt.neuro.spiketrains.spiketimes2bins<a class="headerlink" href="#vltneurospiketrainsspiketimes2bins" title="Permanent link">&para;</a></h1>
-<p>SPIKETIMES2BINS - Convert a list of spike times to discrete time bins</p>
-<div class="codehilite"><pre><span></span><code><span class="nt">SPIKE_COUNTS</span> <span class="o">=</span> <span class="nt">vlt</span><span class="p">.</span><span class="nc">neuro</span><span class="p">.</span><span class="nc">spiketrains</span><span class="p">.</span><span class="nc">spiketimes2bins</span><span class="o">(</span><span class="nt">SPIKETIMES</span><span class="o">,</span> <span class="nt">TIMES</span><span class="o">)</span>
+<div class="codehilite"><pre><span></span><code>  <span class="nt">SPIKETIMES2BINS</span> <span class="nt">-</span> <span class="nt">Convert</span> <span class="nt">a</span> <span class="nt">list</span> <span class="nt">of</span> <span class="nt">spike</span> <span class="nt">times</span> <span class="nt">to</span> <span class="nt">discrete</span> <span class="nt">time</span> <span class="nt">bins</span>
 
-<span class="nt">Takes</span> <span class="nt">a</span> <span class="nt">list</span> <span class="nt">of</span> <span class="nt">spike</span> <span class="nt">times</span> <span class="o">(</span><span class="nt">in</span> <span class="nt">units</span> <span class="nt">of</span> <span class="nt">TIMES</span><span class="o">)</span> <span class="nt">and</span> <span class="nt">calculates</span> <span class="nt">the</span>
-<span class="nt">number</span> <span class="nt">of</span> <span class="nt">spikes</span> <span class="nt">that</span> <span class="nt">fall</span> <span class="nt">within</span> <span class="nt">time</span> <span class="nt">bins</span> <span class="nt">TIMES</span><span class="o">(</span><span class="nt">i</span><span class="o">)</span> <span class="nt">-</span> <span class="nt">TIMES</span><span class="o">(</span><span class="nt">i</span><span class="o">+</span><span class="nt">1</span><span class="o">).</span>
-<span class="nt">If</span> <span class="nt">a</span> <span class="nt">spike</span> <span class="nt">occurred</span> <span class="nt">at</span> <span class="nt">exactly</span> <span class="nt">time</span> <span class="nt">TIMES</span><span class="o">(</span><span class="nt">i</span><span class="o">)</span> <span class="nt">then</span> <span class="nt">it</span> <span class="nt">is</span> <span class="nt">included</span> <span class="nt">in</span>
-<span class="nt">bin</span> <span class="nt">i</span><span class="o">.</span>
+    <span class="nt">SPIKE_COUNTS</span> <span class="o">=</span> <span class="nt">vlt</span><span class="p">.</span><span class="nc">neuro</span><span class="p">.</span><span class="nc">spiketrains</span><span class="p">.</span><span class="nc">spiketimes2bins</span><span class="o">(</span><span class="nt">SPIKETIMES</span><span class="o">,</span> <span class="nt">TIMES</span><span class="o">)</span>
 
-<span class="nt">Note</span> <span class="nt">that</span> <span class="nt">bins</span> <span class="nt">can</span> <span class="nt">contain</span> <span class="nt">more</span> <span class="nt">than</span> <span class="nt">one</span> <span class="nt">spike</span><span class="o">.</span>
+    <span class="nt">Takes</span> <span class="nt">a</span> <span class="nt">list</span> <span class="nt">of</span> <span class="nt">spike</span> <span class="nt">times</span> <span class="o">(</span><span class="nt">in</span> <span class="nt">units</span> <span class="nt">of</span> <span class="nt">TIMES</span><span class="o">)</span> <span class="nt">and</span> <span class="nt">calculates</span> <span class="nt">the</span>
+    <span class="nt">number</span> <span class="nt">of</span> <span class="nt">spikes</span> <span class="nt">that</span> <span class="nt">fall</span> <span class="nt">within</span> <span class="nt">time</span> <span class="nt">bins</span> <span class="nt">TIMES</span><span class="o">(</span><span class="nt">i</span><span class="o">)</span> <span class="nt">-</span> <span class="nt">TIMES</span><span class="o">(</span><span class="nt">i</span><span class="o">+</span><span class="nt">1</span><span class="o">).</span>
+    <span class="nt">If</span> <span class="nt">a</span> <span class="nt">spike</span> <span class="nt">occurred</span> <span class="nt">at</span> <span class="nt">exactly</span> <span class="nt">time</span> <span class="nt">TIMES</span><span class="o">(</span><span class="nt">i</span><span class="o">)</span> <span class="nt">then</span> <span class="nt">it</span> <span class="nt">is</span> <span class="nt">included</span> <span class="nt">in</span>
+    <span class="nt">bin</span> <span class="nt">i</span><span class="o">.</span>
 
-<span class="nt">Example</span><span class="o">:</span> <span class="nt">Generate</span> <span class="nt">a</span> <span class="nt">list</span> <span class="nt">of</span> <span class="nt">bins</span> <span class="nt">in</span> <span class="nt">spike</span> <span class="nt">times</span><span class="o">,</span> <span class="nt">get</span> <span class="nt">the</span> <span class="nt">spike</span> <span class="nt">times</span><span class="o">,</span>
-         <span class="nt">and</span> <span class="nt">then</span> <span class="nt">convert</span> <span class="nt">it</span> <span class="nt">back</span> <span class="nt">to</span> <span class="nt">bins</span><span class="o">.</span>
+    <span class="nt">Note</span> <span class="nt">that</span> <span class="nt">bins</span> <span class="nt">can</span> <span class="nt">contain</span> <span class="nt">more</span> <span class="nt">than</span> <span class="nt">one</span> <span class="nt">spike</span><span class="o">.</span>
 
-  <span class="nt">dt</span> <span class="o">=</span> <span class="nt">0</span><span class="p">.</span><span class="nc">001</span><span class="o">;</span>
-  <span class="nt">T</span> <span class="o">=</span> <span class="nt">0</span><span class="p">:</span><span class="nd">dt</span><span class="p">:</span><span class="nd">10</span><span class="o">;</span> <span class="o">%</span> <span class="nt">10</span> <span class="nt">seconds</span>
-  <span class="nt">R</span> <span class="o">=</span> <span class="nt">5</span><span class="o">*</span><span class="nt">vlt</span><span class="p">.</span><span class="nc">math</span><span class="p">.</span><span class="nc">rectify</span><span class="o">(</span><span class="nt">sin</span><span class="o">(</span><span class="nt">2</span><span class="o">*</span><span class="nt">pi</span><span class="o">*</span><span class="nt">3</span><span class="o">*</span><span class="nt">T</span><span class="o">));</span>
-  <span class="nt">S</span> <span class="o">=</span> <span class="o">(</span><span class="nt">rand</span><span class="o">(</span><span class="nt">size</span><span class="o">(</span><span class="nt">T</span><span class="o">))&lt;</span><span class="nt">R</span><span class="o">*</span><span class="nt">dt</span><span class="o">);</span> <span class="o">%</span><span class="nt">generate</span> <span class="nt">spikes</span> <span class="nt">with</span> <span class="nt">probability</span> <span class="nt">R</span><span class="o">*</span><span class="nt">dt</span>
-  <span class="nt">spike_indexes</span> <span class="o">=</span> <span class="nt">find</span><span class="o">(</span><span class="nt">S</span><span class="o">);</span> <span class="o">%</span> <span class="nt">find</span> <span class="nt">which</span> <span class="nt">bins</span> <span class="nt">have</span> <span class="nt">spikes</span>
-  <span class="nt">spiketimes</span> <span class="o">=</span> <span class="nt">T</span><span class="o">(</span><span class="nt">spike_indexes</span><span class="o">);</span>  <span class="o">%</span> <span class="nt">get</span> <span class="nt">the</span> <span class="nt">time</span> <span class="nt">of</span> <span class="nt">those</span> <span class="nt">bins</span>
+    <span class="nt">Example</span><span class="o">:</span> <span class="nt">Generate</span> <span class="nt">a</span> <span class="nt">list</span> <span class="nt">of</span> <span class="nt">bins</span> <span class="nt">in</span> <span class="nt">spike</span> <span class="nt">times</span><span class="o">,</span> <span class="nt">get</span> <span class="nt">the</span> <span class="nt">spike</span> <span class="nt">times</span><span class="o">,</span>
+             <span class="nt">and</span> <span class="nt">then</span> <span class="nt">convert</span> <span class="nt">it</span> <span class="nt">back</span> <span class="nt">to</span> <span class="nt">bins</span><span class="o">.</span>
 
-  <span class="nt">S2</span> <span class="o">=</span> <span class="nt">vlt</span><span class="p">.</span><span class="nc">neuro</span><span class="p">.</span><span class="nc">spiketrains</span><span class="p">.</span><span class="nc">spiketimes2bins</span><span class="o">(</span><span class="nt">spiketimes</span><span class="o">,</span><span class="nt">T</span><span class="o">);</span> <span class="o">%</span> <span class="nt">convert</span> <span class="nt">back</span>
+      <span class="nt">dt</span> <span class="o">=</span> <span class="nt">0</span><span class="p">.</span><span class="nc">001</span><span class="o">;</span>
+      <span class="nt">T</span> <span class="o">=</span> <span class="nt">0</span><span class="p">:</span><span class="nd">dt</span><span class="p">:</span><span class="nd">10</span><span class="o">;</span> <span class="o">%</span> <span class="nt">10</span> <span class="nt">seconds</span>
+      <span class="nt">R</span> <span class="o">=</span> <span class="nt">5</span><span class="o">*</span><span class="nt">vlt</span><span class="p">.</span><span class="nc">math</span><span class="p">.</span><span class="nc">rectify</span><span class="o">(</span><span class="nt">sin</span><span class="o">(</span><span class="nt">2</span><span class="o">*</span><span class="nt">pi</span><span class="o">*</span><span class="nt">3</span><span class="o">*</span><span class="nt">T</span><span class="o">));</span>
+      <span class="nt">S</span> <span class="o">=</span> <span class="o">(</span><span class="nt">rand</span><span class="o">(</span><span class="nt">size</span><span class="o">(</span><span class="nt">T</span><span class="o">))&lt;</span><span class="nt">R</span><span class="o">*</span><span class="nt">dt</span><span class="o">);</span> <span class="o">%</span><span class="nt">generate</span> <span class="nt">spikes</span> <span class="nt">with</span> <span class="nt">probability</span> <span class="nt">R</span><span class="o">*</span><span class="nt">dt</span>
+      <span class="nt">spike_indexes</span> <span class="o">=</span> <span class="nt">find</span><span class="o">(</span><span class="nt">S</span><span class="o">);</span> <span class="o">%</span> <span class="nt">find</span> <span class="nt">which</span> <span class="nt">bins</span> <span class="nt">have</span> <span class="nt">spikes</span>
+      <span class="nt">spiketimes</span> <span class="o">=</span> <span class="nt">T</span><span class="o">(</span><span class="nt">spike_indexes</span><span class="o">);</span>  <span class="o">%</span> <span class="nt">get</span> <span class="nt">the</span> <span class="nt">time</span> <span class="nt">of</span> <span class="nt">those</span> <span class="nt">bins</span>
 
-  <span class="nt">all</span><span class="o">(</span><span class="nt">S</span><span class="o">==</span><span class="nt">S2</span><span class="o">)</span>    <span class="o">%</span> <span class="nt">are</span> <span class="nt">these</span> <span class="nt">vectors</span> <span class="nt">equal</span><span class="o">?</span> <span class="nt">Yes</span><span class="o">!</span>
+      <span class="nt">S2</span> <span class="o">=</span> <span class="nt">vlt</span><span class="p">.</span><span class="nc">neuro</span><span class="p">.</span><span class="nc">spiketrains</span><span class="p">.</span><span class="nc">spiketimes2bins</span><span class="o">(</span><span class="nt">spiketimes</span><span class="o">,</span><span class="nt">T</span><span class="o">);</span> <span class="o">%</span> <span class="nt">convert</span> <span class="nt">back</span>
+
+      <span class="nt">all</span><span class="o">(</span><span class="nt">S</span><span class="o">==</span><span class="nt">S2</span><span class="o">)</span>    <span class="o">%</span> <span class="nt">are</span> <span class="nt">these</span> <span class="nt">vectors</span> <span class="nt">equal</span><span class="o">?</span> <span class="nt">Yes</span><span class="o">!</span>
 </code></pre></div>
                 
               

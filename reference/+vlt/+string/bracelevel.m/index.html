@@ -3213,6 +3213,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../%2Bgit/git_stash.m/" class="md-nav__link">
+        vlt.git.git_stash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../%2Bgit/git_status.m/" class="md-nav__link">
         vlt.git.git_status
       </a>
@@ -9237,19 +9249,26 @@
                 
                 
                 <h1 id="vltstringbracelevel">vlt.string.bracelevel<a class="headerlink" href="#vltstringbracelevel" title="Permanent link">&para;</a></h1>
-<p>BRACELEVEL - Determine the enclosure depth level for text within braces</p>
-<p>LEVEL = vlt.string.bracelevel(STR)</p>
-<p>For the string STR, returns an equally long array of numbers
-   LEVEL that indicates the enclosure depth. The enclosure depth
-   answers how many levels deep each character is within parentheses.</p>
-<p>One can also call:</p>
-<p>LEVEL = vlt.string.bracelevel(STR, BRACELEFT, BRACERIGHT)</p>
-<p>And specify the LEFTBRACE and RIGHTBRACE characters.</p>
-<p>Examples:
-      str = 'this is (a test of (depth))';
-      level=vlt.string.bracelevel(str)</p>
-<div class="codehilite"><pre><span></span><code><span class="w">  </span><span class="n">str2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;this is [a test of [depth]]&#39;</span><span class="p">;</span><span class="w"></span>
-<span class="w">  </span><span class="k">level</span><span class="o">=</span><span class="n">vlt</span><span class="p">.</span><span class="n">string</span><span class="p">.</span><span class="n">bracelevel</span><span class="p">(</span><span class="nf">str</span><span class="p">,</span><span class="s1">&#39;[&#39;</span><span class="p">,</span><span class="s1">&#39;]&#39;</span><span class="p">)</span><span class="w"></span>
+<div class="codehilite"><pre><span></span><code><span class="w">  </span><span class="n">BRACELEVEL</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">Determine</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">enclosure</span><span class="w"> </span><span class="k">depth</span><span class="w"> </span><span class="k">level</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="nc">text</span><span class="w"> </span><span class="k">within</span><span class="w"> </span><span class="n">braces</span><span class="w"></span>
+
+<span class="w">   </span><span class="k">LEVEL</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">vlt</span><span class="p">.</span><span class="n">string</span><span class="p">.</span><span class="n">bracelevel</span><span class="p">(</span><span class="nf">STR</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">   </span><span class="k">For</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">string</span><span class="w"> </span><span class="nf">STR</span><span class="p">,</span><span class="w"> </span><span class="k">returns</span><span class="w"> </span><span class="n">an</span><span class="w"> </span><span class="n">equally</span><span class="w"> </span><span class="n">long</span><span class="w"> </span><span class="k">array</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="n">numbers</span><span class="w"></span>
+<span class="w">   </span><span class="k">LEVEL</span><span class="w"> </span><span class="n">that</span><span class="w"> </span><span class="n">indicates</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">enclosure</span><span class="w"> </span><span class="k">depth</span><span class="p">.</span><span class="w"> </span><span class="n">The</span><span class="w"> </span><span class="n">enclosure</span><span class="w"> </span><span class="k">depth</span><span class="w"></span>
+<span class="w">   </span><span class="n">answers</span><span class="w"> </span><span class="n">how</span><span class="w"> </span><span class="n">many</span><span class="w"> </span><span class="n">levels</span><span class="w"> </span><span class="n">deep</span><span class="w"> </span><span class="k">each</span><span class="w"> </span><span class="k">character</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="k">within</span><span class="w"> </span><span class="n">parentheses</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">   </span><span class="n">One</span><span class="w"> </span><span class="n">can</span><span class="w"> </span><span class="n">also</span><span class="w"> </span><span class="k">call</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">   </span><span class="k">LEVEL</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">vlt</span><span class="p">.</span><span class="n">string</span><span class="p">.</span><span class="n">bracelevel</span><span class="p">(</span><span class="nf">STR</span><span class="p">,</span><span class="w"> </span><span class="n">BRACELEFT</span><span class="p">,</span><span class="w"> </span><span class="n">BRACERIGHT</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">   </span><span class="ow">And</span><span class="w"> </span><span class="n">specify</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">LEFTBRACE</span><span class="w"> </span><span class="ow">and</span><span class="w"> </span><span class="n">RIGHTBRACE</span><span class="w"> </span><span class="n">characters</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">   </span><span class="nl">Examples</span><span class="p">:</span><span class="w"></span>
+<span class="w">      </span><span class="nf">str</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;this is (a test of (depth))&#39;</span><span class="p">;</span><span class="w"></span>
+<span class="w">      </span><span class="k">level</span><span class="o">=</span><span class="n">vlt</span><span class="p">.</span><span class="n">string</span><span class="p">.</span><span class="n">bracelevel</span><span class="p">(</span><span class="nf">str</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">      </span><span class="n">str2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;this is [a test of [depth]]&#39;</span><span class="p">;</span><span class="w"></span>
+<span class="w">      </span><span class="k">level</span><span class="o">=</span><span class="n">vlt</span><span class="p">.</span><span class="n">string</span><span class="p">.</span><span class="n">bracelevel</span><span class="p">(</span><span class="nf">str</span><span class="p">,</span><span class="s1">&#39;[&#39;</span><span class="p">,</span><span class="s1">&#39;]&#39;</span><span class="p">)</span><span class="w"></span>
 </code></pre></div>
                 
               

@@ -3213,6 +3213,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../../%2Bgit/git_stash.m/" class="md-nav__link">
+        vlt.git.git_stash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../../%2Bgit/git_status.m/" class="md-nav__link">
         vlt.git.git_status
       </a>
@@ -9239,69 +9251,54 @@
                 
                 
                 <h1 id="vltneurostdpltpi_apply">vlt.neuro.stdp.ltpi_apply<a class="headerlink" href="#vltneurostdpltpi_apply" title="Permanent link">&para;</a></h1>
-<p>LTPI_APPLY Spike-timing dependent-plasticity for calculating changes in synaptic weights</p>
-<div class="codehilite"><pre><span></span><code> WEIGHT = vlt.neuro.stdp.ltpi_apply(SPIKETIMES_PRE, SPIKETIMES_POST)
-</code></pre></div>
+<div class="codehilite"><pre><span></span><code>  <span class="n">LTPI_APPLY</span> <span class="n">Spike</span><span class="o">-</span><span class="n">timing</span> <span class="n">dependent</span><span class="o">-</span><span class="n">plasticity</span> <span class="k">for</span> <span class="n">calculating</span> <span class="n">changes</span> <span class="ow">in</span> <span class="n">synaptic</span> <span class="n">weights</span>
 
-<p>Calculates the change in synaptic weight due to the "veto" long 
-   term potentiation of inhibition rule based on the experimental
-   data of Maffei et. al 2006 (Nature) and on the equations in
-   Bourjaily and Miller 2011 (Frontiers in Computational Neuroscience).</p>
-<div class="codehilite"><pre><span></span><code>   <span class="k">For</span> <span class="nv">all</span> <span class="nv">presynaptic</span> <span class="ss">(</span><span class="nv">inhibitory</span><span class="ss">)</span> <span class="nv">spikes</span>, <span class="nv">we</span> <span class="nv">look</span> <span class="nv">to</span> <span class="nv">see</span> <span class="k">if</span> <span class="nv">there</span>
-   <span class="nv">is</span> <span class="nv">a</span> <span class="nv">postsynaptic</span> <span class="nv">spike</span> <span class="nv">in</span> <span class="nv">the</span> <span class="nv">interval</span> [<span class="nv">t_pre</span><span class="o">-</span><span class="nv">tau_minus</span>,
-   <span class="nv">tpre</span><span class="o">+</span><span class="nv">tau_plus</span>]. <span class="k">If</span> <span class="nv">so</span>, <span class="nv">there</span> <span class="nv">is</span> <span class="nv">an</span> <span class="nv">inhibitory</span> <span class="nv">potentiation</span>:
-   <span class="nv">weight</span> <span class="o">=</span> <span class="nv">weight</span> <span class="o">+</span> <span class="nv">dIW</span>
-</code></pre></div>
+     <span class="n">WEIGHT</span> <span class="o">=</span> <span class="n">vlt</span><span class="o">.</span><span class="n">neuro</span><span class="o">.</span><span class="n">stdp</span><span class="o">.</span><span class="n">ltpi_apply</span><span class="p">(</span><span class="n">SPIKETIMES_PRE</span><span class="p">,</span> <span class="n">SPIKETIMES_POST</span><span class="p">)</span>
 
-<p>WEIGHT is a factor that indicates how the maximumal
-   conductance is modified.In Song and Abbott (2001), the synaptic 
-   conductance was modified by the following forumla:
-   G -&gt; G + G_max * WEIGHT</p>
-<p>Only spikes that occur at or after the time T0 will be examined for STDP.
-   By default, T0 is 0.  (One could use this to restrict the influence
-   of STDP to spike pairs where at least one member of the pair occurs
-   after a particular time.)</p>
-<p>Normally, we do not know what additional spikes are coming in the future.
-   The code assumes that we only know up to time of the latest spike in
-   the 2 trains. (That is, if an inhibitory spike is the last spike to occur,
-   and it has no postsynaptic partners, then we do not yet know if it will
-   generate a potentiation event.  One can explicitly set T1 to indicate
-   the latest time that we have information for (which might be later than
-   the latest spike time).</p>
-<p>The parameters of the synapse can be varied by providing additional 
-   inputs as name, value pairs. The names and values that are default are
-   shown here. For example,
-     WEIGHT = vlt.neuro.stdp.ltpi_apply(SPIKETIMES_PRE, SPIKETIMES_POST, 'tau_plus',0.050)</p>
-<table>
-<thead>
-<tr>
-<th>Parameter name:</th>
-<th>default value</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>tau_plus</td>
-<td>0.020 (units are same as spiketimes)</td>
-</tr>
-<tr>
-<td>tau_minus</td>
-<td>0.020</td>
-</tr>
-<tr>
-<td>dIW</td>
-<td>0.001 (a 1% change)</td>
-</tr>
-<tr>
-<td>T0</td>
-<td>0</td>
-</tr>
-<tr>
-<td>T1</td>
-<td>max(spiketimes_pre(end),spiketimes_post(end))</td>
-</tr>
-</tbody>
-</table>
+   <span class="n">Calculates</span> <span class="n">the</span> <span class="n">change</span> <span class="ow">in</span> <span class="n">synaptic</span> <span class="n">weight</span> <span class="n">due</span> <span class="n">to</span> <span class="n">the</span> <span class="s2">&quot;veto&quot;</span> <span class="n">long</span> 
+   <span class="n">term</span> <span class="n">potentiation</span> <span class="n">of</span> <span class="n">inhibition</span> <span class="n">rule</span> <span class="n">based</span> <span class="n">on</span> <span class="n">the</span> <span class="n">experimental</span>
+   <span class="n">data</span> <span class="n">of</span> <span class="n">Maffei</span> <span class="n">et</span><span class="o">.</span> <span class="n">al</span> <span class="mi">2006</span> <span class="p">(</span><span class="n">Nature</span><span class="p">)</span> <span class="ow">and</span> <span class="n">on</span> <span class="n">the</span> <span class="n">equations</span> <span class="ow">in</span>
+   <span class="n">Bourjaily</span> <span class="ow">and</span> <span class="n">Miller</span> <span class="mi">2011</span> <span class="p">(</span><span class="n">Frontiers</span> <span class="ow">in</span> <span class="n">Computational</span> <span class="n">Neuroscience</span><span class="p">)</span><span class="o">.</span>
+
+       <span class="n">For</span> <span class="n">all</span> <span class="n">presynaptic</span> <span class="p">(</span><span class="n">inhibitory</span><span class="p">)</span> <span class="n">spikes</span><span class="p">,</span> <span class="n">we</span> <span class="n">look</span> <span class="n">to</span> <span class="n">see</span> <span class="k">if</span> <span class="n">there</span>
+       <span class="k">is</span> <span class="n">a</span> <span class="n">postsynaptic</span> <span class="n">spike</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">interval</span> <span class="p">[</span><span class="n">t_pre</span><span class="o">-</span><span class="n">tau_minus</span><span class="p">,</span>
+       <span class="n">tpre</span><span class="o">+</span><span class="n">tau_plus</span><span class="p">]</span><span class="o">.</span> <span class="n">If</span> <span class="n">so</span><span class="p">,</span> <span class="n">there</span> <span class="k">is</span> <span class="n">an</span> <span class="n">inhibitory</span> <span class="n">potentiation</span><span class="p">:</span>
+       <span class="n">weight</span> <span class="o">=</span> <span class="n">weight</span> <span class="o">+</span> <span class="n">dIW</span>
+
+   <span class="n">WEIGHT</span> <span class="k">is</span> <span class="n">a</span> <span class="n">factor</span> <span class="n">that</span> <span class="n">indicates</span> <span class="n">how</span> <span class="n">the</span> <span class="n">maximumal</span>
+   <span class="n">conductance</span> <span class="k">is</span> <span class="n">modified</span><span class="o">.</span><span class="n">In</span> <span class="n">Song</span> <span class="ow">and</span> <span class="n">Abbott</span> <span class="p">(</span><span class="mi">2001</span><span class="p">),</span> <span class="n">the</span> <span class="n">synaptic</span> 
+   <span class="n">conductance</span> <span class="n">was</span> <span class="n">modified</span> <span class="n">by</span> <span class="n">the</span> <span class="n">following</span> <span class="n">forumla</span><span class="p">:</span>
+   <span class="n">G</span> <span class="o">-&gt;</span> <span class="n">G</span> <span class="o">+</span> <span class="n">G_max</span> <span class="o">*</span> <span class="n">WEIGHT</span>
+
+   <span class="n">Only</span> <span class="n">spikes</span> <span class="n">that</span> <span class="n">occur</span> <span class="n">at</span> <span class="ow">or</span> <span class="n">after</span> <span class="n">the</span> <span class="n">time</span> <span class="n">T0</span> <span class="n">will</span> <span class="n">be</span> <span class="n">examined</span> <span class="k">for</span> <span class="n">STDP</span><span class="o">.</span>
+   <span class="n">By</span> <span class="n">default</span><span class="p">,</span> <span class="n">T0</span> <span class="k">is</span> <span class="mf">0.</span>  <span class="p">(</span><span class="n">One</span> <span class="n">could</span> <span class="n">use</span> <span class="n">this</span> <span class="n">to</span> <span class="n">restrict</span> <span class="n">the</span> <span class="n">influence</span>
+   <span class="n">of</span> <span class="n">STDP</span> <span class="n">to</span> <span class="n">spike</span> <span class="n">pairs</span> <span class="n">where</span> <span class="n">at</span> <span class="n">least</span> <span class="n">one</span> <span class="n">member</span> <span class="n">of</span> <span class="n">the</span> <span class="n">pair</span> <span class="n">occurs</span>
+   <span class="n">after</span> <span class="n">a</span> <span class="n">particular</span> <span class="n">time</span><span class="o">.</span><span class="p">)</span>
+
+   <span class="n">Normally</span><span class="p">,</span> <span class="n">we</span> <span class="n">do</span> <span class="ow">not</span> <span class="n">know</span> <span class="n">what</span> <span class="n">additional</span> <span class="n">spikes</span> <span class="n">are</span> <span class="n">coming</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">future</span><span class="o">.</span>
+   <span class="n">The</span> <span class="n">code</span> <span class="n">assumes</span> <span class="n">that</span> <span class="n">we</span> <span class="n">only</span> <span class="n">know</span> <span class="n">up</span> <span class="n">to</span> <span class="n">time</span> <span class="n">of</span> <span class="n">the</span> <span class="n">latest</span> <span class="n">spike</span> <span class="ow">in</span>
+   <span class="n">the</span> <span class="mi">2</span> <span class="n">trains</span><span class="o">.</span> <span class="p">(</span><span class="n">That</span> <span class="k">is</span><span class="p">,</span> <span class="k">if</span> <span class="n">an</span> <span class="n">inhibitory</span> <span class="n">spike</span> <span class="k">is</span> <span class="n">the</span> <span class="n">last</span> <span class="n">spike</span> <span class="n">to</span> <span class="n">occur</span><span class="p">,</span>
+   <span class="ow">and</span> <span class="n">it</span> <span class="n">has</span> <span class="n">no</span> <span class="n">postsynaptic</span> <span class="n">partners</span><span class="p">,</span> <span class="n">then</span> <span class="n">we</span> <span class="n">do</span> <span class="ow">not</span> <span class="n">yet</span> <span class="n">know</span> <span class="k">if</span> <span class="n">it</span> <span class="n">will</span>
+   <span class="n">generate</span> <span class="n">a</span> <span class="n">potentiation</span> <span class="n">event</span><span class="o">.</span>  <span class="n">One</span> <span class="n">can</span> <span class="n">explicitly</span> <span class="n">set</span> <span class="n">T1</span> <span class="n">to</span> <span class="n">indicate</span>
+   <span class="n">the</span> <span class="n">latest</span> <span class="n">time</span> <span class="n">that</span> <span class="n">we</span> <span class="n">have</span> <span class="n">information</span> <span class="k">for</span> <span class="p">(</span><span class="n">which</span> <span class="n">might</span> <span class="n">be</span> <span class="n">later</span> <span class="n">than</span>
+   <span class="n">the</span> <span class="n">latest</span> <span class="n">spike</span> <span class="n">time</span><span class="p">)</span><span class="o">.</span>
+
+
+
+
+   <span class="n">The</span> <span class="n">parameters</span> <span class="n">of</span> <span class="n">the</span> <span class="n">synapse</span> <span class="n">can</span> <span class="n">be</span> <span class="n">varied</span> <span class="n">by</span> <span class="n">providing</span> <span class="n">additional</span> 
+   <span class="n">inputs</span> <span class="k">as</span> <span class="n">name</span><span class="p">,</span> <span class="n">value</span> <span class="n">pairs</span><span class="o">.</span> <span class="n">The</span> <span class="n">names</span> <span class="ow">and</span> <span class="n">values</span> <span class="n">that</span> <span class="n">are</span> <span class="n">default</span> <span class="n">are</span>
+   <span class="n">shown</span> <span class="n">here</span><span class="o">.</span> <span class="n">For</span> <span class="n">example</span><span class="p">,</span>
+     <span class="n">WEIGHT</span> <span class="o">=</span> <span class="n">vlt</span><span class="o">.</span><span class="n">neuro</span><span class="o">.</span><span class="n">stdp</span><span class="o">.</span><span class="n">ltpi_apply</span><span class="p">(</span><span class="n">SPIKETIMES_PRE</span><span class="p">,</span> <span class="n">SPIKETIMES_POST</span><span class="p">,</span> <span class="s1">&#39;tau_plus&#39;</span><span class="p">,</span><span class="mf">0.050</span><span class="p">)</span>
+
+   <span class="n">Parameter</span> <span class="n">name</span><span class="p">:</span>               <span class="o">|</span> <span class="n">default</span> <span class="n">value</span>
+   <span class="o">------------------------------|-----------------------------</span>
+   <span class="n">tau_plus</span>                      <span class="o">|</span> <span class="mf">0.020</span> <span class="p">(</span><span class="n">units</span> <span class="n">are</span> <span class="n">same</span> <span class="k">as</span> <span class="n">spiketimes</span><span class="p">)</span>
+   <span class="n">tau_minus</span>                     <span class="o">|</span> <span class="mf">0.020</span>
+   <span class="n">dIW</span>                           <span class="o">|</span> <span class="mf">0.001</span> <span class="p">(</span><span class="n">a</span> <span class="mi">1</span><span class="o">%</span> <span class="n">change</span><span class="p">)</span>
+   <span class="n">T0</span>                            <span class="o">|</span> <span class="mi">0</span>
+   <span class="n">T1</span>                            <span class="o">|</span> <span class="nb">max</span><span class="p">(</span><span class="n">spiketimes_pre</span><span class="p">(</span><span class="n">end</span><span class="p">),</span><span class="n">spiketimes_post</span><span class="p">(</span><span class="n">end</span><span class="p">))</span>
+</code></pre></div>
                 
               
               

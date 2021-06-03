@@ -3227,6 +3227,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../../%2Bgit/git_stash.m/" class="md-nav__link">
+        vlt.git.git_stash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../../%2Bgit/git_status.m/" class="md-nav__link">
         vlt.git.git_status
       </a>
@@ -9239,22 +9251,30 @@
                 
                 
                 <h1 id="vltfilecustom_file_formatswritevhlvdatafile">vlt.file.custom_file_formats.writevhlvdatafile<a class="headerlink" href="#vltfilecustom_file_formatswritevhlvdatafile" title="Permanent link">&para;</a></h1>
-<p>WRITEVLHVDATAFILE - Write data to a VHLVDATAFILE </p>
-<p>vlt.file.custom_file_formats.writevhlvdatafile(FILENAME, HEADER, DATA)</p>
-<p>Write a VHLVDATAFILE file to filename FILENAME, in Multiplex format.</p>
-<p>This is the format used by the Van Hooser lab at Brandeis University
-  for files acquired via a LabView program (hence the abbreviation VHLV). </p>
-<p>DATA should be channel data; each column should contain data from a single channel.</p>
-<p>If the header file in .vlh format does not exist, then it is written
-  using the information in HEADER and FILENAME. The header field
-  'Multiplexed' is updated to be 1.</p>
-<p>One can provide optional name/value pairs:
-  PARAMETER (default value)        | Description</p>
-<hr />
-<p>append (1)                       | Should we append to the end of the file?
-                                   |  0 - no, create a new file
-                                   |  1 - yes, add to the end of the file</p>
-<p>See also: vlt.file.custom_file_formats.readvhlvdatafile</p>
+<div class="codehilite"><pre><span></span><code>  <span class="nv">WRITEVLHVDATAFILE</span> <span class="o">-</span> <span class="nv">Write</span> <span class="nv">data</span> <span class="nv">to</span> <span class="nv">a</span> <span class="nv">VHLVDATAFILE</span> 
+
+  <span class="nv">vlt</span>.<span class="nv">file</span>.<span class="nv">custom_file_formats</span>.<span class="nv">writevhlvdatafile</span><span class="ss">(</span><span class="nv">FILENAME</span>, <span class="nv">HEADER</span>, <span class="nv">DATA</span><span class="ss">)</span>
+
+  <span class="nv">Write</span> <span class="nv">a</span> <span class="nv">VHLVDATAFILE</span> <span class="nv">file</span> <span class="nv">to</span> <span class="nv">filename</span> <span class="nv">FILENAME</span>, <span class="nv">in</span> <span class="nv">Multiplex</span> <span class="nv">format</span>.
+
+  <span class="nv">This</span> <span class="nv">is</span> <span class="nv">the</span> <span class="nv">format</span> <span class="nv">used</span> <span class="nv">by</span> <span class="nv">the</span> <span class="nv">Van</span> <span class="nv">Hooser</span> <span class="nv">lab</span> <span class="nv">at</span> <span class="nv">Brandeis</span> <span class="nv">University</span>
+  <span class="k">for</span> <span class="nv">files</span> <span class="nv">acquired</span> <span class="nv">via</span> <span class="nv">a</span> <span class="nv">LabView</span> <span class="nv">program</span> <span class="ss">(</span><span class="nv">hence</span> <span class="nv">the</span> <span class="nv">abbreviation</span> <span class="nv">VHLV</span><span class="ss">)</span>. 
+
+  <span class="nv">DATA</span> <span class="nv">should</span> <span class="nv">be</span> <span class="nv">channel</span> <span class="nv">data</span><span class="c1">; each column should contain data from a single channel.</span>
+
+  <span class="k">If</span> <span class="nv">the</span> <span class="nv">header</span> <span class="nv">file</span> <span class="nv">in</span> .<span class="nv">vlh</span> <span class="nv">format</span> <span class="nv">does</span> <span class="nv">not</span> <span class="nv">exist</span>, <span class="k">then</span> <span class="nv">it</span> <span class="nv">is</span> <span class="nv">written</span>
+  <span class="nv">using</span> <span class="nv">the</span> <span class="nv">information</span> <span class="nv">in</span> <span class="nv">HEADER</span> <span class="nv">and</span> <span class="nv">FILENAME</span>. <span class="nv">The</span> <span class="nv">header</span> <span class="nv">field</span>
+  <span class="s1">&#39;</span><span class="s">Multiplexed</span><span class="s1">&#39;</span> <span class="nv">is</span> <span class="nv">updated</span> <span class="nv">to</span> <span class="nv">be</span> <span class="mi">1</span>.
+
+  <span class="nv">One</span> <span class="nv">can</span> <span class="nv">provide</span> <span class="nv">optional</span> <span class="nv">name</span><span class="o">/</span><span class="nv">value</span> <span class="nv">pairs</span>:
+  <span class="nv">PARAMETER</span> <span class="ss">(</span><span class="nv">default</span> <span class="nv">value</span><span class="ss">)</span>        <span class="o">|</span> <span class="nv">Description</span>
+  <span class="o">--------------------------------------------------------------------------</span>
+  <span class="nv">append</span> <span class="ss">(</span><span class="mi">1</span><span class="ss">)</span>                       <span class="o">|</span> <span class="nv">Should</span> <span class="nv">we</span> <span class="nv">append</span> <span class="nv">to</span> <span class="nv">the</span> <span class="k">end</span> <span class="nv">of</span> <span class="nv">the</span> <span class="nv">file</span>?
+                                   <span class="o">|</span>  <span class="mi">0</span> <span class="o">-</span> <span class="nv">no</span>, <span class="nv">create</span> <span class="nv">a</span> <span class="nv">new</span> <span class="nv">file</span>
+                                   <span class="o">|</span>  <span class="mi">1</span> <span class="o">-</span> <span class="nv">yes</span>, <span class="nv">add</span> <span class="nv">to</span> <span class="nv">the</span> <span class="k">end</span> <span class="nv">of</span> <span class="nv">the</span> <span class="nv">file</span>
+
+  <span class="nv">See</span> <span class="nv">also</span>: <span class="nv">vlt</span>.<span class="nv">file</span>.<span class="nv">custom_file_formats</span>.<span class="nv">readvhlvdatafile</span>
+</code></pre></div>
                 
               
               

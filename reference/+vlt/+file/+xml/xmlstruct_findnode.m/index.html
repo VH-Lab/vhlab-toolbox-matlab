@@ -3227,6 +3227,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../../%2Bgit/git_stash.m/" class="md-nav__link">
+        vlt.git.git_stash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../../%2Bgit/git_status.m/" class="md-nav__link">
         vlt.git.git_status
       </a>
@@ -9239,15 +9251,20 @@
                 
                 
                 <h1 id="vltfilexmlxmlstruct_findnode">vlt.file.xml.xmlstruct_findnode<a class="headerlink" href="#vltfilexmlxmlstruct_findnode" title="Permanent link">&para;</a></h1>
-<p>XMLSTRUCT_FINDNODE - Find a node in a Matlab struct based on XML</p>
-<p>NODE = vlt.file.xml.xmlstruct_findnode(XML_STRUCT, NODENAME)</p>
-<p>Recursively searches XML_STRUCT, an XML node tree returned from
-   vlt.file.xml.parseXML, for the node with the name 'NODENAME'. It returns the node
-   at that point (including all of its children).</p>
-<p>XML_STRUCT should be a structure with the following fields:
-   'Name', 'Attributes', 'Data', 'Children'. The 'Children' field
-   should be a structure with the same fields.</p>
-<p>See also: vlt.file.xml.parseXML</p>
+<div class="codehilite"><pre><span></span><code>  <span class="nv">XMLSTRUCT_FINDNODE</span> <span class="o">-</span> <span class="nv">Find</span> <span class="nv">a</span> <span class="nv">node</span> <span class="nv">in</span> <span class="nv">a</span> <span class="nv">Matlab</span> <span class="nv">struct</span> <span class="nv">based</span> <span class="nv">on</span> <span class="nv">XML</span>
+
+   <span class="nv">NODE</span> <span class="o">=</span> <span class="nv">vlt</span>.<span class="nv">file</span>.<span class="nv">xml</span>.<span class="nv">xmlstruct_findnode</span><span class="ss">(</span><span class="nv">XML_STRUCT</span>, <span class="nv">NODENAME</span><span class="ss">)</span>
+
+   <span class="nv">Recursively</span> <span class="nv">searches</span> <span class="nv">XML_STRUCT</span>, <span class="nv">an</span> <span class="nv">XML</span> <span class="nv">node</span> <span class="nv">tree</span> <span class="nv">returned</span> <span class="nv">from</span>
+   <span class="nv">vlt</span>.<span class="nv">file</span>.<span class="nv">xml</span>.<span class="nv">parseXML</span>, <span class="k">for</span> <span class="nv">the</span> <span class="nv">node</span> <span class="nv">with</span> <span class="nv">the</span> <span class="nv">name</span> <span class="s1">&#39;</span><span class="s">NODENAME</span><span class="s1">&#39;</span>. <span class="nv">It</span> <span class="nv">returns</span> <span class="nv">the</span> <span class="nv">node</span>
+   <span class="nv">at</span> <span class="nv">that</span> <span class="nv">point</span> <span class="ss">(</span><span class="nv">including</span> <span class="nv">all</span> <span class="nv">of</span> <span class="nv">its</span> <span class="nv">children</span><span class="ss">)</span>.
+
+   <span class="nv">XML_STRUCT</span> <span class="nv">should</span> <span class="nv">be</span> <span class="nv">a</span> <span class="nv">structure</span> <span class="nv">with</span> <span class="nv">the</span> <span class="nv">following</span> <span class="nv">fields</span>:
+   <span class="s1">&#39;</span><span class="s">Name</span><span class="s1">&#39;</span>, <span class="s1">&#39;</span><span class="s">Attributes</span><span class="s1">&#39;</span>, <span class="s1">&#39;</span><span class="s">Data</span><span class="s1">&#39;</span>, <span class="s1">&#39;</span><span class="s">Children</span><span class="s1">&#39;</span>. <span class="nv">The</span> <span class="s1">&#39;</span><span class="s">Children</span><span class="s1">&#39;</span> <span class="nv">field</span>
+   <span class="nv">should</span> <span class="nv">be</span> <span class="nv">a</span> <span class="nv">structure</span> <span class="nv">with</span> <span class="nv">the</span> <span class="nv">same</span> <span class="nv">fields</span>.
+
+   <span class="nv">See</span> <span class="nv">also</span>: <span class="nv">vlt</span>.<span class="nv">file</span>.<span class="nv">xml</span>.<span class="nv">parseXML</span>
+</code></pre></div>
                 
               
               

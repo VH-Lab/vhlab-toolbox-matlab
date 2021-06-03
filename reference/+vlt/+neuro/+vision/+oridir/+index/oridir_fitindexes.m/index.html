@@ -3213,6 +3213,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../../../../%2Bgit/git_stash.m/" class="md-nav__link">
+        vlt.git.git_stash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../../../../%2Bgit/git_status.m/" class="md-nav__link">
         vlt.git.git_status
       </a>
@@ -9243,34 +9255,41 @@
                 
                 
                 <h1 id="vltneurovisionoridirindexoridir_fitindexes">vlt.neuro.vision.oridir.index.oridir_fitindexes<a class="headerlink" href="#vltneurovisionoridirindexoridir_fitindexes" title="Permanent link">&para;</a></h1>
-<p>ORIDIR_FITINDEXES - compute orientation/direction fits, index values</p>
-<p>FI = vlt.neuro.vision.oridir.index.oridir_fitindexes(RESPSTRUCT)</p>
-<p>Computes orientation/direction index fit values from a response structure RESPSTRUCT.</p>
-<p>RESPSTRUCT is a structure  of response properties with fields:
-   Field    | Description</p>
-<hr />
-<p>curve    |    4xnumber of directions tested,
-            |      curve(1,:) is directions tested (degrees, compass coords.)
-            |      curve(2,:) is mean responses
-            |      curve(3,:) is standard deviation
-            |      curve(4,:) is standard error
-   ind      |    cell list of individual trial responses for each direction</p>
-<p>Note that fits may be garbage if there are not significantly different responses across different directions.</p>
-<p>Returns a structure FI with fields:
-  Field                           | Description</p>
-<hr />
-<p>fit_parameters                  |   [Rsp Rp Ot sigm Rn]
-  fit                             |   2 row fit; first row is set of directions, second row is responses
-  ot_index                        |   Orientation index ( (pref-orth)/pref) )
-  ot_index_rectified              |   Orientation index ( (pref-orth)/pref) ) rectified to be in 0, 1
-  ot_index_diffsum                |   Orientation index ( (pref-orth)/(pref+orth) )
-  ot_index_diffsum_rectified      |   Orientation index ( (pref-orth)/(pref+orth) ), rectified to be in 0,1
-  dir_pref                        |   Ot
-  tuning_width                    |   Fit tuning width (HWHH, sigm*sqrt(log(4)))
-  dir_index                       |   Direction index ( (pref-orth)/pref) )
-  dir_index_rectified             |   Direction index ( (pref-orth)/pref) ) rectified to be in 0, 1
-  dir_index_diffsum               |   Direction index ( (pref-orth)/(pref+orth) )
-  dir_index_diffsum_rectified     |   Direction index ( (pref-orth)/(pref+orth) ), rectified to be in 0,1</p>
+<div class="codehilite"><pre><span></span><code>  <span class="nt">ORIDIR_FITINDEXES</span> <span class="nt">-</span> <span class="nt">compute</span> <span class="nt">orientation</span><span class="o">/</span><span class="nt">direction</span> <span class="nt">fits</span><span class="o">,</span> <span class="nt">index</span> <span class="nt">values</span>
+
+  <span class="nt">FI</span> <span class="o">=</span> <span class="nt">vlt</span><span class="p">.</span><span class="nc">neuro</span><span class="p">.</span><span class="nc">vision</span><span class="p">.</span><span class="nc">oridir</span><span class="p">.</span><span class="nc">index</span><span class="p">.</span><span class="nc">oridir_fitindexes</span><span class="o">(</span><span class="nt">RESPSTRUCT</span><span class="o">)</span>
+
+  <span class="nt">Computes</span> <span class="nt">orientation</span><span class="o">/</span><span class="nt">direction</span> <span class="nt">index</span> <span class="nt">fit</span> <span class="nt">values</span> <span class="nt">from</span> <span class="nt">a</span> <span class="nt">response</span> <span class="nt">structure</span> <span class="nt">RESPSTRUCT</span><span class="o">.</span>
+
+   <span class="nt">RESPSTRUCT</span> <span class="nt">is</span> <span class="nt">a</span> <span class="nt">structure</span>  <span class="nt">of</span> <span class="nt">response</span> <span class="nt">properties</span> <span class="nt">with</span> <span class="nt">fields</span><span class="o">:</span>
+   <span class="nt">Field</span>    <span class="o">|</span> <span class="nt">Description</span>
+   <span class="nt">-----------------------------------------------------------------------------</span>
+   <span class="nt">curve</span>    <span class="o">|</span>    <span class="nt">4xnumber</span> <span class="nt">of</span> <span class="nt">directions</span> <span class="nt">tested</span><span class="o">,</span>
+            <span class="o">|</span>      <span class="nt">curve</span><span class="o">(</span><span class="nt">1</span><span class="o">,:)</span> <span class="nt">is</span> <span class="nt">directions</span> <span class="nt">tested</span> <span class="o">(</span><span class="nt">degrees</span><span class="o">,</span> <span class="nt">compass</span> <span class="nt">coords</span><span class="o">.)</span>
+            <span class="o">|</span>      <span class="nt">curve</span><span class="o">(</span><span class="nt">2</span><span class="o">,:)</span> <span class="nt">is</span> <span class="nt">mean</span> <span class="nt">responses</span>
+            <span class="o">|</span>      <span class="nt">curve</span><span class="o">(</span><span class="nt">3</span><span class="o">,:)</span> <span class="nt">is</span> <span class="nt">standard</span> <span class="nt">deviation</span>
+            <span class="o">|</span>      <span class="nt">curve</span><span class="o">(</span><span class="nt">4</span><span class="o">,:)</span> <span class="nt">is</span> <span class="nt">standard</span> <span class="nt">error</span>
+   <span class="nt">ind</span>      <span class="o">|</span>    <span class="nt">cell</span> <span class="nt">list</span> <span class="nt">of</span> <span class="nt">individual</span> <span class="nt">trial</span> <span class="nt">responses</span> <span class="nt">for</span> <span class="nt">each</span> <span class="nt">direction</span>
+
+
+  <span class="nt">Note</span> <span class="nt">that</span> <span class="nt">fits</span> <span class="nt">may</span> <span class="nt">be</span> <span class="nt">garbage</span> <span class="nt">if</span> <span class="nt">there</span> <span class="nt">are</span> <span class="nt">not</span> <span class="nt">significantly</span> <span class="nt">different</span> <span class="nt">responses</span> <span class="nt">across</span> <span class="nt">different</span> <span class="nt">directions</span><span class="o">.</span>
+
+  <span class="nt">Returns</span> <span class="nt">a</span> <span class="nt">structure</span> <span class="nt">FI</span> <span class="nt">with</span> <span class="nt">fields</span><span class="o">:</span>
+  <span class="nt">Field</span>                           <span class="o">|</span> <span class="nt">Description</span>
+  <span class="nt">----------------------------------------------------------------------------------------</span>
+  <span class="nt">fit_parameters</span>                  <span class="o">|</span>   <span class="cp">[</span><span class="nx">Rsp</span> <span class="nx">Rp</span> <span class="nx">Ot</span> <span class="nx">sigm</span> <span class="nx">Rn</span><span class="cp">]</span>
+  <span class="nt">fit</span>                             <span class="o">|</span>   <span class="nt">2</span> <span class="nt">row</span> <span class="nt">fit</span><span class="o">;</span> <span class="nt">first</span> <span class="nt">row</span> <span class="nt">is</span> <span class="nt">set</span> <span class="nt">of</span> <span class="nt">directions</span><span class="o">,</span> <span class="nt">second</span> <span class="nt">row</span> <span class="nt">is</span> <span class="nt">responses</span>
+  <span class="nt">ot_index</span>                        <span class="o">|</span>   <span class="nt">Orientation</span> <span class="nt">index</span> <span class="o">(</span> <span class="o">(</span><span class="nt">pref-orth</span><span class="o">)/</span><span class="nt">pref</span><span class="o">)</span> <span class="o">)</span>
+  <span class="nt">ot_index_rectified</span>              <span class="o">|</span>   <span class="nt">Orientation</span> <span class="nt">index</span> <span class="o">(</span> <span class="o">(</span><span class="nt">pref-orth</span><span class="o">)/</span><span class="nt">pref</span><span class="o">)</span> <span class="o">)</span> <span class="nt">rectified</span> <span class="nt">to</span> <span class="nt">be</span> <span class="nt">in</span> <span class="nt">0</span><span class="o">,</span> <span class="nt">1</span>
+  <span class="nt">ot_index_diffsum</span>                <span class="o">|</span>   <span class="nt">Orientation</span> <span class="nt">index</span> <span class="o">(</span> <span class="o">(</span><span class="nt">pref-orth</span><span class="o">)/(</span><span class="nt">pref</span><span class="o">+</span><span class="nt">orth</span><span class="o">)</span> <span class="o">)</span>
+  <span class="nt">ot_index_diffsum_rectified</span>      <span class="o">|</span>   <span class="nt">Orientation</span> <span class="nt">index</span> <span class="o">(</span> <span class="o">(</span><span class="nt">pref-orth</span><span class="o">)/(</span><span class="nt">pref</span><span class="o">+</span><span class="nt">orth</span><span class="o">)</span> <span class="o">),</span> <span class="nt">rectified</span> <span class="nt">to</span> <span class="nt">be</span> <span class="nt">in</span> <span class="nt">0</span><span class="o">,</span><span class="nt">1</span>
+  <span class="nt">dir_pref</span>                        <span class="o">|</span>   <span class="nt">Ot</span>
+  <span class="nt">tuning_width</span>                    <span class="o">|</span>   <span class="nt">Fit</span> <span class="nt">tuning</span> <span class="nt">width</span> <span class="o">(</span><span class="nt">HWHH</span><span class="o">,</span> <span class="nt">sigm</span><span class="o">*</span><span class="nt">sqrt</span><span class="o">(</span><span class="nt">log</span><span class="o">(</span><span class="nt">4</span><span class="o">)))</span>
+  <span class="nt">dir_index</span>                       <span class="o">|</span>   <span class="nt">Direction</span> <span class="nt">index</span> <span class="o">(</span> <span class="o">(</span><span class="nt">pref-orth</span><span class="o">)/</span><span class="nt">pref</span><span class="o">)</span> <span class="o">)</span>
+  <span class="nt">dir_index_rectified</span>             <span class="o">|</span>   <span class="nt">Direction</span> <span class="nt">index</span> <span class="o">(</span> <span class="o">(</span><span class="nt">pref-orth</span><span class="o">)/</span><span class="nt">pref</span><span class="o">)</span> <span class="o">)</span> <span class="nt">rectified</span> <span class="nt">to</span> <span class="nt">be</span> <span class="nt">in</span> <span class="nt">0</span><span class="o">,</span> <span class="nt">1</span>
+  <span class="nt">dir_index_diffsum</span>               <span class="o">|</span>   <span class="nt">Direction</span> <span class="nt">index</span> <span class="o">(</span> <span class="o">(</span><span class="nt">pref-orth</span><span class="o">)/(</span><span class="nt">pref</span><span class="o">+</span><span class="nt">orth</span><span class="o">)</span> <span class="o">)</span>
+  <span class="nt">dir_index_diffsum_rectified</span>     <span class="o">|</span>   <span class="nt">Direction</span> <span class="nt">index</span> <span class="o">(</span> <span class="o">(</span><span class="nt">pref-orth</span><span class="o">)/(</span><span class="nt">pref</span><span class="o">+</span><span class="nt">orth</span><span class="o">)</span> <span class="o">),</span> <span class="nt">rectified</span> <span class="nt">to</span> <span class="nt">be</span> <span class="nt">in</span> <span class="nt">0</span><span class="o">,</span><span class="nt">1</span>
+</code></pre></div>
                 
               
               

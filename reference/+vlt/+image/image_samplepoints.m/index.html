@@ -3213,6 +3213,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../%2Bgit/git_stash.m/" class="md-nav__link">
+        vlt.git.git_stash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../%2Bgit/git_status.m/" class="md-nav__link">
         vlt.git.git_status
       </a>
@@ -9237,23 +9249,29 @@
                 
                 
                 <h1 id="vltimageimage_samplepoints">vlt.image.image_samplepoints<a class="headerlink" href="#vltimageimage_samplepoints" title="Permanent link">&para;</a></h1>
-<p>IMAGE_SAMPLEPOINTS - Sample points from an image file</p>
-<p>[PTS, IMAGESIZE] = IMAGE_SAMPLEPOINTS(IMAGEFILE, N, METHOD)</p>
-<p>This function samples N values from the image file in
-   IMAGEFILE. METHOD can be 'random' or 'sequential'.
-   The image size is returned in IMAGESIZE. Note that IMAGESIZE corresponds
-   to the number of samples [HEIGHT WIDTH NUMBER_OF_IMAGES], regardless of 
-   whether the samples are singles, triples (RGB), quads (e.g., CMYK).</p>
-<p>The N samples are drawn with replacement; it is possible the same value is
-   drawn more than once.</p>
-<p>PTS is an NxDIM matrix of samples from the image. If the image is
-   grayscale (single channel), then DIM is 1. If it is RGB, then DIM is 3, etc.</p>
-<p>This function accepts additional parameters as name/value pairs:
-   Parameter (default)   | Description</p>
-<hr />
-<p>info ([])             | Optionally, one can pass the output of
-                         |   imfinfo as info; it saves time beause
-                         |   IMAGE_SAMPLEPOINTS doesn't need to read it</p>
+<div class="codehilite"><pre><span></span><code>  <span class="n">IMAGE_SAMPLEPOINTS</span> <span class="o">-</span> <span class="n">Sample</span> <span class="n">points</span> <span class="n">from</span> <span class="n">an</span> <span class="n">image</span> <span class="n">file</span>
+
+   <span class="p">[</span><span class="n">PTS</span><span class="p">,</span> <span class="n">IMAGESIZE</span><span class="p">]</span> <span class="o">=</span> <span class="n">IMAGE_SAMPLEPOINTS</span><span class="p">(</span><span class="n">IMAGEFILE</span><span class="p">,</span> <span class="n">N</span><span class="p">,</span> <span class="n">METHOD</span><span class="p">)</span>
+
+   <span class="n">This</span> <span class="k">function</span> <span class="n">samples</span> <span class="n">N</span> <span class="n">values</span> <span class="n">from</span> <span class="n">the</span> <span class="n">image</span> <span class="n">file</span> <span class="n">in</span>
+   <span class="n">IMAGEFILE</span><span class="p">.</span> <span class="n">METHOD</span> <span class="n">can</span> <span class="n">be</span> <span class="p">&#39;</span><span class="n">random</span><span class="p">&#39;</span> <span class="k">or</span> <span class="p">&#39;</span><span class="n">sequential</span><span class="p">&#39;.</span>
+   <span class="n">The</span> <span class="n">image</span> <span class="n">size</span> <span class="n">is</span> <span class="n">returned</span> <span class="n">in</span> <span class="n">IMAGESIZE</span><span class="p">.</span> <span class="n">Note</span> <span class="n">that</span> <span class="n">IMAGESIZE</span> <span class="n">corresponds</span>
+   <span class="n">to</span> <span class="n">the</span> <span class="n">number</span> <span class="n">of</span> <span class="n">samples</span> <span class="p">[</span><span class="n">HEIGHT</span> <span class="n">WIDTH</span> <span class="n">NUMBER_OF_IMAGES</span><span class="p">],</span> <span class="n">regardless</span> <span class="n">of</span> 
+   <span class="n">whether</span> <span class="n">the</span> <span class="n">samples</span> <span class="n">are</span> <span class="n">singles</span><span class="p">,</span> <span class="n">triples</span> <span class="p">(</span><span class="n">RGB</span><span class="p">),</span> <span class="n">quads</span> <span class="p">(</span><span class="n">e</span><span class="p">.</span><span class="n">g</span><span class="p">.,</span> <span class="n">CMYK</span><span class="p">).</span>
+
+   <span class="n">The</span> <span class="n">N</span> <span class="n">samples</span> <span class="n">are</span> <span class="n">drawn</span> <span class="n">with</span> <span class="n">replacement</span><span class="p">;</span> <span class="n">it</span> <span class="n">is</span> <span class="n">possible</span> <span class="n">the</span> <span class="n">same</span> <span class="n">value</span> <span class="n">is</span>
+   <span class="n">drawn</span> <span class="n">more</span> <span class="n">than</span> <span class="n">once</span><span class="p">.</span>
+
+   <span class="n">PTS</span> <span class="n">is</span> <span class="n">an</span> <span class="n">NxDIM</span> <span class="n">matrix</span> <span class="n">of</span> <span class="n">samples</span> <span class="n">from</span> <span class="n">the</span> <span class="n">image</span><span class="p">.</span> <span class="n">If</span> <span class="n">the</span> <span class="n">image</span> <span class="n">is</span>
+   <span class="n">grayscale</span> <span class="p">(</span><span class="n">single</span> <span class="n">channel</span><span class="p">),</span> <span class="n">then</span> <span class="n">DIM</span> <span class="n">is</span> <span class="mf">1.</span> <span class="n">If</span> <span class="n">it</span> <span class="n">is</span> <span class="n">RGB</span><span class="p">,</span> <span class="n">then</span> <span class="n">DIM</span> <span class="n">is</span> <span class="mh">3</span><span class="p">,</span> <span class="n">etc</span><span class="p">.</span>
+
+   <span class="n">This</span> <span class="k">function</span> <span class="n">accepts</span> <span class="n">additional</span> <span class="n">parameters</span> <span class="n">as</span> <span class="n">name</span><span class="o">/</span><span class="n">value</span> <span class="nl">pairs:</span>
+   <span class="n">Parameter</span> <span class="p">(</span><span class="k">default</span><span class="p">)</span>   <span class="o">|</span> <span class="n">Description</span>
+   <span class="o">----------------------------------------------------------------</span>
+   <span class="n">info</span> <span class="p">([])</span>             <span class="o">|</span> <span class="n">Optionally</span><span class="p">,</span> <span class="n">one</span> <span class="n">can</span> <span class="n">pass</span> <span class="n">the</span> <span class="k">output</span> <span class="n">of</span>
+                         <span class="o">|</span>   <span class="n">imfinfo</span> <span class="n">as</span> <span class="n">info</span><span class="p">;</span> <span class="n">it</span> <span class="n">saves</span> <span class="kt">time</span> <span class="n">beause</span>
+                         <span class="o">|</span>   <span class="n">IMAGE_SAMPLEPOINTS</span> <span class="n">doesn</span><span class="p">&#39;</span><span class="n">t</span> <span class="n">need</span> <span class="n">to</span> <span class="n">read</span> <span class="n">it</span>
+</code></pre></div>
                 
               
               

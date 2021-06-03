@@ -3213,6 +3213,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../../%2Bgit/git_stash.m/" class="md-nav__link">
+        vlt.git.git_stash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../../%2Bgit/git_status.m/" class="md-nav__link">
         vlt.git.git_status
       </a>
@@ -9239,25 +9251,30 @@
                 
                 
                 <h1 id="vltimageroiroi_isolate">vlt.image.roi.ROI_isolate<a class="headerlink" href="#vltimageroiroi_isolate" title="Permanent link">&para;</a></h1>
-<p>ROI_ISOLATE - Return the index values within an ROI of of an isolated cube that encompasses ROI</p>
-<p>[ISOLATE_INDEXES, ISOLATE_INDEXES_IN_ROI] = ROI_ISOLATE(IMSIZE, INDEXESND)</p>
-<p>Given an ROI in an image of size IMSIZE with indexes INDEXESND, return the index values in
-  an isolated N-D cube that correspond to index values in the original image.</p>
-<p>Inputs:
-    IMSIZE should be the size of the image [SZ1 SZ2 ... SZN]
-    INDEXESND are the index values of the ROI in the image
-  Outputs:
-    ISOLATE_INDEXES are a mapping between the minimum N-D cube that can
-       contain the ROI and the ROI's indexes in the image. ORIG_IM(ISOLATE_INDEXES) = MINCUBE.
-       ISOLATE_INDEXES have the shape of the minimum cube.
-    ISOLATE_INDEXES_IN_ROI is a 0-1 vector the same size as ISOLATE_INDEXES. Entries are 1 if
-       the voxel is contained in the ROI specified by INDEXESND</p>
-<p>Example:
-         imsize = [ 3 3 3 ];
-         indexesnd = [ 14 15 17 18 23 24 26 ];
-            % this is an ROI in the bottom right corner of a 3x3x3 cube except the edge point
-            % to see where this is, use reshape(1:27,3,3,3)
-         [isolate_indexes, isolate_indexes_in_roi] = ROI_isolate(imsize, indexesnd)</p>
+<div class="codehilite"><pre><span></span><code><span class="w">  </span><span class="n">ROI_ISOLATE</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">Return</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">index</span><span class="w"> </span><span class="nb">values</span><span class="w"> </span><span class="n">within</span><span class="w"> </span><span class="n">an</span><span class="w"> </span><span class="n">ROI</span><span class="w"> </span><span class="n">of</span><span class="w"> </span><span class="n">of</span><span class="w"> </span><span class="n">an</span><span class="w"> </span><span class="n">isolated</span><span class="w"> </span><span class="n">cube</span><span class="w"> </span><span class="n">that</span><span class="w"> </span><span class="n">encompasses</span><span class="w"> </span><span class="n">ROI</span><span class="w"></span>
+
+<span class="w">  </span><span class="p">[</span><span class="n">ISOLATE_INDEXES</span><span class="p">,</span><span class="w"> </span><span class="n">ISOLATE_INDEXES_IN_ROI</span><span class="p">]</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">ROI_ISOLATE</span><span class="p">(</span><span class="n">IMSIZE</span><span class="p">,</span><span class="w"> </span><span class="n">INDEXESND</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">  </span><span class="n">Given</span><span class="w"> </span><span class="n">an</span><span class="w"> </span><span class="n">ROI</span><span class="w"> </span><span class="n">in</span><span class="w"> </span><span class="n">an</span><span class="w"> </span><span class="nb">image</span><span class="w"> </span><span class="n">of</span><span class="w"> </span><span class="nb">size</span><span class="w"> </span><span class="n">IMSIZE</span><span class="w"> </span><span class="n">with</span><span class="w"> </span><span class="n">indexes</span><span class="w"> </span><span class="n">INDEXESND</span><span class="p">,</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">index</span><span class="w"> </span><span class="nb">values</span><span class="w"> </span><span class="n">in</span><span class="w"></span>
+<span class="w">  </span><span class="n">an</span><span class="w"> </span><span class="n">isolated</span><span class="w"> </span><span class="n">N</span><span class="o">-</span><span class="n">D</span><span class="w"> </span><span class="n">cube</span><span class="w"> </span><span class="n">that</span><span class="w"> </span><span class="n">correspond</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="n">index</span><span class="w"> </span><span class="nb">values</span><span class="w"> </span><span class="n">in</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">original</span><span class="w"> </span><span class="nb">image</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">  </span><span class="n">Inputs</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="n">IMSIZE</span><span class="w"> </span><span class="n">should</span><span class="w"> </span><span class="n">be</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="nb">size</span><span class="w"> </span><span class="n">of</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="nb">image</span><span class="w"> </span><span class="p">[</span><span class="n">SZ1</span><span class="w"> </span><span class="n">SZ2</span><span class="w"> </span><span class="k">...</span><span class="c"> SZN]</span><span class="w"></span>
+<span class="w">    </span><span class="n">INDEXESND</span><span class="w"> </span><span class="n">are</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">index</span><span class="w"> </span><span class="nb">values</span><span class="w"> </span><span class="n">of</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">ROI</span><span class="w"> </span><span class="n">in</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="nb">image</span><span class="w"></span>
+<span class="w">  </span><span class="n">Outputs</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="n">ISOLATE_INDEXES</span><span class="w"> </span><span class="n">are</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">mapping</span><span class="w"> </span><span class="nb">between</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">minimum</span><span class="w"> </span><span class="n">N</span><span class="o">-</span><span class="n">D</span><span class="w"> </span><span class="n">cube</span><span class="w"> </span><span class="n">that</span><span class="w"> </span><span class="n">can</span><span class="w"></span>
+<span class="w">       </span><span class="n">contain</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">ROI</span><span class="w"> </span><span class="n">and</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">ROI</span><span class="o">&#39;</span><span class="n">s</span><span class="w"> </span><span class="n">indexes</span><span class="w"> </span><span class="n">in</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="nb">image</span><span class="p">.</span><span class="w"> </span><span class="n">ORIG_IM</span><span class="p">(</span><span class="n">ISOLATE_INDEXES</span><span class="p">)</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">MINCUBE</span><span class="p">.</span><span class="w"></span>
+<span class="w">       </span><span class="n">ISOLATE_INDEXES</span><span class="w"> </span><span class="n">have</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">shape</span><span class="w"> </span><span class="n">of</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">minimum</span><span class="w"> </span><span class="n">cube</span><span class="p">.</span><span class="w"></span>
+<span class="w">    </span><span class="n">ISOLATE_INDEXES_IN_ROI</span><span class="w"> </span><span class="n">is</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="mi">0</span><span class="o">-</span><span class="mi">1</span><span class="w"> </span><span class="n">vector</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">same</span><span class="w"> </span><span class="nb">size</span><span class="w"> </span><span class="n">as</span><span class="w"> </span><span class="n">ISOLATE_INDEXES</span><span class="p">.</span><span class="w"> </span><span class="n">Entries</span><span class="w"> </span><span class="n">are</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="k">if</span><span class="w"></span>
+<span class="w">       </span><span class="n">the</span><span class="w"> </span><span class="n">voxel</span><span class="w"> </span><span class="n">is</span><span class="w"> </span><span class="n">contained</span><span class="w"> </span><span class="n">in</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">ROI</span><span class="w"> </span><span class="n">specified</span><span class="w"> </span><span class="n">by</span><span class="w"> </span><span class="n">INDEXESND</span><span class="w"></span>
+
+<span class="w">   </span><span class="n">Example</span><span class="p">:</span><span class="w"></span>
+<span class="w">         </span><span class="n">imsize</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="p">];</span><span class="w"></span>
+<span class="w">         </span><span class="n">indexesnd</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="mi">14</span><span class="w"> </span><span class="mi">15</span><span class="w"> </span><span class="mi">17</span><span class="w"> </span><span class="mi">18</span><span class="w"> </span><span class="mi">23</span><span class="w"> </span><span class="mi">24</span><span class="w"> </span><span class="mi">26</span><span class="w"> </span><span class="p">];</span><span class="w"></span>
+<span class="w">            </span><span class="c">% this is an ROI in the bottom right corner of a 3x3x3 cube except the edge point</span><span class="w"></span>
+<span class="w">            </span><span class="c">% to see where this is, use reshape(1:27,3,3,3)</span><span class="w"></span>
+<span class="w">         </span><span class="p">[</span><span class="n">isolate_indexes</span><span class="p">,</span><span class="w"> </span><span class="n">isolate_indexes_in_roi</span><span class="p">]</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">ROI_isolate</span><span class="p">(</span><span class="n">imsize</span><span class="p">,</span><span class="w"> </span><span class="n">indexesnd</span><span class="p">)</span><span class="w"></span>
+</code></pre></div>
                 
               
               

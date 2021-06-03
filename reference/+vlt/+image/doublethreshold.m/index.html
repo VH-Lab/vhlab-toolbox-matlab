@@ -3213,6 +3213,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../%2Bgit/git_stash.m/" class="md-nav__link">
+        vlt.git.git_stash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../%2Bgit/git_status.m/" class="md-nav__link">
         vlt.git.git_status
       </a>
@@ -9237,15 +9249,19 @@
                 
                 
                 <h1 id="vltimagedoublethreshold">vlt.image.doublethreshold<a class="headerlink" href="#vltimagedoublethreshold" title="Permanent link">&para;</a></h1>
-<p>DOUBLETHRESHOLD - apply a double threshold to an image</p>
-<p>BIN = DOUBLETHRESHOLD(IM, T1, T2, CONNECTIVITY)</p>
-<p>Calculate a binary image based on 2 thresholds. First, binary images are
-  calculated based on each threshold. Second, ROIs are discovered from each 
-  binary image using BWCONNCOMP. Then, ROIs generated from the lower threshold
-  are examined to see if they overlap any part of an ROI from the higher
-  threshold. Only objects that overlap the higher threshold will be retained.</p>
-<p>Finally, a binary image is created from the ROIs that remain and is
-  returned in BIN.</p>
+<div class="codehilite"><pre><span></span><code>  <span class="nv">DOUBLETHRESHOLD</span> <span class="o">-</span> <span class="nv">apply</span> <span class="nv">a</span> <span class="nv">double</span> <span class="nv">threshold</span> <span class="nv">to</span> <span class="nv">an</span> <span class="nv">image</span>
+
+  <span class="nv">BIN</span> <span class="o">=</span> <span class="nv">DOUBLETHRESHOLD</span><span class="ss">(</span><span class="nv">IM</span>, <span class="nv">T1</span>, <span class="nv">T2</span>, <span class="nv">CONNECTIVITY</span><span class="ss">)</span>
+
+  <span class="nv">Calculate</span> <span class="nv">a</span> <span class="nv">binary</span> <span class="nv">image</span> <span class="nv">based</span> <span class="nv">on</span> <span class="mi">2</span> <span class="nv">thresholds</span>. <span class="nv">First</span>, <span class="nv">binary</span> <span class="nv">images</span> <span class="nv">are</span>
+  <span class="nv">calculated</span> <span class="nv">based</span> <span class="nv">on</span> <span class="nv">each</span> <span class="nv">threshold</span>. <span class="nv">Second</span>, <span class="nv">ROIs</span> <span class="nv">are</span> <span class="nv">discovered</span> <span class="nv">from</span> <span class="nv">each</span> 
+  <span class="nv">binary</span> <span class="nv">image</span> <span class="nv">using</span> <span class="nv">BWCONNCOMP</span>. <span class="k">Then</span>, <span class="nv">ROIs</span> <span class="nv">generated</span> <span class="nv">from</span> <span class="nv">the</span> <span class="nv">lower</span> <span class="nv">threshold</span>
+  <span class="nv">are</span> <span class="nv">examined</span> <span class="nv">to</span> <span class="nv">see</span> <span class="k">if</span> <span class="nv">they</span> <span class="nv">overlap</span> <span class="nv">any</span> <span class="nv">part</span> <span class="nv">of</span> <span class="nv">an</span> <span class="nv">ROI</span> <span class="nv">from</span> <span class="nv">the</span> <span class="nv">higher</span>
+  <span class="nv">threshold</span>. <span class="nv">Only</span> <span class="nv">objects</span> <span class="nv">that</span> <span class="nv">overlap</span> <span class="nv">the</span> <span class="nv">higher</span> <span class="nv">threshold</span> <span class="nv">will</span> <span class="nv">be</span> <span class="nv">retained</span>.
+
+  <span class="nv">Finally</span>, <span class="nv">a</span> <span class="nv">binary</span> <span class="nv">image</span> <span class="nv">is</span> <span class="nv">created</span> <span class="nv">from</span> <span class="nv">the</span> <span class="nv">ROIs</span> <span class="nv">that</span> <span class="nv">remain</span> <span class="nv">and</span> <span class="nv">is</span>
+  <span class="nv">returned</span> <span class="nv">in</span> <span class="nv">BIN</span>.
+</code></pre></div>
                 
               
               

@@ -3213,6 +3213,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../%2Bgit/git_stash.m/" class="md-nav__link">
+        vlt.git.git_stash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../%2Bgit/git_status.m/" class="md-nav__link">
         vlt.git.git_status
       </a>
@@ -9237,22 +9249,23 @@
                 
                 
                 <h1 id="vltimageregionprops_circularity">vlt.image.regionprops_circularity<a class="headerlink" href="#vltimageregionprops_circularity" title="Permanent link">&para;</a></h1>
-<p>REGIONPROPS_CIRCULARITY - Calculates circularity of regions of interests</p>
-<div class="codehilite"><pre><span></span><code><span class="n">NEWSTATS</span> <span class="o">=</span> <span class="n">REGIONPROPS_CIRCULARITY</span><span class="p">(</span><span class="n">STATS</span><span class="p">)</span>
+<div class="codehilite"><pre><span></span><code>  <span class="n">REGIONPROPS_CIRCULARITY</span> <span class="o">-</span> <span class="n">Calculates</span> <span class="n">circularity</span> <span class="n">of</span> <span class="n">regions</span> <span class="n">of</span> <span class="n">interests</span>
 
-<span class="n">Calculates</span> <span class="n">circularity</span> <span class="k">for</span> <span class="n">regions</span> <span class="n">of</span> <span class="n">interest</span> <span class="n">that</span> <span class="n">have</span> <span class="n">been</span>
-<span class="n">returned</span> <span class="n">by</span> <span class="n">the</span> <span class="n">IMAGES</span> <span class="n">toolbox</span> <span class="n">routines</span> <span class="n">BWLABEL</span><span class="p">,</span> <span class="n">BWBOUNDARIES</span><span class="p">,</span> <span class="n">etc</span><span class="o">.</span>
+    <span class="n">NEWSTATS</span> <span class="o">=</span> <span class="n">REGIONPROPS_CIRCULARITY</span><span class="p">(</span><span class="n">STATS</span><span class="p">)</span>
 
-<span class="n">STATS</span> <span class="n">must</span> <span class="n">be</span> <span class="n">a</span> <span class="n">structure</span> <span class="n">of</span> <span class="n">stats</span> <span class="n">returned</span> <span class="n">by</span> <span class="n">the</span> <span class="n">function</span>
-<span class="n">REGIONPROPS</span> <span class="n">that</span> <span class="n">includes</span> <span class="n">that</span> <span class="n">parameters</span> <span class="s1">&#39;Area&#39;</span> <span class="ow">and</span> 
-<span class="s1">&#39;Perimeter&#39;</span> <span class="p">(</span><span class="n">see</span> <span class="s1">&#39;help regionprops&#39;</span><span class="p">)</span><span class="o">.</span>
+    <span class="n">Calculates</span> <span class="n">circularity</span> <span class="k">for</span> <span class="n">regions</span> <span class="n">of</span> <span class="n">interest</span> <span class="n">that</span> <span class="n">have</span> <span class="n">been</span>
+    <span class="n">returned</span> <span class="n">by</span> <span class="n">the</span> <span class="n">IMAGES</span> <span class="n">toolbox</span> <span class="n">routines</span> <span class="n">BWLABEL</span><span class="p">,</span> <span class="n">BWBOUNDARIES</span><span class="p">,</span> <span class="n">etc</span><span class="o">.</span>
 
-<span class="n">NEWSTATS</span> <span class="k">is</span> <span class="n">a</span> <span class="n">structure</span> <span class="n">that</span> <span class="n">has</span> <span class="n">all</span> <span class="n">of</span> <span class="n">the</span> <span class="n">fields</span> <span class="n">of</span> <span class="n">STATS</span> <span class="n">plus</span> <span class="n">the</span>
-<span class="n">additional</span> <span class="n">field</span> <span class="s1">&#39;Circularity&#39;</span><span class="o">.</span>
+    <span class="n">STATS</span> <span class="n">must</span> <span class="n">be</span> <span class="n">a</span> <span class="n">structure</span> <span class="n">of</span> <span class="n">stats</span> <span class="n">returned</span> <span class="n">by</span> <span class="n">the</span> <span class="n">function</span>
+    <span class="n">REGIONPROPS</span> <span class="n">that</span> <span class="n">includes</span> <span class="n">that</span> <span class="n">parameters</span> <span class="s1">&#39;Area&#39;</span> <span class="ow">and</span> 
+    <span class="s1">&#39;Perimeter&#39;</span> <span class="p">(</span><span class="n">see</span> <span class="s1">&#39;help regionprops&#39;</span><span class="p">)</span><span class="o">.</span>
 
-<span class="n">Circularity</span> <span class="k">is</span> <span class="n">defined</span> <span class="k">as</span> <span class="mi">4</span><span class="o">*</span><span class="n">pi</span><span class="p">(</span><span class="n">area</span><span class="o">/</span><span class="n">perimeter</span><span class="o">^</span><span class="mi">2</span><span class="p">)</span>
+    <span class="n">NEWSTATS</span> <span class="k">is</span> <span class="n">a</span> <span class="n">structure</span> <span class="n">that</span> <span class="n">has</span> <span class="n">all</span> <span class="n">of</span> <span class="n">the</span> <span class="n">fields</span> <span class="n">of</span> <span class="n">STATS</span> <span class="n">plus</span> <span class="n">the</span>
+    <span class="n">additional</span> <span class="n">field</span> <span class="s1">&#39;Circularity&#39;</span><span class="o">.</span>
 
-<span class="n">Inspired</span> <span class="n">from</span> <span class="n">a</span> <span class="n">plugin</span> <span class="k">for</span> <span class="n">ImageJ</span> <span class="n">contributed</span> <span class="n">by</span> <span class="n">Wayne</span> <span class="n">Rasband</span>
+    <span class="n">Circularity</span> <span class="k">is</span> <span class="n">defined</span> <span class="k">as</span> <span class="mi">4</span><span class="o">*</span><span class="n">pi</span><span class="p">(</span><span class="n">area</span><span class="o">/</span><span class="n">perimeter</span><span class="o">^</span><span class="mi">2</span><span class="p">)</span>
+
+    <span class="n">Inspired</span> <span class="n">from</span> <span class="n">a</span> <span class="n">plugin</span> <span class="k">for</span> <span class="n">ImageJ</span> <span class="n">contributed</span> <span class="n">by</span> <span class="n">Wayne</span> <span class="n">Rasband</span>
 </code></pre></div>
                 
               

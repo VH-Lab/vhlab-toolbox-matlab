@@ -3213,6 +3213,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../%2Bgit/git_stash.m/" class="md-nav__link">
+        vlt.git.git_stash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../%2Bgit/git_status.m/" class="md-nav__link">
         vlt.git.git_status
       </a>
@@ -9237,22 +9249,29 @@
                 
                 
                 <h1 id="vltspreadsheetspreadsheet_filterbydate">vlt.spreadsheet.spreadsheet_filterbydate<a class="headerlink" href="#vltspreadsheetspreadsheet_filterbydate" title="Permanent link">&para;</a></h1>
-<p>SPREADSHEET - Filter a spreadsheet for fields defined by a Timestamp field</p>
-<p>SPREADSHEET_OUT = vlt.spreadsheet.spreadsheet_filterbydate(SPREADSHEET_IN, DATELOW, DATEHIGH, ...)</p>
-<p>Filters a spreadsheet (cell array) SPREADSHEET_IN to exclude rows that have a 'timestamp'
-  field entry outside of the range DATELOW to DATEHIGH.</p>
-<p>DATELOW and DATEHIGH can be any date string that is recognized by the Matlab function
-  DATENUM. (For example, 'YYYY-MM-DD' is acceptable and unambiguous.)</p>
-<p>This function can also take name/value pairs that modify its behavior.
-  Parameter (default)      | Description</p>
-<hr />
-<p>FirstRowIsHeader (1)     | Is the first row a header?
-  LeaveHeader (1)          | Leave the header in the filtered spreadsheet
-  TimestampColumnLabel     | The label of the timestamp column
-    ('Timestamp')          |
-  TimestampColumnNumber    | The column of the timestamp column. If empty, will be
-           ('')            |   searched for using TimestampColumnLabel.</p>
-<p>See also: DATENUM, vlt.data.namevaluepair</p>
+<div class="codehilite"><pre><span></span><code>  <span class="nv">SPREADSHEET</span> <span class="o">-</span> <span class="nv">Filter</span> <span class="nv">a</span> <span class="nv">spreadsheet</span> <span class="k">for</span> <span class="nv">fields</span> <span class="nv">defined</span> <span class="nv">by</span> <span class="nv">a</span> <span class="nv">Timestamp</span> <span class="nv">field</span>
+
+
+  <span class="nv">SPREADSHEET_OUT</span> <span class="o">=</span> <span class="nv">vlt</span>.<span class="nv">spreadsheet</span>.<span class="nv">spreadsheet_filterbydate</span><span class="ss">(</span><span class="nv">SPREADSHEET_IN</span>, <span class="nv">DATELOW</span>, <span class="nv">DATEHIGH</span>, ...<span class="ss">)</span>
+
+  <span class="nv">Filters</span> <span class="nv">a</span> <span class="nv">spreadsheet</span> <span class="ss">(</span><span class="nv">cell</span> <span class="nv">array</span><span class="ss">)</span> <span class="nv">SPREADSHEET_IN</span> <span class="nv">to</span> <span class="nv">exclude</span> <span class="nv">rows</span> <span class="nv">that</span> <span class="nv">have</span> <span class="nv">a</span> <span class="s1">&#39;</span><span class="s">timestamp</span><span class="s1">&#39;</span>
+  <span class="nv">field</span> <span class="nv">entry</span> <span class="nv">outside</span> <span class="nv">of</span> <span class="nv">the</span> <span class="nv">range</span> <span class="nv">DATELOW</span> <span class="nv">to</span> <span class="nv">DATEHIGH</span>.
+
+  <span class="nv">DATELOW</span> <span class="nv">and</span> <span class="nv">DATEHIGH</span> <span class="nv">can</span> <span class="nv">be</span> <span class="nv">any</span> <span class="nv">date</span> <span class="nv">string</span> <span class="nv">that</span> <span class="nv">is</span> <span class="nv">recognized</span> <span class="nv">by</span> <span class="nv">the</span> <span class="nv">Matlab</span> <span class="nv">function</span>
+  <span class="nv">DATENUM</span>. <span class="ss">(</span><span class="k">For</span> <span class="nv">example</span>, <span class="s1">&#39;</span><span class="s">YYYY-MM-DD</span><span class="s1">&#39;</span> <span class="nv">is</span> <span class="nv">acceptable</span> <span class="nv">and</span> <span class="nv">unambiguous</span>.<span class="ss">)</span>
+
+  <span class="nv">This</span> <span class="nv">function</span> <span class="nv">can</span> <span class="nv">also</span> <span class="nv">take</span> <span class="nv">name</span><span class="o">/</span><span class="nv">value</span> <span class="nv">pairs</span> <span class="nv">that</span> <span class="nv">modify</span> <span class="nv">its</span> <span class="nv">behavior</span>.
+  <span class="nv">Parameter</span> <span class="ss">(</span><span class="nv">default</span><span class="ss">)</span>      <span class="o">|</span> <span class="nv">Description</span>
+  <span class="o">-------------------------------------------------------------------------------</span>
+  <span class="nv">FirstRowIsHeader</span> <span class="ss">(</span><span class="mi">1</span><span class="ss">)</span>     <span class="o">|</span> <span class="nv">Is</span> <span class="nv">the</span> <span class="nv">first</span> <span class="nv">row</span> <span class="nv">a</span> <span class="nv">header</span>?
+  <span class="nv">LeaveHeader</span> <span class="ss">(</span><span class="mi">1</span><span class="ss">)</span>          <span class="o">|</span> <span class="nv">Leave</span> <span class="nv">the</span> <span class="nv">header</span> <span class="nv">in</span> <span class="nv">the</span> <span class="nv">filtered</span> <span class="nv">spreadsheet</span>
+  <span class="nv">TimestampColumnLabel</span>     <span class="o">|</span> <span class="nv">The</span> <span class="nv">label</span> <span class="nv">of</span> <span class="nv">the</span> <span class="nv">timestamp</span> <span class="nv">column</span>
+    <span class="ss">(</span><span class="s1">&#39;</span><span class="s">Timestamp</span><span class="s1">&#39;</span><span class="ss">)</span>          <span class="o">|</span>
+  <span class="nv">TimestampColumnNumber</span>    <span class="o">|</span> <span class="nv">The</span> <span class="nv">column</span> <span class="nv">of</span> <span class="nv">the</span> <span class="nv">timestamp</span> <span class="nv">column</span>. <span class="k">If</span> <span class="nv">empty</span>, <span class="nv">will</span> <span class="nv">be</span>
+           <span class="ss">(</span><span class="s1">&#39;&#39;</span><span class="ss">)</span>            <span class="o">|</span>   <span class="nv">searched</span> <span class="k">for</span> <span class="nv">using</span> <span class="nv">TimestampColumnLabel</span>.
+
+  <span class="nv">See</span> <span class="nv">also</span>: <span class="nv">DATENUM</span>, <span class="nv">vlt</span>.<span class="nv">data</span>.<span class="nv">namevaluepair</span>
+</code></pre></div>
                 
               
               

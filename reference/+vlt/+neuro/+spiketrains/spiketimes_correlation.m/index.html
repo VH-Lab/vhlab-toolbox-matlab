@@ -3213,6 +3213,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../../%2Bgit/git_stash.m/" class="md-nav__link">
+        vlt.git.git_stash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../../%2Bgit/git_status.m/" class="md-nav__link">
         vlt.git.git_status
       </a>
@@ -9239,28 +9251,33 @@
                 
                 
                 <h1 id="vltneurospiketrainsspiketimes_correlation">vlt.neuro.spiketrains.spiketimes_correlation<a class="headerlink" href="#vltneurospiketrainsspiketimes_correlation" title="Permanent link">&para;</a></h1>
-<p>SPIKETIMES_CORRELATION - Compute correlation of 2 spike trains</p>
-<div class="codehilite"><pre><span></span><code>[CORR, LAGS] = vlt.neuro.spiketrains.spiketimes_correlation(TRAIN1,TRAIN2,BINSIZE, MAXLAG)
-</code></pre></div>
+<div class="codehilite"><pre><span></span><code>  <span class="nt">SPIKETIMES_CORRELATION</span> <span class="nt">-</span> <span class="nt">Compute</span> <span class="nt">correlation</span> <span class="nt">of</span> <span class="nt">2</span> <span class="nt">spike</span> <span class="nt">trains</span>
 
-<p>Computes the raw correlation between 2 spike trains that are specified by
-   the spike times of TRAIN1 and TRAIN2 at the lags requested from -MAXLAG to MAXLAG.
-   Spike events are binned into bins of size BINSIZE (same time units as LAGS).
-   MAXLAG should be evenly divided by BINSIZE (such that MAXLAG/BINSIZE yields an integer).</p>
-<p>For example, if LAGS(i) is 0, then CORR(i) returns the number of times the 
-   2 cells spiked stimulateously (within the resolution BINSIZE). If LAGS(i) is 0.010,
-   then CORR(i) returns the number of times cell 2 spiked 10ms after cell 1 (with a resolution
-   of BINSIZE).</p>
-<p>Note that this treatment of "LAGS" is backwards from the function XCORR.</p>
-<p>Example:
-      train1 = [ 0 0.010 0.020];
-      train2 = [ 0 0.010 0.020 0.022];
-      [corr,lags] = vlt.neuro.spiketrains.spiketimes_correlation(train1,train2,0.001,0.010);
-      figure;
-      bar(lags,corr);
-      xlabel('Time lags');
-      ylabel('Counts');</p>
-<p>See also: XCORR</p>
+    <span class="cp">[</span><span class="nx">CORR</span><span class="p">,</span> <span class="nx">LAGS</span><span class="cp">]</span> <span class="o">=</span> <span class="nt">vlt</span><span class="p">.</span><span class="nc">neuro</span><span class="p">.</span><span class="nc">spiketrains</span><span class="p">.</span><span class="nc">spiketimes_correlation</span><span class="o">(</span><span class="nt">TRAIN1</span><span class="o">,</span><span class="nt">TRAIN2</span><span class="o">,</span><span class="nt">BINSIZE</span><span class="o">,</span> <span class="nt">MAXLAG</span><span class="o">)</span>
+
+   <span class="nt">Computes</span> <span class="nt">the</span> <span class="nt">raw</span> <span class="nt">correlation</span> <span class="nt">between</span> <span class="nt">2</span> <span class="nt">spike</span> <span class="nt">trains</span> <span class="nt">that</span> <span class="nt">are</span> <span class="nt">specified</span> <span class="nt">by</span>
+   <span class="nt">the</span> <span class="nt">spike</span> <span class="nt">times</span> <span class="nt">of</span> <span class="nt">TRAIN1</span> <span class="nt">and</span> <span class="nt">TRAIN2</span> <span class="nt">at</span> <span class="nt">the</span> <span class="nt">lags</span> <span class="nt">requested</span> <span class="nt">from</span> <span class="nt">-MAXLAG</span> <span class="nt">to</span> <span class="nt">MAXLAG</span><span class="o">.</span>
+   <span class="nt">Spike</span> <span class="nt">events</span> <span class="nt">are</span> <span class="nt">binned</span> <span class="nt">into</span> <span class="nt">bins</span> <span class="nt">of</span> <span class="nt">size</span> <span class="nt">BINSIZE</span> <span class="o">(</span><span class="nt">same</span> <span class="nt">time</span> <span class="nt">units</span> <span class="nt">as</span> <span class="nt">LAGS</span><span class="o">).</span>
+   <span class="nt">MAXLAG</span> <span class="nt">should</span> <span class="nt">be</span> <span class="nt">evenly</span> <span class="nt">divided</span> <span class="nt">by</span> <span class="nt">BINSIZE</span> <span class="o">(</span><span class="nt">such</span> <span class="nt">that</span> <span class="nt">MAXLAG</span><span class="o">/</span><span class="nt">BINSIZE</span> <span class="nt">yields</span> <span class="nt">an</span> <span class="nt">integer</span><span class="o">).</span>
+
+   <span class="nt">For</span> <span class="nt">example</span><span class="o">,</span> <span class="nt">if</span> <span class="nt">LAGS</span><span class="o">(</span><span class="nt">i</span><span class="o">)</span> <span class="nt">is</span> <span class="nt">0</span><span class="o">,</span> <span class="nt">then</span> <span class="nt">CORR</span><span class="o">(</span><span class="nt">i</span><span class="o">)</span> <span class="nt">returns</span> <span class="nt">the</span> <span class="nt">number</span> <span class="nt">of</span> <span class="nt">times</span> <span class="nt">the</span> 
+   <span class="nt">2</span> <span class="nt">cells</span> <span class="nt">spiked</span> <span class="nt">stimulateously</span> <span class="o">(</span><span class="nt">within</span> <span class="nt">the</span> <span class="nt">resolution</span> <span class="nt">BINSIZE</span><span class="o">).</span> <span class="nt">If</span> <span class="nt">LAGS</span><span class="o">(</span><span class="nt">i</span><span class="o">)</span> <span class="nt">is</span> <span class="nt">0</span><span class="p">.</span><span class="nc">010</span><span class="o">,</span>
+   <span class="nt">then</span> <span class="nt">CORR</span><span class="o">(</span><span class="nt">i</span><span class="o">)</span> <span class="nt">returns</span> <span class="nt">the</span> <span class="nt">number</span> <span class="nt">of</span> <span class="nt">times</span> <span class="nt">cell</span> <span class="nt">2</span> <span class="nt">spiked</span> <span class="nt">10ms</span> <span class="nt">after</span> <span class="nt">cell</span> <span class="nt">1</span> <span class="o">(</span><span class="nt">with</span> <span class="nt">a</span> <span class="nt">resolution</span>
+   <span class="nt">of</span> <span class="nt">BINSIZE</span><span class="o">).</span>
+
+   <span class="nt">Note</span> <span class="nt">that</span> <span class="nt">this</span> <span class="nt">treatment</span> <span class="nt">of</span> <span class="s2">&quot;LAGS&quot;</span> <span class="nt">is</span> <span class="nt">backwards</span> <span class="nt">from</span> <span class="nt">the</span> <span class="nt">function</span> <span class="nt">XCORR</span><span class="o">.</span>
+
+   <span class="nt">Example</span><span class="o">:</span>
+      <span class="nt">train1</span> <span class="o">=</span> <span class="cp">[</span> <span class="mi">0</span> <span class="mf">0.010</span> <span class="mf">0.020</span><span class="cp">]</span><span class="o">;</span>
+      <span class="nt">train2</span> <span class="o">=</span> <span class="cp">[</span> <span class="mi">0</span> <span class="mf">0.010</span> <span class="mf">0.020</span> <span class="mf">0.022</span><span class="cp">]</span><span class="o">;</span>
+      <span class="cp">[</span><span class="nx">corr</span><span class="p">,</span><span class="nx">lags</span><span class="cp">]</span> <span class="o">=</span> <span class="nt">vlt</span><span class="p">.</span><span class="nc">neuro</span><span class="p">.</span><span class="nc">spiketrains</span><span class="p">.</span><span class="nc">spiketimes_correlation</span><span class="o">(</span><span class="nt">train1</span><span class="o">,</span><span class="nt">train2</span><span class="o">,</span><span class="nt">0</span><span class="p">.</span><span class="nc">001</span><span class="o">,</span><span class="nt">0</span><span class="p">.</span><span class="nc">010</span><span class="o">);</span>
+      <span class="nt">figure</span><span class="o">;</span>
+      <span class="nt">bar</span><span class="o">(</span><span class="nt">lags</span><span class="o">,</span><span class="nt">corr</span><span class="o">);</span>
+      <span class="nt">xlabel</span><span class="o">(</span><span class="s1">&#39;Time lags&#39;</span><span class="o">);</span>
+      <span class="nt">ylabel</span><span class="o">(</span><span class="s1">&#39;Counts&#39;</span><span class="o">);</span>
+
+   <span class="nt">See</span> <span class="nt">also</span><span class="o">:</span> <span class="nt">XCORR</span>
+</code></pre></div>
                 
               
               

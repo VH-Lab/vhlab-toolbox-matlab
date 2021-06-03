@@ -3213,6 +3213,18 @@
             
   
   
+  
+    <li class="md-nav__item">
+      <a href="../git_stash.m/" class="md-nav__link">
+        vlt.git.git_stash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
     
   
   
@@ -9237,14 +9249,20 @@
                 
                 
                 <h1 id="vltgitgit_status">vlt.git.git_status<a class="headerlink" href="#vltgitgit_status" title="Permanent link">&para;</a></h1>
-<p>GIT_STATUS - return git working tree status</p>
-<p>[UPTODATE, CHANGES, UNTRACKED_PRESENT] = vlt.git.git_status(DIRNAME)</p>
-<p>Examines whether a git working tree is up to date with its current branch</p>
-<p>UPTODATE is 1 if the working tree is up-to-date, and 0 if not.
-  CHANGES is 1 if the working tree has changes to be committed, and 0 if not.
-  UNTRACKED_PRESENT is 1 if there are untracked files present, and 0 if not.</p>
-<p>An error is generated if DIRNAME is not a GIT directory.</p>
-<p>See also: vlt.git.git_isgitdirectory</p>
+<div class="codehilite"><pre><span></span><code>  <span class="nv">GIT_STATUS</span> <span class="o">-</span> <span class="k">return</span> <span class="nv">git</span> <span class="nv">working</span> <span class="nv">tree</span> <span class="nv">status</span>
+
+  [<span class="nv">UPTODATE</span>, <span class="nv">CHANGES</span>, <span class="nv">UNTRACKED_PRESENT</span>] <span class="o">=</span> <span class="nv">vlt</span>.<span class="nv">git</span>.<span class="nv">git_status</span><span class="ss">(</span><span class="k">DIRNAME</span><span class="ss">)</span>
+
+  <span class="nv">Examines</span> <span class="nv">whether</span> <span class="nv">a</span> <span class="nv">git</span> <span class="nv">working</span> <span class="nv">tree</span> <span class="nv">is</span> <span class="nv">up</span> <span class="nv">to</span> <span class="nv">date</span> <span class="nv">with</span> <span class="nv">its</span> <span class="nv">current</span> <span class="nv">branch</span>
+
+  <span class="nv">UPTODATE</span> <span class="nv">is</span> <span class="mi">1</span> <span class="k">if</span> <span class="nv">the</span> <span class="nv">working</span> <span class="nv">tree</span> <span class="nv">is</span> <span class="nv">up</span><span class="o">-</span><span class="nv">to</span><span class="o">-</span><span class="nv">date</span>, <span class="nv">and</span> <span class="mi">0</span> <span class="k">if</span> <span class="nv">not</span>.
+  <span class="nv">CHANGES</span> <span class="nv">is</span> <span class="mi">1</span> <span class="k">if</span> <span class="nv">the</span> <span class="nv">working</span> <span class="nv">tree</span> <span class="nv">has</span> <span class="nv">changes</span> <span class="nv">to</span> <span class="nv">be</span> <span class="nv">committed</span>, <span class="nv">and</span> <span class="mi">0</span> <span class="k">if</span> <span class="nv">not</span>.
+  <span class="nv">UNTRACKED_PRESENT</span> <span class="nv">is</span> <span class="mi">1</span> <span class="k">if</span> <span class="nv">there</span> <span class="nv">are</span> <span class="nv">untracked</span> <span class="nv">files</span> <span class="nv">present</span>, <span class="nv">and</span> <span class="mi">0</span> <span class="k">if</span> <span class="nv">not</span>.
+
+  <span class="nv">An</span> <span class="nv">error</span> <span class="nv">is</span> <span class="nv">generated</span> <span class="k">if</span> <span class="k">DIRNAME</span> <span class="nv">is</span> <span class="nv">not</span> <span class="nv">a</span> <span class="nv">GIT</span> <span class="nv">directory</span>.
+
+  <span class="nv">See</span> <span class="nv">also</span>: <span class="nv">vlt</span>.<span class="nv">git</span>.<span class="nv">git_isgitdirectory</span>
+</code></pre></div>
                 
               
               
@@ -9263,7 +9281,7 @@
   
     <nav class="md-footer__inner md-grid" aria-label="Footer">
       
-        <a href="../git_repo_version.m/" class="md-footer__link md-footer__link--prev" rel="prev">
+        <a href="../git_stash.m/" class="md-footer__link md-footer__link--prev" rel="prev">
           <div class="md-footer__button md-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
           </div>
@@ -9272,7 +9290,7 @@
               <span class="md-footer__direction">
                 Previous
               </span>
-              vlt.git.git_repo_version
+              vlt.git.git_stash
             </div>
           </div>
         </a>

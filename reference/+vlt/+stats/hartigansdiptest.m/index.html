@@ -3213,6 +3213,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../%2Bgit/git_stash.m/" class="md-nav__link">
+        vlt.git.git_stash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../%2Bgit/git_status.m/" class="md-nav__link">
         vlt.git.git_status
       </a>
@@ -9237,18 +9249,22 @@
                 
                 
                 <h1 id="vltstatshartigansdiptest">vlt.stats.hartigansdiptest<a class="headerlink" href="#vltstatshartigansdiptest" title="Permanent link">&para;</a></h1>
-<p>function  [dip,xl,xu, ifault, gcm, lcm, mn, mj]=HartigansDipTest(xpdf)</p>
-<p>This is a direct translation by F. Mechler (August 27 2002)
-  into MATLAB from the original FORTRAN code of Hartigan's Subroutine DIPTST algorithm 
-  Ref: Algorithm AS 217 APPL. STATIST. (1985) Vol. 34. No.3 pg 322-325</p>
-<p>Appended by F. Mechler (September 2 2002) to deal with a perfectly unimodal input
-  This check the original Hartigan algorithm omitted, which leads to an infinite cycle</p>
-<p>HartigansDipTest, like DIPTST, does the dip calculation for an ordered vector XPDF using
-  the greatest convex minorant (gcm) and the least concave majorant (lcm),
-  skipping through the data using the change points of these distributions.
-  It returns the 'DIP' statistic, and 7 more optional results, which include
-  the modal interval (XL,XU), ann error flag IFAULT (&gt;0 flags an error)
-  as well as the minorant and majorant fits GCM, LCM, and the corresponding support indices MN, and MJ</p>
+<div class="codehilite"><pre><span></span><code><span class="w">  </span><span class="k">function</span><span class="w">  </span><span class="nf">[dip,xl,xu, ifault, gcm, lcm, mn, mj]=HartigansDipTest</span><span class="p">(</span>xpdf<span class="p">)</span><span class="w"></span>
+
+<span class="w">  </span><span class="n">This</span><span class="w"> </span><span class="n">is</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">direct</span><span class="w"> </span><span class="n">translation</span><span class="w"> </span><span class="n">by</span><span class="w"> </span><span class="n">F</span><span class="p">.</span><span class="w"> </span><span class="n">Mechler</span><span class="w"> </span><span class="p">(</span><span class="n">August</span><span class="w"> </span><span class="mi">27</span><span class="w"> </span><span class="mi">2002</span><span class="p">)</span><span class="w"></span>
+<span class="w">  </span><span class="n">into</span><span class="w"> </span><span class="n">MATLAB</span><span class="w"> </span><span class="n">from</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">original</span><span class="w"> </span><span class="n">FORTRAN</span><span class="w"> </span><span class="n">code</span><span class="w"> </span><span class="n">of</span><span class="w"> </span><span class="n">Hartigan</span><span class="o">&#39;</span><span class="n">s</span><span class="w"> </span><span class="n">Subroutine</span><span class="w"> </span><span class="n">DIPTST</span><span class="w"> </span><span class="n">algorithm</span><span class="w"> </span>
+<span class="w">  </span><span class="n">Ref</span><span class="p">:</span><span class="w"> </span><span class="n">Algorithm</span><span class="w"> </span><span class="n">AS</span><span class="w"> </span><span class="mi">217</span><span class="w"> </span><span class="n">APPL</span><span class="p">.</span><span class="w"> </span><span class="n">STATIST</span><span class="p">.</span><span class="w"> </span><span class="p">(</span><span class="mi">1985</span><span class="p">)</span><span class="w"> </span><span class="n">Vol</span><span class="p">.</span><span class="w"> </span><span class="mf">34.</span><span class="w"> </span><span class="n">No</span><span class="p">.</span><span class="mi">3</span><span class="w"> </span><span class="n">pg</span><span class="w"> </span><span class="mi">322</span><span class="o">-</span><span class="mi">325</span><span class="w"></span>
+
+<span class="w">  </span><span class="n">Appended</span><span class="w"> </span><span class="n">by</span><span class="w"> </span><span class="n">F</span><span class="p">.</span><span class="w"> </span><span class="n">Mechler</span><span class="w"> </span><span class="p">(</span><span class="n">September</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="mi">2002</span><span class="p">)</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="n">deal</span><span class="w"> </span><span class="n">with</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">perfectly</span><span class="w"> </span><span class="n">unimodal</span><span class="w"> </span><span class="nb">input</span><span class="w"></span>
+<span class="w">  </span><span class="n">This</span><span class="w"> </span><span class="n">check</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">original</span><span class="w"> </span><span class="n">Hartigan</span><span class="w"> </span><span class="n">algorithm</span><span class="w"> </span><span class="n">omitted</span><span class="p">,</span><span class="w"> </span><span class="nb">which</span><span class="w"> </span><span class="n">leads</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="n">an</span><span class="w"> </span><span class="n">infinite</span><span class="w"> </span><span class="n">cycle</span><span class="w"></span>
+
+<span class="w">  </span><span class="n">HartigansDipTest</span><span class="p">,</span><span class="w"> </span><span class="n">like</span><span class="w"> </span><span class="n">DIPTST</span><span class="p">,</span><span class="w"> </span><span class="n">does</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">dip</span><span class="w"> </span><span class="n">calculation</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">an</span><span class="w"> </span><span class="n">ordered</span><span class="w"> </span><span class="n">vector</span><span class="w"> </span><span class="n">XPDF</span><span class="w"> </span><span class="n">using</span><span class="w"></span>
+<span class="w">  </span><span class="n">the</span><span class="w"> </span><span class="n">greatest</span><span class="w"> </span><span class="n">convex</span><span class="w"> </span><span class="n">minorant</span><span class="w"> </span><span class="p">(</span><span class="n">gcm</span><span class="p">)</span><span class="w"> </span><span class="n">and</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">least</span><span class="w"> </span><span class="n">concave</span><span class="w"> </span><span class="n">majorant</span><span class="w"> </span><span class="p">(</span><span class="nb">lcm</span><span class="p">),</span><span class="w"></span>
+<span class="w">  </span><span class="n">skipping</span><span class="w"> </span><span class="n">through</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">data</span><span class="w"> </span><span class="n">using</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">change</span><span class="w"> </span><span class="n">points</span><span class="w"> </span><span class="n">of</span><span class="w"> </span><span class="n">these</span><span class="w"> </span><span class="n">distributions</span><span class="p">.</span><span class="w"></span>
+<span class="w">  </span><span class="n">It</span><span class="w"> </span><span class="n">returns</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="s">&#39;DIP&#39;</span><span class="w"> </span><span class="n">statistic</span><span class="p">,</span><span class="w"> </span><span class="n">and</span><span class="w"> </span><span class="mi">7</span><span class="w"> </span><span class="nb">more</span><span class="w"> </span><span class="n">optional</span><span class="w"> </span><span class="n">results</span><span class="p">,</span><span class="w"> </span><span class="nb">which</span><span class="w"> </span><span class="n">include</span><span class="w"></span>
+<span class="w">  </span><span class="n">the</span><span class="w"> </span><span class="n">modal</span><span class="w"> </span><span class="n">interval</span><span class="w"> </span><span class="p">(</span><span class="n">XL</span><span class="p">,</span><span class="n">XU</span><span class="p">),</span><span class="w"> </span><span class="n">ann</span><span class="w"> </span><span class="nb">error</span><span class="w"> </span><span class="nb">flag</span><span class="w"> </span><span class="n">IFAULT</span><span class="w"> </span><span class="p">(</span><span class="o">&gt;</span><span class="mi">0</span><span class="w"> </span><span class="n">flags</span><span class="w"> </span><span class="n">an</span><span class="w"> </span><span class="nb">error</span><span class="p">)</span><span class="w"></span>
+<span class="w">  </span><span class="n">as</span><span class="w"> </span><span class="n">well</span><span class="w"> </span><span class="n">as</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">minorant</span><span class="w"> </span><span class="n">and</span><span class="w"> </span><span class="n">majorant</span><span class="w"> </span><span class="n">fits</span><span class="w"> </span><span class="n">GCM</span><span class="p">,</span><span class="w"> </span><span class="n">LCM</span><span class="p">,</span><span class="w"> </span><span class="n">and</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">corresponding</span><span class="w"> </span><span class="n">support</span><span class="w"> </span><span class="n">indices</span><span class="w"> </span><span class="n">MN</span><span class="p">,</span><span class="w"> </span><span class="n">and</span><span class="w"> </span><span class="n">MJ</span><span class="w"></span>
+</code></pre></div>
                 
               
               

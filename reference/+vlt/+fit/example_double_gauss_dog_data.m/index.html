@@ -3225,6 +3225,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../%2Bgit/git_stash.m/" class="md-nav__link">
+        vlt.git.git_stash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../%2Bgit/git_status.m/" class="md-nav__link">
         vlt.git.git_status
       </a>
@@ -9237,14 +9249,18 @@
                 
                 
                 <h1 id="vltfitexample_double_gauss_dog_data">vlt.fit.example_double_gauss_dog_data<a class="headerlink" href="#vltfitexample_double_gauss_dog_data" title="Permanent link">&para;</a></h1>
-<p>EXAMPLE_DOUBLE_GAUSS_DOG_DATA - generate a random set of data + parameters</p>
-<p>STARTING VALUES THAT MAKE FOR GOOD FIT
-  dog_params = [ 0 1 0.5 0.4 1];
-  double_gauss_params = [ 1 10 45 25 4];
-  theta_range = [ 0:22.5:360-22.5 ];
-  sf_range = [ 0.01 0.02 0.05 0.08 0.1 0.2 0.5 1.2 1.5 1.8];
-  [theta, sf] = meshgrid(theta_range, sf_range);
-  R = vlt.math.double_gauss_DoG(theta, sf, double_gauss_params, dog_params);</p>
+<div class="codehilite"><pre><span></span><code>  <span class="nt">EXAMPLE_DOUBLE_GAUSS_DOG_DATA</span> <span class="nt">-</span> <span class="nt">generate</span> <span class="nt">a</span> <span class="nt">random</span> <span class="nt">set</span> <span class="nt">of</span> <span class="nt">data</span> <span class="o">+</span> <span class="nt">parameters</span>
+
+
+
+  <span class="nt">STARTING</span> <span class="nt">VALUES</span> <span class="nt">THAT</span> <span class="nt">MAKE</span> <span class="nt">FOR</span> <span class="nt">GOOD</span> <span class="nt">FIT</span>
+  <span class="nt">dog_params</span> <span class="o">=</span> <span class="cp">[</span> <span class="mi">0</span> <span class="mi">1</span> <span class="mf">0.5</span> <span class="mf">0.4</span> <span class="mi">1</span><span class="cp">]</span><span class="o">;</span>
+  <span class="nt">double_gauss_params</span> <span class="o">=</span> <span class="cp">[</span> <span class="mi">1</span> <span class="mi">10</span> <span class="mi">45</span> <span class="mi">25</span> <span class="mi">4</span><span class="cp">]</span><span class="o">;</span>
+  <span class="nt">theta_range</span> <span class="o">=</span> <span class="cp">[</span> <span class="mi">0</span><span class="p">:</span><span class="mf">22.5</span><span class="p">:</span><span class="mi">360</span><span class="o">-</span><span class="mf">22.5</span> <span class="cp">]</span><span class="o">;</span>
+  <span class="nt">sf_range</span> <span class="o">=</span> <span class="cp">[</span> <span class="mf">0.01</span> <span class="mf">0.02</span> <span class="mf">0.05</span> <span class="mf">0.08</span> <span class="mf">0.1</span> <span class="mf">0.2</span> <span class="mf">0.5</span> <span class="mf">1.2</span> <span class="mf">1.5</span> <span class="mf">1.8</span><span class="cp">]</span><span class="o">;</span>
+  <span class="cp">[</span><span class="nx">theta</span><span class="p">,</span> <span class="nx">sf</span><span class="cp">]</span> <span class="o">=</span> <span class="nt">meshgrid</span><span class="o">(</span><span class="nt">theta_range</span><span class="o">,</span> <span class="nt">sf_range</span><span class="o">);</span>
+  <span class="nt">R</span> <span class="o">=</span> <span class="nt">vlt</span><span class="p">.</span><span class="nc">math</span><span class="p">.</span><span class="nc">double_gauss_DoG</span><span class="o">(</span><span class="nt">theta</span><span class="o">,</span> <span class="nt">sf</span><span class="o">,</span> <span class="nt">double_gauss_params</span><span class="o">,</span> <span class="nt">dog_params</span><span class="o">);</span>
+</code></pre></div>
                 
               
               

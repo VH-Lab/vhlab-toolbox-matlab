@@ -3225,6 +3225,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../%2Bgit/git_stash.m/" class="md-nav__link">
+        vlt.git.git_stash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../%2Bgit/git_status.m/" class="md-nav__link">
         vlt.git.git_status
       </a>
@@ -9237,18 +9249,26 @@
                 
                 
                 <h1 id="vltfitotfit_carandini0">vlt.fit.otfit_carandini0<a class="headerlink" href="#vltfitotfit_carandini0" title="Permanent link">&para;</a></h1>
-<p>vlt.fit.otfit_carandini0 Fits orientation curves like Carandini/Ferster 2000</p>
-<p>[Rsp,Rp,Op,sigm,FITCURVE,ERR]=vlt.fit.otfit_carandini0(ANGLES,...
-          SPONTHINT, MAXRESPHINT, OTPREFHINT, WIDTHHINT,'DATA',DATA) </p>
-<p>Finds the best fit to the function</p>
-<p>R=Rsp+Rp<em>EXP(-(X-Op)^2)/(2</em>sig^2))+Rp<em>EXP(-(X-Op+180)^2/(2</em>sig^2))
-   where R is the response, Rsp is the spontaneous response, Rp is 
-   the response at the preferred orientation, Op is the preferred angle,
-   sigm is the tuning width.</p>
-<p>This function differs from vlt.fit.otfit_carandini in that the response
-   180 degrees away from Op is constrained to be Rp.  In
-   vlt.fit.otfit_carandini, it can have its own value Rn.</p>
-<p>FITCURVE is the fit function at 1 degree intervals (0:1:359).</p>
+<div class="codehilite"><pre><span></span><code>  <span class="n">vlt</span><span class="o">.</span><span class="n">fit</span><span class="o">.</span><span class="n">otfit_carandini0</span> <span class="n">Fits</span> <span class="n">orientation</span> <span class="n">curves</span> <span class="n">like</span> <span class="n">Carandini</span><span class="o">/</span><span class="n">Ferster</span> <span class="mi">2000</span>
+
+   <span class="p">[</span><span class="n">Rsp</span><span class="p">,</span><span class="n">Rp</span><span class="p">,</span><span class="n">Op</span><span class="p">,</span><span class="n">sigm</span><span class="p">,</span><span class="n">FITCURVE</span><span class="p">,</span><span class="n">ERR</span><span class="p">]</span><span class="o">=</span><span class="n">vlt</span><span class="o">.</span><span class="n">fit</span><span class="o">.</span><span class="n">otfit_carandini0</span><span class="p">(</span><span class="n">ANGLES</span><span class="p">,</span><span class="o">...</span>
+          <span class="n">SPONTHINT</span><span class="p">,</span> <span class="n">MAXRESPHINT</span><span class="p">,</span> <span class="n">OTPREFHINT</span><span class="p">,</span> <span class="n">WIDTHHINT</span><span class="p">,</span><span class="s1">&#39;DATA&#39;</span><span class="p">,</span><span class="n">DATA</span><span class="p">)</span> 
+
+   <span class="n">Finds</span> <span class="n">the</span> <span class="n">best</span> <span class="n">fit</span> <span class="n">to</span> <span class="n">the</span> <span class="n">function</span>
+
+   <span class="n">R</span><span class="o">=</span><span class="n">Rsp</span><span class="o">+</span><span class="n">Rp</span><span class="o">*</span><span class="n">EXP</span><span class="p">(</span><span class="o">-</span><span class="p">(</span><span class="n">X</span><span class="o">-</span><span class="n">Op</span><span class="p">)</span><span class="o">^</span><span class="mi">2</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">sig</span><span class="o">^</span><span class="mi">2</span><span class="p">))</span><span class="o">+</span><span class="n">Rp</span><span class="o">*</span><span class="n">EXP</span><span class="p">(</span><span class="o">-</span><span class="p">(</span><span class="n">X</span><span class="o">-</span><span class="n">Op</span><span class="o">+</span><span class="mi">180</span><span class="p">)</span><span class="o">^</span><span class="mi">2</span><span class="o">/</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">sig</span><span class="o">^</span><span class="mi">2</span><span class="p">))</span>
+   <span class="n">where</span> <span class="n">R</span> <span class="k">is</span> <span class="n">the</span> <span class="n">response</span><span class="p">,</span> <span class="n">Rsp</span> <span class="k">is</span> <span class="n">the</span> <span class="n">spontaneous</span> <span class="n">response</span><span class="p">,</span> <span class="n">Rp</span> <span class="k">is</span> 
+   <span class="n">the</span> <span class="n">response</span> <span class="n">at</span> <span class="n">the</span> <span class="n">preferred</span> <span class="n">orientation</span><span class="p">,</span> <span class="n">Op</span> <span class="k">is</span> <span class="n">the</span> <span class="n">preferred</span> <span class="n">angle</span><span class="p">,</span>
+   <span class="n">sigm</span> <span class="k">is</span> <span class="n">the</span> <span class="n">tuning</span> <span class="n">width</span><span class="o">.</span>
+
+   <span class="n">This</span> <span class="n">function</span> <span class="n">differs</span> <span class="n">from</span> <span class="n">vlt</span><span class="o">.</span><span class="n">fit</span><span class="o">.</span><span class="n">otfit_carandini</span> <span class="ow">in</span> <span class="n">that</span> <span class="n">the</span> <span class="n">response</span>
+   <span class="mi">180</span> <span class="n">degrees</span> <span class="n">away</span> <span class="n">from</span> <span class="n">Op</span> <span class="k">is</span> <span class="n">constrained</span> <span class="n">to</span> <span class="n">be</span> <span class="n">Rp</span><span class="o">.</span>  <span class="n">In</span>
+   <span class="n">vlt</span><span class="o">.</span><span class="n">fit</span><span class="o">.</span><span class="n">otfit_carandini</span><span class="p">,</span> <span class="n">it</span> <span class="n">can</span> <span class="n">have</span> <span class="n">its</span> <span class="n">own</span> <span class="n">value</span> <span class="n">Rn</span><span class="o">.</span>
+
+
+
+   <span class="n">FITCURVE</span> <span class="k">is</span> <span class="n">the</span> <span class="n">fit</span> <span class="n">function</span> <span class="n">at</span> <span class="mi">1</span> <span class="n">degree</span> <span class="n">intervals</span> <span class="p">(</span><span class="mi">0</span><span class="p">:</span><span class="mi">1</span><span class="p">:</span><span class="mi">359</span><span class="p">)</span><span class="o">.</span>
+</code></pre></div>
                 
               
               

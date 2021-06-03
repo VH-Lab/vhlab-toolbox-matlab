@@ -3225,6 +3225,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../%2Bgit/git_stash.m/" class="md-nav__link">
+        vlt.git.git_stash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../%2Bgit/git_status.m/" class="md-nav__link">
         vlt.git.git_status
       </a>
@@ -9237,36 +9249,44 @@
                 
                 
                 <h1 id="vltdatastruct2str">vlt.data.struct2str<a class="headerlink" href="#vltdatastruct2str" title="Permanent link">&para;</a></h1>
-<p>STRUCT2STR - Create a short text string to summarize a structure</p>
-<p>STR = vlt.data.struct2str(THESTRUCT)</p>
-<p>Produces a string representation of a structure.  Character strings
-   are written directly, integers are written using INT2STR, and 
-   numbers are written using NUM2STR.  Any other objects are written
-   using the function DISP.</p>
-<p>If a single structure element is passed as THESTRUCT, then a
-   single string is returned.  If an array or matrix of structure
-   elements is passed, then a cell array/matrix of strings is returned.
-   One can force the routine to return a cell array in the case of a 
-   a single structure with the 'forcecell' option below.</p>
-<p>This is useful for displaying a structure in a listbox or for
-   writing the structure to a file as text.</p>
-<p>The default parameters may be overridden by passing NAME/VALUE
-   pairs as additional arguments, as in:</p>
-<div class="codehilite"><pre><span></span><code>STR = vlt.data.struct2str(THESTRUCT, &#39;NAME1&#39;, VALUE1,...)
-</code></pre></div>
+<div class="codehilite"><pre><span></span><code>  <span class="n">STRUCT2STR</span> <span class="o">-</span> <span class="n">Create</span> <span class="n">a</span> <span class="n">short</span> <span class="n">text</span> <span class="n">string</span> <span class="n">to</span> <span class="n">summarize</span> <span class="n">a</span> <span class="n">structure</span>
 
-<p>Parameters:             | Description</p>
-<hr />
-<p>separator               | The separator between fields (default ' : ')
-   forcecell               | Should STR be a cell array of strings even if
-                           |    a single structure element is used as THESTRUCT
-                           |    (Default 0, can be 1)
-   headerrow               | Should we have a header row? (Default 0, can be 1)
-                           |    In this case STR is always returned as a 
-                           |    cell array of strings
-   precision               | Precision we should use for mat2str (default 15)
-                           |    (this is the number of digits we should use)</p>
-<p>See also: STRUCT2CHAR, CHAR2STRUCT, vlt.data.mlstr2var</p>
+   <span class="n">STR</span> <span class="o">=</span> <span class="n">vlt</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">struct2str</span><span class="p">(</span><span class="n">THESTRUCT</span><span class="p">)</span>
+
+   <span class="n">Produces</span> <span class="n">a</span> <span class="n">string</span> <span class="n">representation</span> <span class="n">of</span> <span class="n">a</span> <span class="n">structure</span><span class="o">.</span>  <span class="n">Character</span> <span class="n">strings</span>
+   <span class="n">are</span> <span class="n">written</span> <span class="n">directly</span><span class="p">,</span> <span class="n">integers</span> <span class="n">are</span> <span class="n">written</span> <span class="n">using</span> <span class="n">INT2STR</span><span class="p">,</span> <span class="ow">and</span> 
+   <span class="n">numbers</span> <span class="n">are</span> <span class="n">written</span> <span class="n">using</span> <span class="n">NUM2STR</span><span class="o">.</span>  <span class="n">Any</span> <span class="n">other</span> <span class="n">objects</span> <span class="n">are</span> <span class="n">written</span>
+   <span class="n">using</span> <span class="n">the</span> <span class="n">function</span> <span class="n">DISP</span><span class="o">.</span>
+
+   <span class="n">If</span> <span class="n">a</span> <span class="n">single</span> <span class="n">structure</span> <span class="n">element</span> <span class="k">is</span> <span class="n">passed</span> <span class="k">as</span> <span class="n">THESTRUCT</span><span class="p">,</span> <span class="n">then</span> <span class="n">a</span>
+   <span class="n">single</span> <span class="n">string</span> <span class="k">is</span> <span class="n">returned</span><span class="o">.</span>  <span class="n">If</span> <span class="n">an</span> <span class="n">array</span> <span class="ow">or</span> <span class="n">matrix</span> <span class="n">of</span> <span class="n">structure</span>
+   <span class="n">elements</span> <span class="k">is</span> <span class="n">passed</span><span class="p">,</span> <span class="n">then</span> <span class="n">a</span> <span class="n">cell</span> <span class="n">array</span><span class="o">/</span><span class="n">matrix</span> <span class="n">of</span> <span class="n">strings</span> <span class="k">is</span> <span class="n">returned</span><span class="o">.</span>
+   <span class="n">One</span> <span class="n">can</span> <span class="n">force</span> <span class="n">the</span> <span class="n">routine</span> <span class="n">to</span> <span class="k">return</span> <span class="n">a</span> <span class="n">cell</span> <span class="n">array</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">case</span> <span class="n">of</span> <span class="n">a</span> 
+   <span class="n">a</span> <span class="n">single</span> <span class="n">structure</span> <span class="n">with</span> <span class="n">the</span> <span class="s1">&#39;forcecell&#39;</span> <span class="n">option</span> <span class="n">below</span><span class="o">.</span>
+
+   <span class="n">This</span> <span class="k">is</span> <span class="n">useful</span> <span class="k">for</span> <span class="n">displaying</span> <span class="n">a</span> <span class="n">structure</span> <span class="ow">in</span> <span class="n">a</span> <span class="n">listbox</span> <span class="ow">or</span> <span class="k">for</span>
+   <span class="n">writing</span> <span class="n">the</span> <span class="n">structure</span> <span class="n">to</span> <span class="n">a</span> <span class="n">file</span> <span class="k">as</span> <span class="n">text</span><span class="o">.</span>
+
+   <span class="n">The</span> <span class="n">default</span> <span class="n">parameters</span> <span class="n">may</span> <span class="n">be</span> <span class="n">overridden</span> <span class="n">by</span> <span class="n">passing</span> <span class="n">NAME</span><span class="o">/</span><span class="n">VALUE</span>
+   <span class="n">pairs</span> <span class="k">as</span> <span class="n">additional</span> <span class="n">arguments</span><span class="p">,</span> <span class="k">as</span> <span class="ow">in</span><span class="p">:</span>
+
+    <span class="n">STR</span> <span class="o">=</span> <span class="n">vlt</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">struct2str</span><span class="p">(</span><span class="n">THESTRUCT</span><span class="p">,</span> <span class="s1">&#39;NAME1&#39;</span><span class="p">,</span> <span class="n">VALUE1</span><span class="p">,</span><span class="o">...</span><span class="p">)</span>
+
+   <span class="n">Parameters</span><span class="p">:</span>             <span class="o">|</span> <span class="n">Description</span>
+   <span class="o">---------------------------------------------------------------</span>
+   <span class="n">separator</span>               <span class="o">|</span> <span class="n">The</span> <span class="n">separator</span> <span class="n">between</span> <span class="n">fields</span> <span class="p">(</span><span class="n">default</span> <span class="s1">&#39; : &#39;</span><span class="p">)</span>
+   <span class="n">forcecell</span>               <span class="o">|</span> <span class="n">Should</span> <span class="n">STR</span> <span class="n">be</span> <span class="n">a</span> <span class="n">cell</span> <span class="n">array</span> <span class="n">of</span> <span class="n">strings</span> <span class="n">even</span> <span class="k">if</span>
+                           <span class="o">|</span>    <span class="n">a</span> <span class="n">single</span> <span class="n">structure</span> <span class="n">element</span> <span class="k">is</span> <span class="n">used</span> <span class="k">as</span> <span class="n">THESTRUCT</span>
+                           <span class="o">|</span>    <span class="p">(</span><span class="n">Default</span> <span class="mi">0</span><span class="p">,</span> <span class="n">can</span> <span class="n">be</span> <span class="mi">1</span><span class="p">)</span>
+   <span class="n">headerrow</span>               <span class="o">|</span> <span class="n">Should</span> <span class="n">we</span> <span class="n">have</span> <span class="n">a</span> <span class="n">header</span> <span class="n">row</span><span class="err">?</span> <span class="p">(</span><span class="n">Default</span> <span class="mi">0</span><span class="p">,</span> <span class="n">can</span> <span class="n">be</span> <span class="mi">1</span><span class="p">)</span>
+                           <span class="o">|</span>    <span class="n">In</span> <span class="n">this</span> <span class="n">case</span> <span class="n">STR</span> <span class="k">is</span> <span class="n">always</span> <span class="n">returned</span> <span class="k">as</span> <span class="n">a</span> 
+                           <span class="o">|</span>    <span class="n">cell</span> <span class="n">array</span> <span class="n">of</span> <span class="n">strings</span>
+   <span class="n">precision</span>               <span class="o">|</span> <span class="n">Precision</span> <span class="n">we</span> <span class="n">should</span> <span class="n">use</span> <span class="k">for</span> <span class="n">mat2str</span> <span class="p">(</span><span class="n">default</span> <span class="mi">15</span><span class="p">)</span>
+                           <span class="o">|</span>    <span class="p">(</span><span class="n">this</span> <span class="k">is</span> <span class="n">the</span> <span class="n">number</span> <span class="n">of</span> <span class="n">digits</span> <span class="n">we</span> <span class="n">should</span> <span class="n">use</span><span class="p">)</span>
+
+
+  <span class="n">See</span> <span class="n">also</span><span class="p">:</span> <span class="n">STRUCT2CHAR</span><span class="p">,</span> <span class="n">CHAR2STRUCT</span><span class="p">,</span> <span class="n">vlt</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">mlstr2var</span>
+</code></pre></div>
                 
               
               

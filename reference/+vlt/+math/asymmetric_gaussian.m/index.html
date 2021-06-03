@@ -3213,6 +3213,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../%2Bgit/git_stash.m/" class="md-nav__link">
+        vlt.git.git_stash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../%2Bgit/git_status.m/" class="md-nav__link">
         vlt.git.git_status
       </a>
@@ -9237,15 +9249,16 @@
                 
                 
                 <h1 id="vltmathasymmetric_gaussian">vlt.math.asymmetric_gaussian<a class="headerlink" href="#vltmathasymmetric_gaussian" title="Permanent link">&para;</a></h1>
-<p>ASYMMETRIC_GAUSSIAN - Compute an assymmetric gaussian curve</p>
-<div class="codehilite"><pre><span></span><code>Y = vlt.math.asymmetric_gaussian(X, a, b, c, d, e)
+<div class="codehilite"><pre><span></span><code>  ASYMMETRIC_GAUSSIAN - Compute an assymmetric gaussian curve
 
-where X are the values of X at which to evaluate the function,
-and a b c d e are the parameters of the function:
+    Y = vlt.math.asymmetric_gaussian(X, a, b, c, d, e)
+
+    where X are the values of X at which to evaluate the function,
+    and a b c d e are the parameters of the function:
+  &#39;a+b*exp(-((x-c).^2)/((heaviside(x-c)*(2*d^2)+(1-heaviside(x-c))*(2*(d^2)*e))))&#39;
+
+   This function with no input arguments returns the string above.
 </code></pre></div>
-
-<p>'a+b<em>exp(-((x-c).^2)/((heaviside(x-c)</em>(2<em>d^2)+(1-heaviside(x-c))</em>(2<em>(d^2)</em>e))))'</p>
-<p>This function with no input arguments returns the string above.</p>
                 
               
               

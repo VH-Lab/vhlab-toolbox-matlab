@@ -3213,6 +3213,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../../%2Bgit/git_stash.m/" class="md-nav__link">
+        vlt.git.git_stash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../../%2Bgit/git_status.m/" class="md-nav__link">
         vlt.git.git_status
       </a>
@@ -9239,27 +9251,35 @@
                 
                 
                 <h1 id="vltmatlabgraphicsselectpoints3d">vlt.matlab.graphics.selectpoints3d<a class="headerlink" href="#vltmatlabgraphicsselectpoints3d" title="Permanent link">&para;</a></h1>
-<p>SELECTPOINTS3D - Graphically select a bunch of (2D or 3D) points by making a polygon in the current axes view</p>
-<p>INSIDE = vlt.matlab.graphics.selectpoints3d(PTS3D)</p>
-<p>Select a subset of points on a (potentially 3D) graph by dragging a polygon.</p>
-<p>Allows the user to drag a polygon over the current axes (may be in 3D or 2D mode)
-   and this function will return the points in PTS3D that are inside the polygon.</p>
-<p>PTS3D should be a 2xN or 3xN matrix where N is the the number of points. If only
-   2-dimensional points are passed then the function will still work.</p>
-<p>Output:  INSIDE is an N dimensional vector of 0's and 1's; INSIDE(i) is 1 if and only
-   if PTS3D(:,i) is inside the user-drawn polygon.</p>
-<p>Please note that this function does not plot the points; the points should already be
-   plotted if you want them to be visible to the user.</p>
-<p>Example:
-      pts = randn(30,3);
-      figure;
-      plot3(pts(:,1),pts(:,2),pts(:,3),'ko'); drawnow();
-      % change the view, maybe use the rotate3d tool
-      inside = vlt.matlab.graphics.selectpoints3d(pts'); % need to transpose to column vectors
-      hold on;
-      indexes = find(inside);
-      plot3(pts(indexes,1),pts(indexes,2),pts(indexes,3),'bs'); % add red x to selected points
-      % look around with rotate3d tool to make sure it is right</p>
+<div class="codehilite"><pre><span></span><code>  <span class="n">SELECTPOINTS3D</span> <span class="o">-</span> <span class="n">Graphically</span> <span class="n">select</span> <span class="n">a</span> <span class="n">bunch</span> <span class="n">of</span> <span class="p">(</span><span class="mi">2</span><span class="n">D</span> <span class="ow">or</span> <span class="mi">3</span><span class="n">D</span><span class="p">)</span> <span class="n">points</span> <span class="n">by</span> <span class="n">making</span> <span class="n">a</span> <span class="n">polygon</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">current</span> <span class="n">axes</span> <span class="n">view</span>
+
+   <span class="n">INSIDE</span> <span class="o">=</span> <span class="n">vlt</span><span class="o">.</span><span class="n">matlab</span><span class="o">.</span><span class="n">graphics</span><span class="o">.</span><span class="n">selectpoints3d</span><span class="p">(</span><span class="n">PTS3D</span><span class="p">)</span>
+
+   <span class="n">Select</span> <span class="n">a</span> <span class="n">subset</span> <span class="n">of</span> <span class="n">points</span> <span class="n">on</span> <span class="n">a</span> <span class="p">(</span><span class="n">potentially</span> <span class="mi">3</span><span class="n">D</span><span class="p">)</span> <span class="n">graph</span> <span class="n">by</span> <span class="n">dragging</span> <span class="n">a</span> <span class="n">polygon</span><span class="o">.</span>
+
+   <span class="n">Allows</span> <span class="n">the</span> <span class="n">user</span> <span class="n">to</span> <span class="n">drag</span> <span class="n">a</span> <span class="n">polygon</span> <span class="n">over</span> <span class="n">the</span> <span class="n">current</span> <span class="n">axes</span> <span class="p">(</span><span class="n">may</span> <span class="n">be</span> <span class="ow">in</span> <span class="mi">3</span><span class="n">D</span> <span class="ow">or</span> <span class="mi">2</span><span class="n">D</span> <span class="n">mode</span><span class="p">)</span>
+   <span class="ow">and</span> <span class="n">this</span> <span class="n">function</span> <span class="n">will</span> <span class="k">return</span> <span class="n">the</span> <span class="n">points</span> <span class="ow">in</span> <span class="n">PTS3D</span> <span class="n">that</span> <span class="n">are</span> <span class="n">inside</span> <span class="n">the</span> <span class="n">polygon</span><span class="o">.</span>
+
+   <span class="n">PTS3D</span> <span class="n">should</span> <span class="n">be</span> <span class="n">a</span> <span class="mi">2</span><span class="n">xN</span> <span class="ow">or</span> <span class="mi">3</span><span class="n">xN</span> <span class="n">matrix</span> <span class="n">where</span> <span class="n">N</span> <span class="k">is</span> <span class="n">the</span> <span class="n">the</span> <span class="n">number</span> <span class="n">of</span> <span class="n">points</span><span class="o">.</span> <span class="n">If</span> <span class="n">only</span>
+   <span class="mi">2</span><span class="o">-</span><span class="n">dimensional</span> <span class="n">points</span> <span class="n">are</span> <span class="n">passed</span> <span class="n">then</span> <span class="n">the</span> <span class="n">function</span> <span class="n">will</span> <span class="n">still</span> <span class="n">work</span><span class="o">.</span>
+
+   <span class="n">Output</span><span class="p">:</span>  <span class="n">INSIDE</span> <span class="k">is</span> <span class="n">an</span> <span class="n">N</span> <span class="n">dimensional</span> <span class="n">vector</span> <span class="n">of</span> <span class="mi">0</span><span class="s1">&#39;s and 1&#39;</span><span class="n">s</span><span class="p">;</span> <span class="n">INSIDE</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="k">is</span> <span class="mi">1</span> <span class="k">if</span> <span class="ow">and</span> <span class="n">only</span>
+   <span class="k">if</span> <span class="n">PTS3D</span><span class="p">(:,</span><span class="n">i</span><span class="p">)</span> <span class="k">is</span> <span class="n">inside</span> <span class="n">the</span> <span class="n">user</span><span class="o">-</span><span class="n">drawn</span> <span class="n">polygon</span><span class="o">.</span>
+
+   <span class="n">Please</span> <span class="n">note</span> <span class="n">that</span> <span class="n">this</span> <span class="n">function</span> <span class="n">does</span> <span class="ow">not</span> <span class="n">plot</span> <span class="n">the</span> <span class="n">points</span><span class="p">;</span> <span class="n">the</span> <span class="n">points</span> <span class="n">should</span> <span class="n">already</span> <span class="n">be</span>
+   <span class="n">plotted</span> <span class="k">if</span> <span class="n">you</span> <span class="n">want</span> <span class="n">them</span> <span class="n">to</span> <span class="n">be</span> <span class="n">visible</span> <span class="n">to</span> <span class="n">the</span> <span class="n">user</span><span class="o">.</span>
+
+   <span class="n">Example</span><span class="p">:</span>
+      <span class="n">pts</span> <span class="o">=</span> <span class="n">randn</span><span class="p">(</span><span class="mi">30</span><span class="p">,</span><span class="mi">3</span><span class="p">);</span>
+      <span class="n">figure</span><span class="p">;</span>
+      <span class="n">plot3</span><span class="p">(</span><span class="n">pts</span><span class="p">(:,</span><span class="mi">1</span><span class="p">),</span><span class="n">pts</span><span class="p">(:,</span><span class="mi">2</span><span class="p">),</span><span class="n">pts</span><span class="p">(:,</span><span class="mi">3</span><span class="p">),</span><span class="s1">&#39;ko&#39;</span><span class="p">);</span> <span class="n">drawnow</span><span class="p">();</span>
+      <span class="o">%</span> <span class="n">change</span> <span class="n">the</span> <span class="n">view</span><span class="p">,</span> <span class="n">maybe</span> <span class="n">use</span> <span class="n">the</span> <span class="n">rotate3d</span> <span class="k">tool</span>
+      <span class="n">inside</span> <span class="o">=</span> <span class="n">vlt</span><span class="o">.</span><span class="n">matlab</span><span class="o">.</span><span class="n">graphics</span><span class="o">.</span><span class="n">selectpoints3d</span><span class="p">(</span><span class="n">pts</span><span class="s1">&#39;); % need to transpose to column vectors</span>
+      <span class="n">hold</span> <span class="n">on</span><span class="p">;</span>
+      <span class="n">indexes</span> <span class="o">=</span> <span class="n">find</span><span class="p">(</span><span class="n">inside</span><span class="p">);</span>
+      <span class="n">plot3</span><span class="p">(</span><span class="n">pts</span><span class="p">(</span><span class="n">indexes</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span><span class="n">pts</span><span class="p">(</span><span class="n">indexes</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span><span class="n">pts</span><span class="p">(</span><span class="n">indexes</span><span class="p">,</span><span class="mi">3</span><span class="p">),</span><span class="s1">&#39;bs&#39;</span><span class="p">);</span> <span class="o">%</span> <span class="n">add</span> <span class="n">red</span> <span class="n">x</span> <span class="n">to</span> <span class="n">selected</span> <span class="n">points</span>
+      <span class="o">%</span> <span class="n">look</span> <span class="n">around</span> <span class="n">with</span> <span class="n">rotate3d</span> <span class="k">tool</span> <span class="n">to</span> <span class="n">make</span> <span class="n">sure</span> <span class="n">it</span> <span class="k">is</span> <span class="n">right</span>
+</code></pre></div>
                 
               
               

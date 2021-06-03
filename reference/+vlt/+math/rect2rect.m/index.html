@@ -3213,6 +3213,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../%2Bgit/git_stash.m/" class="md-nav__link">
+        vlt.git.git_stash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../%2Bgit/git_status.m/" class="md-nav__link">
         vlt.git.git_status
       </a>
@@ -9237,20 +9249,21 @@
                 
                 
                 <h1 id="vltmathrect2rect">vlt.math.rect2rect<a class="headerlink" href="#vltmathrect2rect" title="Permanent link">&para;</a></h1>
-<p>RECT2RECT - Convert among rectangle formats, eg [left bottom width height]-&gt;[left top right bottom]</p>
-<div class="codehilite"><pre><span></span><code>R_OUT = vlt.math.rect2rect(R_IN, DIRECTION)
+<div class="codehilite"><pre><span></span><code>  <span class="n">RECT2RECT</span> <span class="o">-</span> <span class="n">Convert</span> <span class="n">among</span> <span class="n">rectangle</span> <span class="n">formats</span><span class="p">,</span> <span class="n">eg</span> <span class="p">[</span><span class="kr">left</span> <span class="n">bottom</span> <span class="n">width</span> <span class="n">height</span><span class="p">]</span><span class="o">-&gt;</span><span class="p">[</span><span class="kr">left</span> <span class="n">top</span> <span class="kr">right</span> <span class="n">bottom</span><span class="p">]</span>
 
-Converts rectangle R_IN to R_OUT according to format specified in DIRECTION.
+    <span class="n">R_OUT</span> <span class="o">=</span> <span class="n">vlt</span><span class="p">.</span><span class="n">math</span><span class="p">.</span><span class="n">rect2rect</span><span class="p">(</span><span class="n">R_IN</span><span class="p">,</span> <span class="n">DIRECTION</span><span class="p">)</span>
 
-DIRECTION should be a string &#39;IN2OUT&#39;, where IN and OUT can be any of:
-  &#39;ltrb&#39;   [left top right bottom]
-  &#39;lbrt&#39;   [left bottom right top]
-  &#39;lbwh&#39;   [left bottom width height]
-  &#39;ltwh&#39;   [left top width height]
+    <span class="n">Converts</span> <span class="n">rectangle</span> <span class="n">R_IN</span> <span class="n">to</span> <span class="n">R_OUT</span> <span class="n">according</span> <span class="n">to</span> <span class="n">format</span> <span class="n">specified</span> <span class="kr">in</span> <span class="n">DIRECTION</span><span class="p">.</span>
 
-Case is ignored in the DIRECTION command.
+    <span class="n">DIRECTION</span> <span class="n">should</span> <span class="n">be</span> <span class="n">a</span> <span class="kt">string</span> <span class="s">&#39;IN2OUT&#39;</span><span class="p">,</span> <span class="n">where</span> <span class="kr">IN</span> <span class="kr">and</span> <span class="n">OUT</span> <span class="n">can</span> <span class="n">be</span> <span class="kr">any</span> <span class="kr">of</span><span class="o">:</span>
+      <span class="s">&#39;ltrb&#39;</span>   <span class="p">[</span><span class="kr">left</span> <span class="n">top</span> <span class="kr">right</span> <span class="n">bottom</span><span class="p">]</span>
+      <span class="s">&#39;lbrt&#39;</span>   <span class="p">[</span><span class="kr">left</span> <span class="n">bottom</span> <span class="kr">right</span> <span class="n">top</span><span class="p">]</span>
+      <span class="s">&#39;lbwh&#39;</span>   <span class="p">[</span><span class="kr">left</span> <span class="n">bottom</span> <span class="n">width</span> <span class="n">height</span><span class="p">]</span>
+      <span class="s">&#39;ltwh&#39;</span>   <span class="p">[</span><span class="kr">left</span> <span class="n">top</span> <span class="n">width</span> <span class="n">height</span><span class="p">]</span>
 
-See also: RESCALE_RECT
+    <span class="kr">Case</span> <span class="n">is</span> <span class="n">ignored</span> <span class="kr">in</span> <span class="n">the</span> <span class="n">DIRECTION</span> <span class="n">command</span><span class="p">.</span>
+
+    <span class="n">See</span> <span class="n">also</span><span class="o">:</span> <span class="n">RESCALE_RECT</span>
 </code></pre></div>
                 
               

@@ -3213,6 +3213,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../%2Bgit/git_stash.m/" class="md-nav__link">
+        vlt.git.git_stash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../%2Bgit/git_status.m/" class="md-nav__link">
         vlt.git.git_status
       </a>
@@ -9237,19 +9249,23 @@
                 
                 
                 <h1 id="vltpcbkicadgerber2oshpark">vlt.pcb.KiCadGerber2OSHPark<a class="headerlink" href="#vltpcbkicadgerber2oshpark" title="Permanent link">&para;</a></h1>
-<p>KiCadGerber2OSHPark - Convert KiCad Gerber extensions to OSH Park convention</p>
-<p>vlt.pcb.KiCadGerber2OSHPark(DIRNAME)</p>
-<p>Given a directory name with Gerber files, this function creates a subdirectory
-  'OSHPark' that has renamed Gerber files whose extensions match that expected 
-  by the OSH Park fabrication service.</p>
-<p>B.Cu.gbr      -&gt; B.Cu.gbr.GBL
-  B.Mask.gbr    -&gt; B.Mask.gbr.GBS
-  B.SilkS.gbr   -&gt; B.SilkS.gbr.GBO
-  F.Cu.gbr      -&gt; F.Cu.gbr.GTL
-  F.Mask.gbr    -&gt; F.Mask.gbr.GTS
-  F.SilkS.gbr   -&gt; F.SilkS.gbr.GTO
-  Edge.Cuts.gbr -&gt; Edge.Cuts.gbr.GKO
-  .drl          -&gt; drl.XLN</p>
+<div class="codehilite"><pre><span></span><code>  <span class="n">KiCadGerber2OSHPark</span> <span class="o">-</span> <span class="n">Convert</span> <span class="n">KiCad</span> <span class="n">Gerber</span> <span class="n">extensions</span> <span class="n">to</span> <span class="n">OSH</span> <span class="n">Park</span> <span class="n">convention</span>
+
+  <span class="n">vlt</span><span class="p">.</span><span class="n">pcb</span><span class="p">.</span><span class="n">KiCadGerber2OSHPark</span><span class="p">(</span><span class="n">DIRNAME</span><span class="p">)</span>
+
+  <span class="n">Given</span> <span class="n">a</span> <span class="n">directory</span> <span class="n">name</span> <span class="n">with</span> <span class="n">Gerber</span> <span class="n">files</span><span class="p">,</span> <span class="n">this</span> <span class="kr">function</span> <span class="n">creates</span> <span class="n">a</span> <span class="n">subdirectory</span>
+  <span class="s">&#39;OSHPark&#39;</span> <span class="n">that</span> <span class="n">has</span> <span class="n">renamed</span> <span class="n">Gerber</span> <span class="n">files</span> <span class="n">whose</span> <span class="n">extensions</span> <span class="n">match</span> <span class="n">that</span> <span class="n">expected</span> 
+  <span class="n">by</span> <span class="n">the</span> <span class="n">OSH</span> <span class="n">Park</span> <span class="n">fabrication</span> <span class="kr">service</span><span class="p">.</span>
+
+  <span class="n">B</span><span class="p">.</span><span class="n">Cu</span><span class="p">.</span><span class="n">gbr</span>      <span class="o">-&gt;</span> <span class="n">B</span><span class="p">.</span><span class="n">Cu</span><span class="p">.</span><span class="n">gbr</span><span class="p">.</span><span class="n">GBL</span>
+  <span class="n">B</span><span class="p">.</span><span class="n">Mask</span><span class="p">.</span><span class="n">gbr</span>    <span class="o">-&gt;</span> <span class="n">B</span><span class="p">.</span><span class="n">Mask</span><span class="p">.</span><span class="n">gbr</span><span class="p">.</span><span class="n">GBS</span>
+  <span class="n">B</span><span class="p">.</span><span class="n">SilkS</span><span class="p">.</span><span class="n">gbr</span>   <span class="o">-&gt;</span> <span class="n">B</span><span class="p">.</span><span class="n">SilkS</span><span class="p">.</span><span class="n">gbr</span><span class="p">.</span><span class="n">GBO</span>
+  <span class="n">F</span><span class="p">.</span><span class="n">Cu</span><span class="p">.</span><span class="n">gbr</span>      <span class="o">-&gt;</span> <span class="n">F</span><span class="p">.</span><span class="n">Cu</span><span class="p">.</span><span class="n">gbr</span><span class="p">.</span><span class="n">GTL</span>
+  <span class="n">F</span><span class="p">.</span><span class="n">Mask</span><span class="p">.</span><span class="n">gbr</span>    <span class="o">-&gt;</span> <span class="n">F</span><span class="p">.</span><span class="n">Mask</span><span class="p">.</span><span class="n">gbr</span><span class="p">.</span><span class="n">GTS</span>
+  <span class="n">F</span><span class="p">.</span><span class="n">SilkS</span><span class="p">.</span><span class="n">gbr</span>   <span class="o">-&gt;</span> <span class="n">F</span><span class="p">.</span><span class="n">SilkS</span><span class="p">.</span><span class="n">gbr</span><span class="p">.</span><span class="n">GTO</span>
+  <span class="n">Edge</span><span class="p">.</span><span class="n">Cuts</span><span class="p">.</span><span class="n">gbr</span> <span class="o">-&gt;</span> <span class="n">Edge</span><span class="p">.</span><span class="n">Cuts</span><span class="p">.</span><span class="n">gbr</span><span class="p">.</span><span class="n">GKO</span>
+  <span class="p">.</span><span class="n">drl</span>          <span class="o">-&gt;</span> <span class="n">drl</span><span class="p">.</span><span class="n">XLN</span>
+</code></pre></div>
                 
               
               

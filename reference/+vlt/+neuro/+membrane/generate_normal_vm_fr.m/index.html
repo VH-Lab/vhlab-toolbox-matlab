@@ -3213,6 +3213,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../../%2Bgit/git_stash.m/" class="md-nav__link">
+        vlt.git.git_stash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../../%2Bgit/git_status.m/" class="md-nav__link">
         vlt.git.git_status
       </a>
@@ -9239,14 +9251,19 @@
                 
                 
                 <h1 id="vltneuromembranegenerate_normal_vm_fr">vlt.neuro.membrane.generate_normal_vm_fr<a class="headerlink" href="#vltneuromembranegenerate_normal_vm_fr" title="Permanent link">&para;</a></h1>
-<p>GENERATE_POISSON_VM_FR - generate firing rate values from poisson process</p>
-<p>FR = vlt.neuro.membrane.generate_poisson_vm_fr(VM, DELTAT, RATEFUNC, RATEFUNCPARAMS, SIGMA)</p>
-<p>Generates sample firing rates for a Normally-distrubuted process modulated by voltage measurements
-  (VM) bins of size DELTAT.  Firing rate is assumed to be generated according to a normal distribution,
-  where the rate mu is determined by RATEFUNC(VM, ...) * DELTAT and SIGMA is given. RATEFUNCPARAMS are
-  additional parameters to be passed to RATEFUNC, so that the call to RATEFUNC is RATEFUNC(VM, RATEFUNCPARAMS{:});</p>
-<p>See also: vlt.neuro.membrane.normal_vm_fr, vlt.neuro.membrane.poisson_vm_fr</p>
-<p>Example:</p>
+<div class="codehilite"><pre><span></span><code>  <span class="nv">GENERATE_POISSON_VM_FR</span> <span class="o">-</span> <span class="nv">generate</span> <span class="nv">firing</span> <span class="nv">rate</span> <span class="nv">values</span> <span class="nv">from</span> <span class="nv">poisson</span> <span class="nv">process</span>
+
+  <span class="nv">FR</span> <span class="o">=</span> <span class="nv">vlt</span>.<span class="nv">neuro</span>.<span class="nv">membrane</span>.<span class="nv">generate_poisson_vm_fr</span><span class="ss">(</span><span class="nv">VM</span>, <span class="nv">DELTAT</span>, <span class="nv">RATEFUNC</span>, <span class="nv">RATEFUNCPARAMS</span>, <span class="nv">SIGMA</span><span class="ss">)</span>
+
+  <span class="nv">Generates</span> <span class="nv">sample</span> <span class="nv">firing</span> <span class="nv">rates</span> <span class="k">for</span> <span class="nv">a</span> <span class="nv">Normally</span><span class="o">-</span><span class="nv">distrubuted</span> <span class="nv">process</span> <span class="nv">modulated</span> <span class="nv">by</span> <span class="nv">voltage</span> <span class="nv">measurements</span>
+  <span class="ss">(</span><span class="nv">VM</span><span class="ss">)</span> <span class="nv">bins</span> <span class="nv">of</span> <span class="nv">size</span> <span class="nv">DELTAT</span>.  <span class="nv">Firing</span> <span class="nv">rate</span> <span class="nv">is</span> <span class="nv">assumed</span> <span class="nv">to</span> <span class="nv">be</span> <span class="nv">generated</span> <span class="nv">according</span> <span class="nv">to</span> <span class="nv">a</span> <span class="nv">normal</span> <span class="nv">distribution</span>,
+  <span class="nv">where</span> <span class="nv">the</span> <span class="nv">rate</span> <span class="nv">mu</span> <span class="nv">is</span> <span class="nv">determined</span> <span class="nv">by</span> <span class="nv">RATEFUNC</span><span class="ss">(</span><span class="nv">VM</span>, ...<span class="ss">)</span> <span class="o">*</span> <span class="nv">DELTAT</span> <span class="nv">and</span> <span class="nv">SIGMA</span> <span class="nv">is</span> <span class="nv">given</span>. <span class="nv">RATEFUNCPARAMS</span> <span class="nv">are</span>
+  <span class="nv">additional</span> <span class="nv">parameters</span> <span class="nv">to</span> <span class="nv">be</span> <span class="nv">passed</span> <span class="nv">to</span> <span class="nv">RATEFUNC</span>, <span class="nv">so</span> <span class="nv">that</span> <span class="nv">the</span> <span class="k">call</span> <span class="nl">to</span> <span class="nv">RATEFUNC</span> <span class="nv">is</span> <span class="nv">RATEFUNC</span><span class="ss">(</span><span class="nv">VM</span>, <span class="nv">RATEFUNCPARAMS</span>{:}<span class="ss">)</span><span class="c1">;</span>
+
+  <span class="nv">See</span> <span class="nv">also</span>: <span class="nv">vlt</span>.<span class="nv">neuro</span>.<span class="nv">membrane</span>.<span class="nv">normal_vm_fr</span>, <span class="nv">vlt</span>.<span class="nv">neuro</span>.<span class="nv">membrane</span>.<span class="nv">poisson_vm_fr</span>
+
+  <span class="nv">Example</span>:
+</code></pre></div>
                 
               
               

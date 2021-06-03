@@ -3213,6 +3213,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../%2Bgit/git_stash.m/" class="md-nav__link">
+        vlt.git.git_stash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../%2Bgit/git_status.m/" class="md-nav__link">
         vlt.git.git_status
       </a>
@@ -9237,34 +9249,44 @@
                 
                 
                 <h1 id="vltstatsgof_dicarlo_totalpower">vlt.stats.gof_dicarlo_totalpower<a class="headerlink" href="#vltstatsgof_dicarlo_totalpower" title="Permanent link">&para;</a></h1>
-<p>GOF_DICARLO_TOTALPOWER - Goodness of Fit from DiCarlo et al. 1988</p>
-<p>[GF, WS] = vlt.stats.gof_dicarlo_totalpower(RAWDATA, FIT, NUMFITPARAMS)</p>
-<p>Computes an analog to the "explanable variance" goodness-of-fit in
-  DiCarlo et al. 1988, except using the total power of a response and
-  fit (not sum of squares around the mean).</p>
-<p>Imagine a measured process Y(t) reflects some underlying
-  function F(t) plus noise (due to measurement or process)
-  N(t). Then the sum of squares (Y(t)^2) for all t is
-  (Y(t)^2) = (F(t)^2) + (N(t))^2 + 2<em>F(t)</em>N(t). If we further
-  assume that the expected value of N(t) is 0, then on average
-  (Y(t)^2) = F(t)^2 + N(t)^2.</p>
-<p>Because of the noise N(t), the power (signal around 0) in Y(t) due to
-  this noise is unexplanable by any model. The power of Y(t) is then
-  Y(t).^2 == F(t).^2 + N(t).^2 but the explanable power (power of F) is
-  F(t).^2 == Y(t).^2 - N(t).^2</p>
-<p>The goodness of fit GF describes how much of this explanable power
-  of Y (which is the power of F) is explained by a fit H.</p>
-<p>GF = (FIT_EXPLAINED_POWER)/(EXPLANABLE_POWER)</p>
-<p>The entire workspace is returned as a structure in WS.</p>
-<p>Related to:
-  Ref: DiCarlo JJ, Johnson KO, Hsaio SS. J Neurosci 1988:
-  Structure of Receptive Fields in Area 3b of Primary Somatosensory Cortex in the Alert Monkey</p>
-<p>This function accepts name/value pairs that alter its behavior:
-  Parameter (default)        | Description</p>
-<hr />
-<p>NoiseEstimation ('median') | How will we estimate the noise? Can be 'median' or 'std'.
-                             |   If it is 'median', then vlt.stats.std_from_median(X) is used.
-                             |   If it is 'STD', then STD(X) is used.</p>
+<div class="codehilite"><pre><span></span><code>  <span class="n">GOF_DICARLO_TOTALPOWER</span> <span class="o">-</span> <span class="n">Goodness</span> <span class="n">of</span> <span class="n">Fit</span> <span class="n">from</span> <span class="n">DiCarlo</span> <span class="n">et</span> <span class="n">al</span><span class="o">.</span> <span class="mi">1988</span>
+
+  <span class="p">[</span><span class="n">GF</span><span class="p">,</span> <span class="n">WS</span><span class="p">]</span> <span class="o">=</span> <span class="n">vlt</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">gof_dicarlo_totalpower</span><span class="p">(</span><span class="n">RAWDATA</span><span class="p">,</span> <span class="n">FIT</span><span class="p">,</span> <span class="n">NUMFITPARAMS</span><span class="p">)</span>
+
+  <span class="n">Computes</span> <span class="n">an</span> <span class="n">analog</span> <span class="n">to</span> <span class="n">the</span> <span class="s2">&quot;explanable variance&quot;</span> <span class="n">goodness</span><span class="o">-</span><span class="n">of</span><span class="o">-</span><span class="n">fit</span> <span class="ow">in</span>
+  <span class="n">DiCarlo</span> <span class="n">et</span> <span class="n">al</span><span class="o">.</span> <span class="mi">1988</span><span class="p">,</span> <span class="n">except</span> <span class="n">using</span> <span class="n">the</span> <span class="n">total</span> <span class="n">power</span> <span class="n">of</span> <span class="n">a</span> <span class="n">response</span> <span class="ow">and</span>
+  <span class="n">fit</span> <span class="p">(</span><span class="ow">not</span> <span class="n">sum</span> <span class="n">of</span> <span class="n">squares</span> <span class="n">around</span> <span class="n">the</span> <span class="n">mean</span><span class="p">)</span><span class="o">.</span>
+
+  <span class="n">Imagine</span> <span class="n">a</span> <span class="n">measured</span> <span class="n">process</span> <span class="n">Y</span><span class="p">(</span><span class="n">t</span><span class="p">)</span> <span class="n">reflects</span> <span class="n">some</span> <span class="n">underlying</span>
+  <span class="n">function</span> <span class="n">F</span><span class="p">(</span><span class="n">t</span><span class="p">)</span> <span class="n">plus</span> <span class="n">noise</span> <span class="p">(</span><span class="n">due</span> <span class="n">to</span> <span class="n">measurement</span> <span class="ow">or</span> <span class="n">process</span><span class="p">)</span>
+  <span class="n">N</span><span class="p">(</span><span class="n">t</span><span class="p">)</span><span class="o">.</span> <span class="n">Then</span> <span class="n">the</span> <span class="n">sum</span> <span class="n">of</span> <span class="n">squares</span> <span class="p">(</span><span class="n">Y</span><span class="p">(</span><span class="n">t</span><span class="p">)</span><span class="o">^</span><span class="mi">2</span><span class="p">)</span> <span class="k">for</span> <span class="n">all</span> <span class="n">t</span> <span class="k">is</span>
+  <span class="p">(</span><span class="n">Y</span><span class="p">(</span><span class="n">t</span><span class="p">)</span><span class="o">^</span><span class="mi">2</span><span class="p">)</span> <span class="o">=</span> <span class="p">(</span><span class="n">F</span><span class="p">(</span><span class="n">t</span><span class="p">)</span><span class="o">^</span><span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="n">N</span><span class="p">(</span><span class="n">t</span><span class="p">))</span><span class="o">^</span><span class="mi">2</span> <span class="o">+</span> <span class="mi">2</span><span class="o">*</span><span class="n">F</span><span class="p">(</span><span class="n">t</span><span class="p">)</span><span class="o">*</span><span class="n">N</span><span class="p">(</span><span class="n">t</span><span class="p">)</span><span class="o">.</span> <span class="n">If</span> <span class="n">we</span> <span class="n">further</span>
+  <span class="n">assume</span> <span class="n">that</span> <span class="n">the</span> <span class="n">expected</span> <span class="n">value</span> <span class="n">of</span> <span class="n">N</span><span class="p">(</span><span class="n">t</span><span class="p">)</span> <span class="k">is</span> <span class="mi">0</span><span class="p">,</span> <span class="n">then</span> <span class="n">on</span> <span class="n">average</span>
+  <span class="p">(</span><span class="n">Y</span><span class="p">(</span><span class="n">t</span><span class="p">)</span><span class="o">^</span><span class="mi">2</span><span class="p">)</span> <span class="o">=</span> <span class="n">F</span><span class="p">(</span><span class="n">t</span><span class="p">)</span><span class="o">^</span><span class="mi">2</span> <span class="o">+</span> <span class="n">N</span><span class="p">(</span><span class="n">t</span><span class="p">)</span><span class="o">^</span><span class="mf">2.</span>
+
+  <span class="n">Because</span> <span class="n">of</span> <span class="n">the</span> <span class="n">noise</span> <span class="n">N</span><span class="p">(</span><span class="n">t</span><span class="p">),</span> <span class="n">the</span> <span class="n">power</span> <span class="p">(</span><span class="k">signal</span> <span class="n">around</span> <span class="mi">0</span><span class="p">)</span> <span class="ow">in</span> <span class="n">Y</span><span class="p">(</span><span class="n">t</span><span class="p">)</span> <span class="n">due</span> <span class="n">to</span>
+  <span class="n">this</span> <span class="n">noise</span> <span class="k">is</span> <span class="n">unexplanable</span> <span class="n">by</span> <span class="n">any</span> <span class="n">model</span><span class="o">.</span> <span class="n">The</span> <span class="n">power</span> <span class="n">of</span> <span class="n">Y</span><span class="p">(</span><span class="n">t</span><span class="p">)</span> <span class="k">is</span> <span class="n">then</span>
+  <span class="n">Y</span><span class="p">(</span><span class="n">t</span><span class="p">)</span><span class="o">.^</span><span class="mi">2</span> <span class="o">==</span> <span class="n">F</span><span class="p">(</span><span class="n">t</span><span class="p">)</span><span class="o">.^</span><span class="mi">2</span> <span class="o">+</span> <span class="n">N</span><span class="p">(</span><span class="n">t</span><span class="p">)</span><span class="o">.^</span><span class="mi">2</span> <span class="n">but</span> <span class="n">the</span> <span class="n">explanable</span> <span class="n">power</span> <span class="p">(</span><span class="n">power</span> <span class="n">of</span> <span class="n">F</span><span class="p">)</span> <span class="k">is</span>
+  <span class="n">F</span><span class="p">(</span><span class="n">t</span><span class="p">)</span><span class="o">.^</span><span class="mi">2</span> <span class="o">==</span> <span class="n">Y</span><span class="p">(</span><span class="n">t</span><span class="p">)</span><span class="o">.^</span><span class="mi">2</span> <span class="o">-</span> <span class="n">N</span><span class="p">(</span><span class="n">t</span><span class="p">)</span><span class="o">.^</span><span class="mi">2</span>
+
+  <span class="n">The</span> <span class="n">goodness</span> <span class="n">of</span> <span class="n">fit</span> <span class="n">GF</span> <span class="n">describes</span> <span class="n">how</span> <span class="n">much</span> <span class="n">of</span> <span class="n">this</span> <span class="n">explanable</span> <span class="n">power</span>
+  <span class="n">of</span> <span class="n">Y</span> <span class="p">(</span><span class="n">which</span> <span class="k">is</span> <span class="n">the</span> <span class="n">power</span> <span class="n">of</span> <span class="n">F</span><span class="p">)</span> <span class="k">is</span> <span class="n">explained</span> <span class="n">by</span> <span class="n">a</span> <span class="n">fit</span> <span class="n">H</span><span class="o">.</span>
+
+  <span class="n">GF</span> <span class="o">=</span> <span class="p">(</span><span class="n">FIT_EXPLAINED_POWER</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">EXPLANABLE_POWER</span><span class="p">)</span>
+
+  <span class="n">The</span> <span class="n">entire</span> <span class="n">workspace</span> <span class="k">is</span> <span class="n">returned</span> <span class="k">as</span> <span class="n">a</span> <span class="n">structure</span> <span class="ow">in</span> <span class="n">WS</span><span class="o">.</span>
+
+  <span class="n">Related</span> <span class="n">to</span><span class="p">:</span>
+  <span class="n">Ref</span><span class="p">:</span> <span class="n">DiCarlo</span> <span class="n">JJ</span><span class="p">,</span> <span class="n">Johnson</span> <span class="n">KO</span><span class="p">,</span> <span class="n">Hsaio</span> <span class="n">SS</span><span class="o">.</span> <span class="n">J</span> <span class="n">Neurosci</span> <span class="mi">1988</span><span class="p">:</span>
+  <span class="n">Structure</span> <span class="n">of</span> <span class="n">Receptive</span> <span class="n">Fields</span> <span class="ow">in</span> <span class="n">Area</span> <span class="mi">3</span><span class="n">b</span> <span class="n">of</span> <span class="n">Primary</span> <span class="n">Somatosensory</span> <span class="n">Cortex</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">Alert</span> <span class="n">Monkey</span>
+
+  <span class="n">This</span> <span class="n">function</span> <span class="n">accepts</span> <span class="n">name</span><span class="o">/</span><span class="n">value</span> <span class="n">pairs</span> <span class="n">that</span> <span class="n">alter</span> <span class="n">its</span> <span class="n">behavior</span><span class="p">:</span>
+  <span class="n">Parameter</span> <span class="p">(</span><span class="n">default</span><span class="p">)</span>        <span class="o">|</span> <span class="n">Description</span>
+  <span class="o">------------------------------------------------------------------------------------------</span>
+  <span class="n">NoiseEstimation</span> <span class="p">(</span><span class="s1">&#39;median&#39;</span><span class="p">)</span> <span class="o">|</span> <span class="n">How</span> <span class="n">will</span> <span class="n">we</span> <span class="n">estimate</span> <span class="n">the</span> <span class="n">noise</span><span class="err">?</span> <span class="n">Can</span> <span class="n">be</span> <span class="s1">&#39;median&#39;</span> <span class="ow">or</span> <span class="s1">&#39;std&#39;</span><span class="o">.</span>
+                             <span class="o">|</span>   <span class="n">If</span> <span class="n">it</span> <span class="k">is</span> <span class="s1">&#39;median&#39;</span><span class="p">,</span> <span class="n">then</span> <span class="n">vlt</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">std_from_median</span><span class="p">(</span><span class="n">X</span><span class="p">)</span> <span class="k">is</span> <span class="n">used</span><span class="o">.</span>
+                             <span class="o">|</span>   <span class="n">If</span> <span class="n">it</span> <span class="k">is</span> <span class="s1">&#39;STD&#39;</span><span class="p">,</span> <span class="n">then</span> <span class="n">STD</span><span class="p">(</span><span class="n">X</span><span class="p">)</span> <span class="k">is</span> <span class="n">used</span><span class="o">.</span>
+</code></pre></div>
                 
               
               

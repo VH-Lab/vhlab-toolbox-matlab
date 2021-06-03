@@ -3225,6 +3225,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../%2Bgit/git_stash.m/" class="md-nav__link">
+        vlt.git.git_stash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../%2Bgit/git_status.m/" class="md-nav__link">
         vlt.git.git_status
       </a>
@@ -9237,15 +9249,20 @@
                 
                 
                 <h1 id="vltfilefilesepconversion">vlt.file.filesepconversion<a class="headerlink" href="#vltfilefilesepconversion" title="Permanent link">&para;</a></h1>
-<p>FILESEPCONVERSION - convert from one FILESEP platform to another</p>
-<p>NEWFILESTRING = vlt.file.filesepconversion(FILESTRING, ORIG_FILESEP, NEW_FILESEP)</p>
-<p>Converts a file string from one filepath convention to another.</p>
-<p>FILESTRING is a file path string like 'myfolder/myfile.txt'.
-  ORIG_FILESEP is the original file separator, like '/'
-  NEW_FILESEP is the new file separator, like '\'</p>
-<p>Right now this function just performs a substitution. It is unknown if they are
-  situations with escape characters (because '\' is often used as an escape character)
-  that will fail with this function.</p>
+<div class="codehilite"><pre><span></span><code>  <span class="nv">FILESEPCONVERSION</span> <span class="o">-</span> <span class="nv">convert</span> <span class="nv">from</span> <span class="nv">one</span> <span class="nv">FILESEP</span> <span class="nv">platform</span> <span class="nv">to</span> <span class="nv">another</span>
+
+  <span class="nv">NEWFILESTRING</span> <span class="o">=</span> <span class="nv">vlt</span>.<span class="nv">file</span>.<span class="nv">filesepconversion</span><span class="ss">(</span><span class="nv">FILESTRING</span>, <span class="nv">ORIG_FILESEP</span>, <span class="nv">NEW_FILESEP</span><span class="ss">)</span>
+
+  <span class="nv">Converts</span> <span class="nv">a</span> <span class="nv">file</span> <span class="nv">string</span> <span class="nv">from</span> <span class="nv">one</span> <span class="nv">filepath</span> <span class="nv">convention</span> <span class="nv">to</span> <span class="nv">another</span>.
+
+  <span class="nv">FILESTRING</span> <span class="nv">is</span> <span class="nv">a</span> <span class="nv">file</span> <span class="nv">path</span> <span class="nv">string</span> <span class="nv">like</span> <span class="s1">&#39;</span><span class="s">myfolder/myfile.txt</span><span class="s1">&#39;</span>.
+  <span class="nv">ORIG_FILESEP</span> <span class="nv">is</span> <span class="nv">the</span> <span class="nv">original</span> <span class="nv">file</span> <span class="nv">separator</span>, <span class="nv">like</span> <span class="s1">&#39;</span><span class="s">/</span><span class="s1">&#39;</span>
+  <span class="nv">NEW_FILESEP</span> <span class="nv">is</span> <span class="nv">the</span> <span class="nv">new</span> <span class="nv">file</span> <span class="nv">separator</span>, <span class="nv">like</span> <span class="s1">&#39;</span><span class="s">\</span><span class="s1">&#39;</span>
+
+  <span class="nv">Right</span> <span class="nv">now</span> <span class="nv">this</span> <span class="nv">function</span> <span class="nv">just</span> <span class="nv">performs</span> <span class="nv">a</span> <span class="nv">substitution</span>. <span class="nv">It</span> <span class="nv">is</span> <span class="nv">unknown</span> <span class="k">if</span> <span class="nv">they</span> <span class="nv">are</span>
+  <span class="nv">situations</span> <span class="nv">with</span> <span class="nv">escape</span> <span class="nv">characters</span> <span class="ss">(</span><span class="nv">because</span> <span class="s1">&#39;</span><span class="s">\</span><span class="s1">&#39;</span> <span class="nv">is</span> <span class="nv">often</span> <span class="nv">used</span> <span class="nv">as</span> <span class="nv">an</span> <span class="nv">escape</span> <span class="nv">character</span><span class="ss">)</span>
+  <span class="nv">that</span> <span class="nv">will</span> <span class="nv">fail</span> <span class="nv">with</span> <span class="nv">this</span> <span class="nv">function</span>.
+</code></pre></div>
                 
               
               

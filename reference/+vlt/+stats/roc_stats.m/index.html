@@ -3213,6 +3213,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../%2Bgit/git_stash.m/" class="md-nav__link">
+        vlt.git.git_stash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../%2Bgit/git_status.m/" class="md-nav__link">
         vlt.git.git_status
       </a>
@@ -9237,24 +9249,29 @@
                 
                 
                 <h1 id="vltstatsroc_stats">vlt.stats.roc_stats<a class="headerlink" href="#vltstatsroc_stats" title="Permanent link">&para;</a></h1>
-<p>ROC_STATS - Receiver operator characteristic for 2 groups</p>
-<p>OUT = ROC_STATS(GROUP1, GROUP2)</p>
-<p>Performs ROC analysis for single real numbered observations in GROUP1 and GROUP2.
-  GROUP1 is considered the 'signal' and GROUP2 is considered the 'noise'.</p>
-<p>This calculates several statistics in the structure OUT:</p>
-<hr />
-<p>Fieldname:     | Description</p>
-<hr />
-<p>tpr            | True positive rate at thresholds in th
-  fpr            | False positive rate at thresholds in th
-  th             | Thresholds 
-  acc_eq         | Accuracy at each threshold if mixtures are equally likely
-  acc_em         | Accuracy at each threshold if mixtures match the empirically provided mixtures
-  acc_eq_max     | Accuracy rate at best threshold if mixtures are equally likely
-  acc_eq_max_th  | Threshold where accuracy is highest if mixtures are equally likely
-  acc_em_max     | Accuracy rate at best thresholds if mixtures match the empircally provided mixtures
-  acc_em_max_th  | Threshold where accuracy is highest if mixtures match empircally provided mixtures</p>
-<p>See also: ROC</p>
+<div class="codehilite"><pre><span></span><code>  <span class="n">ROC_STATS</span> <span class="o">-</span> <span class="n">Receiver</span> <span class="n">operator</span> <span class="n">characteristic</span> <span class="k">for</span> <span class="mi">2</span> <span class="n">groups</span>
+
+  <span class="n">OUT</span> <span class="o">=</span> <span class="n">ROC_STATS</span><span class="p">(</span><span class="n">GROUP1</span><span class="p">,</span> <span class="n">GROUP2</span><span class="p">)</span>
+
+  <span class="n">Performs</span> <span class="n">ROC</span> <span class="n">analysis</span> <span class="k">for</span> <span class="n">single</span> <span class="n">real</span> <span class="n">numbered</span> <span class="n">observations</span> <span class="ow">in</span> <span class="n">GROUP1</span> <span class="ow">and</span> <span class="n">GROUP2</span><span class="o">.</span>
+  <span class="n">GROUP1</span> <span class="k">is</span> <span class="n">considered</span> <span class="n">the</span> <span class="s1">&#39;signal&#39;</span> <span class="ow">and</span> <span class="n">GROUP2</span> <span class="k">is</span> <span class="n">considered</span> <span class="n">the</span> <span class="s1">&#39;noise&#39;</span><span class="o">.</span>
+
+  <span class="n">This</span> <span class="n">calculates</span> <span class="n">several</span> <span class="n">statistics</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">structure</span> <span class="n">OUT</span><span class="p">:</span>
+  <span class="o">-------------------------------------------------------------</span>
+  <span class="n">Fieldname</span><span class="p">:</span>     <span class="o">|</span> <span class="n">Description</span>
+  <span class="o">-------------------------------------------------------------</span>
+  <span class="n">tpr</span>            <span class="o">|</span> <span class="n">True</span> <span class="n">positive</span> <span class="n">rate</span> <span class="n">at</span> <span class="n">thresholds</span> <span class="ow">in</span> <span class="n">th</span>
+  <span class="n">fpr</span>            <span class="o">|</span> <span class="n">False</span> <span class="n">positive</span> <span class="n">rate</span> <span class="n">at</span> <span class="n">thresholds</span> <span class="ow">in</span> <span class="n">th</span>
+  <span class="n">th</span>             <span class="o">|</span> <span class="n">Thresholds</span> 
+  <span class="n">acc_eq</span>         <span class="o">|</span> <span class="n">Accuracy</span> <span class="n">at</span> <span class="n">each</span> <span class="n">threshold</span> <span class="k">if</span> <span class="n">mixtures</span> <span class="n">are</span> <span class="n">equally</span> <span class="n">likely</span>
+  <span class="n">acc_em</span>         <span class="o">|</span> <span class="n">Accuracy</span> <span class="n">at</span> <span class="n">each</span> <span class="n">threshold</span> <span class="k">if</span> <span class="n">mixtures</span> <span class="k">match</span> <span class="n">the</span> <span class="n">empirically</span> <span class="n">provided</span> <span class="n">mixtures</span>
+  <span class="n">acc_eq_max</span>     <span class="o">|</span> <span class="n">Accuracy</span> <span class="n">rate</span> <span class="n">at</span> <span class="n">best</span> <span class="n">threshold</span> <span class="k">if</span> <span class="n">mixtures</span> <span class="n">are</span> <span class="n">equally</span> <span class="n">likely</span>
+  <span class="n">acc_eq_max_th</span>  <span class="o">|</span> <span class="n">Threshold</span> <span class="n">where</span> <span class="n">accuracy</span> <span class="k">is</span> <span class="n">highest</span> <span class="k">if</span> <span class="n">mixtures</span> <span class="n">are</span> <span class="n">equally</span> <span class="n">likely</span>
+  <span class="n">acc_em_max</span>     <span class="o">|</span> <span class="n">Accuracy</span> <span class="n">rate</span> <span class="n">at</span> <span class="n">best</span> <span class="n">thresholds</span> <span class="k">if</span> <span class="n">mixtures</span> <span class="k">match</span> <span class="n">the</span> <span class="n">empircally</span> <span class="n">provided</span> <span class="n">mixtures</span>
+  <span class="n">acc_em_max_th</span>  <span class="o">|</span> <span class="n">Threshold</span> <span class="n">where</span> <span class="n">accuracy</span> <span class="k">is</span> <span class="n">highest</span> <span class="k">if</span> <span class="n">mixtures</span> <span class="k">match</span> <span class="n">empircally</span> <span class="n">provided</span> <span class="n">mixtures</span>
+
+  <span class="n">See</span> <span class="n">also</span><span class="p">:</span> <span class="n">ROC</span>
+</code></pre></div>
                 
               
               

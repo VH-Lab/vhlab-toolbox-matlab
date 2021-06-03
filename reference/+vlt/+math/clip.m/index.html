@@ -3213,6 +3213,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../%2Bgit/git_stash.m/" class="md-nav__link">
+        vlt.git.git_stash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../%2Bgit/git_status.m/" class="md-nav__link">
         vlt.git.git_status
       </a>
@@ -9237,15 +9249,20 @@
                 
                 
                 <h1 id="vltmathclip">vlt.math.clip<a class="headerlink" href="#vltmathclip" title="Permanent link">&para;</a></h1>
-<p>CLIP - Clip values between a low and a high limit</p>
-<p>B = vlt.math.clip(A, [LOW HIGH])</p>
-<p>Return a variable B, the same size as A, except that all values of
-  A that are below LOW are set to the value LOW, and all values that
-  are above HIGH are set to HIGH.</p>
-<p>See also: vlt.math.rectify</p>
-<p>Example: 
-      b = vlt.math.clip([-Inf 0 1 2 3 Inf],[1 2])
-         % returns b = [1 1 1 2 2 2]</p>
+<div class="codehilite"><pre><span></span><code>  <span class="n">CLIP</span> <span class="o">-</span> <span class="n">Clip</span> <span class="n">values</span> <span class="n">between</span> <span class="n">a</span> <span class="n">low</span> <span class="n">and</span> <span class="n">a</span> <span class="n">high</span> <span class="n">limit</span>
+
+  <span class="n">B</span> <span class="o">=</span> <span class="n">vlt</span><span class="p">.</span><span class="n">math</span><span class="p">.</span><span class="n">clip</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="p">[</span><span class="n">LOW</span> <span class="n">HIGH</span><span class="p">])</span>
+
+  <span class="n">Return</span> <span class="n">a</span> <span class="n">variable</span> <span class="n">B</span><span class="p">,</span> <span class="n">the</span> <span class="n">same</span> <span class="n">size</span> <span class="n">as</span> <span class="n">A</span><span class="p">,</span> <span class="n">except</span> <span class="n">that</span> <span class="n">all</span> <span class="n">values</span> <span class="n">of</span>
+  <span class="n">A</span> <span class="n">that</span> <span class="n">are</span> <span class="n">below</span> <span class="n">LOW</span> <span class="n">are</span> <span class="n">set</span> <span class="n">to</span> <span class="n">the</span> <span class="n">value</span> <span class="n">LOW</span><span class="p">,</span> <span class="n">and</span> <span class="n">all</span> <span class="n">values</span> <span class="n">that</span>
+  <span class="n">are</span> <span class="n">above</span> <span class="n">HIGH</span> <span class="n">are</span> <span class="n">set</span> <span class="n">to</span> <span class="n">HIGH</span><span class="p">.</span>
+
+  <span class="n">See</span> <span class="nl">also</span><span class="p">:</span> <span class="n">vlt</span><span class="p">.</span><span class="n">math</span><span class="p">.</span><span class="n">rectify</span>
+
+  <span class="nl">Example</span><span class="p">:</span> 
+      <span class="n">b</span> <span class="o">=</span> <span class="n">vlt</span><span class="p">.</span><span class="n">math</span><span class="p">.</span><span class="n">clip</span><span class="p">([</span><span class="o">-</span><span class="n">Inf</span> <span class="mi">0</span> <span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span> <span class="n">Inf</span><span class="p">],[</span><span class="mi">1</span> <span class="mi">2</span><span class="p">])</span>
+         <span class="o">%</span> <span class="n">returns</span> <span class="n">b</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span> <span class="mi">1</span> <span class="mi">1</span> <span class="mi">2</span> <span class="mi">2</span> <span class="mi">2</span><span class="p">]</span>
+</code></pre></div>
                 
               
               

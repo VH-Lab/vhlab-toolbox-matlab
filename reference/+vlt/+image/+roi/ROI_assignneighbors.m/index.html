@@ -3213,6 +3213,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../../%2Bgit/git_stash.m/" class="md-nav__link">
+        vlt.git.git_stash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../../%2Bgit/git_status.m/" class="md-nav__link">
         vlt.git.git_status
       </a>
@@ -9239,26 +9251,31 @@
                 
                 
                 <h1 id="vltimageroiroi_assignneighbors">vlt.image.roi.ROI_assignneighbors<a class="headerlink" href="#vltimageroiroi_assignneighbors" title="Permanent link">&para;</a></h1>
-<p>ROI_3D_ASSIGNNEIGHBORS - assign neighbors to adjacent ROIs</p>
-<p>L_OUT = ROI_ASSIGNNEIGHBORS(L, IM, INDEXES_TO_SEARCH)</p>
-<p>Searches the labeled ROI matrix L for unlabeled pixels (in 
-  INDEXES_TO_SEARCH), and assigns these pixels be part of an immediately
-  neighboring ROI. The brightest neighboring pixel in IM is used to determine
-  which ROI will be assigned. </p>
-<p>This function is useful after WATERSHED resegmentation, which leaves a 1 pixel
-  boundary between the resegmented ROIs.</p>
-<p>Example:
-    A = zeros(6,6);
-    A(3,2) = 2;
-    A(3,3) = 1;
-    A(3,4) = 3;
-    L = bwlabel(A)
-    indexes_to_search = find(L);
-    L2 = L;
-    L2(3,3) = 0;
-    L2(3,2) = 2  % segment the initial ROI into 2 with a 1 pixel border
-                 % might mimic output of WATERSHED
-    L_out = ROI_assignneighbors(L2, A, indexes_to_search)</p>
+<div class="codehilite"><pre><span></span><code><span class="w">  </span><span class="n">ROI_3D_ASSIGNNEIGHBORS</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">assign</span><span class="w"> </span><span class="nb">neighbors</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="n">adjacent</span><span class="w"> </span><span class="n">ROIs</span><span class="w"></span>
+
+<span class="w">  </span><span class="n">L_OUT</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">ROI_ASSIGNNEIGHBORS</span><span class="p">(</span><span class="n">L</span><span class="p">,</span><span class="w"> </span><span class="n">IM</span><span class="p">,</span><span class="w"> </span><span class="n">INDEXES_TO_SEARCH</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">  </span><span class="n">Searches</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">labeled</span><span class="w"> </span><span class="n">ROI</span><span class="w"> </span><span class="n">matrix</span><span class="w"> </span><span class="n">L</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">unlabeled</span><span class="w"> </span><span class="n">pixels</span><span class="w"> </span><span class="p">(</span><span class="n">in</span><span class="w"> </span>
+<span class="w">  </span><span class="n">INDEXES_TO_SEARCH</span><span class="p">),</span><span class="w"> </span><span class="n">and</span><span class="w"> </span><span class="n">assigns</span><span class="w"> </span><span class="n">these</span><span class="w"> </span><span class="n">pixels</span><span class="w"> </span><span class="n">be</span><span class="w"> </span><span class="n">part</span><span class="w"> </span><span class="n">of</span><span class="w"> </span><span class="n">an</span><span class="w"> </span><span class="n">immediately</span><span class="w"></span>
+<span class="w">  </span><span class="n">neighboring</span><span class="w"> </span><span class="n">ROI</span><span class="p">.</span><span class="w"> </span><span class="n">The</span><span class="w"> </span><span class="n">brightest</span><span class="w"> </span><span class="n">neighboring</span><span class="w"> </span><span class="n">pixel</span><span class="w"> </span><span class="n">in</span><span class="w"> </span><span class="n">IM</span><span class="w"> </span><span class="n">is</span><span class="w"> </span><span class="n">used</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="n">determine</span><span class="w"></span>
+<span class="w">  </span><span class="nb">which</span><span class="w"> </span><span class="n">ROI</span><span class="w"> </span><span class="n">will</span><span class="w"> </span><span class="n">be</span><span class="w"> </span><span class="n">assigned</span><span class="p">.</span><span class="w"> </span>
+
+<span class="w">  </span><span class="n">This</span><span class="w"> </span><span class="k">function</span><span class="w"> </span><span class="n">is</span><span class="w"> </span><span class="n">useful</span><span class="w"> </span><span class="n">after</span><span class="w"> </span><span class="n">WATERSHED</span><span class="w"> </span><span class="n">resegmentation</span><span class="p">,</span><span class="w"> </span><span class="nb">which</span><span class="w"> </span><span class="n">leaves</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="n">pixel</span><span class="w"></span>
+<span class="w">  </span><span class="nb">boundary</span><span class="w"> </span><span class="nb">between</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">resegmented</span><span class="w"> </span><span class="n">ROIs</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">  </span><span class="n">Example</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="n">A</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">zeros</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span><span class="mi">6</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">A</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">A</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">A</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">)</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">3</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">L</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">bwlabel</span><span class="p">(</span><span class="n">A</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="n">indexes_to_search</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">find</span><span class="p">(</span><span class="n">L</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">L2</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">L</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">L2</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">L2</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">2</span><span class="w">  </span><span class="c">% segment the initial ROI into 2 with a 1 pixel border</span><span class="w"></span>
+<span class="w">                 </span><span class="c">% might mimic output of WATERSHED</span><span class="w"></span>
+<span class="w">    </span><span class="n">L_out</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">ROI_assignneighbors</span><span class="p">(</span><span class="n">L2</span><span class="p">,</span><span class="w"> </span><span class="n">A</span><span class="p">,</span><span class="w"> </span><span class="n">indexes_to_search</span><span class="p">)</span><span class="w"></span>
+</code></pre></div>
                 
               
               

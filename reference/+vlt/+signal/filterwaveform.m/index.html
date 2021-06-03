@@ -3213,6 +3213,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../%2Bgit/git_stash.m/" class="md-nav__link">
+        vlt.git.git_stash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../%2Bgit/git_status.m/" class="md-nav__link">
         vlt.git.git_status
       </a>
@@ -9237,18 +9249,19 @@
                 
                 
                 <h1 id="vltsignalfilterwaveform">vlt.signal.filterwaveform<a class="headerlink" href="#vltsignalfilterwaveform" title="Permanent link">&para;</a></h1>
-<p>[D] = vlt.signal.filterwaveform(DATA, PARAMETERS)</p>
-<div class="codehilite"><pre><span></span><code>   <span class="nv">Filters</span> <span class="nv">a</span> <span class="nv">one</span><span class="o">-</span><span class="nv">dimensional</span> <span class="nv">waveform</span>.  <span class="nv">PARAMETERS</span> <span class="nv">is</span> <span class="nv">a</span> <span class="nv">struct</span> <span class="nv">containing</span>
-   <span class="nv">the</span> <span class="nv">following</span> <span class="nv">fields</span>:
+<div class="codehilite"><pre><span></span><code><span class="w">   </span><span class="o">[</span><span class="n">D</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">vlt</span><span class="p">.</span><span class="n">signal</span><span class="p">.</span><span class="n">filterwaveform</span><span class="p">(</span><span class="k">DATA</span><span class="p">,</span><span class="w"> </span><span class="k">PARAMETERS</span><span class="p">)</span><span class="w"></span>
 
-       <span class="nv">method</span> <span class="o">=</span> <span class="nv">one</span> <span class="nv">of</span> <span class="s1">&#39;</span><span class="s">conv</span><span class="s1">&#39;</span> <span class="ss">(</span><span class="mi">1</span><span class="ss">)</span> <span class="nv">or</span> <span class="s1">&#39;</span><span class="s">filtfilt</span><span class="s1">&#39;</span> <span class="ss">(</span><span class="mi">2</span><span class="ss">)</span>.
-       <span class="nv">B</span> <span class="o">=</span> <span class="nv">the</span> <span class="nv">B</span> <span class="nv">part</span> <span class="nv">of</span> <span class="nv">the</span> <span class="nv">filter</span> <span class="ss">(</span><span class="nv">or</span> <span class="nv">the</span> <span class="nv">stencil</span> <span class="nv">to</span> <span class="nv">convolve</span><span class="ss">)</span>
-       <span class="nv">A</span> <span class="o">=</span> <span class="nv">the</span> <span class="nv">A</span> <span class="nv">part</span> <span class="nv">of</span> <span class="nv">the</span> <span class="nv">filter</span>
+<span class="w">       </span><span class="n">Filters</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">one</span><span class="o">-</span><span class="n">dimensional</span><span class="w"> </span><span class="n">waveform</span><span class="p">.</span><span class="w">  </span><span class="k">PARAMETERS</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">struct</span><span class="w"> </span><span class="n">containing</span><span class="w"></span>
+<span class="w">       </span><span class="n">the</span><span class="w"> </span><span class="n">following</span><span class="w"> </span><span class="nl">fields</span><span class="p">:</span><span class="w"></span>
 
-       <span class="nv">filtfilt</span> <span class="nv">will</span> <span class="k">call</span> <span class="nl">the</span> <span class="nv">function</span> <span class="nv">filtfilt</span> <span class="nv">with</span> <span class="nv">the</span> <span class="nv">filter</span> <span class="nv">parameters</span>
-       <span class="nv">B</span> <span class="nv">and</span> <span class="nv">A</span>, <span class="k">while</span> <span class="nv">conv</span> <span class="nv">will</span> <span class="nv">convolve</span> <span class="nv">the</span> <span class="nv">data</span> <span class="nv">with</span> <span class="nv">B</span> <span class="nv">and</span> <span class="nv">remove</span> <span class="nv">the</span>
-       <span class="nv">boundary</span> <span class="nv">points</span><span class="o">--</span><span class="nv">to</span> <span class="nv">ensure</span> <span class="nv">that</span> <span class="nv">DATA</span> <span class="nv">does</span> <span class="nv">not</span> <span class="nv">change</span> <span class="nv">size</span>, <span class="nv">use</span> <span class="nv">only</span>
-       <span class="nv">odd</span><span class="o">-</span><span class="nv">length</span> <span class="nv">kernels</span>.
+<span class="w">           </span><span class="k">method</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">one</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="s1">&#39;conv&#39;</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="ow">or</span><span class="w"> </span><span class="s1">&#39;filtfilt&#39;</span><span class="w"> </span><span class="p">(</span><span class="mi">2</span><span class="p">).</span><span class="w"></span>
+<span class="w">           </span><span class="n">B</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">B</span><span class="w"> </span><span class="n">part</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="k">filter</span><span class="w"> </span><span class="p">(</span><span class="ow">or</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">stencil</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="n">convolve</span><span class="p">)</span><span class="w"></span>
+<span class="w">           </span><span class="n">A</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">A</span><span class="w"> </span><span class="n">part</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="k">filter</span><span class="w"></span>
+
+<span class="w">           </span><span class="n">filtfilt</span><span class="w"> </span><span class="n">will</span><span class="w"> </span><span class="k">call</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="k">function</span><span class="w"> </span><span class="n">filtfilt</span><span class="w"> </span><span class="k">with</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="k">filter</span><span class="w"> </span><span class="k">parameters</span><span class="w"></span>
+<span class="w">           </span><span class="n">B</span><span class="w"> </span><span class="ow">and</span><span class="w"> </span><span class="n">A</span><span class="p">,</span><span class="w"> </span><span class="k">while</span><span class="w"> </span><span class="n">conv</span><span class="w"> </span><span class="n">will</span><span class="w"> </span><span class="n">convolve</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="k">data</span><span class="w"> </span><span class="k">with</span><span class="w"> </span><span class="n">B</span><span class="w"> </span><span class="ow">and</span><span class="w"> </span><span class="n">remove</span><span class="w"> </span><span class="n">the</span><span class="w"></span>
+<span class="w">           </span><span class="n">boundary</span><span class="w"> </span><span class="n">points</span><span class="o">--</span><span class="k">to</span><span class="w"> </span><span class="n">ensure</span><span class="w"> </span><span class="n">that</span><span class="w"> </span><span class="k">DATA</span><span class="w"> </span><span class="n">does</span><span class="w"> </span><span class="ow">not</span><span class="w"> </span><span class="n">change</span><span class="w"> </span><span class="k">size</span><span class="p">,</span><span class="w"> </span><span class="k">use</span><span class="w"> </span><span class="k">only</span><span class="w"></span>
+<span class="w">           </span><span class="n">odd</span><span class="o">-</span><span class="n">length</span><span class="w"> </span><span class="n">kernels</span><span class="p">.</span><span class="w"></span>
 </code></pre></div>
                 
               

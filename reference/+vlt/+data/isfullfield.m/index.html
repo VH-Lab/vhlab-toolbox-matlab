@@ -3225,6 +3225,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../%2Bgit/git_stash.m/" class="md-nav__link">
+        vlt.git.git_stash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../%2Bgit/git_status.m/" class="md-nav__link">
         vlt.git.git_status
       </a>
@@ -9237,15 +9249,20 @@
                 
                 
                 <h1 id="vltdataisfullfield">vlt.data.isfullfield<a class="headerlink" href="#vltdataisfullfield" title="Permanent link">&para;</a></h1>
-<p>ISFULLFIELD - is there a field (or field and subfield) of a structure with a given name?</p>
-<p>[B, VALUE] = vlt.data.isfullfield(A, FIELD)</p>
-<p>Examines the structure A to see if A.FIELD can be evaluated. If so, B is 1 and the VALUE is
-  returned in VALUE. Otherwise, B is 0. If B is 0, then VALUE is empty.</p>
-<p>See also: vlt.data.fieldsearch </p>
-<p>Example:
-      A = struct('a',struct('sub1',1,'sub2',2),'b',5);
-      [b,value] = vlt.data.isfullfield(A, 'a.sub1') % returns b==1 and value==1
-      [b2,value2] = vlt.data.isfullfield(A, 'a.sub3') % returns b==0 and value==[]</p>
+<div class="codehilite"><pre><span></span><code>  <span class="nt">ISFULLFIELD</span> <span class="nt">-</span> <span class="nt">is</span> <span class="nt">there</span> <span class="nt">a</span> <span class="nt">field</span> <span class="o">(</span><span class="nt">or</span> <span class="nt">field</span> <span class="nt">and</span> <span class="nt">subfield</span><span class="o">)</span> <span class="nt">of</span> <span class="nt">a</span> <span class="nt">structure</span> <span class="nt">with</span> <span class="nt">a</span> <span class="nt">given</span> <span class="nt">name</span><span class="o">?</span>
+
+  <span class="cp">[</span><span class="nx">B</span><span class="p">,</span> <span class="nx">VALUE</span><span class="cp">]</span> <span class="o">=</span> <span class="nt">vlt</span><span class="p">.</span><span class="nc">data</span><span class="p">.</span><span class="nc">isfullfield</span><span class="o">(</span><span class="nt">A</span><span class="o">,</span> <span class="nt">FIELD</span><span class="o">)</span>
+
+  <span class="nt">Examines</span> <span class="nt">the</span> <span class="nt">structure</span> <span class="nt">A</span> <span class="nt">to</span> <span class="nt">see</span> <span class="nt">if</span> <span class="nt">A</span><span class="p">.</span><span class="nc">FIELD</span> <span class="nt">can</span> <span class="nt">be</span> <span class="nt">evaluated</span><span class="o">.</span> <span class="nt">If</span> <span class="nt">so</span><span class="o">,</span> <span class="nt">B</span> <span class="nt">is</span> <span class="nt">1</span> <span class="nt">and</span> <span class="nt">the</span> <span class="nt">VALUE</span> <span class="nt">is</span>
+  <span class="nt">returned</span> <span class="nt">in</span> <span class="nt">VALUE</span><span class="o">.</span> <span class="nt">Otherwise</span><span class="o">,</span> <span class="nt">B</span> <span class="nt">is</span> <span class="nt">0</span><span class="o">.</span> <span class="nt">If</span> <span class="nt">B</span> <span class="nt">is</span> <span class="nt">0</span><span class="o">,</span> <span class="nt">then</span> <span class="nt">VALUE</span> <span class="nt">is</span> <span class="nt">empty</span><span class="o">.</span>
+
+  <span class="nt">See</span> <span class="nt">also</span><span class="o">:</span> <span class="nt">vlt</span><span class="p">.</span><span class="nc">data</span><span class="p">.</span><span class="nc">fieldsearch</span> 
+
+  <span class="nt">Example</span><span class="o">:</span>
+      <span class="nt">A</span> <span class="o">=</span> <span class="nt">struct</span><span class="o">(</span><span class="s1">&#39;a&#39;</span><span class="o">,</span><span class="nt">struct</span><span class="o">(</span><span class="s1">&#39;sub1&#39;</span><span class="o">,</span><span class="nt">1</span><span class="o">,</span><span class="s1">&#39;sub2&#39;</span><span class="o">,</span><span class="nt">2</span><span class="o">),</span><span class="s1">&#39;b&#39;</span><span class="o">,</span><span class="nt">5</span><span class="o">);</span>
+      <span class="cp">[</span><span class="nx">b</span><span class="p">,</span><span class="nx">value</span><span class="cp">]</span> <span class="o">=</span> <span class="nt">vlt</span><span class="p">.</span><span class="nc">data</span><span class="p">.</span><span class="nc">isfullfield</span><span class="o">(</span><span class="nt">A</span><span class="o">,</span> <span class="s1">&#39;a.sub1&#39;</span><span class="o">)</span> <span class="o">%</span> <span class="nt">returns</span> <span class="nt">b</span><span class="o">==</span><span class="nt">1</span> <span class="nt">and</span> <span class="nt">value</span><span class="o">==</span><span class="nt">1</span>
+      <span class="cp">[</span><span class="nx">b2</span><span class="p">,</span><span class="nx">value2</span><span class="cp">]</span> <span class="o">=</span> <span class="nt">vlt</span><span class="p">.</span><span class="nc">data</span><span class="p">.</span><span class="nc">isfullfield</span><span class="o">(</span><span class="nt">A</span><span class="o">,</span> <span class="s1">&#39;a.sub3&#39;</span><span class="o">)</span> <span class="o">%</span> <span class="nt">returns</span> <span class="nt">b</span><span class="o">==</span><span class="nt">0</span> <span class="nt">and</span> <span class="nt">value</span><span class="o">==</span><span class="cp">[]</span>
+</code></pre></div>
                 
               
               

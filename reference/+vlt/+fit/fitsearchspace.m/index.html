@@ -3225,6 +3225,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../%2Bgit/git_stash.m/" class="md-nav__link">
+        vlt.git.git_stash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../%2Bgit/git_status.m/" class="md-nav__link">
         vlt.git.git_status
       </a>
@@ -9237,15 +9249,21 @@
                 
                 
                 <h1 id="vltfitfitsearchspace">vlt.fit.fitsearchspace<a class="headerlink" href="#vltfitfitsearchspace" title="Permanent link">&para;</a></h1>
-<p>FITSEARCHSPACE - return a set of vectors that span a range</p>
-<p>X0_VECTORS = vlt.fit.fitearchspace(LOWER_BOUNDS, UPPER_BOUNDS, NSPACE)</p>
-<p>Given a set of LOWER_BOUNDS = [ m1 m2 ... ] and UPPER_BOUNDS = [n1 n2 ...],
-  this function computes a set of vectors that tile this space in NSPACE
-  steps (using LINSPACE).</p>
-<p>The columns of X0_VECTORS are vector values (NPOINTS x dimension of bounds).</p>
-<p>See also: LINSPACE, MESHGRID, NDGRID</p>
-<p>Example:
-     X0_vectors = vlt.fit.fitearchspace([0 0],[1 1],5)</p>
+<div class="codehilite"><pre><span></span><code>  <span class="nv">FITSEARCHSPACE</span> <span class="o">-</span> <span class="k">return</span> <span class="nv">a</span> <span class="nv">set</span> <span class="nv">of</span> <span class="nv">vectors</span> <span class="nv">that</span> <span class="nv">span</span> <span class="nv">a</span> <span class="nv">range</span>
+
+  <span class="nv">X0_VECTORS</span> <span class="o">=</span> <span class="nv">vlt</span>.<span class="nv">fit</span>.<span class="nv">fitearchspace</span><span class="ss">(</span><span class="nv">LOWER_BOUNDS</span>, <span class="nv">UPPER_BOUNDS</span>, <span class="nv">NSPACE</span><span class="ss">)</span>
+
+  <span class="nv">Given</span> <span class="nv">a</span> <span class="nv">set</span> <span class="nv">of</span> <span class="nv">LOWER_BOUNDS</span> <span class="o">=</span> [ <span class="nv">m1</span> <span class="nv">m2</span> ... ] <span class="nv">and</span> <span class="nv">UPPER_BOUNDS</span> <span class="o">=</span> [<span class="nv">n1</span> <span class="nv">n2</span> ...],
+  <span class="nv">this</span> <span class="nv">function</span> <span class="nv">computes</span> <span class="nv">a</span> <span class="nv">set</span> <span class="nv">of</span> <span class="nv">vectors</span> <span class="nv">that</span> <span class="nv">tile</span> <span class="nv">this</span> <span class="nv">space</span> <span class="nv">in</span> <span class="nv">NSPACE</span>
+  <span class="nv">steps</span> <span class="ss">(</span><span class="nv">using</span> <span class="nv">LINSPACE</span><span class="ss">)</span>.
+
+  <span class="nv">The</span> <span class="nv">columns</span> <span class="nv">of</span> <span class="nv">X0_VECTORS</span> <span class="nv">are</span> <span class="nv">vector</span> <span class="nv">values</span> <span class="ss">(</span><span class="nv">NPOINTS</span> <span class="nv">x</span> <span class="nv">dimension</span> <span class="nv">of</span> <span class="nv">bounds</span><span class="ss">)</span>.
+
+  <span class="nv">See</span> <span class="nv">also</span>: <span class="nv">LINSPACE</span>, <span class="nv">MESHGRID</span>, <span class="nv">NDGRID</span>
+
+  <span class="nv">Example</span>:
+     <span class="nv">X0_vectors</span> <span class="o">=</span> <span class="nv">vlt</span>.<span class="nv">fit</span>.<span class="nv">fitearchspace</span><span class="ss">(</span>[<span class="mi">0</span> <span class="mi">0</span>],[<span class="mi">1</span> <span class="mi">1</span>],<span class="mi">5</span><span class="ss">)</span>
+</code></pre></div>
                 
               
               

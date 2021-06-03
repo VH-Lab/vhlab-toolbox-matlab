@@ -3213,6 +3213,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../../../%2Bgit/git_stash.m/" class="md-nav__link">
+        vlt.git.git_stash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../../../%2Bgit/git_status.m/" class="md-nav__link">
         vlt.git.git_status
       </a>
@@ -9241,11 +9253,14 @@
                 
                 
                 <h1 id="vltneurovisionoridirrotated_oripref_stats">vlt.neuro.vision.oridir.rotated_oripref_stats<a class="headerlink" href="#vltneurovisionoridirrotated_oripref_stats" title="Permanent link">&para;</a></h1>
-<p>ROTATED_ORIPREF_STATS - compute mean and dispersion of a set of orientation angle preferences with respect to a reference angle</p>
-<p>[MEANANGLE,DISPERSION] = vlt.neuro.vision.oridir.rotated_oripref_stats(ORI_PREF, REFERENCE_ANGLE)</p>
-<p>Given a vector of ORI_PREF values (can be in 0..360 but will be converted to 0..180 with MOD)
-  and a REFERENCE_ANGLE that defines '0' (can be in 0..360 but will be converted to 0..180 with MOD)
-  returns the mean angle MEANANGLE and the DISPERSION, calculated as the circular variance (CIRC_VAR).</p>
+<div class="codehilite"><pre><span></span><code>  <span class="n">ROTATED_ORIPREF_STATS</span> <span class="o">-</span> <span class="n">compute</span> <span class="n">mean</span> <span class="ow">and</span> <span class="n">dispersion</span> <span class="n">of</span> <span class="n">a</span> <span class="n">set</span> <span class="n">of</span> <span class="n">orientation</span> <span class="n">angle</span> <span class="n">preferences</span> <span class="n">with</span> <span class="n">respect</span> <span class="n">to</span> <span class="n">a</span> <span class="n">reference</span> <span class="n">angle</span>
+
+  <span class="p">[</span><span class="n">MEANANGLE</span><span class="p">,</span><span class="n">DISPERSION</span><span class="p">]</span> <span class="o">=</span> <span class="n">vlt</span><span class="o">.</span><span class="n">neuro</span><span class="o">.</span><span class="n">vision</span><span class="o">.</span><span class="n">oridir</span><span class="o">.</span><span class="n">rotated_oripref_stats</span><span class="p">(</span><span class="n">ORI_PREF</span><span class="p">,</span> <span class="n">REFERENCE_ANGLE</span><span class="p">)</span>
+
+  <span class="n">Given</span> <span class="n">a</span> <span class="n">vector</span> <span class="n">of</span> <span class="n">ORI_PREF</span> <span class="n">values</span> <span class="p">(</span><span class="n">can</span> <span class="n">be</span> <span class="ow">in</span> <span class="mf">0.</span><span class="o">.</span><span class="mi">360</span> <span class="n">but</span> <span class="n">will</span> <span class="n">be</span> <span class="n">converted</span> <span class="n">to</span> <span class="mf">0.</span><span class="o">.</span><span class="mi">180</span> <span class="n">with</span> <span class="n">MOD</span><span class="p">)</span>
+  <span class="ow">and</span> <span class="n">a</span> <span class="n">REFERENCE_ANGLE</span> <span class="n">that</span> <span class="n">defines</span> <span class="s1">&#39;0&#39;</span> <span class="p">(</span><span class="n">can</span> <span class="n">be</span> <span class="ow">in</span> <span class="mf">0.</span><span class="o">.</span><span class="mi">360</span> <span class="n">but</span> <span class="n">will</span> <span class="n">be</span> <span class="n">converted</span> <span class="n">to</span> <span class="mf">0.</span><span class="o">.</span><span class="mi">180</span> <span class="n">with</span> <span class="n">MOD</span><span class="p">)</span>
+  <span class="n">returns</span> <span class="n">the</span> <span class="n">mean</span> <span class="n">angle</span> <span class="n">MEANANGLE</span> <span class="ow">and</span> <span class="n">the</span> <span class="n">DISPERSION</span><span class="p">,</span> <span class="n">calculated</span> <span class="k">as</span> <span class="n">the</span> <span class="n">circular</span> <span class="n">variance</span> <span class="p">(</span><span class="n">CIRC_VAR</span><span class="p">)</span><span class="o">.</span>
+</code></pre></div>
                 
               
               

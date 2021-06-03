@@ -3213,6 +3213,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../%2Bgit/git_stash.m/" class="md-nav__link">
+        vlt.git.git_stash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../%2Bgit/git_status.m/" class="md-nav__link">
         vlt.git.git_status
       </a>
@@ -9237,21 +9249,23 @@
                 
                 
                 <h1 id="vltplothist2d">vlt.plot.hist2d<a class="headerlink" href="#vltplothist2d" title="Permanent link">&para;</a></h1>
-<p>function mHist = hist2d ([vY, vX], vYEdge, vXEdge)
- 2 Dimensional Histogram
- Counts number of points in the bins defined by vYEdge, vXEdge.
- size(vX) == size(vY) == [n,1]
- size(mHist) == [length(vYEdge) -1, length(vXEdge) -1]</p>
-<p>EXAMPLE
-    mYX = rand(100,2);
-    vXEdge = linspace(0,1,10);
-    vYEdge = linspace(0,1,20);
-    mHist2d = vlt.plot.hist2d(mYX,vYEdge,vXEdge);</p>
-<div class="codehilite"><pre><span></span><code><span class="nt">nXBins</span> <span class="o">=</span> <span class="nt">length</span><span class="o">(</span><span class="nt">vXEdge</span><span class="o">);</span>
-<span class="nt">nYBins</span> <span class="o">=</span> <span class="nt">length</span><span class="o">(</span><span class="nt">vYEdge</span><span class="o">);</span>
-<span class="nt">vXLabel</span> <span class="o">=</span> <span class="nt">0</span><span class="p">.</span><span class="nc">5</span><span class="o">*(</span><span class="nt">vXEdge</span><span class="o">(</span><span class="nt">1</span><span class="o">:(</span><span class="nt">nXBins-1</span><span class="o">))+</span><span class="nt">vXEdge</span><span class="o">(</span><span class="nt">2</span><span class="p">:</span><span class="nd">nXBins</span><span class="o">));</span>
-<span class="nt">vYLabel</span> <span class="o">=</span> <span class="nt">0</span><span class="p">.</span><span class="nc">5</span><span class="o">*(</span><span class="nt">vYEdge</span><span class="o">(</span><span class="nt">1</span><span class="o">:(</span><span class="nt">nYBins-1</span><span class="o">))+</span><span class="nt">vYEdge</span><span class="o">(</span><span class="nt">2</span><span class="p">:</span><span class="nd">nYBins</span><span class="o">));</span>
-<span class="nt">pcolor</span><span class="o">(</span><span class="nt">vXLabel</span><span class="o">,</span> <span class="nt">vYLabel</span><span class="o">,</span><span class="nt">mHist2d</span><span class="o">);</span> <span class="nt">colorbar</span>
+<div class="codehilite"><pre><span></span><code><span class="w"> </span><span class="k">function</span><span class="w"> </span>mHist<span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nf">hist2d </span><span class="p">(</span>[vY, vX], vYEdge, vXEdge<span class="p">)</span><span class="w"></span>
+<span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="n">Dimensional</span><span class="w"> </span><span class="n">Histogram</span><span class="w"></span>
+<span class="w"> </span><span class="n">Counts</span><span class="w"> </span><span class="n">number</span><span class="w"> </span><span class="n">of</span><span class="w"> </span><span class="n">points</span><span class="w"> </span><span class="n">in</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">bins</span><span class="w"> </span><span class="n">defined</span><span class="w"> </span><span class="n">by</span><span class="w"> </span><span class="n">vYEdge</span><span class="p">,</span><span class="w"> </span><span class="n">vXEdge</span><span class="p">.</span><span class="w"></span>
+<span class="w"> </span><span class="nb">size</span><span class="p">(</span><span class="n">vX</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="nb">size</span><span class="p">(</span><span class="n">vY</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="p">[</span><span class="n">n</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span><span class="w"></span>
+<span class="w"> </span><span class="nb">size</span><span class="p">(</span><span class="n">mHist</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="p">[</span><span class="nb">length</span><span class="p">(</span><span class="n">vYEdge</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="nb">length</span><span class="p">(</span><span class="n">vXEdge</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="w"></span>
+
+<span class="w"> </span><span class="n">EXAMPLE</span><span class="w"></span>
+<span class="w">    </span><span class="n">mYX</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">rand</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span><span class="mi">2</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">vXEdge</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">10</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">vYEdge</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">20</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">mHist2d</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">vlt</span><span class="p">.</span><span class="n">plot</span><span class="p">.</span><span class="n">hist2d</span><span class="p">(</span><span class="n">mYX</span><span class="p">,</span><span class="n">vYEdge</span><span class="p">,</span><span class="n">vXEdge</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">nXBins</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">length</span><span class="p">(</span><span class="n">vXEdge</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">nYBins</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">length</span><span class="p">(</span><span class="n">vYEdge</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">vXLabel</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mf">0.5</span><span class="o">*</span><span class="p">(</span><span class="n">vXEdge</span><span class="p">(</span><span class="mi">1</span><span class="p">:(</span><span class="n">nXBins</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span><span class="o">+</span><span class="n">vXEdge</span><span class="p">(</span><span class="mi">2</span><span class="p">:</span><span class="n">nXBins</span><span class="p">));</span><span class="w"></span>
+<span class="w">    </span><span class="n">vYLabel</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mf">0.5</span><span class="o">*</span><span class="p">(</span><span class="n">vYEdge</span><span class="p">(</span><span class="mi">1</span><span class="p">:(</span><span class="n">nYBins</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span><span class="o">+</span><span class="n">vYEdge</span><span class="p">(</span><span class="mi">2</span><span class="p">:</span><span class="n">nYBins</span><span class="p">));</span><span class="w"></span>
+<span class="w">    </span><span class="nb">pcolor</span><span class="p">(</span><span class="n">vXLabel</span><span class="p">,</span><span class="w"> </span><span class="n">vYLabel</span><span class="p">,</span><span class="n">mHist2d</span><span class="p">);</span><span class="w"> </span><span class="n">colorbar</span><span class="w"></span>
 </code></pre></div>
                 
               

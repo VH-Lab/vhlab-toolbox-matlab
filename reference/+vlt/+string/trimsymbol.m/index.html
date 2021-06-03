@@ -3213,6 +3213,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../%2Bgit/git_stash.m/" class="md-nav__link">
+        vlt.git.git_stash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../%2Bgit/git_status.m/" class="md-nav__link">
         vlt.git.git_status
       </a>
@@ -9237,16 +9249,21 @@
                 
                 
                 <h1 id="vltstringtrimsymbol">vlt.string.trimsymbol<a class="headerlink" href="#vltstringtrimsymbol" title="Permanent link">&para;</a></h1>
-<p>TRIMSYMBOL - Trim a symbol (or symbols) from a string</p>
-<p>NEWSTR = vlt.string.trimsymbol(STR, SYMBOL)</p>
-<p>Removes the character symbols in the array SYMBOL from the
-   character string STR, and return the result in NEWSTR.</p>
-<p>If STR is a cell array of strings, then each string in the
-   cell array will be processed separately.</p>
-<p>Example:<br />
-      mystr = '<em>myhighlightedname#'
-      newstr = vlt.string.trimsymbol(mystr,'</em>#')
-      % newstr = 'myhighlightedname'</p>
+<div class="codehilite"><pre><span></span><code><span class="w">  </span><span class="n">TRIMSYMBOL</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">Trim</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">symbol</span><span class="w"> </span><span class="p">(</span><span class="n">or</span><span class="w"> </span><span class="n">symbols</span><span class="p">)</span><span class="w"> </span><span class="n">from</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="nb">string</span><span class="w"></span>
+
+<span class="w">   </span><span class="n">NEWSTR</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">vlt</span><span class="p">.</span><span class="n">string</span><span class="p">.</span><span class="n">trimsymbol</span><span class="p">(</span><span class="n">STR</span><span class="p">,</span><span class="w"> </span><span class="n">SYMBOL</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">   </span><span class="n">Removes</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">character</span><span class="w"> </span><span class="n">symbols</span><span class="w"> </span><span class="n">in</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">array</span><span class="w"> </span><span class="n">SYMBOL</span><span class="w"> </span><span class="n">from</span><span class="w"> </span><span class="n">the</span><span class="w"></span>
+<span class="w">   </span><span class="n">character</span><span class="w"> </span><span class="nb">string</span><span class="w"> </span><span class="n">STR</span><span class="p">,</span><span class="w"> </span><span class="n">and</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">result</span><span class="w"> </span><span class="n">in</span><span class="w"> </span><span class="n">NEWSTR</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">   </span><span class="n">If</span><span class="w"> </span><span class="n">STR</span><span class="w"> </span><span class="n">is</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="nb">cell</span><span class="w"> </span><span class="n">array</span><span class="w"> </span><span class="n">of</span><span class="w"> </span><span class="nb">strings</span><span class="p">,</span><span class="w"> </span><span class="n">then</span><span class="w"> </span><span class="n">each</span><span class="w"> </span><span class="nb">string</span><span class="w"> </span><span class="n">in</span><span class="w"> </span><span class="n">the</span><span class="w"></span>
+<span class="w">   </span><span class="nb">cell</span><span class="w"> </span><span class="n">array</span><span class="w"> </span><span class="n">will</span><span class="w"> </span><span class="n">be</span><span class="w"> </span><span class="n">processed</span><span class="w"> </span><span class="n">separately</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">   </span><span class="n">Example</span><span class="p">:</span><span class="w">  </span>
+<span class="w">      </span><span class="n">mystr</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">&#39;*myhighlightedname#&#39;</span><span class="w"></span>
+<span class="w">      </span><span class="n">newstr</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">vlt</span><span class="p">.</span><span class="n">string</span><span class="p">.</span><span class="n">trimsymbol</span><span class="p">(</span><span class="n">mystr</span><span class="p">,</span><span class="s">&#39;*#&#39;</span><span class="p">)</span><span class="w"></span>
+<span class="w">      </span><span class="c">% newstr = &#39;myhighlightedname&#39;</span><span class="w"></span>
+</code></pre></div>
                 
               
               

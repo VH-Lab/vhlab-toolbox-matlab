@@ -3213,6 +3213,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../%2Bgit/git_stash.m/" class="md-nav__link">
+        vlt.git.git_stash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../%2Bgit/git_status.m/" class="md-nav__link">
         vlt.git.git_status
       </a>
@@ -9237,22 +9249,23 @@
                 
                 
                 <h1 id="vltplotplotoribox">vlt.plot.plotoribox<a class="headerlink" href="#vltplotplotoribox" title="Permanent link">&para;</a></h1>
-<p>PLOTORIBOX - Plot an oriented box (as a patch) on a graph </p>
-<div class="codehilite"><pre><span></span><code><span class="nt">H</span> <span class="o">=</span> <span class="nt">vlt</span><span class="p">.</span><span class="nc">plot</span><span class="p">.</span><span class="nc">plotoribox</span><span class="o">(</span><span class="nt">X</span><span class="o">,</span><span class="nt">Y</span><span class="o">,</span><span class="nt">ORI</span><span class="o">,</span><span class="nt">WIDTH</span><span class="o">,</span><span class="nt">HEIGHT</span><span class="o">,</span><span class="nt">REVY</span><span class="o">)</span>
+<div class="codehilite"><pre><span></span><code>  <span class="nt">PLOTORIBOX</span> <span class="nt">-</span> <span class="nt">Plot</span> <span class="nt">an</span> <span class="nt">oriented</span> <span class="nt">box</span> <span class="o">(</span><span class="nt">as</span> <span class="nt">a</span> <span class="nt">patch</span><span class="o">)</span> <span class="nt">on</span> <span class="nt">a</span> <span class="nt">graph</span> 
 
-<span class="nt">Plots</span> <span class="nt">an</span> <span class="nt">oriented</span> <span class="nt">bar</span> <span class="nt">centered</span> <span class="nt">on</span> <span class="nt">the</span> <span class="nt">position</span> <span class="nt">X</span><span class="o">,</span> <span class="nt">Y</span> <span class="nt">with</span>
-<span class="nt">orientation</span> <span class="nt">ORI</span> <span class="o">(</span><span class="nt">in</span> <span class="nt">degrees</span><span class="o">,</span> <span class="nt">in</span> <span class="nt">compass</span> <span class="nt">coordinates</span><span class="o">;</span> <span class="nt">that</span> <span class="nt">is</span><span class="o">,</span>
-<span class="nt">0</span> <span class="nt">degrees</span> <span class="nt">is</span> <span class="nt">a</span> <span class="nt">horizontal</span> <span class="nt">bar</span><span class="o">,</span> <span class="nt">and</span> <span class="nt">the</span> <span class="nt">bar</span> <span class="nt">tilts</span> <span class="nt">in</span> <span class="nt">a</span> <span class="nt">clockwise</span>
-<span class="nt">manner</span> <span class="nt">with</span> <span class="nt">increasing</span> <span class="nt">angle</span><span class="o">).</span> <span class="nt">The</span> <span class="nt">bar</span> <span class="nt">has</span> <span class="nt">the</span> <span class="nt">width</span> <span class="nt">WIDTH</span> <span class="nt">and</span>
-<span class="nt">height</span> <span class="nt">HEIGHT</span><span class="o">.</span>  <span class="nt">If</span> <span class="nt">REVY</span> <span class="nt">is</span> <span class="nt">1</span><span class="o">,</span> <span class="nt">then</span> <span class="nt">we</span> <span class="nt">assume</span> <span class="nt">that</span> <span class="nt">the</span> <span class="nt">Y</span> <span class="nt">axis</span> <span class="nt">direction</span>
-<span class="nt">is</span> <span class="nt">reversed</span><span class="o">,</span> <span class="nt">and</span> <span class="nt">the</span> <span class="nt">orientated</span> <span class="nt">bar</span> <span class="nt">is</span> <span class="nt">mirror-reversed</span> <span class="nt">in</span> <span class="nt">Y</span><span class="o">.</span>
+    <span class="nt">H</span> <span class="o">=</span> <span class="nt">vlt</span><span class="p">.</span><span class="nc">plot</span><span class="p">.</span><span class="nc">plotoribox</span><span class="o">(</span><span class="nt">X</span><span class="o">,</span><span class="nt">Y</span><span class="o">,</span><span class="nt">ORI</span><span class="o">,</span><span class="nt">WIDTH</span><span class="o">,</span><span class="nt">HEIGHT</span><span class="o">,</span><span class="nt">REVY</span><span class="o">)</span>
 
-<span class="nt">This</span> <span class="nt">function</span> <span class="nt">can</span> <span class="nt">also</span> <span class="nt">take</span> <span class="nt">extra</span> <span class="nt">parameters</span> <span class="nt">as</span> <span class="nt">NAME</span><span class="o">/</span><span class="nt">VALUE</span> <span class="nt">pairs</span><span class="o">.</span>
-<span class="nt">PARAMETER</span> <span class="o">(</span><span class="nt">default</span><span class="o">):</span>     <span class="o">|</span>  <span class="nt">DESCRIPTION</span><span class="o">:</span>
-<span class="nt">---------------------------------------------------------</span>
-<span class="nt">col</span> <span class="o">(</span><span class="cp">[</span><span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span><span class="cp">]</span><span class="o">)</span>            <span class="o">|</span>  <span class="nt">Fill</span> <span class="nt">color</span> <span class="nt">of</span> <span class="nt">the</span> <span class="nt">bar</span> <span class="o">(</span><span class="nt">default</span> <span class="nt">is</span>
-                         <span class="o">|</span>    <span class="nt">black</span> <span class="cp">[</span><span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span><span class="cp">]</span><span class="o">;</span> <span class="nt">white</span> <span class="nt">would</span> <span class="nt">be</span>
-                         <span class="o">|</span>    <span class="cp">[</span><span class="mi">1</span> <span class="mi">1</span> <span class="mi">1</span><span class="cp">]</span>
+    <span class="nt">Plots</span> <span class="nt">an</span> <span class="nt">oriented</span> <span class="nt">bar</span> <span class="nt">centered</span> <span class="nt">on</span> <span class="nt">the</span> <span class="nt">position</span> <span class="nt">X</span><span class="o">,</span> <span class="nt">Y</span> <span class="nt">with</span>
+    <span class="nt">orientation</span> <span class="nt">ORI</span> <span class="o">(</span><span class="nt">in</span> <span class="nt">degrees</span><span class="o">,</span> <span class="nt">in</span> <span class="nt">compass</span> <span class="nt">coordinates</span><span class="o">;</span> <span class="nt">that</span> <span class="nt">is</span><span class="o">,</span>
+    <span class="nt">0</span> <span class="nt">degrees</span> <span class="nt">is</span> <span class="nt">a</span> <span class="nt">horizontal</span> <span class="nt">bar</span><span class="o">,</span> <span class="nt">and</span> <span class="nt">the</span> <span class="nt">bar</span> <span class="nt">tilts</span> <span class="nt">in</span> <span class="nt">a</span> <span class="nt">clockwise</span>
+    <span class="nt">manner</span> <span class="nt">with</span> <span class="nt">increasing</span> <span class="nt">angle</span><span class="o">).</span> <span class="nt">The</span> <span class="nt">bar</span> <span class="nt">has</span> <span class="nt">the</span> <span class="nt">width</span> <span class="nt">WIDTH</span> <span class="nt">and</span>
+    <span class="nt">height</span> <span class="nt">HEIGHT</span><span class="o">.</span>  <span class="nt">If</span> <span class="nt">REVY</span> <span class="nt">is</span> <span class="nt">1</span><span class="o">,</span> <span class="nt">then</span> <span class="nt">we</span> <span class="nt">assume</span> <span class="nt">that</span> <span class="nt">the</span> <span class="nt">Y</span> <span class="nt">axis</span> <span class="nt">direction</span>
+    <span class="nt">is</span> <span class="nt">reversed</span><span class="o">,</span> <span class="nt">and</span> <span class="nt">the</span> <span class="nt">orientated</span> <span class="nt">bar</span> <span class="nt">is</span> <span class="nt">mirror-reversed</span> <span class="nt">in</span> <span class="nt">Y</span><span class="o">.</span>
+
+    <span class="nt">This</span> <span class="nt">function</span> <span class="nt">can</span> <span class="nt">also</span> <span class="nt">take</span> <span class="nt">extra</span> <span class="nt">parameters</span> <span class="nt">as</span> <span class="nt">NAME</span><span class="o">/</span><span class="nt">VALUE</span> <span class="nt">pairs</span><span class="o">.</span>
+    <span class="nt">PARAMETER</span> <span class="o">(</span><span class="nt">default</span><span class="o">):</span>     <span class="o">|</span>  <span class="nt">DESCRIPTION</span><span class="o">:</span>
+    <span class="nt">---------------------------------------------------------</span>
+    <span class="nt">col</span> <span class="o">(</span><span class="cp">[</span><span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span><span class="cp">]</span><span class="o">)</span>            <span class="o">|</span>  <span class="nt">Fill</span> <span class="nt">color</span> <span class="nt">of</span> <span class="nt">the</span> <span class="nt">bar</span> <span class="o">(</span><span class="nt">default</span> <span class="nt">is</span>
+                             <span class="o">|</span>    <span class="nt">black</span> <span class="cp">[</span><span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span><span class="cp">]</span><span class="o">;</span> <span class="nt">white</span> <span class="nt">would</span> <span class="nt">be</span>
+                             <span class="o">|</span>    <span class="cp">[</span><span class="mi">1</span> <span class="mi">1</span> <span class="mi">1</span><span class="cp">]</span>
 </code></pre></div>
                 
               

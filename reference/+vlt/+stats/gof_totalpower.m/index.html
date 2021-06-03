@@ -3213,6 +3213,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../%2Bgit/git_stash.m/" class="md-nav__link">
+        vlt.git.git_stash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../%2Bgit/git_status.m/" class="md-nav__link">
         vlt.git.git_status
       </a>
@@ -9237,18 +9249,25 @@
                 
                 
                 <h1 id="vltstatsgof_totalpower">vlt.stats.gof_totalpower<a class="headerlink" href="#vltstatsgof_totalpower" title="Permanent link">&para;</a></h1>
-<p>GOF_TOTALPOWER - Simple computation of how much 'power' of a signal is accounted for by a fit</p>
-<p>[GF, TOTAL_POWER, FIT_POWER, RES_POWER, RES] = vlt.stats.gof_totalpower(S, F)</p>
-<p>Computes the amount of total power of a signal, the total power of
-  a F of S, and the fraction of the total power that is described
-  by the fit. No effort is made to account for how much of the signal S
-  may be noise.</p>
-<p>Total power is computed by taking the average value of the square of
-  the signal S and the square of the signal F. This differs from the coefficient of
-  determination, where the mean is subtracted.</p>
-<p>GF = (FIT_POWER)/(TOTAL_POWER)</p>
-<p>RES_POWER is the power of the residual RES which is S - F.</p>
-<p>S and F are expected to be vectors.</p>
+<div class="codehilite"><pre><span></span><code>  <span class="n">GOF_TOTALPOWER</span> <span class="o">-</span> <span class="n">Simple</span> <span class="n">computation</span> <span class="n">of</span> <span class="n">how</span> <span class="n">much</span> <span class="s1">&#39;power&#39;</span> <span class="n">of</span> <span class="n">a</span> <span class="k">signal</span> <span class="k">is</span> <span class="n">accounted</span> <span class="k">for</span> <span class="n">by</span> <span class="n">a</span> <span class="n">fit</span>
+
+  <span class="p">[</span><span class="n">GF</span><span class="p">,</span> <span class="n">TOTAL_POWER</span><span class="p">,</span> <span class="n">FIT_POWER</span><span class="p">,</span> <span class="n">RES_POWER</span><span class="p">,</span> <span class="n">RES</span><span class="p">]</span> <span class="o">=</span> <span class="n">vlt</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">gof_totalpower</span><span class="p">(</span><span class="n">S</span><span class="p">,</span> <span class="n">F</span><span class="p">)</span>
+
+  <span class="n">Computes</span> <span class="n">the</span> <span class="n">amount</span> <span class="n">of</span> <span class="n">total</span> <span class="n">power</span> <span class="n">of</span> <span class="n">a</span> <span class="k">signal</span><span class="p">,</span> <span class="n">the</span> <span class="n">total</span> <span class="n">power</span> <span class="n">of</span>
+  <span class="n">a</span> <span class="n">F</span> <span class="n">of</span> <span class="n">S</span><span class="p">,</span> <span class="ow">and</span> <span class="n">the</span> <span class="n">fraction</span> <span class="n">of</span> <span class="n">the</span> <span class="n">total</span> <span class="n">power</span> <span class="n">that</span> <span class="k">is</span> <span class="n">described</span>
+  <span class="n">by</span> <span class="n">the</span> <span class="n">fit</span><span class="o">.</span> <span class="n">No</span> <span class="n">effort</span> <span class="k">is</span> <span class="n">made</span> <span class="n">to</span> <span class="n">account</span> <span class="k">for</span> <span class="n">how</span> <span class="n">much</span> <span class="n">of</span> <span class="n">the</span> <span class="k">signal</span> <span class="n">S</span>
+  <span class="n">may</span> <span class="n">be</span> <span class="n">noise</span><span class="o">.</span>
+
+  <span class="n">Total</span> <span class="n">power</span> <span class="k">is</span> <span class="n">computed</span> <span class="n">by</span> <span class="n">taking</span> <span class="n">the</span> <span class="n">average</span> <span class="n">value</span> <span class="n">of</span> <span class="n">the</span> <span class="n">square</span> <span class="n">of</span>
+  <span class="n">the</span> <span class="k">signal</span> <span class="n">S</span> <span class="ow">and</span> <span class="n">the</span> <span class="n">square</span> <span class="n">of</span> <span class="n">the</span> <span class="k">signal</span> <span class="n">F</span><span class="o">.</span> <span class="n">This</span> <span class="n">differs</span> <span class="n">from</span> <span class="n">the</span> <span class="n">coefficient</span> <span class="n">of</span>
+  <span class="n">determination</span><span class="p">,</span> <span class="n">where</span> <span class="n">the</span> <span class="n">mean</span> <span class="k">is</span> <span class="n">subtracted</span><span class="o">.</span>
+
+  <span class="n">GF</span> <span class="o">=</span> <span class="p">(</span><span class="n">FIT_POWER</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">TOTAL_POWER</span><span class="p">)</span>
+
+  <span class="n">RES_POWER</span> <span class="k">is</span> <span class="n">the</span> <span class="n">power</span> <span class="n">of</span> <span class="n">the</span> <span class="n">residual</span> <span class="n">RES</span> <span class="n">which</span> <span class="k">is</span> <span class="n">S</span> <span class="o">-</span> <span class="n">F</span><span class="o">.</span>
+
+  <span class="n">S</span> <span class="ow">and</span> <span class="n">F</span> <span class="n">are</span> <span class="n">expected</span> <span class="n">to</span> <span class="n">be</span> <span class="n">vectors</span><span class="o">.</span>
+</code></pre></div>
                 
               
               

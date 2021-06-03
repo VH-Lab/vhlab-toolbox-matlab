@@ -3223,6 +3223,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../%2Bgit/git_stash.m/" class="md-nav__link">
+        vlt.git.git_stash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../%2Bgit/git_status.m/" class="md-nav__link">
         vlt.git.git_status
       </a>
@@ -9235,22 +9247,27 @@
                 
                 
                 <h1 id="vltglobals">vlt.globals<a class="headerlink" href="#vltglobals" title="Permanent link">&para;</a></h1>
-<p>vlt.globals - define global variables for VLT (VH Lab tools)</p>
-<p>vlt.globals</p>
-<p>Script that defines some global variables for the VLT package</p>
-<p>The following variables are defined:</p>
-<p>Name:                            | Description</p>
-<hr />
-<p>vlt_globals.path.path            | The path of the VLT distribution on this machine
-                                   |   (Initialized by vlt_Init.m)
-  vlt_globals.path.preferences     | A path to a directory of preferences files
-  vlt_globals.path.filecachepath   | A path where files may be cached (not deleted every time)
-  vlt_globals.path.temppath        | The path to a directory that may be used for
-                                   |   temporary files (Initialized by ndi_Init.m)
-  vlt_globals.path.testpath        | A path to a safe place to run test code
-  vlt_globals.debug                | A structure with preferences for debugging
-  vlt_globals.log                  | An object that manages writing system, error, debugging logs (vlt.app.log)
-  vlt_globals.cache                | A vlt.data.cache object for the use of the toolbox</p>
+<div class="codehilite"><pre><span></span><code>  <span class="n">vlt</span><span class="o">.</span><span class="n">globals</span> <span class="o">-</span> <span class="n">define</span> <span class="n">global</span> <span class="n">variables</span> <span class="k">for</span> <span class="n">VLT</span> <span class="p">(</span><span class="n">VH</span> <span class="n">Lab</span> <span class="n">tools</span><span class="p">)</span>
+
+  <span class="n">vlt</span><span class="o">.</span><span class="n">globals</span>
+
+  <span class="n">Script</span> <span class="n">that</span> <span class="n">defines</span> <span class="n">some</span> <span class="n">global</span> <span class="n">variables</span> <span class="k">for</span> <span class="n">the</span> <span class="n">VLT</span> <span class="n">package</span>
+
+  <span class="n">The</span> <span class="n">following</span> <span class="n">variables</span> <span class="n">are</span> <span class="n">defined</span><span class="p">:</span>
+
+  <span class="n">Name</span><span class="p">:</span>                            <span class="o">|</span> <span class="n">Description</span>
+  <span class="o">-------------------------------------------------------------------------</span>
+  <span class="n">vlt_globals</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">path</span>            <span class="o">|</span> <span class="n">The</span> <span class="n">path</span> <span class="n">of</span> <span class="n">the</span> <span class="n">VLT</span> <span class="n">distribution</span> <span class="n">on</span> <span class="n">this</span> <span class="n">machine</span>
+                                   <span class="o">|</span>   <span class="p">(</span><span class="n">Initialized</span> <span class="n">by</span> <span class="n">vlt_Init</span><span class="o">.</span><span class="n">m</span><span class="p">)</span>
+  <span class="n">vlt_globals</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">preferences</span>     <span class="o">|</span> <span class="n">A</span> <span class="n">path</span> <span class="n">to</span> <span class="n">a</span> <span class="n">directory</span> <span class="n">of</span> <span class="n">preferences</span> <span class="n">files</span>
+  <span class="n">vlt_globals</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">filecachepath</span>   <span class="o">|</span> <span class="n">A</span> <span class="n">path</span> <span class="n">where</span> <span class="n">files</span> <span class="n">may</span> <span class="n">be</span> <span class="n">cached</span> <span class="p">(</span><span class="ow">not</span> <span class="n">deleted</span> <span class="n">every</span> <span class="n">time</span><span class="p">)</span>
+  <span class="n">vlt_globals</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">temppath</span>        <span class="o">|</span> <span class="n">The</span> <span class="n">path</span> <span class="n">to</span> <span class="n">a</span> <span class="n">directory</span> <span class="n">that</span> <span class="n">may</span> <span class="n">be</span> <span class="n">used</span> <span class="k">for</span>
+                                   <span class="o">|</span>   <span class="n">temporary</span> <span class="n">files</span> <span class="p">(</span><span class="n">Initialized</span> <span class="n">by</span> <span class="n">ndi_Init</span><span class="o">.</span><span class="n">m</span><span class="p">)</span>
+  <span class="n">vlt_globals</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">testpath</span>        <span class="o">|</span> <span class="n">A</span> <span class="n">path</span> <span class="n">to</span> <span class="n">a</span> <span class="n">safe</span> <span class="n">place</span> <span class="n">to</span> <span class="n">run</span> <span class="n">test</span> <span class="n">code</span>
+  <span class="n">vlt_globals</span><span class="o">.</span><span class="n">debug</span>                <span class="o">|</span> <span class="n">A</span> <span class="n">structure</span> <span class="n">with</span> <span class="n">preferences</span> <span class="k">for</span> <span class="n">debugging</span>
+  <span class="n">vlt_globals</span><span class="o">.</span><span class="n">log</span>                  <span class="o">|</span> <span class="n">An</span> <span class="n">object</span> <span class="n">that</span> <span class="n">manages</span> <span class="n">writing</span> <span class="n">system</span><span class="p">,</span> <span class="n">error</span><span class="p">,</span> <span class="n">debugging</span> <span class="n">logs</span> <span class="p">(</span><span class="n">vlt</span><span class="o">.</span><span class="n">app</span><span class="o">.</span><span class="n">log</span><span class="p">)</span>
+  <span class="n">vlt_globals</span><span class="o">.</span><span class="n">cache</span>                <span class="o">|</span> <span class="n">A</span> <span class="n">vlt</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">cache</span> <span class="n">object</span> <span class="k">for</span> <span class="n">the</span> <span class="n">use</span> <span class="n">of</span> <span class="n">the</span> <span class="n">toolbox</span>
+</code></pre></div>
                 
               
               

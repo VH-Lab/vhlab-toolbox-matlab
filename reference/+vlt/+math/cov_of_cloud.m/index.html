@@ -3213,6 +3213,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../%2Bgit/git_stash.m/" class="md-nav__link">
+        vlt.git.git_stash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../%2Bgit/git_status.m/" class="md-nav__link">
         vlt.git.git_status
       </a>
@@ -9237,25 +9249,30 @@
                 
                 
                 <h1 id="vltmathcov_of_cloud">vlt.math.cov_of_cloud<a class="headerlink" href="#vltmathcov_of_cloud" title="Permanent link">&para;</a></h1>
-<p>COV_OF_CLOUD - generate a cloud of gaussian points and compute covariance matrix</p>
-<p>[C,PTS] = vlt.math.cov_of_cloud(STD1, STD2, ROTATION, NUMPOINTS)</p>
-<p>Sometimes you just want to generate a cloud of gaussian points, rotate them,
-  and compute the covariance matrix. You know you should be able to directly
-  calculate the covariance matrix, but you have a grant due, and you've got
-  to move fast.</p>
-<p>Example:</p>
-<p>[c,pts] = vlt.math.cov_of_cloud(2,0.04,1,1000);
-   figure;
-   subplot(2,2,1);
-   plot(pts(:,1),pts(:,2),'o');
-   subplot(2,2,2);
-   [X,T] = meshgrid([0:0.1:10],[0:0.001:0.3]);
-   Z = X * 0;
-   Z = Z + reshape(mvnpdf([X(:) T(:)], mu,sigma{i}), size(X,1),size(X,2));
-   pcolor(X,T,Z);
-   colormap jet;
-   caxis([-max(Z(:)) max(Z(:))]);
-   shading flat</p>
+<div class="codehilite"><pre><span></span><code>  <span class="n">COV_OF_CLOUD</span> <span class="o">-</span> <span class="n">generate</span> <span class="n">a</span> <span class="n">cloud</span> <span class="n">of</span> <span class="n">gaussian</span> <span class="n">points</span> <span class="ow">and</span> <span class="n">compute</span> <span class="n">covariance</span> <span class="n">matrix</span>
+
+  <span class="p">[</span><span class="n">C</span><span class="p">,</span><span class="n">PTS</span><span class="p">]</span> <span class="o">=</span> <span class="n">vlt</span><span class="o">.</span><span class="n">math</span><span class="o">.</span><span class="n">cov_of_cloud</span><span class="p">(</span><span class="n">STD1</span><span class="p">,</span> <span class="n">STD2</span><span class="p">,</span> <span class="n">ROTATION</span><span class="p">,</span> <span class="n">NUMPOINTS</span><span class="p">)</span>
+
+  <span class="n">Sometimes</span> <span class="n">you</span> <span class="n">just</span> <span class="n">want</span> <span class="n">to</span> <span class="n">generate</span> <span class="n">a</span> <span class="n">cloud</span> <span class="n">of</span> <span class="n">gaussian</span> <span class="n">points</span><span class="p">,</span> <span class="n">rotate</span> <span class="n">them</span><span class="p">,</span>
+  <span class="ow">and</span> <span class="n">compute</span> <span class="n">the</span> <span class="n">covariance</span> <span class="n">matrix</span><span class="o">.</span> <span class="n">You</span> <span class="n">know</span> <span class="n">you</span> <span class="n">should</span> <span class="n">be</span> <span class="n">able</span> <span class="n">to</span> <span class="n">directly</span>
+  <span class="n">calculate</span> <span class="n">the</span> <span class="n">covariance</span> <span class="n">matrix</span><span class="p">,</span> <span class="n">but</span> <span class="n">you</span> <span class="n">have</span> <span class="n">a</span> <span class="n">grant</span> <span class="n">due</span><span class="p">,</span> <span class="ow">and</span> <span class="n">you</span><span class="s1">&#39;ve got</span>
+  <span class="n">to</span> <span class="n">move</span> <span class="n">fast</span><span class="o">.</span>
+
+  <span class="n">Example</span><span class="p">:</span>
+
+   <span class="p">[</span><span class="n">c</span><span class="p">,</span><span class="n">pts</span><span class="p">]</span> <span class="o">=</span> <span class="n">vlt</span><span class="o">.</span><span class="n">math</span><span class="o">.</span><span class="n">cov_of_cloud</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mf">0.04</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1000</span><span class="p">);</span>
+   <span class="n">figure</span><span class="p">;</span>
+   <span class="n">subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
+   <span class="n">plot</span><span class="p">(</span><span class="n">pts</span><span class="p">(:,</span><span class="mi">1</span><span class="p">),</span><span class="n">pts</span><span class="p">(:,</span><span class="mi">2</span><span class="p">),</span><span class="s1">&#39;o&#39;</span><span class="p">);</span>
+   <span class="n">subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">);</span>
+   <span class="p">[</span><span class="n">X</span><span class="p">,</span><span class="n">T</span><span class="p">]</span> <span class="o">=</span> <span class="n">meshgrid</span><span class="p">([</span><span class="mi">0</span><span class="p">:</span><span class="mf">0.1</span><span class="p">:</span><span class="mi">10</span><span class="p">],[</span><span class="mi">0</span><span class="p">:</span><span class="mf">0.001</span><span class="p">:</span><span class="mf">0.3</span><span class="p">]);</span>
+   <span class="n">Z</span> <span class="o">=</span> <span class="n">X</span> <span class="o">*</span> <span class="mi">0</span><span class="p">;</span>
+   <span class="n">Z</span> <span class="o">=</span> <span class="n">Z</span> <span class="o">+</span> <span class="n">reshape</span><span class="p">(</span><span class="n">mvnpdf</span><span class="p">([</span><span class="n">X</span><span class="p">(:)</span> <span class="n">T</span><span class="p">(:)],</span> <span class="n">mu</span><span class="p">,</span><span class="n">sigma</span><span class="p">{</span><span class="n">i</span><span class="p">}),</span> <span class="n">size</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span><span class="n">size</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="mi">2</span><span class="p">));</span>
+   <span class="n">pcolor</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">T</span><span class="p">,</span><span class="n">Z</span><span class="p">);</span>
+   <span class="n">colormap</span> <span class="n">jet</span><span class="p">;</span>
+   <span class="n">caxis</span><span class="p">([</span><span class="o">-</span><span class="nb">max</span><span class="p">(</span><span class="n">Z</span><span class="p">(:))</span> <span class="nb">max</span><span class="p">(</span><span class="n">Z</span><span class="p">(:))]);</span>
+   <span class="n">shading</span> <span class="n">flat</span>
+</code></pre></div>
                 
               
               

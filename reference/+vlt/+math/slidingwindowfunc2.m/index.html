@@ -3213,6 +3213,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../%2Bgit/git_stash.m/" class="md-nav__link">
+        vlt.git.git_stash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../%2Bgit/git_status.m/" class="md-nav__link">
         vlt.git.git_status
       </a>
@@ -9237,22 +9249,28 @@
                 
                 
                 <h1 id="vltmathslidingwindowfunc2">vlt.math.slidingwindowfunc2<a class="headerlink" href="#vltmathslidingwindowfunc2" title="Permanent link">&para;</a></h1>
-<p>SLIDINGWINDOWFUNC2 - Sliding window analysis for 1-dimensional data</p>
-<p>[Yn,Xn] = vlt.math.slidingwindowfunc2(X,Y,START,STEPSIZE,STOP,WINDOWSIZE,...
-              FUNC,ZEROPAD)</p>
-<p>Slides a window of WINDOWSIZE across the data and performs
-   the function FUNC on the set of ordered pairs defined in 
-   X and Y.  The window starts at location START and stops at
-   location STOP on X.  STEPSIZE determines how far the window is
-   advanced at each step.</p>
-<p>FUNC should be a string describing the function to be used.For example:
-   'mean',  or 'median'.  </p>
-<p>If ZEROPAD is 1, then a 0 is coded if no points are found within a
-        given window.
-   If ZEROPAD is 0, and if no points are found within a given window, no
-        Xn or Yn point is added for that window.</p>
-<p>Xn is the center location of each window and Yn is the result of the
-   function in each window.</p>
+<div class="codehilite"><pre><span></span><code>  <span class="nv">SLIDINGWINDOWFUNC2</span> <span class="o">-</span> <span class="nv">Sliding</span> <span class="nv">window</span> <span class="nv">analysis</span> <span class="k">for</span> <span class="mi">1</span><span class="o">-</span><span class="nv">dimensional</span> <span class="nv">data</span>
+
+   [<span class="nv">Yn</span>,<span class="nv">Xn</span>] <span class="o">=</span> <span class="nv">vlt</span>.<span class="nv">math</span>.<span class="nv">slidingwindowfunc2</span><span class="ss">(</span><span class="nv">X</span>,<span class="nv">Y</span>,<span class="nv">START</span>,<span class="nv">STEPSIZE</span>,<span class="nv">STOP</span>,<span class="nv">WINDOWSIZE</span>,...
+              <span class="nv">FUNC</span>,<span class="nv">ZEROPAD</span><span class="ss">)</span>
+
+   <span class="nv">Slides</span> <span class="nv">a</span> <span class="nv">window</span> <span class="nv">of</span> <span class="nv">WINDOWSIZE</span> <span class="nv">across</span> <span class="nv">the</span> <span class="nv">data</span> <span class="nv">and</span> <span class="nv">performs</span>
+   <span class="nv">the</span> <span class="nv">function</span> <span class="nv">FUNC</span> <span class="nv">on</span> <span class="nv">the</span> <span class="nv">set</span> <span class="nv">of</span> <span class="nv">ordered</span> <span class="nv">pairs</span> <span class="nv">defined</span> <span class="nv">in</span> 
+   <span class="nv">X</span> <span class="nv">and</span> <span class="nv">Y</span>.  <span class="nv">The</span> <span class="nv">window</span> <span class="nv">starts</span> <span class="nv">at</span> <span class="nv">location</span> <span class="nv">START</span> <span class="nv">and</span> <span class="nv">stops</span> <span class="nv">at</span>
+   <span class="nv">location</span> <span class="nv">STOP</span> <span class="nv">on</span> <span class="nv">X</span>.  <span class="nv">STEPSIZE</span> <span class="nv">determines</span> <span class="nv">how</span> <span class="nv">far</span> <span class="nv">the</span> <span class="nv">window</span> <span class="nv">is</span>
+   <span class="nv">advanced</span> <span class="nv">at</span> <span class="nv">each</span> <span class="nv">step</span>.
+
+   <span class="nv">FUNC</span> <span class="nv">should</span> <span class="nv">be</span> <span class="nv">a</span> <span class="nv">string</span> <span class="nv">describing</span> <span class="nv">the</span> <span class="nv">function</span> <span class="nv">to</span> <span class="nv">be</span> <span class="nv">used</span>.<span class="k">For</span> <span class="nv">example</span>:
+   <span class="s1">&#39;</span><span class="s">mean</span><span class="s1">&#39;</span>,  <span class="nv">or</span> <span class="s1">&#39;</span><span class="s">median</span><span class="s1">&#39;</span>.  
+
+   <span class="k">If</span> <span class="nv">ZEROPAD</span> <span class="nv">is</span> <span class="mi">1</span>, <span class="k">then</span> <span class="nv">a</span> <span class="mi">0</span> <span class="nv">is</span> <span class="nv">coded</span> <span class="k">if</span> <span class="nv">no</span> <span class="nv">points</span> <span class="nv">are</span> <span class="nv">found</span> <span class="nv">within</span> <span class="nv">a</span>
+        <span class="nv">given</span> <span class="nv">window</span>.
+   <span class="k">If</span> <span class="nv">ZEROPAD</span> <span class="nv">is</span> <span class="mi">0</span>, <span class="nv">and</span> <span class="k">if</span> <span class="nv">no</span> <span class="nv">points</span> <span class="nv">are</span> <span class="nv">found</span> <span class="nv">within</span> <span class="nv">a</span> <span class="nv">given</span> <span class="nv">window</span>, <span class="nv">no</span>
+        <span class="nv">Xn</span> <span class="nv">or</span> <span class="nv">Yn</span> <span class="nv">point</span> <span class="nv">is</span> <span class="nv">added</span> <span class="k">for</span> <span class="nv">that</span> <span class="nv">window</span>.
+
+   <span class="nv">Xn</span> <span class="nv">is</span> <span class="nv">the</span> <span class="nv">center</span> <span class="nv">location</span> <span class="nv">of</span> <span class="nv">each</span> <span class="nv">window</span> <span class="nv">and</span> <span class="nv">Yn</span> <span class="nv">is</span> <span class="nv">the</span> <span class="nb">result</span> <span class="nv">of</span> <span class="nv">the</span>
+   <span class="nv">function</span> <span class="nv">in</span> <span class="nv">each</span> <span class="nv">window</span>.
+</code></pre></div>
                 
               
               

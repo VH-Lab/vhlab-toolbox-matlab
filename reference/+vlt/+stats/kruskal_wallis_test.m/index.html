@@ -3213,6 +3213,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../%2Bgit/git_stash.m/" class="md-nav__link">
+        vlt.git.git_stash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../%2Bgit/git_status.m/" class="md-nav__link">
         vlt.git.git_status
       </a>
@@ -9237,20 +9249,26 @@
                 
                 
                 <h1 id="vltstatskruskal_wallis_test">vlt.stats.kruskal_wallis_test<a class="headerlink" href="#vltstatskruskal_wallis_test" title="Permanent link">&para;</a></h1>
-<p>KRUSKAL_WALLIS_TEST - Kruskal-Wallis one-factor analysis of variance
-   Perform a Kruskal-Wallis one-factor "analysis of variance".</p>
-<p>[PVAL,K,DF]=vlt.stats.kruskal_wallis_test(X1, ..., XK)</p>
-<p>Suppose a variable is observed for @var{k} &gt; 1 different groups, and
-   let X1, ..., XK be the corresponding data vectors.</p>
-<p>Under the null hypothesis that the ranks in the pooled sample are not
-   affected by the group memberships, the test statistic K is
-   approximately chi-square with DF = K - 1 degrees of freedom.</p>
-<p>The p-value (1 minus the CDF of this distribution at K) is
-    returned in PVAL}.</p>
-<p>If no output argument is given, the p-value is displayed.
-    [From Octave 2.5.1]
-   Author: KH <a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#75;&#117;&#114;&#116;&#46;&#72;&#111;&#114;&#110;&#105;&#107;&#64;&#99;&#105;&#46;&#116;&#117;&#119;&#105;&#101;&#110;&#46;&#97;&#99;&#46;&#97;&#116;">&#75;&#117;&#114;&#116;&#46;&#72;&#111;&#114;&#110;&#105;&#107;&#64;&#99;&#105;&#46;&#116;&#117;&#119;&#105;&#101;&#110;&#46;&#97;&#99;&#46;&#97;&#116;</a>
-   Description: Kruskal-Wallis test</p>
+<div class="codehilite"><pre><span></span><code>   <span class="n">KRUSKAL_WALLIS_TEST</span> <span class="o">-</span> <span class="n">Kruskal</span><span class="o">-</span><span class="n">Wallis</span> <span class="n">one</span><span class="o">-</span><span class="n">factor</span> <span class="n">analysis</span> <span class="n">of</span> <span class="n">variance</span>
+   <span class="n">Perform</span> <span class="n">a</span> <span class="n">Kruskal</span><span class="o">-</span><span class="n">Wallis</span> <span class="n">one</span><span class="o">-</span><span class="n">factor</span> <span class="s2">&quot;analysis of variance&quot;</span><span class="o">.</span>
+
+   <span class="p">[</span><span class="n">PVAL</span><span class="p">,</span><span class="n">K</span><span class="p">,</span><span class="n">DF</span><span class="p">]</span><span class="o">=</span><span class="n">vlt</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">kruskal_wallis_test</span><span class="p">(</span><span class="n">X1</span><span class="p">,</span> <span class="o">...</span><span class="p">,</span> <span class="n">XK</span><span class="p">)</span>
+
+   <span class="n">Suppose</span> <span class="n">a</span> <span class="n">variable</span> <span class="k">is</span> <span class="n">observed</span> <span class="k">for</span> <span class="err">@</span><span class="k">var</span><span class="p">{</span><span class="n">k</span><span class="p">}</span> <span class="o">&gt;</span> <span class="mi">1</span> <span class="n">different</span> <span class="n">groups</span><span class="p">,</span> <span class="ow">and</span>
+   <span class="n">let</span> <span class="n">X1</span><span class="p">,</span> <span class="o">...</span><span class="p">,</span> <span class="n">XK</span> <span class="n">be</span> <span class="n">the</span> <span class="n">corresponding</span> <span class="n">data</span> <span class="n">vectors</span><span class="o">.</span>
+
+   <span class="n">Under</span> <span class="n">the</span> <span class="nb nb-Type">null</span> <span class="n">hypothesis</span> <span class="n">that</span> <span class="n">the</span> <span class="n">ranks</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">pooled</span> <span class="n">sample</span> <span class="n">are</span> <span class="ow">not</span>
+   <span class="n">affected</span> <span class="n">by</span> <span class="n">the</span> <span class="n">group</span> <span class="n">memberships</span><span class="p">,</span> <span class="n">the</span> <span class="n">test</span> <span class="n">statistic</span> <span class="n">K</span> <span class="k">is</span>
+   <span class="n">approximately</span> <span class="n">chi</span><span class="o">-</span><span class="n">square</span> <span class="n">with</span> <span class="n">DF</span> <span class="o">=</span> <span class="n">K</span> <span class="o">-</span> <span class="mi">1</span> <span class="n">degrees</span> <span class="n">of</span> <span class="n">freedom</span><span class="o">.</span>
+
+   <span class="n">The</span> <span class="n">p</span><span class="o">-</span><span class="n">value</span> <span class="p">(</span><span class="mi">1</span> <span class="n">minus</span> <span class="n">the</span> <span class="n">CDF</span> <span class="n">of</span> <span class="n">this</span> <span class="n">distribution</span> <span class="n">at</span> <span class="n">K</span><span class="p">)</span> <span class="k">is</span>
+    <span class="n">returned</span> <span class="ow">in</span> <span class="n">PVAL</span><span class="p">}</span><span class="o">.</span>
+
+   <span class="n">If</span> <span class="n">no</span> <span class="n">output</span> <span class="n">argument</span> <span class="k">is</span> <span class="n">given</span><span class="p">,</span> <span class="n">the</span> <span class="n">p</span><span class="o">-</span><span class="n">value</span> <span class="k">is</span> <span class="n">displayed</span><span class="o">.</span>
+    <span class="p">[</span><span class="n">From</span> <span class="n">Octave</span> <span class="mf">2.5</span><span class="o">.</span><span class="mi">1</span><span class="p">]</span>
+   <span class="n">Author</span><span class="p">:</span> <span class="n">KH</span> <span class="o">&lt;</span><span class="n">Kurt</span><span class="o">.</span><span class="n">Hornik</span><span class="err">@</span><span class="n">ci</span><span class="o">.</span><span class="n">tuwien</span><span class="o">.</span><span class="n">ac</span><span class="o">.</span><span class="n">at</span><span class="o">&gt;</span>
+   <span class="n">Description</span><span class="p">:</span> <span class="n">Kruskal</span><span class="o">-</span><span class="n">Wallis</span> <span class="n">test</span>
+</code></pre></div>
                 
               
               

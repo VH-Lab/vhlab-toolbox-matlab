@@ -3282,6 +3282,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../%2Bgit/git_stash.m/" class="md-nav__link">
+        vlt.git.git_stash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../%2Bgit/git_status.m/" class="md-nav__link">
         vlt.git.git_status
       </a>
@@ -9336,7 +9348,9 @@
                 
                 
                 <h1 id="class-vltdatacache">CLASS vlt.data.cache<a class="headerlink" href="#class-vltdatacache" title="Permanent link">&para;</a></h1>
-<p>cache - Cache class</p>
+<div class="codehilite"><pre><span></span><code>  cache - Cache class
+</code></pre></div>
+
 <h2 id="superclasses">Superclasses<a class="headerlink" href="#superclasses" title="Permanent link">&para;</a></h2>
 <p><strong>handle</strong></p>
 <h2 id="properties">Properties<a class="headerlink" href="#properties" title="Permanent link">&para;</a></h2>
@@ -9459,370 +9473,416 @@
 </table>
 <h3 id="methods-help">Methods help<a class="headerlink" href="#methods-help" title="Permanent link">&para;</a></h3>
 <p><strong>add</strong> - <em>add data to an NDI.CACHE</em></p>
-<p>CACHE_OBJ = ADD(CACHE_OBJ, KEY, TYPE, DATA, [PRIORITY])</p>
-<p>Adds DATA to the CACHE_OBJ that is referenced by a KEY and TYPE.
-  If desired, a PRIORITY can be added; items with greatest PRIORITY will be
-  deleted last.</p>
-<hr />
-<p><strong>addlistener</strong> - <em>ADDLISTENER  Add listener for event.</em></p>
-<p>el = ADDLISTENER(hSource, Eventname, callbackFcn) creates a listener
-    for the event named Eventname.  The source of the event is the handle 
-    object hSource.  If hSource is an array of source handles, the listener
-    responds to the named event on any handle in the array.  callbackFcn
-    is a function handle that is invoked when the event is triggered.</p>
-<div class="codehilite"><pre><span></span><code><span class="n">el</span> <span class="o">=</span> <span class="n">ADDLISTENER</span><span class="p">(</span><span class="n">hSource</span><span class="p">,</span> <span class="n">PropName</span><span class="p">,</span> <span class="n">Eventname</span><span class="p">,</span> <span class="n">Callback</span><span class="p">)</span> <span class="n">adds</span> <span class="n">a</span> 
-<span class="n">listener</span> <span class="k">for</span> <span class="n">a</span> <span class="n">property</span> <span class="n">event</span><span class="o">.</span>  <span class="n">Eventname</span> <span class="n">must</span> <span class="n">be</span> <span class="n">one</span> <span class="n">of</span>
-<span class="s1">&#39;PreGet&#39;</span><span class="p">,</span> <span class="s1">&#39;PostGet&#39;</span><span class="p">,</span> <span class="s1">&#39;PreSet&#39;</span><span class="p">,</span> <span class="ow">or</span> <span class="s1">&#39;PostSet&#39;</span><span class="o">.</span> <span class="n">Eventname</span> <span class="n">can</span> <span class="n">be</span>
-<span class="n">a</span> <span class="n">string</span> <span class="n">scalar</span> <span class="ow">or</span> <span class="n">character</span> <span class="n">vector</span><span class="o">.</span>  <span class="n">PropName</span> <span class="n">must</span> <span class="n">be</span> <span class="n">a</span> <span class="n">single</span> 
-<span class="n">property</span> <span class="n">name</span> <span class="n">specified</span> <span class="k">as</span> <span class="n">string</span> <span class="n">scalar</span> <span class="ow">or</span> <span class="n">character</span> <span class="n">vector</span><span class="p">,</span> <span class="ow">or</span> <span class="n">a</span> 
-<span class="n">collection</span> <span class="n">of</span> <span class="n">property</span> <span class="n">names</span> <span class="n">specified</span> <span class="k">as</span> <span class="n">a</span> <span class="n">cell</span> <span class="n">array</span> <span class="n">of</span> <span class="n">character</span> 
-<span class="n">vectors</span> <span class="ow">or</span> <span class="n">a</span> <span class="n">string</span> <span class="n">array</span><span class="p">,</span> <span class="ow">or</span> <span class="k">as</span> <span class="n">an</span> <span class="n">array</span> <span class="n">of</span> <span class="n">one</span> <span class="ow">or</span> <span class="n">more</span> 
-<span class="n">meta</span><span class="o">.</span><span class="n">property</span> <span class="n">objects</span><span class="o">.</span>  <span class="n">The</span> <span class="n">properties</span> <span class="n">must</span> <span class="n">belong</span> <span class="n">to</span> <span class="n">the</span> <span class="k">class</span> <span class="n">of</span> 
-<span class="n">hSource</span><span class="o">.</span>  <span class="n">If</span> <span class="n">hSource</span> <span class="k">is</span> <span class="n">scalar</span><span class="p">,</span> <span class="n">PropName</span> <span class="n">can</span> <span class="n">include</span> <span class="n">dynamic</span> 
-<span class="n">properties</span><span class="o">.</span>
+<div class="codehilite"><pre><span></span><code><span class="n">CACHE_OBJ</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">ADD</span><span class="p">(</span><span class="n">CACHE_OBJ</span><span class="p">,</span><span class="w"> </span><span class="k">KEY</span><span class="p">,</span><span class="w"> </span><span class="n">TYPE</span><span class="p">,</span><span class="w"> </span><span class="k">DATA</span><span class="p">,</span><span class="w"> </span><span class="o">[</span><span class="n">PRIORITY</span><span class="o">]</span><span class="p">)</span><span class="w"></span>
 
-<span class="n">For</span> <span class="n">all</span> <span class="n">forms</span><span class="p">,</span> <span class="n">addlistener</span> <span class="n">returns</span> <span class="n">an</span> <span class="n">event</span><span class="o">.</span><span class="n">listener</span><span class="o">.</span>  <span class="n">To</span> <span class="n">remove</span> <span class="n">a</span>
-<span class="n">listener</span><span class="p">,</span> <span class="n">delete</span> <span class="n">the</span> <span class="n">object</span> <span class="n">returned</span> <span class="n">by</span> <span class="n">addlistener</span><span class="o">.</span>  <span class="n">For</span> <span class="n">example</span><span class="p">,</span>
-<span class="n">delete</span><span class="p">(</span><span class="n">el</span><span class="p">)</span> <span class="n">calls</span> <span class="n">the</span> <span class="n">handle</span> <span class="k">class</span> <span class="n">delete</span> <span class="n">method</span> <span class="n">to</span> <span class="n">remove</span> <span class="n">the</span> <span class="n">listener</span>
-<span class="ow">and</span> <span class="n">delete</span> <span class="n">it</span> <span class="n">from</span> <span class="n">the</span> <span class="n">workspace</span><span class="o">.</span>
-
-<span class="n">ADDLISTENER</span> <span class="n">binds</span> <span class="n">the</span> <span class="n">listener</span><span class="s1">&#39;s lifecycle to the object that is the </span>
-<span class="n">source</span> <span class="n">of</span> <span class="n">the</span> <span class="n">event</span><span class="o">.</span>  <span class="n">Unless</span> <span class="n">you</span> <span class="n">explicitly</span> <span class="n">delete</span> <span class="n">the</span> <span class="n">listener</span><span class="p">,</span> <span class="n">it</span> <span class="k">is</span>
-<span class="n">destroyed</span> <span class="n">only</span> <span class="n">when</span> <span class="n">the</span> <span class="n">source</span> <span class="n">object</span> <span class="k">is</span> <span class="n">destroyed</span><span class="o">.</span>  <span class="n">To</span> <span class="n">control</span> <span class="n">the</span>
-<span class="n">lifecycle</span> <span class="n">of</span> <span class="n">the</span> <span class="n">listener</span> <span class="n">independently</span> <span class="n">from</span> <span class="n">the</span> <span class="n">event</span> <span class="n">source</span> <span class="n">object</span><span class="p">,</span> 
-<span class="n">use</span> <span class="n">listener</span> <span class="ow">or</span> <span class="n">the</span> <span class="n">event</span><span class="o">.</span><span class="n">listener</span> <span class="n">constructor</span> <span class="n">to</span> <span class="n">create</span> <span class="n">the</span> <span class="n">listener</span><span class="o">.</span>
-
-<span class="n">See</span> <span class="n">also</span> <span class="n">LISTENER</span><span class="p">,</span> <span class="n">EVENT</span><span class="o">.</span><span class="n">LISTENER</span><span class="p">,</span> <span class="n">VLT</span><span class="o">.</span><span class="n">DATA</span><span class="o">.</span><span class="n">CACHE</span><span class="p">,</span> <span class="n">NOTIFY</span><span class="p">,</span> <span class="n">DELETE</span><span class="p">,</span> <span class="n">META</span><span class="o">.</span><span class="n">PROPERTY</span><span class="p">,</span> <span class="n">EVENTS</span>
+<span class="w">  </span><span class="n">Adds</span><span class="w"> </span><span class="k">DATA</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">CACHE_OBJ</span><span class="w"> </span><span class="n">that</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="n">referenced</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="ow">and</span><span class="w"> </span><span class="n">TYPE</span><span class="p">.</span><span class="w"></span>
+<span class="w">  </span><span class="k">If</span><span class="w"> </span><span class="n">desired</span><span class="p">,</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">PRIORITY</span><span class="w"> </span><span class="n">can</span><span class="w"> </span><span class="n">be</span><span class="w"> </span><span class="n">added</span><span class="p">;</span><span class="w"> </span><span class="n">items</span><span class="w"> </span><span class="k">with</span><span class="w"> </span><span class="n">greatest</span><span class="w"> </span><span class="n">PRIORITY</span><span class="w"> </span><span class="n">will</span><span class="w"> </span><span class="n">be</span><span class="w"></span>
+<span class="w">  </span><span class="n">deleted</span><span class="w"> </span><span class="k">last</span><span class="p">.</span><span class="w"></span>
 </code></pre></div>
 
-<p>Help for vlt.data.cache/addlistener is inherited from superclass HANDLE</p>
-<div class="codehilite"><pre><span></span><code><span class="nv">Documentation</span> <span class="k">for</span> <span class="nv">vlt</span>.<span class="nv">data</span>.<span class="nv">cache</span><span class="o">/</span><span class="nv">addlistener</span>
-   <span class="nv">doc</span> <span class="nv">handle</span>.<span class="nv">addlistener</span>
+<hr />
+<p><strong>addlistener</strong> - <em>ADDLISTENER  Add listener for event.</em></p>
+<div class="codehilite"><pre><span></span><code><span class="n">el</span> <span class="o">=</span> <span class="n">ADDLISTENER</span><span class="p">(</span><span class="n">hSource</span><span class="p">,</span> <span class="n">Eventname</span><span class="p">,</span> <span class="n">callbackFcn</span><span class="p">)</span> <span class="n">creates</span> <span class="n">a</span> <span class="n">listener</span>
+    <span class="k">for</span> <span class="n">the</span> <span class="n">event</span> <span class="n">named</span> <span class="n">Eventname</span><span class="o">.</span>  <span class="n">The</span> <span class="n">source</span> <span class="n">of</span> <span class="n">the</span> <span class="n">event</span> <span class="k">is</span> <span class="n">the</span> <span class="n">handle</span> 
+    <span class="n">object</span> <span class="n">hSource</span><span class="o">.</span>  <span class="n">If</span> <span class="n">hSource</span> <span class="k">is</span> <span class="n">an</span> <span class="n">array</span> <span class="n">of</span> <span class="n">source</span> <span class="n">handles</span><span class="p">,</span> <span class="n">the</span> <span class="n">listener</span>
+    <span class="n">responds</span> <span class="n">to</span> <span class="n">the</span> <span class="n">named</span> <span class="n">event</span> <span class="n">on</span> <span class="n">any</span> <span class="n">handle</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">array</span><span class="o">.</span>  <span class="n">callbackFcn</span>
+    <span class="k">is</span> <span class="n">a</span> <span class="n">function</span> <span class="n">handle</span> <span class="n">that</span> <span class="k">is</span> <span class="n">invoked</span> <span class="n">when</span> <span class="n">the</span> <span class="n">event</span> <span class="k">is</span> <span class="n">triggered</span><span class="o">.</span>
+
+    <span class="n">el</span> <span class="o">=</span> <span class="n">ADDLISTENER</span><span class="p">(</span><span class="n">hSource</span><span class="p">,</span> <span class="n">PropName</span><span class="p">,</span> <span class="n">Eventname</span><span class="p">,</span> <span class="n">Callback</span><span class="p">)</span> <span class="n">adds</span> <span class="n">a</span> 
+    <span class="n">listener</span> <span class="k">for</span> <span class="n">a</span> <span class="n">property</span> <span class="n">event</span><span class="o">.</span>  <span class="n">Eventname</span> <span class="n">must</span> <span class="n">be</span> <span class="n">one</span> <span class="n">of</span>
+    <span class="s1">&#39;PreGet&#39;</span><span class="p">,</span> <span class="s1">&#39;PostGet&#39;</span><span class="p">,</span> <span class="s1">&#39;PreSet&#39;</span><span class="p">,</span> <span class="ow">or</span> <span class="s1">&#39;PostSet&#39;</span><span class="o">.</span> <span class="n">Eventname</span> <span class="n">can</span> <span class="n">be</span>
+    <span class="n">a</span> <span class="n">string</span> <span class="n">scalar</span> <span class="ow">or</span> <span class="n">character</span> <span class="n">vector</span><span class="o">.</span>  <span class="n">PropName</span> <span class="n">must</span> <span class="n">be</span> <span class="n">a</span> <span class="n">single</span> 
+    <span class="n">property</span> <span class="n">name</span> <span class="n">specified</span> <span class="k">as</span> <span class="n">string</span> <span class="n">scalar</span> <span class="ow">or</span> <span class="n">character</span> <span class="n">vector</span><span class="p">,</span> <span class="ow">or</span> <span class="n">a</span> 
+    <span class="n">collection</span> <span class="n">of</span> <span class="n">property</span> <span class="n">names</span> <span class="n">specified</span> <span class="k">as</span> <span class="n">a</span> <span class="n">cell</span> <span class="n">array</span> <span class="n">of</span> <span class="n">character</span> 
+    <span class="n">vectors</span> <span class="ow">or</span> <span class="n">a</span> <span class="n">string</span> <span class="n">array</span><span class="p">,</span> <span class="ow">or</span> <span class="k">as</span> <span class="n">an</span> <span class="n">array</span> <span class="n">of</span> <span class="n">one</span> <span class="ow">or</span> <span class="n">more</span> 
+    <span class="n">meta</span><span class="o">.</span><span class="n">property</span> <span class="n">objects</span><span class="o">.</span>  <span class="n">The</span> <span class="n">properties</span> <span class="n">must</span> <span class="n">belong</span> <span class="n">to</span> <span class="n">the</span> <span class="k">class</span> <span class="n">of</span> 
+    <span class="n">hSource</span><span class="o">.</span>  <span class="n">If</span> <span class="n">hSource</span> <span class="k">is</span> <span class="n">scalar</span><span class="p">,</span> <span class="n">PropName</span> <span class="n">can</span> <span class="n">include</span> <span class="n">dynamic</span> 
+    <span class="n">properties</span><span class="o">.</span>
+
+    <span class="n">For</span> <span class="n">all</span> <span class="n">forms</span><span class="p">,</span> <span class="n">addlistener</span> <span class="n">returns</span> <span class="n">an</span> <span class="n">event</span><span class="o">.</span><span class="n">listener</span><span class="o">.</span>  <span class="n">To</span> <span class="n">remove</span> <span class="n">a</span>
+    <span class="n">listener</span><span class="p">,</span> <span class="n">delete</span> <span class="n">the</span> <span class="n">object</span> <span class="n">returned</span> <span class="n">by</span> <span class="n">addlistener</span><span class="o">.</span>  <span class="n">For</span> <span class="n">example</span><span class="p">,</span>
+    <span class="n">delete</span><span class="p">(</span><span class="n">el</span><span class="p">)</span> <span class="n">calls</span> <span class="n">the</span> <span class="n">handle</span> <span class="k">class</span> <span class="n">delete</span> <span class="n">method</span> <span class="n">to</span> <span class="n">remove</span> <span class="n">the</span> <span class="n">listener</span>
+    <span class="ow">and</span> <span class="n">delete</span> <span class="n">it</span> <span class="n">from</span> <span class="n">the</span> <span class="n">workspace</span><span class="o">.</span>
+
+    <span class="n">ADDLISTENER</span> <span class="n">binds</span> <span class="n">the</span> <span class="n">listener</span><span class="s1">&#39;s lifecycle to the object that is the </span>
+    <span class="n">source</span> <span class="n">of</span> <span class="n">the</span> <span class="n">event</span><span class="o">.</span>  <span class="n">Unless</span> <span class="n">you</span> <span class="n">explicitly</span> <span class="n">delete</span> <span class="n">the</span> <span class="n">listener</span><span class="p">,</span> <span class="n">it</span> <span class="k">is</span>
+    <span class="n">destroyed</span> <span class="n">only</span> <span class="n">when</span> <span class="n">the</span> <span class="n">source</span> <span class="n">object</span> <span class="k">is</span> <span class="n">destroyed</span><span class="o">.</span>  <span class="n">To</span> <span class="n">control</span> <span class="n">the</span>
+    <span class="n">lifecycle</span> <span class="n">of</span> <span class="n">the</span> <span class="n">listener</span> <span class="n">independently</span> <span class="n">from</span> <span class="n">the</span> <span class="n">event</span> <span class="n">source</span> <span class="n">object</span><span class="p">,</span> 
+    <span class="n">use</span> <span class="n">listener</span> <span class="ow">or</span> <span class="n">the</span> <span class="n">event</span><span class="o">.</span><span class="n">listener</span> <span class="n">constructor</span> <span class="n">to</span> <span class="n">create</span> <span class="n">the</span> <span class="n">listener</span><span class="o">.</span>
+
+    <span class="n">See</span> <span class="n">also</span> <span class="n">LISTENER</span><span class="p">,</span> <span class="n">EVENT</span><span class="o">.</span><span class="n">LISTENER</span><span class="p">,</span> <span class="n">VLT</span><span class="o">.</span><span class="n">DATA</span><span class="o">.</span><span class="n">CACHE</span><span class="p">,</span> <span class="n">NOTIFY</span><span class="p">,</span> <span class="n">DELETE</span><span class="p">,</span> <span class="n">META</span><span class="o">.</span><span class="n">PROPERTY</span><span class="p">,</span> <span class="n">EVENTS</span>
+
+<span class="n">Help</span> <span class="k">for</span> <span class="n">vlt</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">cache</span><span class="o">/</span><span class="n">addlistener</span> <span class="k">is</span> <span class="n">inherited</span> <span class="n">from</span> <span class="n">superclass</span> <span class="n">HANDLE</span>
+
+    <span class="n">Documentation</span> <span class="k">for</span> <span class="n">vlt</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">cache</span><span class="o">/</span><span class="n">addlistener</span>
+       <span class="n">doc</span> <span class="n">handle</span><span class="o">.</span><span class="n">addlistener</span>
 </code></pre></div>
 
 <hr />
 <p><strong>bytes</strong> - <em>memory size of an NDI.CACHE object in bytes</em></p>
-<p>B = BYTES(CACHE_OBJ)</p>
-<p>Return the current memory that is occupied by the table of CACHE_OBJ.</p>
-<hr />
-<p><strong>cache</strong> - <em>create a new NDI cache handle</em></p>
-<p>CACHE_OBJ = vlt.data.cache(...)</p>
-<p>Creates a new vlt.data.cache object. Additional arguments can be specified as
-  name value pairs:</p>
-<p>Parameter (default)         | Description</p>
-<hr />
-<p>maxMemory (100e6)           | Max memory for cache, in bytes (100MB default)
-  replacement_rule ('fifo')   | Replacement rule (see CACHE/SET_REPLACEMENT_RULE</p>
-<p>Note that the cache is not 'secure', any function can query the data added.</p>
-<p>See also: vlt.data.namevaluepair</p>
-<hr />
-<p><strong>clear</strong> - <em>clear data from an NDI.CACHE</em></p>
-<p>CACHE_OBJ = CLEAR(CACHE_OBJ)</p>
-<p>Clears all entries from the NDI.CACHE object CACHE_OBJ.</p>
-<hr />
-<p><strong>delete</strong> - <em>DELETE   Delete a handle object.</em></p>
-<p>DELETE(H) deletes all handle objects in array H. After the delete 
-    function call, H is an array of invalid objects.</p>
-<div class="codehilite"><pre><span></span><code>See also VLT.DATA.CACHE, VLT.DATA.CACHE/ISVALID, CLEAR
+<div class="codehilite"><pre><span></span><code><span class="nv">B</span> <span class="o">=</span> <span class="nv">BYTES</span><span class="ss">(</span><span class="nv">CACHE_OBJ</span><span class="ss">)</span>
+
+  <span class="k">Return</span> <span class="nv">the</span> <span class="nv">current</span> <span class="nv">memory</span> <span class="nv">that</span> <span class="nv">is</span> <span class="nv">occupied</span> <span class="nv">by</span> <span class="nv">the</span> <span class="nv">table</span> <span class="nv">of</span> <span class="nv">CACHE_OBJ</span>.
 </code></pre></div>
 
-<p>Help for vlt.data.cache/delete is inherited from superclass HANDLE</p>
-<div class="codehilite"><pre><span></span><code><span class="nv">Documentation</span> <span class="k">for</span> <span class="nv">vlt</span>.<span class="nv">data</span>.<span class="nv">cache</span><span class="o">/</span><span class="nv">delete</span>
-   <span class="nv">doc</span> <span class="nv">handle</span>.<span class="nv">delete</span>
+<hr />
+<p><strong>cache</strong> - <em>create a new NDI cache handle</em></p>
+<div class="codehilite"><pre><span></span><code><span class="nv">CACHE_OBJ</span> <span class="o">=</span> <span class="nv">vlt</span>.<span class="nv">data</span>.<span class="nv">cache</span><span class="ss">(</span>...<span class="ss">)</span>
+
+  <span class="nv">Creates</span> <span class="nv">a</span> <span class="nv">new</span> <span class="nv">vlt</span>.<span class="nv">data</span>.<span class="nv">cache</span> <span class="nv">object</span>. <span class="nv">Additional</span> <span class="nv">arguments</span> <span class="nv">can</span> <span class="nv">be</span> <span class="nv">specified</span> <span class="nv">as</span>
+  <span class="nv">name</span> <span class="nv">value</span> <span class="nv">pairs</span>:
+
+  <span class="nv">Parameter</span> <span class="ss">(</span><span class="nv">default</span><span class="ss">)</span>         <span class="o">|</span> <span class="nv">Description</span>
+  <span class="o">------------------------------------------------------------</span>
+  <span class="nv">maxMemory</span> <span class="ss">(</span><span class="mi">100</span><span class="nv">e6</span><span class="ss">)</span>           <span class="o">|</span> <span class="nv">Max</span> <span class="nv">memory</span> <span class="k">for</span> <span class="nv">cache</span>, <span class="nv">in</span> <span class="nv">bytes</span> <span class="ss">(</span><span class="mi">100</span><span class="nv">MB</span> <span class="nv">default</span><span class="ss">)</span>
+  <span class="nv">replacement_rule</span> <span class="ss">(</span><span class="s1">&#39;</span><span class="s">fifo</span><span class="s1">&#39;</span><span class="ss">)</span>   <span class="o">|</span> <span class="nv">Replacement</span> <span class="nv">rule</span> <span class="ss">(</span><span class="nv">see</span> <span class="nv">CACHE</span><span class="o">/</span><span class="nv">SET_REPLACEMENT_RULE</span>
+
+  <span class="nv">Note</span> <span class="nv">that</span> <span class="nv">the</span> <span class="nv">cache</span> <span class="nv">is</span> <span class="nv">not</span> <span class="s1">&#39;</span><span class="s">secure</span><span class="s1">&#39;</span>, <span class="nv">any</span> <span class="nv">function</span> <span class="nv">can</span> <span class="nv">query</span> <span class="nv">the</span> <span class="nv">data</span> <span class="nv">added</span>.
+
+  <span class="nv">See</span> <span class="nv">also</span>: <span class="nv">vlt</span>.<span class="nv">data</span>.<span class="nv">namevaluepair</span>
+</code></pre></div>
+
+<hr />
+<p><strong>clear</strong> - <em>clear data from an NDI.CACHE</em></p>
+<div class="codehilite"><pre><span></span><code>CACHE_OBJ = CLEAR(CACHE_OBJ)
+
+  Clears all entries from the NDI.CACHE object CACHE_OBJ.
+</code></pre></div>
+
+<hr />
+<p><strong>delete</strong> - <em>DELETE   Delete a handle object.</em></p>
+<div class="codehilite"><pre><span></span><code><span class="nv">DELETE</span><span class="ss">(</span><span class="nv">H</span><span class="ss">)</span> <span class="nv">deletes</span> <span class="nv">all</span> <span class="nv">handle</span> <span class="nv">objects</span> <span class="nv">in</span> <span class="nv">array</span> <span class="nv">H</span>. <span class="nv">After</span> <span class="nv">the</span> <span class="nv">delete</span> 
+    <span class="nv">function</span> <span class="nv">call</span>, <span class="nv">H</span> <span class="nv">is</span> <span class="nv">an</span> <span class="nv">array</span> <span class="nv">of</span> <span class="nv">invalid</span> <span class="nv">objects</span>.
+
+    <span class="nv">See</span> <span class="nv">also</span> <span class="nv">VLT</span>.<span class="nv">DATA</span>.<span class="nv">CACHE</span>, <span class="nv">VLT</span>.<span class="nv">DATA</span>.<span class="nv">CACHE</span><span class="o">/</span><span class="nv">ISVALID</span>, <span class="nv">CLEAR</span>
+
+<span class="nv">Help</span> <span class="k">for</span> <span class="nv">vlt</span>.<span class="nv">data</span>.<span class="nv">cache</span><span class="o">/</span><span class="nv">delete</span> <span class="nv">is</span> <span class="nv">inherited</span> <span class="nv">from</span> <span class="nv">superclass</span> <span class="nv">HANDLE</span>
+
+    <span class="nv">Documentation</span> <span class="k">for</span> <span class="nv">vlt</span>.<span class="nv">data</span>.<span class="nv">cache</span><span class="o">/</span><span class="nv">delete</span>
+       <span class="nv">doc</span> <span class="nv">handle</span>.<span class="nv">delete</span>
 </code></pre></div>
 
 <hr />
 <p><strong>eq</strong> - <em>== (EQ)   Test handle equality.</em></p>
-<p>Handles are equal if they are handles for the same object.</p>
-<div class="codehilite"><pre><span></span><code><span class="nv">H1</span> <span class="o">==</span> <span class="nv">H2</span> <span class="nv">performs</span> <span class="nv">element</span><span class="o">-</span><span class="nv">wise</span> <span class="nv">comparisons</span> <span class="nv">between</span> <span class="nv">handle</span> <span class="nv">arrays</span> <span class="nv">H1</span> <span class="nv">and</span>
-<span class="nv">H2</span>.  <span class="nv">H1</span> <span class="nv">and</span> <span class="nv">H2</span> <span class="nv">must</span> <span class="nv">be</span> <span class="nv">of</span> <span class="nv">the</span> <span class="nv">same</span> <span class="nv">dimensions</span> <span class="nv">unless</span> <span class="nv">one</span> <span class="nv">is</span> <span class="nv">a</span> <span class="nv">scalar</span>.
-<span class="nv">The</span> <span class="nb">result</span> <span class="nv">is</span> <span class="nv">a</span> <span class="nv">logical</span> <span class="nv">array</span> <span class="nv">of</span> <span class="nv">the</span> <span class="nv">same</span> <span class="nv">dimensions</span>, <span class="nv">where</span> <span class="nv">each</span>
-<span class="nv">element</span> <span class="nv">is</span> <span class="nv">an</span> <span class="nv">element</span><span class="o">-</span><span class="nv">wise</span> <span class="nv">equality</span> <span class="nb">result</span>.
+<div class="codehilite"><pre><span></span><code><span class="nv">Handles</span> <span class="nv">are</span> <span class="nv">equal</span> <span class="k">if</span> <span class="nv">they</span> <span class="nv">are</span> <span class="nv">handles</span> <span class="k">for</span> <span class="nv">the</span> <span class="nv">same</span> <span class="nv">object</span>.
 
-<span class="k">If</span> <span class="nv">one</span> <span class="nv">of</span> <span class="nv">H1</span> <span class="nv">or</span> <span class="nv">H2</span> <span class="nv">is</span> <span class="nv">scalar</span>, <span class="nv">scalar</span> <span class="nv">expansion</span> <span class="nv">is</span> <span class="nv">performed</span> <span class="nv">and</span> <span class="nv">the</span> 
-<span class="nb">result</span> <span class="nv">will</span> <span class="nv">match</span> <span class="nv">the</span> <span class="nv">dimensions</span> <span class="nv">of</span> <span class="nv">the</span> <span class="nv">array</span> <span class="nv">that</span> <span class="nv">is</span> <span class="nv">not</span> <span class="nv">scalar</span>.
+    <span class="nv">H1</span> <span class="o">==</span> <span class="nv">H2</span> <span class="nv">performs</span> <span class="nv">element</span><span class="o">-</span><span class="nv">wise</span> <span class="nv">comparisons</span> <span class="nv">between</span> <span class="nv">handle</span> <span class="nv">arrays</span> <span class="nv">H1</span> <span class="nv">and</span>
+    <span class="nv">H2</span>.  <span class="nv">H1</span> <span class="nv">and</span> <span class="nv">H2</span> <span class="nv">must</span> <span class="nv">be</span> <span class="nv">of</span> <span class="nv">the</span> <span class="nv">same</span> <span class="nv">dimensions</span> <span class="nv">unless</span> <span class="nv">one</span> <span class="nv">is</span> <span class="nv">a</span> <span class="nv">scalar</span>.
+    <span class="nv">The</span> <span class="nb">result</span> <span class="nv">is</span> <span class="nv">a</span> <span class="nv">logical</span> <span class="nv">array</span> <span class="nv">of</span> <span class="nv">the</span> <span class="nv">same</span> <span class="nv">dimensions</span>, <span class="nv">where</span> <span class="nv">each</span>
+    <span class="nv">element</span> <span class="nv">is</span> <span class="nv">an</span> <span class="nv">element</span><span class="o">-</span><span class="nv">wise</span> <span class="nv">equality</span> <span class="nb">result</span>.
 
-<span class="nv">TF</span> <span class="o">=</span> <span class="nv">EQ</span><span class="ss">(</span><span class="nv">H1</span>, <span class="nv">H2</span><span class="ss">)</span> <span class="nv">stores</span> <span class="nv">the</span> <span class="nb">result</span> <span class="nv">in</span> <span class="nv">a</span> <span class="nv">logical</span> <span class="nv">array</span> <span class="nv">of</span> <span class="nv">the</span> <span class="nv">same</span> 
-<span class="nv">dimensions</span>.
+    <span class="k">If</span> <span class="nv">one</span> <span class="nv">of</span> <span class="nv">H1</span> <span class="nv">or</span> <span class="nv">H2</span> <span class="nv">is</span> <span class="nv">scalar</span>, <span class="nv">scalar</span> <span class="nv">expansion</span> <span class="nv">is</span> <span class="nv">performed</span> <span class="nv">and</span> <span class="nv">the</span> 
+    <span class="nb">result</span> <span class="nv">will</span> <span class="nv">match</span> <span class="nv">the</span> <span class="nv">dimensions</span> <span class="nv">of</span> <span class="nv">the</span> <span class="nv">array</span> <span class="nv">that</span> <span class="nv">is</span> <span class="nv">not</span> <span class="nv">scalar</span>.
 
-<span class="nv">See</span> <span class="nv">also</span> <span class="nv">VLT</span>.<span class="nv">DATA</span>.<span class="nv">CACHE</span>, <span class="nv">VLT</span>.<span class="nv">DATA</span>.<span class="nv">CACHE</span><span class="o">/</span><span class="nv">GE</span>, <span class="nv">VLT</span>.<span class="nv">DATA</span>.<span class="nv">CACHE</span><span class="o">/</span><span class="nv">GT</span>, <span class="nv">VLT</span>.<span class="nv">DATA</span>.<span class="nv">CACHE</span><span class="o">/</span><span class="nv">LE</span>, <span class="nv">VLT</span>.<span class="nv">DATA</span>.<span class="nv">CACHE</span><span class="o">/</span><span class="nv">LT</span>, <span class="nv">VLT</span>.<span class="nv">DATA</span>.<span class="nv">CACHE</span><span class="o">/</span><span class="nv">NE</span>
-</code></pre></div>
+    <span class="nv">TF</span> <span class="o">=</span> <span class="nv">EQ</span><span class="ss">(</span><span class="nv">H1</span>, <span class="nv">H2</span><span class="ss">)</span> <span class="nv">stores</span> <span class="nv">the</span> <span class="nb">result</span> <span class="nv">in</span> <span class="nv">a</span> <span class="nv">logical</span> <span class="nv">array</span> <span class="nv">of</span> <span class="nv">the</span> <span class="nv">same</span> 
+    <span class="nv">dimensions</span>.
 
-<p>Help for vlt.data.cache/eq is inherited from superclass HANDLE</p>
-<div class="codehilite"><pre><span></span><code><span class="nv">Documentation</span> <span class="k">for</span> <span class="nv">vlt</span>.<span class="nv">data</span>.<span class="nv">cache</span><span class="o">/</span><span class="nv">eq</span>
-   <span class="nv">doc</span> <span class="nv">handle</span>.<span class="nv">eq</span>
+    <span class="nv">See</span> <span class="nv">also</span> <span class="nv">VLT</span>.<span class="nv">DATA</span>.<span class="nv">CACHE</span>, <span class="nv">VLT</span>.<span class="nv">DATA</span>.<span class="nv">CACHE</span><span class="o">/</span><span class="nv">GE</span>, <span class="nv">VLT</span>.<span class="nv">DATA</span>.<span class="nv">CACHE</span><span class="o">/</span><span class="nv">GT</span>, <span class="nv">VLT</span>.<span class="nv">DATA</span>.<span class="nv">CACHE</span><span class="o">/</span><span class="nv">LE</span>, <span class="nv">VLT</span>.<span class="nv">DATA</span>.<span class="nv">CACHE</span><span class="o">/</span><span class="nv">LT</span>, <span class="nv">VLT</span>.<span class="nv">DATA</span>.<span class="nv">CACHE</span><span class="o">/</span><span class="nv">NE</span>
+
+<span class="nv">Help</span> <span class="k">for</span> <span class="nv">vlt</span>.<span class="nv">data</span>.<span class="nv">cache</span><span class="o">/</span><span class="nv">eq</span> <span class="nv">is</span> <span class="nv">inherited</span> <span class="nv">from</span> <span class="nv">superclass</span> <span class="nv">HANDLE</span>
+
+    <span class="nv">Documentation</span> <span class="k">for</span> <span class="nv">vlt</span>.<span class="nv">data</span>.<span class="nv">cache</span><span class="o">/</span><span class="nv">eq</span>
+       <span class="nv">doc</span> <span class="nv">handle</span>.<span class="nv">eq</span>
 </code></pre></div>
 
 <hr />
 <p><strong>findobj</strong> - <em>FINDOBJ   Find objects matching specified conditions.</em></p>
-<p>The FINDOBJ method of the HANDLE class follows the same syntax as the 
-    MATLAB FINDOBJ command, except that the first argument must be an array
-    of handles to objects.</p>
-<div class="codehilite"><pre><span></span><code>HM = FINDOBJ(H, &lt;conditions&gt;) searches the handle object array H and 
-returns an array of handle objects matching the specified conditions.
-Only the public members of the objects of H are considered when 
-evaluating the conditions.
+<div class="codehilite"><pre><span></span><code><span class="nv">The</span> <span class="nv">FINDOBJ</span> <span class="nv">method</span> <span class="nv">of</span> <span class="nv">the</span> <span class="nv">HANDLE</span> <span class="nv">class</span> <span class="nv">follows</span> <span class="nv">the</span> <span class="nv">same</span> <span class="nv">syntax</span> <span class="nv">as</span> <span class="nv">the</span> 
+    <span class="nv">MATLAB</span> <span class="nv">FINDOBJ</span> <span class="nv">command</span>, <span class="nv">except</span> <span class="nv">that</span> <span class="nv">the</span> <span class="nv">first</span> <span class="nv">argument</span> <span class="nv">must</span> <span class="nv">be</span> <span class="nv">an</span> <span class="nv">array</span>
+    <span class="nv">of</span> <span class="nv">handles</span> <span class="nv">to</span> <span class="nv">objects</span>.
 
-See also FINDOBJ, VLT.DATA.CACHE
-</code></pre></div>
+    <span class="nv">HM</span> <span class="o">=</span> <span class="nv">FINDOBJ</span><span class="ss">(</span><span class="nv">H</span>, <span class="o">&lt;</span><span class="nv">conditions</span><span class="o">&gt;</span><span class="ss">)</span> <span class="nv">searches</span> <span class="nv">the</span> <span class="nv">handle</span> <span class="nv">object</span> <span class="nv">array</span> <span class="nv">H</span> <span class="nv">and</span> 
+    <span class="nv">returns</span> <span class="nv">an</span> <span class="nv">array</span> <span class="nv">of</span> <span class="nv">handle</span> <span class="nv">objects</span> <span class="nv">matching</span> <span class="nv">the</span> <span class="nv">specified</span> <span class="nv">conditions</span>.
+    <span class="nv">Only</span> <span class="nv">the</span> <span class="nv">public</span> <span class="nv">members</span> <span class="nv">of</span> <span class="nv">the</span> <span class="nv">objects</span> <span class="nv">of</span> <span class="nv">H</span> <span class="nv">are</span> <span class="nv">considered</span> <span class="nv">when</span> 
+    <span class="nv">evaluating</span> <span class="nv">the</span> <span class="nv">conditions</span>.
 
-<p>Help for vlt.data.cache/findobj is inherited from superclass HANDLE</p>
-<div class="codehilite"><pre><span></span><code><span class="nv">Documentation</span> <span class="k">for</span> <span class="nv">vlt</span>.<span class="nv">data</span>.<span class="nv">cache</span><span class="o">/</span><span class="nv">findobj</span>
-   <span class="nv">doc</span> <span class="nv">handle</span>.<span class="nv">findobj</span>
+    <span class="nv">See</span> <span class="nv">also</span> <span class="nv">FINDOBJ</span>, <span class="nv">VLT</span>.<span class="nv">DATA</span>.<span class="nv">CACHE</span>
+
+<span class="nv">Help</span> <span class="k">for</span> <span class="nv">vlt</span>.<span class="nv">data</span>.<span class="nv">cache</span><span class="o">/</span><span class="nv">findobj</span> <span class="nv">is</span> <span class="nv">inherited</span> <span class="nv">from</span> <span class="nv">superclass</span> <span class="nv">HANDLE</span>
+
+    <span class="nv">Documentation</span> <span class="k">for</span> <span class="nv">vlt</span>.<span class="nv">data</span>.<span class="nv">cache</span><span class="o">/</span><span class="nv">findobj</span>
+       <span class="nv">doc</span> <span class="nv">handle</span>.<span class="nv">findobj</span>
 </code></pre></div>
 
 <hr />
 <p><strong>findprop</strong> - <em>FINDPROP   Find property of MATLAB handle object.</em></p>
-<p>p = FINDPROP(H,PROPNAME) finds and returns the META.PROPERTY object
-    associated with property name PROPNAME of scalar handle object H.
-    PROPNAME can be a string scalar or character vector.  It can be the 
-    name of a property defined by the class of H or a dynamic property 
-    added to scalar object H.</p>
-<div class="codehilite"><pre><span></span><code><span class="k">If</span> <span class="nv">no</span> <span class="nv">property</span> <span class="nv">named</span> <span class="nv">PROPNAME</span> <span class="nv">exists</span> <span class="k">for</span> <span class="nv">object</span> <span class="nv">H</span>, <span class="nv">an</span> <span class="nv">empty</span> 
-<span class="nv">META</span>.<span class="nv">PROPERTY</span> <span class="nv">array</span> <span class="nv">is</span> <span class="nv">returned</span>.
+<div class="codehilite"><pre><span></span><code><span class="nv">p</span> <span class="o">=</span> <span class="nv">FINDPROP</span><span class="ss">(</span><span class="nv">H</span>,<span class="nv">PROPNAME</span><span class="ss">)</span> <span class="nv">finds</span> <span class="nv">and</span> <span class="nv">returns</span> <span class="nv">the</span> <span class="nv">META</span>.<span class="nv">PROPERTY</span> <span class="nv">object</span>
+    <span class="nv">associated</span> <span class="nv">with</span> <span class="nv">property</span> <span class="nv">name</span> <span class="nv">PROPNAME</span> <span class="nv">of</span> <span class="nv">scalar</span> <span class="nv">handle</span> <span class="nv">object</span> <span class="nv">H</span>.
+    <span class="nv">PROPNAME</span> <span class="nv">can</span> <span class="nv">be</span> <span class="nv">a</span> <span class="nv">string</span> <span class="nv">scalar</span> <span class="nv">or</span> <span class="nv">character</span> <span class="nv">vector</span>.  <span class="nv">It</span> <span class="nv">can</span> <span class="nv">be</span> <span class="nv">the</span> 
+    <span class="nv">name</span> <span class="nv">of</span> <span class="nv">a</span> <span class="nv">property</span> <span class="nv">defined</span> <span class="nv">by</span> <span class="nv">the</span> <span class="nv">class</span> <span class="nv">of</span> <span class="nv">H</span> <span class="nv">or</span> <span class="nv">a</span> <span class="nv">dynamic</span> <span class="nv">property</span> 
+    <span class="nv">added</span> <span class="nv">to</span> <span class="nv">scalar</span> <span class="nv">object</span> <span class="nv">H</span>.
 
-<span class="nv">See</span> <span class="nv">also</span> <span class="nv">VLT</span>.<span class="nv">DATA</span>.<span class="nv">CACHE</span>, <span class="nv">VLT</span>.<span class="nv">DATA</span>.<span class="nv">CACHE</span><span class="o">/</span><span class="nv">FINDOBJ</span>, <span class="nv">DYNAMICPROPS</span>, <span class="nv">META</span>.<span class="nv">PROPERTY</span>
-</code></pre></div>
+    <span class="k">If</span> <span class="nv">no</span> <span class="nv">property</span> <span class="nv">named</span> <span class="nv">PROPNAME</span> <span class="nv">exists</span> <span class="k">for</span> <span class="nv">object</span> <span class="nv">H</span>, <span class="nv">an</span> <span class="nv">empty</span> 
+    <span class="nv">META</span>.<span class="nv">PROPERTY</span> <span class="nv">array</span> <span class="nv">is</span> <span class="nv">returned</span>.
 
-<p>Help for vlt.data.cache/findprop is inherited from superclass HANDLE</p>
-<div class="codehilite"><pre><span></span><code><span class="nv">Documentation</span> <span class="k">for</span> <span class="nv">vlt</span>.<span class="nv">data</span>.<span class="nv">cache</span><span class="o">/</span><span class="nv">findprop</span>
-   <span class="nv">doc</span> <span class="nv">handle</span>.<span class="nv">findprop</span>
+    <span class="nv">See</span> <span class="nv">also</span> <span class="nv">VLT</span>.<span class="nv">DATA</span>.<span class="nv">CACHE</span>, <span class="nv">VLT</span>.<span class="nv">DATA</span>.<span class="nv">CACHE</span><span class="o">/</span><span class="nv">FINDOBJ</span>, <span class="nv">DYNAMICPROPS</span>, <span class="nv">META</span>.<span class="nv">PROPERTY</span>
+
+<span class="nv">Help</span> <span class="k">for</span> <span class="nv">vlt</span>.<span class="nv">data</span>.<span class="nv">cache</span><span class="o">/</span><span class="nv">findprop</span> <span class="nv">is</span> <span class="nv">inherited</span> <span class="nv">from</span> <span class="nv">superclass</span> <span class="nv">HANDLE</span>
+
+    <span class="nv">Documentation</span> <span class="k">for</span> <span class="nv">vlt</span>.<span class="nv">data</span>.<span class="nv">cache</span><span class="o">/</span><span class="nv">findprop</span>
+       <span class="nv">doc</span> <span class="nv">handle</span>.<span class="nv">findprop</span>
 </code></pre></div>
 
 <hr />
 <p><strong>freebytes</strong> - <em>remove the lowest priority entries from the cache to free a certain amount of memory</em></p>
-<p>CACHE_OBJ = FREEBYTES(CACHE_OBJ, FREEBYTES)</p>
-<p>Remove entries to free at least FREEBYTES memory. Entries will be removed, first by PRIORITY and then by
-  the replacement_rule parameter.</p>
-<p>See also: NDI.CACHE/ADD, NDI.CACHE/SET_REPLACEMENT_RULE</p>
-<hr />
-<p><strong>ge</strong> - <em>&gt;= (GE)   Greater than or equal relation for handles.</em></p>
-<p>H1 &gt;= H2 performs element-wise comparisons between handle arrays H1 and
-    H2.  H1 and H2 must be of the same dimensions unless one is a scalar.
-    The result is a logical array of the same dimensions, where each
-    element is an element-wise &gt;= result.</p>
-<div class="codehilite"><pre><span></span><code><span class="k">If</span> <span class="nv">one</span> <span class="nv">of</span> <span class="nv">H1</span> <span class="nv">or</span> <span class="nv">H2</span> <span class="nv">is</span> <span class="nv">scalar</span>, <span class="nv">scalar</span> <span class="nv">expansion</span> <span class="nv">is</span> <span class="nv">performed</span> <span class="nv">and</span> <span class="nv">the</span> 
-<span class="nb">result</span> <span class="nv">will</span> <span class="nv">match</span> <span class="nv">the</span> <span class="nv">dimensions</span> <span class="nv">of</span> <span class="nv">the</span> <span class="nv">array</span> <span class="nv">that</span> <span class="nv">is</span> <span class="nv">not</span> <span class="nv">scalar</span>.
+<div class="codehilite"><pre><span></span><code><span class="nv">CACHE_OBJ</span> <span class="o">=</span> <span class="nv">FREEBYTES</span><span class="ss">(</span><span class="nv">CACHE_OBJ</span>, <span class="nv">FREEBYTES</span><span class="ss">)</span>
 
-<span class="nv">TF</span> <span class="o">=</span> <span class="nv">GE</span><span class="ss">(</span><span class="nv">H1</span>, <span class="nv">H2</span><span class="ss">)</span> <span class="nv">stores</span> <span class="nv">the</span> <span class="nb">result</span> <span class="nv">in</span> <span class="nv">a</span> <span class="nv">logical</span> <span class="nv">array</span> <span class="nv">of</span> <span class="nv">the</span> <span class="nv">same</span> 
-<span class="nv">dimensions</span>.
+  <span class="nv">Remove</span> <span class="nv">entries</span> <span class="nv">to</span> <span class="nv">free</span> <span class="nv">at</span> <span class="nv">least</span> <span class="nv">FREEBYTES</span> <span class="nv">memory</span>. <span class="nv">Entries</span> <span class="nv">will</span> <span class="nv">be</span> <span class="nv">removed</span>, <span class="nv">first</span> <span class="nv">by</span> <span class="nv">PRIORITY</span> <span class="nv">and</span> <span class="k">then</span> <span class="nv">by</span>
+  <span class="nv">the</span> <span class="nv">replacement_rule</span> <span class="nv">parameter</span>.
 
-<span class="nv">See</span> <span class="nv">also</span> <span class="nv">VLT</span>.<span class="nv">DATA</span>.<span class="nv">CACHE</span>, <span class="nv">VLT</span>.<span class="nv">DATA</span>.<span class="nv">CACHE</span><span class="o">/</span><span class="nv">EQ</span>, <span class="nv">VLT</span>.<span class="nv">DATA</span>.<span class="nv">CACHE</span><span class="o">/</span><span class="nv">GT</span>, <span class="nv">VLT</span>.<span class="nv">DATA</span>.<span class="nv">CACHE</span><span class="o">/</span><span class="nv">LE</span>, <span class="nv">VLT</span>.<span class="nv">DATA</span>.<span class="nv">CACHE</span><span class="o">/</span><span class="nv">LT</span>, <span class="nv">VLT</span>.<span class="nv">DATA</span>.<span class="nv">CACHE</span><span class="o">/</span><span class="nv">NE</span>
+  <span class="nv">See</span> <span class="nv">also</span>: <span class="nv">NDI</span>.<span class="nv">CACHE</span><span class="o">/</span><span class="nv">ADD</span>, <span class="nv">NDI</span>.<span class="nv">CACHE</span><span class="o">/</span><span class="nv">SET_REPLACEMENT_RULE</span>
 </code></pre></div>
 
-<p>Help for vlt.data.cache/ge is inherited from superclass HANDLE</p>
-<div class="codehilite"><pre><span></span><code><span class="nv">Documentation</span> <span class="k">for</span> <span class="nv">vlt</span>.<span class="nv">data</span>.<span class="nv">cache</span><span class="o">/</span><span class="nv">ge</span>
-   <span class="nv">doc</span> <span class="nv">handle</span>.<span class="nv">ge</span>
+<hr />
+<p><strong>ge</strong> - <em>&gt;= (GE)   Greater than or equal relation for handles.</em></p>
+<div class="codehilite"><pre><span></span><code><span class="nv">H1</span> <span class="o">&gt;=</span> <span class="nv">H2</span> <span class="nv">performs</span> <span class="nv">element</span><span class="o">-</span><span class="nv">wise</span> <span class="nv">comparisons</span> <span class="nv">between</span> <span class="nv">handle</span> <span class="nv">arrays</span> <span class="nv">H1</span> <span class="nv">and</span>
+    <span class="nv">H2</span>.  <span class="nv">H1</span> <span class="nv">and</span> <span class="nv">H2</span> <span class="nv">must</span> <span class="nv">be</span> <span class="nv">of</span> <span class="nv">the</span> <span class="nv">same</span> <span class="nv">dimensions</span> <span class="nv">unless</span> <span class="nv">one</span> <span class="nv">is</span> <span class="nv">a</span> <span class="nv">scalar</span>.
+    <span class="nv">The</span> <span class="nb">result</span> <span class="nv">is</span> <span class="nv">a</span> <span class="nv">logical</span> <span class="nv">array</span> <span class="nv">of</span> <span class="nv">the</span> <span class="nv">same</span> <span class="nv">dimensions</span>, <span class="nv">where</span> <span class="nv">each</span>
+    <span class="nv">element</span> <span class="nv">is</span> <span class="nv">an</span> <span class="nv">element</span><span class="o">-</span><span class="nv">wise</span> <span class="o">&gt;=</span> <span class="nb">result</span>.
+
+    <span class="k">If</span> <span class="nv">one</span> <span class="nv">of</span> <span class="nv">H1</span> <span class="nv">or</span> <span class="nv">H2</span> <span class="nv">is</span> <span class="nv">scalar</span>, <span class="nv">scalar</span> <span class="nv">expansion</span> <span class="nv">is</span> <span class="nv">performed</span> <span class="nv">and</span> <span class="nv">the</span> 
+    <span class="nb">result</span> <span class="nv">will</span> <span class="nv">match</span> <span class="nv">the</span> <span class="nv">dimensions</span> <span class="nv">of</span> <span class="nv">the</span> <span class="nv">array</span> <span class="nv">that</span> <span class="nv">is</span> <span class="nv">not</span> <span class="nv">scalar</span>.
+
+    <span class="nv">TF</span> <span class="o">=</span> <span class="nv">GE</span><span class="ss">(</span><span class="nv">H1</span>, <span class="nv">H2</span><span class="ss">)</span> <span class="nv">stores</span> <span class="nv">the</span> <span class="nb">result</span> <span class="nv">in</span> <span class="nv">a</span> <span class="nv">logical</span> <span class="nv">array</span> <span class="nv">of</span> <span class="nv">the</span> <span class="nv">same</span> 
+    <span class="nv">dimensions</span>.
+
+    <span class="nv">See</span> <span class="nv">also</span> <span class="nv">VLT</span>.<span class="nv">DATA</span>.<span class="nv">CACHE</span>, <span class="nv">VLT</span>.<span class="nv">DATA</span>.<span class="nv">CACHE</span><span class="o">/</span><span class="nv">EQ</span>, <span class="nv">VLT</span>.<span class="nv">DATA</span>.<span class="nv">CACHE</span><span class="o">/</span><span class="nv">GT</span>, <span class="nv">VLT</span>.<span class="nv">DATA</span>.<span class="nv">CACHE</span><span class="o">/</span><span class="nv">LE</span>, <span class="nv">VLT</span>.<span class="nv">DATA</span>.<span class="nv">CACHE</span><span class="o">/</span><span class="nv">LT</span>, <span class="nv">VLT</span>.<span class="nv">DATA</span>.<span class="nv">CACHE</span><span class="o">/</span><span class="nv">NE</span>
+
+<span class="nv">Help</span> <span class="k">for</span> <span class="nv">vlt</span>.<span class="nv">data</span>.<span class="nv">cache</span><span class="o">/</span><span class="nv">ge</span> <span class="nv">is</span> <span class="nv">inherited</span> <span class="nv">from</span> <span class="nv">superclass</span> <span class="nv">HANDLE</span>
+
+    <span class="nv">Documentation</span> <span class="k">for</span> <span class="nv">vlt</span>.<span class="nv">data</span>.<span class="nv">cache</span><span class="o">/</span><span class="nv">ge</span>
+       <span class="nv">doc</span> <span class="nv">handle</span>.<span class="nv">ge</span>
 </code></pre></div>
 
 <hr />
 <p><strong>gt</strong> - <em>&gt; (GT)   Greater than relation for handles.</em></p>
-<p>H1 &gt; H2 performs element-wise comparisons between handle arrays H1 and 
-    H2.  H1 and H2 must be of the same dimensions unless one is a scalar.<br />
-    The result is a logical array of the same dimensions, where each
-    element is an element-wise &gt; result.</p>
-<div class="codehilite"><pre><span></span><code><span class="k">If</span> <span class="nv">one</span> <span class="nv">of</span> <span class="nv">H1</span> <span class="nv">or</span> <span class="nv">H2</span> <span class="nv">is</span> <span class="nv">scalar</span>, <span class="nv">scalar</span> <span class="nv">expansion</span> <span class="nv">is</span> <span class="nv">performed</span> <span class="nv">and</span> <span class="nv">the</span> 
-<span class="nb">result</span> <span class="nv">will</span> <span class="nv">match</span> <span class="nv">the</span> <span class="nv">dimensions</span> <span class="nv">of</span> <span class="nv">the</span> <span class="nv">array</span> <span class="nv">that</span> <span class="nv">is</span> <span class="nv">not</span> <span class="nv">scalar</span>.
+<div class="codehilite"><pre><span></span><code><span class="nv">H1</span> <span class="o">&gt;</span> <span class="nv">H2</span> <span class="nv">performs</span> <span class="nv">element</span><span class="o">-</span><span class="nv">wise</span> <span class="nv">comparisons</span> <span class="nv">between</span> <span class="nv">handle</span> <span class="nv">arrays</span> <span class="nv">H1</span> <span class="nv">and</span> 
+    <span class="nv">H2</span>.  <span class="nv">H1</span> <span class="nv">and</span> <span class="nv">H2</span> <span class="nv">must</span> <span class="nv">be</span> <span class="nv">of</span> <span class="nv">the</span> <span class="nv">same</span> <span class="nv">dimensions</span> <span class="nv">unless</span> <span class="nv">one</span> <span class="nv">is</span> <span class="nv">a</span> <span class="nv">scalar</span>.  
+    <span class="nv">The</span> <span class="nb">result</span> <span class="nv">is</span> <span class="nv">a</span> <span class="nv">logical</span> <span class="nv">array</span> <span class="nv">of</span> <span class="nv">the</span> <span class="nv">same</span> <span class="nv">dimensions</span>, <span class="nv">where</span> <span class="nv">each</span>
+    <span class="nv">element</span> <span class="nv">is</span> <span class="nv">an</span> <span class="nv">element</span><span class="o">-</span><span class="nv">wise</span> <span class="o">&gt;</span> <span class="nb">result</span>.
 
-<span class="nv">TF</span> <span class="o">=</span> <span class="nv">GT</span><span class="ss">(</span><span class="nv">H1</span>, <span class="nv">H2</span><span class="ss">)</span> <span class="nv">stores</span> <span class="nv">the</span> <span class="nb">result</span> <span class="nv">in</span> <span class="nv">a</span> <span class="nv">logical</span> <span class="nv">array</span> <span class="nv">of</span> <span class="nv">the</span> <span class="nv">same</span> 
-<span class="nv">dimensions</span>.
+    <span class="k">If</span> <span class="nv">one</span> <span class="nv">of</span> <span class="nv">H1</span> <span class="nv">or</span> <span class="nv">H2</span> <span class="nv">is</span> <span class="nv">scalar</span>, <span class="nv">scalar</span> <span class="nv">expansion</span> <span class="nv">is</span> <span class="nv">performed</span> <span class="nv">and</span> <span class="nv">the</span> 
+    <span class="nb">result</span> <span class="nv">will</span> <span class="nv">match</span> <span class="nv">the</span> <span class="nv">dimensions</span> <span class="nv">of</span> <span class="nv">the</span> <span class="nv">array</span> <span class="nv">that</span> <span class="nv">is</span> <span class="nv">not</span> <span class="nv">scalar</span>.
 
-<span class="nv">See</span> <span class="nv">also</span> <span class="nv">VLT</span>.<span class="nv">DATA</span>.<span class="nv">CACHE</span>, <span class="nv">VLT</span>.<span class="nv">DATA</span>.<span class="nv">CACHE</span><span class="o">/</span><span class="nv">EQ</span>, <span class="nv">VLT</span>.<span class="nv">DATA</span>.<span class="nv">CACHE</span><span class="o">/</span><span class="nv">GE</span>, <span class="nv">VLT</span>.<span class="nv">DATA</span>.<span class="nv">CACHE</span><span class="o">/</span><span class="nv">LE</span>, <span class="nv">VLT</span>.<span class="nv">DATA</span>.<span class="nv">CACHE</span><span class="o">/</span><span class="nv">LT</span>, <span class="nv">VLT</span>.<span class="nv">DATA</span>.<span class="nv">CACHE</span><span class="o">/</span><span class="nv">NE</span>
-</code></pre></div>
+    <span class="nv">TF</span> <span class="o">=</span> <span class="nv">GT</span><span class="ss">(</span><span class="nv">H1</span>, <span class="nv">H2</span><span class="ss">)</span> <span class="nv">stores</span> <span class="nv">the</span> <span class="nb">result</span> <span class="nv">in</span> <span class="nv">a</span> <span class="nv">logical</span> <span class="nv">array</span> <span class="nv">of</span> <span class="nv">the</span> <span class="nv">same</span> 
+    <span class="nv">dimensions</span>.
 
-<p>Help for vlt.data.cache/gt is inherited from superclass HANDLE</p>
-<div class="codehilite"><pre><span></span><code><span class="nv">Documentation</span> <span class="k">for</span> <span class="nv">vlt</span>.<span class="nv">data</span>.<span class="nv">cache</span><span class="o">/</span><span class="nv">gt</span>
-   <span class="nv">doc</span> <span class="nv">handle</span>.<span class="nv">gt</span>
+    <span class="nv">See</span> <span class="nv">also</span> <span class="nv">VLT</span>.<span class="nv">DATA</span>.<span class="nv">CACHE</span>, <span class="nv">VLT</span>.<span class="nv">DATA</span>.<span class="nv">CACHE</span><span class="o">/</span><span class="nv">EQ</span>, <span class="nv">VLT</span>.<span class="nv">DATA</span>.<span class="nv">CACHE</span><span class="o">/</span><span class="nv">GE</span>, <span class="nv">VLT</span>.<span class="nv">DATA</span>.<span class="nv">CACHE</span><span class="o">/</span><span class="nv">LE</span>, <span class="nv">VLT</span>.<span class="nv">DATA</span>.<span class="nv">CACHE</span><span class="o">/</span><span class="nv">LT</span>, <span class="nv">VLT</span>.<span class="nv">DATA</span>.<span class="nv">CACHE</span><span class="o">/</span><span class="nv">NE</span>
+
+<span class="nv">Help</span> <span class="k">for</span> <span class="nv">vlt</span>.<span class="nv">data</span>.<span class="nv">cache</span><span class="o">/</span><span class="nv">gt</span> <span class="nv">is</span> <span class="nv">inherited</span> <span class="nv">from</span> <span class="nv">superclass</span> <span class="nv">HANDLE</span>
+
+    <span class="nv">Documentation</span> <span class="k">for</span> <span class="nv">vlt</span>.<span class="nv">data</span>.<span class="nv">cache</span><span class="o">/</span><span class="nv">gt</span>
+       <span class="nv">doc</span> <span class="nv">handle</span>.<span class="nv">gt</span>
 </code></pre></div>
 
 <hr />
 <p><strong>isvalid</strong> - <em>ISVALID   Test handle validity.</em></p>
-<p>TF = ISVALID(H) performs an element-wise check for validity on the 
-    handle elements of H.  The result is a logical array of the same 
-    dimensions as H, where each element is the element-wise validity 
-    result.</p>
-<div class="codehilite"><pre><span></span><code><span class="nv">A</span> <span class="nv">handle</span> <span class="nv">is</span> <span class="nv">invalid</span> <span class="k">if</span> <span class="nv">it</span> <span class="nv">has</span> <span class="nv">been</span> <span class="nv">deleted</span> <span class="nv">or</span> <span class="k">if</span> <span class="nv">it</span> <span class="nv">is</span> <span class="nv">an</span> <span class="nv">element</span>
-<span class="nv">of</span> <span class="nv">a</span> <span class="nv">handle</span> <span class="nv">array</span> <span class="nv">and</span> <span class="nv">has</span> <span class="nv">not</span> <span class="nv">yet</span> <span class="nv">been</span> <span class="nv">initialized</span>.
+<div class="codehilite"><pre><span></span><code><span class="nv">TF</span> <span class="o">=</span> <span class="nv">ISVALID</span><span class="ss">(</span><span class="nv">H</span><span class="ss">)</span> <span class="nv">performs</span> <span class="nv">an</span> <span class="nv">element</span><span class="o">-</span><span class="nv">wise</span> <span class="nv">check</span> <span class="k">for</span> <span class="nv">validity</span> <span class="nv">on</span> <span class="nv">the</span> 
+    <span class="nv">handle</span> <span class="nv">elements</span> <span class="nv">of</span> <span class="nv">H</span>.  <span class="nv">The</span> <span class="nb">result</span> <span class="nv">is</span> <span class="nv">a</span> <span class="nv">logical</span> <span class="nv">array</span> <span class="nv">of</span> <span class="nv">the</span> <span class="nv">same</span> 
+    <span class="nv">dimensions</span> <span class="nv">as</span> <span class="nv">H</span>, <span class="nv">where</span> <span class="nv">each</span> <span class="nv">element</span> <span class="nv">is</span> <span class="nv">the</span> <span class="nv">element</span><span class="o">-</span><span class="nv">wise</span> <span class="nv">validity</span> 
+    <span class="nb">result</span>.
 
-<span class="nv">See</span> <span class="nv">also</span> <span class="nv">VLT</span>.<span class="nv">DATA</span>.<span class="nv">CACHE</span>, <span class="nv">VLT</span>.<span class="nv">DATA</span>.<span class="nv">CACHE</span><span class="o">/</span><span class="nv">DELETE</span>
-</code></pre></div>
+    <span class="nv">A</span> <span class="nv">handle</span> <span class="nv">is</span> <span class="nv">invalid</span> <span class="k">if</span> <span class="nv">it</span> <span class="nv">has</span> <span class="nv">been</span> <span class="nv">deleted</span> <span class="nv">or</span> <span class="k">if</span> <span class="nv">it</span> <span class="nv">is</span> <span class="nv">an</span> <span class="nv">element</span>
+    <span class="nv">of</span> <span class="nv">a</span> <span class="nv">handle</span> <span class="nv">array</span> <span class="nv">and</span> <span class="nv">has</span> <span class="nv">not</span> <span class="nv">yet</span> <span class="nv">been</span> <span class="nv">initialized</span>.
 
-<p>Help for vlt.data.cache/isvalid is inherited from superclass HANDLE</p>
-<div class="codehilite"><pre><span></span><code><span class="nv">Documentation</span> <span class="k">for</span> <span class="nv">vlt</span>.<span class="nv">data</span>.<span class="nv">cache</span><span class="o">/</span><span class="nv">isvalid</span>
-   <span class="nv">doc</span> <span class="nv">handle</span>.<span class="nv">isvalid</span>
+    <span class="nv">See</span> <span class="nv">also</span> <span class="nv">VLT</span>.<span class="nv">DATA</span>.<span class="nv">CACHE</span>, <span class="nv">VLT</span>.<span class="nv">DATA</span>.<span class="nv">CACHE</span><span class="o">/</span><span class="nv">DELETE</span>
+
+<span class="nv">Help</span> <span class="k">for</span> <span class="nv">vlt</span>.<span class="nv">data</span>.<span class="nv">cache</span><span class="o">/</span><span class="nv">isvalid</span> <span class="nv">is</span> <span class="nv">inherited</span> <span class="nv">from</span> <span class="nv">superclass</span> <span class="nv">HANDLE</span>
+
+    <span class="nv">Documentation</span> <span class="k">for</span> <span class="nv">vlt</span>.<span class="nv">data</span>.<span class="nv">cache</span><span class="o">/</span><span class="nv">isvalid</span>
+       <span class="nv">doc</span> <span class="nv">handle</span>.<span class="nv">isvalid</span>
 </code></pre></div>
 
 <hr />
 <p><strong>le</strong> - <em>&lt;= (LE)   Less than or equal relation for handles.</em></p>
-<p>Handles are equal if they are handles for the same object.  All 
-    comparisons use a number associated with each handle object.  Nothing
-    can be assumed about the result of a handle comparison except that the
-    repeated comparison of two handles in the same MATLAB session will 
-    yield the same result.  The order of handle values is purely arbitrary 
-    and has no connection to the state of the handle objects being 
-    compared.</p>
-<div class="codehilite"><pre><span></span><code><span class="nv">H1</span> <span class="o">&lt;=</span> <span class="nv">H2</span> <span class="nv">performs</span> <span class="nv">element</span><span class="o">-</span><span class="nv">wise</span> <span class="nv">comparisons</span> <span class="nv">between</span> <span class="nv">handle</span> <span class="nv">arrays</span> <span class="nv">H1</span> <span class="nv">and</span>
-<span class="nv">H2</span>.  <span class="nv">H1</span> <span class="nv">and</span> <span class="nv">H2</span> <span class="nv">must</span> <span class="nv">be</span> <span class="nv">of</span> <span class="nv">the</span> <span class="nv">same</span> <span class="nv">dimensions</span> <span class="nv">unless</span> <span class="nv">one</span> <span class="nv">is</span> <span class="nv">a</span> <span class="nv">scalar</span>.
-<span class="nv">The</span> <span class="nb">result</span> <span class="nv">is</span> <span class="nv">a</span> <span class="nv">logical</span> <span class="nv">array</span> <span class="nv">of</span> <span class="nv">the</span> <span class="nv">same</span> <span class="nv">dimensions</span>, <span class="nv">where</span> <span class="nv">each</span>
-<span class="nv">element</span> <span class="nv">is</span> <span class="nv">an</span> <span class="nv">element</span><span class="o">-</span><span class="nv">wise</span> <span class="o">&gt;=</span> <span class="nb">result</span>.
+<div class="codehilite"><pre><span></span><code><span class="nv">Handles</span> <span class="nv">are</span> <span class="nv">equal</span> <span class="k">if</span> <span class="nv">they</span> <span class="nv">are</span> <span class="nv">handles</span> <span class="k">for</span> <span class="nv">the</span> <span class="nv">same</span> <span class="nv">object</span>.  <span class="nv">All</span> 
+    <span class="nv">comparisons</span> <span class="nv">use</span> <span class="nv">a</span> <span class="nv">number</span> <span class="nv">associated</span> <span class="nv">with</span> <span class="nv">each</span> <span class="nv">handle</span> <span class="nv">object</span>.  <span class="nv">Nothing</span>
+    <span class="nv">can</span> <span class="nv">be</span> <span class="nv">assumed</span> <span class="nv">about</span> <span class="nv">the</span> <span class="nb">result</span> <span class="nv">of</span> <span class="nv">a</span> <span class="nv">handle</span> <span class="nv">comparison</span> <span class="nv">except</span> <span class="nv">that</span> <span class="nv">the</span>
+    <span class="nv">repeated</span> <span class="nv">comparison</span> <span class="nv">of</span> <span class="nv">two</span> <span class="nv">handles</span> <span class="nv">in</span> <span class="nv">the</span> <span class="nv">same</span> <span class="nv">MATLAB</span> <span class="nv">session</span> <span class="nv">will</span> 
+    <span class="nv">yield</span> <span class="nv">the</span> <span class="nv">same</span> <span class="nb">result</span>.  <span class="nv">The</span> <span class="nv">order</span> <span class="nv">of</span> <span class="nv">handle</span> <span class="nv">values</span> <span class="nv">is</span> <span class="nv">purely</span> <span class="nv">arbitrary</span> 
+    <span class="nv">and</span> <span class="nv">has</span> <span class="nv">no</span> <span class="nv">connection</span> <span class="nv">to</span> <span class="nv">the</span> <span class="nv">state</span> <span class="nv">of</span> <span class="nv">the</span> <span class="nv">handle</span> <span class="nv">objects</span> <span class="nv">being</span> 
+    <span class="nv">compared</span>.
 
-<span class="k">If</span> <span class="nv">one</span> <span class="nv">of</span> <span class="nv">H1</span> <span class="nv">or</span> <span class="nv">H2</span> <span class="nv">is</span> <span class="nv">scalar</span>, <span class="nv">scalar</span> <span class="nv">expansion</span> <span class="nv">is</span> <span class="nv">performed</span> <span class="nv">and</span> <span class="nv">the</span> 
-<span class="nb">result</span> <span class="nv">will</span> <span class="nv">match</span> <span class="nv">the</span> <span class="nv">dimensions</span> <span class="nv">of</span> <span class="nv">the</span> <span class="nv">array</span> <span class="nv">that</span> <span class="nv">is</span> <span class="nv">not</span> <span class="nv">scalar</span>.
+    <span class="nv">H1</span> <span class="o">&lt;=</span> <span class="nv">H2</span> <span class="nv">performs</span> <span class="nv">element</span><span class="o">-</span><span class="nv">wise</span> <span class="nv">comparisons</span> <span class="nv">between</span> <span class="nv">handle</span> <span class="nv">arrays</span> <span class="nv">H1</span> <span class="nv">and</span>
+    <span class="nv">H2</span>.  <span class="nv">H1</span> <span class="nv">and</span> <span class="nv">H2</span> <span class="nv">must</span> <span class="nv">be</span> <span class="nv">of</span> <span class="nv">the</span> <span class="nv">same</span> <span class="nv">dimensions</span> <span class="nv">unless</span> <span class="nv">one</span> <span class="nv">is</span> <span class="nv">a</span> <span class="nv">scalar</span>.
+    <span class="nv">The</span> <span class="nb">result</span> <span class="nv">is</span> <span class="nv">a</span> <span class="nv">logical</span> <span class="nv">array</span> <span class="nv">of</span> <span class="nv">the</span> <span class="nv">same</span> <span class="nv">dimensions</span>, <span class="nv">where</span> <span class="nv">each</span>
+    <span class="nv">element</span> <span class="nv">is</span> <span class="nv">an</span> <span class="nv">element</span><span class="o">-</span><span class="nv">wise</span> <span class="o">&gt;=</span> <span class="nb">result</span>.
 
-<span class="nv">TF</span> <span class="o">=</span> <span class="nv">LE</span><span class="ss">(</span><span class="nv">H1</span>, <span class="nv">H2</span><span class="ss">)</span> <span class="nv">stores</span> <span class="nv">the</span> <span class="nb">result</span> <span class="nv">in</span> <span class="nv">a</span> <span class="nv">logical</span> <span class="nv">array</span> <span class="nv">of</span> <span class="nv">the</span> <span class="nv">same</span> 
-<span class="nv">dimensions</span>.
+    <span class="k">If</span> <span class="nv">one</span> <span class="nv">of</span> <span class="nv">H1</span> <span class="nv">or</span> <span class="nv">H2</span> <span class="nv">is</span> <span class="nv">scalar</span>, <span class="nv">scalar</span> <span class="nv">expansion</span> <span class="nv">is</span> <span class="nv">performed</span> <span class="nv">and</span> <span class="nv">the</span> 
+    <span class="nb">result</span> <span class="nv">will</span> <span class="nv">match</span> <span class="nv">the</span> <span class="nv">dimensions</span> <span class="nv">of</span> <span class="nv">the</span> <span class="nv">array</span> <span class="nv">that</span> <span class="nv">is</span> <span class="nv">not</span> <span class="nv">scalar</span>.
 
-<span class="nv">See</span> <span class="nv">also</span> <span class="nv">VLT</span>.<span class="nv">DATA</span>.<span class="nv">CACHE</span>, <span class="nv">VLT</span>.<span class="nv">DATA</span>.<span class="nv">CACHE</span><span class="o">/</span><span class="nv">EQ</span>, <span class="nv">VLT</span>.<span class="nv">DATA</span>.<span class="nv">CACHE</span><span class="o">/</span><span class="nv">GE</span>, <span class="nv">VLT</span>.<span class="nv">DATA</span>.<span class="nv">CACHE</span><span class="o">/</span><span class="nv">GT</span>, <span class="nv">VLT</span>.<span class="nv">DATA</span>.<span class="nv">CACHE</span><span class="o">/</span><span class="nv">LT</span>, <span class="nv">VLT</span>.<span class="nv">DATA</span>.<span class="nv">CACHE</span><span class="o">/</span><span class="nv">NE</span>
-</code></pre></div>
+    <span class="nv">TF</span> <span class="o">=</span> <span class="nv">LE</span><span class="ss">(</span><span class="nv">H1</span>, <span class="nv">H2</span><span class="ss">)</span> <span class="nv">stores</span> <span class="nv">the</span> <span class="nb">result</span> <span class="nv">in</span> <span class="nv">a</span> <span class="nv">logical</span> <span class="nv">array</span> <span class="nv">of</span> <span class="nv">the</span> <span class="nv">same</span> 
+    <span class="nv">dimensions</span>.
 
-<p>Help for vlt.data.cache/le is inherited from superclass HANDLE</p>
-<div class="codehilite"><pre><span></span><code><span class="nv">Documentation</span> <span class="k">for</span> <span class="nv">vlt</span>.<span class="nv">data</span>.<span class="nv">cache</span><span class="o">/</span><span class="nv">le</span>
-   <span class="nv">doc</span> <span class="nv">handle</span>.<span class="nv">le</span>
+    <span class="nv">See</span> <span class="nv">also</span> <span class="nv">VLT</span>.<span class="nv">DATA</span>.<span class="nv">CACHE</span>, <span class="nv">VLT</span>.<span class="nv">DATA</span>.<span class="nv">CACHE</span><span class="o">/</span><span class="nv">EQ</span>, <span class="nv">VLT</span>.<span class="nv">DATA</span>.<span class="nv">CACHE</span><span class="o">/</span><span class="nv">GE</span>, <span class="nv">VLT</span>.<span class="nv">DATA</span>.<span class="nv">CACHE</span><span class="o">/</span><span class="nv">GT</span>, <span class="nv">VLT</span>.<span class="nv">DATA</span>.<span class="nv">CACHE</span><span class="o">/</span><span class="nv">LT</span>, <span class="nv">VLT</span>.<span class="nv">DATA</span>.<span class="nv">CACHE</span><span class="o">/</span><span class="nv">NE</span>
+
+<span class="nv">Help</span> <span class="k">for</span> <span class="nv">vlt</span>.<span class="nv">data</span>.<span class="nv">cache</span><span class="o">/</span><span class="nv">le</span> <span class="nv">is</span> <span class="nv">inherited</span> <span class="nv">from</span> <span class="nv">superclass</span> <span class="nv">HANDLE</span>
+
+    <span class="nv">Documentation</span> <span class="k">for</span> <span class="nv">vlt</span>.<span class="nv">data</span>.<span class="nv">cache</span><span class="o">/</span><span class="nv">le</span>
+       <span class="nv">doc</span> <span class="nv">handle</span>.<span class="nv">le</span>
 </code></pre></div>
 
 <hr />
 <p><strong>listener</strong> - <em>LISTENER  Add listener for event without binding the listener to the source object.</em></p>
-<p>el = LISTENER(hSource, Eventname, callbackFcn) creates a listener
-    for the event named Eventname.  The source of the event is the handle<br />
-    object hSource.  If hSource is an array of source handles, the listener
-    responds to the named event on any handle in the array.  callbackFcn
-    is a function handle that is invoked when the event is triggered.</p>
-<div class="codehilite"><pre><span></span><code><span class="n">el</span> <span class="o">=</span> <span class="n">LISTENER</span><span class="p">(</span><span class="n">hSource</span><span class="p">,</span> <span class="n">PropName</span><span class="p">,</span> <span class="n">Eventname</span><span class="p">,</span> <span class="n">callback</span><span class="p">)</span> <span class="n">adds</span> <span class="n">a</span> 
-<span class="n">listener</span> <span class="k">for</span> <span class="n">a</span> <span class="n">property</span> <span class="n">event</span><span class="o">.</span>  <span class="n">Eventname</span> <span class="n">must</span> <span class="n">be</span> <span class="n">one</span> <span class="n">of</span>  
-<span class="s1">&#39;PreGet&#39;</span><span class="p">,</span> <span class="s1">&#39;PostGet&#39;</span><span class="p">,</span> <span class="s1">&#39;PreSet&#39;</span><span class="p">,</span> <span class="ow">or</span> <span class="s1">&#39;PostSet&#39;</span><span class="o">.</span> <span class="n">Eventname</span> <span class="n">can</span> <span class="n">be</span> <span class="n">a</span> 
-<span class="n">string</span> <span class="n">sclar</span> <span class="ow">or</span> <span class="n">character</span> <span class="n">vector</span><span class="o">.</span>  <span class="n">PropName</span> <span class="n">must</span> <span class="n">be</span> <span class="n">either</span> <span class="n">a</span> <span class="n">single</span> 
-<span class="n">property</span> <span class="n">name</span> <span class="n">specified</span> <span class="k">as</span> <span class="n">a</span> <span class="n">string</span> <span class="n">scalar</span> <span class="ow">or</span> <span class="n">character</span> <span class="n">vector</span><span class="p">,</span> <span class="ow">or</span> 
-<span class="n">a</span> <span class="n">collection</span> <span class="n">of</span> <span class="n">property</span> <span class="n">names</span> <span class="n">specified</span> <span class="k">as</span> <span class="n">a</span> <span class="n">cell</span> <span class="n">array</span> <span class="n">of</span> <span class="n">character</span> 
-<span class="n">vectors</span> <span class="ow">or</span> <span class="n">a</span> <span class="n">string</span> <span class="n">array</span><span class="p">,</span> <span class="ow">or</span> <span class="k">as</span> <span class="n">an</span> <span class="n">array</span> <span class="n">of</span> <span class="n">one</span> <span class="n">ore</span> <span class="n">more</span> 
-<span class="n">meta</span><span class="o">.</span><span class="n">property</span> <span class="n">objects</span><span class="o">.</span> <span class="n">The</span> <span class="n">properties</span> <span class="n">must</span> <span class="n">belong</span> <span class="n">to</span> <span class="n">the</span> <span class="k">class</span> <span class="n">of</span> 
-<span class="n">hSource</span><span class="o">.</span>  <span class="n">If</span> <span class="n">hSource</span> <span class="k">is</span> <span class="n">scalar</span><span class="p">,</span> <span class="n">PropName</span> <span class="n">can</span> <span class="n">include</span> <span class="n">dynamic</span> 
-<span class="n">properties</span><span class="o">.</span>
+<div class="codehilite"><pre><span></span><code><span class="n">el</span> <span class="o">=</span> <span class="n">LISTENER</span><span class="p">(</span><span class="n">hSource</span><span class="p">,</span> <span class="n">Eventname</span><span class="p">,</span> <span class="n">callbackFcn</span><span class="p">)</span> <span class="n">creates</span> <span class="n">a</span> <span class="n">listener</span>
+    <span class="k">for</span> <span class="n">the</span> <span class="n">event</span> <span class="n">named</span> <span class="n">Eventname</span><span class="o">.</span>  <span class="n">The</span> <span class="n">source</span> <span class="n">of</span> <span class="n">the</span> <span class="n">event</span> <span class="k">is</span> <span class="n">the</span> <span class="n">handle</span>  
+    <span class="n">object</span> <span class="n">hSource</span><span class="o">.</span>  <span class="n">If</span> <span class="n">hSource</span> <span class="k">is</span> <span class="n">an</span> <span class="n">array</span> <span class="n">of</span> <span class="n">source</span> <span class="n">handles</span><span class="p">,</span> <span class="n">the</span> <span class="n">listener</span>
+    <span class="n">responds</span> <span class="n">to</span> <span class="n">the</span> <span class="n">named</span> <span class="n">event</span> <span class="n">on</span> <span class="n">any</span> <span class="n">handle</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">array</span><span class="o">.</span>  <span class="n">callbackFcn</span>
+    <span class="k">is</span> <span class="n">a</span> <span class="n">function</span> <span class="n">handle</span> <span class="n">that</span> <span class="k">is</span> <span class="n">invoked</span> <span class="n">when</span> <span class="n">the</span> <span class="n">event</span> <span class="k">is</span> <span class="n">triggered</span><span class="o">.</span>
 
-<span class="n">For</span> <span class="n">all</span> <span class="n">forms</span><span class="p">,</span> <span class="n">listener</span> <span class="n">returns</span> <span class="n">an</span> <span class="n">event</span><span class="o">.</span><span class="n">listener</span><span class="o">.</span>  <span class="n">To</span> <span class="n">remove</span> <span class="n">a</span>
-<span class="n">listener</span><span class="p">,</span> <span class="n">delete</span> <span class="n">the</span> <span class="n">object</span> <span class="n">returned</span> <span class="n">by</span> <span class="n">listener</span><span class="o">.</span>  <span class="n">For</span> <span class="n">example</span><span class="p">,</span>
-<span class="n">delete</span><span class="p">(</span><span class="n">el</span><span class="p">)</span> <span class="n">calls</span> <span class="n">the</span> <span class="n">handle</span> <span class="k">class</span> <span class="n">delete</span> <span class="n">method</span> <span class="n">to</span> <span class="n">remove</span> <span class="n">the</span> <span class="n">listener</span>
-<span class="ow">and</span> <span class="n">delete</span> <span class="n">it</span> <span class="n">from</span> <span class="n">the</span> <span class="n">workspace</span><span class="o">.</span>  <span class="n">Calling</span> <span class="n">delete</span><span class="p">(</span><span class="n">el</span><span class="p">)</span> <span class="n">on</span> <span class="n">the</span> <span class="n">listener</span>
-<span class="n">object</span> <span class="n">deletes</span> <span class="n">the</span> <span class="n">listener</span><span class="p">,</span> <span class="n">which</span> <span class="n">means</span> <span class="n">the</span> <span class="n">event</span> <span class="n">no</span> <span class="n">longer</span> <span class="n">causes</span>
-<span class="n">the</span> <span class="n">callback</span> <span class="n">function</span> <span class="n">to</span> <span class="n">execute</span><span class="o">.</span>
+    <span class="n">el</span> <span class="o">=</span> <span class="n">LISTENER</span><span class="p">(</span><span class="n">hSource</span><span class="p">,</span> <span class="n">PropName</span><span class="p">,</span> <span class="n">Eventname</span><span class="p">,</span> <span class="n">callback</span><span class="p">)</span> <span class="n">adds</span> <span class="n">a</span> 
+    <span class="n">listener</span> <span class="k">for</span> <span class="n">a</span> <span class="n">property</span> <span class="n">event</span><span class="o">.</span>  <span class="n">Eventname</span> <span class="n">must</span> <span class="n">be</span> <span class="n">one</span> <span class="n">of</span>  
+    <span class="s1">&#39;PreGet&#39;</span><span class="p">,</span> <span class="s1">&#39;PostGet&#39;</span><span class="p">,</span> <span class="s1">&#39;PreSet&#39;</span><span class="p">,</span> <span class="ow">or</span> <span class="s1">&#39;PostSet&#39;</span><span class="o">.</span> <span class="n">Eventname</span> <span class="n">can</span> <span class="n">be</span> <span class="n">a</span> 
+    <span class="n">string</span> <span class="n">sclar</span> <span class="ow">or</span> <span class="n">character</span> <span class="n">vector</span><span class="o">.</span>  <span class="n">PropName</span> <span class="n">must</span> <span class="n">be</span> <span class="n">either</span> <span class="n">a</span> <span class="n">single</span> 
+    <span class="n">property</span> <span class="n">name</span> <span class="n">specified</span> <span class="k">as</span> <span class="n">a</span> <span class="n">string</span> <span class="n">scalar</span> <span class="ow">or</span> <span class="n">character</span> <span class="n">vector</span><span class="p">,</span> <span class="ow">or</span> 
+    <span class="n">a</span> <span class="n">collection</span> <span class="n">of</span> <span class="n">property</span> <span class="n">names</span> <span class="n">specified</span> <span class="k">as</span> <span class="n">a</span> <span class="n">cell</span> <span class="n">array</span> <span class="n">of</span> <span class="n">character</span> 
+    <span class="n">vectors</span> <span class="ow">or</span> <span class="n">a</span> <span class="n">string</span> <span class="n">array</span><span class="p">,</span> <span class="ow">or</span> <span class="k">as</span> <span class="n">an</span> <span class="n">array</span> <span class="n">of</span> <span class="n">one</span> <span class="n">ore</span> <span class="n">more</span> 
+    <span class="n">meta</span><span class="o">.</span><span class="n">property</span> <span class="n">objects</span><span class="o">.</span> <span class="n">The</span> <span class="n">properties</span> <span class="n">must</span> <span class="n">belong</span> <span class="n">to</span> <span class="n">the</span> <span class="k">class</span> <span class="n">of</span> 
+    <span class="n">hSource</span><span class="o">.</span>  <span class="n">If</span> <span class="n">hSource</span> <span class="k">is</span> <span class="n">scalar</span><span class="p">,</span> <span class="n">PropName</span> <span class="n">can</span> <span class="n">include</span> <span class="n">dynamic</span> 
+    <span class="n">properties</span><span class="o">.</span>
 
-<span class="n">LISTENER</span> <span class="n">does</span> <span class="ow">not</span> <span class="n">bind</span> <span class="n">the</span> <span class="n">listener</span><span class="s1">&#39;s lifecycle to the object that is</span>
-<span class="n">the</span> <span class="n">source</span> <span class="n">of</span> <span class="n">the</span> <span class="n">event</span><span class="o">.</span>  <span class="n">Destroying</span> <span class="n">the</span> <span class="n">source</span> <span class="n">object</span> <span class="n">does</span> <span class="ow">not</span> <span class="n">impact</span>
-<span class="n">the</span> <span class="n">lifecycle</span> <span class="n">of</span> <span class="n">the</span> <span class="n">listener</span> <span class="n">object</span><span class="o">.</span>  <span class="n">A</span> <span class="n">listener</span> <span class="n">created</span> <span class="n">with</span> <span class="n">LISTENER</span>
-<span class="n">must</span> <span class="n">be</span> <span class="n">destroyed</span> <span class="n">independently</span> <span class="n">of</span> <span class="n">the</span> <span class="n">source</span> <span class="n">object</span><span class="o">.</span>  <span class="n">Calling</span> 
-<span class="n">delete</span><span class="p">(</span><span class="n">el</span><span class="p">)</span> <span class="n">explicitly</span> <span class="n">destroys</span> <span class="n">the</span> <span class="n">listener</span><span class="o">.</span> <span class="n">Redefining</span> <span class="ow">or</span> <span class="n">clearing</span> 
-<span class="n">the</span> <span class="n">variable</span> <span class="n">containing</span> <span class="n">the</span> <span class="n">listener</span> <span class="n">can</span> <span class="n">delete</span> <span class="n">the</span> <span class="n">listener</span> <span class="k">if</span> <span class="n">no</span> 
-<span class="n">other</span> <span class="n">references</span> <span class="n">to</span> <span class="n">it</span> <span class="n">exist</span><span class="o">.</span>  <span class="n">To</span> <span class="n">tie</span> <span class="n">the</span> <span class="n">lifecycle</span> <span class="n">of</span> <span class="n">the</span> <span class="n">listener</span> <span class="n">to</span> 
-<span class="n">the</span> <span class="n">lifecycle</span> <span class="n">of</span> <span class="n">the</span> <span class="n">source</span> <span class="n">object</span><span class="p">,</span> <span class="n">use</span> <span class="n">addlistener</span><span class="o">.</span>
+    <span class="n">For</span> <span class="n">all</span> <span class="n">forms</span><span class="p">,</span> <span class="n">listener</span> <span class="n">returns</span> <span class="n">an</span> <span class="n">event</span><span class="o">.</span><span class="n">listener</span><span class="o">.</span>  <span class="n">To</span> <span class="n">remove</span> <span class="n">a</span>
+    <span class="n">listener</span><span class="p">,</span> <span class="n">delete</span> <span class="n">the</span> <span class="n">object</span> <span class="n">returned</span> <span class="n">by</span> <span class="n">listener</span><span class="o">.</span>  <span class="n">For</span> <span class="n">example</span><span class="p">,</span>
+    <span class="n">delete</span><span class="p">(</span><span class="n">el</span><span class="p">)</span> <span class="n">calls</span> <span class="n">the</span> <span class="n">handle</span> <span class="k">class</span> <span class="n">delete</span> <span class="n">method</span> <span class="n">to</span> <span class="n">remove</span> <span class="n">the</span> <span class="n">listener</span>
+    <span class="ow">and</span> <span class="n">delete</span> <span class="n">it</span> <span class="n">from</span> <span class="n">the</span> <span class="n">workspace</span><span class="o">.</span>  <span class="n">Calling</span> <span class="n">delete</span><span class="p">(</span><span class="n">el</span><span class="p">)</span> <span class="n">on</span> <span class="n">the</span> <span class="n">listener</span>
+    <span class="n">object</span> <span class="n">deletes</span> <span class="n">the</span> <span class="n">listener</span><span class="p">,</span> <span class="n">which</span> <span class="n">means</span> <span class="n">the</span> <span class="n">event</span> <span class="n">no</span> <span class="n">longer</span> <span class="n">causes</span>
+    <span class="n">the</span> <span class="n">callback</span> <span class="n">function</span> <span class="n">to</span> <span class="n">execute</span><span class="o">.</span> 
 
-<span class="n">See</span> <span class="n">also</span> <span class="n">ADDLISTENER</span><span class="p">,</span> <span class="n">EVENT</span><span class="o">.</span><span class="n">LISTENER</span><span class="p">,</span> <span class="n">VLT</span><span class="o">.</span><span class="n">DATA</span><span class="o">.</span><span class="n">CACHE</span><span class="p">,</span> <span class="n">NOTIFY</span><span class="p">,</span> <span class="n">DELETE</span><span class="p">,</span> <span class="n">META</span><span class="o">.</span><span class="n">PROPERTY</span><span class="p">,</span> <span class="n">EVENTS</span>
-</code></pre></div>
+    <span class="n">LISTENER</span> <span class="n">does</span> <span class="ow">not</span> <span class="n">bind</span> <span class="n">the</span> <span class="n">listener</span><span class="s1">&#39;s lifecycle to the object that is</span>
+    <span class="n">the</span> <span class="n">source</span> <span class="n">of</span> <span class="n">the</span> <span class="n">event</span><span class="o">.</span>  <span class="n">Destroying</span> <span class="n">the</span> <span class="n">source</span> <span class="n">object</span> <span class="n">does</span> <span class="ow">not</span> <span class="n">impact</span>
+    <span class="n">the</span> <span class="n">lifecycle</span> <span class="n">of</span> <span class="n">the</span> <span class="n">listener</span> <span class="n">object</span><span class="o">.</span>  <span class="n">A</span> <span class="n">listener</span> <span class="n">created</span> <span class="n">with</span> <span class="n">LISTENER</span>
+    <span class="n">must</span> <span class="n">be</span> <span class="n">destroyed</span> <span class="n">independently</span> <span class="n">of</span> <span class="n">the</span> <span class="n">source</span> <span class="n">object</span><span class="o">.</span>  <span class="n">Calling</span> 
+    <span class="n">delete</span><span class="p">(</span><span class="n">el</span><span class="p">)</span> <span class="n">explicitly</span> <span class="n">destroys</span> <span class="n">the</span> <span class="n">listener</span><span class="o">.</span> <span class="n">Redefining</span> <span class="ow">or</span> <span class="n">clearing</span> 
+    <span class="n">the</span> <span class="n">variable</span> <span class="n">containing</span> <span class="n">the</span> <span class="n">listener</span> <span class="n">can</span> <span class="n">delete</span> <span class="n">the</span> <span class="n">listener</span> <span class="k">if</span> <span class="n">no</span> 
+    <span class="n">other</span> <span class="n">references</span> <span class="n">to</span> <span class="n">it</span> <span class="n">exist</span><span class="o">.</span>  <span class="n">To</span> <span class="n">tie</span> <span class="n">the</span> <span class="n">lifecycle</span> <span class="n">of</span> <span class="n">the</span> <span class="n">listener</span> <span class="n">to</span> 
+    <span class="n">the</span> <span class="n">lifecycle</span> <span class="n">of</span> <span class="n">the</span> <span class="n">source</span> <span class="n">object</span><span class="p">,</span> <span class="n">use</span> <span class="n">addlistener</span><span class="o">.</span>
 
-<p>Help for vlt.data.cache/listener is inherited from superclass HANDLE</p>
-<div class="codehilite"><pre><span></span><code><span class="nv">Documentation</span> <span class="k">for</span> <span class="nv">vlt</span>.<span class="nv">data</span>.<span class="nv">cache</span><span class="o">/</span><span class="nv">listener</span>
-   <span class="nv">doc</span> <span class="nv">handle</span>.<span class="nv">listener</span>
+    <span class="n">See</span> <span class="n">also</span> <span class="n">ADDLISTENER</span><span class="p">,</span> <span class="n">EVENT</span><span class="o">.</span><span class="n">LISTENER</span><span class="p">,</span> <span class="n">VLT</span><span class="o">.</span><span class="n">DATA</span><span class="o">.</span><span class="n">CACHE</span><span class="p">,</span> <span class="n">NOTIFY</span><span class="p">,</span> <span class="n">DELETE</span><span class="p">,</span> <span class="n">META</span><span class="o">.</span><span class="n">PROPERTY</span><span class="p">,</span> <span class="n">EVENTS</span>
+
+<span class="n">Help</span> <span class="k">for</span> <span class="n">vlt</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">cache</span><span class="o">/</span><span class="n">listener</span> <span class="k">is</span> <span class="n">inherited</span> <span class="n">from</span> <span class="n">superclass</span> <span class="n">HANDLE</span>
+
+    <span class="n">Documentation</span> <span class="k">for</span> <span class="n">vlt</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">cache</span><span class="o">/</span><span class="n">listener</span>
+       <span class="n">doc</span> <span class="n">handle</span><span class="o">.</span><span class="n">listener</span>
 </code></pre></div>
 
 <hr />
 <p><strong>lookup</strong> - <em>retrieve the NDI.CACHE data table corresponding to KEY and TYPE</em></p>
-<p>TABLEENTRY = LOOKUP(CACHE_OBJ, KEY, TYPE)</p>
-<p>Performs a case-sensitive lookup of the CACHE entry whose key and type
-  match KEY and TYPE. The table entry is returned. The table has fields:</p>
-<p>Fieldname         | Description</p>
-<hr />
-<p>key               | The key string
+<div class="codehilite"><pre><span></span><code>TABLEENTRY = LOOKUP(CACHE_OBJ, KEY, TYPE)
+
+  Performs a case-sensitive lookup of the CACHE entry whose key and type
+  match KEY and TYPE. The table entry is returned. The table has fields:
+
+  Fieldname         | Description
+  -----------------------------------------------------
+  key               | The key string
   type              | The type string
   timestamp         | The Matlab date stamp (serial date number, see NOW) when data was stored
   priority          | The priority of maintaining the data (higher is better)
   bytes             | The size of the data in this entry (bytes)
-  data              | The data stored</p>
-<hr />
-<p><strong>lt</strong> - <em>&lt; (LT)   Less than relation for handles.</em></p>
-<p>H1 &lt; H2 performs element-wise comparisons between handle arrays H1 and
-    H2.  H1 and H2 must be of the same dimensions unless one is a scalar.
-    The result is a logical array of the same dimensions, where each
-    element is an element-wise &lt; result.</p>
-<div class="codehilite"><pre><span></span><code><span class="k">If</span> <span class="nv">one</span> <span class="nv">of</span> <span class="nv">H1</span> <span class="nv">or</span> <span class="nv">H2</span> <span class="nv">is</span> <span class="nv">scalar</span>, <span class="nv">scalar</span> <span class="nv">expansion</span> <span class="nv">is</span> <span class="nv">performed</span> <span class="nv">and</span> <span class="nv">the</span> 
-<span class="nb">result</span> <span class="nv">will</span> <span class="nv">match</span> <span class="nv">the</span> <span class="nv">dimensions</span> <span class="nv">of</span> <span class="nv">the</span> <span class="nv">array</span> <span class="nv">that</span> <span class="nv">is</span> <span class="nv">not</span> <span class="nv">scalar</span>.
-
-<span class="nv">TF</span> <span class="o">=</span> <span class="nv">LT</span><span class="ss">(</span><span class="nv">H1</span>, <span class="nv">H2</span><span class="ss">)</span> <span class="nv">stores</span> <span class="nv">the</span> <span class="nb">result</span> <span class="nv">in</span> <span class="nv">a</span> <span class="nv">logical</span> <span class="nv">array</span> <span class="nv">of</span> <span class="nv">the</span> <span class="nv">same</span> 
-<span class="nv">dimensions</span>.
-
-<span class="nv">See</span> <span class="nv">also</span> <span class="nv">VLT</span>.<span class="nv">DATA</span>.<span class="nv">CACHE</span>, <span class="nv">VLT</span>.<span class="nv">DATA</span>.<span class="nv">CACHE</span><span class="o">/</span><span class="nv">EQ</span>, <span class="nv">VLT</span>.<span class="nv">DATA</span>.<span class="nv">CACHE</span><span class="o">/</span><span class="nv">GE</span>, <span class="nv">VLT</span>.<span class="nv">DATA</span>.<span class="nv">CACHE</span><span class="o">/</span><span class="nv">GT</span>, <span class="nv">VLT</span>.<span class="nv">DATA</span>.<span class="nv">CACHE</span><span class="o">/</span><span class="nv">LE</span>, <span class="nv">VLT</span>.<span class="nv">DATA</span>.<span class="nv">CACHE</span><span class="o">/</span><span class="nv">NE</span>
+  data              | The data stored
 </code></pre></div>
 
-<p>Help for vlt.data.cache/lt is inherited from superclass HANDLE</p>
-<div class="codehilite"><pre><span></span><code><span class="nv">Documentation</span> <span class="k">for</span> <span class="nv">vlt</span>.<span class="nv">data</span>.<span class="nv">cache</span><span class="o">/</span><span class="nv">lt</span>
-   <span class="nv">doc</span> <span class="nv">handle</span>.<span class="nv">lt</span>
+<hr />
+<p><strong>lt</strong> - <em>&lt; (LT)   Less than relation for handles.</em></p>
+<div class="codehilite"><pre><span></span><code><span class="nv">H1</span> <span class="o">&lt;</span> <span class="nv">H2</span> <span class="nv">performs</span> <span class="nv">element</span><span class="o">-</span><span class="nv">wise</span> <span class="nv">comparisons</span> <span class="nv">between</span> <span class="nv">handle</span> <span class="nv">arrays</span> <span class="nv">H1</span> <span class="nv">and</span>
+    <span class="nv">H2</span>.  <span class="nv">H1</span> <span class="nv">and</span> <span class="nv">H2</span> <span class="nv">must</span> <span class="nv">be</span> <span class="nv">of</span> <span class="nv">the</span> <span class="nv">same</span> <span class="nv">dimensions</span> <span class="nv">unless</span> <span class="nv">one</span> <span class="nv">is</span> <span class="nv">a</span> <span class="nv">scalar</span>.
+    <span class="nv">The</span> <span class="nb">result</span> <span class="nv">is</span> <span class="nv">a</span> <span class="nv">logical</span> <span class="nv">array</span> <span class="nv">of</span> <span class="nv">the</span> <span class="nv">same</span> <span class="nv">dimensions</span>, <span class="nv">where</span> <span class="nv">each</span>
+    <span class="nv">element</span> <span class="nv">is</span> <span class="nv">an</span> <span class="nv">element</span><span class="o">-</span><span class="nv">wise</span> <span class="o">&lt;</span> <span class="nb">result</span>.
+
+    <span class="k">If</span> <span class="nv">one</span> <span class="nv">of</span> <span class="nv">H1</span> <span class="nv">or</span> <span class="nv">H2</span> <span class="nv">is</span> <span class="nv">scalar</span>, <span class="nv">scalar</span> <span class="nv">expansion</span> <span class="nv">is</span> <span class="nv">performed</span> <span class="nv">and</span> <span class="nv">the</span> 
+    <span class="nb">result</span> <span class="nv">will</span> <span class="nv">match</span> <span class="nv">the</span> <span class="nv">dimensions</span> <span class="nv">of</span> <span class="nv">the</span> <span class="nv">array</span> <span class="nv">that</span> <span class="nv">is</span> <span class="nv">not</span> <span class="nv">scalar</span>.
+
+    <span class="nv">TF</span> <span class="o">=</span> <span class="nv">LT</span><span class="ss">(</span><span class="nv">H1</span>, <span class="nv">H2</span><span class="ss">)</span> <span class="nv">stores</span> <span class="nv">the</span> <span class="nb">result</span> <span class="nv">in</span> <span class="nv">a</span> <span class="nv">logical</span> <span class="nv">array</span> <span class="nv">of</span> <span class="nv">the</span> <span class="nv">same</span> 
+    <span class="nv">dimensions</span>.
+
+    <span class="nv">See</span> <span class="nv">also</span> <span class="nv">VLT</span>.<span class="nv">DATA</span>.<span class="nv">CACHE</span>, <span class="nv">VLT</span>.<span class="nv">DATA</span>.<span class="nv">CACHE</span><span class="o">/</span><span class="nv">EQ</span>, <span class="nv">VLT</span>.<span class="nv">DATA</span>.<span class="nv">CACHE</span><span class="o">/</span><span class="nv">GE</span>, <span class="nv">VLT</span>.<span class="nv">DATA</span>.<span class="nv">CACHE</span><span class="o">/</span><span class="nv">GT</span>, <span class="nv">VLT</span>.<span class="nv">DATA</span>.<span class="nv">CACHE</span><span class="o">/</span><span class="nv">LE</span>, <span class="nv">VLT</span>.<span class="nv">DATA</span>.<span class="nv">CACHE</span><span class="o">/</span><span class="nv">NE</span>
+
+<span class="nv">Help</span> <span class="k">for</span> <span class="nv">vlt</span>.<span class="nv">data</span>.<span class="nv">cache</span><span class="o">/</span><span class="nv">lt</span> <span class="nv">is</span> <span class="nv">inherited</span> <span class="nv">from</span> <span class="nv">superclass</span> <span class="nv">HANDLE</span>
+
+    <span class="nv">Documentation</span> <span class="k">for</span> <span class="nv">vlt</span>.<span class="nv">data</span>.<span class="nv">cache</span><span class="o">/</span><span class="nv">lt</span>
+       <span class="nv">doc</span> <span class="nv">handle</span>.<span class="nv">lt</span>
 </code></pre></div>
 
 <hr />
 <p><strong>ne</strong> - <em>~= (NE)   Not equal relation for handles.</em></p>
-<p>Handles are equal if they are handles for the same object and are 
-    unequal otherwise.</p>
-<div class="codehilite"><pre><span></span><code><span class="nv">H1</span> <span class="o">~=</span> <span class="nv">H2</span> <span class="nv">performs</span> <span class="nv">element</span><span class="o">-</span><span class="nv">wise</span> <span class="nv">comparisons</span> <span class="nv">between</span> <span class="nv">handle</span> <span class="nv">arrays</span> <span class="nv">H1</span> 
-<span class="nv">and</span> <span class="nv">H2</span>.  <span class="nv">H1</span> <span class="nv">and</span> <span class="nv">H2</span> <span class="nv">must</span> <span class="nv">be</span> <span class="nv">of</span> <span class="nv">the</span> <span class="nv">same</span> <span class="nv">dimensions</span> <span class="nv">unless</span> <span class="nv">one</span> <span class="nv">is</span> <span class="nv">a</span> 
-<span class="nv">scalar</span>.  <span class="nv">The</span> <span class="nb">result</span> <span class="nv">is</span> <span class="nv">a</span> <span class="nv">logical</span> <span class="nv">array</span> <span class="nv">of</span> <span class="nv">the</span> <span class="nv">same</span> <span class="nv">dimensions</span>, <span class="nv">where</span> 
-<span class="nv">each</span> <span class="nv">element</span> <span class="nv">is</span> <span class="nv">an</span> <span class="nv">element</span><span class="o">-</span><span class="nv">wise</span> <span class="nv">equality</span> <span class="nb">result</span>.
+<div class="codehilite"><pre><span></span><code><span class="nv">Handles</span> <span class="nv">are</span> <span class="nv">equal</span> <span class="k">if</span> <span class="nv">they</span> <span class="nv">are</span> <span class="nv">handles</span> <span class="k">for</span> <span class="nv">the</span> <span class="nv">same</span> <span class="nv">object</span> <span class="nv">and</span> <span class="nv">are</span> 
+    <span class="nv">unequal</span> <span class="nv">otherwise</span>.
 
-<span class="k">If</span> <span class="nv">one</span> <span class="nv">of</span> <span class="nv">H1</span> <span class="nv">or</span> <span class="nv">H2</span> <span class="nv">is</span> <span class="nv">scalar</span>, <span class="nv">scalar</span> <span class="nv">expansion</span> <span class="nv">is</span> <span class="nv">performed</span> <span class="nv">and</span> <span class="nv">the</span> 
-<span class="nb">result</span> <span class="nv">will</span> <span class="nv">match</span> <span class="nv">the</span> <span class="nv">dimensions</span> <span class="nv">of</span> <span class="nv">the</span> <span class="nv">array</span> <span class="nv">that</span> <span class="nv">is</span> <span class="nv">not</span> <span class="nv">scalar</span>.
+    <span class="nv">H1</span> <span class="o">~=</span> <span class="nv">H2</span> <span class="nv">performs</span> <span class="nv">element</span><span class="o">-</span><span class="nv">wise</span> <span class="nv">comparisons</span> <span class="nv">between</span> <span class="nv">handle</span> <span class="nv">arrays</span> <span class="nv">H1</span> 
+    <span class="nv">and</span> <span class="nv">H2</span>.  <span class="nv">H1</span> <span class="nv">and</span> <span class="nv">H2</span> <span class="nv">must</span> <span class="nv">be</span> <span class="nv">of</span> <span class="nv">the</span> <span class="nv">same</span> <span class="nv">dimensions</span> <span class="nv">unless</span> <span class="nv">one</span> <span class="nv">is</span> <span class="nv">a</span> 
+    <span class="nv">scalar</span>.  <span class="nv">The</span> <span class="nb">result</span> <span class="nv">is</span> <span class="nv">a</span> <span class="nv">logical</span> <span class="nv">array</span> <span class="nv">of</span> <span class="nv">the</span> <span class="nv">same</span> <span class="nv">dimensions</span>, <span class="nv">where</span> 
+    <span class="nv">each</span> <span class="nv">element</span> <span class="nv">is</span> <span class="nv">an</span> <span class="nv">element</span><span class="o">-</span><span class="nv">wise</span> <span class="nv">equality</span> <span class="nb">result</span>.
 
-<span class="nv">TF</span> <span class="o">=</span> <span class="nv">NE</span><span class="ss">(</span><span class="nv">H1</span>, <span class="nv">H2</span><span class="ss">)</span> <span class="nv">stores</span> <span class="nv">the</span> <span class="nb">result</span> <span class="nv">in</span> <span class="nv">a</span> <span class="nv">logical</span> <span class="nv">array</span> <span class="nv">of</span> <span class="nv">the</span> <span class="nv">same</span>
-<span class="nv">dimensions</span>.
+    <span class="k">If</span> <span class="nv">one</span> <span class="nv">of</span> <span class="nv">H1</span> <span class="nv">or</span> <span class="nv">H2</span> <span class="nv">is</span> <span class="nv">scalar</span>, <span class="nv">scalar</span> <span class="nv">expansion</span> <span class="nv">is</span> <span class="nv">performed</span> <span class="nv">and</span> <span class="nv">the</span> 
+    <span class="nb">result</span> <span class="nv">will</span> <span class="nv">match</span> <span class="nv">the</span> <span class="nv">dimensions</span> <span class="nv">of</span> <span class="nv">the</span> <span class="nv">array</span> <span class="nv">that</span> <span class="nv">is</span> <span class="nv">not</span> <span class="nv">scalar</span>.
 
-<span class="nv">See</span> <span class="nv">also</span> <span class="nv">VLT</span>.<span class="nv">DATA</span>.<span class="nv">CACHE</span>, <span class="nv">VLT</span>.<span class="nv">DATA</span>.<span class="nv">CACHE</span><span class="o">/</span><span class="nv">EQ</span>, <span class="nv">VLT</span>.<span class="nv">DATA</span>.<span class="nv">CACHE</span><span class="o">/</span><span class="nv">GE</span>, <span class="nv">VLT</span>.<span class="nv">DATA</span>.<span class="nv">CACHE</span><span class="o">/</span><span class="nv">GT</span>, <span class="nv">VLT</span>.<span class="nv">DATA</span>.<span class="nv">CACHE</span><span class="o">/</span><span class="nv">LE</span>, <span class="nv">VLT</span>.<span class="nv">DATA</span>.<span class="nv">CACHE</span><span class="o">/</span><span class="nv">LT</span>
-</code></pre></div>
+    <span class="nv">TF</span> <span class="o">=</span> <span class="nv">NE</span><span class="ss">(</span><span class="nv">H1</span>, <span class="nv">H2</span><span class="ss">)</span> <span class="nv">stores</span> <span class="nv">the</span> <span class="nb">result</span> <span class="nv">in</span> <span class="nv">a</span> <span class="nv">logical</span> <span class="nv">array</span> <span class="nv">of</span> <span class="nv">the</span> <span class="nv">same</span>
+    <span class="nv">dimensions</span>.
 
-<p>Help for vlt.data.cache/ne is inherited from superclass HANDLE</p>
-<div class="codehilite"><pre><span></span><code><span class="nv">Documentation</span> <span class="k">for</span> <span class="nv">vlt</span>.<span class="nv">data</span>.<span class="nv">cache</span><span class="o">/</span><span class="nv">ne</span>
-   <span class="nv">doc</span> <span class="nv">handle</span>.<span class="nv">ne</span>
+    <span class="nv">See</span> <span class="nv">also</span> <span class="nv">VLT</span>.<span class="nv">DATA</span>.<span class="nv">CACHE</span>, <span class="nv">VLT</span>.<span class="nv">DATA</span>.<span class="nv">CACHE</span><span class="o">/</span><span class="nv">EQ</span>, <span class="nv">VLT</span>.<span class="nv">DATA</span>.<span class="nv">CACHE</span><span class="o">/</span><span class="nv">GE</span>, <span class="nv">VLT</span>.<span class="nv">DATA</span>.<span class="nv">CACHE</span><span class="o">/</span><span class="nv">GT</span>, <span class="nv">VLT</span>.<span class="nv">DATA</span>.<span class="nv">CACHE</span><span class="o">/</span><span class="nv">LE</span>, <span class="nv">VLT</span>.<span class="nv">DATA</span>.<span class="nv">CACHE</span><span class="o">/</span><span class="nv">LT</span>
+
+<span class="nv">Help</span> <span class="k">for</span> <span class="nv">vlt</span>.<span class="nv">data</span>.<span class="nv">cache</span><span class="o">/</span><span class="nv">ne</span> <span class="nv">is</span> <span class="nv">inherited</span> <span class="nv">from</span> <span class="nv">superclass</span> <span class="nv">HANDLE</span>
+
+    <span class="nv">Documentation</span> <span class="k">for</span> <span class="nv">vlt</span>.<span class="nv">data</span>.<span class="nv">cache</span><span class="o">/</span><span class="nv">ne</span>
+       <span class="nv">doc</span> <span class="nv">handle</span>.<span class="nv">ne</span>
 </code></pre></div>
 
 <hr />
 <p><strong>notify</strong> - <em>NOTIFY   Notify listeners of event.</em></p>
-<p>NOTIFY(H, eventname) notifies listeners added to the event named 
-    eventname for handle object array H that the event is taking place. 
-    eventname can be a string scalar or character vector.<br />
-    H is the array of handles to the event source objects, and 'eventname'
-    must be a character vector.</p>
-<div class="codehilite"><pre><span></span><code><span class="n">NOTIFY</span><span class="p">(</span><span class="n">H</span><span class="p">,</span><span class="n">eventname</span><span class="p">,</span><span class="n">ed</span><span class="p">)</span> <span class="n">provides</span> <span class="n">a</span> <span class="n">way</span> <span class="n">of</span> <span class="n">encapsulating</span> <span class="n">information</span> 
-<span class="n">about</span> <span class="n">an</span> <span class="k">event</span> <span class="n">which</span> <span class="n">can</span> <span class="n">then</span> <span class="n">be</span> <span class="n">accessed</span> <span class="n">by</span> <span class="n">each</span> <span class="n">registered</span> <span class="n">listener</span><span class="p">.</span>
-<span class="n">ed</span> <span class="n">must</span> <span class="n">belong</span> <span class="n">to</span> <span class="n">the</span> <span class="n">EVENT</span><span class="p">.</span><span class="n">EVENTDATA</span> <span class="n">class</span><span class="p">.</span>
+<div class="codehilite"><pre><span></span><code><span class="n">NOTIFY</span><span class="p">(</span><span class="n">H</span><span class="p">,</span> <span class="n">eventname</span><span class="p">)</span> <span class="n">notifies</span> <span class="n">listeners</span> <span class="n">added</span> <span class="n">to</span> <span class="n">the</span> <span class="k">event</span> <span class="n">named</span> 
+    <span class="n">eventname</span> <span class="k">for</span> <span class="n">handle</span> <span class="n">object</span> <span class="n">array</span> <span class="n">H</span> <span class="n">that</span> <span class="n">the</span> <span class="k">event</span> <span class="n">is</span> <span class="n">taking</span> <span class="n">place</span><span class="p">.</span> 
+    <span class="n">eventname</span> <span class="n">can</span> <span class="n">be</span> <span class="n">a</span> <span class="k">string</span> <span class="n">scalar</span> <span class="k">or</span> <span class="n">character</span> <span class="n">vector</span><span class="p">.</span>  
+    <span class="n">H</span> <span class="n">is</span> <span class="n">the</span> <span class="n">array</span> <span class="n">of</span> <span class="n">handles</span> <span class="n">to</span> <span class="n">the</span> <span class="k">event</span> <span class="n">source</span> <span class="n">objects</span><span class="p">,</span> <span class="k">and</span> <span class="p">&#39;</span><span class="n">eventname</span><span class="p">&#39;</span>
+    <span class="n">must</span> <span class="n">be</span> <span class="n">a</span> <span class="n">character</span> <span class="n">vector</span><span class="p">.</span>
 
-<span class="n">See</span> <span class="n">also</span> <span class="n">VLT</span><span class="p">.</span><span class="n">DATA</span><span class="p">.</span><span class="n">CACHE</span><span class="p">,</span> <span class="n">VLT</span><span class="p">.</span><span class="n">DATA</span><span class="p">.</span><span class="n">CACHE</span><span class="o">/</span><span class="n">ADDLISTENER</span><span class="p">,</span> <span class="n">VLT</span><span class="p">.</span><span class="n">DATA</span><span class="p">.</span><span class="n">CACHE</span><span class="o">/</span><span class="n">LISTENER</span><span class="p">,</span> <span class="n">EVENT</span><span class="p">.</span><span class="n">EVENTDATA</span><span class="p">,</span> <span class="n">EVENTS</span>
-</code></pre></div>
+    <span class="n">NOTIFY</span><span class="p">(</span><span class="n">H</span><span class="p">,</span><span class="n">eventname</span><span class="p">,</span><span class="n">ed</span><span class="p">)</span> <span class="n">provides</span> <span class="n">a</span> <span class="n">way</span> <span class="n">of</span> <span class="n">encapsulating</span> <span class="n">information</span> 
+    <span class="n">about</span> <span class="n">an</span> <span class="k">event</span> <span class="n">which</span> <span class="n">can</span> <span class="n">then</span> <span class="n">be</span> <span class="n">accessed</span> <span class="n">by</span> <span class="n">each</span> <span class="n">registered</span> <span class="n">listener</span><span class="p">.</span>
+    <span class="n">ed</span> <span class="n">must</span> <span class="n">belong</span> <span class="n">to</span> <span class="n">the</span> <span class="n">EVENT</span><span class="p">.</span><span class="n">EVENTDATA</span> <span class="n">class</span><span class="p">.</span>
 
-<p>Help for vlt.data.cache/notify is inherited from superclass HANDLE</p>
-<div class="codehilite"><pre><span></span><code><span class="nv">Documentation</span> <span class="k">for</span> <span class="nv">vlt</span>.<span class="nv">data</span>.<span class="nv">cache</span><span class="o">/</span><span class="nv">notify</span>
-   <span class="nv">doc</span> <span class="nv">handle</span>.<span class="nv">notify</span>
+    <span class="n">See</span> <span class="n">also</span> <span class="n">VLT</span><span class="p">.</span><span class="n">DATA</span><span class="p">.</span><span class="n">CACHE</span><span class="p">,</span> <span class="n">VLT</span><span class="p">.</span><span class="n">DATA</span><span class="p">.</span><span class="n">CACHE</span><span class="o">/</span><span class="n">ADDLISTENER</span><span class="p">,</span> <span class="n">VLT</span><span class="p">.</span><span class="n">DATA</span><span class="p">.</span><span class="n">CACHE</span><span class="o">/</span><span class="n">LISTENER</span><span class="p">,</span> <span class="n">EVENT</span><span class="p">.</span><span class="n">EVENTDATA</span><span class="p">,</span> <span class="n">EVENTS</span>
+
+<span class="n">Help</span> <span class="k">for</span> <span class="n">vlt</span><span class="p">.</span><span class="n">data</span><span class="p">.</span><span class="n">cache</span><span class="o">/</span><span class="n">notify</span> <span class="n">is</span> <span class="n">inherited</span> <span class="n">from</span> <span class="n">superclass</span> <span class="n">HANDLE</span>
+
+    <span class="n">Documentation</span> <span class="k">for</span> <span class="n">vlt</span><span class="p">.</span><span class="n">data</span><span class="p">.</span><span class="n">cache</span><span class="o">/</span><span class="n">notify</span>
+       <span class="n">doc</span> <span class="n">handle</span><span class="p">.</span><span class="n">notify</span>
 </code></pre></div>
 
 <hr />
 <p><strong>remove</strong> - <em>remove data from an NDI.CACHE</em></p>
-<p>CACHE_OBJ = REMOVE(CACHE_OBJ, KEY, TYPE, ...)
-    or
-  CACHE_OBJ = REMOVE(CACHE_OBJ, INDEX, [],  ...)</p>
-<p>Removes the data at table index INDEX or data with KEY and TYPE.
-  INDEX can be a single entry or an array of entries.</p>
-<p>If the data entry to be removed is a handle, the handle
-  will be deleted from memory unless the setting is altered with a NAME/VALUE pair.</p>
-<p>This function can be modified by name/value pairs:
-  Parameter (default)         | Description</p>
-<hr />
-<p>leavehandle (0)             | If the 'data' field of a cache entry is a handle,
-                              |   leave it in memory.</p>
-<p>See also: vlt.data.namevaluepair</p>
+<div class="codehilite"><pre><span></span><code><span class="nv">CACHE_OBJ</span> <span class="o">=</span> <span class="nv">REMOVE</span><span class="ss">(</span><span class="nv">CACHE_OBJ</span>, <span class="nv">KEY</span>, <span class="nv">TYPE</span>, ...<span class="ss">)</span>
+    <span class="nv">or</span>
+  <span class="nv">CACHE_OBJ</span> <span class="o">=</span> <span class="nv">REMOVE</span><span class="ss">(</span><span class="nv">CACHE_OBJ</span>, <span class="nv">INDEX</span>, [],  ...<span class="ss">)</span>
+
+  <span class="nv">Removes</span> <span class="nv">the</span> <span class="nv">data</span> <span class="nv">at</span> <span class="nv">table</span> <span class="nv">index</span> <span class="nv">INDEX</span> <span class="nv">or</span> <span class="nv">data</span> <span class="nv">with</span> <span class="nv">KEY</span> <span class="nv">and</span> <span class="nv">TYPE</span>.
+  <span class="nv">INDEX</span> <span class="nv">can</span> <span class="nv">be</span> <span class="nv">a</span> <span class="nv">single</span> <span class="nv">entry</span> <span class="nv">or</span> <span class="nv">an</span> <span class="nv">array</span> <span class="nv">of</span> <span class="nv">entries</span>.
+
+  <span class="k">If</span> <span class="nv">the</span> <span class="nv">data</span> <span class="nv">entry</span> <span class="nv">to</span> <span class="nv">be</span> <span class="nv">removed</span> <span class="nv">is</span> <span class="nv">a</span> <span class="nv">handle</span>, <span class="nv">the</span> <span class="nv">handle</span>
+  <span class="nv">will</span> <span class="nv">be</span> <span class="nv">deleted</span> <span class="nv">from</span> <span class="nv">memory</span> <span class="nv">unless</span> <span class="nv">the</span> <span class="nv">setting</span> <span class="nv">is</span> <span class="nv">altered</span> <span class="nv">with</span> <span class="nv">a</span> <span class="nv">NAME</span><span class="o">/</span><span class="nv">VALUE</span> <span class="nv">pair</span>.
+
+  <span class="nv">This</span> <span class="nv">function</span> <span class="nv">can</span> <span class="nv">be</span> <span class="nv">modified</span> <span class="nv">by</span> <span class="nv">name</span><span class="o">/</span><span class="nv">value</span> <span class="nv">pairs</span>:
+  <span class="nv">Parameter</span> <span class="ss">(</span><span class="nv">default</span><span class="ss">)</span>         <span class="o">|</span> <span class="nv">Description</span>
+  <span class="o">----------------------------------------------------------------</span>
+  <span class="nv">leavehandle</span> <span class="ss">(</span><span class="mi">0</span><span class="ss">)</span>             <span class="o">|</span> <span class="k">If</span> <span class="nv">the</span> <span class="s1">&#39;</span><span class="s">data</span><span class="s1">&#39;</span> <span class="nv">field</span> <span class="nv">of</span> <span class="nv">a</span> <span class="nv">cache</span> <span class="nv">entry</span> <span class="nv">is</span> <span class="nv">a</span> <span class="nv">handle</span>,
+                              <span class="o">|</span>   <span class="nv">leave</span> <span class="nv">it</span> <span class="nv">in</span> <span class="nv">memory</span>.
+
+  <span class="nv">See</span> <span class="nv">also</span>: <span class="nv">vlt</span>.<span class="nv">data</span>.<span class="nv">namevaluepair</span>
+</code></pre></div>
+
 <hr />
 <p><strong>set_replacement_rule</strong> - <em>set the replacement rule for an CACHE object</em></p>
-<p>CACHE_OBJ = SET_REPLACEMENT_RULE(CACHE_OBJ, RULE)</p>
-<p>Sets the replacement rule for a vlt.data.cache object to be used when a new entry
-  would exceed the allowed memory. The rule may be one of the following strings
-  (case is insensitive and will be stored lower case):</p>
-<p>Rule            | Description</p>
-<hr />
-<p>'fifo'          | First in, first out; discard oldest entries first.
-  'lifo'          | Last in, first out; discard newest entries first.
-  'error'         | Don't discard anything, just produce an error saying cache is full</p>
+<div class="codehilite"><pre><span></span><code><span class="nv">CACHE_OBJ</span> <span class="o">=</span> <span class="nv">SET_REPLACEMENT_RULE</span><span class="ss">(</span><span class="nv">CACHE_OBJ</span>, <span class="nv">RULE</span><span class="ss">)</span>
+
+  <span class="nv">Sets</span> <span class="nv">the</span> <span class="nv">replacement</span> <span class="nv">rule</span> <span class="k">for</span> <span class="nv">a</span> <span class="nv">vlt</span>.<span class="nv">data</span>.<span class="nv">cache</span> <span class="nv">object</span> <span class="nv">to</span> <span class="nv">be</span> <span class="nv">used</span> <span class="nv">when</span> <span class="nv">a</span> <span class="nv">new</span> <span class="nv">entry</span>
+  <span class="nv">would</span> <span class="nv">exceed</span> <span class="nv">the</span> <span class="nv">allowed</span> <span class="nv">memory</span>. <span class="nv">The</span> <span class="nv">rule</span> <span class="nv">may</span> <span class="nv">be</span> <span class="nv">one</span> <span class="nv">of</span> <span class="nv">the</span> <span class="nv">following</span> <span class="nv">strings</span>
+  <span class="ss">(</span><span class="nv">case</span> <span class="nv">is</span> <span class="nv">insensitive</span> <span class="nv">and</span> <span class="nv">will</span> <span class="nv">be</span> <span class="nv">stored</span> <span class="nv">lower</span> <span class="nv">case</span><span class="ss">)</span>:
+
+  <span class="nv">Rule</span>            <span class="o">|</span> <span class="nv">Description</span>
+  <span class="o">---------------------------------------------------------</span>
+  <span class="s1">&#39;</span><span class="s">fifo</span><span class="s1">&#39;</span>          <span class="o">|</span> <span class="nv">First</span> <span class="nv">in</span>, <span class="nv">first</span> <span class="nv">out</span><span class="c1">; discard oldest entries first.</span>
+  <span class="s1">&#39;</span><span class="s">lifo</span><span class="s1">&#39;</span>          <span class="o">|</span> <span class="nv">Last</span> <span class="nv">in</span>, <span class="nv">first</span> <span class="nv">out</span><span class="c1">; discard newest entries first.</span>
+  <span class="s1">&#39;</span><span class="s">error</span><span class="s1">&#39;</span>         <span class="o">|</span> <span class="nv">Don</span><span class="s1">&#39;</span><span class="s">t discard anything, just produce an error saying cache is full</span>
+</code></pre></div>
+
 <hr />
                 
               

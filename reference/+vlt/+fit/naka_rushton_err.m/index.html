@@ -3225,6 +3225,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../%2Bgit/git_stash.m/" class="md-nav__link">
+        vlt.git.git_stash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../%2Bgit/git_status.m/" class="md-nav__link">
         vlt.git.git_status
       </a>
@@ -9237,15 +9249,16 @@
                 
                 
                 <h1 id="vltfitnaka_rushton_err">vlt.fit.naka_rushton_err<a class="headerlink" href="#vltfitnaka_rushton_err" title="Permanent link">&para;</a></h1>
-<p>NAKA_RUSHTON_ERR Naka-Rushton function helper function for fitting</p>
-<div class="codehilite"><pre><span></span><code>    <span class="n">ERR</span><span class="o">=</span><span class="n">vlt</span><span class="p">.</span><span class="n">fit</span><span class="p">.</span><span class="n">naka_rushton_err</span><span class="p">(</span><span class="n">P</span><span class="p">,</span><span class="n">C</span><span class="p">,</span><span class="n">DATA</span><span class="p">)</span>
-    <span class="n">P</span> <span class="o">=</span> <span class="p">[</span><span class="n">rm</span> <span class="n">b</span><span class="p">]</span> 
-       <span class="n">returns</span> <span class="n">mean</span> <span class="n">squared</span> <span class="n">error</span> <span class="n">of</span>  <span class="n">p</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="n">c</span><span class="p">.</span><span class="o">/</span><span class="p">(</span><span class="n">p</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="o">+</span><span class="n">c</span><span class="p">)</span> <span class="n">with</span> <span class="n">data</span> 
-    <span class="n">P</span> <span class="o">=</span> <span class="p">[</span><span class="n">rm</span> <span class="n">b</span> <span class="n">n</span><span class="p">]</span>
-       <span class="n">returns</span> <span class="n">mean</span> <span class="n">squared</span> <span class="n">error</span> <span class="n">of</span> <span class="n">p</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="n">cn</span><span class="p">.</span><span class="o">/</span><span class="p">(</span><span class="n">p</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="o">^</span><span class="n">p</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span><span class="o">+</span><span class="n">cn</span><span class="p">)</span> <span class="n">with</span> <span class="n">data</span> 
-       <span class="n">where</span> <span class="n">cn</span><span class="o">=</span><span class="n">c</span><span class="p">.</span><span class="o">^</span><span class="n">p</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
-    <span class="n">P</span> <span class="o">=</span> <span class="p">[</span><span class="n">rm</span> <span class="n">b</span> <span class="n">n</span> <span class="n">s</span><span class="p">]</span>
-       <span class="n">returns</span> <span class="n">mean</span> <span class="n">squared</span> <span class="n">error</span> <span class="n">of</span> <span class="n">p</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="n">c</span><span class="o">^</span><span class="p">(</span><span class="n">p3</span><span class="p">).</span><span class="o">/</span><span class="p">(</span><span class="n">p</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="o">^</span><span class="p">(</span><span class="n">p</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span><span class="o">*</span><span class="n">p</span><span class="p">(</span><span class="mi">4</span><span class="p">))</span><span class="o">+</span><span class="n">c</span><span class="o">^</span><span class="p">(</span><span class="n">p</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span><span class="o">*</span><span class="n">p</span><span class="p">(</span><span class="mi">4</span><span class="p">))</span>
+<div class="codehilite"><pre><span></span><code>   <span class="n">NAKA_RUSHTON_ERR</span> <span class="n">Naka</span><span class="o">-</span><span class="n">Rushton</span> <span class="n">function</span> <span class="n">helper</span> <span class="n">function</span> <span class="k">for</span> <span class="n">fitting</span>
+
+        <span class="n">ERR</span><span class="o">=</span><span class="n">vlt</span><span class="p">.</span><span class="n">fit</span><span class="p">.</span><span class="n">naka_rushton_err</span><span class="p">(</span><span class="n">P</span><span class="p">,</span><span class="n">C</span><span class="p">,</span><span class="n">DATA</span><span class="p">)</span>
+        <span class="n">P</span> <span class="o">=</span> <span class="p">[</span><span class="n">rm</span> <span class="n">b</span><span class="p">]</span> 
+           <span class="n">returns</span> <span class="n">mean</span> <span class="n">squared</span> <span class="n">error</span> <span class="n">of</span>  <span class="n">p</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="n">c</span><span class="p">.</span><span class="o">/</span><span class="p">(</span><span class="n">p</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="o">+</span><span class="n">c</span><span class="p">)</span> <span class="n">with</span> <span class="n">data</span> 
+        <span class="n">P</span> <span class="o">=</span> <span class="p">[</span><span class="n">rm</span> <span class="n">b</span> <span class="n">n</span><span class="p">]</span>
+           <span class="n">returns</span> <span class="n">mean</span> <span class="n">squared</span> <span class="n">error</span> <span class="n">of</span> <span class="n">p</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="n">cn</span><span class="p">.</span><span class="o">/</span><span class="p">(</span><span class="n">p</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="o">^</span><span class="n">p</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span><span class="o">+</span><span class="n">cn</span><span class="p">)</span> <span class="n">with</span> <span class="n">data</span> 
+           <span class="n">where</span> <span class="n">cn</span><span class="o">=</span><span class="n">c</span><span class="p">.</span><span class="o">^</span><span class="n">p</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+        <span class="n">P</span> <span class="o">=</span> <span class="p">[</span><span class="n">rm</span> <span class="n">b</span> <span class="n">n</span> <span class="n">s</span><span class="p">]</span>
+           <span class="n">returns</span> <span class="n">mean</span> <span class="n">squared</span> <span class="n">error</span> <span class="n">of</span> <span class="n">p</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="n">c</span><span class="o">^</span><span class="p">(</span><span class="n">p3</span><span class="p">).</span><span class="o">/</span><span class="p">(</span><span class="n">p</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="o">^</span><span class="p">(</span><span class="n">p</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span><span class="o">*</span><span class="n">p</span><span class="p">(</span><span class="mi">4</span><span class="p">))</span><span class="o">+</span><span class="n">c</span><span class="o">^</span><span class="p">(</span><span class="n">p</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span><span class="o">*</span><span class="n">p</span><span class="p">(</span><span class="mi">4</span><span class="p">))</span>
 </code></pre></div>
                 
               

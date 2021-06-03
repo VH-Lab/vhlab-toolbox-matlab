@@ -3213,6 +3213,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../%2Bgit/git_stash.m/" class="md-nav__link">
+        vlt.git.git_stash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../%2Bgit/git_status.m/" class="md-nav__link">
         vlt.git.git_status
       </a>
@@ -9237,22 +9249,23 @@
                 
                 
                 <h1 id="vltimageinvertcolors">vlt.image.invertcolors<a class="headerlink" href="#vltimageinvertcolors" title="Permanent link">&para;</a></h1>
-<p>Invert colors in an RGB image <strong>UNTESTED</strong></p>
-<div class="codehilite"><pre><span></span><code><span class="nv">RGB_OUT</span> <span class="o">=</span> <span class="nv">INVERTCOLORS</span><span class="ss">(</span><span class="nv">RGB_IN</span><span class="ss">)</span>
+<div class="codehilite"><pre><span></span><code>  <span class="nv">Invert</span> <span class="nv">colors</span> <span class="nv">in</span> <span class="nv">an</span> <span class="nv">RGB</span> <span class="nv">image</span> <span class="o">**</span><span class="nv">UNTESTED</span><span class="o">**</span>
 
-<span class="nv">Inverts</span> <span class="nv">an</span> <span class="nv">RGB</span> <span class="nv">image</span> <span class="nv">RGB_IN</span> <span class="nv">so</span> <span class="nv">that</span> <span class="nv">black</span> <span class="nv">becomes</span> <span class="nv">white</span> <span class="nv">and</span>
-<span class="nv">white</span> <span class="nv">becomes</span> <span class="nv">black</span>.  <span class="nv">The</span> <span class="nv">output</span> <span class="nv">is</span> <span class="nv">returned</span> <span class="nv">in</span> <span class="nv">RGB_OUT</span>.
+    <span class="nv">RGB_OUT</span> <span class="o">=</span> <span class="nv">INVERTCOLORS</span><span class="ss">(</span><span class="nv">RGB_IN</span><span class="ss">)</span>
 
-<span class="nv">RGB_OUT</span> <span class="o">=</span> <span class="nv">INVERTCOLORS</span><span class="ss">(</span><span class="nv">RGB_IN</span>, <span class="nv">C1</span>, <span class="nv">C2</span><span class="ss">)</span>
+    <span class="nv">Inverts</span> <span class="nv">an</span> <span class="nv">RGB</span> <span class="nv">image</span> <span class="nv">RGB_IN</span> <span class="nv">so</span> <span class="nv">that</span> <span class="nv">black</span> <span class="nv">becomes</span> <span class="nv">white</span> <span class="nv">and</span>
+    <span class="nv">white</span> <span class="nv">becomes</span> <span class="nv">black</span>.  <span class="nv">The</span> <span class="nv">output</span> <span class="nv">is</span> <span class="nv">returned</span> <span class="nv">in</span> <span class="nv">RGB_OUT</span>.
 
-<span class="nv">One</span> <span class="nv">can</span> <span class="nv">specify</span> <span class="nv">the</span> <span class="nv">axis</span> <span class="nv">of</span> <span class="nv">reversal</span> <span class="nv">by</span> <span class="nv">providing</span> <span class="mi">2</span> <span class="nv">colors</span>
-<span class="nv">and</span> <span class="nv">the</span> <span class="nv">midpoint</span>.  <span class="k">For</span> <span class="nv">example</span>, <span class="nv">with</span> <span class="nv">the</span> <span class="nv">default</span> <span class="nv">conversion</span>,
-<span class="nv">C1</span> <span class="o">=</span> [<span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span>] <span class="nv">and</span> <span class="nv">C2</span> <span class="o">=</span> [<span class="mi">1</span> <span class="mi">1</span> <span class="mi">1</span>].
+    <span class="nv">RGB_OUT</span> <span class="o">=</span> <span class="nv">INVERTCOLORS</span><span class="ss">(</span><span class="nv">RGB_IN</span>, <span class="nv">C1</span>, <span class="nv">C2</span><span class="ss">)</span>
+
+    <span class="nv">One</span> <span class="nv">can</span> <span class="nv">specify</span> <span class="nv">the</span> <span class="nv">axis</span> <span class="nv">of</span> <span class="nv">reversal</span> <span class="nv">by</span> <span class="nv">providing</span> <span class="mi">2</span> <span class="nv">colors</span>
+    <span class="nv">and</span> <span class="nv">the</span> <span class="nv">midpoint</span>.  <span class="k">For</span> <span class="nv">example</span>, <span class="nv">with</span> <span class="nv">the</span> <span class="nv">default</span> <span class="nv">conversion</span>,
+    <span class="nv">C1</span> <span class="o">=</span> [<span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span>] <span class="nv">and</span> <span class="nv">C2</span> <span class="o">=</span> [<span class="mi">1</span> <span class="mi">1</span> <span class="mi">1</span>].
 
 
-<span class="o">**</span><span class="nv">COMPLETELY</span> <span class="nv">UNTESTED</span><span class="c1">; TEST AND FIX BEFORE USE**</span>
+    <span class="o">**</span><span class="nv">COMPLETELY</span> <span class="nv">UNTESTED</span><span class="c1">; TEST AND FIX BEFORE USE**</span>
 
-<span class="o">**</span> <span class="nv">BUG</span>, <span class="nv">fails</span> <span class="nv">color</span> [<span class="mi">0</span> <span class="mi">0</span> <span class="mi">1</span>] <span class="nv">start</span> <span class="nv">development</span> <span class="nv">there</span> <span class="o">**</span>
+    <span class="o">**</span> <span class="nv">BUG</span>, <span class="nv">fails</span> <span class="nv">color</span> [<span class="mi">0</span> <span class="mi">0</span> <span class="mi">1</span>] <span class="nv">start</span> <span class="nv">development</span> <span class="nv">there</span> <span class="o">**</span>
 </code></pre></div>
                 
               

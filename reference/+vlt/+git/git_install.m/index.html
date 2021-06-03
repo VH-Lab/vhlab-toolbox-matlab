@@ -3225,6 +3225,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../git_stash.m/" class="md-nav__link">
+        vlt.git.git_stash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../git_status.m/" class="md-nav__link">
         vlt.git.git_status
       </a>
@@ -9237,17 +9249,24 @@
                 
                 
                 <h1 id="vltgitgit_install">vlt.git.git_install<a class="headerlink" href="#vltgitgit_install" title="Permanent link">&para;</a></h1>
-<p>GIT_PULL - pull changes to a git repository</p>
-<p>B = vlt.git.git_pull(DIRNAME, REPOSITORY)</p>
-<p>'Install' is our term for forcing the local directory DIRNAME to match the
-  remote REPOSITORY, either by cloning or pulling the latest changes. Any files
-  in the local directory DIRNAME that don't match the remote REPOSITORY are deleted.</p>
-<p>If DIRNAME does not exist, then the repository is cloned.
-  If DIRNAME exists and has local changes, the directory is deleted and cloned fresh.
-  If the DIRNAME exists and has no local changes, the directory is updated by
-  pulling.</p>
-<p>Note: if you have any local changes, vlt.git.git_install will totally remove them.</p>
-<p>B is 1 if the operation is successful.</p>
+<div class="codehilite"><pre><span></span><code>  <span class="nv">GIT_PULL</span> <span class="o">-</span> <span class="nv">pull</span> <span class="nv">changes</span> <span class="nv">to</span> <span class="nv">a</span> <span class="nv">git</span> <span class="nv">repository</span>
+
+  <span class="nv">B</span> <span class="o">=</span> <span class="nv">vlt</span>.<span class="nv">git</span>.<span class="nv">git_pull</span><span class="ss">(</span><span class="k">DIRNAME</span>, <span class="nv">REPOSITORY</span><span class="ss">)</span>
+
+  <span class="s1">&#39;</span><span class="s">Install</span><span class="s1">&#39;</span> <span class="nv">is</span> <span class="nv">our</span> <span class="nv">term</span> <span class="k">for</span> <span class="nv">forcing</span> <span class="nv">the</span> <span class="nv">local</span> <span class="nv">directory</span> <span class="k">DIRNAME</span> <span class="nv">to</span> <span class="nv">match</span> <span class="nv">the</span>
+  <span class="nv">remote</span> <span class="nv">REPOSITORY</span>, <span class="nv">either</span> <span class="nv">by</span> <span class="nv">cloning</span> <span class="nv">or</span> <span class="nv">pulling</span> <span class="nv">the</span> <span class="nv">latest</span> <span class="nv">changes</span>. <span class="nv">Any</span> <span class="nv">files</span>
+  <span class="nv">in</span> <span class="nv">the</span> <span class="nv">local</span> <span class="nv">directory</span> <span class="k">DIRNAME</span> <span class="nv">that</span> <span class="nv">don</span><span class="s1">&#39;</span><span class="s">t match the remote REPOSITORY are deleted.</span>
+
+  <span class="k">If</span> <span class="k">DIRNAME</span> <span class="nv">does</span> <span class="nv">not</span> <span class="nv">exist</span>, <span class="k">then</span> <span class="nv">the</span> <span class="nv">repository</span> <span class="nv">is</span> <span class="nv">cloned</span>.
+  <span class="k">If</span> <span class="k">DIRNAME</span> <span class="nv">exists</span> <span class="nv">and</span> <span class="nv">has</span> <span class="nv">local</span> <span class="nv">changes</span>, <span class="nv">the</span> <span class="nv">changes</span> <span class="nv">are</span> <span class="nv">stashed</span> <span class="nv">and</span> <span class="nv">the</span>
+     <span class="nv">directory</span> <span class="nv">is</span> <span class="nv">updated</span> <span class="nv">by</span> <span class="nv">pulling</span>.
+  <span class="k">If</span> <span class="nv">the</span> <span class="k">DIRNAME</span> <span class="nv">exists</span> <span class="nv">and</span> <span class="nv">has</span> <span class="nv">no</span> <span class="nv">local</span> <span class="nv">changes</span>, <span class="nv">the</span> <span class="nv">directory</span> <span class="nv">is</span> <span class="nv">updated</span> <span class="nv">by</span>
+     <span class="nv">pulling</span>.
+
+  <span class="nv">Note</span>: <span class="k">if</span> <span class="nv">you</span> <span class="nv">have</span> <span class="nv">any</span> <span class="nv">local</span> <span class="nv">changes</span>, <span class="nv">vlt</span>.<span class="nv">git</span>.<span class="nv">git_install</span> <span class="nv">will</span> <span class="nv">stash</span> <span class="nv">them</span> <span class="nv">and</span> <span class="nv">warn</span> <span class="nv">the</span> <span class="nv">user</span>.
+
+  <span class="nv">B</span> <span class="nv">is</span> <span class="mi">1</span> <span class="k">if</span> <span class="nv">the</span> <span class="nv">operation</span> <span class="nv">is</span> <span class="nv">successful</span>.
+</code></pre></div>
                 
               
               

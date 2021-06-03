@@ -3213,6 +3213,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../%2Bgit/git_stash.m/" class="md-nav__link">
+        vlt.git.git_stash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../%2Bgit/git_status.m/" class="md-nav__link">
         vlt.git.git_status
       </a>
@@ -9237,17 +9249,22 @@
                 
                 
                 <h1 id="vltplotshiftedbar">vlt.plot.shiftedbar<a class="headerlink" href="#vltplotshiftedbar" title="Permanent link">&para;</a></h1>
-<p>vlt.plot.shiftedbar - Shifted bar graph</p>
-<p>HB = vlt.plot.shiftedbar(BINS, DATA, SHFT, COL)</p>
-<p>Draws a bar graph that is shifted from the X-axis by SHFT and using color
-   COL (a 1x3 RGB color).  If BINS and DATA have multiple rows, then
-   multiple graphs are drawn, and SHFT can be a vector giving the offset for
-   each graph and COL can be nx3, describing the color for each graph.
-   HB is the set of patch handles created during the drawing.</p>
-<p>vlt.plot.shiftedbar assumes one is plotting histogram data, so BINS should have one
-   more column than DATA, since DATA(i,j) is the number of points between
-   BINS(i,j) and BINS(i,j+1).</p>
-<p>See also:  BAR, BARH, HIST, HISTC</p>
+<div class="codehilite"><pre><span></span><code>  <span class="nv">vlt</span>.<span class="nv">plot</span>.<span class="nv">shiftedbar</span> <span class="o">-</span> <span class="nv">Shifted</span> <span class="nv">bar</span> <span class="nv">graph</span>
+
+   <span class="nv">HB</span> <span class="o">=</span> <span class="nv">vlt</span>.<span class="nv">plot</span>.<span class="nv">shiftedbar</span><span class="ss">(</span><span class="nv">BINS</span>, <span class="nv">DATA</span>, <span class="nv">SHFT</span>, <span class="nv">COL</span><span class="ss">)</span>
+
+   <span class="nv">Draws</span> <span class="nv">a</span> <span class="nv">bar</span> <span class="nv">graph</span> <span class="nv">that</span> <span class="nv">is</span> <span class="nv">shifted</span> <span class="nv">from</span> <span class="nv">the</span> <span class="nv">X</span><span class="o">-</span><span class="nv">axis</span> <span class="nv">by</span> <span class="nv">SHFT</span> <span class="nv">and</span> <span class="nv">using</span> <span class="nv">color</span>
+   <span class="nv">COL</span> <span class="ss">(</span><span class="nv">a</span> <span class="mi">1</span><span class="nv">x3</span> <span class="nv">RGB</span> <span class="nv">color</span><span class="ss">)</span>.  <span class="k">If</span> <span class="nv">BINS</span> <span class="nv">and</span> <span class="nv">DATA</span> <span class="nv">have</span> <span class="nv">multiple</span> <span class="nv">rows</span>, <span class="k">then</span>
+   <span class="nv">multiple</span> <span class="nv">graphs</span> <span class="nv">are</span> <span class="nv">drawn</span>, <span class="nv">and</span> <span class="nv">SHFT</span> <span class="nv">can</span> <span class="nv">be</span> <span class="nv">a</span> <span class="nv">vector</span> <span class="nv">giving</span> <span class="nv">the</span> <span class="nv">offset</span> <span class="k">for</span>
+   <span class="nv">each</span> <span class="nv">graph</span> <span class="nv">and</span> <span class="nv">COL</span> <span class="nv">can</span> <span class="nv">be</span> <span class="nv">nx3</span>, <span class="nv">describing</span> <span class="nv">the</span> <span class="nv">color</span> <span class="k">for</span> <span class="nv">each</span> <span class="nv">graph</span>.
+   <span class="nv">HB</span> <span class="nv">is</span> <span class="nv">the</span> <span class="nv">set</span> <span class="nv">of</span> <span class="nv">patch</span> <span class="nv">handles</span> <span class="nv">created</span> <span class="nv">during</span> <span class="nv">the</span> <span class="nv">drawing</span>.
+
+   <span class="nv">vlt</span>.<span class="nv">plot</span>.<span class="nv">shiftedbar</span> <span class="nv">assumes</span> <span class="nv">one</span> <span class="nv">is</span> <span class="nv">plotting</span> <span class="nv">histogram</span> <span class="nv">data</span>, <span class="nv">so</span> <span class="nv">BINS</span> <span class="nv">should</span> <span class="nv">have</span> <span class="nv">one</span>
+   <span class="nv">more</span> <span class="nv">column</span> <span class="nv">than</span> <span class="nv">DATA</span>, <span class="nv">since</span> <span class="nv">DATA</span><span class="ss">(</span><span class="nv">i</span>,<span class="nv">j</span><span class="ss">)</span> <span class="nv">is</span> <span class="nv">the</span> <span class="nv">number</span> <span class="nv">of</span> <span class="nv">points</span> <span class="nv">between</span>
+   <span class="nv">BINS</span><span class="ss">(</span><span class="nv">i</span>,<span class="nv">j</span><span class="ss">)</span> <span class="nv">and</span> <span class="nv">BINS</span><span class="ss">(</span><span class="nv">i</span>,<span class="nv">j</span><span class="o">+</span><span class="mi">1</span><span class="ss">)</span>.
+
+   <span class="nv">See</span> <span class="nv">also</span>:  <span class="nv">BAR</span>, <span class="nv">BARH</span>, <span class="nv">HIST</span>, <span class="nv">HISTC</span>
+</code></pre></div>
                 
               
               

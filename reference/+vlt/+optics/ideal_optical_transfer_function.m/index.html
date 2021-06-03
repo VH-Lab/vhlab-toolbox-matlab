@@ -3213,6 +3213,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../%2Bgit/git_stash.m/" class="md-nav__link">
+        vlt.git.git_stash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../%2Bgit/git_status.m/" class="md-nav__link">
         vlt.git.git_status
       </a>
@@ -9237,19 +9249,25 @@
                 
                 
                 <h1 id="vltopticsideal_optical_transfer_function">vlt.optics.ideal_optical_transfer_function<a class="headerlink" href="#vltopticsideal_optical_transfer_function" title="Permanent link">&para;</a></h1>
-<p>IDEAL_OPTICAL_TRANSFER_FUNCTION - ideal optical transfer function as a function of spatial frequency</p>
-<p>OTF_VALUE = vlt.optics.ideal_optical_transfer_function(V)</p>
-<p>Computes the optical transfer function of an ideal diffraction-limited imaging system:
-    OTF_VALUE = 2/pi * (acos(abs(v)) - abs(v).<em>sqrt(1-v.</em>v))</p>
-<p>V is the spatial frequency, relative to the high spatial frequency cut off V_cutoff (V_cutoff := 1).</p>
-<p>From Wikipedia:</p>
-<p>Example:
-     v = 0:0.001:1;
-     otf = vlt.optics.ideal_optical_transfer_function(v);
-     figure;
-     plot(v,otf);
-     xlabel('Spatial frequency (relative to max cut-off)');
-     ylabel('Contrast');</p>
+<div class="codehilite"><pre><span></span><code>  <span class="nt">IDEAL_OPTICAL_TRANSFER_FUNCTION</span> <span class="nt">-</span> <span class="nt">ideal</span> <span class="nt">optical</span> <span class="nt">transfer</span> <span class="nt">function</span> <span class="nt">as</span> <span class="nt">a</span> <span class="nt">function</span> <span class="nt">of</span> <span class="nt">spatial</span> <span class="nt">frequency</span>
+
+  <span class="nt">OTF_VALUE</span> <span class="o">=</span> <span class="nt">vlt</span><span class="p">.</span><span class="nc">optics</span><span class="p">.</span><span class="nc">ideal_optical_transfer_function</span><span class="o">(</span><span class="nt">V</span><span class="o">)</span>
+
+  <span class="nt">Computes</span> <span class="nt">the</span> <span class="nt">optical</span> <span class="nt">transfer</span> <span class="nt">function</span> <span class="nt">of</span> <span class="nt">an</span> <span class="nt">ideal</span> <span class="nt">diffraction-limited</span> <span class="nt">imaging</span> <span class="nt">system</span><span class="o">:</span>
+    <span class="nt">OTF_VALUE</span> <span class="o">=</span> <span class="nt">2</span><span class="o">/</span><span class="nt">pi</span> <span class="o">*</span> <span class="o">(</span><span class="nt">acos</span><span class="o">(</span><span class="nt">abs</span><span class="o">(</span><span class="nt">v</span><span class="o">))</span> <span class="nt">-</span> <span class="nt">abs</span><span class="o">(</span><span class="nt">v</span><span class="o">).*</span><span class="nt">sqrt</span><span class="o">(</span><span class="nt">1-v</span><span class="o">.*</span><span class="nt">v</span><span class="o">))</span>
+
+  <span class="nt">V</span> <span class="nt">is</span> <span class="nt">the</span> <span class="nt">spatial</span> <span class="nt">frequency</span><span class="o">,</span> <span class="nt">relative</span> <span class="nt">to</span> <span class="nt">the</span> <span class="nt">high</span> <span class="nt">spatial</span> <span class="nt">frequency</span> <span class="nt">cut</span> <span class="nt">off</span> <span class="nt">V_cutoff</span> <span class="o">(</span><span class="nt">V_cutoff</span> <span class="o">:=</span> <span class="nt">1</span><span class="o">).</span>
+
+  <span class="nt">From</span> <span class="nt">Wikipedia</span><span class="o">:</span>
+
+  <span class="nt">Example</span><span class="o">:</span>
+     <span class="nt">v</span> <span class="o">=</span> <span class="nt">0</span><span class="p">:</span><span class="nd">0</span><span class="p">.</span><span class="nc">001</span><span class="p">:</span><span class="nd">1</span><span class="o">;</span>
+     <span class="nt">otf</span> <span class="o">=</span> <span class="nt">vlt</span><span class="p">.</span><span class="nc">optics</span><span class="p">.</span><span class="nc">ideal_optical_transfer_function</span><span class="o">(</span><span class="nt">v</span><span class="o">);</span>
+     <span class="nt">figure</span><span class="o">;</span>
+     <span class="nt">plot</span><span class="o">(</span><span class="nt">v</span><span class="o">,</span><span class="nt">otf</span><span class="o">);</span>
+     <span class="nt">xlabel</span><span class="o">(</span><span class="s1">&#39;Spatial frequency (relative to max cut-off)&#39;</span><span class="o">);</span>
+     <span class="nt">ylabel</span><span class="o">(</span><span class="s1">&#39;Contrast&#39;</span><span class="o">);</span>
+</code></pre></div>
                 
               
               

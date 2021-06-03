@@ -3225,6 +3225,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../%2Bgit/git_stash.m/" class="md-nav__link">
+        vlt.git.git_stash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../%2Bgit/git_status.m/" class="md-nav__link">
         vlt.git.git_status
       </a>
@@ -9237,19 +9249,25 @@
                 
                 
                 <h1 id="vltdataconditiongroup2cell">vlt.data.conditiongroup2cell<a class="headerlink" href="#vltdataconditiongroup2cell" title="Permanent link">&para;</a></h1>
-<p>CONDITIONGROUP2VALUE - Convert a condition grouping matrix to a cell.</p>
-<p>[DATA, EXPER_INDEXES] = vlt.data.conditiongroup2cell(VALUES, EXPERIMENT_INDEXES, CONDITION_INDEXES)</p>
-<p>Given an array of values VALUES, and another array EXPERIMENT_INDEXES that describes
-   (with an index number) the experiment number that produced each entry of VALUES,
-   and another array CONDITION_INDEXES that describes (with an index number) the
-   experimental condition of each observation in VALUES, this function produces</p>
-<p>DATA - a cell array with the number of entries equal to the number of unique values of
-    CONDITION_INDEXES. Each entry has a matrix of VALUES from that condition.
-   EXPER_INDEXES - a cell array with the number of entries equal to the number of
-    unique values of CONDITION_INDEXES. Each entry EXPER_INDEXES{n}(i) describes the
-   experiment index number that produced the observation DATA{n}(i)</p>
-<p>This function is useful for preparing data in the form expected by vlt.plot.median_within_between_plot</p>
-<p>The documentation is way longer than the code.</p>
+<div class="codehilite"><pre><span></span><code>   <span class="nv">CONDITIONGROUP2VALUE</span> <span class="o">-</span> <span class="nv">Convert</span> <span class="nv">a</span> <span class="nv">condition</span> <span class="nv">grouping</span> <span class="nv">matrix</span> <span class="nv">to</span> <span class="nv">a</span> <span class="nv">cell</span>.
+
+   [<span class="nv">DATA</span>, <span class="nv">EXPER_INDEXES</span>] <span class="o">=</span> <span class="nv">vlt</span>.<span class="nv">data</span>.<span class="nv">conditiongroup2cell</span><span class="ss">(</span><span class="nv">VALUES</span>, <span class="nv">EXPERIMENT_INDEXES</span>, <span class="nv">CONDITION_INDEXES</span><span class="ss">)</span>
+
+   <span class="nv">Given</span> <span class="nv">an</span> <span class="nv">array</span> <span class="nv">of</span> <span class="nv">values</span> <span class="nv">VALUES</span>, <span class="nv">and</span> <span class="nv">another</span> <span class="nv">array</span> <span class="nv">EXPERIMENT_INDEXES</span> <span class="nv">that</span> <span class="nv">describes</span>
+   <span class="ss">(</span><span class="nv">with</span> <span class="nv">an</span> <span class="nv">index</span> <span class="nv">number</span><span class="ss">)</span> <span class="nv">the</span> <span class="nv">experiment</span> <span class="nv">number</span> <span class="nv">that</span> <span class="nv">produced</span> <span class="nv">each</span> <span class="nv">entry</span> <span class="nv">of</span> <span class="nv">VALUES</span>,
+   <span class="nv">and</span> <span class="nv">another</span> <span class="nv">array</span> <span class="nv">CONDITION_INDEXES</span> <span class="nv">that</span> <span class="nv">describes</span> <span class="ss">(</span><span class="nv">with</span> <span class="nv">an</span> <span class="nv">index</span> <span class="nv">number</span><span class="ss">)</span> <span class="nv">the</span>
+   <span class="nv">experimental</span> <span class="nv">condition</span> <span class="nv">of</span> <span class="nv">each</span> <span class="nv">observation</span> <span class="nv">in</span> <span class="nv">VALUES</span>, <span class="nv">this</span> <span class="nv">function</span> <span class="nv">produces</span>
+
+   <span class="nv">DATA</span> <span class="o">-</span> <span class="nv">a</span> <span class="nv">cell</span> <span class="nv">array</span> <span class="nv">with</span> <span class="nv">the</span> <span class="nv">number</span> <span class="nv">of</span> <span class="nv">entries</span> <span class="nv">equal</span> <span class="nv">to</span> <span class="nv">the</span> <span class="nv">number</span> <span class="nv">of</span> <span class="nv">unique</span> <span class="nv">values</span> <span class="nv">of</span>
+    <span class="nv">CONDITION_INDEXES</span>. <span class="nv">Each</span> <span class="nv">entry</span> <span class="nv">has</span> <span class="nv">a</span> <span class="nv">matrix</span> <span class="nv">of</span> <span class="nv">VALUES</span> <span class="nv">from</span> <span class="nv">that</span> <span class="nv">condition</span>.
+   <span class="nv">EXPER_INDEXES</span> <span class="o">-</span> <span class="nv">a</span> <span class="nv">cell</span> <span class="nv">array</span> <span class="nv">with</span> <span class="nv">the</span> <span class="nv">number</span> <span class="nv">of</span> <span class="nv">entries</span> <span class="nv">equal</span> <span class="nv">to</span> <span class="nv">the</span> <span class="nv">number</span> <span class="nv">of</span>
+    <span class="nv">unique</span> <span class="nv">values</span> <span class="nv">of</span> <span class="nv">CONDITION_INDEXES</span>. <span class="nv">Each</span> <span class="nv">entry</span> <span class="nv">EXPER_INDEXES</span>{<span class="nv">n</span>}<span class="ss">(</span><span class="nv">i</span><span class="ss">)</span> <span class="nv">describes</span> <span class="nv">the</span>
+   <span class="nv">experiment</span> <span class="nv">index</span> <span class="nv">number</span> <span class="nv">that</span> <span class="nv">produced</span> <span class="nv">the</span> <span class="nv">observation</span> <span class="nv">DATA</span>{<span class="nv">n</span>}<span class="ss">(</span><span class="nv">i</span><span class="ss">)</span>
+
+   <span class="nv">This</span> <span class="nv">function</span> <span class="nv">is</span> <span class="nv">useful</span> <span class="k">for</span> <span class="nv">preparing</span> <span class="nv">data</span> <span class="nv">in</span> <span class="nv">the</span> <span class="nv">form</span> <span class="nv">expected</span> <span class="nv">by</span> <span class="nv">vlt</span>.<span class="nv">plot</span>.<span class="nv">median_within_between_plot</span>
+
+   <span class="nv">The</span> <span class="nv">documentation</span> <span class="nv">is</span> <span class="nv">way</span> <span class="nv">longer</span> <span class="nv">than</span> <span class="nv">the</span> <span class="nv">code</span>.
+</code></pre></div>
                 
               
               

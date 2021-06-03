@@ -3213,6 +3213,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../../%2Bgit/git_stash.m/" class="md-nav__link">
+        vlt.git.git_stash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../../%2Bgit/git_status.m/" class="md-nav__link">
         vlt.git.git_status
       </a>
@@ -9239,32 +9251,33 @@
                 
                 
                 <h1 id="vltmatlabgraphicsgetline_3dplane">vlt.matlab.graphics.getline_3dplane<a class="headerlink" href="#vltmatlabgraphicsgetline_3dplane" title="Permanent link">&para;</a></h1>
-<p>GETLINE_3DPLANE Select polyline with mouse.
-    [X,Y,Z] = vlt.matlab.graphics.getline_3dplane(FIG) lets you select a polyline in the
-    current axes of figure FIG using the mouse.  Coordinates of
-    the polyline are returned in X and Y and Z.  Use normal button
-    clicks to add points to the polyline.  A shift-, right-, or
-    double-click adds a final point and ends the polyline
-    selection.  Pressing RETURN or ENTER ends the polyline
-    selection without adding a final point.  Pressing BACKSPACE
-    or DELETE removes the previously selected point from the
-    polyline.</p>
-<div class="codehilite"><pre><span></span><code>[X,Y,Z] = vlt.matlab.graphics.getline_3dplane(AX) lets you select a polyline in the axes
-specified by the handle AX.
+<div class="codehilite"><pre><span></span><code> <span class="nv">GETLINE_3DPLANE</span> <span class="nv">Select</span> <span class="nv">polyline</span> <span class="nv">with</span> <span class="nv">mouse</span>.
+    [<span class="nv">X</span>,<span class="nv">Y</span>,<span class="nv">Z</span>] <span class="o">=</span> <span class="nv">vlt</span>.<span class="nv">matlab</span>.<span class="nv">graphics</span>.<span class="nv">getline_3dplane</span><span class="ss">(</span><span class="nv">FIG</span><span class="ss">)</span> <span class="nv">lets</span> <span class="nv">you</span> <span class="nv">select</span> <span class="nv">a</span> <span class="nv">polyline</span> <span class="nv">in</span> <span class="nv">the</span>
+    <span class="nv">current</span> <span class="nv">axes</span> <span class="nv">of</span> <span class="nv">figure</span> <span class="nv">FIG</span> <span class="nv">using</span> <span class="nv">the</span> <span class="nv">mouse</span>.  <span class="nv">Coordinates</span> <span class="nv">of</span>
+    <span class="nv">the</span> <span class="nv">polyline</span> <span class="nv">are</span> <span class="nv">returned</span> <span class="nv">in</span> <span class="nv">X</span> <span class="nv">and</span> <span class="nv">Y</span> <span class="nv">and</span> <span class="nv">Z</span>.  <span class="nv">Use</span> <span class="nv">normal</span> <span class="nv">button</span>
+    <span class="nv">clicks</span> <span class="nv">to</span> <span class="nv">add</span> <span class="nv">points</span> <span class="nv">to</span> <span class="nv">the</span> <span class="nv">polyline</span>.  <span class="nv">A</span> <span class="nv">shift</span><span class="o">-</span>, <span class="nv">right</span><span class="o">-</span>, <span class="nv">or</span>
+    <span class="nv">double</span><span class="o">-</span><span class="nv">click</span> <span class="nv">adds</span> <span class="nv">a</span> <span class="nv">final</span> <span class="nv">point</span> <span class="nv">and</span> <span class="nv">ends</span> <span class="nv">the</span> <span class="nv">polyline</span>
+    <span class="nv">selection</span>.  <span class="nv">Pressing</span> <span class="k">RETURN</span> <span class="nv">or</span> <span class="nv">ENTER</span> <span class="nv">ends</span> <span class="nv">the</span> <span class="nv">polyline</span>
+    <span class="nv">selection</span> <span class="nv">without</span> <span class="nv">adding</span> <span class="nv">a</span> <span class="nv">final</span> <span class="nv">point</span>.  <span class="nv">Pressing</span> <span class="nv">BACKSPACE</span>
+    <span class="nv">or</span> <span class="nv">DELETE</span> <span class="nv">removes</span> <span class="nv">the</span> <span class="nv">previously</span> <span class="nv">selected</span> <span class="nv">point</span> <span class="nv">from</span> <span class="nv">the</span>
+    <span class="nv">polyline</span>.
 
-[X,Y,Z] = vlt.matlab.graphics.getline_3dplane is the same as [X,Y] = vlt.matlab.graphics.getline_3dplane(GCF).
+    [<span class="nv">X</span>,<span class="nv">Y</span>,<span class="nv">Z</span>] <span class="o">=</span> <span class="nv">vlt</span>.<span class="nv">matlab</span>.<span class="nv">graphics</span>.<span class="nv">getline_3dplane</span><span class="ss">(</span><span class="nv">AX</span><span class="ss">)</span> <span class="nv">lets</span> <span class="nv">you</span> <span class="nv">select</span> <span class="nv">a</span> <span class="nv">polyline</span> <span class="nv">in</span> <span class="nv">the</span> <span class="nv">axes</span>
+    <span class="nv">specified</span> <span class="nv">by</span> <span class="nv">the</span> <span class="nv">handle</span> <span class="nv">AX</span>.
 
-[X,Y,Z] = vlt.matlab.graphics.getline_3dplane(...,&#39;closed&#39;) animates and returns a closed
-polygon.
+    [<span class="nv">X</span>,<span class="nv">Y</span>,<span class="nv">Z</span>] <span class="o">=</span> <span class="nv">vlt</span>.<span class="nv">matlab</span>.<span class="nv">graphics</span>.<span class="nv">getline_3dplane</span> <span class="nv">is</span> <span class="nv">the</span> <span class="nv">same</span> <span class="nv">as</span> [<span class="nv">X</span>,<span class="nv">Y</span>] <span class="o">=</span> <span class="nv">vlt</span>.<span class="nv">matlab</span>.<span class="nv">graphics</span>.<span class="nv">getline_3dplane</span><span class="ss">(</span><span class="nv">GCF</span><span class="ss">)</span>.
 
-Example
---------
-    imshow(&#39;moon.tif&#39;)
-    [x,y] = vlt.matlab.graphics.getline_3dplane
+    [<span class="nv">X</span>,<span class="nv">Y</span>,<span class="nv">Z</span>] <span class="o">=</span> <span class="nv">vlt</span>.<span class="nv">matlab</span>.<span class="nv">graphics</span>.<span class="nv">getline_3dplane</span><span class="ss">(</span>...,<span class="s1">&#39;</span><span class="s">closed</span><span class="s1">&#39;</span><span class="ss">)</span> <span class="nv">animates</span> <span class="nv">and</span> <span class="nv">returns</span> <span class="nv">a</span> <span class="nv">closed</span>
+    <span class="nv">polygon</span>.
 
-See also GETLINE, GETRECT, GETPTS.
+    <span class="nv">Example</span>
+    <span class="o">--------</span>
+        <span class="nv">imshow</span><span class="ss">(</span><span class="s1">&#39;</span><span class="s">moon.tif</span><span class="s1">&#39;</span><span class="ss">)</span>
+        [<span class="nv">x</span>,<span class="nv">y</span>] <span class="o">=</span> <span class="nv">vlt</span>.<span class="nv">matlab</span>.<span class="nv">graphics</span>.<span class="nv">getline_3dplane</span> 
 
-Modified from GETLINE by SDV
+    <span class="nv">See</span> <span class="nv">also</span> <span class="nv">GETLINE</span>, <span class="nv">GETRECT</span>, <span class="nv">GETPTS</span>.
+
+    <span class="nv">Modified</span> <span class="nv">from</span> <span class="nv">GETLINE</span> <span class="nv">by</span> <span class="nv">SDV</span>
 </code></pre></div>
                 
               

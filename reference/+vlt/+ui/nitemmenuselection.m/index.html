@@ -3213,6 +3213,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../%2Bgit/git_stash.m/" class="md-nav__link">
+        vlt.git.git_stash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../%2Bgit/git_status.m/" class="md-nav__link">
         vlt.git.git_status
       </a>
@@ -9237,24 +9249,30 @@
                 
                 
                 <h1 id="vltuinitemmenuselection">vlt.ui.nitemmenuselection<a class="headerlink" href="#vltuinitemmenuselection" title="Permanent link">&para;</a></h1>
-<p>NITEMNENUSELECTION - control multiple item selection for a popup menu</p>
-<p>[SELECTED, B, ERRORMSG] = vlt.ui.nitemmenuselection(POPUPMENU_HANDLE, ...)</p>
-<p>Note that you shouldn't allow any item names to begin with
-  ItemPrefix{:} entries.</p>
-<p>This function's performance is modified by name/value pairs:
-  Parameter (default)   | Description</p>
-<hr />
-<p>ItemPrefix (...       | Prefix strings to add to selected items
-   {'x:','y:','z:'})    |    The number of prefixes determines the number
-                        |    of items that can be selected simulatenously (N).
-  value (current        | The value to toggle
-    uicontrol value)    | </p>
-<p>Example:
-    names = {'a','b','c','d'};
-    fig=figure;
-    uicontrol('units','normalized','position',[0.1 0.1 0.2 0.5],'tag','mymenu',...
-        'style','popup','string',names,'callback','vlt.ui.nitemmenuselection(gcbo);');
-    selected=vlt.ui.nitemmenuselection(findobj(fig,'tag','mymenu'),'value',[]);</p>
+<div class="codehilite"><pre><span></span><code>  <span class="nt">NITEMNENUSELECTION</span> <span class="nt">-</span> <span class="nt">control</span> <span class="nt">multiple</span> <span class="nt">item</span> <span class="nt">selection</span> <span class="nt">for</span> <span class="nt">a</span> <span class="nt">popup</span> <span class="nt">menu</span>
+
+  <span class="cp">[</span><span class="nb">SELECTED</span><span class="p">,</span> <span class="nx">B</span><span class="p">,</span> <span class="nx">ERRORMSG</span><span class="cp">]</span> <span class="o">=</span> <span class="nt">vlt</span><span class="p">.</span><span class="nc">ui</span><span class="p">.</span><span class="nc">nitemmenuselection</span><span class="o">(</span><span class="nt">POPUPMENU_HANDLE</span><span class="o">,</span> <span class="o">...)</span>
+
+  <span class="nt">Note</span> <span class="nt">that</span> <span class="nt">you</span> <span class="nt">shouldn</span><span class="s1">&#39;t allow any item names to begin with</span>
+<span class="s1">  ItemPrefix{:} entries.</span>
+
+<span class="s1">  This function&#39;</span><span class="nt">s</span> <span class="nt">performance</span> <span class="nt">is</span> <span class="nt">modified</span> <span class="nt">by</span> <span class="nt">name</span><span class="o">/</span><span class="nt">value</span> <span class="nt">pairs</span><span class="o">:</span>
+  <span class="nt">Parameter</span> <span class="o">(</span><span class="nt">default</span><span class="o">)</span>   <span class="o">|</span> <span class="nt">Description</span>
+  <span class="nt">-----------------------------------------------------------</span>
+  <span class="nt">ItemPrefix</span> <span class="o">(...</span>       <span class="o">|</span> <span class="nt">Prefix</span> <span class="nt">strings</span> <span class="nt">to</span> <span class="nt">add</span> <span class="nt">to</span> <span class="nt">selected</span> <span class="nt">items</span>
+   <span class="p">{</span><span class="err">&#39;</span><span class="n">x</span><span class="p">:</span><span class="s1">&#39;,&#39;</span><span class="n">y</span><span class="o">:</span><span class="s1">&#39;,&#39;</span><span class="n">z</span><span class="o">:</span><span class="s1">&#39;})    |    The number of prefixes determines the number</span>
+<span class="s1">                        |    of items that can be selected simulatenously (N).</span>
+<span class="s1">  value (current        | The value to toggle</span>
+<span class="s1">    uicontrol value)    | </span>
+
+
+<span class="s1">  Example:</span>
+<span class="s1">    names = {&#39;</span><span class="n">a</span><span class="s1">&#39;,&#39;</span><span class="n">b</span><span class="s1">&#39;,&#39;</span><span class="n">c</span><span class="s1">&#39;,&#39;</span><span class="n">d</span><span class="s1">&#39;};</span>
+<span class="s1">    fig=figure;</span>
+<span class="s1">    uicontrol(&#39;</span><span class="n">units</span><span class="s1">&#39;,&#39;</span><span class="n">normalized</span><span class="s1">&#39;,&#39;</span><span class="k">position</span><span class="s1">&#39;,</span><span class="cp">[</span><span class="mf">0.1</span> <span class="mf">0.1</span> <span class="mf">0.2</span> <span class="mf">0.5</span><span class="cp">]</span><span class="s1">,&#39;</span><span class="n">tag</span><span class="s1">&#39;,&#39;</span><span class="n">mymenu</span><span class="s1">&#39;,...</span>
+<span class="s1">        &#39;</span><span class="kc">style</span><span class="s1">&#39;,&#39;</span><span class="n">popup</span><span class="s1">&#39;,&#39;</span><span class="n">string</span><span class="s1">&#39;,names,&#39;</span><span class="n">callback</span><span class="s1">&#39;,&#39;</span><span class="n">vlt</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="nf">nitemmenuselection</span><span class="p">(</span><span class="n">gcbo</span><span class="p">);</span><span class="err">&#39;)</span><span class="p">;</span>
+    <span class="err">selected=vlt.ui.nitemmenuselection(findobj(fig,&#39;tag&#39;,&#39;mymenu&#39;),&#39;value&#39;,</span><span class="cp">[]</span><span class="err">)</span><span class="p">;</span>
+</code></pre></div>
                 
               
               

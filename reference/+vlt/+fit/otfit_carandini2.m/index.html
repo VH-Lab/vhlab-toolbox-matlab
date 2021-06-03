@@ -3225,6 +3225,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../%2Bgit/git_stash.m/" class="md-nav__link">
+        vlt.git.git_stash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../%2Bgit/git_status.m/" class="md-nav__link">
         vlt.git.git_status
       </a>
@@ -9237,22 +9249,31 @@
                 
                 
                 <h1 id="vltfitotfit_carandini2">vlt.fit.otfit_carandini2<a class="headerlink" href="#vltfitotfit_carandini2" title="Permanent link">&para;</a></h1>
-<p>vlt.fit.otfit_carandini Fits orientation curves like Carandini/Ferster 2000</p>
-<p>[Rsp,Rp,Op,sigm,Rn,OnOff,FITCURVE,ERR,R2]=vlt.fit.otfit_carandini(ANGLES,...
-          SPONTHINT, MAXRESPHINT, OTPREFHINT, WIDTHHINT,'DATA',DATA,...) </p>
-<p>Finds the best fit to the function</p>
-<p>R=Rsp+Rp<em>EXP(-(X-Op)^2)/(2</em>sig^2))+Rn<em>EXP(-(X-On)^2/(2</em>sig^2))
-   where R is the response, Rsp is the spontaneous response, Rp is 
-   the response at the preferred angle, Op is the preferred angle,
-   sigm is the tuning width, Rn is the firing rate at 180+Op,
-   OnOff is the offset of the null angle from the preferred.</p>
-<p>One can restrict the range of these parameters by providing
-   descriptor/interval pairs as additional arguments (e.g.,
-   'OnOffInt',[130 230] ).  See vlt.fit.otfit_carandini_conv2 for a list
-   of interval names.</p>
-<p>ERR is the squared error between the fit and the data.</p>
-<p>R2 is the R^2 value of the fit.</p>
-<p>FITCURVE is the fit function at 1 degree intervals (0:1:359).</p>
+<div class="codehilite"><pre><span></span><code>  <span class="nv">vlt</span>.<span class="nv">fit</span>.<span class="nv">otfit_carandini</span> <span class="nv">Fits</span> <span class="nv">orientation</span> <span class="nv">curves</span> <span class="nv">like</span> <span class="nv">Carandini</span><span class="o">/</span><span class="nv">Ferster</span> <span class="mi">2000</span>
+
+   [<span class="nv">Rsp</span>,<span class="nv">Rp</span>,<span class="nv">Op</span>,<span class="nv">sigm</span>,<span class="nv">Rn</span>,<span class="nv">OnOff</span>,<span class="nv">FITCURVE</span>,<span class="nv">ERR</span>,<span class="nv">R2</span>]<span class="o">=</span><span class="nv">vlt</span>.<span class="nv">fit</span>.<span class="nv">otfit_carandini</span><span class="ss">(</span><span class="nv">ANGLES</span>,...
+          <span class="nv">SPONTHINT</span>, <span class="nv">MAXRESPHINT</span>, <span class="nv">OTPREFHINT</span>, <span class="nv">WIDTHHINT</span>,<span class="s1">&#39;</span><span class="s">DATA</span><span class="s1">&#39;</span>,<span class="nv">DATA</span>,...<span class="ss">)</span> 
+
+   <span class="nv">Finds</span> <span class="nv">the</span> <span class="nv">best</span> <span class="nv">fit</span> <span class="nv">to</span> <span class="nv">the</span> <span class="nv">function</span>
+
+   <span class="nv">R</span><span class="o">=</span><span class="nv">Rsp</span><span class="o">+</span><span class="nv">Rp</span><span class="o">*</span><span class="nv">EXP</span><span class="ss">(</span><span class="o">-</span><span class="ss">(</span><span class="nv">X</span><span class="o">-</span><span class="nv">Op</span><span class="ss">)</span><span class="o">^</span><span class="mi">2</span><span class="ss">)</span><span class="o">/</span><span class="ss">(</span><span class="mi">2</span><span class="o">*</span><span class="nv">sig</span><span class="o">^</span><span class="mi">2</span><span class="ss">))</span><span class="o">+</span><span class="nv">Rn</span><span class="o">*</span><span class="nv">EXP</span><span class="ss">(</span><span class="o">-</span><span class="ss">(</span><span class="nv">X</span><span class="o">-</span><span class="nv">On</span><span class="ss">)</span><span class="o">^</span><span class="mi">2</span><span class="o">/</span><span class="ss">(</span><span class="mi">2</span><span class="o">*</span><span class="nv">sig</span><span class="o">^</span><span class="mi">2</span><span class="ss">))</span>
+   <span class="nv">where</span> <span class="nv">R</span> <span class="nv">is</span> <span class="nv">the</span> <span class="nv">response</span>, <span class="nv">Rsp</span> <span class="nv">is</span> <span class="nv">the</span> <span class="nv">spontaneous</span> <span class="nv">response</span>, <span class="nv">Rp</span> <span class="nv">is</span> 
+   <span class="nv">the</span> <span class="nv">response</span> <span class="nv">at</span> <span class="nv">the</span> <span class="nv">preferred</span> <span class="nv">angle</span>, <span class="nv">Op</span> <span class="nv">is</span> <span class="nv">the</span> <span class="nv">preferred</span> <span class="nv">angle</span>,
+   <span class="nv">sigm</span> <span class="nv">is</span> <span class="nv">the</span> <span class="nv">tuning</span> <span class="nv">width</span>, <span class="nv">Rn</span> <span class="nv">is</span> <span class="nv">the</span> <span class="nv">firing</span> <span class="nv">rate</span> <span class="nv">at</span> <span class="mi">180</span><span class="o">+</span><span class="nv">Op</span>,
+   <span class="nv">OnOff</span> <span class="nv">is</span> <span class="nv">the</span> <span class="nv">offset</span> <span class="nv">of</span> <span class="nv">the</span> <span class="nv">null</span> <span class="nv">angle</span> <span class="nv">from</span> <span class="nv">the</span> <span class="nv">preferred</span>.
+
+   <span class="nv">One</span> <span class="nv">can</span> <span class="nv">restrict</span> <span class="nv">the</span> <span class="nv">range</span> <span class="nv">of</span> <span class="nv">these</span> <span class="nv">parameters</span> <span class="nv">by</span> <span class="nv">providing</span>
+   <span class="nv">descriptor</span><span class="o">/</span><span class="nv">interval</span> <span class="nv">pairs</span> <span class="nv">as</span> <span class="nv">additional</span> <span class="nv">arguments</span> <span class="ss">(</span><span class="nv">e</span>.<span class="nv">g</span>.,
+   <span class="s1">&#39;</span><span class="s">OnOffInt</span><span class="s1">&#39;</span>,[<span class="mi">130</span> <span class="mi">230</span>] <span class="ss">)</span>.  <span class="nv">See</span> <span class="nv">vlt</span>.<span class="nv">fit</span>.<span class="nv">otfit_carandini_conv2</span> <span class="k">for</span> <span class="nv">a</span> <span class="nv">list</span>
+   <span class="nv">of</span> <span class="nv">interval</span> <span class="nv">names</span>.
+
+   <span class="nv">ERR</span> <span class="nv">is</span> <span class="nv">the</span> <span class="nv">squared</span> <span class="nv">error</span> <span class="nv">between</span> <span class="nv">the</span> <span class="nv">fit</span> <span class="nv">and</span> <span class="nv">the</span> <span class="nv">data</span>.
+
+   <span class="nv">R2</span> <span class="nv">is</span> <span class="nv">the</span> <span class="nv">R</span><span class="o">^</span><span class="mi">2</span> <span class="nv">value</span> <span class="nv">of</span> <span class="nv">the</span> <span class="nv">fit</span>.
+
+
+   <span class="nv">FITCURVE</span> <span class="nv">is</span> <span class="nv">the</span> <span class="nv">fit</span> <span class="nv">function</span> <span class="nv">at</span> <span class="mi">1</span> <span class="nv">degree</span> <span class="nv">intervals</span> <span class="ss">(</span><span class="mi">0</span>:<span class="mi">1</span>:<span class="mi">359</span><span class="ss">)</span>.
+</code></pre></div>
                 
               
               

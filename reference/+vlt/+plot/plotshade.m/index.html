@@ -3213,6 +3213,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../%2Bgit/git_stash.m/" class="md-nav__link">
+        vlt.git.git_stash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../%2Bgit/git_status.m/" class="md-nav__link">
         vlt.git.git_status
       </a>
@@ -9237,29 +9249,36 @@
                 
                 
                 <h1 id="vltplotplotshade">vlt.plot.plotshade<a class="headerlink" href="#vltplotplotshade" title="Permanent link">&para;</a></h1>
-<p>PLOTSHADE - Make a plot with region above or below a line shaded</p>
-<p>H = vlt.plot.plotshade(X,Y,SHADELINE,COLOR,LOCATIONSTRING)</p>
-<p>Creates a Matlab PATCH object that colors the area of a plot that lies
-   above or below the line Y=SHADELINE, using color COLOR (RGB triple, where
-   each element is in [0..1].  LOCATIONSTRING should be 'above' or 'below' to
-   indicate whether the shading should occur above or below the SHADELINE.
-   A flat line at SHADELINE is drawn at locations where the data should not be
-   shaded (developer note: an option to avoid these lines could be added in the
-   future).</p>
-<p>If SHADELINE is not provided, 0 is assumed.
-   If COLOR is not provided, [0 0 0] (black) is assumed.
-   LOCATIONSTRING should be 'above' or 'below' (assumed 'below' if it
-   is not provided).</p>
-<p>Note that vlt.plot.plotshade does not plot the original points x/y. If that
-   is desired, the user should plot the line in a separate step.</p>
-<p>Example: 
-     x = 0:0.01:10;
-     y = sin(2<em>pi</em>x) + 3;
-     shadeline = 3;
-     figure;
-     plot(x,y,'k-');
-     hold on;
-     vlt.plot.plotshade(x,y,shadeline);</p>
+<div class="codehilite"><pre><span></span><code>  <span class="n">PLOTSHADE</span> <span class="o">-</span> <span class="n">Make</span> <span class="n">a</span> <span class="n">plot</span> <span class="n">with</span> <span class="n">region</span> <span class="n">above</span> <span class="k">or</span> <span class="n">below</span> <span class="n">a</span> <span class="n">line</span> <span class="n">shaded</span>
+
+   <span class="n">H</span> <span class="o">=</span> <span class="n">vlt</span><span class="p">.</span><span class="n">plot</span><span class="p">.</span><span class="n">plotshade</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">Y</span><span class="p">,</span><span class="n">SHADELINE</span><span class="p">,</span><span class="n">COLOR</span><span class="p">,</span><span class="n">LOCATIONSTRING</span><span class="p">)</span>
+
+   <span class="n">Creates</span> <span class="n">a</span> <span class="n">Matlab</span> <span class="n">PATCH</span> <span class="n">object</span> <span class="n">that</span> <span class="n">colors</span> <span class="n">the</span> <span class="n">area</span> <span class="n">of</span> <span class="n">a</span> <span class="n">plot</span> <span class="n">that</span> <span class="n">lies</span>
+   <span class="n">above</span> <span class="k">or</span> <span class="n">below</span> <span class="n">the</span> <span class="n">line</span> <span class="n">Y</span><span class="o">=</span><span class="n">SHADELINE</span><span class="p">,</span> <span class="n">using</span> <span class="n">color</span> <span class="n">COLOR</span> <span class="p">(</span><span class="n">RGB</span> <span class="n">triple</span><span class="p">,</span> <span class="n">where</span>
+   <span class="n">each</span> <span class="n">element</span> <span class="n">is</span> <span class="n">in</span> <span class="p">[</span><span class="mf">0..1</span><span class="p">].</span>  <span class="n">LOCATIONSTRING</span> <span class="n">should</span> <span class="n">be</span> <span class="p">&#39;</span><span class="n">above</span><span class="p">&#39;</span> <span class="k">or</span> <span class="p">&#39;</span><span class="n">below</span><span class="p">&#39;</span> <span class="n">to</span>
+   <span class="n">indicate</span> <span class="n">whether</span> <span class="n">the</span> <span class="n">shading</span> <span class="n">should</span> <span class="n">occur</span> <span class="n">above</span> <span class="k">or</span> <span class="n">below</span> <span class="n">the</span> <span class="n">SHADELINE</span><span class="p">.</span>
+   <span class="n">A</span> <span class="n">flat</span> <span class="n">line</span> <span class="n">at</span> <span class="n">SHADELINE</span> <span class="n">is</span> <span class="n">drawn</span> <span class="n">at</span> <span class="n">locations</span> <span class="n">where</span> <span class="n">the</span> <span class="n">data</span> <span class="n">should</span> <span class="k">not</span> <span class="n">be</span>
+   <span class="n">shaded</span> <span class="p">(</span><span class="n">developer</span> <span class="nl">note:</span> <span class="n">an</span> <span class="n">option</span> <span class="n">to</span> <span class="n">avoid</span> <span class="n">these</span> <span class="n">lines</span> <span class="n">could</span> <span class="n">be</span> <span class="n">added</span> <span class="n">in</span> <span class="n">the</span>
+   <span class="n">future</span><span class="p">).</span>
+
+   <span class="n">If</span> <span class="n">SHADELINE</span> <span class="n">is</span> <span class="k">not</span> <span class="n">provided</span><span class="p">,</span> <span class="mh">0</span> <span class="n">is</span> <span class="n">assumed</span><span class="p">.</span>
+   <span class="n">If</span> <span class="n">COLOR</span> <span class="n">is</span> <span class="k">not</span> <span class="n">provided</span><span class="p">,</span> <span class="p">[</span><span class="mh">0</span> <span class="mh">0</span> <span class="mh">0</span><span class="p">]</span> <span class="p">(</span><span class="n">black</span><span class="p">)</span> <span class="n">is</span> <span class="n">assumed</span><span class="p">.</span>
+   <span class="n">LOCATIONSTRING</span> <span class="n">should</span> <span class="n">be</span> <span class="p">&#39;</span><span class="n">above</span><span class="p">&#39;</span> <span class="k">or</span> <span class="p">&#39;</span><span class="n">below</span><span class="p">&#39;</span> <span class="p">(</span><span class="n">assumed</span> <span class="p">&#39;</span><span class="n">below</span><span class="p">&#39;</span> <span class="k">if</span> <span class="n">it</span>
+   <span class="n">is</span> <span class="k">not</span> <span class="n">provided</span><span class="p">).</span>
+
+   <span class="n">Note</span> <span class="n">that</span> <span class="n">vlt</span><span class="p">.</span><span class="n">plot</span><span class="p">.</span><span class="n">plotshade</span> <span class="n">does</span> <span class="k">not</span> <span class="n">plot</span> <span class="n">the</span> <span class="n">original</span> <span class="n">points</span> <span class="n">x</span><span class="o">/</span><span class="n">y</span><span class="p">.</span> <span class="n">If</span> <span class="n">that</span>
+   <span class="n">is</span> <span class="n">desired</span><span class="p">,</span> <span class="n">the</span> <span class="n">user</span> <span class="n">should</span> <span class="n">plot</span> <span class="n">the</span> <span class="n">line</span> <span class="n">in</span> <span class="n">a</span> <span class="n">separate</span> <span class="n">step</span><span class="p">.</span>
+
+
+   <span class="nl">Example:</span> 
+     <span class="n">x</span> <span class="o">=</span> <span class="mh">0</span><span class="o">:</span><span class="mf">0.01</span><span class="o">:</span><span class="mh">10</span><span class="p">;</span>
+     <span class="n">y</span> <span class="o">=</span> <span class="n">sin</span><span class="p">(</span><span class="mh">2</span><span class="o">*</span><span class="n">pi</span><span class="o">*</span><span class="n">x</span><span class="p">)</span> <span class="o">+</span> <span class="mh">3</span><span class="p">;</span>
+     <span class="n">shadeline</span> <span class="o">=</span> <span class="mh">3</span><span class="p">;</span>
+     <span class="n">figure</span><span class="p">;</span>
+     <span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,&#39;</span><span class="n">k</span><span class="o">-</span><span class="p">&#39;);</span>
+     <span class="n">hold</span> <span class="n">on</span><span class="p">;</span>
+     <span class="n">vlt</span><span class="p">.</span><span class="n">plot</span><span class="p">.</span><span class="n">plotshade</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">shadeline</span><span class="p">);</span>
+</code></pre></div>
                 
               
               

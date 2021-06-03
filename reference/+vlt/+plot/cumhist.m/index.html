@@ -3213,6 +3213,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../%2Bgit/git_stash.m/" class="md-nav__link">
+        vlt.git.git_stash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../%2Bgit/git_status.m/" class="md-nav__link">
         vlt.git.git_status
       </a>
@@ -9237,30 +9249,31 @@
                 
                 
                 <h1 id="vltplotcumhist">vlt.plot.cumhist<a class="headerlink" href="#vltplotcumhist" title="Permanent link">&para;</a></h1>
-<p>vlt.plot.cumhist - Make data for a cumulative histogram plot</p>
-<div class="codehilite"><pre><span></span><code><span class="p">[</span><span class="n">X</span><span class="p">,</span><span class="n">Y</span><span class="p">]</span><span class="o">=</span><span class="n">vlt</span><span class="p">.</span><span class="n">plot</span><span class="p">.</span><span class="n">cumhist</span><span class="p">(</span><span class="n">DATA</span><span class="p">,</span><span class="n">XRANGE</span><span class="p">,</span><span class="n">PERCENT_DELTA</span><span class="p">)</span>
+<div class="codehilite"><pre><span></span><code>  <span class="n">vlt</span><span class="p">.</span><span class="n">plot</span><span class="p">.</span><span class="n">cumhist</span> <span class="o">-</span> <span class="n">Make</span> <span class="n">data</span> <span class="k">for</span> <span class="n">a</span> <span class="n">cumulative</span> <span class="n">histogram</span> <span class="n">plot</span>
 
- <span class="n">Generates</span> <span class="n">X</span> <span class="n">and</span> <span class="n">Y</span> <span class="n">variables</span> <span class="n">suitable</span> <span class="k">for</span> <span class="n">plotting</span> <span class="n">with</span>
- <span class="n">the</span> <span class="n">plot</span> <span class="n">function</span><span class="p">.</span> <span class="n">Y</span> <span class="n">values</span> <span class="n">are</span> <span class="n">generated</span> <span class="k">for</span> <span class="n">percentages</span>
- <span class="n">ranging</span> <span class="n">from</span> <span class="mi">0</span> <span class="n">to</span> <span class="mi">100</span><span class="o">%</span> <span class="k">in</span> <span class="n">steps</span> <span class="n">of</span> <span class="n">PERCENT_DELTA</span><span class="p">.</span> <span class="n">The</span> <span class="n">XRANGE</span>
- <span class="k">for</span> <span class="n">the</span> <span class="n">plot</span> <span class="n">is</span> <span class="n">specified</span> <span class="k">in</span> <span class="n">XRANGE</span> <span class="o">=</span> <span class="p">[</span><span class="n">lowvalue</span> <span class="n">highvalue</span><span class="p">].</span>
+    <span class="p">[</span><span class="n">X</span><span class="p">,</span><span class="n">Y</span><span class="p">]</span><span class="o">=</span><span class="n">vlt</span><span class="p">.</span><span class="n">plot</span><span class="p">.</span><span class="n">cumhist</span><span class="p">(</span><span class="n">DATA</span><span class="p">,</span><span class="n">XRANGE</span><span class="p">,</span><span class="n">PERCENT_DELTA</span><span class="p">)</span>
 
- <span class="nl">Example</span><span class="p">:</span>
+     <span class="n">Generates</span> <span class="n">X</span> <span class="n">and</span> <span class="n">Y</span> <span class="n">variables</span> <span class="n">suitable</span> <span class="k">for</span> <span class="n">plotting</span> <span class="n">with</span>
+     <span class="n">the</span> <span class="n">plot</span> <span class="n">function</span><span class="p">.</span> <span class="n">Y</span> <span class="n">values</span> <span class="n">are</span> <span class="n">generated</span> <span class="k">for</span> <span class="n">percentages</span>
+     <span class="n">ranging</span> <span class="n">from</span> <span class="mi">0</span> <span class="n">to</span> <span class="mi">100</span><span class="o">%</span> <span class="k">in</span> <span class="n">steps</span> <span class="n">of</span> <span class="n">PERCENT_DELTA</span><span class="p">.</span> <span class="n">The</span> <span class="n">XRANGE</span>
+     <span class="k">for</span> <span class="n">the</span> <span class="n">plot</span> <span class="n">is</span> <span class="n">specified</span> <span class="k">in</span> <span class="n">XRANGE</span> <span class="o">=</span> <span class="p">[</span><span class="n">lowvalue</span> <span class="n">highvalue</span><span class="p">].</span>
 
-   <span class="n">r</span><span class="o">=</span><span class="n">randn</span><span class="p">(</span><span class="mi">1000</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span> <span class="o">%</span> <span class="mi">1000</span> <span class="n">normally</span><span class="o">-</span><span class="n">distributed</span> <span class="n">random</span> <span class="n">numbers</span>
-   <span class="n">xrange</span> <span class="o">=</span> <span class="p">[</span><span class="mi">-4</span> <span class="mi">4</span><span class="p">];</span>
-   <span class="n">percent_delta</span> <span class="o">=</span> <span class="mf">0.1</span><span class="p">;</span> <span class="o">%</span> <span class="n">use</span> <span class="n">steps</span> <span class="n">of</span> <span class="mf">0.1</span><span class="o">%</span>
+     <span class="nl">Example</span><span class="p">:</span>
 
-   <span class="p">[</span><span class="n">X</span><span class="p">,</span><span class="n">Y</span><span class="p">]</span> <span class="o">=</span> <span class="n">vlt</span><span class="p">.</span><span class="n">plot</span><span class="p">.</span><span class="n">cumhist</span><span class="p">(</span><span class="n">r</span><span class="p">,</span><span class="n">xrange</span><span class="p">,</span><span class="n">percent_delta</span><span class="p">);</span>
-   <span class="n">figure</span><span class="p">;</span>
-   <span class="n">plot</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">Y</span><span class="p">,</span><span class="err">&#39;</span><span class="n">k</span><span class="o">-</span><span class="err">&#39;</span><span class="p">);</span>
-   <span class="n">hold</span> <span class="n">on</span><span class="p">;</span>
-   <span class="n">plot</span><span class="p">([</span><span class="mi">-4</span> <span class="mi">4</span><span class="p">],[</span><span class="mi">50</span> <span class="mi">50</span><span class="p">],</span><span class="err">&#39;</span><span class="n">k</span><span class="o">--</span><span class="err">&#39;</span><span class="p">);</span> <span class="o">%</span> <span class="n">add</span> <span class="err">&#39;</span><span class="n">median</span><span class="err">&#39;</span> <span class="p">(</span><span class="mi">50</span><span class="o">%-</span><span class="n">tile</span><span class="p">)</span> <span class="n">dashed</span> <span class="n">line</span>
-   <span class="n">box</span> <span class="n">off</span><span class="p">;</span>
-   <span class="n">ylabel</span><span class="p">(</span><span class="err">&#39;</span><span class="n">Percentage</span><span class="err">&#39;</span><span class="p">);</span>
-   <span class="n">xlabel</span><span class="p">(</span><span class="err">&#39;</span><span class="n">Values</span><span class="err">&#39;</span><span class="p">);</span>
+       <span class="n">r</span><span class="o">=</span><span class="n">randn</span><span class="p">(</span><span class="mi">1000</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span> <span class="o">%</span> <span class="mi">1000</span> <span class="n">normally</span><span class="o">-</span><span class="n">distributed</span> <span class="n">random</span> <span class="n">numbers</span>
+       <span class="n">xrange</span> <span class="o">=</span> <span class="p">[</span><span class="mi">-4</span> <span class="mi">4</span><span class="p">];</span>
+       <span class="n">percent_delta</span> <span class="o">=</span> <span class="mf">0.1</span><span class="p">;</span> <span class="o">%</span> <span class="n">use</span> <span class="n">steps</span> <span class="n">of</span> <span class="mf">0.1</span><span class="o">%</span>
 
- <span class="n">See</span> <span class="nl">also</span><span class="p">:</span> <span class="n">PRCTILE</span><span class="p">,</span> <span class="n">CUMSUM</span><span class="p">,</span> <span class="n">HIST</span>
+       <span class="p">[</span><span class="n">X</span><span class="p">,</span><span class="n">Y</span><span class="p">]</span> <span class="o">=</span> <span class="n">vlt</span><span class="p">.</span><span class="n">plot</span><span class="p">.</span><span class="n">cumhist</span><span class="p">(</span><span class="n">r</span><span class="p">,</span><span class="n">xrange</span><span class="p">,</span><span class="n">percent_delta</span><span class="p">);</span>
+       <span class="n">figure</span><span class="p">;</span>
+       <span class="n">plot</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">Y</span><span class="p">,</span><span class="err">&#39;</span><span class="n">k</span><span class="o">-</span><span class="err">&#39;</span><span class="p">);</span>
+       <span class="n">hold</span> <span class="n">on</span><span class="p">;</span>
+       <span class="n">plot</span><span class="p">([</span><span class="mi">-4</span> <span class="mi">4</span><span class="p">],[</span><span class="mi">50</span> <span class="mi">50</span><span class="p">],</span><span class="err">&#39;</span><span class="n">k</span><span class="o">--</span><span class="err">&#39;</span><span class="p">);</span> <span class="o">%</span> <span class="n">add</span> <span class="err">&#39;</span><span class="n">median</span><span class="err">&#39;</span> <span class="p">(</span><span class="mi">50</span><span class="o">%-</span><span class="n">tile</span><span class="p">)</span> <span class="n">dashed</span> <span class="n">line</span>
+       <span class="n">box</span> <span class="n">off</span><span class="p">;</span>
+       <span class="n">ylabel</span><span class="p">(</span><span class="err">&#39;</span><span class="n">Percentage</span><span class="err">&#39;</span><span class="p">);</span>
+       <span class="n">xlabel</span><span class="p">(</span><span class="err">&#39;</span><span class="n">Values</span><span class="err">&#39;</span><span class="p">);</span>
+
+     <span class="n">See</span> <span class="nl">also</span><span class="p">:</span> <span class="n">PRCTILE</span><span class="p">,</span> <span class="n">CUMSUM</span><span class="p">,</span> <span class="n">HIST</span>
 </code></pre></div>
                 
               

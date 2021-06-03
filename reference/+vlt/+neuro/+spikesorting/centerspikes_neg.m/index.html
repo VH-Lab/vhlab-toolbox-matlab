@@ -3213,6 +3213,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../../%2Bgit/git_stash.m/" class="md-nav__link">
+        vlt.git.git_stash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../../%2Bgit/git_status.m/" class="md-nav__link">
         vlt.git.git_status
       </a>
@@ -9239,18 +9251,20 @@
                 
                 
                 <h1 id="vltneurospikesortingcenterspikes_neg">vlt.neuro.spikesorting.centerspikes_neg<a class="headerlink" href="#vltneurospikesortingcenterspikes_neg" title="Permanent link">&para;</a></h1>
-<p>CENTERSPIKES_NEG Center negative-going spike waveforms based on minimum
-   [CENTEREDSPIKES, SHIFTS] = vlt.neuro.spikesorting.centerspikes_neg(SPIKESHAPES, CENTER_RANGE)</p>
-<p>Inputs: SPIKESHAPES: an NxMxD vector where N is the number of spikes, M is the number of
-            samples that comprise each spike waveform, and D is dimensions (i.e., number of
-            channels).
-           CENTER_RANGE: the range, in samples, around the center sample that the program
-            should search to identify the center (e.g., 10)
-   Outputs: 
-           CENTEREDSPIKES: the re-centered spikes; if the center of a spike has shifted, then
-            the edges will be zero padded.
-           SHIFTS: the number of samples the spike has been shifted. Negative means the centered spike
-            was shifted to the left, positive is shifted to the right.</p>
+<div class="codehilite"><pre><span></span><code>  <span class="nt">CENTERSPIKES_NEG</span> <span class="nt">Center</span> <span class="nt">negative-going</span> <span class="nt">spike</span> <span class="nt">waveforms</span> <span class="nt">based</span> <span class="nt">on</span> <span class="nt">minimum</span>
+   <span class="cp">[</span><span class="nx">CENTEREDSPIKES</span><span class="p">,</span> <span class="nx">SHIFTS</span><span class="cp">]</span> <span class="o">=</span> <span class="nt">vlt</span><span class="p">.</span><span class="nc">neuro</span><span class="p">.</span><span class="nc">spikesorting</span><span class="p">.</span><span class="nc">centerspikes_neg</span><span class="o">(</span><span class="nt">SPIKESHAPES</span><span class="o">,</span> <span class="nt">CENTER_RANGE</span><span class="o">)</span>
+
+   <span class="nt">Inputs</span><span class="o">:</span> <span class="nt">SPIKESHAPES</span><span class="o">:</span> <span class="nt">an</span> <span class="nt">NxMxD</span> <span class="nt">vector</span> <span class="nt">where</span> <span class="nt">N</span> <span class="nt">is</span> <span class="nt">the</span> <span class="nt">number</span> <span class="nt">of</span> <span class="nt">spikes</span><span class="o">,</span> <span class="nt">M</span> <span class="nt">is</span> <span class="nt">the</span> <span class="nt">number</span> <span class="nt">of</span>
+            <span class="nt">samples</span> <span class="nt">that</span> <span class="nt">comprise</span> <span class="nt">each</span> <span class="nt">spike</span> <span class="nt">waveform</span><span class="o">,</span> <span class="nt">and</span> <span class="nt">D</span> <span class="nt">is</span> <span class="nt">dimensions</span> <span class="o">(</span><span class="nt">i</span><span class="p">.</span><span class="nc">e</span><span class="o">.,</span> <span class="nt">number</span> <span class="nt">of</span>
+            <span class="nt">channels</span><span class="o">).</span>
+           <span class="nt">CENTER_RANGE</span><span class="o">:</span> <span class="nt">the</span> <span class="nt">range</span><span class="o">,</span> <span class="nt">in</span> <span class="nt">samples</span><span class="o">,</span> <span class="nt">around</span> <span class="nt">the</span> <span class="nt">center</span> <span class="nt">sample</span> <span class="nt">that</span> <span class="nt">the</span> <span class="nt">program</span>
+            <span class="nt">should</span> <span class="nt">search</span> <span class="nt">to</span> <span class="nt">identify</span> <span class="nt">the</span> <span class="nt">center</span> <span class="o">(</span><span class="nt">e</span><span class="p">.</span><span class="nc">g</span><span class="o">.,</span> <span class="nt">10</span><span class="o">)</span>
+   <span class="nt">Outputs</span><span class="o">:</span> 
+           <span class="nt">CENTEREDSPIKES</span><span class="o">:</span> <span class="nt">the</span> <span class="nt">re-centered</span> <span class="nt">spikes</span><span class="o">;</span> <span class="nt">if</span> <span class="nt">the</span> <span class="nt">center</span> <span class="nt">of</span> <span class="nt">a</span> <span class="nt">spike</span> <span class="nt">has</span> <span class="nt">shifted</span><span class="o">,</span> <span class="nt">then</span>
+            <span class="nt">the</span> <span class="nt">edges</span> <span class="nt">will</span> <span class="nt">be</span> <span class="nt">zero</span> <span class="nt">padded</span><span class="o">.</span>
+           <span class="nt">SHIFTS</span><span class="o">:</span> <span class="nt">the</span> <span class="nt">number</span> <span class="nt">of</span> <span class="nt">samples</span> <span class="nt">the</span> <span class="nt">spike</span> <span class="nt">has</span> <span class="nt">been</span> <span class="nt">shifted</span><span class="o">.</span> <span class="nt">Negative</span> <span class="nt">means</span> <span class="nt">the</span> <span class="nt">centered</span> <span class="nt">spike</span>
+            <span class="nt">was</span> <span class="nt">shifted</span> <span class="nt">to</span> <span class="nt">the</span> <span class="nt">left</span><span class="o">,</span> <span class="nt">positive</span> <span class="nt">is</span> <span class="nt">shifted</span> <span class="nt">to</span> <span class="nt">the</span> <span class="nt">right</span><span class="o">.</span>
+</code></pre></div>
                 
               
               

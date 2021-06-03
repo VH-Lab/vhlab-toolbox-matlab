@@ -3213,6 +3213,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../../../%2Bgit/git_stash.m/" class="md-nav__link">
+        vlt.git.git_stash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../../../%2Bgit/git_status.m/" class="md-nav__link">
         vlt.git.git_status
       </a>
@@ -9241,18 +9253,26 @@
                 
                 
                 <h1 id="vltneurovisionoridirrotatedircurve">vlt.neuro.vision.oridir.rotatedircurve<a class="headerlink" href="#vltneurovisionoridirrotatedircurve" title="Permanent link">&para;</a></h1>
-<p>ROTATEDIRCURVE - rotate a direction curve so that it's highest value is at a defined place</p>
-<p>NEWCURVE = vlt.neuro.vision.oridir.rotatedircurve(ANGLES, RESPONSES, PREF_ANGLE_ASSIGNMENT)</p>
-<p>Rotates the direction tuning curve measured at angles ANGLES and 
-   with responses RESPONSES so that the maximum response is at PREF_ANGLE_ASSIGNMENT.</p>
-<p>ANGLES are assumed to run from 0 .. 360.</p>
-<p>NEWCURVE is the shifted response curve that can be plotted with the existing
-   ANGLES measurements.</p>
-<p>The function also has a form:</p>
-<p>NEWCURVE = vlt.neuro.vision.oridir.rotatedircurve(ANGLES, RESPONSES, PREF_ANGLE_ASSIGNMENT, ANCHOR_RESPONSES)</p>
-<p>That will shift the curve RESPONSES based on the responses of a different curve
-   ANCHOR_RESPONSES. This is useful, for example, for shifting the surround tuning
-   curve with respect to the responses of a center tuning curve, for example.</p>
+<div class="codehilite"><pre><span></span><code>  <span class="nv">ROTATEDIRCURVE</span> <span class="o">-</span> <span class="nv">rotate</span> <span class="nv">a</span> <span class="nv">direction</span> <span class="nv">curve</span> <span class="nv">so</span> <span class="nv">that</span> <span class="nv">it</span><span class="s1">&#39;</span><span class="s">s highest value is at a defined place</span>
+
+   <span class="nv">NEWCURVE</span> <span class="o">=</span> <span class="nv">vlt</span>.<span class="nv">neuro</span>.<span class="nv">vision</span>.<span class="nv">oridir</span>.<span class="nv">rotatedircurve</span><span class="ss">(</span><span class="nv">ANGLES</span>, <span class="nv">RESPONSES</span>, <span class="nv">PREF_ANGLE_ASSIGNMENT</span><span class="ss">)</span>
+
+   <span class="nv">Rotates</span> <span class="nv">the</span> <span class="nv">direction</span> <span class="nv">tuning</span> <span class="nv">curve</span> <span class="nv">measured</span> <span class="nv">at</span> <span class="nv">angles</span> <span class="nv">ANGLES</span> <span class="nv">and</span> 
+   <span class="nv">with</span> <span class="nv">responses</span> <span class="nv">RESPONSES</span> <span class="nv">so</span> <span class="nv">that</span> <span class="nv">the</span> <span class="nv">maximum</span> <span class="nv">response</span> <span class="nv">is</span> <span class="nv">at</span> <span class="nv">PREF_ANGLE_ASSIGNMENT</span>.
+
+   <span class="nv">ANGLES</span> <span class="nv">are</span> <span class="nv">assumed</span> <span class="nv">to</span> <span class="nv">run</span> <span class="nv">from</span> <span class="mi">0</span> .. <span class="mi">360</span>.
+
+   <span class="nv">NEWCURVE</span> <span class="nv">is</span> <span class="nv">the</span> <span class="nv">shifted</span> <span class="nv">response</span> <span class="nv">curve</span> <span class="nv">that</span> <span class="nv">can</span> <span class="nv">be</span> <span class="nv">plotted</span> <span class="nv">with</span> <span class="nv">the</span> <span class="nv">existing</span>
+   <span class="nv">ANGLES</span> <span class="nv">measurements</span>.
+
+   <span class="nv">The</span> <span class="nv">function</span> <span class="nv">also</span> <span class="nv">has</span> <span class="nv">a</span> <span class="nv">form</span>:
+
+   <span class="nv">NEWCURVE</span> <span class="o">=</span> <span class="nv">vlt</span>.<span class="nv">neuro</span>.<span class="nv">vision</span>.<span class="nv">oridir</span>.<span class="nv">rotatedircurve</span><span class="ss">(</span><span class="nv">ANGLES</span>, <span class="nv">RESPONSES</span>, <span class="nv">PREF_ANGLE_ASSIGNMENT</span>, <span class="nv">ANCHOR_RESPONSES</span><span class="ss">)</span>
+
+   <span class="nv">That</span> <span class="nv">will</span> <span class="nv">shift</span> <span class="nv">the</span> <span class="nv">curve</span> <span class="nv">RESPONSES</span> <span class="nv">based</span> <span class="nv">on</span> <span class="nv">the</span> <span class="nv">responses</span> <span class="nv">of</span> <span class="nv">a</span> <span class="nv">different</span> <span class="nv">curve</span>
+   <span class="nv">ANCHOR_RESPONSES</span>. <span class="nv">This</span> <span class="nv">is</span> <span class="nv">useful</span>, <span class="k">for</span> <span class="nv">example</span>, <span class="k">for</span> <span class="nv">shifting</span> <span class="nv">the</span> <span class="nv">surround</span> <span class="nv">tuning</span>
+   <span class="nv">curve</span> <span class="nv">with</span> <span class="nv">respect</span> <span class="nv">to</span> <span class="nv">the</span> <span class="nv">responses</span> <span class="nv">of</span> <span class="nv">a</span> <span class="nv">center</span> <span class="nv">tuning</span> <span class="nv">curve</span>, <span class="k">for</span> <span class="nv">example</span>.
+</code></pre></div>
                 
               
               

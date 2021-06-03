@@ -3213,6 +3213,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../%2Bgit/git_stash.m/" class="md-nav__link">
+        vlt.git.git_stash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../%2Bgit/git_status.m/" class="md-nav__link">
         vlt.git.git_status
       </a>
@@ -9237,25 +9249,26 @@
                 
                 
                 <h1 id="vltimagepolyflare">vlt.image.polyflare<a class="headerlink" href="#vltimagepolyflare" title="Permanent link">&para;</a></h1>
-<p>POLYFLARE - Flare out a polygon by N units</p>
-<div class="codehilite"><pre><span></span><code><span class="n">PNEW</span> <span class="o">=</span> <span class="n">POLYFLARE</span><span class="p">(</span><span class="n">P</span><span class="p">,</span><span class="n">N</span><span class="p">)</span>
+<div class="codehilite"><pre><span></span><code>  <span class="n">POLYFLARE</span> <span class="o">-</span> <span class="n">Flare</span> <span class="k">out</span> <span class="n">a</span> <span class="n">polygon</span> <span class="n">by</span> <span class="n">N</span> <span class="n">units</span>
 
-<span class="n">This</span> <span class="n">function</span> <span class="n">enlarges</span> <span class="n">a</span> <span class="n">polygon</span> <span class="n">by</span> <span class="n">a</span> <span class="n">fixed</span> <span class="n">unit</span> <span class="n">on</span> <span class="n">all</span>
-<span class="n">vertices</span><span class="p">.</span> <span class="n">At</span> <span class="n">each</span> <span class="n">point</span><span class="p">,</span> <span class="n">the</span> <span class="n">polygon</span> <span class="n">is</span> <span class="n">stretched</span> <span class="k">in</span> <span class="n">both</span>
-<span class="n">X</span> <span class="n">and</span> <span class="n">Y</span> <span class="n">directions</span> <span class="n">by</span> <span class="n">N</span><span class="p">.</span> <span class="n">The</span> <span class="n">directions</span> <span class="n">that</span> <span class="n">causes</span> <span class="n">the</span> <span class="n">area</span> <span class="n">to</span> <span class="n">increase</span>
-<span class="n">are</span> <span class="n">chosen</span> <span class="k">for</span> <span class="n">the</span> <span class="n">new</span> <span class="n">polygon</span><span class="p">.</span>
+    <span class="n">PNEW</span> <span class="o">=</span> <span class="n">POLYFLARE</span><span class="p">(</span><span class="n">P</span><span class="p">,</span><span class="n">N</span><span class="p">)</span>
 
-<span class="nl">Example</span><span class="p">:</span>
-     <span class="n">x</span> <span class="o">=</span> <span class="p">[</span><span class="mi">63</span> <span class="mi">186</span> <span class="mi">54</span> <span class="mi">190</span> <span class="mi">63</span><span class="p">]</span><span class="err">&#39;</span><span class="p">;</span>
-     <span class="n">y</span> <span class="o">=</span> <span class="p">[</span><span class="mi">60</span> <span class="mi">60</span> <span class="mi">209</span> <span class="mi">204</span> <span class="mi">60</span><span class="p">]</span><span class="err">&#39;</span><span class="p">;</span>
-     <span class="n">figure</span><span class="p">;</span>
-     <span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="sc">&#39;o&#39;</span><span class="p">);</span>
-     <span class="n">polynew</span> <span class="o">=</span> <span class="n">polyflare</span><span class="p">([</span><span class="n">x</span> <span class="n">y</span><span class="p">],</span><span class="mf">0.5</span><span class="p">);</span>
-     <span class="n">hold</span> <span class="n">on</span><span class="p">;</span>
-     <span class="n">plot</span><span class="p">(</span><span class="n">polynew</span><span class="p">(</span><span class="o">:</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span><span class="n">polynew</span><span class="p">(</span><span class="o">:</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span><span class="err">&#39;</span><span class="n">go</span><span class="err">&#39;</span><span class="p">);</span>
+    <span class="n">This</span> <span class="n">function</span> <span class="n">enlarges</span> <span class="n">a</span> <span class="n">polygon</span> <span class="n">by</span> <span class="n">a</span> <span class="n">fixed</span> <span class="n">unit</span> <span class="n">on</span> <span class="n">all</span>
+    <span class="n">vertices</span><span class="p">.</span> <span class="n">At</span> <span class="n">each</span> <span class="n">point</span><span class="p">,</span> <span class="n">the</span> <span class="n">polygon</span> <span class="n">is</span> <span class="n">stretched</span> <span class="k">in</span> <span class="n">both</span>
+    <span class="n">X</span> <span class="n">and</span> <span class="n">Y</span> <span class="n">directions</span> <span class="n">by</span> <span class="n">N</span><span class="p">.</span> <span class="n">The</span> <span class="n">directions</span> <span class="n">that</span> <span class="n">causes</span> <span class="n">the</span> <span class="n">area</span> <span class="n">to</span> <span class="n">increase</span>
+    <span class="n">are</span> <span class="n">chosen</span> <span class="k">for</span> <span class="n">the</span> <span class="n">new</span> <span class="n">polygon</span><span class="p">.</span>
+
+    <span class="nl">Example</span><span class="p">:</span>
+         <span class="n">x</span> <span class="o">=</span> <span class="p">[</span><span class="mi">63</span> <span class="mi">186</span> <span class="mi">54</span> <span class="mi">190</span> <span class="mi">63</span><span class="p">]</span><span class="err">&#39;</span><span class="p">;</span>
+         <span class="n">y</span> <span class="o">=</span> <span class="p">[</span><span class="mi">60</span> <span class="mi">60</span> <span class="mi">209</span> <span class="mi">204</span> <span class="mi">60</span><span class="p">]</span><span class="err">&#39;</span><span class="p">;</span>
+         <span class="n">figure</span><span class="p">;</span>
+         <span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="sc">&#39;o&#39;</span><span class="p">);</span>
+         <span class="n">polynew</span> <span class="o">=</span> <span class="n">polyflare</span><span class="p">([</span><span class="n">x</span> <span class="n">y</span><span class="p">],</span><span class="mf">0.5</span><span class="p">);</span>
+         <span class="n">hold</span> <span class="n">on</span><span class="p">;</span>
+         <span class="n">plot</span><span class="p">(</span><span class="n">polynew</span><span class="p">(</span><span class="o">:</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span><span class="n">polynew</span><span class="p">(</span><span class="o">:</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span><span class="err">&#39;</span><span class="n">go</span><span class="err">&#39;</span><span class="p">);</span> 
 
 
-<span class="n">See</span> <span class="nl">also</span><span class="p">:</span> <span class="n">INSIDE</span><span class="p">,</span> <span class="n">ROIPOLY</span><span class="p">,</span> <span class="n">POLYAREA</span>
+    <span class="n">See</span> <span class="nl">also</span><span class="p">:</span> <span class="n">INSIDE</span><span class="p">,</span> <span class="n">ROIPOLY</span><span class="p">,</span> <span class="n">POLYAREA</span>
 </code></pre></div>
                 
               

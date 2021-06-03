@@ -3213,6 +3213,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../%2Bgit/git_stash.m/" class="md-nav__link">
+        vlt.git.git_stash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../%2Bgit/git_status.m/" class="md-nav__link">
         vlt.git.git_status
       </a>
@@ -9237,18 +9249,26 @@
                 
                 
                 <h1 id="vltstatsresample_responses">vlt.stats.resample_responses<a class="headerlink" href="#vltstatsresample_responses" title="Permanent link">&para;</a></h1>
-<p>vlt.stats.resample_responses - Resample responses for montecarlo simulations</p>
-<p>NEWRESPS = vlt.stats.resample_responses(TRIALDATA, MODE, REPS)</p>
-<p>Generates a simulated set of responses.</p>
-<p>TRIALDATA - A matrix size NUM_STIMS x NTRIALS
-      If no data is available for a given trail, it can be coded as NaN.
-      NaN values will be ignored.</p>
-<p>If MODE==1, then simulated samples are generated with a random number
-   generator given the measured mean and variance of each stimulus.</p>
-<p>If MODE==2, then the data are resampled with replacement, as would
-   be appropriate for bootstrap analysis.</p>
-<p>REPS - The number of simulated trials to generate.</p>
-<p>Based on code by Mark Mazurek</p>
+<div class="codehilite"><pre><span></span><code>  <span class="n">vlt</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">resample_responses</span> <span class="o">-</span> <span class="n">Resample</span> <span class="n">responses</span> <span class="k">for</span> <span class="n">montecarlo</span> <span class="n">simulations</span>
+
+   <span class="n">NEWRESPS</span> <span class="o">=</span> <span class="n">vlt</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">resample_responses</span><span class="p">(</span><span class="n">TRIALDATA</span><span class="p">,</span> <span class="n">MODE</span><span class="p">,</span> <span class="n">REPS</span><span class="p">)</span>
+
+   <span class="n">Generates</span> <span class="n">a</span> <span class="n">simulated</span> <span class="n">set</span> <span class="n">of</span> <span class="n">responses</span><span class="o">.</span>
+
+   <span class="n">TRIALDATA</span> <span class="o">-</span> <span class="n">A</span> <span class="n">matrix</span> <span class="n">size</span> <span class="n">NUM_STIMS</span> <span class="n">x</span> <span class="n">NTRIALS</span>
+      <span class="n">If</span> <span class="n">no</span> <span class="n">data</span> <span class="k">is</span> <span class="n">available</span> <span class="k">for</span> <span class="n">a</span> <span class="n">given</span> <span class="n">trail</span><span class="p">,</span> <span class="n">it</span> <span class="n">can</span> <span class="n">be</span> <span class="n">coded</span> <span class="k">as</span> <span class="n">NaN</span><span class="o">.</span>
+      <span class="n">NaN</span> <span class="n">values</span> <span class="n">will</span> <span class="n">be</span> <span class="n">ignored</span><span class="o">.</span>
+
+   <span class="n">If</span> <span class="n">MODE</span><span class="o">==</span><span class="mi">1</span><span class="p">,</span> <span class="n">then</span> <span class="n">simulated</span> <span class="n">samples</span> <span class="n">are</span> <span class="n">generated</span> <span class="n">with</span> <span class="n">a</span> <span class="n">random</span> <span class="n">number</span>
+   <span class="n">generator</span> <span class="n">given</span> <span class="n">the</span> <span class="n">measured</span> <span class="n">mean</span> <span class="ow">and</span> <span class="n">variance</span> <span class="n">of</span> <span class="n">each</span> <span class="n">stimulus</span><span class="o">.</span>
+
+   <span class="n">If</span> <span class="n">MODE</span><span class="o">==</span><span class="mi">2</span><span class="p">,</span> <span class="n">then</span> <span class="n">the</span> <span class="n">data</span> <span class="n">are</span> <span class="n">resampled</span> <span class="n">with</span> <span class="n">replacement</span><span class="p">,</span> <span class="k">as</span> <span class="n">would</span>
+   <span class="n">be</span> <span class="n">appropriate</span> <span class="k">for</span> <span class="n">bootstrap</span> <span class="n">analysis</span><span class="o">.</span>
+
+   <span class="n">REPS</span> <span class="o">-</span> <span class="n">The</span> <span class="n">number</span> <span class="n">of</span> <span class="n">simulated</span> <span class="n">trials</span> <span class="n">to</span> <span class="n">generate</span><span class="o">.</span>
+
+   <span class="n">Based</span> <span class="n">on</span> <span class="n">code</span> <span class="n">by</span> <span class="n">Mark</span> <span class="n">Mazurek</span>
+</code></pre></div>
                 
               
               

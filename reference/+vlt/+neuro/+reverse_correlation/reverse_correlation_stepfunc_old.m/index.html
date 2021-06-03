@@ -3213,6 +3213,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../../%2Bgit/git_stash.m/" class="md-nav__link">
+        vlt.git.git_stash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../../%2Bgit/git_status.m/" class="md-nav__link">
         vlt.git.git_status
       </a>
@@ -9239,26 +9251,28 @@
                 
                 
                 <h1 id="vltneuroreverse_correlationreverse_correlation_stepfunc_old">vlt.neuro.reverse_correlation.reverse_correlation_stepfunc_old<a class="headerlink" href="#vltneuroreverse_correlationreverse_correlation_stepfunc_old" title="Permanent link">&para;</a></h1>
-<p>vlt.neuro.reverse_correlation.reverse_correlation_stepfunc - Performs RC between spike times and step function stimulus</p>
-<p>AVG_STIM = vlt.neuro.reverse_correlation.reverse_correlation_stepfunc(SPIKETIMES, STIM_OFFSETS, STIMTIMES, STIM)</p>
-<div class="codehilite"><pre><span></span><code><span class="n">This</span> <span class="n">function</span> <span class="n">performs</span> <span class="n">reverse</span> <span class="n">correlation</span> <span class="p">(</span><span class="n">AKA</span> <span class="n">the</span> <span class="n">spike</span> <span class="n">triggered</span> <span class="n">average</span><span class="p">,</span> <span class="n">STA</span><span class="p">,</span>
-<span class="n">AKA</span> <span class="n">the</span> <span class="n">stimulus</span> <span class="n">that</span> <span class="n">was</span> <span class="n">present</span> <span class="p">(</span><span class="n">on</span> <span class="n">average</span><span class="p">)</span> <span class="n">at</span> <span class="n">the</span> <span class="n">time</span> <span class="n">of</span> <span class="n">a</span> <span class="n">spike</span><span class="p">)</span>
-<span class="n">analysis</span> <span class="n">between</span> <span class="n">a</span> <span class="n">series</span> <span class="n">of</span> <span class="n">spike</span> <span class="n">times</span> <span class="ow">and</span> <span class="n">a</span> <span class="n">step</span> <span class="n">function</span> <span class="n">stimulus</span><span class="o">.</span>
+<div class="codehilite"><pre><span></span><code>  <span class="n">vlt</span><span class="o">.</span><span class="n">neuro</span><span class="o">.</span><span class="n">reverse_correlation</span><span class="o">.</span><span class="n">reverse_correlation_stepfunc</span> <span class="o">-</span> <span class="n">Performs</span> <span class="n">RC</span> <span class="n">between</span> <span class="n">spike</span> <span class="n">times</span> <span class="ow">and</span> <span class="n">step</span> <span class="n">function</span> <span class="n">stimulus</span>
 
-<span class="n">AVG_STIM</span> <span class="k">is</span> <span class="n">the</span> <span class="n">stimulus</span> <span class="n">that</span> <span class="n">was</span> <span class="n">present</span> <span class="p">(</span><span class="n">on</span> <span class="n">average</span><span class="p">)</span> <span class="n">at</span> <span class="n">the</span> <span class="n">time</span> <span class="n">of</span> <span class="n">a</span> <span class="n">spike</span>
+  <span class="n">AVG_STIM</span> <span class="o">=</span> <span class="n">vlt</span><span class="o">.</span><span class="n">neuro</span><span class="o">.</span><span class="n">reverse_correlation</span><span class="o">.</span><span class="n">reverse_correlation_stepfunc</span><span class="p">(</span><span class="n">SPIKETIMES</span><span class="p">,</span> <span class="n">STIM_OFFSETS</span><span class="p">,</span> <span class="n">STIMTIMES</span><span class="p">,</span> <span class="n">STIM</span><span class="p">)</span>
 
-    <span class="n">SPIKETIMES</span> <span class="k">is</span> <span class="n">the</span> <span class="n">list</span> <span class="n">of</span> <span class="n">spike</span> <span class="n">times</span>
-    <span class="n">STIM_OFFSETS</span> <span class="k">is</span> <span class="n">a</span> <span class="n">list</span> <span class="n">of</span> <span class="n">times</span> <span class="n">relative</span> <span class="n">to</span> <span class="n">the</span> <span class="n">spike</span> <span class="n">at</span> <span class="n">which</span> <span class="n">to</span> 
-               <span class="n">compute</span> <span class="n">the</span> <span class="n">stimulus</span><span class="o">.</span>
-<span class="n">The</span> <span class="n">stimulus</span> <span class="k">is</span> <span class="n">assumed</span> <span class="n">to</span> <span class="n">be</span> <span class="n">a</span> <span class="n">step</span> <span class="n">function</span> <span class="n">that</span> <span class="n">assumes</span> <span class="n">different</span>
-    <span class="n">values</span> <span class="n">at</span> <span class="n">each</span> <span class="n">step</span><span class="o">.</span>  <span class="n">STIMTIMES</span> <span class="k">is</span> <span class="n">a</span> <span class="n">list</span> <span class="n">of</span> <span class="n">the</span> <span class="n">time</span> <span class="n">of</span> <span class="n">each</span> <span class="n">step</span><span class="p">,</span>
-    <span class="ow">and</span> <span class="n">STIM</span> <span class="k">is</span> <span class="n">a</span> <span class="n">matrix</span> <span class="n">of</span> <span class="n">row</span> <span class="n">vectors</span><span class="p">,</span> <span class="n">where</span> <span class="n">each</span> <span class="n">row</span> <span class="n">corresponds</span> <span class="n">to</span> 
-    <span class="n">one</span> <span class="n">stimulus</span> <span class="n">variable</span><span class="o">.</span>
+    <span class="n">This</span> <span class="n">function</span> <span class="n">performs</span> <span class="n">reverse</span> <span class="n">correlation</span> <span class="p">(</span><span class="n">AKA</span> <span class="n">the</span> <span class="n">spike</span> <span class="n">triggered</span> <span class="n">average</span><span class="p">,</span> <span class="n">STA</span><span class="p">,</span>
+    <span class="n">AKA</span> <span class="n">the</span> <span class="n">stimulus</span> <span class="n">that</span> <span class="n">was</span> <span class="n">present</span> <span class="p">(</span><span class="n">on</span> <span class="n">average</span><span class="p">)</span> <span class="n">at</span> <span class="n">the</span> <span class="n">time</span> <span class="n">of</span> <span class="n">a</span> <span class="n">spike</span><span class="p">)</span>
+    <span class="n">analysis</span> <span class="n">between</span> <span class="n">a</span> <span class="n">series</span> <span class="n">of</span> <span class="n">spike</span> <span class="n">times</span> <span class="ow">and</span> <span class="n">a</span> <span class="n">step</span> <span class="n">function</span> <span class="n">stimulus</span><span class="o">.</span>
 
-<span class="n">See</span> <span class="n">Dayan</span> <span class="ow">and</span> <span class="n">Abbott</span> <span class="p">(</span><span class="mi">2005</span><span class="p">),</span> <span class="n">Chapters</span> <span class="mi">1</span><span class="o">-</span><span class="mi">2</span>
+    <span class="n">AVG_STIM</span> <span class="k">is</span> <span class="n">the</span> <span class="n">stimulus</span> <span class="n">that</span> <span class="n">was</span> <span class="n">present</span> <span class="p">(</span><span class="n">on</span> <span class="n">average</span><span class="p">)</span> <span class="n">at</span> <span class="n">the</span> <span class="n">time</span> <span class="n">of</span> <span class="n">a</span> <span class="n">spike</span>
+
+        <span class="n">SPIKETIMES</span> <span class="k">is</span> <span class="n">the</span> <span class="n">list</span> <span class="n">of</span> <span class="n">spike</span> <span class="n">times</span>
+        <span class="n">STIM_OFFSETS</span> <span class="k">is</span> <span class="n">a</span> <span class="n">list</span> <span class="n">of</span> <span class="n">times</span> <span class="n">relative</span> <span class="n">to</span> <span class="n">the</span> <span class="n">spike</span> <span class="n">at</span> <span class="n">which</span> <span class="n">to</span> 
+                   <span class="n">compute</span> <span class="n">the</span> <span class="n">stimulus</span><span class="o">.</span>
+    <span class="n">The</span> <span class="n">stimulus</span> <span class="k">is</span> <span class="n">assumed</span> <span class="n">to</span> <span class="n">be</span> <span class="n">a</span> <span class="n">step</span> <span class="n">function</span> <span class="n">that</span> <span class="n">assumes</span> <span class="n">different</span>
+        <span class="n">values</span> <span class="n">at</span> <span class="n">each</span> <span class="n">step</span><span class="o">.</span>  <span class="n">STIMTIMES</span> <span class="k">is</span> <span class="n">a</span> <span class="n">list</span> <span class="n">of</span> <span class="n">the</span> <span class="n">time</span> <span class="n">of</span> <span class="n">each</span> <span class="n">step</span><span class="p">,</span>
+        <span class="ow">and</span> <span class="n">STIM</span> <span class="k">is</span> <span class="n">a</span> <span class="n">matrix</span> <span class="n">of</span> <span class="n">row</span> <span class="n">vectors</span><span class="p">,</span> <span class="n">where</span> <span class="n">each</span> <span class="n">row</span> <span class="n">corresponds</span> <span class="n">to</span> 
+        <span class="n">one</span> <span class="n">stimulus</span> <span class="n">variable</span><span class="o">.</span>
+
+    <span class="n">See</span> <span class="n">Dayan</span> <span class="ow">and</span> <span class="n">Abbott</span> <span class="p">(</span><span class="mi">2005</span><span class="p">),</span> <span class="n">Chapters</span> <span class="mi">1</span><span class="o">-</span><span class="mi">2</span>
+
+   <span class="n">See</span> <span class="n">also</span><span class="p">:</span>  <span class="n">vlt</span><span class="o">.</span><span class="n">math</span><span class="o">.</span><span class="n">stepfunc</span><span class="p">,</span> <span class="n">vlt</span><span class="o">.</span><span class="n">neuro</span><span class="o">.</span><span class="n">reverse_correlation</span><span class="o">.</span><span class="n">demos</span><span class="o">.</span><span class="n">DirRFModel_example3</span>
 </code></pre></div>
-
-<p>See also:  vlt.math.stepfunc, vlt.neuro.reverse_correlation.demos.DirRFModel_example3</p>
                 
               
               

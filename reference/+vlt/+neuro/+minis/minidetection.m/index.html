@@ -3213,6 +3213,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../../%2Bgit/git_stash.m/" class="md-nav__link">
+        vlt.git.git_stash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../../%2Bgit/git_status.m/" class="md-nav__link">
         vlt.git.git_status
       </a>
@@ -9239,46 +9251,55 @@
                 
                 
                 <h1 id="vltneurominisminidetection">vlt.neuro.minis.minidetection<a class="headerlink" href="#vltneurominisminidetection" title="Permanent link">&para;</a></h1>
-<p>MINIDETECTION - Detect minis from noise -- THIS FUNCTION DOESNT WORK YET, STILL IN DEVELOPMENT</p>
-<p>MINISTRUCT = vlt.neuro.minis.minidetection(DATA, SI, ...)</p>
-<p>Finds spontaneous miniature evoked potential/current events in a recorded trace.</p>
-<p>Inputs:
-   DATA should be an R x S matrix, where each row has a data set, and S is the number
-   of samples in each recording. The sampling interval for the records is specified
-   by SI.</p>
-<p>Additional modifications can be provided by specifying parameters as name/value pairs:
-   Parameter (default)     | Description</p>
-<hr />
-<p>do_detrend_median (1)   | Should we detrend the data using vlt.signal.detrend_median?
-   detrend_timescale (0.5) | Over what timescale? (in seconds)
-   estimate_std_median (1) | Should we use the median method (STD_MEDIAN) to estimate 
-                           |   standard deviation (1) or the standard method
-                           |   of calling STD (0)?
-   minisimulation (see txt)| What mini detection simulation should we use to 
-                           |  determine optimal threshold? Default is
-                           |  'minidetectionsimulation_guassian'
-                           |  This file must be on the path and it must be the
-                           |  results of vlt.neuro.minis.minidetectionsimulation
-   t_before (-0.020)       | Time before each mini to grab (in seconds, rounded to
-                           |  nearest sample based on SI)
-   t_after (0.100)         | Time after each mini to grab (in seconds, rounded to
-                           |  nearest sample based on SI)</p>
-<p>Outputs:
-   MINISTRUCT is a structure with the following fields:
-   Fieldname:            | Description</p>
-<hr />
-<p>frequency             | The overall average frequency of detected mini events
-   amplitude             | The overall average amplitude of detected mini events
-   intereventintervals   | The time intervals between detected mini events
-   wavetime              | A time axis for plotting mini waveforms
-   meanminiwaveform      | The grand mean mini waveform
-   miniamplitudes        | The amplitude for each mini
-   row_minisamples{}     | For each row of DATA, the samples that correspond to mini peaks
-   row_minitimes{}       | For each row of DATA, the times (from beginning of row DATA)
-                         |   that correspond to peaks
-   row_miniwaveforms{}   | For each row of DATA, the waveform associated with each mini 
-   row_miniamplitudes{}  | For each row of DATA, the amplitude associated with each mini</p>
-<p>See also:</p>
+<div class="codehilite"><pre><span></span><code>  <span class="n">MINIDETECTION</span> <span class="o">-</span> <span class="n">Detect</span> <span class="n">minis</span> <span class="n">from</span> <span class="n">noise</span> <span class="o">--</span> <span class="n">THIS</span> <span class="n">FUNCTION</span> <span class="n">DOESNT</span> <span class="n">WORK</span> <span class="n">YET</span><span class="p">,</span> <span class="n">STILL</span> <span class="n">IN</span> <span class="n">DEVELOPMENT</span>
+
+   <span class="n">MINISTRUCT</span> <span class="o">=</span> <span class="n">vlt</span><span class="o">.</span><span class="n">neuro</span><span class="o">.</span><span class="n">minis</span><span class="o">.</span><span class="n">minidetection</span><span class="p">(</span><span class="n">DATA</span><span class="p">,</span> <span class="n">SI</span><span class="p">,</span> <span class="o">...</span><span class="p">)</span>
+
+   <span class="n">Finds</span> <span class="n">spontaneous</span> <span class="n">miniature</span> <span class="n">evoked</span> <span class="n">potential</span><span class="o">/</span><span class="n">current</span> <span class="n">events</span> <span class="ow">in</span> <span class="n">a</span> <span class="n">recorded</span> <span class="n">trace</span><span class="o">.</span>
+
+   <span class="n">Inputs</span><span class="p">:</span>
+   <span class="n">DATA</span> <span class="n">should</span> <span class="n">be</span> <span class="n">an</span> <span class="n">R</span> <span class="n">x</span> <span class="n">S</span> <span class="n">matrix</span><span class="p">,</span> <span class="n">where</span> <span class="n">each</span> <span class="n">row</span> <span class="n">has</span> <span class="n">a</span> <span class="n">data</span> <span class="n">set</span><span class="p">,</span> <span class="ow">and</span> <span class="n">S</span> <span class="k">is</span> <span class="n">the</span> <span class="n">number</span>
+   <span class="n">of</span> <span class="n">samples</span> <span class="ow">in</span> <span class="n">each</span> <span class="n">recording</span><span class="o">.</span> <span class="n">The</span> <span class="n">sampling</span> <span class="n">interval</span> <span class="k">for</span> <span class="n">the</span> <span class="n">records</span> <span class="k">is</span> <span class="n">specified</span>
+   <span class="n">by</span> <span class="n">SI</span><span class="o">.</span>
+
+   <span class="n">Additional</span> <span class="n">modifications</span> <span class="n">can</span> <span class="n">be</span> <span class="n">provided</span> <span class="n">by</span> <span class="n">specifying</span> <span class="n">parameters</span> <span class="k">as</span> <span class="n">name</span><span class="o">/</span><span class="n">value</span> <span class="n">pairs</span><span class="p">:</span>
+   <span class="n">Parameter</span> <span class="p">(</span><span class="n">default</span><span class="p">)</span>     <span class="o">|</span> <span class="n">Description</span>
+   <span class="o">-----------------------------------------------------------------------------</span>
+   <span class="n">do_detrend_median</span> <span class="p">(</span><span class="mi">1</span><span class="p">)</span>   <span class="o">|</span> <span class="n">Should</span> <span class="n">we</span> <span class="n">detrend</span> <span class="n">the</span> <span class="n">data</span> <span class="n">using</span> <span class="n">vlt</span><span class="o">.</span><span class="k">signal</span><span class="o">.</span><span class="n">detrend_median</span><span class="err">?</span>
+   <span class="n">detrend_timescale</span> <span class="p">(</span><span class="mf">0.5</span><span class="p">)</span> <span class="o">|</span> <span class="n">Over</span> <span class="n">what</span> <span class="n">timescale</span><span class="err">?</span> <span class="p">(</span><span class="ow">in</span> <span class="n">seconds</span><span class="p">)</span>
+   <span class="n">estimate_std_median</span> <span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">|</span> <span class="n">Should</span> <span class="n">we</span> <span class="n">use</span> <span class="n">the</span> <span class="n">median</span> <span class="n">method</span> <span class="p">(</span><span class="n">STD_MEDIAN</span><span class="p">)</span> <span class="n">to</span> <span class="n">estimate</span> 
+                           <span class="o">|</span>   <span class="n">standard</span> <span class="n">deviation</span> <span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="ow">or</span> <span class="n">the</span> <span class="n">standard</span> <span class="n">method</span>
+                           <span class="o">|</span>   <span class="n">of</span> <span class="n">calling</span> <span class="n">STD</span> <span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="err">?</span>
+   <span class="n">minisimulation</span> <span class="p">(</span><span class="n">see</span> <span class="n">txt</span><span class="p">)</span><span class="o">|</span> <span class="n">What</span> <span class="n">mini</span> <span class="n">detection</span> <span class="n">simulation</span> <span class="n">should</span> <span class="n">we</span> <span class="n">use</span> <span class="n">to</span> 
+                           <span class="o">|</span>  <span class="n">determine</span> <span class="n">optimal</span> <span class="n">threshold</span><span class="err">?</span> <span class="n">Default</span> <span class="k">is</span>
+                           <span class="o">|</span>  <span class="s1">&#39;minidetectionsimulation_guassian&#39;</span>
+                           <span class="o">|</span>  <span class="n">This</span> <span class="n">file</span> <span class="n">must</span> <span class="n">be</span> <span class="n">on</span> <span class="n">the</span> <span class="n">path</span> <span class="ow">and</span> <span class="n">it</span> <span class="n">must</span> <span class="n">be</span> <span class="n">the</span>
+                           <span class="o">|</span>  <span class="n">results</span> <span class="n">of</span> <span class="n">vlt</span><span class="o">.</span><span class="n">neuro</span><span class="o">.</span><span class="n">minis</span><span class="o">.</span><span class="n">minidetectionsimulation</span>
+   <span class="n">t_before</span> <span class="p">(</span><span class="o">-</span><span class="mf">0.020</span><span class="p">)</span>       <span class="o">|</span> <span class="n">Time</span> <span class="n">before</span> <span class="n">each</span> <span class="n">mini</span> <span class="n">to</span> <span class="n">grab</span> <span class="p">(</span><span class="ow">in</span> <span class="n">seconds</span><span class="p">,</span> <span class="n">rounded</span> <span class="n">to</span>
+                           <span class="o">|</span>  <span class="n">nearest</span> <span class="n">sample</span> <span class="n">based</span> <span class="n">on</span> <span class="n">SI</span><span class="p">)</span>
+   <span class="n">t_after</span> <span class="p">(</span><span class="mf">0.100</span><span class="p">)</span>         <span class="o">|</span> <span class="n">Time</span> <span class="n">after</span> <span class="n">each</span> <span class="n">mini</span> <span class="n">to</span> <span class="n">grab</span> <span class="p">(</span><span class="ow">in</span> <span class="n">seconds</span><span class="p">,</span> <span class="n">rounded</span> <span class="n">to</span>
+                           <span class="o">|</span>  <span class="n">nearest</span> <span class="n">sample</span> <span class="n">based</span> <span class="n">on</span> <span class="n">SI</span><span class="p">)</span>
+
+
+   <span class="n">Outputs</span><span class="p">:</span>
+   <span class="n">MINISTRUCT</span> <span class="k">is</span> <span class="n">a</span> <span class="n">structure</span> <span class="n">with</span> <span class="n">the</span> <span class="n">following</span> <span class="n">fields</span><span class="p">:</span>
+   <span class="n">Fieldname</span><span class="p">:</span>            <span class="o">|</span> <span class="n">Description</span>
+   <span class="o">-----------------------------------------------------------------------------</span>
+   <span class="n">frequency</span>             <span class="o">|</span> <span class="n">The</span> <span class="n">overall</span> <span class="n">average</span> <span class="n">frequency</span> <span class="n">of</span> <span class="n">detected</span> <span class="n">mini</span> <span class="n">events</span>
+   <span class="n">amplitude</span>             <span class="o">|</span> <span class="n">The</span> <span class="n">overall</span> <span class="n">average</span> <span class="n">amplitude</span> <span class="n">of</span> <span class="n">detected</span> <span class="n">mini</span> <span class="n">events</span>
+   <span class="n">intereventintervals</span>   <span class="o">|</span> <span class="n">The</span> <span class="n">time</span> <span class="n">intervals</span> <span class="n">between</span> <span class="n">detected</span> <span class="n">mini</span> <span class="n">events</span>
+   <span class="n">wavetime</span>              <span class="o">|</span> <span class="n">A</span> <span class="n">time</span> <span class="n">axis</span> <span class="k">for</span> <span class="n">plotting</span> <span class="n">mini</span> <span class="n">waveforms</span>
+   <span class="n">meanminiwaveform</span>      <span class="o">|</span> <span class="n">The</span> <span class="n">grand</span> <span class="n">mean</span> <span class="n">mini</span> <span class="n">waveform</span>
+   <span class="n">miniamplitudes</span>        <span class="o">|</span> <span class="n">The</span> <span class="n">amplitude</span> <span class="k">for</span> <span class="n">each</span> <span class="n">mini</span>
+   <span class="n">row_minisamples</span><span class="p">{}</span>     <span class="o">|</span> <span class="n">For</span> <span class="n">each</span> <span class="n">row</span> <span class="n">of</span> <span class="n">DATA</span><span class="p">,</span> <span class="n">the</span> <span class="n">samples</span> <span class="n">that</span> <span class="n">correspond</span> <span class="n">to</span> <span class="n">mini</span> <span class="n">peaks</span>
+   <span class="n">row_minitimes</span><span class="p">{}</span>       <span class="o">|</span> <span class="n">For</span> <span class="n">each</span> <span class="n">row</span> <span class="n">of</span> <span class="n">DATA</span><span class="p">,</span> <span class="n">the</span> <span class="n">times</span> <span class="p">(</span><span class="n">from</span> <span class="n">beginning</span> <span class="n">of</span> <span class="n">row</span> <span class="n">DATA</span><span class="p">)</span>
+                         <span class="o">|</span>   <span class="n">that</span> <span class="n">correspond</span> <span class="n">to</span> <span class="n">peaks</span>
+   <span class="n">row_miniwaveforms</span><span class="p">{}</span>   <span class="o">|</span> <span class="n">For</span> <span class="n">each</span> <span class="n">row</span> <span class="n">of</span> <span class="n">DATA</span><span class="p">,</span> <span class="n">the</span> <span class="n">waveform</span> <span class="n">associated</span> <span class="n">with</span> <span class="n">each</span> <span class="n">mini</span> 
+   <span class="n">row_miniamplitudes</span><span class="p">{}</span>  <span class="o">|</span> <span class="n">For</span> <span class="n">each</span> <span class="n">row</span> <span class="n">of</span> <span class="n">DATA</span><span class="p">,</span> <span class="n">the</span> <span class="n">amplitude</span> <span class="n">associated</span> <span class="n">with</span> <span class="n">each</span> <span class="n">mini</span>
+
+
+   <span class="n">See</span> <span class="n">also</span><span class="p">:</span>
+</code></pre></div>
                 
               
               

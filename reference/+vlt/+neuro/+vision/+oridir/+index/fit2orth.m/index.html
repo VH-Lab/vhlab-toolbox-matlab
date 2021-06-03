@@ -3213,6 +3213,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../../../../%2Bgit/git_stash.m/" class="md-nav__link">
+        vlt.git.git_stash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../../../../%2Bgit/git_status.m/" class="md-nav__link">
         vlt.git.git_status
       </a>
@@ -9243,17 +9255,23 @@
                 
                 
                 <h1 id="vltneurovisionoridirindexfit2orth">vlt.neuro.vision.oridir.index.fit2orth<a class="headerlink" href="#vltneurovisionoridirindexfit2orth" title="Permanent link">&para;</a></h1>
-<p>FIT2ORTH - calculate the orthogonal response from a fit to direction</p>
-<p>ORTH=vlt.neuro.vision.oridir.index.fit2orth(RESPONSE)</p>
-<p>Given the RESPONSE of a double gaussian fit, return the response 90 degrees
-   away from the location with the maximum response.  This is the
-   orthogonal response or the response of the neuron to the orientation orthogonal
-   to the preferred.</p>
-<p>RESPONSE is a 360x2 vector of responses. The first row indicates the 
-   angles of the fit, and the second row indicates the responses.</p>
-<p>For backwards compatibility, if RESPONSE is a 360x1 vector, a new first
-   row is added equal to 0:359.</p>
-<p>See also: vlt.neuro.vision.oridir.index.fit2pref, vlt.neuro.vision.oridir.index.fit2null</p>
+<div class="codehilite"><pre><span></span><code>  <span class="nv">FIT2ORTH</span> <span class="o">-</span> <span class="nv">calculate</span> <span class="nv">the</span> <span class="nv">orthogonal</span> <span class="nv">response</span> <span class="nv">from</span> <span class="nv">a</span> <span class="nv">fit</span> <span class="nv">to</span> <span class="nv">direction</span>
+
+   <span class="nv">ORTH</span><span class="o">=</span><span class="nv">vlt</span>.<span class="nv">neuro</span>.<span class="nv">vision</span>.<span class="nv">oridir</span>.<span class="nv">index</span>.<span class="nv">fit2orth</span><span class="ss">(</span><span class="nv">RESPONSE</span><span class="ss">)</span>
+
+   <span class="nv">Given</span> <span class="nv">the</span> <span class="nv">RESPONSE</span> <span class="nv">of</span> <span class="nv">a</span> <span class="nv">double</span> <span class="nv">gaussian</span> <span class="nv">fit</span>, <span class="k">return</span> <span class="nv">the</span> <span class="nv">response</span> <span class="mi">90</span> <span class="nv">degrees</span>
+   <span class="nv">away</span> <span class="nv">from</span> <span class="nv">the</span> <span class="nv">location</span> <span class="nv">with</span> <span class="nv">the</span> <span class="nv">maximum</span> <span class="nv">response</span>.  <span class="nv">This</span> <span class="nv">is</span> <span class="nv">the</span>
+   <span class="nv">orthogonal</span> <span class="nv">response</span> <span class="nv">or</span> <span class="nv">the</span> <span class="nv">response</span> <span class="nv">of</span> <span class="nv">the</span> <span class="nv">neuron</span> <span class="nv">to</span> <span class="nv">the</span> <span class="nv">orientation</span> <span class="nv">orthogonal</span>
+   <span class="nv">to</span> <span class="nv">the</span> <span class="nv">preferred</span>.
+
+   <span class="nv">RESPONSE</span> <span class="nv">is</span> <span class="nv">a</span> <span class="mi">360</span><span class="nv">x2</span> <span class="nv">vector</span> <span class="nv">of</span> <span class="nv">responses</span>. <span class="nv">The</span> <span class="nv">first</span> <span class="nv">row</span> <span class="nv">indicates</span> <span class="nv">the</span> 
+   <span class="nv">angles</span> <span class="nv">of</span> <span class="nv">the</span> <span class="nv">fit</span>, <span class="nv">and</span> <span class="nv">the</span> <span class="nv">second</span> <span class="nv">row</span> <span class="nv">indicates</span> <span class="nv">the</span> <span class="nv">responses</span>.
+
+   <span class="k">For</span> <span class="nv">backwards</span> <span class="nv">compatibility</span>, <span class="k">if</span> <span class="nv">RESPONSE</span> <span class="nv">is</span> <span class="nv">a</span> <span class="mi">360</span><span class="nv">x1</span> <span class="nv">vector</span>, <span class="nv">a</span> <span class="nv">new</span> <span class="nv">first</span>
+   <span class="nv">row</span> <span class="nv">is</span> <span class="nv">added</span> <span class="nv">equal</span> <span class="nv">to</span> <span class="mi">0</span>:<span class="mi">359</span>.
+
+   <span class="nv">See</span> <span class="nv">also</span>: <span class="nv">vlt</span>.<span class="nv">neuro</span>.<span class="nv">vision</span>.<span class="nv">oridir</span>.<span class="nv">index</span>.<span class="nv">fit2pref</span>, <span class="nv">vlt</span>.<span class="nv">neuro</span>.<span class="nv">vision</span>.<span class="nv">oridir</span>.<span class="nv">index</span>.<span class="nv">fit2null</span>
+</code></pre></div>
                 
               
               

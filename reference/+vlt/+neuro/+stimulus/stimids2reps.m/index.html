@@ -3213,6 +3213,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../../%2Bgit/git_stash.m/" class="md-nav__link">
+        vlt.git.git_stash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../../%2Bgit/git_status.m/" class="md-nav__link">
         vlt.git.git_status
       </a>
@@ -9239,21 +9251,26 @@
                 
                 
                 <h1 id="vltneurostimulusstimids2reps">vlt.neuro.stimulus.stimids2reps<a class="headerlink" href="#vltneurostimulusstimids2reps" title="Permanent link">&para;</a></h1>
-<p>STIMIDS2REPS - Label each stimulus id with the repetition number for a regular stimulus sequence</p>
-<p>[REPS, ISREGULAR] = vlt.neuro.stimulus.stimids2reps(STIMIDS, NUMSTIMS)</p>
-<p>Given a list of STIMIDS that indicate an order of presentation,
-   and given that STIMIDS range from 1..NUMSTIMS, vlt.neuro.stimulus.stimids2reps returns a label
-   REPS, the same size as STIMIDS, that indicates the repetition
-   number if the stimuli were to be presented in a regular order. 
-   Regular order means that all stimuli 1...NUMSTIMS are shown in some order once,
-   followed by 1..NUMSTIMS in some order a second time, etc.</p>
-<p>ISREGULAR is 1 if the sequence of STIMIDS is in a regular order. The last
-   repetition need not be complete for the stimulus presentation to be regular
-   (that is, if a sequence ended early it can still be regular).</p>
-<p>Example:
-     [reps,isregular] = vlt.neuro.stimulus.stimids2reps([1 2 3 1 2 3],3)
-        % reps = [1 1 1 2 2 2]
-        % isregular = 1</p>
+<div class="codehilite"><pre><span></span><code><span class="w">  </span><span class="n">STIMIDS2REPS</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">Label</span><span class="w"> </span><span class="n">each</span><span class="w"> </span><span class="n">stimulus</span><span class="w"> </span><span class="n">id</span><span class="w"> </span><span class="n">with</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">repetition</span><span class="w"> </span><span class="n">number</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">regular</span><span class="w"> </span><span class="n">stimulus</span><span class="w"> </span><span class="n">sequence</span><span class="w"></span>
+
+<span class="w">   </span><span class="p">[</span><span class="n">REPS</span><span class="p">,</span><span class="w"> </span><span class="n">ISREGULAR</span><span class="p">]</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">vlt</span><span class="p">.</span><span class="n">neuro</span><span class="p">.</span><span class="n">stimulus</span><span class="p">.</span><span class="n">stimids2reps</span><span class="p">(</span><span class="n">STIMIDS</span><span class="p">,</span><span class="w"> </span><span class="n">NUMSTIMS</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">   </span><span class="n">Given</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">list</span><span class="w"> </span><span class="n">of</span><span class="w"> </span><span class="n">STIMIDS</span><span class="w"> </span><span class="n">that</span><span class="w"> </span><span class="n">indicate</span><span class="w"> </span><span class="n">an</span><span class="w"> </span><span class="n">order</span><span class="w"> </span><span class="n">of</span><span class="w"> </span><span class="n">presentation</span><span class="p">,</span><span class="w"></span>
+<span class="w">   </span><span class="n">and</span><span class="w"> </span><span class="n">given</span><span class="w"> </span><span class="n">that</span><span class="w"> </span><span class="n">STIMIDS</span><span class="w"> </span><span class="n">range</span><span class="w"> </span><span class="n">from</span><span class="w"> </span><span class="mf">1.</span><span class="p">.</span><span class="n">NUMSTIMS</span><span class="p">,</span><span class="w"> </span><span class="n">vlt</span><span class="p">.</span><span class="n">neuro</span><span class="p">.</span><span class="n">stimulus</span><span class="p">.</span><span class="n">stimids2reps</span><span class="w"> </span><span class="n">returns</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">label</span><span class="w"></span>
+<span class="w">   </span><span class="n">REPS</span><span class="p">,</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">same</span><span class="w"> </span><span class="nb">size</span><span class="w"> </span><span class="n">as</span><span class="w"> </span><span class="n">STIMIDS</span><span class="p">,</span><span class="w"> </span><span class="n">that</span><span class="w"> </span><span class="n">indicates</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">repetition</span><span class="w"></span>
+<span class="w">   </span><span class="n">number</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">stimuli</span><span class="w"> </span><span class="n">were</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="n">be</span><span class="w"> </span><span class="n">presented</span><span class="w"> </span><span class="n">in</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">regular</span><span class="w"> </span><span class="n">order</span><span class="p">.</span><span class="w"> </span>
+<span class="w">   </span><span class="n">Regular</span><span class="w"> </span><span class="n">order</span><span class="w"> </span><span class="n">means</span><span class="w"> </span><span class="n">that</span><span class="w"> </span><span class="nb">all</span><span class="w"> </span><span class="n">stimuli</span><span class="w"> </span><span class="mf">1.</span><span class="p">..</span><span class="n">NUMSTIMS</span><span class="w"> </span><span class="n">are</span><span class="w"> </span><span class="n">shown</span><span class="w"> </span><span class="n">in</span><span class="w"> </span><span class="n">some</span><span class="w"> </span><span class="n">order</span><span class="w"> </span><span class="n">once</span><span class="p">,</span><span class="w"></span>
+<span class="w">   </span><span class="n">followed</span><span class="w"> </span><span class="n">by</span><span class="w"> </span><span class="mf">1.</span><span class="p">.</span><span class="n">NUMSTIMS</span><span class="w"> </span><span class="n">in</span><span class="w"> </span><span class="n">some</span><span class="w"> </span><span class="n">order</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="nb">second</span><span class="w"> </span><span class="nb">time</span><span class="p">,</span><span class="w"> </span><span class="n">etc</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">   </span><span class="n">ISREGULAR</span><span class="w"> </span><span class="n">is</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">sequence</span><span class="w"> </span><span class="n">of</span><span class="w"> </span><span class="n">STIMIDS</span><span class="w"> </span><span class="n">is</span><span class="w"> </span><span class="n">in</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">regular</span><span class="w"> </span><span class="n">order</span><span class="p">.</span><span class="w"> </span><span class="n">The</span><span class="w"> </span><span class="n">last</span><span class="w"></span>
+<span class="w">   </span><span class="n">repetition</span><span class="w"> </span><span class="n">need</span><span class="w"> </span><span class="n">not</span><span class="w"> </span><span class="n">be</span><span class="w"> </span><span class="n">complete</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">stimulus</span><span class="w"> </span><span class="n">presentation</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="n">be</span><span class="w"> </span><span class="n">regular</span><span class="w"></span>
+<span class="w">   </span><span class="p">(</span><span class="n">that</span><span class="w"> </span><span class="n">is</span><span class="p">,</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">sequence</span><span class="w"> </span><span class="n">ended</span><span class="w"> </span><span class="n">early</span><span class="w"> </span><span class="n">it</span><span class="w"> </span><span class="n">can</span><span class="w"> </span><span class="n">still</span><span class="w"> </span><span class="n">be</span><span class="w"> </span><span class="n">regular</span><span class="p">).</span><span class="w"></span>
+
+<span class="w">  </span><span class="n">Example</span><span class="p">:</span><span class="w"></span>
+<span class="w">     </span><span class="p">[</span><span class="n">reps</span><span class="p">,</span><span class="nb">isregular</span><span class="p">]</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">vlt</span><span class="p">.</span><span class="n">neuro</span><span class="p">.</span><span class="n">stimulus</span><span class="p">.</span><span class="n">stimids2reps</span><span class="p">([</span><span class="mi">1</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="mi">3</span><span class="p">],</span><span class="mi">3</span><span class="p">)</span><span class="w"></span>
+<span class="w">        </span><span class="c">% reps = [1 1 1 2 2 2]</span><span class="w"></span>
+<span class="w">        </span><span class="c">% isregular = 1</span><span class="w"></span>
+</code></pre></div>
                 
               
               

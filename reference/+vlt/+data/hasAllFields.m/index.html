@@ -3225,6 +3225,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../%2Bgit/git_stash.m/" class="md-nav__link">
+        vlt.git.git_stash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../%2Bgit/git_status.m/" class="md-nav__link">
         vlt.git.git_status
       </a>
@@ -9237,27 +9249,30 @@
                 
                 
                 <h1 id="vltdatahasallfields">vlt.data.hasAllFields<a class="headerlink" href="#vltdatahasallfields" title="Permanent link">&para;</a></h1>
-<p>Part of the NewStim package
-   [GOOD,ERRORMSG] = vlt.data.hasAllFields(VARIABLE,FIELDNAMES,FIELDSIZES)</p>
-<p>Checks to see if VARIABLE has all of the fieldnames in the cellstr FIELDNAMES
-   and also checks to see if the values of those names match the dimensions
-   given in the cell array FIELDSIZES.  If you don't care to analyze one
-   dimension, pass -1 for that dimension.</p>
-<p>For example,
-       r = struct('test1',5,'test2',[6 1]);
-       s = struct('test1',5,'test3',[6 1]);</p>
-<div class="codehilite"><pre><span></span><code>   [g,e]=vlt.data.hasAllFields(r,{&#39;test1&#39;,&#39;test2&#39;},{[1 1],[1 2]})
-            gives g = 1, e=&#39;&#39;.
-   [g,e]=vlt.data.hasAllFields(s,{&#39;test1&#39;,&#39;test2&#39;},{[1 1],[1 2]})
-            gives g = 0, e=[&#39;&#39;&#39;test2&#39;&#39;&#39; not present.&#39;]
-</code></pre></div>
+<div class="codehilite"><pre><span></span><code>   <span class="nv">Part</span> <span class="nv">of</span> <span class="nv">the</span> <span class="nv">NewStim</span> <span class="nv">package</span>
+   [<span class="nv">GOOD</span>,<span class="nv">ERRORMSG</span>] <span class="o">=</span> <span class="nv">vlt</span>.<span class="nv">data</span>.<span class="nv">hasAllFields</span><span class="ss">(</span><span class="nv">VARIABLE</span>,<span class="nv">FIELDNAMES</span>,<span class="nv">FIELDSIZES</span><span class="ss">)</span>
 
-<p>If you didn't care how many columns the test2 field of r was, then you could
-   pass [1 -1] instead of [1 2], or if you didn't care what size it was at all
-   then you could pass [-1 -1].</p>
-<p>Note:  At present, this function does not work on arrays of structs, only
-   structs.  As a work-around, pass the first element of a struct array to see
-   if it is good.</p>
+   <span class="nv">Checks</span> <span class="nv">to</span> <span class="nv">see</span> <span class="k">if</span> <span class="nv">VARIABLE</span> <span class="nv">has</span> <span class="nv">all</span> <span class="nv">of</span> <span class="nv">the</span> <span class="nv">fieldnames</span> <span class="nv">in</span> <span class="nv">the</span> <span class="nv">cellstr</span> <span class="nv">FIELDNAMES</span>
+   <span class="nv">and</span> <span class="nv">also</span> <span class="nv">checks</span> <span class="nv">to</span> <span class="nv">see</span> <span class="k">if</span> <span class="nv">the</span> <span class="nv">values</span> <span class="nv">of</span> <span class="nv">those</span> <span class="nv">names</span> <span class="nv">match</span> <span class="nv">the</span> <span class="nv">dimensions</span>
+   <span class="nv">given</span> <span class="nv">in</span> <span class="nv">the</span> <span class="nv">cell</span> <span class="nv">array</span> <span class="nv">FIELDSIZES</span>.  <span class="k">If</span> <span class="nv">you</span> <span class="nv">don</span><span class="s1">&#39;</span><span class="s">t care to analyze one</span>
+   <span class="nv">dimension</span>, <span class="nv">pass</span> <span class="o">-</span><span class="mi">1</span> <span class="k">for</span> <span class="nv">that</span> <span class="nv">dimension</span>.
+
+   <span class="k">For</span> <span class="nv">example</span>,
+       <span class="nv">r</span> <span class="o">=</span> <span class="nv">struct</span><span class="ss">(</span><span class="s1">&#39;</span><span class="s">test1</span><span class="s1">&#39;</span>,<span class="mi">5</span>,<span class="s1">&#39;</span><span class="s">test2</span><span class="s1">&#39;</span>,[<span class="mi">6</span> <span class="mi">1</span>]<span class="ss">)</span><span class="c1">;</span>
+       <span class="nv">s</span> <span class="o">=</span> <span class="nv">struct</span><span class="ss">(</span><span class="s1">&#39;</span><span class="s">test1</span><span class="s1">&#39;</span>,<span class="mi">5</span>,<span class="s1">&#39;</span><span class="s">test3</span><span class="s1">&#39;</span>,[<span class="mi">6</span> <span class="mi">1</span>]<span class="ss">)</span><span class="c1">;</span>
+
+       [<span class="nv">g</span>,<span class="nv">e</span>]<span class="o">=</span><span class="nv">vlt</span>.<span class="nv">data</span>.<span class="nv">hasAllFields</span><span class="ss">(</span><span class="nv">r</span>,{<span class="s1">&#39;</span><span class="s">test1</span><span class="s1">&#39;</span>,<span class="s1">&#39;</span><span class="s">test2</span><span class="s1">&#39;</span>},{[<span class="mi">1</span> <span class="mi">1</span>],[<span class="mi">1</span> <span class="mi">2</span>]}<span class="ss">)</span>
+                <span class="nv">gives</span> <span class="nv">g</span> <span class="o">=</span> <span class="mi">1</span>, <span class="nv">e</span><span class="o">=</span><span class="s1">&#39;&#39;</span>.
+       [<span class="nv">g</span>,<span class="nv">e</span>]<span class="o">=</span><span class="nv">vlt</span>.<span class="nv">data</span>.<span class="nv">hasAllFields</span><span class="ss">(</span><span class="nv">s</span>,{<span class="s1">&#39;</span><span class="s">test1</span><span class="s1">&#39;</span>,<span class="s1">&#39;</span><span class="s">test2</span><span class="s1">&#39;</span>},{[<span class="mi">1</span> <span class="mi">1</span>],[<span class="mi">1</span> <span class="mi">2</span>]}<span class="ss">)</span>
+                <span class="nv">gives</span> <span class="nv">g</span> <span class="o">=</span> <span class="mi">0</span>, <span class="nv">e</span><span class="o">=</span>[<span class="s1">&#39;&#39;&#39;</span><span class="s">test2</span><span class="s1">&#39;&#39;&#39;</span> <span class="nv">not</span> <span class="nv">present</span>.<span class="s1">&#39;</span><span class="s">]</span>
+   <span class="k">If</span> <span class="nv">you</span> <span class="nv">didn</span><span class="s1">&#39;</span><span class="s">t care how many columns the test2 field of r was, then you could</span>
+   <span class="nv">pass</span> [<span class="mi">1</span> <span class="o">-</span><span class="mi">1</span>] <span class="nv">instead</span> <span class="nv">of</span> [<span class="mi">1</span> <span class="mi">2</span>], <span class="nv">or</span> <span class="k">if</span> <span class="nv">you</span> <span class="nv">didn</span><span class="s1">&#39;</span><span class="s">t care what size it was at all</span>
+   <span class="k">then</span> <span class="nv">you</span> <span class="nv">could</span> <span class="nv">pass</span> [<span class="o">-</span><span class="mi">1</span> <span class="o">-</span><span class="mi">1</span>].
+
+   <span class="nv">Note</span>:  <span class="nv">At</span> <span class="nv">present</span>, <span class="nv">this</span> <span class="nv">function</span> <span class="nv">does</span> <span class="nv">not</span> <span class="nv">work</span> <span class="nv">on</span> <span class="nv">arrays</span> <span class="nv">of</span> <span class="nv">structs</span>, <span class="nv">only</span>
+   <span class="nv">structs</span>.  <span class="nv">As</span> <span class="nv">a</span> <span class="nv">work</span><span class="o">-</span><span class="nv">around</span>, <span class="nv">pass</span> <span class="nv">the</span> <span class="nv">first</span> <span class="nv">element</span> <span class="nv">of</span> <span class="nv">a</span> <span class="nv">struct</span> <span class="nv">array</span> <span class="nv">to</span> <span class="nv">see</span>
+   <span class="k">if</span> <span class="nv">it</span> <span class="nv">is</span> <span class="nv">good</span>.
+</code></pre></div>
                 
               
               

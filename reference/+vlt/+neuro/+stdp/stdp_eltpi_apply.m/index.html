@@ -3213,6 +3213,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../../%2Bgit/git_stash.m/" class="md-nav__link">
+        vlt.git.git_stash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../../%2Bgit/git_status.m/" class="md-nav__link">
         vlt.git.git_status
       </a>
@@ -9239,110 +9251,63 @@
                 
                 
                 <h1 id="vltneurostdpstdp_eltpi_apply">vlt.neuro.stdp.stdp_eltpi_apply<a class="headerlink" href="#vltneurostdpstdp_eltpi_apply" title="Permanent link">&para;</a></h1>
-<p>STDP_ELTPI_APPLY Spike-timing dependent-plasticity for calculating changes in synaptic weights</p>
-<div class="codehilite"><pre><span></span><code> WEIGHT = vlt.neuro.stdp.stdp_eltpi_apply(SPIKETIMES_PRE, SPIKETIMES_POST)
-</code></pre></div>
+<div class="codehilite"><pre><span></span><code>  <span class="n">STDP_ELTPI_APPLY</span> <span class="n">Spike</span><span class="o">-</span><span class="n">timing</span> <span class="n">dependent</span><span class="o">-</span><span class="n">plasticity</span> <span class="k">for</span> <span class="n">calculating</span> <span class="n">changes</span> <span class="ow">in</span> <span class="n">synaptic</span> <span class="n">weights</span>
 
-<p>Calculates the change in synaptic weight due to the early LTPi 
-   rule discovered by Maffei and colleages (unpublished). The model
-   is closely related to the triplet SPIKE-TIMING-DEPENDENT-PLASTICITY
-   model curve provided in Pfister and Gerstner 2006 (J Neurosci)
-   and described in Bourjaily and Miller 2011 (Frontiers in Comp.
-   Neurosci):</p>
-<div class="codehilite"><pre><span></span><code>   <span class="k">For</span> <span class="nv">all</span> <span class="nv">pairs</span> <span class="nv">of</span> <span class="nv">pre</span><span class="o">-</span> <span class="nv">and</span> <span class="nv">post</span><span class="o">-</span><span class="nv">synaptic</span> <span class="nv">spikes</span>, <span class="nv">let</span> <span class="nv">the</span>
-   <span class="nv">time</span> <span class="nv">between</span> <span class="nv">them</span> <span class="nv">be</span> <span class="nv">called</span> <span class="nv">dT</span> <span class="o">=</span> <span class="nv">t_pre</span> <span class="o">-</span> <span class="nv">t_post</span>.
-   <span class="k">If</span> <span class="nv">dT</span> <span class="o">&lt;</span> <span class="mi">0</span>, <span class="nv">delta_weight</span> <span class="o">=</span> <span class="nv">A_plus</span> <span class="o">*</span> <span class="nv">exp</span><span class="ss">(</span><span class="nv">dT</span><span class="o">/</span><span class="nv">tau_plus</span><span class="ss">)</span> 
-   <span class="k">If</span> <span class="nv">dT</span> <span class="o">&gt;=</span> <span class="mi">0</span>, <span class="nv">delta_weight</span> <span class="o">=</span> <span class="nv">A_minus</span> <span class="o">*</span> <span class="nv">exp</span><span class="ss">(</span><span class="nv">dT</span><span class="o">/</span><span class="nv">tau_minus</span><span class="ss">)</span>
-</code></pre></div>
+     <span class="n">WEIGHT</span> <span class="o">=</span> <span class="n">vlt</span><span class="o">.</span><span class="n">neuro</span><span class="o">.</span><span class="n">stdp</span><span class="o">.</span><span class="n">stdp_eltpi_apply</span><span class="p">(</span><span class="n">SPIKETIMES_PRE</span><span class="p">,</span> <span class="n">SPIKETIMES_POST</span><span class="p">)</span>
 
-<p>In addition, this pre/post synaptic activity is boosted by
-   integrating the pre (tau_y) or post (tau_x) rate activity as
-   described in Bourjaily and Miller 2011. (describe this better)</p>
-<p>The "boost" is further modified by a gaussian transformation
-   such that the effect is boosted only at particular firing rates
-   close the center of the gaussian.</p>
-<p>WEIGHT is a factor that indicates how the maximumal
-   conductance is modified. In Song and Abbott, the synaptic 
-   conductance was modified by the following forumla:
-   G -&gt; G + G_max * WEIGHT</p>
-<p>Only spikes that occur at or after the time T0 will be examined for STDP.
-   By default, T0 is 0.  (One could use this to restrict the influence
-   of STDP to spike pairs where at least one member of the pair occurs
-   after a particular time.)</p>
-<p>The parameters of the synapse can be varied by providing additional 
-   inputs as name, value pairs. The names and values that are default are
-   shown here. For example,
-     WEIGHT = vlt.neuro.stdp.stdp_eltpi_apply(SPIKETIMES_PRE, SPIKETIMES_POST, 'tau_plus',0.050)</p>
-<table>
-<thead>
-<tr>
-<th>Parameter name:</th>
-<th>default value</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>tau_plus</td>
-<td>0.100 (units are same as spiketimes)</td>
-</tr>
-<tr>
-<td>tau_minus</td>
-<td>0.100</td>
-</tr>
-<tr>
-<td>tau_x</td>
-<td>0.100</td>
-</tr>
-<tr>
-<td>tau_y</td>
-<td>0.100</td>
-</tr>
-<tr>
-<td>tau_x2</td>
-<td>0.025</td>
-</tr>
-<tr>
-<td>tau_y2</td>
-<td>0.025</td>
-</tr>
-<tr>
-<td>A2_plus</td>
-<td>0.00001</td>
-</tr>
-<tr>
-<td>A2_minus</td>
-<td>-0.00001</td>
-</tr>
-<tr>
-<td>A3_plus</td>
-<td>1e-3</td>
-</tr>
-<tr>
-<td>A3_minus</td>
-<td>-1e-3</td>
-</tr>
-<tr>
-<td>A4_minusgaussmean</td>
-<td>1.4 (from sum(exp(-(0:1/8:10)/tau_x)) ), 8Hz peak</td>
-</tr>
-<tr>
-<td>A4_minusgausswidth</td>
-<td>0.17 (from diff of 8Hz and 6Hz values above)</td>
-</tr>
-<tr>
-<td>A4_plusgaussmean</td>
-<td>1.4</td>
-</tr>
-<tr>
-<td>A4_plusgausswidth</td>
-<td>0.17</td>
-</tr>
-<tr>
-<td>T0</td>
-<td>0</td>
-</tr>
-</tbody>
-</table>
+   <span class="n">Calculates</span> <span class="n">the</span> <span class="n">change</span> <span class="ow">in</span> <span class="n">synaptic</span> <span class="n">weight</span> <span class="n">due</span> <span class="n">to</span> <span class="n">the</span> <span class="n">early</span> <span class="n">LTPi</span> 
+   <span class="n">rule</span> <span class="n">discovered</span> <span class="n">by</span> <span class="n">Maffei</span> <span class="ow">and</span> <span class="n">colleages</span> <span class="p">(</span><span class="n">unpublished</span><span class="p">)</span><span class="o">.</span> <span class="n">The</span> <span class="n">model</span>
+   <span class="k">is</span> <span class="n">closely</span> <span class="n">related</span> <span class="n">to</span> <span class="n">the</span> <span class="n">triplet</span> <span class="n">SPIKE</span><span class="o">-</span><span class="n">TIMING</span><span class="o">-</span><span class="n">DEPENDENT</span><span class="o">-</span><span class="n">PLASTICITY</span>
+   <span class="n">model</span> <span class="n">curve</span> <span class="n">provided</span> <span class="ow">in</span> <span class="n">Pfister</span> <span class="ow">and</span> <span class="n">Gerstner</span> <span class="mi">2006</span> <span class="p">(</span><span class="n">J</span> <span class="n">Neurosci</span><span class="p">)</span>
+   <span class="ow">and</span> <span class="n">described</span> <span class="ow">in</span> <span class="n">Bourjaily</span> <span class="ow">and</span> <span class="n">Miller</span> <span class="mi">2011</span> <span class="p">(</span><span class="n">Frontiers</span> <span class="ow">in</span> <span class="n">Comp</span><span class="o">.</span>
+   <span class="n">Neurosci</span><span class="p">):</span>
+
+       <span class="n">For</span> <span class="n">all</span> <span class="n">pairs</span> <span class="n">of</span> <span class="n">pre</span><span class="o">-</span> <span class="ow">and</span> <span class="n">post</span><span class="o">-</span><span class="n">synaptic</span> <span class="n">spikes</span><span class="p">,</span> <span class="n">let</span> <span class="n">the</span>
+       <span class="n">time</span> <span class="n">between</span> <span class="n">them</span> <span class="n">be</span> <span class="n">called</span> <span class="n">dT</span> <span class="o">=</span> <span class="n">t_pre</span> <span class="o">-</span> <span class="n">t_post</span><span class="o">.</span>
+       <span class="n">If</span> <span class="n">dT</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">,</span> <span class="n">delta_weight</span> <span class="o">=</span> <span class="n">A_plus</span> <span class="o">*</span> <span class="nb">exp</span><span class="p">(</span><span class="n">dT</span><span class="o">/</span><span class="n">tau_plus</span><span class="p">)</span> 
+       <span class="n">If</span> <span class="n">dT</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">delta_weight</span> <span class="o">=</span> <span class="n">A_minus</span> <span class="o">*</span> <span class="nb">exp</span><span class="p">(</span><span class="n">dT</span><span class="o">/</span><span class="n">tau_minus</span><span class="p">)</span>
+
+   <span class="n">In</span> <span class="n">addition</span><span class="p">,</span> <span class="n">this</span> <span class="n">pre</span><span class="o">/</span><span class="n">post</span> <span class="n">synaptic</span> <span class="n">activity</span> <span class="k">is</span> <span class="n">boosted</span> <span class="n">by</span>
+   <span class="n">integrating</span> <span class="n">the</span> <span class="n">pre</span> <span class="p">(</span><span class="n">tau_y</span><span class="p">)</span> <span class="ow">or</span> <span class="n">post</span> <span class="p">(</span><span class="n">tau_x</span><span class="p">)</span> <span class="n">rate</span> <span class="n">activity</span> <span class="k">as</span>
+   <span class="n">described</span> <span class="ow">in</span> <span class="n">Bourjaily</span> <span class="ow">and</span> <span class="n">Miller</span> <span class="mf">2011.</span> <span class="p">(</span><span class="n">describe</span> <span class="n">this</span> <span class="n">better</span><span class="p">)</span>
+
+   <span class="n">The</span> <span class="s2">&quot;boost&quot;</span> <span class="k">is</span> <span class="n">further</span> <span class="n">modified</span> <span class="n">by</span> <span class="n">a</span> <span class="n">gaussian</span> <span class="n">transformation</span>
+   <span class="n">such</span> <span class="n">that</span> <span class="n">the</span> <span class="n">effect</span> <span class="k">is</span> <span class="n">boosted</span> <span class="n">only</span> <span class="n">at</span> <span class="n">particular</span> <span class="n">firing</span> <span class="n">rates</span>
+   <span class="n">close</span> <span class="n">the</span> <span class="n">center</span> <span class="n">of</span> <span class="n">the</span> <span class="n">gaussian</span><span class="o">.</span>
+
+   <span class="n">WEIGHT</span> <span class="k">is</span> <span class="n">a</span> <span class="n">factor</span> <span class="n">that</span> <span class="n">indicates</span> <span class="n">how</span> <span class="n">the</span> <span class="n">maximumal</span>
+   <span class="n">conductance</span> <span class="k">is</span> <span class="n">modified</span><span class="o">.</span> <span class="n">In</span> <span class="n">Song</span> <span class="ow">and</span> <span class="n">Abbott</span><span class="p">,</span> <span class="n">the</span> <span class="n">synaptic</span> 
+   <span class="n">conductance</span> <span class="n">was</span> <span class="n">modified</span> <span class="n">by</span> <span class="n">the</span> <span class="n">following</span> <span class="n">forumla</span><span class="p">:</span>
+   <span class="n">G</span> <span class="o">-&gt;</span> <span class="n">G</span> <span class="o">+</span> <span class="n">G_max</span> <span class="o">*</span> <span class="n">WEIGHT</span>
+
+   <span class="n">Only</span> <span class="n">spikes</span> <span class="n">that</span> <span class="n">occur</span> <span class="n">at</span> <span class="ow">or</span> <span class="n">after</span> <span class="n">the</span> <span class="n">time</span> <span class="n">T0</span> <span class="n">will</span> <span class="n">be</span> <span class="n">examined</span> <span class="k">for</span> <span class="n">STDP</span><span class="o">.</span>
+   <span class="n">By</span> <span class="n">default</span><span class="p">,</span> <span class="n">T0</span> <span class="k">is</span> <span class="mf">0.</span>  <span class="p">(</span><span class="n">One</span> <span class="n">could</span> <span class="n">use</span> <span class="n">this</span> <span class="n">to</span> <span class="n">restrict</span> <span class="n">the</span> <span class="n">influence</span>
+   <span class="n">of</span> <span class="n">STDP</span> <span class="n">to</span> <span class="n">spike</span> <span class="n">pairs</span> <span class="n">where</span> <span class="n">at</span> <span class="n">least</span> <span class="n">one</span> <span class="n">member</span> <span class="n">of</span> <span class="n">the</span> <span class="n">pair</span> <span class="n">occurs</span>
+   <span class="n">after</span> <span class="n">a</span> <span class="n">particular</span> <span class="n">time</span><span class="o">.</span><span class="p">)</span>
+
+   <span class="n">The</span> <span class="n">parameters</span> <span class="n">of</span> <span class="n">the</span> <span class="n">synapse</span> <span class="n">can</span> <span class="n">be</span> <span class="n">varied</span> <span class="n">by</span> <span class="n">providing</span> <span class="n">additional</span> 
+   <span class="n">inputs</span> <span class="k">as</span> <span class="n">name</span><span class="p">,</span> <span class="n">value</span> <span class="n">pairs</span><span class="o">.</span> <span class="n">The</span> <span class="n">names</span> <span class="ow">and</span> <span class="n">values</span> <span class="n">that</span> <span class="n">are</span> <span class="n">default</span> <span class="n">are</span>
+   <span class="n">shown</span> <span class="n">here</span><span class="o">.</span> <span class="n">For</span> <span class="n">example</span><span class="p">,</span>
+     <span class="n">WEIGHT</span> <span class="o">=</span> <span class="n">vlt</span><span class="o">.</span><span class="n">neuro</span><span class="o">.</span><span class="n">stdp</span><span class="o">.</span><span class="n">stdp_eltpi_apply</span><span class="p">(</span><span class="n">SPIKETIMES_PRE</span><span class="p">,</span> <span class="n">SPIKETIMES_POST</span><span class="p">,</span> <span class="s1">&#39;tau_plus&#39;</span><span class="p">,</span><span class="mf">0.050</span><span class="p">)</span>
+
+   <span class="n">Parameter</span> <span class="n">name</span><span class="p">:</span>               <span class="o">|</span> <span class="n">default</span> <span class="n">value</span>
+   <span class="o">------------------------------|-----------------------------</span>
+   <span class="n">tau_plus</span>                      <span class="o">|</span> <span class="mf">0.100</span> <span class="p">(</span><span class="n">units</span> <span class="n">are</span> <span class="n">same</span> <span class="k">as</span> <span class="n">spiketimes</span><span class="p">)</span>
+   <span class="n">tau_minus</span>                     <span class="o">|</span> <span class="mf">0.100</span>
+   <span class="n">tau_x</span>                         <span class="o">|</span> <span class="mf">0.100</span>
+   <span class="n">tau_y</span>                         <span class="o">|</span> <span class="mf">0.100</span>
+   <span class="n">tau_x2</span>                        <span class="o">|</span> <span class="mf">0.025</span>
+   <span class="n">tau_y2</span>                        <span class="o">|</span> <span class="mf">0.025</span>
+   <span class="n">A2_plus</span>                       <span class="o">|</span> <span class="mf">0.00001</span>  
+   <span class="n">A2_minus</span>                      <span class="o">|-</span><span class="mf">0.00001</span>  
+   <span class="n">A3_plus</span>                       <span class="o">|</span> <span class="mf">1e-3</span>
+   <span class="n">A3_minus</span>                      <span class="o">|-</span><span class="mf">1e-3</span>
+   <span class="n">A4_minusgaussmean</span>             <span class="o">|</span> <span class="mf">1.4</span> <span class="p">(</span><span class="n">from</span> <span class="n">sum</span><span class="p">(</span><span class="nb">exp</span><span class="p">(</span><span class="o">-</span><span class="p">(</span><span class="mi">0</span><span class="p">:</span><span class="mi">1</span><span class="o">/</span><span class="mi">8</span><span class="p">:</span><span class="mi">10</span><span class="p">)</span><span class="o">/</span><span class="n">tau_x</span><span class="p">))</span> <span class="p">),</span> <span class="mi">8</span><span class="n">Hz</span> <span class="n">peak</span>
+   <span class="n">A4_minusgausswidth</span>            <span class="o">|</span> <span class="mf">0.17</span> <span class="p">(</span><span class="n">from</span> <span class="n">diff</span> <span class="n">of</span> <span class="mi">8</span><span class="n">Hz</span> <span class="ow">and</span> <span class="mi">6</span><span class="n">Hz</span> <span class="n">values</span> <span class="n">above</span><span class="p">)</span>
+   <span class="n">A4_plusgaussmean</span>              <span class="o">|</span> <span class="mf">1.4</span> 
+   <span class="n">A4_plusgausswidth</span>             <span class="o">|</span> <span class="mf">0.17</span>
+   <span class="n">T0</span>                            <span class="o">|</span> <span class="mi">0</span>
+</code></pre></div>
                 
               
               

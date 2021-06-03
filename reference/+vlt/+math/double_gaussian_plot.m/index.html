@@ -3213,6 +3213,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../%2Bgit/git_stash.m/" class="md-nav__link">
+        vlt.git.git_stash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../%2Bgit/git_status.m/" class="md-nav__link">
         vlt.git.git_status
       </a>
@@ -9237,15 +9249,20 @@
                 
                 
                 <h1 id="vltmathdouble_gaussian_plot">vlt.math.double_gaussian_plot<a class="headerlink" href="#vltmathdouble_gaussian_plot" title="Permanent link">&para;</a></h1>
-<p>DOUBLE_GAUSSIAN_PLOT - calculate a double gaussian</p>
-<p>Computes responses to a double gaussian curve</p>
-<p>Z = vlt.math.double_gaussian_plot(P, XI, WRAP), where</p>
-<p>P = parameters = [offset Rp Op Sigm Rn angle_offset]
+<div class="codehilite"><pre><span></span><code>  DOUBLE_GAUSSIAN_PLOT - calculate a double gaussian
+
+  Computes responses to a double gaussian curve
+
+  Z = vlt.math.double_gaussian_plot(P, XI, WRAP), where
+
+  P = parameters = [offset Rp Op Sigm Rn angle_offset]
   XI are the angles to be evaluated
-  and WRAP is the wrap to be performed by vlt.math.angdiffwrap (usually 360)</p>
-<p>The curve is
-    Z = offset + Rp<em>exp(-(vlt.math.angdiffwrap(xi-Op,wrap).^2)/(2</em>Sigm<em>Sigm))+...
-         Rn</em>exp(-(vlt.math.angdiffwrap(xi-(Op+angle_offset),wrap)/(2<em>Sigm</em>Sigm)))</p>
+  and WRAP is the wrap to be performed by vlt.math.angdiffwrap (usually 360)
+
+  The curve is
+    Z = offset + Rp*exp(-(vlt.math.angdiffwrap(xi-Op,wrap).^2)/(2*Sigm*Sigm))+...
+         Rn*exp(-(vlt.math.angdiffwrap(xi-(Op+angle_offset),wrap)/(2*Sigm*Sigm)))
+</code></pre></div>
                 
               
               

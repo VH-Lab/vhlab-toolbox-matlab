@@ -3213,6 +3213,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../../%2Bgit/git_stash.m/" class="md-nav__link">
+        vlt.git.git_stash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../../%2Bgit/git_status.m/" class="md-nav__link">
         vlt.git.git_status
       </a>
@@ -9239,20 +9251,29 @@
                 
                 
                 <h1 id="vltmatlabgraphicsviewpoint3dto2d">vlt.matlab.graphics.viewpoint3dto2d<a class="headerlink" href="#vltmatlabgraphicsviewpoint3dto2d" title="Permanent link">&para;</a></h1>
-<p>VIEWPOINT3DTO2D Project a 3D point onto 2D with a given camera matrix</p>
-<p>PTS2D = vlt.matlab.graphics.viewpoint3dto2d(PTS3D, CAMERAMATRIX)</p>
-<p>Converts a list of 3D points PTS3D into their corresponding
-   2D projection for the camera matrix CAMERAMATRIX.  The matrix PTS3D should be
-   a list of column vectors (3xN, where N is the number of points). CAMERAMATRIX
-   is a standard camera matrix (see Wikipedia for "camera matrix").</p>
-<p>Output: PTS2D is a list of column vectors (2xN) that correspond to the 
-   2D projection.  There is an arbitrary scale factor that depends upon how
-   you want to display the points; you can scale these points with a multiplicative
-   factor and the relative relationships will still be preserved.</p>
-<p>One can also call:</p>
-<p>PTS2D = vlt.matlab.graphics.viewpoint3dto2d(PTS3D)</p>
-<p>which takes the CAMERAMATRIX to be the current VIEW in the current axes.</p>
-<p>See also: VIEW</p>
+<div class="codehilite"><pre><span></span><code>  <span class="nt">VIEWPOINT3DTO2D</span> <span class="nt">Project</span> <span class="nt">a</span> <span class="nt">3D</span> <span class="nt">point</span> <span class="nt">onto</span> <span class="nt">2D</span> <span class="nt">with</span> <span class="nt">a</span> <span class="nt">given</span> <span class="nt">camera</span> <span class="nt">matrix</span>
+
+   <span class="nt">PTS2D</span> <span class="o">=</span> <span class="nt">vlt</span><span class="p">.</span><span class="nc">matlab</span><span class="p">.</span><span class="nc">graphics</span><span class="p">.</span><span class="nc">viewpoint3dto2d</span><span class="o">(</span><span class="nt">PTS3D</span><span class="o">,</span> <span class="nt">CAMERAMATRIX</span><span class="o">)</span>
+
+   <span class="nt">Converts</span> <span class="nt">a</span> <span class="nt">list</span> <span class="nt">of</span> <span class="nt">3D</span> <span class="nt">points</span> <span class="nt">PTS3D</span> <span class="nt">into</span> <span class="nt">their</span> <span class="nt">corresponding</span>
+   <span class="nt">2D</span> <span class="nt">projection</span> <span class="nt">for</span> <span class="nt">the</span> <span class="nt">camera</span> <span class="nt">matrix</span> <span class="nt">CAMERAMATRIX</span><span class="o">.</span>  <span class="nt">The</span> <span class="nt">matrix</span> <span class="nt">PTS3D</span> <span class="nt">should</span> <span class="nt">be</span>
+   <span class="nt">a</span> <span class="nt">list</span> <span class="nt">of</span> <span class="nt">column</span> <span class="nt">vectors</span> <span class="o">(</span><span class="nt">3xN</span><span class="o">,</span> <span class="nt">where</span> <span class="nt">N</span> <span class="nt">is</span> <span class="nt">the</span> <span class="nt">number</span> <span class="nt">of</span> <span class="nt">points</span><span class="o">).</span> <span class="nt">CAMERAMATRIX</span>
+   <span class="nt">is</span> <span class="nt">a</span> <span class="nt">standard</span> <span class="nt">camera</span> <span class="nt">matrix</span> <span class="o">(</span><span class="nt">see</span> <span class="nt">Wikipedia</span> <span class="nt">for</span> <span class="s2">&quot;camera matrix&quot;</span><span class="o">).</span>
+
+   <span class="nt">Output</span><span class="o">:</span> <span class="nt">PTS2D</span> <span class="nt">is</span> <span class="nt">a</span> <span class="nt">list</span> <span class="nt">of</span> <span class="nt">column</span> <span class="nt">vectors</span> <span class="o">(</span><span class="nt">2xN</span><span class="o">)</span> <span class="nt">that</span> <span class="nt">correspond</span> <span class="nt">to</span> <span class="nt">the</span> 
+   <span class="nt">2D</span> <span class="nt">projection</span><span class="o">.</span>  <span class="nt">There</span> <span class="nt">is</span> <span class="nt">an</span> <span class="nt">arbitrary</span> <span class="nt">scale</span> <span class="nt">factor</span> <span class="nt">that</span> <span class="nt">depends</span> <span class="nt">upon</span> <span class="nt">how</span>
+   <span class="nt">you</span> <span class="nt">want</span> <span class="nt">to</span> <span class="nt">display</span> <span class="nt">the</span> <span class="nt">points</span><span class="o">;</span> <span class="nt">you</span> <span class="nt">can</span> <span class="nt">scale</span> <span class="nt">these</span> <span class="nt">points</span> <span class="nt">with</span> <span class="nt">a</span> <span class="nt">multiplicative</span>
+   <span class="nt">factor</span> <span class="nt">and</span> <span class="nt">the</span> <span class="nt">relative</span> <span class="nt">relationships</span> <span class="nt">will</span> <span class="nt">still</span> <span class="nt">be</span> <span class="nt">preserved</span><span class="o">.</span>
+
+   <span class="nt">One</span> <span class="nt">can</span> <span class="nt">also</span> <span class="nt">call</span><span class="o">:</span>
+
+   <span class="nt">PTS2D</span> <span class="o">=</span> <span class="nt">vlt</span><span class="p">.</span><span class="nc">matlab</span><span class="p">.</span><span class="nc">graphics</span><span class="p">.</span><span class="nc">viewpoint3dto2d</span><span class="o">(</span><span class="nt">PTS3D</span><span class="o">)</span>
+
+   <span class="nt">which</span> <span class="nt">takes</span> <span class="nt">the</span> <span class="nt">CAMERAMATRIX</span> <span class="nt">to</span> <span class="nt">be</span> <span class="nt">the</span> <span class="nt">current</span> <span class="nt">VIEW</span> <span class="nt">in</span> <span class="nt">the</span> <span class="nt">current</span> <span class="nt">axes</span><span class="o">.</span>
+
+
+   <span class="nt">See</span> <span class="nt">also</span><span class="o">:</span> <span class="nt">VIEW</span>
+</code></pre></div>
                 
               
               

@@ -3213,6 +3213,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../../%2Bgit/git_stash.m/" class="md-nav__link">
+        vlt.git.git_stash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../../%2Bgit/git_status.m/" class="md-nav__link">
         vlt.git.git_status
       </a>
@@ -9239,14 +9251,18 @@
                 
                 
                 <h1 id="vltneuromembranepoisson_vm_fr">vlt.neuro.membrane.poisson_vm_fr<a class="headerlink" href="#vltneuromembranepoisson_vm_fr" title="Permanent link">&para;</a></h1>
-<p>POISSON_VM_FR - calculate log likelihood of seeing Vm/Fr pairs given model</p>
-<p>LOGP_OF_DATA = vlt.neuro.membrane.poisson_vm_fr(VM, FR, DELTAT, RATEFUNC, RATEFUNCPARAMS, ...)</p>
-<p>Calculate the log likelihood of observing a given set of binned membrane voltage
+<div class="codehilite"><pre><span></span><code>  POISSON_VM_FR - calculate log likelihood of seeing Vm/Fr pairs given model
+
+  LOGP_OF_DATA = vlt.neuro.membrane.poisson_vm_fr(VM, FR, DELTAT, RATEFUNC, RATEFUNCPARAMS, ...)
+
+  Calculate the log likelihood of observing a given set of binned membrane voltage
   measurements (VM) and corresponding binned firing rates (FR) in bins size DELTAT.
   Spikes are assumed to be generated at a Poisson rate, where the rate lambda is
   determined by RATEFUNC(VM, ...) * DELTAT. RATEFUNCPARAMS are additional parameters
-  to be passed to RATEFUNC, so that the call to RATEFUNC is RATEFUNC(VM, RATEFUNCPARAMS{:});</p>
-<p>See also: vlt.neuro.membrane.mle_poisson_vm_fr</p>
+  to be passed to RATEFUNC, so that the call to RATEFUNC is RATEFUNC(VM, RATEFUNCPARAMS{:});
+
+  See also: vlt.neuro.membrane.mle_poisson_vm_fr
+</code></pre></div>
                 
               
               

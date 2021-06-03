@@ -3213,6 +3213,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../%2Bgit/git_stash.m/" class="md-nav__link">
+        vlt.git.git_stash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../%2Bgit/git_status.m/" class="md-nav__link">
         vlt.git.git_status
       </a>
@@ -9237,28 +9249,36 @@
                 
                 
                 <h1 id="vltmathgauss2d_ellipse">vlt.math.gauss2d_ellipse<a class="headerlink" href="#vltmathgauss2d_ellipse" title="Permanent link">&para;</a></h1>
-<p>GAUSS2D_ELLIPSE Compute a fullwidth at half-weight ellipse from a 2d gaussian</p>
-<p>ELLIPSE_OUT = vlt.math.gauss2d_ellipse(MU, C, [N])</p>
-<p>Given a 2-d multivariate normal that is described with a mean MU
-   and covariance matrix C, return the size of the major and minor 
-   axes at half-height and points for an ellipse that circles the
-   mean at the location of the half-height contour.</p>
-<p>The equation of the half max ellipse is:
-      (x-mu(1))^2 / a^2 + (y-mu(2))^2) / b^2 == 1</p>
-<p>N is an optional argument (default 10) that determines the number
-   of points to include in each branch of the ellipse graph. (The
-   total number of points will be 2*N.)</p>
-<p>The structure ELLIPSE_OUT contains the parameters of the ellipse:
-   Fieldname          | Description</p>
-<hr />
-<p>plot_ellipse       | Ellipse plot points (2 by 2*N); the first 
-                      |   row are the X points, the second rows are
-                      |   the Y points
-   a                  | The value of a in the ellipse equation
-   b                  | The value of b in the ellipse equation
-   major              | max(a,b) - the major axis
-   minor              | min(a,b) - the minor axis</p>
-<p>w/ contribution by Shen Wang</p>
+<div class="codehilite"><pre><span></span><code><span class="w">  </span><span class="n">GAUSS2D_ELLIPSE</span><span class="w"> </span><span class="k">Compute</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">fullwidth</span><span class="w"> </span><span class="k">at</span><span class="w"> </span><span class="n">half</span><span class="o">-</span><span class="n">weight</span><span class="w"> </span><span class="n">ellipse</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="mi">2</span><span class="n">d</span><span class="w"> </span><span class="n">gaussian</span><span class="w"></span>
+
+<span class="w">   </span><span class="n">ELLIPSE_OUT</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">vlt</span><span class="p">.</span><span class="n">math</span><span class="p">.</span><span class="n">gauss2d_ellipse</span><span class="p">(</span><span class="n">MU</span><span class="p">,</span><span class="w"> </span><span class="n">C</span><span class="p">,</span><span class="w"> </span><span class="o">[</span><span class="n">N</span><span class="o">]</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">   </span><span class="n">Given</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="mi">2</span><span class="o">-</span><span class="n">d</span><span class="w"> </span><span class="n">multivariate</span><span class="w"> </span><span class="n">normal</span><span class="w"> </span><span class="n">that</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="n">described</span><span class="w"> </span><span class="k">with</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">mean</span><span class="w"> </span><span class="n">MU</span><span class="w"></span>
+<span class="w">   </span><span class="ow">and</span><span class="w"> </span><span class="n">covariance</span><span class="w"> </span><span class="n">matrix</span><span class="w"> </span><span class="n">C</span><span class="p">,</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="k">size</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">major</span><span class="w"> </span><span class="ow">and</span><span class="w"> </span><span class="n">minor</span><span class="w"> </span>
+<span class="w">   </span><span class="n">axes</span><span class="w"> </span><span class="k">at</span><span class="w"> </span><span class="n">half</span><span class="o">-</span><span class="n">height</span><span class="w"> </span><span class="ow">and</span><span class="w"> </span><span class="n">points</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">an</span><span class="w"> </span><span class="n">ellipse</span><span class="w"> </span><span class="n">that</span><span class="w"> </span><span class="n">circles</span><span class="w"> </span><span class="n">the</span><span class="w"></span>
+<span class="w">   </span><span class="n">mean</span><span class="w"> </span><span class="k">at</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">location</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">half</span><span class="o">-</span><span class="n">height</span><span class="w"> </span><span class="n">contour</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">   </span><span class="n">The</span><span class="w"> </span><span class="n">equation</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">half</span><span class="w"> </span><span class="nf">max</span><span class="w"> </span><span class="n">ellipse</span><span class="w"> </span><span class="k">is</span><span class="err">:</span><span class="w"></span>
+<span class="w">      </span><span class="p">(</span><span class="n">x</span><span class="o">-</span><span class="n">mu</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span><span class="o">^</span><span class="mi">2</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">a</span><span class="o">^</span><span class="mi">2</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="p">(</span><span class="n">y</span><span class="o">-</span><span class="n">mu</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span><span class="o">^</span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">b</span><span class="o">^</span><span class="mi">2</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">1</span><span class="w"></span>
+
+<span class="w">   </span><span class="n">N</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="n">an</span><span class="w"> </span><span class="n">optional</span><span class="w"> </span><span class="n">argument</span><span class="w"> </span><span class="p">(</span><span class="k">default</span><span class="w"> </span><span class="mi">10</span><span class="p">)</span><span class="w"> </span><span class="n">that</span><span class="w"> </span><span class="n">determines</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">number</span><span class="w"></span>
+<span class="w">   </span><span class="k">of</span><span class="w"> </span><span class="n">points</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="k">include</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="k">each</span><span class="w"> </span><span class="n">branch</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">ellipse</span><span class="w"> </span><span class="n">graph</span><span class="p">.</span><span class="w"> </span><span class="p">(</span><span class="n">The</span><span class="w"></span>
+<span class="w">   </span><span class="n">total</span><span class="w"> </span><span class="n">number</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="n">points</span><span class="w"> </span><span class="n">will</span><span class="w"> </span><span class="n">be</span><span class="w"> </span><span class="mi">2</span><span class="o">*</span><span class="n">N</span><span class="p">.)</span><span class="w"></span>
+
+<span class="w">   </span><span class="n">The</span><span class="w"> </span><span class="k">structure</span><span class="w"> </span><span class="n">ELLIPSE_OUT</span><span class="w"> </span><span class="k">contains</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="k">parameters</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="nl">ellipse</span><span class="p">:</span><span class="w"></span>
+<span class="w">   </span><span class="n">Fieldname</span><span class="w">          </span><span class="o">|</span><span class="w"> </span><span class="n">Description</span><span class="w"></span>
+<span class="w">   </span><span class="o">-----------------------------------------------------------------</span><span class="w"></span>
+<span class="w">   </span><span class="n">plot_ellipse</span><span class="w">       </span><span class="o">|</span><span class="w"> </span><span class="n">Ellipse</span><span class="w"> </span><span class="n">plot</span><span class="w"> </span><span class="n">points</span><span class="w"> </span><span class="p">(</span><span class="mi">2</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="mi">2</span><span class="o">*</span><span class="n">N</span><span class="p">);</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="k">first</span><span class="w"> </span>
+<span class="w">                      </span><span class="o">|</span><span class="w">   </span><span class="k">row</span><span class="w"> </span><span class="k">are</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">X</span><span class="w"> </span><span class="n">points</span><span class="p">,</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="k">second</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="k">are</span><span class="w"></span>
+<span class="w">                      </span><span class="o">|</span><span class="w">   </span><span class="n">the</span><span class="w"> </span><span class="n">Y</span><span class="w"> </span><span class="n">points</span><span class="w"></span>
+<span class="w">   </span><span class="n">a</span><span class="w">                  </span><span class="o">|</span><span class="w"> </span><span class="n">The</span><span class="w"> </span><span class="k">value</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">ellipse</span><span class="w"> </span><span class="n">equation</span><span class="w"></span>
+<span class="w">   </span><span class="n">b</span><span class="w">                  </span><span class="o">|</span><span class="w"> </span><span class="n">The</span><span class="w"> </span><span class="k">value</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">ellipse</span><span class="w"> </span><span class="n">equation</span><span class="w"></span>
+<span class="w">   </span><span class="n">major</span><span class="w">              </span><span class="o">|</span><span class="w"> </span><span class="nf">max</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">major</span><span class="w"> </span><span class="n">axis</span><span class="w"></span>
+<span class="w">   </span><span class="n">minor</span><span class="w">              </span><span class="o">|</span><span class="w"> </span><span class="nf">min</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">minor</span><span class="w"> </span><span class="n">axis</span><span class="w"></span>
+
+
+<span class="w">   </span><span class="n">w</span><span class="o">/</span><span class="w"> </span><span class="n">contribution</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">Shen</span><span class="w"> </span><span class="n">Wang</span><span class="w"></span>
+</code></pre></div>
                 
               
               

@@ -3213,6 +3213,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../%2Bgit/git_stash.m/" class="md-nav__link">
+        vlt.git.git_stash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../%2Bgit/git_status.m/" class="md-nav__link">
         vlt.git.git_status
       </a>
@@ -9237,18 +9249,25 @@
                 
                 
                 <h1 id="vlttimefulltimestamp2datevec">vlt.time.fulltimestamp2datevec<a class="headerlink" href="#vlttimefulltimestamp2datevec" title="Permanent link">&para;</a></h1>
-<p>FULLTIMESTAMP2DATEVEC - Convert full time stamp yyyy-mm-ddTHH:MM:SS-TIMEZONE, to a date vector</p>
-<p>[V,TZ] = vlt.time.fulltimestamp2datevec(FULLTIMESTAMP_STR)</p>
-<p>Converts a full time stamp in the format
-    yyyy-mm-ddTHH:MM:SSTIMEZONE</p>
-<p>The date vector V has the same format as the Matlab
-   DATEVEC routine: V= [ year month day hour minute seconds]</p>
-<p>TZ is the time zone offset from GMT (e.g., EST is GMT -5), in 
-   vector format [hour minute].</p>
-<p>Example: 
-     fulltimestamp_str = '2013-11-27T10:35:35.0695379-05:00';
-     [V,TZ]=vlt.time.fulltimestamp2datevec(fulltimestamp_str)</p>
-<p>See also: DATEVEC, DATESTRING</p>
+<div class="codehilite"><pre><span></span><code>  <span class="n">FULLTIMESTAMP2DATEVEC</span> <span class="o">-</span> <span class="n">Convert</span> <span class="n">full</span> <span class="n">time</span> <span class="n">stamp</span> <span class="n">yyyy</span><span class="o">-</span><span class="n">mm</span><span class="o">-</span><span class="nl">ddTHH</span><span class="p">:</span><span class="nl">MM</span><span class="p">:</span><span class="n">SS</span><span class="o">-</span><span class="n">TIMEZONE</span><span class="p">,</span> <span class="n">to</span> <span class="n">a</span> <span class="n">date</span> <span class="n">vector</span>
+
+  <span class="p">[</span><span class="n">V</span><span class="p">,</span><span class="n">TZ</span><span class="p">]</span> <span class="o">=</span> <span class="n">vlt</span><span class="p">.</span><span class="n">time</span><span class="p">.</span><span class="n">fulltimestamp2datevec</span><span class="p">(</span><span class="n">FULLTIMESTAMP_STR</span><span class="p">)</span>
+
+  <span class="n">Converts</span> <span class="n">a</span> <span class="n">full</span> <span class="n">time</span> <span class="n">stamp</span> <span class="k">in</span> <span class="n">the</span> <span class="n">format</span>
+    <span class="n">yyyy</span><span class="o">-</span><span class="n">mm</span><span class="o">-</span><span class="nl">ddTHH</span><span class="p">:</span><span class="nl">MM</span><span class="p">:</span><span class="n">SSTIMEZONE</span>
+
+   <span class="n">The</span> <span class="n">date</span> <span class="n">vector</span> <span class="n">V</span> <span class="n">has</span> <span class="n">the</span> <span class="n">same</span> <span class="n">format</span> <span class="n">as</span> <span class="n">the</span> <span class="n">Matlab</span>
+   <span class="n">DATEVEC</span> <span class="nl">routine</span><span class="p">:</span> <span class="n">V</span><span class="o">=</span> <span class="p">[</span> <span class="n">year</span> <span class="n">month</span> <span class="n">day</span> <span class="n">hour</span> <span class="n">minute</span> <span class="n">seconds</span><span class="p">]</span>
+
+   <span class="n">TZ</span> <span class="n">is</span> <span class="n">the</span> <span class="n">time</span> <span class="n">zone</span> <span class="n">offset</span> <span class="n">from</span> <span class="n">GMT</span> <span class="p">(</span><span class="n">e</span><span class="p">.</span><span class="n">g</span><span class="p">.,</span> <span class="n">EST</span> <span class="n">is</span> <span class="n">GMT</span> <span class="mi">-5</span><span class="p">),</span> <span class="k">in</span> 
+   <span class="n">vector</span> <span class="n">format</span> <span class="p">[</span><span class="n">hour</span> <span class="n">minute</span><span class="p">].</span>
+
+   <span class="nl">Example</span><span class="p">:</span> 
+     <span class="n">fulltimestamp_str</span> <span class="o">=</span> <span class="err">&#39;</span><span class="mi">2013-11-27</span><span class="nl">T10</span><span class="p">:</span><span class="mi">35</span><span class="o">:</span><span class="mf">35.0695379</span><span class="mo">-05</span><span class="o">:</span><span class="mo">00</span><span class="err">&#39;</span><span class="p">;</span>
+     <span class="p">[</span><span class="n">V</span><span class="p">,</span><span class="n">TZ</span><span class="p">]</span><span class="o">=</span><span class="n">vlt</span><span class="p">.</span><span class="n">time</span><span class="p">.</span><span class="n">fulltimestamp2datevec</span><span class="p">(</span><span class="n">fulltimestamp_str</span><span class="p">)</span>
+
+   <span class="n">See</span> <span class="nl">also</span><span class="p">:</span> <span class="n">DATEVEC</span><span class="p">,</span> <span class="n">DATESTRING</span>
+</code></pre></div>
                 
               
               

@@ -3213,6 +3213,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../%2Bgit/git_stash.m/" class="md-nav__link">
+        vlt.git.git_stash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../%2Bgit/git_status.m/" class="md-nav__link">
         vlt.git.git_status
       </a>
@@ -9237,22 +9249,26 @@
                 
                 
                 <h1 id="vltplotplotmeanbar">vlt.plot.plotmeanbar<a class="headerlink" href="#vltplotplotmeanbar" title="Permanent link">&para;</a></h1>
-<p>PLOTMEANBAR - Plot a horizontal bar indicating mean (or standard error) of a dataset</p>
-<p>H = vlt.plot.plotmeanbar(DATA, ...)</p>
-<p>Plots the mean value of data as a horizontal bar, and, optionally, a
-  vertical bar indicating the standard error.  Returns a handle(s) H to the plot.</p>
-<p>This function can be modified by name/value pairs:
-  Parameter (default value)    | Description</p>
-<hr />
-<p>xloc ([0 1])                 | The location on the x axis where the line
-                               |    should be drawn ([xstart xend])
-  color ([0 0 0])              | Color of the bar (RGB)
-  usestderr (1)                | 0/1 Should we plot an error bar showing
-                               |    standard error of the mean?
-  useholdon (1)                | 0/1 Should we call 'hold on'?
-  linewidth (2)                | Linewidth for mean bar plot
-  linewidth_stderr (1)         | Linewidth for standard error plot
-  measure ('nanmean(data(:))') | Function to call to obtain mean; could be 'median'</p>
+<div class="codehilite"><pre><span></span><code>  <span class="n">PLOTMEANBAR</span> <span class="o">-</span> <span class="n">Plot</span> <span class="n">a</span> <span class="n">horizontal</span> <span class="n">bar</span> <span class="n">indicating</span> <span class="n">mean</span> <span class="p">(</span><span class="n">or</span> <span class="n">standard</span> <span class="n">error</span><span class="p">)</span> <span class="n">of</span> <span class="n">a</span> <span class="n">dataset</span>
+
+  <span class="n">H</span> <span class="o">=</span> <span class="n">vlt</span><span class="p">.</span><span class="n">plot</span><span class="p">.</span><span class="n">plotmeanbar</span><span class="p">(</span><span class="n">DATA</span><span class="p">,</span> <span class="p">...)</span>
+
+  <span class="n">Plots</span> <span class="n">the</span> <span class="n">mean</span> <span class="n">value</span> <span class="n">of</span> <span class="n">data</span> <span class="n">as</span> <span class="n">a</span> <span class="n">horizontal</span> <span class="n">bar</span><span class="p">,</span> <span class="n">and</span><span class="p">,</span> <span class="n">optionally</span><span class="p">,</span> <span class="n">a</span>
+  <span class="n">vertical</span> <span class="n">bar</span> <span class="n">indicating</span> <span class="n">the</span> <span class="n">standard</span> <span class="n">error</span><span class="p">.</span>  <span class="n">Returns</span> <span class="n">a</span> <span class="n">handle</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="n">H</span> <span class="n">to</span> <span class="n">the</span> <span class="n">plot</span><span class="p">.</span>
+
+  <span class="n">This</span> <span class="n">function</span> <span class="n">can</span> <span class="n">be</span> <span class="n">modified</span> <span class="n">by</span> <span class="n">name</span><span class="o">/</span><span class="n">value</span> <span class="nl">pairs</span><span class="p">:</span>
+  <span class="n">Parameter</span> <span class="p">(</span><span class="k">default</span> <span class="n">value</span><span class="p">)</span>    <span class="o">|</span> <span class="n">Description</span>
+  <span class="o">--------------------------------------------------------------</span>
+  <span class="n">xloc</span> <span class="p">([</span><span class="mi">0</span> <span class="mi">1</span><span class="p">])</span>                 <span class="o">|</span> <span class="n">The</span> <span class="n">location</span> <span class="n">on</span> <span class="n">the</span> <span class="n">x</span> <span class="n">axis</span> <span class="n">where</span> <span class="n">the</span> <span class="n">line</span>
+                               <span class="o">|</span>    <span class="n">should</span> <span class="n">be</span> <span class="n">drawn</span> <span class="p">([</span><span class="n">xstart</span> <span class="n">xend</span><span class="p">])</span>
+  <span class="n">color</span> <span class="p">([</span><span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span><span class="p">])</span>              <span class="o">|</span> <span class="n">Color</span> <span class="n">of</span> <span class="n">the</span> <span class="n">bar</span> <span class="p">(</span><span class="n">RGB</span><span class="p">)</span>
+  <span class="n">usestderr</span> <span class="p">(</span><span class="mi">1</span><span class="p">)</span>                <span class="o">|</span> <span class="mi">0</span><span class="o">/</span><span class="mi">1</span> <span class="n">Should</span> <span class="n">we</span> <span class="n">plot</span> <span class="n">an</span> <span class="n">error</span> <span class="n">bar</span> <span class="n">showing</span>
+                               <span class="o">|</span>    <span class="n">standard</span> <span class="n">error</span> <span class="n">of</span> <span class="n">the</span> <span class="n">mean</span><span class="o">?</span>
+  <span class="n">useholdon</span> <span class="p">(</span><span class="mi">1</span><span class="p">)</span>                <span class="o">|</span> <span class="mi">0</span><span class="o">/</span><span class="mi">1</span> <span class="n">Should</span> <span class="n">we</span> <span class="n">call</span> <span class="err">&#39;</span><span class="n">hold</span> <span class="n">on</span><span class="err">&#39;</span><span class="o">?</span>
+  <span class="n">linewidth</span> <span class="p">(</span><span class="mi">2</span><span class="p">)</span>                <span class="o">|</span> <span class="n">Linewidth</span> <span class="k">for</span> <span class="n">mean</span> <span class="n">bar</span> <span class="n">plot</span>
+  <span class="n">linewidth_stderr</span> <span class="p">(</span><span class="mi">1</span><span class="p">)</span>         <span class="o">|</span> <span class="n">Linewidth</span> <span class="k">for</span> <span class="n">standard</span> <span class="n">error</span> <span class="n">plot</span>
+  <span class="n">measure</span> <span class="p">(</span><span class="err">&#39;</span><span class="n">nanmean</span><span class="p">(</span><span class="n">data</span><span class="p">(</span><span class="o">:</span><span class="p">))</span><span class="err">&#39;</span><span class="p">)</span> <span class="o">|</span> <span class="n">Function</span> <span class="n">to</span> <span class="n">call</span> <span class="n">to</span> <span class="n">obtain</span> <span class="n">mean</span><span class="p">;</span> <span class="n">could</span> <span class="n">be</span> <span class="err">&#39;</span><span class="n">median</span><span class="err">&#39;</span>
+</code></pre></div>
                 
               
               

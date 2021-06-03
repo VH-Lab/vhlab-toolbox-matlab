@@ -3225,6 +3225,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../%2Bgit/git_stash.m/" class="md-nav__link">
+        vlt.git.git_stash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../%2Bgit/git_status.m/" class="md-nav__link">
         vlt.git.git_status
       </a>
@@ -9237,23 +9249,29 @@
                 
                 
                 <h1 id="vltfileisfilepathroot">vlt.file.isfilepathroot<a class="headerlink" href="#vltfileisfilepathroot" title="Permanent link">&para;</a></h1>
-<p>ISFILEPATHATROOT - determine if a file path is at the root or not</p>
-<p>B = vlt.file.isfilepathroot(FILEPATH)</p>
-<p>Determines if a FILEPATH is at the root of a drive or not.
-  For computers for which ISPC is true, vlt.file.isfilepathroot is true
-  if the FILEPATH begins with either '/' or '$:\'.
-  For computers for which ISUNIX is true, vlt.file.isfilepathroot is true
-  if the FILEPATH is '/'.</p>
-<p>Note that the file path does not have to exist to specify a valid
-  file path. It is just whether it has the structure of a full file path.</p>
-<p>See also: ISPC, ISUNIX</p>
-<p>Examples:
-     % on unix
-     vlt.file.isfilepathroot('/Volumes/test/mytestfile.txt') % true
-     vlt.file.isfilepathroot('myfile.txt') % false</p>
-<div class="codehilite"><pre><span></span><code><span class="w"> </span><span class="c">% on Windows</span><span class="w"></span>
-<span class="w"> </span><span class="n">vlt</span><span class="p">.</span><span class="n">file</span><span class="p">.</span><span class="n">isfilepathroot</span><span class="p">(</span><span class="s">&#39;C:\myfolder\test&#39;</span><span class="p">)</span><span class="w"> </span><span class="n">is</span><span class="w"> </span><span class="nb">true</span><span class="w"></span>
-<span class="w"> </span><span class="n">vlt</span><span class="p">.</span><span class="n">file</span><span class="p">.</span><span class="n">isfilepathroot</span><span class="p">(</span><span class="s">&#39;/C/myfolder/test&#39;</span><span class="p">)</span><span class="w"> </span><span class="n">is</span><span class="w"> </span><span class="nb">true</span><span class="w"></span>
+<div class="codehilite"><pre><span></span><code><span class="w">  </span><span class="n">ISFILEPATHATROOT</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">determine</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">file</span><span class="w"> </span><span class="nb">path</span><span class="w"> </span><span class="n">is</span><span class="w"> </span><span class="n">at</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">root</span><span class="w"> </span><span class="n">or</span><span class="w"> </span><span class="n">not</span><span class="w"></span>
+
+<span class="w">  </span><span class="n">B</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">vlt</span><span class="p">.</span><span class="n">file</span><span class="p">.</span><span class="n">isfilepathroot</span><span class="p">(</span><span class="n">FILEPATH</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">  </span><span class="n">Determines</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">FILEPATH</span><span class="w"> </span><span class="n">is</span><span class="w"> </span><span class="n">at</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">root</span><span class="w"> </span><span class="n">of</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">drive</span><span class="w"> </span><span class="n">or</span><span class="w"> </span><span class="n">not</span><span class="p">.</span><span class="w"></span>
+<span class="w">  </span><span class="n">For</span><span class="w"> </span><span class="n">computers</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="nb">which</span><span class="w"> </span><span class="n">ISPC</span><span class="w"> </span><span class="n">is</span><span class="w"> </span><span class="nb">true</span><span class="p">,</span><span class="w"> </span><span class="n">vlt</span><span class="p">.</span><span class="n">file</span><span class="p">.</span><span class="n">isfilepathroot</span><span class="w"> </span><span class="n">is</span><span class="w"> </span><span class="nb">true</span><span class="w"></span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">FILEPATH</span><span class="w"> </span><span class="n">begins</span><span class="w"> </span><span class="n">with</span><span class="w"> </span><span class="n">either</span><span class="w"> </span><span class="s">&#39;/&#39;</span><span class="w"> </span><span class="n">or</span><span class="w"> </span><span class="s">&#39;$:\&#39;</span><span class="p">.</span><span class="w"></span>
+<span class="w">  </span><span class="n">For</span><span class="w"> </span><span class="n">computers</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="nb">which</span><span class="w"> </span><span class="n">ISUNIX</span><span class="w"> </span><span class="n">is</span><span class="w"> </span><span class="nb">true</span><span class="p">,</span><span class="w"> </span><span class="n">vlt</span><span class="p">.</span><span class="n">file</span><span class="p">.</span><span class="n">isfilepathroot</span><span class="w"> </span><span class="n">is</span><span class="w"> </span><span class="nb">true</span><span class="w"></span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">FILEPATH</span><span class="w"> </span><span class="n">is</span><span class="w"> </span><span class="s">&#39;/&#39;</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">  </span><span class="n">Note</span><span class="w"> </span><span class="n">that</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">file</span><span class="w"> </span><span class="nb">path</span><span class="w"> </span><span class="n">does</span><span class="w"> </span><span class="n">not</span><span class="w"> </span><span class="n">have</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="nb">exist</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="n">specify</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">valid</span><span class="w"></span>
+<span class="w">  </span><span class="n">file</span><span class="w"> </span><span class="nb">path</span><span class="p">.</span><span class="w"> </span><span class="n">It</span><span class="w"> </span><span class="n">is</span><span class="w"> </span><span class="n">just</span><span class="w"> </span><span class="n">whether</span><span class="w"> </span><span class="n">it</span><span class="w"> </span><span class="n">has</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">structure</span><span class="w"> </span><span class="n">of</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="nb">full</span><span class="w"> </span><span class="n">file</span><span class="w"> </span><span class="nb">path</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">  </span><span class="n">See</span><span class="w"> </span><span class="n">also</span><span class="p">:</span><span class="w"> </span><span class="n">ISPC</span><span class="p">,</span><span class="w"> </span><span class="n">ISUNIX</span><span class="w"></span>
+
+<span class="w">  </span><span class="n">Examples</span><span class="p">:</span><span class="w"></span>
+<span class="w">     </span><span class="c">% on unix</span><span class="w"></span>
+<span class="w">     </span><span class="n">vlt</span><span class="p">.</span><span class="n">file</span><span class="p">.</span><span class="n">isfilepathroot</span><span class="p">(</span><span class="s">&#39;/Volumes/test/mytestfile.txt&#39;</span><span class="p">)</span><span class="w"> </span><span class="c">% true</span><span class="w"></span>
+<span class="w">     </span><span class="n">vlt</span><span class="p">.</span><span class="n">file</span><span class="p">.</span><span class="n">isfilepathroot</span><span class="p">(</span><span class="s">&#39;myfile.txt&#39;</span><span class="p">)</span><span class="w"> </span><span class="c">% false</span><span class="w"></span>
+
+<span class="w">     </span><span class="c">% on Windows</span><span class="w"></span>
+<span class="w">     </span><span class="n">vlt</span><span class="p">.</span><span class="n">file</span><span class="p">.</span><span class="n">isfilepathroot</span><span class="p">(</span><span class="s">&#39;C:\myfolder\test&#39;</span><span class="p">)</span><span class="w"> </span><span class="n">is</span><span class="w"> </span><span class="nb">true</span><span class="w"></span>
+<span class="w">     </span><span class="n">vlt</span><span class="p">.</span><span class="n">file</span><span class="p">.</span><span class="n">isfilepathroot</span><span class="p">(</span><span class="s">&#39;/C/myfolder/test&#39;</span><span class="p">)</span><span class="w"> </span><span class="n">is</span><span class="w"> </span><span class="nb">true</span><span class="w"></span>
 </code></pre></div>
                 
               

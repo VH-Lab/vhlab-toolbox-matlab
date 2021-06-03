@@ -3225,6 +3225,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../%2Bgit/git_stash.m/" class="md-nav__link">
+        vlt.git.git_stash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../%2Bgit/git_status.m/" class="md-nav__link">
         vlt.git.git_status
       </a>
@@ -9237,22 +9249,23 @@
                 
                 
                 <h1 id="vltdataassign">vlt.data.assign<a class="headerlink" href="#vltdataassign" title="Permanent link">&para;</a></h1>
-<p>assign - make a list of assignments (matlab 5 or higher)</p>
-<div class="codehilite"><pre><span></span><code><span class="n">vlt</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="s1">&#39;VAR1&#39;</span><span class="p">,</span> <span class="n">VAL1</span><span class="p">,</span> <span class="s1">&#39;VAR2&#39;</span><span class="p">,</span> <span class="n">VAL2</span><span class="p">,</span> <span class="o">...</span><span class="p">)</span> <span class="n">makes</span> <span class="n">the</span> <span class="n">assignments</span> 
-<span class="n">VAR1</span> <span class="o">=</span> <span class="n">VAL1</span><span class="p">;</span> <span class="n">VAR2</span> <span class="o">=</span> <span class="n">VAL2</span><span class="p">;</span> <span class="o">...</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">caller</span><span class="s1">&#39;s workspace.</span>
+<div class="codehilite"><pre><span></span><code>  <span class="n">assign</span> <span class="o">-</span> <span class="n">make</span> <span class="n">a</span> <span class="n">list</span> <span class="n">of</span> <span class="n">assignments</span> <span class="p">(</span><span class="n">matlab</span> <span class="mi">5</span> <span class="ow">or</span> <span class="n">higher</span><span class="p">)</span>
 
-<span class="n">This</span> <span class="k">is</span> <span class="n">most</span> <span class="n">useful</span> <span class="n">when</span> <span class="n">passing</span> <span class="ow">in</span> <span class="n">an</span> <span class="n">option</span> <span class="n">list</span> <span class="n">to</span> <span class="n">a</span>
-<span class="n">function</span><span class="o">.</span>  <span class="n">Thus</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">function</span> <span class="n">which</span> <span class="n">starts</span><span class="p">:</span>
-    <span class="n">function</span> <span class="n">foo</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">varargin</span><span class="p">)</span>
-    <span class="n">z</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-    <span class="n">vlt</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="n">varargin</span><span class="p">{:});</span>
-<span class="n">the</span> <span class="n">variable</span> <span class="n">z</span> <span class="n">can</span> <span class="n">be</span> <span class="n">given</span> <span class="n">a</span> <span class="n">non</span><span class="o">-</span><span class="n">default</span> <span class="n">value</span> <span class="n">by</span> <span class="n">calling</span> <span class="n">the</span>
-<span class="n">function</span> <span class="n">like</span> <span class="n">so</span><span class="p">:</span> <span class="n">foo</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="s1">&#39;z&#39;</span><span class="p">,</span><span class="mi">4</span><span class="p">);</span>
+    <span class="n">vlt</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="s1">&#39;VAR1&#39;</span><span class="p">,</span> <span class="n">VAL1</span><span class="p">,</span> <span class="s1">&#39;VAR2&#39;</span><span class="p">,</span> <span class="n">VAL2</span><span class="p">,</span> <span class="o">...</span><span class="p">)</span> <span class="n">makes</span> <span class="n">the</span> <span class="n">assignments</span> 
+    <span class="n">VAR1</span> <span class="o">=</span> <span class="n">VAL1</span><span class="p">;</span> <span class="n">VAR2</span> <span class="o">=</span> <span class="n">VAL2</span><span class="p">;</span> <span class="o">...</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">caller</span><span class="s1">&#39;s workspace.</span>
 
-    <span class="n">If</span> <span class="n">the</span> <span class="n">input</span> <span class="k">is</span> <span class="n">a</span> <span class="n">single</span> <span class="n">structure</span><span class="p">,</span> <span class="n">then</span> <span class="n">the</span> <span class="n">structure</span> <span class="k">is</span> <span class="n">converted</span>
-    <span class="n">to</span> <span class="n">a</span> <span class="n">set</span> <span class="n">of</span> <span class="n">NAME</span><span class="o">/</span><span class="n">VALUE</span> <span class="n">pairs</span> <span class="ow">and</span> <span class="n">interpreted</span> <span class="k">as</span> <span class="s1">&#39;VAR1&#39;</span><span class="p">,</span> <span class="n">VAL1</span><span class="p">,</span> <span class="n">etc</span><span class="p">,</span>
-    <span class="n">where</span> <span class="n">VAR1</span> <span class="k">is</span> <span class="n">the</span> <span class="n">first</span> <span class="n">field</span> <span class="n">name</span> <span class="n">of</span> <span class="n">the</span> <span class="n">input</span><span class="p">,</span> <span class="n">VAL1</span> <span class="k">is</span> <span class="n">the</span> <span class="n">value</span> <span class="n">of</span> <span class="n">the</span> <span class="n">field</span> <span class="n">name</span><span class="p">,</span>
-    <span class="n">etc</span><span class="o">.</span>
+    <span class="n">This</span> <span class="k">is</span> <span class="n">most</span> <span class="n">useful</span> <span class="n">when</span> <span class="n">passing</span> <span class="ow">in</span> <span class="n">an</span> <span class="n">option</span> <span class="n">list</span> <span class="n">to</span> <span class="n">a</span>
+    <span class="n">function</span><span class="o">.</span>  <span class="n">Thus</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">function</span> <span class="n">which</span> <span class="n">starts</span><span class="p">:</span>
+        <span class="n">function</span> <span class="n">foo</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">varargin</span><span class="p">)</span>
+        <span class="n">z</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="n">vlt</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="n">varargin</span><span class="p">{:});</span>
+    <span class="n">the</span> <span class="n">variable</span> <span class="n">z</span> <span class="n">can</span> <span class="n">be</span> <span class="n">given</span> <span class="n">a</span> <span class="n">non</span><span class="o">-</span><span class="n">default</span> <span class="n">value</span> <span class="n">by</span> <span class="n">calling</span> <span class="n">the</span>
+    <span class="n">function</span> <span class="n">like</span> <span class="n">so</span><span class="p">:</span> <span class="n">foo</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="s1">&#39;z&#39;</span><span class="p">,</span><span class="mi">4</span><span class="p">);</span>
+
+        <span class="n">If</span> <span class="n">the</span> <span class="n">input</span> <span class="k">is</span> <span class="n">a</span> <span class="n">single</span> <span class="n">structure</span><span class="p">,</span> <span class="n">then</span> <span class="n">the</span> <span class="n">structure</span> <span class="k">is</span> <span class="n">converted</span>
+        <span class="n">to</span> <span class="n">a</span> <span class="n">set</span> <span class="n">of</span> <span class="n">NAME</span><span class="o">/</span><span class="n">VALUE</span> <span class="n">pairs</span> <span class="ow">and</span> <span class="n">interpreted</span> <span class="k">as</span> <span class="s1">&#39;VAR1&#39;</span><span class="p">,</span> <span class="n">VAL1</span><span class="p">,</span> <span class="n">etc</span><span class="p">,</span>
+        <span class="n">where</span> <span class="n">VAR1</span> <span class="k">is</span> <span class="n">the</span> <span class="n">first</span> <span class="n">field</span> <span class="n">name</span> <span class="n">of</span> <span class="n">the</span> <span class="n">input</span><span class="p">,</span> <span class="n">VAL1</span> <span class="k">is</span> <span class="n">the</span> <span class="n">value</span> <span class="n">of</span> <span class="n">the</span> <span class="n">field</span> <span class="n">name</span><span class="p">,</span>
+        <span class="n">etc</span><span class="o">.</span>
 </code></pre></div>
                 
               

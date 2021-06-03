@@ -3225,6 +3225,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../%2Bgit/git_stash.m/" class="md-nav__link">
+        vlt.git.git_stash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../%2Bgit/git_status.m/" class="md-nav__link">
         vlt.git.git_status
       </a>
@@ -9237,15 +9249,20 @@
                 
                 
                 <h1 id="vltdatasortorder">vlt.data.sortorder<a class="headerlink" href="#vltdatasortorder" title="Permanent link">&para;</a></h1>
-<p>SORTORDER - return the order of the sorted data</p>
-<p>I = vlt.data.sortorder([inputs])</p>
-<p>Returns the index order I of the call 
-    [B,I] = SORT([inputs])</p>
-<p>See also: SORT</p>
-<p>Example:
-    A = [ 3 2 1];
-    I = vlt.data.sortorder(A) % returns 3 2 1
-    A(I) % shows sorted values</p>
+<div class="codehilite"><pre><span></span><code><span class="w">  </span><span class="n">SORTORDER</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="k">order</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">sorted</span><span class="w"> </span><span class="k">data</span><span class="w"></span>
+
+<span class="w">  </span><span class="n">I</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">vlt</span><span class="p">.</span><span class="k">data</span><span class="p">.</span><span class="n">sortorder</span><span class="p">(</span><span class="o">[</span><span class="n">inputs</span><span class="o">]</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">  </span><span class="k">Returns</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="k">index</span><span class="w"> </span><span class="k">order</span><span class="w"> </span><span class="n">I</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="k">call</span><span class="w"> </span>
+<span class="w">    </span><span class="o">[</span><span class="n">B,I</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SORT</span><span class="p">(</span><span class="o">[</span><span class="n">inputs</span><span class="o">]</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">  </span><span class="n">See</span><span class="w"> </span><span class="nl">also</span><span class="p">:</span><span class="w"> </span><span class="n">SORT</span><span class="w"></span>
+
+<span class="w">  </span><span class="nl">Example</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="n">A</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">[</span><span class="n"> 3 2 1</span><span class="o">]</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">I</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">vlt</span><span class="p">.</span><span class="k">data</span><span class="p">.</span><span class="n">sortorder</span><span class="p">(</span><span class="n">A</span><span class="p">)</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="k">returns</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="mi">1</span><span class="w"></span>
+<span class="w">    </span><span class="n">A</span><span class="p">(</span><span class="n">I</span><span class="p">)</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="n">shows</span><span class="w"> </span><span class="n">sorted</span><span class="w"> </span><span class="k">values</span><span class="w"></span>
+</code></pre></div>
                 
               
               

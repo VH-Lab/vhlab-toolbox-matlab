@@ -3213,6 +3213,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../%2Bgit/git_stash.m/" class="md-nav__link">
+        vlt.git.git_stash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../%2Bgit/git_status.m/" class="md-nav__link">
         vlt.git.git_status
       </a>
@@ -9237,14 +9249,20 @@
                 
                 
                 <h1 id="vltstatsranks2">vlt.stats.ranks2<a class="headerlink" href="#vltstatsranks2" title="Permanent link">&para;</a></h1>
-<p>RANKS2 - Returns vector of ranks of X adjusted for ties, assuming ties rare</p>
-<p>Y = vlt.stats.ranks2(X)</p>
-<p>If X is a vector, return the (column) vector of ranks of
-  X adjusted for ties.</p>
-<p>If X is a matrix, do the above for each column of X</p>
-<p>Some code from Octave 2.5.1
-  Author: KH <a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#75;&#117;&#114;&#116;&#46;&#72;&#111;&#114;&#110;&#105;&#107;&#64;&#99;&#105;&#46;&#116;&#117;&#119;&#105;&#101;&#110;&#46;&#97;&#99;&#46;&#97;&#116;">&#75;&#117;&#114;&#116;&#46;&#72;&#111;&#114;&#110;&#105;&#107;&#64;&#99;&#105;&#46;&#116;&#117;&#119;&#105;&#101;&#110;&#46;&#97;&#99;&#46;&#97;&#116;</a></p>
-<p>Modified 9/9/2004 by SDV for speed; assumes ties are rare.</p>
+<div class="codehilite"><pre><span></span><code><span class="w">  </span><span class="n">RANKS2</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="k">Returns</span><span class="w"> </span><span class="n">vector</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="n">ranks</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="n">X</span><span class="w"> </span><span class="n">adjusted</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">ties</span><span class="p">,</span><span class="w"> </span><span class="n">assuming</span><span class="w"> </span><span class="n">ties</span><span class="w"> </span><span class="n">rare</span><span class="w"></span>
+
+<span class="w">  </span><span class="n">Y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">vlt</span><span class="p">.</span><span class="n">stats</span><span class="p">.</span><span class="n">ranks2</span><span class="p">(</span><span class="n">X</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">  </span><span class="k">If</span><span class="w"> </span><span class="n">X</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">vector</span><span class="p">,</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="p">(</span><span class="k">column</span><span class="p">)</span><span class="w"> </span><span class="n">vector</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="n">ranks</span><span class="w"> </span><span class="k">of</span><span class="w"></span>
+<span class="w">  </span><span class="n">X</span><span class="w"> </span><span class="n">adjusted</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">ties</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">  </span><span class="k">If</span><span class="w"> </span><span class="n">X</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">matrix</span><span class="p">,</span><span class="w"> </span><span class="n">do</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">above</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="k">each</span><span class="w"> </span><span class="k">column</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="n">X</span><span class="w"></span>
+
+<span class="w">  </span><span class="ow">Some</span><span class="w"> </span><span class="n">code</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">Octave</span><span class="w"> </span><span class="mf">2.5.1</span><span class="w"></span>
+<span class="w">  </span><span class="nl">Author</span><span class="p">:</span><span class="w"> </span><span class="n">KH</span><span class="w"> </span><span class="o">&lt;</span><span class="n">Kurt</span><span class="p">.</span><span class="n">Hornik</span><span class="nv">@ci</span><span class="p">.</span><span class="n">tuwien</span><span class="p">.</span><span class="n">ac</span><span class="p">.</span><span class="k">at</span><span class="o">&gt;</span><span class="w"></span>
+
+<span class="w">  </span><span class="n">Modified</span><span class="w"> </span><span class="mi">9</span><span class="o">/</span><span class="mi">9</span><span class="o">/</span><span class="mi">2004</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">SDV</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">speed</span><span class="p">;</span><span class="w"> </span><span class="n">assumes</span><span class="w"> </span><span class="n">ties</span><span class="w"> </span><span class="k">are</span><span class="w"> </span><span class="n">rare</span><span class="p">.</span><span class="w"></span>
+</code></pre></div>
                 
               
               

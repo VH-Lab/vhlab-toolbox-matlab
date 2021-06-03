@@ -3213,6 +3213,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../%2Bgit/git_stash.m/" class="md-nav__link">
+        vlt.git.git_stash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../%2Bgit/git_status.m/" class="md-nav__link">
         vlt.git.git_status
       </a>
@@ -9237,30 +9249,35 @@
                 
                 
                 <h1 id="vltmathellipse_on_mvnpdf_nopos_surr_x0">vlt.math.ellipse_on_mvnpdf_nopos_surr_x0<a class="headerlink" href="#vltmathellipse_on_mvnpdf_nopos_surr_x0" title="Permanent link">&para;</a></h1>
-<p>ELLIPSE_ON_MVNPDF_NOPOSITION_X0 - Calcluate 'response' of an ellipse on multivariate normal with fixed position, linear modulation</p>
-<p>Y=ELLIPSE_ON_MVNPDF_NOPOSITION_SURR_X0(X,ELLIPSE_PARAMS,XMESH,YMESH)</p>
-<p>Computes the overlap of an ellipse on a multivariate normal distribution.</p>
-<p>This form facilitates passing to LSQCURVEFIT because the parameters MU and
-   SIGMA are all passed in a vector, X0</p>
-<p>Inputs:
-     X0 - A vector with the multivariate normal parameters minus position
-            (only covariance matrix position c11/c22 (must be same) and an amplitude)
-         SIGMA=[X0(1); 0; 0 XO(1)] - the covariance matrix for the multivariate normal pdf
-         ALPHA = X0(2) - scale factor
-         B = X0(3) - A scale factor for the modulation component
-     ELLIPSE_PARAMS = a list of column vectors; each column describes 1 ellipse
-         the first row has the X_Ctr position, the second row has the Y_Ctr
-         position, the third row has the X axis vertex, the fourth row has the
-         Y axis vertex, and the fifth row has the rotation (in radians)
-         Optionally, a sixth row can be 0 (if the stimulus is an ellipse) or
-         N (if the stimulus is an aperture on an ellipse of N pixels)</p>
-<div class="codehilite"><pre><span></span><code> XMESH = The X coordinates over which to calculate the response
- YMESH = The Y coordinates over which to calculate the response
-</code></pre></div>
+<div class="codehilite"><pre><span></span><code>  <span class="n">ELLIPSE_ON_MVNPDF_NOPOSITION_X0</span> <span class="o">-</span> <span class="n">Calcluate</span> <span class="s1">&#39;response&#39;</span> <span class="n">of</span> <span class="n">an</span> <span class="n">ellipse</span> <span class="n">on</span> <span class="n">multivariate</span> <span class="n">normal</span> <span class="n">with</span> <span class="n">fixed</span> <span class="n">position</span><span class="p">,</span> <span class="n">linear</span> <span class="n">modulation</span>
 
-<p>Outputs:
-     Y - The response, in a column vector, for each ellipse</p>
-<p>See also: vlt.image.inside_ellipse, MVNPDF</p>
+   <span class="n">Y</span><span class="o">=</span><span class="n">ELLIPSE_ON_MVNPDF_NOPOSITION_SURR_X0</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">ELLIPSE_PARAMS</span><span class="p">,</span><span class="n">XMESH</span><span class="p">,</span><span class="n">YMESH</span><span class="p">)</span>
+
+   <span class="n">Computes</span> <span class="n">the</span> <span class="n">overlap</span> <span class="n">of</span> <span class="n">an</span> <span class="n">ellipse</span> <span class="n">on</span> <span class="n">a</span> <span class="n">multivariate</span> <span class="n">normal</span> <span class="n">distribution</span><span class="o">.</span>
+
+   <span class="n">This</span> <span class="n">form</span> <span class="n">facilitates</span> <span class="n">passing</span> <span class="n">to</span> <span class="n">LSQCURVEFIT</span> <span class="n">because</span> <span class="n">the</span> <span class="n">parameters</span> <span class="n">MU</span> <span class="ow">and</span>
+   <span class="n">SIGMA</span> <span class="n">are</span> <span class="n">all</span> <span class="n">passed</span> <span class="ow">in</span> <span class="n">a</span> <span class="n">vector</span><span class="p">,</span> <span class="n">X0</span>
+
+   <span class="n">Inputs</span><span class="p">:</span>
+     <span class="n">X0</span> <span class="o">-</span> <span class="n">A</span> <span class="n">vector</span> <span class="n">with</span> <span class="n">the</span> <span class="n">multivariate</span> <span class="n">normal</span> <span class="n">parameters</span> <span class="n">minus</span> <span class="n">position</span>
+            <span class="p">(</span><span class="n">only</span> <span class="n">covariance</span> <span class="n">matrix</span> <span class="n">position</span> <span class="n">c11</span><span class="o">/</span><span class="n">c22</span> <span class="p">(</span><span class="n">must</span> <span class="n">be</span> <span class="n">same</span><span class="p">)</span> <span class="ow">and</span> <span class="n">an</span> <span class="n">amplitude</span><span class="p">)</span>
+         <span class="n">SIGMA</span><span class="o">=</span><span class="p">[</span><span class="n">X0</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span> <span class="mi">0</span><span class="p">;</span> <span class="mi">0</span> <span class="n">XO</span><span class="p">(</span><span class="mi">1</span><span class="p">)]</span> <span class="o">-</span> <span class="n">the</span> <span class="n">covariance</span> <span class="n">matrix</span> <span class="k">for</span> <span class="n">the</span> <span class="n">multivariate</span> <span class="n">normal</span> <span class="n">pdf</span>
+         <span class="n">ALPHA</span> <span class="o">=</span> <span class="n">X0</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="o">-</span> <span class="n">scale</span> <span class="n">factor</span>
+         <span class="n">B</span> <span class="o">=</span> <span class="n">X0</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span> <span class="o">-</span> <span class="n">A</span> <span class="n">scale</span> <span class="n">factor</span> <span class="k">for</span> <span class="n">the</span> <span class="n">modulation</span> <span class="n">component</span>
+     <span class="n">ELLIPSE_PARAMS</span> <span class="o">=</span> <span class="n">a</span> <span class="n">list</span> <span class="n">of</span> <span class="n">column</span> <span class="n">vectors</span><span class="p">;</span> <span class="n">each</span> <span class="n">column</span> <span class="n">describes</span> <span class="mi">1</span> <span class="n">ellipse</span>
+         <span class="n">the</span> <span class="n">first</span> <span class="n">row</span> <span class="n">has</span> <span class="n">the</span> <span class="n">X_Ctr</span> <span class="n">position</span><span class="p">,</span> <span class="n">the</span> <span class="n">second</span> <span class="n">row</span> <span class="n">has</span> <span class="n">the</span> <span class="n">Y_Ctr</span>
+         <span class="n">position</span><span class="p">,</span> <span class="n">the</span> <span class="n">third</span> <span class="n">row</span> <span class="n">has</span> <span class="n">the</span> <span class="n">X</span> <span class="n">axis</span> <span class="n">vertex</span><span class="p">,</span> <span class="n">the</span> <span class="n">fourth</span> <span class="n">row</span> <span class="n">has</span> <span class="n">the</span>
+         <span class="n">Y</span> <span class="n">axis</span> <span class="n">vertex</span><span class="p">,</span> <span class="ow">and</span> <span class="n">the</span> <span class="n">fifth</span> <span class="n">row</span> <span class="n">has</span> <span class="n">the</span> <span class="n">rotation</span> <span class="p">(</span><span class="ow">in</span> <span class="n">radians</span><span class="p">)</span>
+         <span class="n">Optionally</span><span class="p">,</span> <span class="n">a</span> <span class="n">sixth</span> <span class="n">row</span> <span class="n">can</span> <span class="n">be</span> <span class="mi">0</span> <span class="p">(</span><span class="k">if</span> <span class="n">the</span> <span class="n">stimulus</span> <span class="k">is</span> <span class="n">an</span> <span class="n">ellipse</span><span class="p">)</span> <span class="ow">or</span>
+         <span class="n">N</span> <span class="p">(</span><span class="k">if</span> <span class="n">the</span> <span class="n">stimulus</span> <span class="k">is</span> <span class="n">an</span> <span class="n">aperture</span> <span class="n">on</span> <span class="n">an</span> <span class="n">ellipse</span> <span class="n">of</span> <span class="n">N</span> <span class="n">pixels</span><span class="p">)</span>
+
+     <span class="n">XMESH</span> <span class="o">=</span> <span class="n">The</span> <span class="n">X</span> <span class="n">coordinates</span> <span class="n">over</span> <span class="n">which</span> <span class="n">to</span> <span class="n">calculate</span> <span class="n">the</span> <span class="n">response</span>
+     <span class="n">YMESH</span> <span class="o">=</span> <span class="n">The</span> <span class="n">Y</span> <span class="n">coordinates</span> <span class="n">over</span> <span class="n">which</span> <span class="n">to</span> <span class="n">calculate</span> <span class="n">the</span> <span class="n">response</span>
+   <span class="n">Outputs</span><span class="p">:</span>
+     <span class="n">Y</span> <span class="o">-</span> <span class="n">The</span> <span class="n">response</span><span class="p">,</span> <span class="ow">in</span> <span class="n">a</span> <span class="n">column</span> <span class="n">vector</span><span class="p">,</span> <span class="k">for</span> <span class="n">each</span> <span class="n">ellipse</span>
+
+   <span class="n">See</span> <span class="n">also</span><span class="p">:</span> <span class="n">vlt</span><span class="o">.</span><span class="n">image</span><span class="o">.</span><span class="n">inside_ellipse</span><span class="p">,</span> <span class="n">MVNPDF</span>
+</code></pre></div>
                 
               
               

@@ -3225,6 +3225,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../%2Bgit/git_stash.m/" class="md-nav__link">
+        vlt.git.git_stash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../%2Bgit/git_status.m/" class="md-nav__link">
         vlt.git.git_status
       </a>
@@ -9237,30 +9249,38 @@
                 
                 
                 <h1 id="vltfiledirlist_trimdots">vlt.file.dirlist_trimdots<a class="headerlink" href="#vltfiledirlist_trimdots" title="Permanent link">&para;</a></h1>
-<p>DIR_TRIMDOTS - Trim strings '.' or '..' from a list of directory strings</p>
-<p>DIRLIST = vlt.file.dirlist_trimdots(DIRLIST_OR_DIRLISTSTRUCT, [OUTPUT_STRUCT])</p>
-<p>When one obtains output from the MATLAB DIR function, the list sometimes
-   includes the POSIX directories '.' (an abbreviation for the current
-   directory) and '..' (an abbreviation for the parent directory). 
-   This function trims those entries from the directory list (a cell array of
-   strings) and returns all other entries.</p>
-<p>One can also pass the direct output from the MATLAB DIR function, and
-   the directory list will be extracted.</p>
-<p>The function stops when it has found both '.' and '..'; if these entries
-   occur more than once they will not be removed. Also removes '.DS_Store'
-   (Apple desktop information) and '.git' (Git information).</p>
-<p>If the argument OUTPUT_STRUCT is present and is 1, and if
-   DIRLIST_OR_DIRLISTSTRUCT is a structure returned from the function DIR,
-   then the output will be a structure of the same type with the '.' and
-   '..' (and '.DS_Store' and '.git') removed.</p>
-<p>See also: DIR, vlt.file.dirstrip()</p>
-<p>Example:
-     D=dir
-     dirnumbers=find([D.isdir]) %return indexes that correspond to directories
-     % display all of these directories
-     dirlist = {D(dirnumbers).name}
-     % now trim
-     dirlist = vlt.file.dirlist_trimdots(dirlist)</p>
+<div class="codehilite"><pre><span></span><code><span class="w">  </span><span class="n">DIR_TRIMDOTS</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="k">Trim</span><span class="w"> </span><span class="n">strings</span><span class="w"> </span><span class="s1">&#39;.&#39;</span><span class="w"> </span><span class="ow">or</span><span class="w"> </span><span class="s1">&#39;..&#39;</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">list</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="n">directory</span><span class="w"> </span><span class="n">strings</span><span class="w"></span>
+
+<span class="w">   </span><span class="n">DIRLIST</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">vlt</span><span class="p">.</span><span class="k">file</span><span class="p">.</span><span class="n">dirlist_trimdots</span><span class="p">(</span><span class="n">DIRLIST_OR_DIRLISTSTRUCT</span><span class="p">,</span><span class="w"> </span><span class="o">[</span><span class="n">OUTPUT_STRUCT</span><span class="o">]</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">   </span><span class="k">When</span><span class="w"> </span><span class="n">one</span><span class="w"> </span><span class="n">obtains</span><span class="w"> </span><span class="k">output</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">MATLAB</span><span class="w"> </span><span class="n">DIR</span><span class="w"> </span><span class="k">function</span><span class="p">,</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">list</span><span class="w"> </span><span class="n">sometimes</span><span class="w"></span>
+<span class="w">   </span><span class="n">includes</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">POSIX</span><span class="w"> </span><span class="n">directories</span><span class="w"> </span><span class="s1">&#39;.&#39;</span><span class="w"> </span><span class="p">(</span><span class="n">an</span><span class="w"> </span><span class="n">abbreviation</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="k">current</span><span class="w"></span>
+<span class="w">   </span><span class="n">directory</span><span class="p">)</span><span class="w"> </span><span class="ow">and</span><span class="w"> </span><span class="s1">&#39;..&#39;</span><span class="w"> </span><span class="p">(</span><span class="n">an</span><span class="w"> </span><span class="n">abbreviation</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">parent</span><span class="w"> </span><span class="n">directory</span><span class="p">).</span><span class="w"> </span>
+<span class="w">   </span><span class="n">This</span><span class="w"> </span><span class="k">function</span><span class="w"> </span><span class="n">trims</span><span class="w"> </span><span class="n">those</span><span class="w"> </span><span class="n">entries</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">directory</span><span class="w"> </span><span class="n">list</span><span class="w"> </span><span class="p">(</span><span class="n">a</span><span class="w"> </span><span class="n">cell</span><span class="w"> </span><span class="k">array</span><span class="w"> </span><span class="k">of</span><span class="w"></span>
+<span class="w">   </span><span class="n">strings</span><span class="p">)</span><span class="w"> </span><span class="ow">and</span><span class="w"> </span><span class="k">returns</span><span class="w"> </span><span class="ow">all</span><span class="w"> </span><span class="n">other</span><span class="w"> </span><span class="n">entries</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">   </span><span class="n">One</span><span class="w"> </span><span class="n">can</span><span class="w"> </span><span class="n">also</span><span class="w"> </span><span class="n">pass</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">direct</span><span class="w"> </span><span class="k">output</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">MATLAB</span><span class="w"> </span><span class="n">DIR</span><span class="w"> </span><span class="k">function</span><span class="p">,</span><span class="w"> </span><span class="ow">and</span><span class="w"></span>
+<span class="w">   </span><span class="n">the</span><span class="w"> </span><span class="n">directory</span><span class="w"> </span><span class="n">list</span><span class="w"> </span><span class="n">will</span><span class="w"> </span><span class="n">be</span><span class="w"> </span><span class="n">extracted</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">   </span><span class="n">The</span><span class="w"> </span><span class="k">function</span><span class="w"> </span><span class="n">stops</span><span class="w"> </span><span class="k">when</span><span class="w"> </span><span class="n">it</span><span class="w"> </span><span class="n">has</span><span class="w"> </span><span class="k">found</span><span class="w"> </span><span class="k">both</span><span class="w"> </span><span class="s1">&#39;.&#39;</span><span class="w"> </span><span class="ow">and</span><span class="w"> </span><span class="s1">&#39;..&#39;</span><span class="p">;</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">these</span><span class="w"> </span><span class="n">entries</span><span class="w"></span>
+<span class="w">   </span><span class="n">occur</span><span class="w"> </span><span class="n">more</span><span class="w"> </span><span class="k">than</span><span class="w"> </span><span class="n">once</span><span class="w"> </span><span class="n">they</span><span class="w"> </span><span class="n">will</span><span class="w"> </span><span class="ow">not</span><span class="w"> </span><span class="n">be</span><span class="w"> </span><span class="n">removed</span><span class="p">.</span><span class="w"> </span><span class="n">Also</span><span class="w"> </span><span class="n">removes</span><span class="w"> </span><span class="s1">&#39;.DS_Store&#39;</span><span class="w"></span>
+<span class="w">   </span><span class="p">(</span><span class="n">Apple</span><span class="w"> </span><span class="n">desktop</span><span class="w"> </span><span class="n">information</span><span class="p">)</span><span class="w"> </span><span class="ow">and</span><span class="w"> </span><span class="s1">&#39;.git&#39;</span><span class="w"> </span><span class="p">(</span><span class="n">Git</span><span class="w"> </span><span class="n">information</span><span class="p">).</span><span class="w"></span>
+
+<span class="w">   </span><span class="k">If</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">argument</span><span class="w"> </span><span class="n">OUTPUT_STRUCT</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="n">present</span><span class="w"> </span><span class="ow">and</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="ow">and</span><span class="w"> </span><span class="k">if</span><span class="w"></span>
+<span class="w">   </span><span class="n">DIRLIST_OR_DIRLISTSTRUCT</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="k">structure</span><span class="w"> </span><span class="n">returned</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="k">function</span><span class="w"> </span><span class="n">DIR</span><span class="p">,</span><span class="w"></span>
+<span class="w">   </span><span class="k">then</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="k">output</span><span class="w"> </span><span class="n">will</span><span class="w"> </span><span class="n">be</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="k">structure</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">same</span><span class="w"> </span><span class="n">type</span><span class="w"> </span><span class="k">with</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="s1">&#39;.&#39;</span><span class="w"> </span><span class="ow">and</span><span class="w"></span>
+<span class="w">   </span><span class="s1">&#39;..&#39;</span><span class="w"> </span><span class="p">(</span><span class="ow">and</span><span class="w"> </span><span class="s1">&#39;.DS_Store&#39;</span><span class="w"> </span><span class="ow">and</span><span class="w"> </span><span class="s1">&#39;.git&#39;</span><span class="p">)</span><span class="w"> </span><span class="n">removed</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">   </span><span class="n">See</span><span class="w"> </span><span class="nl">also</span><span class="p">:</span><span class="w"> </span><span class="n">DIR</span><span class="p">,</span><span class="w"> </span><span class="n">vlt</span><span class="p">.</span><span class="k">file</span><span class="p">.</span><span class="n">dirstrip</span><span class="p">()</span><span class="w"></span>
+
+<span class="w">   </span><span class="nl">Example</span><span class="p">:</span><span class="w"></span>
+<span class="w">     </span><span class="n">D</span><span class="o">=</span><span class="n">dir</span><span class="w"></span>
+<span class="w">     </span><span class="n">dirnumbers</span><span class="o">=</span><span class="n">find</span><span class="p">(</span><span class="o">[</span><span class="n">D.isdir</span><span class="o">]</span><span class="p">)</span><span class="w"> </span><span class="o">%</span><span class="k">return</span><span class="w"> </span><span class="n">indexes</span><span class="w"> </span><span class="n">that</span><span class="w"> </span><span class="n">correspond</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="n">directories</span><span class="w"></span>
+<span class="w">     </span><span class="o">%</span><span class="w"> </span><span class="n">display</span><span class="w"> </span><span class="ow">all</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="n">these</span><span class="w"> </span><span class="n">directories</span><span class="w"></span>
+<span class="w">     </span><span class="n">dirlist</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="err">{</span><span class="n">D</span><span class="p">(</span><span class="n">dirnumbers</span><span class="p">).</span><span class="n">name</span><span class="err">}</span><span class="w"></span>
+<span class="w">     </span><span class="o">%</span><span class="w"> </span><span class="n">now</span><span class="w"> </span><span class="k">trim</span><span class="w"></span>
+<span class="w">     </span><span class="n">dirlist</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">vlt</span><span class="p">.</span><span class="k">file</span><span class="p">.</span><span class="n">dirlist_trimdots</span><span class="p">(</span><span class="n">dirlist</span><span class="p">)</span><span class="w"></span>
+</code></pre></div>
                 
               
               

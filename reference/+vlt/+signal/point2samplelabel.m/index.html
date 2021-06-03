@@ -3213,6 +3213,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../%2Bgit/git_stash.m/" class="md-nav__link">
+        vlt.git.git_stash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../%2Bgit/git_status.m/" class="md-nav__link">
         vlt.git.git_status
       </a>
@@ -9237,20 +9249,26 @@
                 
                 
                 <h1 id="vltsignalpoint2samplelabel">vlt.signal.point2samplelabel<a class="headerlink" href="#vltsignalpoint2samplelabel" title="Permanent link">&para;</a></h1>
-<p>POINT2SAMPLE - Convert a continuous point to a sample number for regularly sampled data</p>
-<p>S = vlt.signal.point2samplelabel(TI, DT, [T0])</p>
-<p>Given an array of time values TI, returns the closest sample
-   for a signal that is regularly sampled at interval DT.
-   The closest sample number is determined by rounding.
-   Samples are assumed to be numbered as S = T0+N*DT (Notice that
-   these sample labels can be negative or 0).</p>
-<p>T0 is the time of the first sample of the signal. If T0 is not
-   provided, it is assumed to be 0.</p>
-<p>Example:
-     dt = 0.001;
-     T = 0:dt:40;
-     S = vlt.signal.point2samplelabel(T(20),dt)   % returns 20</p>
-<p>See also: vlt.signal.round2sample</p>
+<div class="codehilite"><pre><span></span><code><span class="w">  </span><span class="n">POINT2SAMPLE</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nf">Convert</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">continuous</span><span class="w"> </span><span class="n">point</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">sample</span><span class="w"> </span><span class="n">number</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">regularly</span><span class="w"> </span><span class="n">sampled</span><span class="w"> </span><span class="k">data</span><span class="w"></span>
+
+<span class="w">   </span><span class="n">S</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">vlt</span><span class="p">.</span><span class="n">signal</span><span class="p">.</span><span class="n">point2samplelabel</span><span class="p">(</span><span class="n">TI</span><span class="p">,</span><span class="w"> </span><span class="n">DT</span><span class="p">,</span><span class="w"> </span><span class="o">[</span><span class="n">T0</span><span class="o">]</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">   </span><span class="n">Given</span><span class="w"> </span><span class="n">an</span><span class="w"> </span><span class="k">array</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="nc">time</span><span class="w"> </span><span class="k">values</span><span class="w"> </span><span class="n">TI</span><span class="p">,</span><span class="w"> </span><span class="k">returns</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">closest</span><span class="w"> </span><span class="n">sample</span><span class="w"></span>
+<span class="w">   </span><span class="k">for</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">signal</span><span class="w"> </span><span class="n">that</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="n">regularly</span><span class="w"> </span><span class="n">sampled</span><span class="w"> </span><span class="k">at</span><span class="w"> </span><span class="k">interval</span><span class="w"> </span><span class="n">DT</span><span class="p">.</span><span class="w"></span>
+<span class="w">   </span><span class="n">The</span><span class="w"> </span><span class="n">closest</span><span class="w"> </span><span class="n">sample</span><span class="w"> </span><span class="n">number</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="n">determined</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">rounding</span><span class="p">.</span><span class="w"></span>
+<span class="w">   </span><span class="n">Samples</span><span class="w"> </span><span class="k">are</span><span class="w"> </span><span class="n">assumed</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="n">be</span><span class="w"> </span><span class="n">numbered</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">S</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">T0</span><span class="o">+</span><span class="n">N</span><span class="o">*</span><span class="n">DT</span><span class="w"> </span><span class="p">(</span><span class="n">Notice</span><span class="w"> </span><span class="n">that</span><span class="w"></span>
+<span class="w">   </span><span class="n">these</span><span class="w"> </span><span class="n">sample</span><span class="w"> </span><span class="n">labels</span><span class="w"> </span><span class="n">can</span><span class="w"> </span><span class="n">be</span><span class="w"> </span><span class="n">negative</span><span class="w"> </span><span class="ow">or</span><span class="w"> </span><span class="mi">0</span><span class="p">).</span><span class="w"></span>
+
+<span class="w">   </span><span class="n">T0</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="nc">time</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="k">first</span><span class="w"> </span><span class="n">sample</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">signal</span><span class="p">.</span><span class="w"> </span><span class="k">If</span><span class="w"> </span><span class="n">T0</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="ow">not</span><span class="w"></span>
+<span class="w">   </span><span class="n">provided</span><span class="p">,</span><span class="w"> </span><span class="n">it</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="n">assumed</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="n">be</span><span class="w"> </span><span class="mf">0.</span><span class="w"></span>
+
+<span class="w">   </span><span class="nl">Example</span><span class="p">:</span><span class="w"></span>
+<span class="w">     </span><span class="n">dt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.001</span><span class="p">;</span><span class="w"></span>
+<span class="w">     </span><span class="n">T</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="err">:</span><span class="nl">dt</span><span class="p">:</span><span class="mi">40</span><span class="p">;</span><span class="w"></span>
+<span class="w">     </span><span class="n">S</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">vlt</span><span class="p">.</span><span class="n">signal</span><span class="p">.</span><span class="n">point2samplelabel</span><span class="p">(</span><span class="n">T</span><span class="p">(</span><span class="mi">20</span><span class="p">),</span><span class="n">dt</span><span class="p">)</span><span class="w">   </span><span class="o">%</span><span class="w"> </span><span class="k">returns</span><span class="w"> </span><span class="mi">20</span><span class="w"></span>
+
+<span class="w">   </span><span class="n">See</span><span class="w"> </span><span class="nl">also</span><span class="p">:</span><span class="w"> </span><span class="n">vlt</span><span class="p">.</span><span class="n">signal</span><span class="p">.</span><span class="n">round2sample</span><span class="w"></span>
+</code></pre></div>
                 
               
               

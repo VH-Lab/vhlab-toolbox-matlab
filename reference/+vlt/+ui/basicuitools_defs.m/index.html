@@ -3213,6 +3213,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../%2Bgit/git_stash.m/" class="md-nav__link">
+        vlt.git.git_stash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../%2Bgit/git_status.m/" class="md-nav__link">
         vlt.git.git_status
       </a>
@@ -9237,25 +9249,32 @@
                 
                 
                 <h1 id="vltuibasicuitools_defs">vlt.ui.basicuitools_defs<a class="headerlink" href="#vltuibasicuitools_defs" title="Permanent link">&para;</a></h1>
-<p>BASICUITOOLS_DEFS - Basic user interface uitools setup</p>
-<p>UIDEFS = vlt.ui.basicuitools_defs</p>
-<p>Returns a basic defined set of specifications for the commonly used
-   user interface controls. </p>
-<p>The foreground and background colors are compatible with the current
-   Matlab version.</p>
-<p>This function also accepts name/value pairs that modify the default options.
-   Parameter (default)              :  Description</p>
-<hr />
-<p>callbackstr ('')                 |  Callback function for all active controls
-                                    |    ('popup','button','slider','list','radiobutton',...
-                                    |      'togglebutton')
-   uiBackgroundColor (0.94<em>[1 1 1]) |  Background color for all except 'frame'
-   frameBackgroundColor(0.8</em>[1 1 1])|  Background color for 'frame'
-   uiUnits ('pixels')               |  Units for controls (could be 'normalized', 'points')
-                                    |</p>
-<p>Example:
-      uidefs = vlt.ui.basicuitools_defs;</p>
-<p>See also: UICONTROL</p>
+<div class="codehilite"><pre><span></span><code>  <span class="n">BASICUITOOLS_DEFS</span> <span class="o">-</span> <span class="n">Basic</span> <span class="n">user</span> <span class="n">interface</span> <span class="n">uitools</span> <span class="n">setup</span>
+
+   <span class="n">UIDEFS</span> <span class="o">=</span> <span class="n">vlt</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">basicuitools_defs</span>
+
+   <span class="n">Returns</span> <span class="n">a</span> <span class="n">basic</span> <span class="n">defined</span> <span class="n">set</span> <span class="n">of</span> <span class="n">specifications</span> <span class="k">for</span> <span class="n">the</span> <span class="n">commonly</span> <span class="n">used</span>
+   <span class="n">user</span> <span class="n">interface</span> <span class="n">controls</span><span class="o">.</span> 
+
+   <span class="n">The</span> <span class="n">foreground</span> <span class="ow">and</span> <span class="n">background</span> <span class="n">colors</span> <span class="n">are</span> <span class="n">compatible</span> <span class="n">with</span> <span class="n">the</span> <span class="n">current</span>
+   <span class="n">Matlab</span> <span class="n">version</span><span class="o">.</span>
+
+   <span class="n">This</span> <span class="n">function</span> <span class="n">also</span> <span class="n">accepts</span> <span class="n">name</span><span class="o">/</span><span class="n">value</span> <span class="n">pairs</span> <span class="n">that</span> <span class="n">modify</span> <span class="n">the</span> <span class="n">default</span> <span class="n">options</span><span class="o">.</span>
+   <span class="n">Parameter</span> <span class="p">(</span><span class="n">default</span><span class="p">)</span>              <span class="p">:</span>  <span class="n">Description</span>
+   <span class="o">------------------------------------------------------------------------</span>
+   <span class="n">callbackstr</span> <span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>                 <span class="o">|</span>  <span class="n">Callback</span> <span class="n">function</span> <span class="k">for</span> <span class="n">all</span> <span class="n">active</span> <span class="n">controls</span>
+                                    <span class="o">|</span>    <span class="p">(</span><span class="s1">&#39;popup&#39;</span><span class="p">,</span><span class="s1">&#39;button&#39;</span><span class="p">,</span><span class="s1">&#39;slider&#39;</span><span class="p">,</span><span class="s1">&#39;list&#39;</span><span class="p">,</span><span class="s1">&#39;radiobutton&#39;</span><span class="p">,</span><span class="o">...</span>
+                                    <span class="o">|</span>      <span class="s1">&#39;togglebutton&#39;</span><span class="p">)</span>
+   <span class="n">uiBackgroundColor</span> <span class="p">(</span><span class="mf">0.94</span><span class="o">*</span><span class="p">[</span><span class="mi">1</span> <span class="mi">1</span> <span class="mi">1</span><span class="p">])</span> <span class="o">|</span>  <span class="n">Background</span> <span class="n">color</span> <span class="k">for</span> <span class="n">all</span> <span class="n">except</span> <span class="s1">&#39;frame&#39;</span>
+   <span class="n">frameBackgroundColor</span><span class="p">(</span><span class="mf">0.8</span><span class="o">*</span><span class="p">[</span><span class="mi">1</span> <span class="mi">1</span> <span class="mi">1</span><span class="p">])</span><span class="o">|</span>  <span class="n">Background</span> <span class="n">color</span> <span class="k">for</span> <span class="s1">&#39;frame&#39;</span>
+   <span class="n">uiUnits</span> <span class="p">(</span><span class="s1">&#39;pixels&#39;</span><span class="p">)</span>               <span class="o">|</span>  <span class="n">Units</span> <span class="k">for</span> <span class="n">controls</span> <span class="p">(</span><span class="n">could</span> <span class="n">be</span> <span class="s1">&#39;normalized&#39;</span><span class="p">,</span> <span class="s1">&#39;points&#39;</span><span class="p">)</span>
+                                    <span class="o">|</span>
+
+   <span class="n">Example</span><span class="p">:</span>
+      <span class="n">uidefs</span> <span class="o">=</span> <span class="n">vlt</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">basicuitools_defs</span><span class="p">;</span>
+
+   <span class="n">See</span> <span class="n">also</span><span class="p">:</span> <span class="n">UICONTROL</span>
+</code></pre></div>
                 
               
               

@@ -3213,6 +3213,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../%2Bgit/git_stash.m/" class="md-nav__link">
+        vlt.git.git_stash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../%2Bgit/git_status.m/" class="md-nav__link">
         vlt.git.git_status
       </a>
@@ -9237,18 +9249,24 @@
                 
                 
                 <h1 id="vltpathabsolute2relative">vlt.path.absolute2relative<a class="headerlink" href="#vltpathabsolute2relative" title="Permanent link">&para;</a></h1>
-<p>vlt.path.absolute2relative - Determine the relative path between two filenames, given two absolute names</p>
-<p>r = vlt.path.absolute2relative(absolutepath1, absolutepath2)</p>
-<p>Given two absolute paths, this function returns the relative path of path1 with respect to path2.</p>
-<p>This function takes name/value pairs that modify its default behavior:
-  | Parameter                | Description                                 |
-  | ------------------------ | ------------------------------------------- |
-  | input_filesep ('/')      | Input file separator (consider filesep)     |
-  | output_filesep ('/')     | Output file separator (usually '/' for html |
-  | backdir_symbol ('..')    | Symbol for moving back one directory        |</p>
-<p><strong>Example</strong>:
-      r=vlt.path.absolute2relative('/Users/me/mydir1/mydir2/myfile1.m', '/Users/me/mydir3/myfile2.m')
-      % r = '../mydir1/mydir2/myfile1.m'</p>
+<div class="codehilite"><pre><span></span><code><span class="w">  </span><span class="n">vlt</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="n">absolute2relative</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">Determine</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">relative</span><span class="w"> </span><span class="nb">path</span><span class="w"> </span><span class="nb">between</span><span class="w"> </span><span class="n">two</span><span class="w"> </span><span class="n">filenames</span><span class="p">,</span><span class="w"> </span><span class="n">given</span><span class="w"> </span><span class="n">two</span><span class="w"> </span><span class="n">absolute</span><span class="w"> </span><span class="n">names</span><span class="w"></span>
+
+<span class="w">  </span><span class="n">r</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">vlt</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="n">absolute2relative</span><span class="p">(</span><span class="n">absolutepath1</span><span class="p">,</span><span class="w"> </span><span class="n">absolutepath2</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">  </span><span class="n">Given</span><span class="w"> </span><span class="n">two</span><span class="w"> </span><span class="n">absolute</span><span class="w"> </span><span class="n">paths</span><span class="p">,</span><span class="w"> </span><span class="n">this</span><span class="w"> </span><span class="k">function</span><span class="w"> </span><span class="n">returns</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">relative</span><span class="w"> </span><span class="nb">path</span><span class="w"> </span><span class="n">of</span><span class="w"> </span><span class="n">path1</span><span class="w"> </span><span class="n">with</span><span class="w"> </span><span class="n">respect</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="n">path2</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">  </span><span class="n">This</span><span class="w"> </span><span class="k">function</span><span class="w"> </span><span class="n">takes</span><span class="w"> </span><span class="n">name</span><span class="o">/</span><span class="n">value</span><span class="w"> </span><span class="n">pairs</span><span class="w"> </span><span class="n">that</span><span class="w"> </span><span class="n">modify</span><span class="w"> </span><span class="n">its</span><span class="w"> </span><span class="n">default</span><span class="w"> </span><span class="n">behavior</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="o">|</span><span class="w"> </span><span class="n">Parameter</span><span class="w">                </span><span class="o">|</span><span class="w"> </span><span class="n">Description</span><span class="w">                                 </span><span class="o">|</span><span class="w"></span>
+<span class="w">  </span><span class="o">|</span><span class="w"> </span><span class="o">------------------------</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="o">-------------------------------------------</span><span class="w"> </span><span class="o">|</span><span class="w"></span>
+<span class="w">  </span><span class="o">|</span><span class="w"> </span><span class="n">input_filesep</span><span class="w"> </span><span class="p">(</span><span class="s">&#39;/&#39;</span><span class="p">)</span><span class="w">      </span><span class="o">|</span><span class="w"> </span><span class="n">Input</span><span class="w"> </span><span class="n">file</span><span class="w"> </span><span class="n">separator</span><span class="w"> </span><span class="p">(</span><span class="n">consider</span><span class="w"> </span><span class="nb">filesep</span><span class="p">)</span><span class="w">     </span><span class="o">|</span><span class="w"></span>
+<span class="w">  </span><span class="o">|</span><span class="w"> </span><span class="n">output_filesep</span><span class="w"> </span><span class="p">(</span><span class="s">&#39;/&#39;</span><span class="p">)</span><span class="w">     </span><span class="o">|</span><span class="w"> </span><span class="n">Output</span><span class="w"> </span><span class="n">file</span><span class="w"> </span><span class="n">separator</span><span class="w"> </span><span class="p">(</span><span class="n">usually</span><span class="w"> </span><span class="s">&#39;/&#39;</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">html</span><span class="w"> </span><span class="o">|</span><span class="w"></span>
+<span class="w">  </span><span class="o">|</span><span class="w"> </span><span class="n">backdir_symbol</span><span class="w"> </span><span class="p">(</span><span class="s">&#39;..&#39;</span><span class="p">)</span><span class="w">    </span><span class="o">|</span><span class="w"> </span><span class="n">Symbol</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">moving</span><span class="w"> </span><span class="n">back</span><span class="w"> </span><span class="n">one</span><span class="w"> </span><span class="n">directory</span><span class="w">        </span><span class="o">|</span><span class="w"></span>
+
+
+<span class="w">  </span><span class="o">**</span><span class="n">Example</span><span class="o">**</span><span class="p">:</span><span class="w"></span>
+<span class="w">      </span><span class="n">r</span><span class="p">=</span><span class="n">vlt</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="n">absolute2relative</span><span class="p">(</span><span class="s">&#39;/Users/me/mydir1/mydir2/myfile1.m&#39;</span><span class="p">,</span><span class="w"> </span><span class="s">&#39;/Users/me/mydir3/myfile2.m&#39;</span><span class="p">)</span><span class="w"></span>
+<span class="w">      </span><span class="c">% r = &#39;../mydir1/mydir2/myfile1.m&#39;</span><span class="w"></span>
+</code></pre></div>
                 
               
               

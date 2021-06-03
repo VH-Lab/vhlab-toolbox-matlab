@@ -3225,6 +3225,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../%2Bgit/git_stash.m/" class="md-nav__link">
+        vlt.git.git_stash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../%2Bgit/git_status.m/" class="md-nav__link">
         vlt.git.git_status
       </a>
@@ -9237,19 +9249,26 @@
                 
                 
                 <h1 id="vltfilerename_mfiles_functions">vlt.file.rename_mfiles_functions<a class="headerlink" href="#vltfilerename_mfiles_functions" title="Permanent link">&para;</a></h1>
-<p>RENAME_MFILES_FUNCTIONS - Rename mfiles and function names</p>
-<p>vlt.file.rename_mfiles_functions(MFILEDIRS, EDITMFILEDIRS, ...)</p>
-<p>This function traverses the directory (and all subdirectories) MFILEDIRS and identifies all
-  .m files. If any file name renaming parameters (see below) are specified, then the .m files 
-  are renamed, and any text within the files that refers to the filename is edited to match the new
-  name. The function then traverses the directory EDITMFILEDIRS and any of its subdirectories, looking
-  for text occurrences of the renamed functions, which are replaced with the new values.</p>
-<p>This file also accepts name/value pairs that specify file renaming parameters:
-  Parameter (default)           | Description</p>
-<hr />
-<p>dirstrings_to_exclude         | Directories whose name contains these strings will be ignored
-      {'.git','archived_code'}  | </p>
-<p>See also: vlt.data.namevaluepair</p>
+<div class="codehilite"><pre><span></span><code>  <span class="nv">RENAME_MFILES_FUNCTIONS</span> <span class="o">-</span> <span class="nv">Rename</span> <span class="nv">mfiles</span> <span class="nv">and</span> <span class="nv">function</span> <span class="nv">names</span>
+
+  <span class="nv">vlt</span>.<span class="nv">file</span>.<span class="nv">rename_mfiles_functions</span><span class="ss">(</span><span class="nv">MFILEDIRS</span>, <span class="nv">EDITMFILEDIRS</span>, ...<span class="ss">)</span>
+
+  <span class="nv">This</span> <span class="nv">function</span> <span class="nv">traverses</span> <span class="nv">the</span> <span class="nv">directory</span> <span class="ss">(</span><span class="nv">and</span> <span class="nv">all</span> <span class="nv">subdirectories</span><span class="ss">)</span> <span class="nv">MFILEDIRS</span> <span class="nv">and</span> <span class="nv">identifies</span> <span class="nv">all</span>
+  .<span class="nv">m</span> <span class="nv">files</span>. <span class="k">If</span> <span class="nv">any</span> <span class="nv">file</span> <span class="nv">name</span> <span class="nv">renaming</span> <span class="nv">parameters</span> <span class="ss">(</span><span class="nv">see</span> <span class="nv">below</span><span class="ss">)</span> <span class="nv">are</span> <span class="nv">specified</span>, <span class="k">then</span> <span class="nv">the</span> .<span class="nv">m</span> <span class="nv">files</span> 
+  <span class="nv">are</span> <span class="nv">renamed</span>, <span class="nv">and</span> <span class="nv">any</span> <span class="nv">text</span> <span class="nv">within</span> <span class="nv">the</span> <span class="nv">files</span> <span class="nv">that</span> <span class="nv">refers</span> <span class="nv">to</span> <span class="nv">the</span> <span class="nv">filename</span> <span class="nv">is</span> <span class="nv">edited</span> <span class="nv">to</span> <span class="nv">match</span> <span class="nv">the</span> <span class="nv">new</span>
+  <span class="nv">name</span>. <span class="nv">The</span> <span class="nv">function</span> <span class="k">then</span> <span class="nv">traverses</span> <span class="nv">the</span> <span class="nv">directory</span> <span class="nv">EDITMFILEDIRS</span> <span class="nv">and</span> <span class="nv">any</span> <span class="nv">of</span> <span class="nv">its</span> <span class="nv">subdirectories</span>, <span class="nv">looking</span>
+  <span class="k">for</span> <span class="nv">text</span> <span class="nv">occurrences</span> <span class="nv">of</span> <span class="nv">the</span> <span class="nv">renamed</span> <span class="nv">functions</span>, <span class="nv">which</span> <span class="nv">are</span> <span class="nv">replaced</span> <span class="nv">with</span> <span class="nv">the</span> <span class="nv">new</span> <span class="nv">values</span>.
+
+
+  <span class="nv">This</span> <span class="nv">file</span> <span class="nv">also</span> <span class="nv">accepts</span> <span class="nv">name</span><span class="o">/</span><span class="nv">value</span> <span class="nv">pairs</span> <span class="nv">that</span> <span class="nv">specify</span> <span class="nv">file</span> <span class="nv">renaming</span> <span class="nv">parameters</span>:
+  <span class="nv">Parameter</span> <span class="ss">(</span><span class="nv">default</span><span class="ss">)</span>           <span class="o">|</span> <span class="nv">Description</span>
+  <span class="o">---------------------------------------------------------------------------------</span>
+  <span class="nv">dirstrings_to_exclude</span>         <span class="o">|</span> <span class="nv">Directories</span> <span class="nv">whose</span> <span class="nv">name</span> <span class="nv">contains</span> <span class="nv">these</span> <span class="nv">strings</span> <span class="nv">will</span> <span class="nv">be</span> <span class="nv">ignored</span>
+      {<span class="s1">&#39;</span><span class="s">.git</span><span class="s1">&#39;</span>,<span class="s1">&#39;</span><span class="s">archived_code</span><span class="s1">&#39;</span>}  <span class="o">|</span> 
+
+
+  <span class="nv">See</span> <span class="nv">also</span>: <span class="nv">vlt</span>.<span class="nv">data</span>.<span class="nv">namevaluepair</span>
+</code></pre></div>
                 
               
               

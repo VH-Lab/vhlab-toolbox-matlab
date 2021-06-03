@@ -3225,6 +3225,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../%2Bgit/git_stash.m/" class="md-nav__link">
+        vlt.git.git_stash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../%2Bgit/git_status.m/" class="md-nav__link">
         vlt.git.git_status
       </a>
@@ -9237,23 +9249,29 @@
                 
                 
                 <h1 id="vltdataprettyjson">vlt.data.prettyjson<a class="headerlink" href="#vltdataprettyjson" title="Permanent link">&para;</a></h1>
-<p>PRETTYJSON - use Java JSONObject to produce pretty JSON output</p>
-<p>PRETTY = vlt.data.prettyjson(JSON_ENCODED_OBJECT, [SPACESTOINDENTEACHLEVEL])</p>
-<p>Given a JSON-encoded object (that is, a JSON string), this function
-  produces a 'pretty' JSON output that is human-readable (one line per item,
-  for example).</p>
-<p>SPACESTOINDENTEACHLEVEL indicates how many spaces should be used to indent each level.
-  If it is not provided, 2 is used.</p>
-<p>This function calls JSONObject from Java, and requires the org.json.* Java classes.
-  This library and its addition to the Java path is provided in
-  http://github.com/VH-Lab/vhlab-thirdparty-matlab. If you have this library you
-  should be all set.</p>
-<p>Example:
-       mystruct = struct('a',5,'b',3,'c',1);
-       j = vlt.data.jsonencodenan(mystruct) % produces single line
-       j_pretty = vlt.data.prettyjson(j) % produces multiple lines</p>
-<div class="codehilite"><pre><span></span><code><span class="w">   </span><span class="c">% or a single line:</span><span class="w"></span>
-<span class="w">   </span><span class="n">j_pretty</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">vlt</span><span class="p">.</span><span class="n">data</span><span class="p">.</span><span class="n">prettyjson</span><span class="p">(</span><span class="n">vlt</span><span class="p">.</span><span class="n">data</span><span class="p">.</span><span class="n">jsonencodenan</span><span class="p">(</span><span class="n">mystruct</span><span class="p">))</span><span class="w"></span>
+<div class="codehilite"><pre><span></span><code><span class="w">  </span><span class="n">PRETTYJSON</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="k">use</span><span class="w"> </span><span class="n">Java</span><span class="w"> </span><span class="n">JSONObject</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="n">produce</span><span class="w"> </span><span class="n">pretty</span><span class="w"> </span><span class="n">JSON</span><span class="w"> </span><span class="k">output</span><span class="w"></span>
+
+<span class="w">  </span><span class="n">PRETTY</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">vlt</span><span class="p">.</span><span class="k">data</span><span class="p">.</span><span class="n">prettyjson</span><span class="p">(</span><span class="n">JSON_ENCODED_OBJECT</span><span class="p">,</span><span class="w"> </span><span class="o">[</span><span class="n">SPACESTOINDENTEACHLEVEL</span><span class="o">]</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">  </span><span class="n">Given</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">JSON</span><span class="o">-</span><span class="n">encoded</span><span class="w"> </span><span class="k">object</span><span class="w"> </span><span class="p">(</span><span class="n">that</span><span class="w"> </span><span class="k">is</span><span class="p">,</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">JSON</span><span class="w"> </span><span class="n">string</span><span class="p">),</span><span class="w"> </span><span class="n">this</span><span class="w"> </span><span class="k">function</span><span class="w"></span>
+<span class="w">  </span><span class="n">produces</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="s1">&#39;pretty&#39;</span><span class="w"> </span><span class="n">JSON</span><span class="w"> </span><span class="k">output</span><span class="w"> </span><span class="n">that</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="n">human</span><span class="o">-</span><span class="n">readable</span><span class="w"> </span><span class="p">(</span><span class="n">one</span><span class="w"> </span><span class="n">line</span><span class="w"> </span><span class="n">per</span><span class="w"> </span><span class="n">item</span><span class="p">,</span><span class="w"></span>
+<span class="w">  </span><span class="k">for</span><span class="w"> </span><span class="n">example</span><span class="p">).</span><span class="w"></span>
+
+<span class="w">  </span><span class="n">SPACESTOINDENTEACHLEVEL</span><span class="w"> </span><span class="n">indicates</span><span class="w"> </span><span class="n">how</span><span class="w"> </span><span class="n">many</span><span class="w"> </span><span class="n">spaces</span><span class="w"> </span><span class="n">should</span><span class="w"> </span><span class="n">be</span><span class="w"> </span><span class="n">used</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="n">indent</span><span class="w"> </span><span class="k">each</span><span class="w"> </span><span class="k">level</span><span class="p">.</span><span class="w"></span>
+<span class="w">  </span><span class="k">If</span><span class="w"> </span><span class="n">it</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="ow">not</span><span class="w"> </span><span class="n">provided</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="n">used</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">  </span><span class="n">This</span><span class="w"> </span><span class="k">function</span><span class="w"> </span><span class="n">calls</span><span class="w"> </span><span class="n">JSONObject</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">Java</span><span class="p">,</span><span class="w"> </span><span class="ow">and</span><span class="w"> </span><span class="n">requires</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">org</span><span class="p">.</span><span class="n">json</span><span class="p">.</span><span class="o">*</span><span class="w"> </span><span class="n">Java</span><span class="w"> </span><span class="n">classes</span><span class="p">.</span><span class="w"></span>
+<span class="w">  </span><span class="n">This</span><span class="w"> </span><span class="n">library</span><span class="w"> </span><span class="ow">and</span><span class="w"> </span><span class="n">its</span><span class="w"> </span><span class="n">addition</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">Java</span><span class="w"> </span><span class="k">path</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="n">provided</span><span class="w"> </span><span class="ow">in</span><span class="w"></span>
+<span class="w">  </span><span class="nl">http</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="p">.</span><span class="n">com</span><span class="o">/</span><span class="n">VH</span><span class="o">-</span><span class="n">Lab</span><span class="o">/</span><span class="n">vhlab</span><span class="o">-</span><span class="n">thirdparty</span><span class="o">-</span><span class="n">matlab</span><span class="p">.</span><span class="w"> </span><span class="k">If</span><span class="w"> </span><span class="n">you</span><span class="w"> </span><span class="n">have</span><span class="w"> </span><span class="n">this</span><span class="w"> </span><span class="n">library</span><span class="w"> </span><span class="n">you</span><span class="w"></span>
+<span class="w">  </span><span class="n">should</span><span class="w"> </span><span class="n">be</span><span class="w"> </span><span class="ow">all</span><span class="w"> </span><span class="k">set</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">  </span><span class="nl">Example</span><span class="p">:</span><span class="w"></span>
+<span class="w">       </span><span class="n">mystruct</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">struct</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="s1">&#39;b&#39;</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="s1">&#39;c&#39;</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span><span class="w"></span>
+<span class="w">       </span><span class="n">j</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">vlt</span><span class="p">.</span><span class="k">data</span><span class="p">.</span><span class="n">jsonencodenan</span><span class="p">(</span><span class="n">mystruct</span><span class="p">)</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="n">produces</span><span class="w"> </span><span class="n">single</span><span class="w"> </span><span class="n">line</span><span class="w"></span>
+<span class="w">       </span><span class="n">j_pretty</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">vlt</span><span class="p">.</span><span class="k">data</span><span class="p">.</span><span class="n">prettyjson</span><span class="p">(</span><span class="n">j</span><span class="p">)</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="n">produces</span><span class="w"> </span><span class="n">multiple</span><span class="w"> </span><span class="n">lines</span><span class="w"></span>
+
+<span class="w">       </span><span class="o">%</span><span class="w"> </span><span class="ow">or</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">single</span><span class="w"> </span><span class="nl">line</span><span class="p">:</span><span class="w"></span>
+<span class="w">       </span><span class="n">j_pretty</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">vlt</span><span class="p">.</span><span class="k">data</span><span class="p">.</span><span class="n">prettyjson</span><span class="p">(</span><span class="n">vlt</span><span class="p">.</span><span class="k">data</span><span class="p">.</span><span class="n">jsonencodenan</span><span class="p">(</span><span class="n">mystruct</span><span class="p">))</span><span class="w"></span>
 </code></pre></div>
                 
               

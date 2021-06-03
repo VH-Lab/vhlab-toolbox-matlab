@@ -3225,6 +3225,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../%2Bgit/git_stash.m/" class="md-nav__link">
+        vlt.git.git_stash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../%2Bgit/git_status.m/" class="md-nav__link">
         vlt.git.git_status
       </a>
@@ -9237,23 +9249,25 @@
                 
                 
                 <h1 id="vltfitsin4_fit">vlt.fit.sin4_fit<a class="headerlink" href="#vltfitsin4_fit" title="Permanent link">&para;</a></h1>
-<p>SIN4_FIT - Fit a 4 term sine wave to data</p>
-<div class="codehilite"><pre><span></span><code>[FITVALUES,COEFFS] = vlt.fit.sin4_fit(X, Y, MAXFREQUENCY, INCLUDECONSTANT)
-</code></pre></div>
+<div class="codehilite"><pre><span></span><code>  <span class="n">SIN4_FIT</span> <span class="o">-</span> <span class="n">Fit</span> <span class="n">a</span> <span class="mi">4</span> <span class="n">term</span> <span class="n">sine</span> <span class="n">wave</span> <span class="n">to</span> <span class="n">data</span>
 
-<p>Inputs:
-     X - A vector of X values
-     Y - A vector of Y values
-     MAXFREQUENCY - The maximum frequency of the fit, in Hz (can be Inf)
-     INCLUDECONSTANT - 0/1 should we include a constant term in the fit?
-        This constant is included by setting it to the signal mean.</p>
-<p>Outputs:
-     FITVALUES - The fit values of Y for all values of the input X.
-     COEFFS - The coefficients for the sine waves.
-          These are [a1 a2 a3 a4 a5 a6 a7 a8 a9 a10 a11 a12 a13] where the
-          fit function is 
-          a1<em>sin(a2</em>x+a3)+a4<em>sin(a5</em>x+a6)+a7<em>sin(a8</em>x+a9)+a10<em>sin(a11</em>x+a12)+a13
-          a13 is only present if INCLUDECONSTANT is 1.</p>
+    <span class="p">[</span><span class="n">FITVALUES</span><span class="p">,</span><span class="n">COEFFS</span><span class="p">]</span> <span class="o">=</span> <span class="n">vlt</span><span class="o">.</span><span class="n">fit</span><span class="o">.</span><span class="n">sin4_fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">,</span> <span class="n">MAXFREQUENCY</span><span class="p">,</span> <span class="n">INCLUDECONSTANT</span><span class="p">)</span>
+
+   <span class="n">Inputs</span><span class="p">:</span>
+     <span class="n">X</span> <span class="o">-</span> <span class="n">A</span> <span class="n">vector</span> <span class="n">of</span> <span class="n">X</span> <span class="n">values</span>
+     <span class="n">Y</span> <span class="o">-</span> <span class="n">A</span> <span class="n">vector</span> <span class="n">of</span> <span class="n">Y</span> <span class="n">values</span>
+     <span class="n">MAXFREQUENCY</span> <span class="o">-</span> <span class="n">The</span> <span class="n">maximum</span> <span class="n">frequency</span> <span class="n">of</span> <span class="n">the</span> <span class="n">fit</span><span class="p">,</span> <span class="ow">in</span> <span class="n">Hz</span> <span class="p">(</span><span class="n">can</span> <span class="n">be</span> <span class="n">Inf</span><span class="p">)</span>
+     <span class="n">INCLUDECONSTANT</span> <span class="o">-</span> <span class="mi">0</span><span class="o">/</span><span class="mi">1</span> <span class="n">should</span> <span class="n">we</span> <span class="n">include</span> <span class="n">a</span> <span class="n">constant</span> <span class="n">term</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">fit</span><span class="err">?</span>
+        <span class="n">This</span> <span class="n">constant</span> <span class="k">is</span> <span class="n">included</span> <span class="n">by</span> <span class="n">setting</span> <span class="n">it</span> <span class="n">to</span> <span class="n">the</span> <span class="k">signal</span> <span class="n">mean</span><span class="o">.</span>
+
+   <span class="n">Outputs</span><span class="p">:</span>
+     <span class="n">FITVALUES</span> <span class="o">-</span> <span class="n">The</span> <span class="n">fit</span> <span class="n">values</span> <span class="n">of</span> <span class="n">Y</span> <span class="k">for</span> <span class="n">all</span> <span class="n">values</span> <span class="n">of</span> <span class="n">the</span> <span class="n">input</span> <span class="n">X</span><span class="o">.</span>
+     <span class="n">COEFFS</span> <span class="o">-</span> <span class="n">The</span> <span class="n">coefficients</span> <span class="k">for</span> <span class="n">the</span> <span class="n">sine</span> <span class="n">waves</span><span class="o">.</span>
+          <span class="n">These</span> <span class="n">are</span> <span class="p">[</span><span class="n">a1</span> <span class="n">a2</span> <span class="n">a3</span> <span class="n">a4</span> <span class="n">a5</span> <span class="n">a6</span> <span class="n">a7</span> <span class="n">a8</span> <span class="n">a9</span> <span class="n">a10</span> <span class="n">a11</span> <span class="n">a12</span> <span class="n">a13</span><span class="p">]</span> <span class="n">where</span> <span class="n">the</span>
+          <span class="n">fit</span> <span class="n">function</span> <span class="k">is</span> 
+          <span class="n">a1</span><span class="o">*</span><span class="nb">sin</span><span class="p">(</span><span class="n">a2</span><span class="o">*</span><span class="n">x</span><span class="o">+</span><span class="n">a3</span><span class="p">)</span><span class="o">+</span><span class="n">a4</span><span class="o">*</span><span class="nb">sin</span><span class="p">(</span><span class="n">a5</span><span class="o">*</span><span class="n">x</span><span class="o">+</span><span class="n">a6</span><span class="p">)</span><span class="o">+</span><span class="n">a7</span><span class="o">*</span><span class="nb">sin</span><span class="p">(</span><span class="n">a8</span><span class="o">*</span><span class="n">x</span><span class="o">+</span><span class="n">a9</span><span class="p">)</span><span class="o">+</span><span class="n">a10</span><span class="o">*</span><span class="nb">sin</span><span class="p">(</span><span class="n">a11</span><span class="o">*</span><span class="n">x</span><span class="o">+</span><span class="n">a12</span><span class="p">)</span><span class="o">+</span><span class="n">a13</span>
+          <span class="n">a13</span> <span class="k">is</span> <span class="n">only</span> <span class="n">present</span> <span class="k">if</span> <span class="n">INCLUDECONSTANT</span> <span class="k">is</span> <span class="mf">1.</span>
+</code></pre></div>
                 
               
               

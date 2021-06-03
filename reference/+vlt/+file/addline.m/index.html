@@ -3225,6 +3225,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../%2Bgit/git_stash.m/" class="md-nav__link">
+        vlt.git.git_stash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../%2Bgit/git_status.m/" class="md-nav__link">
         vlt.git.git_status
       </a>
@@ -9237,13 +9249,18 @@
                 
                 
                 <h1 id="vltfileaddline">vlt.file.addline<a class="headerlink" href="#vltfileaddline" title="Permanent link">&para;</a></h1>
-<p>ADDLINE - add a line of text to a text file</p>
-<p>[B, ERRORMSG] = ADDLINE(FILENAME, MESSAGE)</p>
-<p>ADDLINE writes a message to the textfile FILENAME. If the FILENAME does not exist, then ADDLINE
-  attempts to create it. ADDLINE first attempts to check out a lock file so that two programs do not write to the
-  FILENAME simultaneously. </p>
-<p>A newline '\n' and carriage return '\r' is added to the end of the message.</p>
-<p>If the operation is successful, B is 1 and ERRORMSG is ''. Otherwise, B is 0 and ERRORMSG describes the error.</p>
+<div class="codehilite"><pre><span></span><code>  <span class="nv">ADDLINE</span> <span class="o">-</span> <span class="nv">add</span> <span class="nv">a</span> <span class="nv">line</span> <span class="nv">of</span> <span class="nv">text</span> <span class="nv">to</span> <span class="nv">a</span> <span class="nv">text</span> <span class="nv">file</span>
+
+  [<span class="nv">B</span>, <span class="nv">ERRORMSG</span>] <span class="o">=</span> <span class="nv">ADDLINE</span><span class="ss">(</span><span class="nv">FILENAME</span>, <span class="nv">MESSAGE</span><span class="ss">)</span>
+
+  <span class="nv">ADDLINE</span> <span class="nv">writes</span> <span class="nv">a</span> <span class="nv">message</span> <span class="nv">to</span> <span class="nv">the</span> <span class="nv">textfile</span> <span class="nv">FILENAME</span>. <span class="k">If</span> <span class="nv">the</span> <span class="nv">FILENAME</span> <span class="nv">does</span> <span class="nv">not</span> <span class="nv">exist</span>, <span class="k">then</span> <span class="nv">ADDLINE</span>
+  <span class="nv">attempts</span> <span class="nv">to</span> <span class="nv">create</span> <span class="nv">it</span>. <span class="nv">ADDLINE</span> <span class="nv">first</span> <span class="nv">attempts</span> <span class="nv">to</span> <span class="nv">check</span> <span class="nv">out</span> <span class="nv">a</span> <span class="nv">lock</span> <span class="nv">file</span> <span class="nv">so</span> <span class="nv">that</span> <span class="nv">two</span> <span class="nv">programs</span> <span class="k">do</span> <span class="nv">not</span> <span class="nv">write</span> <span class="nv">to</span> <span class="nv">the</span>
+  <span class="nv">FILENAME</span> <span class="nv">simultaneously</span>. 
+
+  <span class="nv">A</span> <span class="nv">newline</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span> <span class="nv">and</span> <span class="nv">carriage</span> <span class="k">return</span> <span class="s1">&#39;</span><span class="s">\r</span><span class="s1">&#39;</span> <span class="nv">is</span> <span class="nv">added</span> <span class="nv">to</span> <span class="nv">the</span> <span class="k">end</span> <span class="nv">of</span> <span class="nv">the</span> <span class="nv">message</span>.
+
+  <span class="k">If</span> <span class="nv">the</span> <span class="nv">operation</span> <span class="nv">is</span> <span class="nv">successful</span>, <span class="nv">B</span> <span class="nv">is</span> <span class="mi">1</span> <span class="nv">and</span> <span class="nv">ERRORMSG</span> <span class="nv">is</span> <span class="s1">&#39;&#39;</span>. <span class="nv">Otherwise</span>, <span class="nv">B</span> <span class="nv">is</span> <span class="mi">0</span> <span class="nv">and</span> <span class="nv">ERRORMSG</span> <span class="nv">describes</span> <span class="nv">the</span> <span class="nv">error</span>.
+</code></pre></div>
                 
               
               

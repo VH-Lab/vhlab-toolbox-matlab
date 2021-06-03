@@ -3225,6 +3225,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../%2Bgit/git_stash.m/" class="md-nav__link">
+        vlt.git.git_stash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../%2Bgit/git_status.m/" class="md-nav__link">
         vlt.git.git_status
       </a>
@@ -9237,20 +9249,25 @@
                 
                 
                 <h1 id="vltdatastruct2namevaluepair">vlt.data.struct2namevaluepair<a class="headerlink" href="#vltdatastruct2namevaluepair" title="Permanent link">&para;</a></h1>
-<p>STRUCT2NAMEVALUEPAIR - Convert a structure to a cell array of name/value pairs</p>
-<p>NV = vlt.data.struct2namevaluepair(THESTRUCT)</p>
-<p>Convert a structure to a cell array of name/value pairs. This is useful for
-   passing name/value pairs to functions that accept them as extra arguments.
-   Each field name of the structure is used as the 'name', and the value is
-   used as the 'value'.</p>
-<p>Example:</p>
-<div class="codehilite"><pre><span></span><code><span class="w">  </span><span class="n">myStruct</span><span class="p">.</span><span class="n">param1</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"></span>
-<span class="w">  </span><span class="n">myStruct</span><span class="p">.</span><span class="n">param2</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span><span class="w"></span>
-<span class="w">  </span><span class="n">nv</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">vlt</span><span class="p">.</span><span class="n">data</span><span class="p">.</span><span class="n">struct2namevaluepair</span><span class="p">(</span><span class="n">myStruct</span><span class="p">)</span><span class="w"></span>
-<span class="w">     </span><span class="c">% nv = {&#39;param1&#39;, 1, &#39;param2&#39;, 2}</span><span class="w"></span>
-</code></pre></div>
+<div class="codehilite"><pre><span></span><code><span class="w">  </span><span class="n">STRUCT2NAMEVALUEPAIR</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">Convert</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">structure</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="nb">cell</span><span class="w"> </span><span class="n">array</span><span class="w"> </span><span class="n">of</span><span class="w"> </span><span class="n">name</span><span class="o">/</span><span class="n">value</span><span class="w"> </span><span class="n">pairs</span><span class="w"></span>
 
-<p>See also: VARARGIN, vlt.data.assign, STRUCT</p>
+<span class="w">   </span><span class="n">NV</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">vlt</span><span class="p">.</span><span class="n">data</span><span class="p">.</span><span class="n">struct2namevaluepair</span><span class="p">(</span><span class="n">THESTRUCT</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">   </span><span class="n">Convert</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">structure</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="nb">cell</span><span class="w"> </span><span class="n">array</span><span class="w"> </span><span class="n">of</span><span class="w"> </span><span class="n">name</span><span class="o">/</span><span class="n">value</span><span class="w"> </span><span class="n">pairs</span><span class="p">.</span><span class="w"> </span><span class="n">This</span><span class="w"> </span><span class="n">is</span><span class="w"> </span><span class="n">useful</span><span class="w"> </span><span class="k">for</span><span class="w"></span>
+<span class="w">   </span><span class="n">passing</span><span class="w"> </span><span class="n">name</span><span class="o">/</span><span class="n">value</span><span class="w"> </span><span class="n">pairs</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="nb">functions</span><span class="w"> </span><span class="n">that</span><span class="w"> </span><span class="n">accept</span><span class="w"> </span><span class="n">them</span><span class="w"> </span><span class="n">as</span><span class="w"> </span><span class="n">extra</span><span class="w"> </span><span class="nb">arguments</span><span class="p">.</span><span class="w"></span>
+<span class="w">   </span><span class="n">Each</span><span class="w"> </span><span class="n">field</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="n">of</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">structure</span><span class="w"> </span><span class="n">is</span><span class="w"> </span><span class="n">used</span><span class="w"> </span><span class="n">as</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="s">&#39;name&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">and</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">value</span><span class="w"> </span><span class="n">is</span><span class="w"></span>
+<span class="w">   </span><span class="n">used</span><span class="w"> </span><span class="n">as</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="s">&#39;value&#39;</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">   </span><span class="n">Example</span><span class="p">:</span><span class="w"></span>
+
+<span class="w">      </span><span class="n">myStruct</span><span class="p">.</span><span class="n">param1</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"></span>
+<span class="w">      </span><span class="n">myStruct</span><span class="p">.</span><span class="n">param2</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span><span class="w"></span>
+<span class="w">      </span><span class="n">nv</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">vlt</span><span class="p">.</span><span class="n">data</span><span class="p">.</span><span class="n">struct2namevaluepair</span><span class="p">(</span><span class="n">myStruct</span><span class="p">)</span><span class="w"></span>
+<span class="w">         </span><span class="c">% nv = {&#39;param1&#39;, 1, &#39;param2&#39;, 2}</span><span class="w"></span>
+
+
+<span class="w">   </span><span class="n">See</span><span class="w"> </span><span class="n">also</span><span class="p">:</span><span class="w"> </span><span class="n">VARARGIN</span><span class="p">,</span><span class="w"> </span><span class="n">vlt</span><span class="p">.</span><span class="n">data</span><span class="p">.</span><span class="n">assign</span><span class="p">,</span><span class="w"> </span><span class="n">STRUCT</span><span class="w"></span>
+</code></pre></div>
                 
               
               

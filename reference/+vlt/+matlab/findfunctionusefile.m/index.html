@@ -3213,6 +3213,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../%2Bgit/git_stash.m/" class="md-nav__link">
+        vlt.git.git_stash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../%2Bgit/git_status.m/" class="md-nav__link">
         vlt.git.git_status
       </a>
@@ -9237,24 +9249,30 @@
                 
                 
                 <h1 id="vltmatlabfindfunctionusefile">vlt.matlab.findfunctionusefile<a class="headerlink" href="#vltmatlabfindfunctionusefile" title="Permanent link">&para;</a></h1>
-<p>FINDFUNCTIONUSE determine where a function is called in an m file</p>
-<p>FUSE = FINDFUNCTIONUSE(FILENAME, MINFO)</p>
-<p>Searches the file FILENAME for uses of a Matlab function
-  described by minfo returned by vlt.matlab.mfileinfo.</p>
-<p>This function searches for instances of [MINFO.NAME]
-  Note that it may identify instances in the comments, or instances where the
-  user has defined their own internal function of the same name.</p>
-<p>Returns a structure of possible usages
-  Fieldname                     | Description</p>
-<hr />
-<p>fullfilename                  | Full filename of FILENAME
-  name                          | Function name from MINFO.NAME
-  line                          | Line number where possible usage occurred
-  character                     | Character where the name occurrs
-  incomments                    | 0/1 is it in a comment?
-  package_class_use             | 0/1 Does a '.' appear before the function call?
-  allcaps                       | 0/1 Does the function appear in all caps here? (might be documentation use)</p>
-<p>See also: vlt.matlab.mfileinfo</p>
+<div class="codehilite"><pre><span></span><code>  <span class="nv">FINDFUNCTIONUSE</span> <span class="nv">determine</span> <span class="nv">where</span> <span class="nv">a</span> <span class="nv">function</span> <span class="nv">is</span> <span class="nv">called</span> <span class="nv">in</span> <span class="nv">an</span> <span class="nv">m</span> <span class="nv">file</span>
+
+  <span class="nv">FUSE</span> <span class="o">=</span> <span class="nv">FINDFUNCTIONUSE</span><span class="ss">(</span><span class="nv">FILENAME</span>, <span class="nv">MINFO</span><span class="ss">)</span>
+
+  <span class="nv">Searches</span> <span class="nv">the</span> <span class="nv">file</span> <span class="nv">FILENAME</span> <span class="k">for</span> <span class="nv">uses</span> <span class="nv">of</span> <span class="nv">a</span> <span class="nv">Matlab</span> <span class="nv">function</span>
+  <span class="nv">described</span> <span class="nv">by</span> <span class="nv">minfo</span> <span class="nv">returned</span> <span class="nv">by</span> <span class="nv">vlt</span>.<span class="nv">matlab</span>.<span class="nv">mfileinfo</span>.
+
+  <span class="nv">This</span> <span class="nv">function</span> <span class="nv">searches</span> <span class="k">for</span> <span class="nv">instances</span> <span class="nv">of</span> [<span class="nv">MINFO</span>.<span class="nv">NAME</span>]
+  <span class="nv">Note</span> <span class="nv">that</span> <span class="nv">it</span> <span class="nv">may</span> <span class="nv">identify</span> <span class="nv">instances</span> <span class="nv">in</span> <span class="nv">the</span> <span class="nv">comments</span>, <span class="nv">or</span> <span class="nv">instances</span> <span class="nv">where</span> <span class="nv">the</span>
+  <span class="nv">user</span> <span class="nv">has</span> <span class="nv">defined</span> <span class="nv">their</span> <span class="nv">own</span> <span class="nv">internal</span> <span class="nv">function</span> <span class="nv">of</span> <span class="nv">the</span> <span class="nv">same</span> <span class="nv">name</span>.
+
+  <span class="nv">Returns</span> <span class="nv">a</span> <span class="nv">structure</span> <span class="nv">of</span> <span class="nv">possible</span> <span class="nv">usages</span>
+  <span class="nv">Fieldname</span>                     <span class="o">|</span> <span class="nv">Description</span>
+  <span class="o">----------------------------------------------------------------</span>
+  <span class="nv">fullfilename</span>                  <span class="o">|</span> <span class="nv">Full</span> <span class="nv">filename</span> <span class="nv">of</span> <span class="nv">FILENAME</span>
+  <span class="nv">name</span>                          <span class="o">|</span> <span class="nv">Function</span> <span class="nv">name</span> <span class="nv">from</span> <span class="nv">MINFO</span>.<span class="nv">NAME</span>
+  <span class="nv">line</span>                          <span class="o">|</span> <span class="nv">Line</span> <span class="nv">number</span> <span class="nv">where</span> <span class="nv">possible</span> <span class="nv">usage</span> <span class="nv">occurred</span>
+  <span class="nv">character</span>                     <span class="o">|</span> <span class="nv">Character</span> <span class="nv">where</span> <span class="nv">the</span> <span class="nv">name</span> <span class="nv">occurrs</span>
+  <span class="nv">incomments</span>                    <span class="o">|</span> <span class="mi">0</span><span class="o">/</span><span class="mi">1</span> <span class="nv">is</span> <span class="nv">it</span> <span class="nv">in</span> <span class="nv">a</span> <span class="nv">comment</span>?
+  <span class="nv">package_class_use</span>             <span class="o">|</span> <span class="mi">0</span><span class="o">/</span><span class="mi">1</span> <span class="nv">Does</span> <span class="nv">a</span> <span class="s1">&#39;</span><span class="s">.</span><span class="s1">&#39;</span> <span class="nv">appear</span> <span class="nv">before</span> <span class="nv">the</span> <span class="nv">function</span> <span class="nv">call</span>?
+  <span class="nv">allcaps</span>                       <span class="o">|</span> <span class="mi">0</span><span class="o">/</span><span class="mi">1</span> <span class="nv">Does</span> <span class="nv">the</span> <span class="nv">function</span> <span class="nv">appear</span> <span class="nv">in</span> <span class="nv">all</span> <span class="nv">caps</span> <span class="nv">here</span>? <span class="ss">(</span><span class="nv">might</span> <span class="nv">be</span> <span class="nv">documentation</span> <span class="nv">use</span><span class="ss">)</span>
+
+  <span class="nv">See</span> <span class="nv">also</span>: <span class="nv">vlt</span>.<span class="nv">matlab</span>.<span class="nv">mfileinfo</span>
+</code></pre></div>
                 
               
               

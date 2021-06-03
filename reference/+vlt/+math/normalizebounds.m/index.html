@@ -3213,6 +3213,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../%2Bgit/git_stash.m/" class="md-nav__link">
+        vlt.git.git_stash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../%2Bgit/git_status.m/" class="md-nav__link">
         vlt.git.git_status
       </a>
@@ -9237,14 +9249,18 @@
                 
                 
                 <h1 id="vltmathnormalizebounds">vlt.math.normalizebounds<a class="headerlink" href="#vltmathnormalizebounds" title="Permanent link">&para;</a></h1>
-<p>vlt.math.normalizebounds - Normalize data to lower, upper bound</p>
-<p>X = vlt.math.normalizebounds(DATA, LOWERBOUND, UPPERBOUND)</p>
-<p>Normalizes the data as follows
-    X = (DATA-LOWERBOUND)/(UPPERBOUND-LOWERBOUND)</p>
-<p>So points between LOWERBOUND and UPPERBOUND are projected
+<div class="codehilite"><pre><span></span><code>  vlt.math.normalizebounds - Normalize data to lower, upper bound
+
+   X = vlt.math.normalizebounds(DATA, LOWERBOUND, UPPERBOUND)
+
+  Normalizes the data as follows
+    X = (DATA-LOWERBOUND)/(UPPERBOUND-LOWERBOUND)
+
+   So points between LOWERBOUND and UPPERBOUND are projected
    onto the interval [0..1] with points equal to LOWERBOUND set
    to 0 and points set to UPPERBOUND equal to 1.  Note that it is
-   possible to have points out of bounds.</p>
+   possible to have points out of bounds.
+</code></pre></div>
                 
               
               

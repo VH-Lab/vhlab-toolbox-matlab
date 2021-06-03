@@ -3227,6 +3227,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../../%2Bgit/git_stash.m/" class="md-nav__link">
+        vlt.git.git_stash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../../%2Bgit/git_status.m/" class="md-nav__link">
         vlt.git.git_status
       </a>
@@ -9239,39 +9251,42 @@
                 
                 
                 <h1 id="vltfilecustom_file_formatsreadvhlvheaderfile">vlt.file.custom_file_formats.readvhlvheaderfile<a class="headerlink" href="#vltfilecustom_file_formatsreadvhlvheaderfile" title="Permanent link">&para;</a></h1>
-<p>READVHLVHEADERFILE - Read VHLV header file format</p>
-<p>HEADERSTRUCT = vlt.file.custom_file_formats.readvhlvheaderfile(MYFILENAME)</p>
-<div class="codehilite"><pre><span></span><code><span class="n">Reads</span> <span class="n">the</span> <span class="n">header</span> <span class="n">file</span> <span class="n">format</span> <span class="k">for</span> <span class="n">the</span> <span class="n">VHLAB</span> <span class="n">LabView</span>
-<span class="n">multichannel</span> <span class="n">acquisition</span> <span class="n">system</span><span class="o">.</span>
+<div class="codehilite"><pre><span></span><code>  <span class="n">READVHLVHEADERFILE</span> <span class="o">-</span> <span class="n">Read</span> <span class="n">VHLV</span> <span class="n">header</span> <span class="n">file</span> <span class="n">format</span>
 
-<span class="n">It</span> <span class="n">expects</span> <span class="n">MYFILENAME</span> <span class="n">to</span> <span class="n">be</span> <span class="n">the</span> <span class="n">name</span> <span class="n">of</span> <span class="n">a</span> <span class="n">text</span> <span class="n">file</span><span class="p">,</span> <span class="n">where</span> <span class="n">each</span> <span class="n">line</span>
-<span class="n">begins</span> <span class="n">with</span> <span class="n">a</span> <span class="n">field</span> <span class="n">name</span> <span class="n">followed</span> <span class="n">by</span> <span class="n">a</span> <span class="n">colon</span> <span class="s1">&#39;:&#39;</span> <span class="ow">and</span> <span class="n">then</span> <span class="n">a</span> <span class="n">tab</span><span class="p">,</span> <span class="n">followed</span>
-<span class="n">by</span> <span class="n">the</span> <span class="n">value</span><span class="o">.</span> <span class="n">The</span> <span class="n">expected</span> <span class="n">fields</span> <span class="n">are</span> <span class="s1">&#39;ChannelString&#39;</span><span class="p">,</span> <span class="n">which</span> <span class="n">indicates</span> <span class="n">the</span>
-<span class="n">channel</span> <span class="n">names</span> <span class="n">that</span> <span class="n">were</span> <span class="n">acquired</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">LabView</span> <span class="n">system</span><span class="p">,</span> <span class="s1">&#39;NumChans&#39;</span><span class="p">,</span> <span class="n">the</span> <span class="n">number</span>
-<span class="n">of</span> <span class="n">channels</span> <span class="n">that</span> <span class="n">were</span> <span class="n">acquired</span><span class="p">,</span> <span class="s1">&#39;SamplingRate&#39;</span><span class="p">,</span> <span class="n">the</span> <span class="n">sampling</span> <span class="n">rate</span> <span class="n">of</span> <span class="n">each</span>
-<span class="n">channel</span> <span class="ow">in</span> <span class="n">Hz</span><span class="p">,</span> <span class="ow">and</span> <span class="s1">&#39;SamplesPerChunk&#39;</span><span class="p">,</span> <span class="n">which</span> <span class="n">indicates</span> <span class="n">how</span> <span class="n">many</span> <span class="n">samples</span> <span class="n">were</span>
-<span class="n">written</span> <span class="n">to</span> <span class="n">disk</span> <span class="ow">in</span> <span class="n">each</span> <span class="n">burst</span> <span class="n">of</span> <span class="n">recording</span><span class="o">.</span>  <span class="s1">&#39;Multiplexed&#39;</span> <span class="n">indicates</span>
-<span class="n">whether</span> <span class="n">adjacent</span> <span class="n">samples</span> <span class="n">are</span> <span class="n">from</span> <span class="n">different</span> <span class="n">channels</span> <span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="ow">or</span> <span class="k">if</span> 
-<span class="n">the</span> <span class="n">channel</span> <span class="n">data</span> <span class="k">is</span> <span class="n">loaded</span> <span class="ow">in</span> <span class="n">groups</span> <span class="n">of</span> <span class="n">SamplesPerChunk</span> <span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span>
+   <span class="n">HEADERSTRUCT</span> <span class="o">=</span> <span class="n">vlt</span><span class="o">.</span><span class="n">file</span><span class="o">.</span><span class="n">custom_file_formats</span><span class="o">.</span><span class="n">readvhlvheaderfile</span><span class="p">(</span><span class="n">MYFILENAME</span><span class="p">)</span>
 
-<span class="n">The</span> <span class="n">channel</span> <span class="n">numbers</span> <span class="n">correspond</span> <span class="n">to</span> <span class="n">the</span> <span class="n">inputs</span> <span class="n">described</span> <span class="ow">in</span> <span class="s1">&#39;ChannelString&#39;</span><span class="o">.</span>
-<span class="n">For</span> <span class="n">example</span><span class="p">,</span> <span class="k">if</span> <span class="n">ChannelString</span> <span class="k">is</span> <span class="s1">&#39;/dev/ai0&#39;</span><span class="p">,</span> <span class="n">then</span> <span class="n">there</span> <span class="k">is</span> <span class="n">just</span> <span class="mi">1</span> <span class="n">channel</span>
-<span class="ow">and</span> <span class="n">it</span> <span class="n">corresponds</span> <span class="n">to</span> <span class="n">analog</span> <span class="n">input</span> <span class="mi">0</span> <span class="n">on</span> <span class="n">the</span> <span class="n">acquisition</span> <span class="n">device</span><span class="o">.</span>
+    <span class="n">Reads</span> <span class="n">the</span> <span class="n">header</span> <span class="n">file</span> <span class="n">format</span> <span class="k">for</span> <span class="n">the</span> <span class="n">VHLAB</span> <span class="n">LabView</span>
+    <span class="n">multichannel</span> <span class="n">acquisition</span> <span class="n">system</span><span class="o">.</span>
 
-<span class="n">Use</span> <span class="n">vlt</span><span class="o">.</span><span class="n">file</span><span class="o">.</span><span class="n">custom_file_formats</span><span class="o">.</span><span class="n">readvhlvdatafile</span> <span class="n">to</span> <span class="n">read</span> <span class="n">the</span> <span class="n">data</span><span class="o">.</span>
+    <span class="n">It</span> <span class="n">expects</span> <span class="n">MYFILENAME</span> <span class="n">to</span> <span class="n">be</span> <span class="n">the</span> <span class="n">name</span> <span class="n">of</span> <span class="n">a</span> <span class="n">text</span> <span class="n">file</span><span class="p">,</span> <span class="n">where</span> <span class="n">each</span> <span class="n">line</span>
+    <span class="n">begins</span> <span class="n">with</span> <span class="n">a</span> <span class="n">field</span> <span class="n">name</span> <span class="n">followed</span> <span class="n">by</span> <span class="n">a</span> <span class="n">colon</span> <span class="s1">&#39;:&#39;</span> <span class="ow">and</span> <span class="n">then</span> <span class="n">a</span> <span class="n">tab</span><span class="p">,</span> <span class="n">followed</span>
+    <span class="n">by</span> <span class="n">the</span> <span class="n">value</span><span class="o">.</span> <span class="n">The</span> <span class="n">expected</span> <span class="n">fields</span> <span class="n">are</span> <span class="s1">&#39;ChannelString&#39;</span><span class="p">,</span> <span class="n">which</span> <span class="n">indicates</span> <span class="n">the</span>
+    <span class="n">channel</span> <span class="n">names</span> <span class="n">that</span> <span class="n">were</span> <span class="n">acquired</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">LabView</span> <span class="n">system</span><span class="p">,</span> <span class="s1">&#39;NumChans&#39;</span><span class="p">,</span> <span class="n">the</span> <span class="n">number</span>
+    <span class="n">of</span> <span class="n">channels</span> <span class="n">that</span> <span class="n">were</span> <span class="n">acquired</span><span class="p">,</span> <span class="s1">&#39;SamplingRate&#39;</span><span class="p">,</span> <span class="n">the</span> <span class="n">sampling</span> <span class="n">rate</span> <span class="n">of</span> <span class="n">each</span>
+    <span class="n">channel</span> <span class="ow">in</span> <span class="n">Hz</span><span class="p">,</span> <span class="ow">and</span> <span class="s1">&#39;SamplesPerChunk&#39;</span><span class="p">,</span> <span class="n">which</span> <span class="n">indicates</span> <span class="n">how</span> <span class="n">many</span> <span class="n">samples</span> <span class="n">were</span>
+    <span class="n">written</span> <span class="n">to</span> <span class="n">disk</span> <span class="ow">in</span> <span class="n">each</span> <span class="n">burst</span> <span class="n">of</span> <span class="n">recording</span><span class="o">.</span>  <span class="s1">&#39;Multiplexed&#39;</span> <span class="n">indicates</span>
+    <span class="n">whether</span> <span class="n">adjacent</span> <span class="n">samples</span> <span class="n">are</span> <span class="n">from</span> <span class="n">different</span> <span class="n">channels</span> <span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="ow">or</span> <span class="k">if</span> 
+    <span class="n">the</span> <span class="n">channel</span> <span class="n">data</span> <span class="k">is</span> <span class="n">loaded</span> <span class="ow">in</span> <span class="n">groups</span> <span class="n">of</span> <span class="n">SamplesPerChunk</span> <span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span>
 
-<span class="n">Example</span><span class="p">:</span>
-  <span class="n">headerstruct</span> <span class="o">=</span> <span class="n">vlt</span><span class="o">.</span><span class="n">file</span><span class="o">.</span><span class="n">custom_file_formats</span><span class="o">.</span><span class="n">readvhlvheaderfile</span><span class="p">(</span><span class="s1">&#39;vhlvanaloginput.vlh&#39;</span><span class="p">)</span>
+    <span class="n">The</span> <span class="n">channel</span> <span class="n">numbers</span> <span class="n">correspond</span> <span class="n">to</span> <span class="n">the</span> <span class="n">inputs</span> <span class="n">described</span> <span class="ow">in</span> <span class="s1">&#39;ChannelString&#39;</span><span class="o">.</span>
+    <span class="n">For</span> <span class="n">example</span><span class="p">,</span> <span class="k">if</span> <span class="n">ChannelString</span> <span class="k">is</span> <span class="s1">&#39;/dev/ai0&#39;</span><span class="p">,</span> <span class="n">then</span> <span class="n">there</span> <span class="k">is</span> <span class="n">just</span> <span class="mi">1</span> <span class="n">channel</span>
+    <span class="ow">and</span> <span class="n">it</span> <span class="n">corresponds</span> <span class="n">to</span> <span class="n">analog</span> <span class="n">input</span> <span class="mi">0</span> <span class="n">on</span> <span class="n">the</span> <span class="n">acquisition</span> <span class="n">device</span><span class="o">.</span>
 
-  <span class="n">headerstruct</span> <span class="o">=</span> 
-      <span class="n">ChannelString</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="n">x26</span> <span class="nb">char</span><span class="p">]</span>
-           <span class="n">NumChans</span><span class="p">:</span> <span class="mi">17</span>
-       <span class="n">SamplingRate</span><span class="p">:</span> <span class="mi">25000</span>
-    <span class="n">SamplesPerChunk</span><span class="p">:</span> <span class="mi">25000</span>
-        <span class="n">Multiplexed</span><span class="p">:</span> <span class="mi">0</span>
+    <span class="n">Use</span> <span class="n">vlt</span><span class="o">.</span><span class="n">file</span><span class="o">.</span><span class="n">custom_file_formats</span><span class="o">.</span><span class="n">readvhlvdatafile</span> <span class="n">to</span> <span class="n">read</span> <span class="n">the</span> <span class="n">data</span><span class="o">.</span>
+
+    <span class="n">Example</span><span class="p">:</span>
+      <span class="n">headerstruct</span> <span class="o">=</span> <span class="n">vlt</span><span class="o">.</span><span class="n">file</span><span class="o">.</span><span class="n">custom_file_formats</span><span class="o">.</span><span class="n">readvhlvheaderfile</span><span class="p">(</span><span class="s1">&#39;vhlvanaloginput.vlh&#39;</span><span class="p">)</span>
+
+      <span class="n">headerstruct</span> <span class="o">=</span> 
+          <span class="n">ChannelString</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="n">x26</span> <span class="nb">char</span><span class="p">]</span>
+               <span class="n">NumChans</span><span class="p">:</span> <span class="mi">17</span>
+           <span class="n">SamplingRate</span><span class="p">:</span> <span class="mi">25000</span>
+        <span class="n">SamplesPerChunk</span><span class="p">:</span> <span class="mi">25000</span>
+            <span class="n">Multiplexed</span><span class="p">:</span> <span class="mi">0</span>
+
+
+   <span class="n">See</span> <span class="n">also</span> <span class="n">STRUCT</span><span class="p">,</span> <span class="n">vlt</span><span class="o">.</span><span class="n">file</span><span class="o">.</span><span class="n">custom_file_formats</span><span class="o">.</span><span class="n">readvhlvdatafile</span>
 </code></pre></div>
-
-<p>See also STRUCT, vlt.file.custom_file_formats.readvhlvdatafile</p>
                 
               
               

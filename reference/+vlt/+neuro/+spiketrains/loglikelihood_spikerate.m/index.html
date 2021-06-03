@@ -3213,6 +3213,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../../%2Bgit/git_stash.m/" class="md-nav__link">
+        vlt.git.git_stash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../../%2Bgit/git_status.m/" class="md-nav__link">
         vlt.git.git_status
       </a>
@@ -9239,15 +9251,21 @@
                 
                 
                 <h1 id="vltneurospiketrainsloglikelihood_spikerate">vlt.neuro.spiketrains.loglikelihood_spikerate<a class="headerlink" href="#vltneurospiketrainsloglikelihood_spikerate" title="Permanent link">&para;</a></h1>
-<p>LOGLIKELIHOOD_SPIKERATE - Compute the log likelihood of seeing spike rates</p>
-<p>LL = vlt.neuro.spiketrains.loglikelihood_spikerate(BIN_RATES, BIN_DURATIONS, SPIKERATES, SIGMA)</p>
-<p>Computes the log likelihood of observing SPIKECOUNTS(i) in 
-   bins of length BIN_DURATION(i) with firing rates BIN_RATES(i).</p>
-<p>The following equation is used to calculate the log likelihood:</p>
-<p>logP = sum over i of
-      -log((sqrt(2<em>pi)</em>sigma))-(spikerates(i)-bin_rates(i))^2/(2*sigma^2)</p>
-<p>See "A Novel Circuit Model of Contextual Modulation and Normalization in Primary Visual Cortex"
-   Columbia University 2012</p>
+<div class="codehilite"><pre><span></span><code>  LOGLIKELIHOOD_SPIKERATE - Compute the log likelihood of seeing spike rates
+
+   LL = vlt.neuro.spiketrains.loglikelihood_spikerate(BIN_RATES, BIN_DURATIONS, SPIKERATES, SIGMA)
+
+   Computes the log likelihood of observing SPIKECOUNTS(i) in 
+   bins of length BIN_DURATION(i) with firing rates BIN_RATES(i).
+
+   The following equation is used to calculate the log likelihood:
+
+   logP = sum over i of
+      -log((sqrt(2*pi)*sigma))-(spikerates(i)-bin_rates(i))^2/(2*sigma^2)
+
+   See &quot;A Novel Circuit Model of Contextual Modulation and Normalization in Primary Visual Cortex&quot;
+   Columbia University 2012
+</code></pre></div>
                 
               
               

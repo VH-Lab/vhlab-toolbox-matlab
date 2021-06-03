@@ -3213,6 +3213,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../%2Bgit/git_stash.m/" class="md-nav__link">
+        vlt.git.git_stash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../%2Bgit/git_status.m/" class="md-nav__link">
         vlt.git.git_status
       </a>
@@ -9237,45 +9249,47 @@
                 
                 
                 <h1 id="vltmathstepfunc">vlt.math.stepfunc<a class="headerlink" href="#vltmathstepfunc" title="Permanent link">&para;</a></h1>
-<p>vlt.math.stepfunc - Evaluate a discrete step function at many times</p>
-<p>[SI,INDS] = vlt.math.stepfunc(T, STEPS, TI [,OUTOFBOUNDS])</p>
-<div class="codehilite"><pre><span></span><code><span class="nt">Returns</span> <span class="nt">the</span> <span class="nt">value</span> <span class="nt">of</span> <span class="nt">a</span> <span class="nt">step</span> <span class="nt">function</span> <span class="nt">that</span> <span class="nt">takes</span> <span class="nt">values</span>
-    <span class="nt">STEPS</span><span class="o">(</span><span class="nt">i</span><span class="o">)</span> <span class="nt">between</span> <span class="nt">the</span> <span class="nt">times</span> <span class="nt">T</span><span class="o">(</span><span class="nt">i</span><span class="o">)</span> <span class="nt">and</span> <span class="nt">T</span><span class="o">(</span><span class="nt">i</span><span class="o">+</span><span class="nt">1</span><span class="o">).</span>
-    <span class="o">(</span><span class="nt">STEPS</span><span class="o">(</span><span class="nt">end</span><span class="o">)</span> <span class="nt">is</span> <span class="nt">assumed</span> <span class="nt">to</span> <span class="nt">be</span> <span class="nt">true</span> <span class="nt">between</span>
-      <span class="nt">T</span><span class="o">(</span><span class="nt">end</span><span class="o">)</span> <span class="nt">and</span> <span class="nt">T</span><span class="o">(</span><span class="nt">end</span><span class="o">)+</span><span class="nt">mean</span><span class="o">(</span><span class="nt">diff</span><span class="o">(</span><span class="nt">T</span><span class="o">))</span> <span class="o">)</span>
+<div class="codehilite"><pre><span></span><code>  <span class="n">vlt</span><span class="o">.</span><span class="n">math</span><span class="o">.</span><span class="n">stepfunc</span> <span class="o">-</span> <span class="n">Evaluate</span> <span class="n">a</span> <span class="n">discrete</span> <span class="n">step</span> <span class="n">function</span> <span class="n">at</span> <span class="n">many</span> <span class="n">times</span>
 
-<span class="nt">If</span> <span class="nt">OUTOFBOUNDS</span> <span class="nt">is</span> <span class="nt">provided</span><span class="o">,</span> <span class="nt">one</span> <span class="nt">can</span> <span class="nt">specify</span> <span class="nt">the</span> <span class="nt">value</span> <span class="nt">of</span>
-<span class="nt">SI</span> <span class="nt">when</span> <span class="nt">ti</span> <span class="nt">is</span> <span class="nt">out</span> <span class="nt">of</span> <span class="nt">bounds</span><span class="o">.</span>  <span class="nt">Default</span> <span class="nt">is</span> <span class="nt">NaN</span><span class="o">;</span> <span class="nt">example</span>
-<span class="nt">choices</span> <span class="nt">might</span> <span class="nt">be</span> <span class="nt">NaN</span> <span class="nt">or</span> <span class="nt">0</span><span class="o">.</span>
+   <span class="p">[</span><span class="n">SI</span><span class="p">,</span><span class="n">INDS</span><span class="p">]</span> <span class="o">=</span> <span class="n">vlt</span><span class="o">.</span><span class="n">math</span><span class="o">.</span><span class="n">stepfunc</span><span class="p">(</span><span class="n">T</span><span class="p">,</span> <span class="n">STEPS</span><span class="p">,</span> <span class="n">TI</span> <span class="p">[,</span><span class="n">OUTOFBOUNDS</span><span class="p">])</span>
 
-<span class="nt">INDS</span> <span class="nt">are</span> <span class="nt">the</span> <span class="nt">index</span> <span class="nt">values</span> <span class="nt">such</span> <span class="nt">that</span>
-<span class="nt">SI</span> <span class="o">=</span> <span class="nt">STEPS</span><span class="o">(</span><span class="nt">INDS</span><span class="o">);</span> <span class="nt">INDS</span> <span class="nt">that</span> <span class="nt">are</span> <span class="nt">out</span> <span class="nt">of</span> <span class="nt">bounds</span> <span class="nt">are</span> 
-  <span class="nt">NaN</span><span class="o">.</span>
+    <span class="n">Returns</span> <span class="n">the</span> <span class="n">value</span> <span class="n">of</span> <span class="n">a</span> <span class="n">step</span> <span class="n">function</span> <span class="n">that</span> <span class="n">takes</span> <span class="n">values</span>
+        <span class="n">STEPS</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="n">between</span> <span class="n">the</span> <span class="n">times</span> <span class="n">T</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="ow">and</span> <span class="n">T</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span>
+        <span class="p">(</span><span class="n">STEPS</span><span class="p">(</span><span class="n">end</span><span class="p">)</span> <span class="k">is</span> <span class="n">assumed</span> <span class="n">to</span> <span class="n">be</span> <span class="bp">true</span> <span class="n">between</span>
+          <span class="n">T</span><span class="p">(</span><span class="n">end</span><span class="p">)</span> <span class="ow">and</span> <span class="n">T</span><span class="p">(</span><span class="n">end</span><span class="p">)</span><span class="o">+</span><span class="n">mean</span><span class="p">(</span><span class="n">diff</span><span class="p">(</span><span class="n">T</span><span class="p">))</span> <span class="p">)</span>
 
-<span class="nt">STEPS</span> <span class="nt">can</span> <span class="nt">have</span> <span class="nt">many</span> <span class="nt">rows</span><span class="o">;</span> <span class="nt">each</span> <span class="nt">row</span> <span class="nt">will</span> <span class="nt">be</span> <span class="nt">one</span> <span class="nt">step</span>
-<span class="nt">function</span><span class="o">,</span> <span class="nt">and</span> <span class="nt">the</span> <span class="nt">answer</span> <span class="nt">will</span> <span class="nt">have</span> <span class="nt">the</span> <span class="nt">same</span> <span class="nt">number</span> <span class="nt">of</span>
-<span class="nt">rows</span> <span class="nt">as</span> <span class="nt">STEPS</span><span class="o">;</span> <span class="nt">the</span> <span class="nt">columns</span> <span class="nt">of</span> <span class="nt">SI</span> <span class="nt">will</span> <span class="nt">be</span> <span class="nt">the</span> <span class="nt">same</span> <span class="nt">number</span> <span class="nt">as</span> <span class="nt">ti</span><span class="o">.</span>
+    <span class="n">If</span> <span class="n">OUTOFBOUNDS</span> <span class="k">is</span> <span class="n">provided</span><span class="p">,</span> <span class="n">one</span> <span class="n">can</span> <span class="n">specify</span> <span class="n">the</span> <span class="n">value</span> <span class="n">of</span>
+    <span class="n">SI</span> <span class="n">when</span> <span class="n">ti</span> <span class="k">is</span> <span class="n">out</span> <span class="n">of</span> <span class="n">bounds</span><span class="o">.</span>  <span class="n">Default</span> <span class="k">is</span> <span class="n">NaN</span><span class="p">;</span> <span class="n">example</span>
+    <span class="n">choices</span> <span class="n">might</span> <span class="n">be</span> <span class="n">NaN</span> <span class="ow">or</span> <span class="mf">0.</span>
 
-<span class="nt">Example</span> <span class="nt">1</span><span class="o">:</span>  <span class="nt">Evaluate</span> <span class="nt">a</span> <span class="nt">step</span> <span class="nt">function</span> <span class="nt">at</span> <span class="nt">a</span> <span class="nt">high</span> <span class="nt">sampling</span> <span class="nt">rate</span>
-   <span class="nt">S</span> <span class="o">=</span> <span class="cp">[</span> <span class="mi">0</span> <span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span> <span class="mi">4</span> <span class="mi">5</span> <span class="mi">6</span> <span class="mi">7</span> <span class="mi">8</span> <span class="mi">9</span> <span class="mi">10</span><span class="cp">]</span><span class="o">;</span> <span class="o">%</span> <span class="nt">steps</span>
-   <span class="nt">t</span> <span class="o">=</span> <span class="cp">[</span> <span class="mi">0</span><span class="p">:</span><span class="mf">0.1</span><span class="p">:</span><span class="mi">1</span> <span class="cp">]</span> <span class="o">;</span> <span class="o">%</span> <span class="nt">steps</span> <span class="nt">each</span> <span class="nt">0</span><span class="p">.</span><span class="nc">1</span> <span class="nt">seconds</span>
-   <span class="nt">ti</span> <span class="o">=</span> <span class="cp">[</span> <span class="mi">0</span><span class="p">:</span><span class="mf">0.001</span><span class="p">:</span><span class="mi">1</span> <span class="cp">]</span><span class="o">;</span>
-   <span class="nt">Si</span> <span class="o">=</span> <span class="nt">vlt</span><span class="p">.</span><span class="nc">math</span><span class="p">.</span><span class="nc">stepfunc</span><span class="o">(</span><span class="nt">t</span><span class="o">,</span><span class="nt">S</span><span class="o">,</span><span class="nt">ti</span><span class="o">);</span> 
-   <span class="nt">figure</span><span class="o">;</span>
-   <span class="nt">plot</span><span class="o">(</span><span class="nt">ti</span><span class="o">,</span><span class="nt">Si</span><span class="o">);</span>  <span class="o">%</span> <span class="nt">plots</span> <span class="nt">at</span> <span class="nt">high</span> <span class="nt">temporal</span> <span class="nt">resolution</span>
-   <span class="nt">xlabel</span><span class="o">(</span><span class="s1">&#39;X-axis&#39;</span><span class="o">);</span>
-   <span class="nt">ylabel</span><span class="o">(</span><span class="s1">&#39;Value&#39;</span><span class="o">);</span>
+    <span class="n">INDS</span> <span class="n">are</span> <span class="n">the</span> <span class="n">index</span> <span class="n">values</span> <span class="n">such</span> <span class="n">that</span>
+    <span class="n">SI</span> <span class="o">=</span> <span class="n">STEPS</span><span class="p">(</span><span class="n">INDS</span><span class="p">);</span> <span class="n">INDS</span> <span class="n">that</span> <span class="n">are</span> <span class="n">out</span> <span class="n">of</span> <span class="n">bounds</span> <span class="n">are</span> 
+      <span class="n">NaN</span><span class="o">.</span>
 
-<span class="nt">Example</span> <span class="nt">2</span><span class="o">:</span> <span class="nt">Evaluate</span> <span class="nt">a</span> <span class="nt">step</span> <span class="nt">function</span> <span class="nt">at</span> <span class="nt">a</span> <span class="nt">few</span> <span class="nt">locations</span><span class="o">:</span>
-   <span class="nt">S</span> <span class="o">=</span> <span class="cp">[</span> <span class="mi">0</span> <span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span> <span class="mi">4</span> <span class="mi">5</span> <span class="mi">6</span> <span class="mi">7</span> <span class="mi">8</span> <span class="mi">9</span> <span class="mi">10</span><span class="cp">]</span><span class="o">;</span> <span class="o">%</span> <span class="nt">steps</span>
-   <span class="nt">t</span> <span class="o">=</span> <span class="cp">[</span> <span class="mi">0</span><span class="p">:</span><span class="mf">0.1</span><span class="p">:</span><span class="mi">1</span> <span class="cp">]</span> <span class="o">;</span> <span class="o">%</span> <span class="nt">steps</span> <span class="nt">each</span> <span class="nt">0</span><span class="p">.</span><span class="nc">1</span> <span class="nt">seconds</span>
-   <span class="nt">ti</span><span class="o">=</span> <span class="cp">[</span> <span class="mi">0</span> <span class="mf">0.05</span> <span class="mf">0.9</span> <span class="mf">1.1</span><span class="cp">]</span><span class="o">;</span>
-   <span class="cp">[</span><span class="nx">Si</span><span class="p">,</span><span class="nx">inds</span><span class="cp">]</span> <span class="o">=</span> <span class="nt">vlt</span><span class="p">.</span><span class="nc">math</span><span class="p">.</span><span class="nc">stepfunc</span><span class="o">(</span><span class="nt">t</span><span class="o">,</span><span class="nt">S</span><span class="o">,</span><span class="nt">ti</span><span class="o">)</span>
+    <span class="n">STEPS</span> <span class="n">can</span> <span class="n">have</span> <span class="n">many</span> <span class="n">rows</span><span class="p">;</span> <span class="n">each</span> <span class="n">row</span> <span class="n">will</span> <span class="n">be</span> <span class="n">one</span> <span class="n">step</span>
+    <span class="n">function</span><span class="p">,</span> <span class="ow">and</span> <span class="n">the</span> <span class="n">answer</span> <span class="n">will</span> <span class="n">have</span> <span class="n">the</span> <span class="n">same</span> <span class="n">number</span> <span class="n">of</span>
+    <span class="n">rows</span> <span class="k">as</span> <span class="n">STEPS</span><span class="p">;</span> <span class="n">the</span> <span class="n">columns</span> <span class="n">of</span> <span class="n">SI</span> <span class="n">will</span> <span class="n">be</span> <span class="n">the</span> <span class="n">same</span> <span class="n">number</span> <span class="k">as</span> <span class="n">ti</span><span class="o">.</span>
 
-    <span class="nt">gives</span>
+    <span class="n">Example</span> <span class="mi">1</span><span class="p">:</span>  <span class="n">Evaluate</span> <span class="n">a</span> <span class="n">step</span> <span class="n">function</span> <span class="n">at</span> <span class="n">a</span> <span class="n">high</span> <span class="n">sampling</span> <span class="n">rate</span>
+       <span class="n">S</span> <span class="o">=</span> <span class="p">[</span> <span class="mi">0</span> <span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span> <span class="mi">4</span> <span class="mi">5</span> <span class="mi">6</span> <span class="mi">7</span> <span class="mi">8</span> <span class="mi">9</span> <span class="mi">10</span><span class="p">];</span> <span class="o">%</span> <span class="n">steps</span>
+       <span class="n">t</span> <span class="o">=</span> <span class="p">[</span> <span class="mi">0</span><span class="p">:</span><span class="mf">0.1</span><span class="p">:</span><span class="mi">1</span> <span class="p">]</span> <span class="p">;</span> <span class="o">%</span> <span class="n">steps</span> <span class="n">each</span> <span class="mf">0.1</span> <span class="n">seconds</span>
+       <span class="n">ti</span> <span class="o">=</span> <span class="p">[</span> <span class="mi">0</span><span class="p">:</span><span class="mf">0.001</span><span class="p">:</span><span class="mi">1</span> <span class="p">];</span>
+       <span class="n">Si</span> <span class="o">=</span> <span class="n">vlt</span><span class="o">.</span><span class="n">math</span><span class="o">.</span><span class="n">stepfunc</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">S</span><span class="p">,</span><span class="n">ti</span><span class="p">);</span> 
+       <span class="n">figure</span><span class="p">;</span>
+       <span class="n">plot</span><span class="p">(</span><span class="n">ti</span><span class="p">,</span><span class="n">Si</span><span class="p">);</span>  <span class="o">%</span> <span class="n">plots</span> <span class="n">at</span> <span class="n">high</span> <span class="n">temporal</span> <span class="n">resolution</span>
+       <span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;X-axis&#39;</span><span class="p">);</span>
+       <span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Value&#39;</span><span class="p">);</span>
 
-        <span class="nt">Si</span>   <span class="o">:</span> <span class="cp">[</span><span class="mi">0</span> <span class="mi">0</span> <span class="mi">9</span> <span class="m">NaN</span><span class="cp">]</span>
-        <span class="nt">inds</span> <span class="o">:</span> <span class="cp">[</span><span class="mi">1</span> <span class="mi">1</span> <span class="mi">10</span> <span class="m">NaN</span><span class="cp">]</span>
+    <span class="n">Example</span> <span class="mi">2</span><span class="p">:</span> <span class="n">Evaluate</span> <span class="n">a</span> <span class="n">step</span> <span class="n">function</span> <span class="n">at</span> <span class="n">a</span> <span class="n">few</span> <span class="n">locations</span><span class="p">:</span>
+       <span class="n">S</span> <span class="o">=</span> <span class="p">[</span> <span class="mi">0</span> <span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span> <span class="mi">4</span> <span class="mi">5</span> <span class="mi">6</span> <span class="mi">7</span> <span class="mi">8</span> <span class="mi">9</span> <span class="mi">10</span><span class="p">];</span> <span class="o">%</span> <span class="n">steps</span>
+       <span class="n">t</span> <span class="o">=</span> <span class="p">[</span> <span class="mi">0</span><span class="p">:</span><span class="mf">0.1</span><span class="p">:</span><span class="mi">1</span> <span class="p">]</span> <span class="p">;</span> <span class="o">%</span> <span class="n">steps</span> <span class="n">each</span> <span class="mf">0.1</span> <span class="n">seconds</span>
+       <span class="n">ti</span><span class="o">=</span> <span class="p">[</span> <span class="mi">0</span> <span class="mf">0.05</span> <span class="mf">0.9</span> <span class="mf">1.1</span><span class="p">];</span>
+       <span class="p">[</span><span class="n">Si</span><span class="p">,</span><span class="n">inds</span><span class="p">]</span> <span class="o">=</span> <span class="n">vlt</span><span class="o">.</span><span class="n">math</span><span class="o">.</span><span class="n">stepfunc</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">S</span><span class="p">,</span><span class="n">ti</span><span class="p">)</span>
+
+        <span class="n">gives</span> 
+
+            <span class="n">Si</span>   <span class="p">:</span> <span class="p">[</span><span class="mi">0</span> <span class="mi">0</span> <span class="mi">9</span> <span class="n">NaN</span><span class="p">]</span>
+            <span class="n">inds</span> <span class="p">:</span> <span class="p">[</span><span class="mi">1</span> <span class="mi">1</span> <span class="mi">10</span> <span class="n">NaN</span><span class="p">]</span>
 </code></pre></div>
                 
               

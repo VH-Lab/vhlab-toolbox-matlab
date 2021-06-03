@@ -3225,6 +3225,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../%2Bgit/git_stash.m/" class="md-nav__link">
+        vlt.git.git_stash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../%2Bgit/git_status.m/" class="md-nav__link">
         vlt.git.git_status
       </a>
@@ -9237,30 +9249,38 @@
                 
                 
                 <h1 id="vltfilewriteplainmat">vlt.file.writeplainmat<a class="headerlink" href="#vltfilewriteplainmat" title="Permanent link">&para;</a></h1>
-<p>WRITEPLAINVECTOR - write a simple binary matrix to disk</p>
-<p>vlt.file.writeplainmat(FID, MAT)</p>
-<p>Writes a basic matrix to disk such that it can be read easily. 
-  FID should be a Matlab file identifier (see FOPEN). </p>
-<p>The binary data is written using FID's byte order.</p>
-<p>The first entry is a character string indicating the type of
-  data to be stored. This is just class(mat) (see CLASS).
-  The first entry is a uint8 DIM that indicates the dimension of
-  MAT (see SIZE).  Next, a 1xDIM vector in uint32 format
-  describes the number of entries in each dimension.
-  Finally, the entries of MAT are written as individual elements.</p>
-<p>Only classes that can be sent to FWRITE can be used here (such as
-  'char', 'double', 'uint8', etc; see FWRITE).</p>
-<p>See also: CLASS, SIZE, FWRITE.</p>
-<p>Example: 
-    data = rand(3,7),
-    fid = fopen('myfile.dat','w','b'); % write, big-endian
-    vlt.file.writeplainmat(fid,data);
-    fclose(fid);
-    fid = fopen('myfile.dat','r','b'); % read, big-endian
-    mydata = vlt.file.readplainmat(fid);
-    fclose(fid); 
-    mydata, % display mydata
-    data-mydata, % display the difference</p>
+<div class="codehilite"><pre><span></span><code>  <span class="nt">WRITEPLAINVECTOR</span> <span class="nt">-</span> <span class="nt">write</span> <span class="nt">a</span> <span class="nt">simple</span> <span class="nt">binary</span> <span class="nt">matrix</span> <span class="nt">to</span> <span class="nt">disk</span>
+
+  <span class="nt">vlt</span><span class="p">.</span><span class="nc">file</span><span class="p">.</span><span class="nc">writeplainmat</span><span class="o">(</span><span class="nt">FID</span><span class="o">,</span> <span class="nt">MAT</span><span class="o">)</span>
+
+  <span class="nt">Writes</span> <span class="nt">a</span> <span class="nt">basic</span> <span class="nt">matrix</span> <span class="nt">to</span> <span class="nt">disk</span> <span class="nt">such</span> <span class="nt">that</span> <span class="nt">it</span> <span class="nt">can</span> <span class="nt">be</span> <span class="nt">read</span> <span class="nt">easily</span><span class="o">.</span> 
+  <span class="nt">FID</span> <span class="nt">should</span> <span class="nt">be</span> <span class="nt">a</span> <span class="nt">Matlab</span> <span class="nt">file</span> <span class="nt">identifier</span> <span class="o">(</span><span class="nt">see</span> <span class="nt">FOPEN</span><span class="o">).</span> 
+
+  <span class="nt">The</span> <span class="nt">binary</span> <span class="nt">data</span> <span class="nt">is</span> <span class="nt">written</span> <span class="nt">using</span> <span class="nt">FID</span><span class="s1">&#39;s byte order.</span>
+
+<span class="s1">  The first entry is a character string indicating the type of</span>
+<span class="s1">  data to be stored. This is just class(mat) (see CLASS).</span>
+<span class="s1">  The first entry is a uint8 DIM that indicates the dimension of</span>
+<span class="s1">  MAT (see SIZE).  Next, a 1xDIM vector in uint32 format</span>
+<span class="s1">  describes the number of entries in each dimension.</span>
+<span class="s1">  Finally, the entries of MAT are written as individual elements.</span>
+
+<span class="s1">  Only classes that can be sent to FWRITE can be used here (such as</span>
+<span class="s1">  &#39;</span><span class="nt">char</span><span class="s1">&#39;, &#39;</span><span class="nt">double</span><span class="s1">&#39;, &#39;</span><span class="nt">uint8</span><span class="s1">&#39;, etc; see FWRITE).</span>
+
+<span class="s1">  See also: CLASS, SIZE, FWRITE.</span>
+
+<span class="s1">  Example: </span>
+<span class="s1">    data = rand(3,7),</span>
+<span class="s1">    fid = fopen(&#39;</span><span class="nt">myfile</span><span class="p">.</span><span class="nc">dat</span><span class="s1">&#39;,&#39;</span><span class="nt">w</span><span class="s1">&#39;,&#39;</span><span class="nt">b</span><span class="s1">&#39;); % write, big-endian</span>
+<span class="s1">    vlt.file.writeplainmat(fid,data);</span>
+<span class="s1">    fclose(fid);</span>
+<span class="s1">    fid = fopen(&#39;</span><span class="nt">myfile</span><span class="p">.</span><span class="nc">dat</span><span class="s1">&#39;,&#39;</span><span class="nt">r</span><span class="s1">&#39;,&#39;</span><span class="nt">b</span><span class="err">&#39;</span><span class="o">);</span> <span class="o">%</span> <span class="nt">read</span><span class="o">,</span> <span class="nt">big-endian</span>
+    <span class="nt">mydata</span> <span class="o">=</span> <span class="nt">vlt</span><span class="p">.</span><span class="nc">file</span><span class="p">.</span><span class="nc">readplainmat</span><span class="o">(</span><span class="nt">fid</span><span class="o">);</span>
+    <span class="nt">fclose</span><span class="o">(</span><span class="nt">fid</span><span class="o">);</span> 
+    <span class="nt">mydata</span><span class="o">,</span> <span class="o">%</span> <span class="nt">display</span> <span class="nt">mydata</span>
+    <span class="nt">data-mydata</span><span class="o">,</span> <span class="o">%</span> <span class="nt">display</span> <span class="nt">the</span> <span class="nt">difference</span>
+</code></pre></div>
                 
               
               

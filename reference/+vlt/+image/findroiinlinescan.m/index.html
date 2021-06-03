@@ -3213,6 +3213,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../%2Bgit/git_stash.m/" class="md-nav__link">
+        vlt.git.git_stash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../%2Bgit/git_status.m/" class="md-nav__link">
         vlt.git.git_status
       </a>
@@ -9237,13 +9249,16 @@
                 
                 
                 <h1 id="vltimagefindroiinlinescan">vlt.image.findroiinlinescan<a class="headerlink" href="#vltimagefindroiinlinescan" title="Permanent link">&para;</a></h1>
-<p>FINDROIINLINESCAN - Find a ROI defined in a raster image in a linescan</p>
-<p>[LSINDEXES,ONs,OFFs] = FINDROIINLINESCAN(RASTERIMAGESIZE, LINESCANIMAGESIZE, LINESCANPOINTS,...
-                    ROIRASTERINDEXES, [DRIFT])</p>
-<p>Given a list of index values of regions of interest (a cell list ROIRASTERINDEXES) that were defined
-   within a raster image of size RASTERIMAGESIZE, this function determines the corresponding
-   index values LSINDEXES where those pixels were scanned in the linescan LINESCANPOINTS (y, x)
-   with image of size LINESCANIMAGESIZE.</p>
+<div class="codehilite"><pre><span></span><code><span class="w">  </span><span class="n">FINDROIINLINESCAN</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">Find</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">ROI</span><span class="w"> </span><span class="n">defined</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">raster</span><span class="w"> </span><span class="nc">image</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">linescan</span><span class="w"></span>
+
+<span class="w">   </span><span class="o">[</span><span class="n">LSINDEXES,ONs,OFFs</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">FINDROIINLINESCAN</span><span class="p">(</span><span class="n">RASTERIMAGESIZE</span><span class="p">,</span><span class="w"> </span><span class="n">LINESCANIMAGESIZE</span><span class="p">,</span><span class="w"> </span><span class="n">LINESCANPOINTS</span><span class="p">,...</span><span class="w"></span>
+<span class="w">                    </span><span class="n">ROIRASTERINDEXES</span><span class="p">,</span><span class="w"> </span><span class="o">[</span><span class="n">DRIFT</span><span class="o">]</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">   </span><span class="n">Given</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">list</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="k">index</span><span class="w"> </span><span class="k">values</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="n">regions</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="n">interest</span><span class="w"> </span><span class="p">(</span><span class="n">a</span><span class="w"> </span><span class="n">cell</span><span class="w"> </span><span class="n">list</span><span class="w"> </span><span class="n">ROIRASTERINDEXES</span><span class="p">)</span><span class="w"> </span><span class="n">that</span><span class="w"> </span><span class="n">were</span><span class="w"> </span><span class="n">defined</span><span class="w"></span>
+<span class="w">   </span><span class="k">within</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">raster</span><span class="w"> </span><span class="nc">image</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="k">size</span><span class="w"> </span><span class="n">RASTERIMAGESIZE</span><span class="p">,</span><span class="w"> </span><span class="n">this</span><span class="w"> </span><span class="k">function</span><span class="w"> </span><span class="n">determines</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="k">corresponding</span><span class="w"></span>
+<span class="w">   </span><span class="k">index</span><span class="w"> </span><span class="k">values</span><span class="w"> </span><span class="n">LSINDEXES</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">those</span><span class="w"> </span><span class="n">pixels</span><span class="w"> </span><span class="n">were</span><span class="w"> </span><span class="n">scanned</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">linescan</span><span class="w"> </span><span class="n">LINESCANPOINTS</span><span class="w"> </span><span class="p">(</span><span class="n">y</span><span class="p">,</span><span class="w"> </span><span class="n">x</span><span class="p">)</span><span class="w"></span>
+<span class="w">   </span><span class="k">with</span><span class="w"> </span><span class="nc">image</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="k">size</span><span class="w"> </span><span class="n">LINESCANIMAGESIZE</span><span class="p">.</span><span class="w"></span>
+</code></pre></div>
                 
               
               

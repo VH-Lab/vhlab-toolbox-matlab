@@ -3225,6 +3225,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../%2Bgit/git_stash.m/" class="md-nav__link">
+        vlt.git.git_stash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../%2Bgit/git_status.m/" class="md-nav__link">
         vlt.git.git_status
       </a>
@@ -9237,44 +9249,52 @@
                 
                 
                 <h1 id="vltdatatext2struct">vlt.data.text2struct<a class="headerlink" href="#vltdatatext2struct" title="Permanent link">&para;</a></h1>
-<p>TEXT2STRUCT - Convert a text string to a structure</p>
-<div class="codehilite"><pre><span></span><code>S = vlt.data.text2struct(STR)
-</code></pre></div>
+<div class="codehilite"><pre><span></span><code>  <span class="nt">TEXT2STRUCT</span> <span class="nt">-</span> <span class="nt">Convert</span> <span class="nt">a</span> <span class="nt">text</span> <span class="nt">string</span> <span class="nt">to</span> <span class="nt">a</span> <span class="nt">structure</span>
 
-<p>Given a full, multi-line string, converts to Matlab structures.</p>
-<p>Each line of the text string STR should have a field name,
-  a colon (':') and values following. If the user wishes to specify
-  a substructure, provide a '&lt;' following the name of the substructure.</p>
-<p>Multiple structures can be specified by leaving a blank line between
-  structure descriptions.</p>
-<p>If there is more than 1 struct to convert, then S is a cell list of
-  all of the structures described in STR.</p>
-<p>Note: At this time, this function does not handle cell lists, which is
-  too bad. Someone should add this.</p>
-<p>Example input:
-  eol = sprintf('\n');                   % end of line character
-  str = ['type: spiketimelistel' eol ... % indicates that the field type has a value of 'spiketimelistel'
-         'T: 0' eol ...                  % indicates that the field 'T' has a value of 0
-         'dT: 0.0001' eol ...            % indicates that the field dT has a value of 0.0001
-         'name: cell1' eol ...           % name is 'cell1'
-         'spiketimelistel: &lt;' eol ...    % a substructure called spiketimelistel
-         'spiketimelist: 0.0001' eol ... % the field in the substructure
-         '&gt;' eol ...                     % indicate end of substructure
-         eol ];                          % blank line ends the structure (not necessary for last structure in list)</p>
-<p>mystruct = vlt.data.text2struct(str);</p>
-<p>The function can be modified by the addition of name/value pairs:
-  Name (default):                | Description          </p>
-<hr />
-<p>WarnOnBadField (0)             | 0/1 Produce a warning when a field name
-                                 |   that cannot be a Matlab field name
-                                 |   is encountered.
-  ErrorOnBadField (0)            | 0/1 Produce an error when a field name
-                                 |   that cannot be a Matlab field name
-                                 |   is encountered (otherwise that entry
-                                 |   is ignored)
-  BraceLeft ('&lt;')                | The left brace character
-  BraceRight ('&gt;')               | The right brace character</p>
-<div class="codehilite"><pre><span></span><code>See also: CHAR2STRUCT
+    <span class="nt">S</span> <span class="o">=</span> <span class="nt">vlt</span><span class="p">.</span><span class="nc">data</span><span class="p">.</span><span class="nc">text2struct</span><span class="o">(</span><span class="nt">STR</span><span class="o">)</span>
+
+  <span class="nt">Given</span> <span class="nt">a</span> <span class="nt">full</span><span class="o">,</span> <span class="nt">multi-line</span> <span class="nt">string</span><span class="o">,</span> <span class="nt">converts</span> <span class="nt">to</span> <span class="nt">Matlab</span> <span class="nt">structures</span><span class="o">.</span>
+
+  <span class="nt">Each</span> <span class="nt">line</span> <span class="nt">of</span> <span class="nt">the</span> <span class="nt">text</span> <span class="nt">string</span> <span class="nt">STR</span> <span class="nt">should</span> <span class="nt">have</span> <span class="nt">a</span> <span class="nt">field</span> <span class="nt">name</span><span class="o">,</span>
+  <span class="nt">a</span> <span class="nt">colon</span> <span class="o">(</span><span class="s1">&#39;:&#39;</span><span class="o">)</span> <span class="nt">and</span> <span class="nt">values</span> <span class="nt">following</span><span class="o">.</span> <span class="nt">If</span> <span class="nt">the</span> <span class="nt">user</span> <span class="nt">wishes</span> <span class="nt">to</span> <span class="nt">specify</span>
+  <span class="nt">a</span> <span class="nt">substructure</span><span class="o">,</span> <span class="nt">provide</span> <span class="nt">a</span> <span class="s1">&#39;&lt;&#39;</span> <span class="nt">following</span> <span class="nt">the</span> <span class="nt">name</span> <span class="nt">of</span> <span class="nt">the</span> <span class="nt">substructure</span><span class="o">.</span>
+
+  <span class="nt">Multiple</span> <span class="nt">structures</span> <span class="nt">can</span> <span class="nt">be</span> <span class="nt">specified</span> <span class="nt">by</span> <span class="nt">leaving</span> <span class="nt">a</span> <span class="nt">blank</span> <span class="nt">line</span> <span class="nt">between</span>
+  <span class="nt">structure</span> <span class="nt">descriptions</span><span class="o">.</span>
+
+  <span class="nt">If</span> <span class="nt">there</span> <span class="nt">is</span> <span class="nt">more</span> <span class="nt">than</span> <span class="nt">1</span> <span class="nt">struct</span> <span class="nt">to</span> <span class="nt">convert</span><span class="o">,</span> <span class="nt">then</span> <span class="nt">S</span> <span class="nt">is</span> <span class="nt">a</span> <span class="nt">cell</span> <span class="nt">list</span> <span class="nt">of</span>
+  <span class="nt">all</span> <span class="nt">of</span> <span class="nt">the</span> <span class="nt">structures</span> <span class="nt">described</span> <span class="nt">in</span> <span class="nt">STR</span><span class="o">.</span>
+
+  <span class="nt">Note</span><span class="o">:</span> <span class="nt">At</span> <span class="nt">this</span> <span class="nt">time</span><span class="o">,</span> <span class="nt">this</span> <span class="nt">function</span> <span class="nt">does</span> <span class="nt">not</span> <span class="nt">handle</span> <span class="nt">cell</span> <span class="nt">lists</span><span class="o">,</span> <span class="nt">which</span> <span class="nt">is</span>
+  <span class="nt">too</span> <span class="nt">bad</span><span class="o">.</span> <span class="nt">Someone</span> <span class="nt">should</span> <span class="nt">add</span> <span class="nt">this</span><span class="o">.</span>
+
+  <span class="nt">Example</span> <span class="nt">input</span><span class="o">:</span>
+  <span class="nt">eol</span> <span class="o">=</span> <span class="nt">sprintf</span><span class="o">(</span><span class="s1">&#39;\n&#39;</span><span class="o">);</span>                   <span class="o">%</span> <span class="nt">end</span> <span class="nt">of</span> <span class="nt">line</span> <span class="nt">character</span>
+  <span class="nt">str</span> <span class="o">=</span> <span class="cp">[</span><span class="s1">&#39;type: spiketimelistel&#39;</span> <span class="nb">eol</span> <span class="nx">...</span> <span class="o">%</span> <span class="nx">indicates</span> <span class="nx">that</span> <span class="nx">the</span> <span class="nb">field</span> <span class="k">type</span> <span class="nx">has</span> <span class="nx">a</span> <span class="nx">value</span> <span class="nx">of</span> <span class="s1">&#39;spiketimelistel&#39;</span>
+         <span class="s1">&#39;T: 0&#39;</span> <span class="nb">eol</span> <span class="nx">...</span>                  <span class="o">%</span> <span class="nx">indicates</span> <span class="nx">that</span> <span class="nx">the</span> <span class="nb">field</span> <span class="s1">&#39;T&#39;</span> <span class="nx">has</span> <span class="nx">a</span> <span class="nx">value</span> <span class="nx">of</span> <span class="mi">0</span>
+         <span class="s1">&#39;dT: 0.0001&#39;</span> <span class="nb">eol</span> <span class="nx">...</span>            <span class="o">%</span> <span class="nx">indicates</span> <span class="nx">that</span> <span class="nx">the</span> <span class="nb">field</span> <span class="nx">dT</span> <span class="nx">has</span> <span class="nx">a</span> <span class="nx">value</span> <span class="nx">of</span> <span class="mf">0.0001</span>
+         <span class="s1">&#39;name: cell1&#39;</span> <span class="nb">eol</span> <span class="nx">...</span>           <span class="o">%</span> <span class="nx">name</span> <span class="nx">is</span> <span class="s1">&#39;cell1&#39;</span>
+         <span class="s1">&#39;spiketimelistel: &lt;&#39;</span> <span class="nb">eol</span> <span class="nx">...</span>    <span class="o">%</span> <span class="nx">a</span> <span class="nx">substructure</span> <span class="nx">called</span> <span class="nx">spiketimelistel</span>
+         <span class="s1">&#39;spiketimelist: 0.0001&#39;</span> <span class="nb">eol</span> <span class="nx">...</span> <span class="o">%</span> <span class="nx">the</span> <span class="n">field</span> <span class="k">in</span> <span class="nx">the</span> <span class="nx">substructure</span>
+         <span class="s1">&#39;&gt;&#39;</span> <span class="nb">eol</span> <span class="nx">...</span>                     <span class="o">%</span> <span class="nx">indicate</span> <span class="nx">end</span> <span class="nx">of</span> <span class="nx">substructure</span>
+         <span class="nb">eol</span> <span class="cp">]</span><span class="o">;</span>                          <span class="o">%</span> <span class="nt">blank</span> <span class="nt">line</span> <span class="nt">ends</span> <span class="nt">the</span> <span class="nt">structure</span> <span class="o">(</span><span class="nt">not</span> <span class="nt">necessary</span> <span class="nt">for</span> <span class="nt">last</span> <span class="nt">structure</span> <span class="nt">in</span> <span class="nt">list</span><span class="o">)</span>
+
+  <span class="nt">mystruct</span> <span class="o">=</span> <span class="nt">vlt</span><span class="p">.</span><span class="nc">data</span><span class="p">.</span><span class="nc">text2struct</span><span class="o">(</span><span class="nt">str</span><span class="o">);</span>
+
+  <span class="nt">The</span> <span class="nt">function</span> <span class="nt">can</span> <span class="nt">be</span> <span class="nt">modified</span> <span class="nt">by</span> <span class="nt">the</span> <span class="nt">addition</span> <span class="nt">of</span> <span class="nt">name</span><span class="o">/</span><span class="nt">value</span> <span class="nt">pairs</span><span class="o">:</span>
+  <span class="nt">Name</span> <span class="o">(</span><span class="nt">default</span><span class="o">):</span>                <span class="o">|</span> <span class="nt">Description</span>          
+  <span class="nt">---------------------------------------------------------------------</span>
+  <span class="nt">WarnOnBadField</span> <span class="o">(</span><span class="nt">0</span><span class="o">)</span>             <span class="o">|</span> <span class="nt">0</span><span class="o">/</span><span class="nt">1</span> <span class="nt">Produce</span> <span class="nt">a</span> <span class="nt">warning</span> <span class="nt">when</span> <span class="nt">a</span> <span class="nt">field</span> <span class="nt">name</span>
+                                 <span class="o">|</span>   <span class="nt">that</span> <span class="nt">cannot</span> <span class="nt">be</span> <span class="nt">a</span> <span class="nt">Matlab</span> <span class="nt">field</span> <span class="nt">name</span>
+                                 <span class="o">|</span>   <span class="nt">is</span> <span class="nt">encountered</span><span class="o">.</span>
+  <span class="nt">ErrorOnBadField</span> <span class="o">(</span><span class="nt">0</span><span class="o">)</span>            <span class="o">|</span> <span class="nt">0</span><span class="o">/</span><span class="nt">1</span> <span class="nt">Produce</span> <span class="nt">an</span> <span class="nt">error</span> <span class="nt">when</span> <span class="nt">a</span> <span class="nt">field</span> <span class="nt">name</span>
+                                 <span class="o">|</span>   <span class="nt">that</span> <span class="nt">cannot</span> <span class="nt">be</span> <span class="nt">a</span> <span class="nt">Matlab</span> <span class="nt">field</span> <span class="nt">name</span>
+                                 <span class="o">|</span>   <span class="nt">is</span> <span class="nt">encountered</span> <span class="o">(</span><span class="nt">otherwise</span> <span class="nt">that</span> <span class="nt">entry</span>
+                                 <span class="o">|</span>   <span class="nt">is</span> <span class="nt">ignored</span><span class="o">)</span>
+  <span class="nt">BraceLeft</span> <span class="o">(</span><span class="s1">&#39;&lt;&#39;</span><span class="o">)</span>                <span class="o">|</span> <span class="nt">The</span> <span class="nt">left</span> <span class="nt">brace</span> <span class="nt">character</span>
+  <span class="nt">BraceRight</span> <span class="o">(</span><span class="s1">&#39;&gt;&#39;</span><span class="o">)</span>               <span class="o">|</span> <span class="nt">The</span> <span class="nt">right</span> <span class="nt">brace</span> <span class="nt">character</span>
+
+    <span class="nt">See</span> <span class="nt">also</span><span class="o">:</span> <span class="nt">CHAR2STRUCT</span>
 </code></pre></div>
                 
               

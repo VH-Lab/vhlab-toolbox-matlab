@@ -3213,6 +3213,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../%2Bgit/git_stash.m/" class="md-nav__link">
+        vlt.git.git_stash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../%2Bgit/git_status.m/" class="md-nav__link">
         vlt.git.git_status
       </a>
@@ -9237,27 +9249,28 @@
                 
                 
                 <h1 id="vltpathpathstr2cellarray">vlt.path.pathstr2cellarray<a class="headerlink" href="#vltpathpathstr2cellarray" title="Permanent link">&para;</a></h1>
-<p>PATHSTR2CELLARRAY - Convert a path string to a cell list of strings</p>
-<div class="codehilite"><pre><span></span><code><span class="n">PATH_CELLSTR</span> <span class="o">=</span> <span class="n">vlt</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">pathstr2cellarray</span>
+<div class="codehilite"><pre><span></span><code>  <span class="n">PATHSTR2CELLARRAY</span> <span class="o">-</span> <span class="n">Convert</span> <span class="n">a</span> <span class="n">path</span> <span class="n">string</span> <span class="n">to</span> <span class="n">a</span> <span class="n">cell</span> <span class="n">list</span> <span class="n">of</span> <span class="n">strings</span>
 
-<span class="n">Converts</span> <span class="n">the</span> <span class="n">current</span> <span class="n">path</span> <span class="n">string</span> <span class="n">to</span> <span class="n">a</span> <span class="n">cell</span> <span class="n">list</span> <span class="n">of</span> <span class="n">strings</span> <span class="ow">in</span>
-<span class="n">PATH_CELLSTR</span><span class="o">.</span>
+    <span class="n">PATH_CELLSTR</span> <span class="o">=</span> <span class="n">vlt</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">pathstr2cellarray</span>
 
-<span class="n">One</span> <span class="n">can</span> <span class="n">also</span> <span class="n">use</span> <span class="n">the</span> <span class="n">constructions</span><span class="p">:</span>
-    <span class="n">PATH_CELLSTR</span> <span class="o">=</span> <span class="n">vlt</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">pathstr2cellarray</span><span class="p">(</span><span class="n">PATHSTR</span><span class="p">)</span>
-      <span class="n">to</span> <span class="n">specify</span> <span class="n">a</span> <span class="n">path</span> <span class="n">string</span> <span class="n">other</span> <span class="n">than</span> <span class="n">the</span> <span class="n">current</span> <span class="n">PATH</span><span class="p">,</span> <span class="ow">or</span>
-    <span class="n">PATH_CELLSTR</span> <span class="o">=</span> <span class="n">vlt</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">pathstr2cellarray</span><span class="p">(</span><span class="n">PATHSTR</span><span class="p">,</span> <span class="n">SEPARATOR</span><span class="p">)</span>
-      <span class="n">to</span> <span class="n">use</span> <span class="n">a</span> <span class="n">path</span> <span class="n">separator</span> <span class="n">other</span> <span class="n">than</span> <span class="n">the</span> <span class="n">current</span> <span class="n">PATHSEP</span><span class="o">.</span>
+    <span class="n">Converts</span> <span class="n">the</span> <span class="n">current</span> <span class="n">path</span> <span class="n">string</span> <span class="n">to</span> <span class="n">a</span> <span class="n">cell</span> <span class="n">list</span> <span class="n">of</span> <span class="n">strings</span> <span class="ow">in</span>
+    <span class="n">PATH_CELLSTR</span><span class="o">.</span>  
 
-<span class="n">Example</span><span class="p">:</span>  <span class="n">Remove</span> <span class="n">all</span> <span class="n">paths</span> <span class="n">that</span> <span class="n">have</span> <span class="s1">&#39;VH_matlab_code&#39;</span> <span class="ow">in</span> <span class="n">them</span>
-    <span class="n">path_cellstr</span> <span class="o">=</span> <span class="n">vlt</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">pathstr2cellarray</span><span class="p">;</span>
-    <span class="n">matches</span> <span class="o">=</span> <span class="n">strfind</span><span class="p">(</span><span class="n">path_cellstr</span><span class="p">,</span><span class="s1">&#39;VH_matlab_code&#39;</span><span class="p">);</span>
-    <span class="n">inds</span> <span class="o">=</span> <span class="n">find</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">vlt</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">isempty_cell</span><span class="p">(</span><span class="n">matches</span><span class="p">));</span> <span class="o">%</span> <span class="n">find</span> <span class="n">indexes</span> <span class="n">of</span> <span class="n">all</span> <span class="n">matches</span>
-    <span class="n">rmpath</span><span class="p">(</span><span class="n">path_cellstr</span><span class="p">(</span><span class="n">inds</span><span class="p">));</span>
-    <span class="n">path_cellstr</span> <span class="o">=</span> <span class="n">vlt</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">pathstr2cellarray</span><span class="p">;</span> <span class="o">%</span> <span class="n">update</span> <span class="n">the</span> <span class="n">list</span> <span class="n">to</span> <span class="n">reflect</span> <span class="n">the</span> <span class="n">changes</span>
+    <span class="n">One</span> <span class="n">can</span> <span class="n">also</span> <span class="n">use</span> <span class="n">the</span> <span class="n">constructions</span><span class="p">:</span>
+        <span class="n">PATH_CELLSTR</span> <span class="o">=</span> <span class="n">vlt</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">pathstr2cellarray</span><span class="p">(</span><span class="n">PATHSTR</span><span class="p">)</span>
+          <span class="n">to</span> <span class="n">specify</span> <span class="n">a</span> <span class="n">path</span> <span class="n">string</span> <span class="n">other</span> <span class="n">than</span> <span class="n">the</span> <span class="n">current</span> <span class="n">PATH</span><span class="p">,</span> <span class="ow">or</span>
+        <span class="n">PATH_CELLSTR</span> <span class="o">=</span> <span class="n">vlt</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">pathstr2cellarray</span><span class="p">(</span><span class="n">PATHSTR</span><span class="p">,</span> <span class="n">SEPARATOR</span><span class="p">)</span>
+          <span class="n">to</span> <span class="n">use</span> <span class="n">a</span> <span class="n">path</span> <span class="n">separator</span> <span class="n">other</span> <span class="n">than</span> <span class="n">the</span> <span class="n">current</span> <span class="n">PATHSEP</span><span class="o">.</span>
+
+    <span class="n">Example</span><span class="p">:</span>  <span class="n">Remove</span> <span class="n">all</span> <span class="n">paths</span> <span class="n">that</span> <span class="n">have</span> <span class="s1">&#39;VH_matlab_code&#39;</span> <span class="ow">in</span> <span class="n">them</span>
+        <span class="n">path_cellstr</span> <span class="o">=</span> <span class="n">vlt</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">pathstr2cellarray</span><span class="p">;</span>
+        <span class="n">matches</span> <span class="o">=</span> <span class="n">strfind</span><span class="p">(</span><span class="n">path_cellstr</span><span class="p">,</span><span class="s1">&#39;VH_matlab_code&#39;</span><span class="p">);</span>
+        <span class="n">inds</span> <span class="o">=</span> <span class="n">find</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">vlt</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">isempty_cell</span><span class="p">(</span><span class="n">matches</span><span class="p">));</span> <span class="o">%</span> <span class="n">find</span> <span class="n">indexes</span> <span class="n">of</span> <span class="n">all</span> <span class="n">matches</span>
+        <span class="n">rmpath</span><span class="p">(</span><span class="n">path_cellstr</span><span class="p">(</span><span class="n">inds</span><span class="p">));</span>
+        <span class="n">path_cellstr</span> <span class="o">=</span> <span class="n">vlt</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">pathstr2cellarray</span><span class="p">;</span> <span class="o">%</span> <span class="n">update</span> <span class="n">the</span> <span class="n">list</span> <span class="n">to</span> <span class="n">reflect</span> <span class="n">the</span> <span class="n">changes</span>
 
 
-<span class="n">See</span> <span class="n">also</span><span class="p">:</span> <span class="n">PATH</span><span class="p">,</span> <span class="n">PATHSEP</span><span class="p">,</span> <span class="n">vlt</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">isempty_cell</span>
+    <span class="n">See</span> <span class="n">also</span><span class="p">:</span> <span class="n">PATH</span><span class="p">,</span> <span class="n">PATHSEP</span><span class="p">,</span> <span class="n">vlt</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">isempty_cell</span>
 </code></pre></div>
                 
               

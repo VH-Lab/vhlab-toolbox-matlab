@@ -3213,6 +3213,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../%2Bgit/git_stash.m/" class="md-nav__link">
+        vlt.git.git_stash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../%2Bgit/git_status.m/" class="md-nav__link">
         vlt.git.git_status
       </a>
@@ -9237,19 +9249,27 @@
                 
                 
                 <h1 id="vltmatlabisclassfile">vlt.matlab.isclassfile<a class="headerlink" href="#vltmatlabisclassfile" title="Permanent link">&para;</a></h1>
-<p>ISCLASSFILE - Is a Matlab .m file a class definition?</p>
-<p>B = ISCLASSFILE(FILENAME)</p>
-<p>Returns 1 if FILENAME is a Matlab class definition file.
-  Returns 0 otherwise.</p>
-<p>Uses an undocumented Matlab function MTREE. MTREE's behavior may change
-  in future releases.</p>
-<p>Derived from comments in this nice blog note:
-   https://blogs.mathworks.com/loren/2013/08/26/what-kind-of-matlab-file-is-this/</p>
-<p>Note: EXIST(FILENAME,'CLASS') did not work for my custom objects</p>
-<p>See also: vlt.matlab.isfunctionfile</p>
-<p>Example: 
-    wfilename = which('table')
-    b = vlt.matlab.isclassfile(wfilename)</p>
+<div class="codehilite"><pre><span></span><code>  <span class="nv">ISCLASSFILE</span> <span class="o">-</span> <span class="nv">Is</span> <span class="nv">a</span> <span class="nv">Matlab</span> .<span class="nv">m</span> <span class="nv">file</span> <span class="nv">a</span> <span class="nv">class</span> <span class="nv">definition</span>?
+
+  <span class="nv">B</span> <span class="o">=</span> <span class="nv">ISCLASSFILE</span><span class="ss">(</span><span class="nv">FILENAME</span><span class="ss">)</span>
+
+  <span class="nv">Returns</span> <span class="mi">1</span> <span class="k">if</span> <span class="nv">FILENAME</span> <span class="nv">is</span> <span class="nv">a</span> <span class="nv">Matlab</span> <span class="nv">class</span> <span class="nv">definition</span> <span class="nv">file</span>.
+  <span class="nv">Returns</span> <span class="mi">0</span> <span class="nv">otherwise</span>.
+
+  <span class="nv">Uses</span> <span class="nv">an</span> <span class="nv">undocumented</span> <span class="nv">Matlab</span> <span class="nv">function</span> <span class="nv">MTREE</span>. <span class="nv">MTREE</span><span class="s1">&#39;</span><span class="s">s behavior may change</span>
+  <span class="nv">in</span> <span class="nv">future</span> <span class="nv">releases</span>.
+
+  <span class="nv">Derived</span> <span class="nv">from</span> <span class="nv">comments</span> <span class="nv">in</span> <span class="nv">this</span> <span class="nv">nice</span> <span class="nv">blog</span> <span class="nv">note</span>:
+   <span class="nv">https</span>:<span class="o">//</span><span class="nv">blogs</span>.<span class="nv">mathworks</span>.<span class="nv">com</span><span class="o">/</span><span class="nv">loren</span><span class="o">/</span><span class="mi">2013</span><span class="o">/</span><span class="mi">08</span><span class="o">/</span><span class="mi">26</span><span class="o">/</span><span class="nv">what</span><span class="o">-</span><span class="nv">kind</span><span class="o">-</span><span class="nv">of</span><span class="o">-</span><span class="nv">matlab</span><span class="o">-</span><span class="nv">file</span><span class="o">-</span><span class="nv">is</span><span class="o">-</span><span class="nv">this</span><span class="o">/</span>
+
+  <span class="nv">Note</span>: <span class="nv">EXIST</span><span class="ss">(</span><span class="nv">FILENAME</span>,<span class="s1">&#39;</span><span class="s">CLASS</span><span class="s1">&#39;</span><span class="ss">)</span> <span class="nv">did</span> <span class="nv">not</span> <span class="nv">work</span> <span class="k">for</span> <span class="nv">my</span> <span class="nv">custom</span> <span class="nv">objects</span>
+
+  <span class="nv">See</span> <span class="nv">also</span>: <span class="nv">vlt</span>.<span class="nv">matlab</span>.<span class="nv">isfunctionfile</span>
+
+  <span class="nv">Example</span>: 
+    <span class="nv">wfilename</span> <span class="o">=</span> <span class="nv">which</span><span class="ss">(</span><span class="s1">&#39;</span><span class="s">table</span><span class="s1">&#39;</span><span class="ss">)</span>
+    <span class="nv">b</span> <span class="o">=</span> <span class="nv">vlt</span>.<span class="nv">matlab</span>.<span class="nv">isclassfile</span><span class="ss">(</span><span class="nv">wfilename</span><span class="ss">)</span>
+</code></pre></div>
                 
               
               

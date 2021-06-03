@@ -3213,6 +3213,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../../%2Bgit/git_stash.m/" class="md-nav__link">
+        vlt.git.git_stash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../../%2Bgit/git_status.m/" class="md-nav__link">
         vlt.git.git_status
       </a>
@@ -9239,45 +9251,50 @@
                 
                 
                 <h1 id="vltneurostimulusstimulus_response_scalar">vlt.neuro.stimulus.stimulus_response_scalar<a class="headerlink" href="#vltneurostimulusstimulus_response_scalar" title="Permanent link">&para;</a></h1>
-<p>STIMULUS_RESPONSE_SUMMARY - compute stimulus responses to stimuli</p>
-<p>RESPONSE = vlt.neuro.stimulus.stimulus_response_scalar(TIMESERIES, TIMESTAMPS, STIM_ONSETOFFSETID, ...)</p>
-<p>Inputs:
-    TIMESERIES is a 1xT array of the data values of the thing exhibiting the response, such as
-        a voltage signal, calcium dF/F signal, or spike signals (1s).
-    TIMESTAMPS is a 1xT array of the occurrences of the signals in TIMESERIES
-    STIM_ONSETOFFSETID is a variable that describes the stimulus history. Each row should
-        contain [stim_onset_time stim_offset_time stimid] where the times are in units of TIMESTAMPS (s).</p>
-<p>Computes a structure RESPONSE with fields:
-  Field name:                   | Description:</p>
-<hr />
-<p>stimid                        | The stimulus id of each stimulus observed; there will be 1 value of stimid
-                                |   for each stimulus presentation (so stimid values may repeat many times)
-  response                      | The scalar response to each stimulus response.
-  control_response              | The scalar response to the control stimulus for each stimulus
-  controlstimnumber             | The stimulus number used as the control stimulus for each stimulus
-  parameters                    | A structure with the parameters used in the calculation (described below)</p>
-<p>The behavior of the function can be modified by name/value pairs:
-  Parameter (default value)     | Description: </p>
-<hr />
-<p>freq_response (0)             | The frequency response to measure using FFT of TIMESERIES. Can be
-                                |     0 (to use the mean response), or a number corresponding
-                                |     to the frequency to analyze. Can also be a vector
-                                |     the same size as the number of stimuli to indicate
-                                |     the frequency to be used for each stimulus (freq_response(stimid(i)).
-                                |     For example, to compute the response at the fundamental stimulus
-                                |     frequency (F1) when that frequency is 1 Hz, pass 1 for 'freq_response'.
-  control_stimid ([])           | Use this to pass the identity (or identities) of a 'blank' stimulus
-                                |     (some sort of control stimulus; in vision, this is often presenting
-                                |     a blank screen for same duration as the other stimuli.)
-  prestimulus_time ([])         | Calculate a baseline using a certain amount of TIMESERIES signal during
-                                |     the pre-stimulus time given here. 
-  prestimulus_normalization ([])| Normalize the stimulus response based on the prestimulus measurement.
-                                | [] or 0) No normalization 
-                                |       1) Subtract: Response := Response - PrestimResponse
-                                |       2) Fractional change Response:= ((Response-PrestimResponse)/PrestimResponse)
-                                |       3) Divide: Response:= Response ./ PreStimResponse
-  isspike (see right)           | 0/1 Is the signal a spike process? If so, timestamps correspond to spike events.
-  spiketrain_dt (0.001)         | Resolution to use for spike train reconstruction if computing Fourier transform</p>
+<div class="codehilite"><pre><span></span><code>  <span class="n">STIMULUS_RESPONSE_SUMMARY</span> <span class="o">-</span> <span class="n">compute</span> <span class="n">stimulus</span> <span class="n">responses</span> <span class="n">to</span> <span class="n">stimuli</span>
+
+  <span class="n">RESPONSE</span> <span class="o">=</span> <span class="n">vlt</span><span class="o">.</span><span class="n">neuro</span><span class="o">.</span><span class="n">stimulus</span><span class="o">.</span><span class="n">stimulus_response_scalar</span><span class="p">(</span><span class="n">TIMESERIES</span><span class="p">,</span> <span class="n">TIMESTAMPS</span><span class="p">,</span> <span class="n">STIM_ONSETOFFSETID</span><span class="p">,</span> <span class="o">...</span><span class="p">)</span>
+
+  <span class="n">Inputs</span><span class="p">:</span>
+    <span class="n">TIMESERIES</span> <span class="k">is</span> <span class="n">a</span> <span class="mi">1</span><span class="n">xT</span> <span class="n">array</span> <span class="n">of</span> <span class="n">the</span> <span class="n">data</span> <span class="n">values</span> <span class="n">of</span> <span class="n">the</span> <span class="n">thing</span> <span class="n">exhibiting</span> <span class="n">the</span> <span class="n">response</span><span class="p">,</span> <span class="n">such</span> <span class="k">as</span>
+        <span class="n">a</span> <span class="n">voltage</span> <span class="k">signal</span><span class="p">,</span> <span class="n">calcium</span> <span class="n">dF</span><span class="o">/</span><span class="n">F</span> <span class="k">signal</span><span class="p">,</span> <span class="ow">or</span> <span class="n">spike</span> <span class="n">signals</span> <span class="p">(</span><span class="mi">1</span><span class="n">s</span><span class="p">)</span><span class="o">.</span>
+    <span class="n">TIMESTAMPS</span> <span class="k">is</span> <span class="n">a</span> <span class="mi">1</span><span class="n">xT</span> <span class="n">array</span> <span class="n">of</span> <span class="n">the</span> <span class="n">occurrences</span> <span class="n">of</span> <span class="n">the</span> <span class="n">signals</span> <span class="ow">in</span> <span class="n">TIMESERIES</span>
+    <span class="n">STIM_ONSETOFFSETID</span> <span class="k">is</span> <span class="n">a</span> <span class="n">variable</span> <span class="n">that</span> <span class="n">describes</span> <span class="n">the</span> <span class="n">stimulus</span> <span class="n">history</span><span class="o">.</span> <span class="n">Each</span> <span class="n">row</span> <span class="n">should</span>
+        <span class="n">contain</span> <span class="p">[</span><span class="n">stim_onset_time</span> <span class="n">stim_offset_time</span> <span class="n">stimid</span><span class="p">]</span> <span class="n">where</span> <span class="n">the</span> <span class="n">times</span> <span class="n">are</span> <span class="ow">in</span> <span class="n">units</span> <span class="n">of</span> <span class="n">TIMESTAMPS</span> <span class="p">(</span><span class="n">s</span><span class="p">)</span><span class="o">.</span>
+
+  <span class="n">Computes</span> <span class="n">a</span> <span class="n">structure</span> <span class="n">RESPONSE</span> <span class="n">with</span> <span class="n">fields</span><span class="p">:</span>
+  <span class="n">Field</span> <span class="n">name</span><span class="p">:</span>                   <span class="o">|</span> <span class="n">Description</span><span class="p">:</span>
+  <span class="o">------------------------------------------------------------------------</span>
+  <span class="n">stimid</span>                        <span class="o">|</span> <span class="n">The</span> <span class="n">stimulus</span> <span class="n">id</span> <span class="n">of</span> <span class="n">each</span> <span class="n">stimulus</span> <span class="n">observed</span><span class="p">;</span> <span class="n">there</span> <span class="n">will</span> <span class="n">be</span> <span class="mi">1</span> <span class="n">value</span> <span class="n">of</span> <span class="n">stimid</span>
+                                <span class="o">|</span>   <span class="k">for</span> <span class="n">each</span> <span class="n">stimulus</span> <span class="n">presentation</span> <span class="p">(</span><span class="n">so</span> <span class="n">stimid</span> <span class="n">values</span> <span class="n">may</span> <span class="n">repeat</span> <span class="n">many</span> <span class="n">times</span><span class="p">)</span>
+  <span class="n">response</span>                      <span class="o">|</span> <span class="n">The</span> <span class="n">scalar</span> <span class="n">response</span> <span class="n">to</span> <span class="n">each</span> <span class="n">stimulus</span> <span class="n">response</span><span class="o">.</span>
+  <span class="n">control_response</span>              <span class="o">|</span> <span class="n">The</span> <span class="n">scalar</span> <span class="n">response</span> <span class="n">to</span> <span class="n">the</span> <span class="n">control</span> <span class="n">stimulus</span> <span class="k">for</span> <span class="n">each</span> <span class="n">stimulus</span>
+  <span class="n">controlstimnumber</span>             <span class="o">|</span> <span class="n">The</span> <span class="n">stimulus</span> <span class="n">number</span> <span class="n">used</span> <span class="k">as</span> <span class="n">the</span> <span class="n">control</span> <span class="n">stimulus</span> <span class="k">for</span> <span class="n">each</span> <span class="n">stimulus</span>
+  <span class="n">parameters</span>                    <span class="o">|</span> <span class="n">A</span> <span class="n">structure</span> <span class="n">with</span> <span class="n">the</span> <span class="n">parameters</span> <span class="n">used</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">calculation</span> <span class="p">(</span><span class="n">described</span> <span class="n">below</span><span class="p">)</span>
+
+  <span class="n">The</span> <span class="n">behavior</span> <span class="n">of</span> <span class="n">the</span> <span class="n">function</span> <span class="n">can</span> <span class="n">be</span> <span class="n">modified</span> <span class="n">by</span> <span class="n">name</span><span class="o">/</span><span class="n">value</span> <span class="n">pairs</span><span class="p">:</span>
+  <span class="n">Parameter</span> <span class="p">(</span><span class="n">default</span> <span class="n">value</span><span class="p">)</span>     <span class="o">|</span> <span class="n">Description</span><span class="p">:</span> 
+  <span class="o">------------------------------------------------------------------------</span>
+  <span class="n">freq_response</span> <span class="p">(</span><span class="mi">0</span><span class="p">)</span>             <span class="o">|</span> <span class="n">The</span> <span class="n">frequency</span> <span class="n">response</span> <span class="n">to</span> <span class="n">measure</span> <span class="n">using</span> <span class="n">FFT</span> <span class="n">of</span> <span class="n">TIMESERIES</span><span class="o">.</span> <span class="n">Can</span> <span class="n">be</span>
+                                <span class="o">|</span>     <span class="mi">0</span> <span class="p">(</span><span class="n">to</span> <span class="n">use</span> <span class="n">the</span> <span class="n">mean</span> <span class="n">response</span><span class="p">),</span> <span class="ow">or</span> <span class="n">a</span> <span class="n">number</span> <span class="n">corresponding</span>
+                                <span class="o">|</span>     <span class="n">to</span> <span class="n">the</span> <span class="n">frequency</span> <span class="n">to</span> <span class="n">analyze</span><span class="o">.</span> <span class="n">Can</span> <span class="n">also</span> <span class="n">be</span> <span class="n">a</span> <span class="n">vector</span>
+                                <span class="o">|</span>     <span class="n">the</span> <span class="n">same</span> <span class="n">size</span> <span class="k">as</span> <span class="n">the</span> <span class="n">number</span> <span class="n">of</span> <span class="n">stimuli</span> <span class="n">to</span> <span class="n">indicate</span>
+                                <span class="o">|</span>     <span class="n">the</span> <span class="n">frequency</span> <span class="n">to</span> <span class="n">be</span> <span class="n">used</span> <span class="k">for</span> <span class="n">each</span> <span class="n">stimulus</span> <span class="p">(</span><span class="n">freq_response</span><span class="p">(</span><span class="n">stimid</span><span class="p">(</span><span class="n">i</span><span class="p">))</span><span class="o">.</span>
+                                <span class="o">|</span>     <span class="n">For</span> <span class="n">example</span><span class="p">,</span> <span class="n">to</span> <span class="n">compute</span> <span class="n">the</span> <span class="n">response</span> <span class="n">at</span> <span class="n">the</span> <span class="n">fundamental</span> <span class="n">stimulus</span>
+                                <span class="o">|</span>     <span class="n">frequency</span> <span class="p">(</span><span class="n">F1</span><span class="p">)</span> <span class="n">when</span> <span class="n">that</span> <span class="n">frequency</span> <span class="k">is</span> <span class="mi">1</span> <span class="n">Hz</span><span class="p">,</span> <span class="k">pass</span> <span class="mi">1</span> <span class="k">for</span> <span class="s1">&#39;freq_response&#39;</span><span class="o">.</span>
+  <span class="n">control_stimid</span> <span class="p">([])</span>           <span class="o">|</span> <span class="n">Use</span> <span class="n">this</span> <span class="n">to</span> <span class="k">pass</span> <span class="n">the</span> <span class="n">identity</span> <span class="p">(</span><span class="ow">or</span> <span class="n">identities</span><span class="p">)</span> <span class="n">of</span> <span class="n">a</span> <span class="s1">&#39;blank&#39;</span> <span class="n">stimulus</span>
+                                <span class="o">|</span>     <span class="p">(</span><span class="n">some</span> <span class="n">sort</span> <span class="n">of</span> <span class="n">control</span> <span class="n">stimulus</span><span class="p">;</span> <span class="ow">in</span> <span class="n">vision</span><span class="p">,</span> <span class="n">this</span> <span class="k">is</span> <span class="n">often</span> <span class="n">presenting</span>
+                                <span class="o">|</span>     <span class="n">a</span> <span class="n">blank</span> <span class="n">screen</span> <span class="k">for</span> <span class="n">same</span> <span class="n">duration</span> <span class="k">as</span> <span class="n">the</span> <span class="n">other</span> <span class="n">stimuli</span><span class="o">.</span><span class="p">)</span>
+  <span class="n">prestimulus_time</span> <span class="p">([])</span>         <span class="o">|</span> <span class="n">Calculate</span> <span class="n">a</span> <span class="n">baseline</span> <span class="n">using</span> <span class="n">a</span> <span class="n">certain</span> <span class="n">amount</span> <span class="n">of</span> <span class="n">TIMESERIES</span> <span class="k">signal</span> <span class="n">during</span>
+                                <span class="o">|</span>     <span class="n">the</span> <span class="n">pre</span><span class="o">-</span><span class="n">stimulus</span> <span class="n">time</span> <span class="n">given</span> <span class="n">here</span><span class="o">.</span> 
+  <span class="n">prestimulus_normalization</span> <span class="p">([])</span><span class="o">|</span> <span class="n">Normalize</span> <span class="n">the</span> <span class="n">stimulus</span> <span class="n">response</span> <span class="n">based</span> <span class="n">on</span> <span class="n">the</span> <span class="n">prestimulus</span> <span class="n">measurement</span><span class="o">.</span>
+                                <span class="o">|</span> <span class="p">[]</span> <span class="ow">or</span> <span class="mi">0</span><span class="p">)</span> <span class="n">No</span> <span class="n">normalization</span> 
+                                <span class="o">|</span>       <span class="mi">1</span><span class="p">)</span> <span class="n">Subtract</span><span class="p">:</span> <span class="n">Response</span> <span class="p">:</span><span class="o">=</span> <span class="n">Response</span> <span class="o">-</span> <span class="n">PrestimResponse</span>
+                                <span class="o">|</span>       <span class="mi">2</span><span class="p">)</span> <span class="n">Fractional</span> <span class="n">change</span> <span class="n">Response</span><span class="p">:</span><span class="o">=</span> <span class="p">((</span><span class="n">Response</span><span class="o">-</span><span class="n">PrestimResponse</span><span class="p">)</span><span class="o">/</span><span class="n">PrestimResponse</span><span class="p">)</span>
+                                <span class="o">|</span>       <span class="mi">3</span><span class="p">)</span> <span class="n">Divide</span><span class="p">:</span> <span class="n">Response</span><span class="p">:</span><span class="o">=</span> <span class="n">Response</span> <span class="o">./</span> <span class="n">PreStimResponse</span>
+  <span class="n">isspike</span> <span class="p">(</span><span class="n">see</span> <span class="n">right</span><span class="p">)</span>           <span class="o">|</span> <span class="mi">0</span><span class="o">/</span><span class="mi">1</span> <span class="n">Is</span> <span class="n">the</span> <span class="k">signal</span> <span class="n">a</span> <span class="n">spike</span> <span class="n">process</span><span class="err">?</span> <span class="n">If</span> <span class="n">so</span><span class="p">,</span> <span class="n">timestamps</span> <span class="n">correspond</span> <span class="n">to</span> <span class="n">spike</span> <span class="n">events</span><span class="o">.</span>
+  <span class="n">spiketrain_dt</span> <span class="p">(</span><span class="mf">0.001</span><span class="p">)</span>         <span class="o">|</span> <span class="n">Resolution</span> <span class="n">to</span> <span class="n">use</span> <span class="k">for</span> <span class="n">spike</span> <span class="n">train</span> <span class="n">reconstruction</span> <span class="k">if</span> <span class="n">computing</span> <span class="n">Fourier</span> <span class="n">transform</span>
+</code></pre></div>
                 
               
               

@@ -3225,6 +3225,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../%2Bgit/git_stash.m/" class="md-nav__link">
+        vlt.git.git_stash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../%2Bgit/git_status.m/" class="md-nav__link">
         vlt.git.git_status
       </a>
@@ -9237,12 +9249,18 @@
                 
                 
                 <h1 id="vltfitlinepowerthreshold">vlt.fit.linepowerthreshold<a class="headerlink" href="#vltfitlinepowerthreshold" title="Permanent link">&para;</a></h1>
-<p>LINEPOWERTHRESHOLD - compute linepowerthreshold function for values of x</p>
-<p>[CURVE] = vlt.fit.linepowerthreshold(X, SLOPE, OFFSET, THRESHOLD, EXPONENT)</p>
-<p>Calculates</p>
-<p>CURVE = OFFSET + SLOPE * vlt.math.rectify(X - THRESHOLD).^EXPONENT</p>
-<p>See also: vlt.stats.quickregression (simple linear fit), vlt.fit.linepowerthresholdfit</p>
-<p>Jason Osik and Steve Van Hooser</p>
+<div class="codehilite"><pre><span></span><code><span class="w">  </span><span class="n">LINEPOWERTHRESHOLD</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="k">compute</span><span class="w"> </span><span class="n">linepowerthreshold</span><span class="w"> </span><span class="k">function</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="k">values</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="n">x</span><span class="w"></span>
+
+<span class="w">   </span><span class="o">[</span><span class="n">CURVE</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">vlt</span><span class="p">.</span><span class="n">fit</span><span class="p">.</span><span class="n">linepowerthreshold</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="w"> </span><span class="n">SLOPE</span><span class="p">,</span><span class="w"> </span><span class="n">OFFSET</span><span class="p">,</span><span class="w"> </span><span class="n">THRESHOLD</span><span class="p">,</span><span class="w"> </span><span class="n">EXPONENT</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">   </span><span class="n">Calculates</span><span class="w"></span>
+
+<span class="w">   </span><span class="n">CURVE</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">OFFSET</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">SLOPE</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">vlt</span><span class="p">.</span><span class="n">math</span><span class="p">.</span><span class="n">rectify</span><span class="p">(</span><span class="n">X</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">THRESHOLD</span><span class="p">).</span><span class="o">^</span><span class="n">EXPONENT</span><span class="w"></span>
+
+<span class="w">  </span><span class="n">See</span><span class="w"> </span><span class="nl">also</span><span class="p">:</span><span class="w"> </span><span class="n">vlt</span><span class="p">.</span><span class="n">stats</span><span class="p">.</span><span class="n">quickregression</span><span class="w"> </span><span class="p">(</span><span class="n">simple</span><span class="w"> </span><span class="n">linear</span><span class="w"> </span><span class="n">fit</span><span class="p">),</span><span class="w"> </span><span class="n">vlt</span><span class="p">.</span><span class="n">fit</span><span class="p">.</span><span class="n">linepowerthresholdfit</span><span class="w"></span>
+
+<span class="w">  </span><span class="n">Jason</span><span class="w"> </span><span class="n">Osik</span><span class="w"> </span><span class="ow">and</span><span class="w"> </span><span class="n">Steve</span><span class="w"> </span><span class="n">Van</span><span class="w"> </span><span class="n">Hooser</span><span class="w"></span>
+</code></pre></div>
                 
               
               

@@ -3213,6 +3213,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../%2Bgit/git_stash.m/" class="md-nav__link">
+        vlt.git.git_stash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../%2Bgit/git_status.m/" class="md-nav__link">
         vlt.git.git_status
       </a>
@@ -9237,34 +9249,40 @@
                 
                 
                 <h1 id="vltstringline_n">vlt.string.line_n<a class="headerlink" href="#vltstringline_n" title="Permanent link">&para;</a></h1>
-<p>LINE_N - Get the Nth line of a character string</p>
-<p>[LINE_N_STR, POS, EOL_MARKS] = vlt.string.line_n(STR, N, ...)</p>
-<p>Returns the Nth line of a multiline string STR.
-   LINE_N_STR is the string contents of the Nth line,
-   without the end of line character.
-   The position of the beginning of the Nth line within the
-   string STR is returned in POS.
-   The function also returns all of the locations of the
-   end of line marks EOL_MARKS.</p>
-<p>If the last character of STR is not an end-of-line, then the function
-   adds an end-of-line character to the end of the string (and this is returned
-   in EOL_MARKS).</p>
-<p>The behavior of the function can be altered by adding
-   name/value pairs:
-   Name (default value):          | Description</p>
-<hr />
-<p>eol (sprintf('\n'))            | End of line character, could also use '\r'
-   eol_marks ([])                 | If it is non-empty, then the program
-                                  |   skips the search for eol_marks and
-                                  |   uses the provided variable. This is useful
-                                  |   if the user is going to call vlt.string.line_n
-                                  |   many times; one can save the search time
-                                  |   in subsequent calls.   </p>
-<p>Example:
-      str = sprintf('This is a test.\nThis is line two.\nThis is line 3.')
-      vlt.string.line_n(str,1)
-      vlt.string.line_n(str,2)
-      vlt.string.line_n(str,3)</p>
+<div class="codehilite"><pre><span></span><code>  <span class="n">LINE_N</span> <span class="o">-</span> <span class="n">Get</span> <span class="n">the</span> <span class="n">Nth</span> <span class="n">line</span> <span class="n">of</span> <span class="n">a</span> <span class="n">character</span> <span class="n">string</span>
+
+   <span class="p">[</span><span class="n">LINE_N_STR</span><span class="p">,</span> <span class="n">POS</span><span class="p">,</span> <span class="n">EOL_MARKS</span><span class="p">]</span> <span class="o">=</span> <span class="n">vlt</span><span class="o">.</span><span class="n">string</span><span class="o">.</span><span class="n">line_n</span><span class="p">(</span><span class="n">STR</span><span class="p">,</span> <span class="n">N</span><span class="p">,</span> <span class="o">...</span><span class="p">)</span>
+
+   <span class="n">Returns</span> <span class="n">the</span> <span class="n">Nth</span> <span class="n">line</span> <span class="n">of</span> <span class="n">a</span> <span class="n">multiline</span> <span class="n">string</span> <span class="n">STR</span><span class="o">.</span>
+   <span class="n">LINE_N_STR</span> <span class="k">is</span> <span class="n">the</span> <span class="n">string</span> <span class="n">contents</span> <span class="n">of</span> <span class="n">the</span> <span class="n">Nth</span> <span class="n">line</span><span class="p">,</span>
+   <span class="n">without</span> <span class="n">the</span> <span class="n">end</span> <span class="n">of</span> <span class="n">line</span> <span class="n">character</span><span class="o">.</span>
+   <span class="n">The</span> <span class="n">position</span> <span class="n">of</span> <span class="n">the</span> <span class="n">beginning</span> <span class="n">of</span> <span class="n">the</span> <span class="n">Nth</span> <span class="n">line</span> <span class="n">within</span> <span class="n">the</span>
+   <span class="n">string</span> <span class="n">STR</span> <span class="k">is</span> <span class="n">returned</span> <span class="ow">in</span> <span class="n">POS</span><span class="o">.</span>
+   <span class="n">The</span> <span class="n">function</span> <span class="n">also</span> <span class="n">returns</span> <span class="n">all</span> <span class="n">of</span> <span class="n">the</span> <span class="n">locations</span> <span class="n">of</span> <span class="n">the</span>
+   <span class="n">end</span> <span class="n">of</span> <span class="n">line</span> <span class="n">marks</span> <span class="n">EOL_MARKS</span><span class="o">.</span>
+
+   <span class="n">If</span> <span class="n">the</span> <span class="n">last</span> <span class="n">character</span> <span class="n">of</span> <span class="n">STR</span> <span class="k">is</span> <span class="ow">not</span> <span class="n">an</span> <span class="n">end</span><span class="o">-</span><span class="n">of</span><span class="o">-</span><span class="n">line</span><span class="p">,</span> <span class="n">then</span> <span class="n">the</span> <span class="n">function</span>
+   <span class="n">adds</span> <span class="n">an</span> <span class="n">end</span><span class="o">-</span><span class="n">of</span><span class="o">-</span><span class="n">line</span> <span class="n">character</span> <span class="n">to</span> <span class="n">the</span> <span class="n">end</span> <span class="n">of</span> <span class="n">the</span> <span class="n">string</span> <span class="p">(</span><span class="ow">and</span> <span class="n">this</span> <span class="k">is</span> <span class="n">returned</span>
+   <span class="ow">in</span> <span class="n">EOL_MARKS</span><span class="p">)</span><span class="o">.</span>
+
+   <span class="n">The</span> <span class="n">behavior</span> <span class="n">of</span> <span class="n">the</span> <span class="n">function</span> <span class="n">can</span> <span class="n">be</span> <span class="n">altered</span> <span class="n">by</span> <span class="n">adding</span>
+   <span class="n">name</span><span class="o">/</span><span class="n">value</span> <span class="n">pairs</span><span class="p">:</span>
+   <span class="n">Name</span> <span class="p">(</span><span class="n">default</span> <span class="n">value</span><span class="p">):</span>          <span class="o">|</span> <span class="n">Description</span>
+   <span class="o">-----------------------------------------------------------------------</span>
+   <span class="n">eol</span> <span class="p">(</span><span class="n">sprintf</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">))</span>            <span class="o">|</span> <span class="n">End</span> <span class="n">of</span> <span class="n">line</span> <span class="n">character</span><span class="p">,</span> <span class="n">could</span> <span class="n">also</span> <span class="n">use</span> <span class="s1">&#39;</span><span class="se">\r</span><span class="s1">&#39;</span>
+   <span class="n">eol_marks</span> <span class="p">([])</span>                 <span class="o">|</span> <span class="n">If</span> <span class="n">it</span> <span class="k">is</span> <span class="n">non</span><span class="o">-</span><span class="n">empty</span><span class="p">,</span> <span class="n">then</span> <span class="n">the</span> <span class="n">program</span>
+                                  <span class="o">|</span>   <span class="n">skips</span> <span class="n">the</span> <span class="n">search</span> <span class="k">for</span> <span class="n">eol_marks</span> <span class="ow">and</span>
+                                  <span class="o">|</span>   <span class="n">uses</span> <span class="n">the</span> <span class="n">provided</span> <span class="n">variable</span><span class="o">.</span> <span class="n">This</span> <span class="k">is</span> <span class="n">useful</span>
+                                  <span class="o">|</span>   <span class="k">if</span> <span class="n">the</span> <span class="n">user</span> <span class="k">is</span> <span class="n">going</span> <span class="n">to</span> <span class="n">call</span> <span class="n">vlt</span><span class="o">.</span><span class="n">string</span><span class="o">.</span><span class="n">line_n</span>
+                                  <span class="o">|</span>   <span class="n">many</span> <span class="n">times</span><span class="p">;</span> <span class="n">one</span> <span class="n">can</span> <span class="n">save</span> <span class="n">the</span> <span class="n">search</span> <span class="n">time</span>
+                                  <span class="o">|</span>   <span class="ow">in</span> <span class="n">subsequent</span> <span class="n">calls</span><span class="o">.</span>   
+
+   <span class="n">Example</span><span class="p">:</span>
+      <span class="nb">str</span> <span class="o">=</span> <span class="n">sprintf</span><span class="p">(</span><span class="s1">&#39;This is a test.</span><span class="se">\n</span><span class="s1">This is line two.</span><span class="se">\n</span><span class="s1">This is line 3.&#39;</span><span class="p">)</span>
+      <span class="n">vlt</span><span class="o">.</span><span class="n">string</span><span class="o">.</span><span class="n">line_n</span><span class="p">(</span><span class="nb">str</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+      <span class="n">vlt</span><span class="o">.</span><span class="n">string</span><span class="o">.</span><span class="n">line_n</span><span class="p">(</span><span class="nb">str</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+      <span class="n">vlt</span><span class="o">.</span><span class="n">string</span><span class="o">.</span><span class="n">line_n</span><span class="p">(</span><span class="nb">str</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
+</code></pre></div>
                 
               
               

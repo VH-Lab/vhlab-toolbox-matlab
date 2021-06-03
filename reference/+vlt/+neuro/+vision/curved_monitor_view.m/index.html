@@ -3213,6 +3213,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../../%2Bgit/git_stash.m/" class="md-nav__link">
+        vlt.git.git_stash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../../%2Bgit/git_status.m/" class="md-nav__link">
         vlt.git.git_status
       </a>
@@ -9239,18 +9251,22 @@
                 
                 
                 <h1 id="vltneurovisioncurved_monitor_view">vlt.neuro.vision.curved_monitor_view<a class="headerlink" href="#vltneurovisioncurved_monitor_view" title="Permanent link">&para;</a></h1>
-<p>CURVED_MONITOR_VIEW - Given the dimensions of a curved monitor, calculate the viewing angle of the animal</p>
-<p>SYSTEM = vlt.neuro.vision.curved_monitor_view(MONITOR_DIAG, ASPECTRATIO, RADIUS, VIEWING_DISTANCE)</p>
-<p>MONITOR_DIAG should be the diagonal monitor size (usually what is specified,
+<div class="codehilite"><pre><span></span><code>  CURVED_MONITOR_VIEW - Given the dimensions of a curved monitor, calculate the viewing angle of the animal
+
+  SYSTEM = vlt.neuro.vision.curved_monitor_view(MONITOR_DIAG, ASPECTRATIO, RADIUS, VIEWING_DISTANCE)
+
+  MONITOR_DIAG should be the diagonal monitor size (usually what is specified,
   multiply by 2.54 to get cm from inches).
   ASPECTRATIO should be aspect ratio of monitor (width in numerator)
   RADIUS should be the curvature of the monitor (e.g., 180 cm).
-  VIEWING_DISTANCE should be the desired animal viewing distance.</p>
-<p>All angles are returned in degrees. </p>
-<p>SYSTEM is a structure with the following entries:
-  Fieldname:           | Description:</p>
-<hr />
-<p>theta                | Viewing angle of hemifield
+  VIEWING_DISTANCE should be the desired animal viewing distance.
+
+  All angles are returned in degrees. 
+
+  SYSTEM is a structure with the following entries:
+  Fieldname:           | Description:
+  ------------------------------------------------------
+  theta                | Viewing angle of hemifield
                        |     (so 2*theta is whole view)
   monitor_diag         | Monitor diag (from input)
   monitor_height       | Monitor height
@@ -9265,7 +9281,8 @@
                        |   and edge of monitor
   P                    | Distance between monitor and location that
                        |   makes a right angle with the edge of the monitor
-  A                    | Distance between edge of monitor and point P</p>
+  A                    | Distance between edge of monitor and point P
+</code></pre></div>
                 
               
               

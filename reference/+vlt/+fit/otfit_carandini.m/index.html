@@ -3225,6 +3225,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../%2Bgit/git_stash.m/" class="md-nav__link">
+        vlt.git.git_stash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../%2Bgit/git_status.m/" class="md-nav__link">
         vlt.git.git_status
       </a>
@@ -9237,15 +9249,22 @@
                 
                 
                 <h1 id="vltfitotfit_carandini">vlt.fit.otfit_carandini<a class="headerlink" href="#vltfitotfit_carandini" title="Permanent link">&para;</a></h1>
-<p>vlt.fit.otfit_carandini Fits orientation curves like Carandini/Ferster 2000</p>
-<p>[Rsp,Rp,Op,sigm,Rn,FITCURVE,ERR]=vlt.fit.otfit_carandini(ANGLES,...
-          SPONTHINT, MAXRESPHINT, OTPREFHINT, WIDTHHINT,'DATA',DATA) </p>
-<p>Finds the best fit to the function</p>
-<p>R=Rsp+Rp<em>EXP(-(X-Op)^2)/(2</em>sig^2))+Rn<em>EXP(-(X-Op+180)^2/(2</em>sig^2))
+<div class="codehilite"><pre><span></span><code>  vlt.fit.otfit_carandini Fits orientation curves like Carandini/Ferster 2000
+
+   [Rsp,Rp,Op,sigm,Rn,FITCURVE,ERR]=vlt.fit.otfit_carandini(ANGLES,...
+          SPONTHINT, MAXRESPHINT, OTPREFHINT, WIDTHHINT,&#39;DATA&#39;,DATA) 
+
+   Finds the best fit to the function
+
+   R=Rsp+Rp*EXP(-(X-Op)^2)/(2*sig^2))+Rn*EXP(-(X-Op+180)^2/(2*sig^2))
    where R is the response, Rsp is the spontaneous response, Rp is 
    the response at the preferred angle, Op is the preferred angle,
-   sigm is the tuning width, Rn is the firing rate at 180+Op.</p>
-<p>FITCURVE is the fit function at 1 degree intervals (0:1:359).</p>
+   sigm is the tuning width, Rn is the firing rate at 180+Op.
+
+
+
+   FITCURVE is the fit function at 1 degree intervals (0:1:359).
+</code></pre></div>
                 
               
               

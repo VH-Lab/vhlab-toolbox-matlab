@@ -3213,6 +3213,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../%2Bgit/git_stash.m/" class="md-nav__link">
+        vlt.git.git_stash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../%2Bgit/git_status.m/" class="md-nav__link">
         vlt.git.git_status
       </a>
@@ -9237,25 +9249,31 @@
                 
                 
                 <h1 id="vlthtmlalumni_htmltable">vlt.html.alumni_htmltable<a class="headerlink" href="#vlthtmlalumni_htmltable" title="Permanent link">&para;</a></h1>
-<p>FACEBOOK_HTMLTABLE - make a table of faces and names for VHlab website</p>
-<p>STR = UGALUMNI_HTMLTABLE(FACEINFO, ...)</p>
-<p>Takes as input a STRUCT FACEINFO that has fields 'imagefile' and 'name'
-  and generates an html output table (in a cell array of strings) in STR.</p>
-<p>This function also takes name/value pairs that modify its behavior:
-  Parameter (default value)    | Description</p>
-<hr />
-<p>Ncols (3)                    | Number of columns
+<div class="codehilite"><pre><span></span><code>  FACEBOOK_HTMLTABLE - make a table of faces and names for VHlab website
+
+  STR = UGALUMNI_HTMLTABLE(FACEINFO, ...)
+
+  Takes as input a STRUCT FACEINFO that has fields &#39;imagefile&#39; and &#39;name&#39;
+  and generates an html output table (in a cell array of strings) in STR.
+
+  This function also takes name/value pairs that modify its behavior:
+  Parameter (default value)    | Description
+  ----------------------------------------------------------------
+  Ncols (3)                    | Number of columns
   imagewidth (200)             | Image width, in pixels
   nametablestylestring         |    Style of the name table entries 
-    ('style="text-align: center; vertical-align:top; width:200px;font-size:100%;"')  | 
+    (&#39;style=&quot;text-align: center; vertical-align:top; width:200px;font-size:100%;&quot;&#39;)  | 
   nametableprefix              | Prefix formatting for name table entries
-   ('<font face="veranda, sans-serif"><b>')      | 
+   (&#39;<span class="nt">&lt;font</span> <span class="na">face=</span><span class="s">&quot;veranda, sans-serif&quot;</span><span class="nt">&gt;&lt;b&gt;</span>&#39;)      | 
   nametablepostfix             | Postfix formatting for name table entries
-   ('</b></font>')             |
-  tableidstr ('')              | If using a style, could be ' id="facebooktable"' for example</p>
-<p>We use this to generate the undergraduate alumni portion of 
-  vhlab.org/people</p>
-<p>See also: vlt.file.cellstr2text, vlt.data.namevaluepair</p>
+   (&#39;<span class="nt">&lt;/b&gt;&lt;/font&gt;</span>&#39;)             |
+  tableidstr (&#39;&#39;)              | If using a style, could be &#39; id=&quot;facebooktable&quot;&#39; for example
+
+  We use this to generate the undergraduate alumni portion of 
+  vhlab.org/people
+
+  See also: vlt.file.cellstr2text, vlt.data.namevaluepair
+</code></pre></div>
                 
               
               

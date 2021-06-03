@@ -3213,6 +3213,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../%2Bgit/git_stash.m/" class="md-nav__link">
+        vlt.git.git_stash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../%2Bgit/git_status.m/" class="md-nav__link">
         vlt.git.git_status
       </a>
@@ -9237,34 +9249,34 @@
                 
                 
                 <h1 id="vltplotcolorlist">vlt.plot.colorlist<a class="headerlink" href="#vltplotcolorlist" title="Permanent link">&para;</a></h1>
-<p>COLORLIST - Grab a color or group of colors from a list</p>
-<div class="codehilite"><pre><span></span><code>C = vlt.plot.colorlist
+<div class="codehilite"><pre><span></span><code>  <span class="nv">COLORLIST</span> <span class="o">-</span> <span class="nv">Grab</span> <span class="nv">a</span> <span class="nv">color</span> <span class="nv">or</span> <span class="nv">group</span> <span class="nv">of</span> <span class="nv">colors</span> <span class="nv">from</span> <span class="nv">a</span> <span class="nv">list</span>
 
-   Returns an Nx3 list of colors. By default, this function
+    <span class="nv">C</span> <span class="o">=</span> <span class="nv">vlt</span>.<span class="nv">plot</span>.<span class="nv">colorlist</span>
+
+       <span class="nv">Returns</span> <span class="nv">an</span> <span class="nv">Nx3</span> <span class="nv">list</span> <span class="nv">of</span> <span class="nv">colors</span>. <span class="nv">By</span> <span class="nv">default</span>, <span class="nv">this</span> <span class="nv">function</span>
+   <span class="nv">returns</span> <span class="nv">the</span> <span class="nv">normal</span> <span class="mi">7</span> <span class="nv">colors</span> <span class="nv">that</span> <span class="nv">Matlab</span> <span class="nv">uses</span> <span class="nv">as</span> <span class="nv">the</span> <span class="nv">default</span>
+   <span class="nv">ColorOrder</span> <span class="k">for</span> <span class="nv">new</span> <span class="nv">axes</span>.
+
+      <span class="nv">or</span>
+
+    <span class="nv">C</span> <span class="o">=</span> <span class="nv">vlt</span>.<span class="nv">plot</span>.<span class="nv">colorlist</span><span class="ss">(</span><span class="nv">N</span><span class="ss">)</span>
+
+       <span class="nv">Returns</span> <span class="nv">a</span> <span class="mi">1</span><span class="nv">x3</span> <span class="nv">color</span> <span class="nv">chosen</span> <span class="nv">from</span> <span class="nv">the</span> <span class="nv">color</span> <span class="nv">list</span>. <span class="nv">The</span> <span class="nv">Nth</span>
+   <span class="nv">entry</span> <span class="nv">is</span> <span class="nv">chosen</span>. <span class="k">If</span> <span class="nv">N</span> <span class="nv">is</span> <span class="nv">greater</span> <span class="nv">than</span> <span class="nv">the</span> <span class="nv">number</span> <span class="nv">of</span> <span class="nv">colors</span> <span class="nv">in</span> <span class="nv">the</span>
+   <span class="nv">list</span>, <span class="nv">the</span> <span class="nv">selection</span> <span class="s1">&#39;</span><span class="s">wraps around</span><span class="s1">&#39;</span> <span class="nv">back</span> <span class="nv">to</span> <span class="nv">the</span> <span class="nv">beginning</span> <span class="nv">of</span> <span class="nv">the</span> <span class="nv">list</span>.    
+
+  <span class="nv">This</span> <span class="nv">function</span> <span class="nv">also</span> <span class="nv">takes</span> <span class="nv">name</span><span class="o">/</span><span class="nv">value</span> <span class="nv">pairs</span> <span class="nv">that</span> <span class="nv">extend</span> <span class="nv">its</span>
+  <span class="nv">functionality</span>:
+  <span class="nv">Parameter</span> <span class="ss">(</span><span class="nv">default</span><span class="ss">)</span>    <span class="o">|</span> <span class="nv">Description</span> 
+  <span class="o">------------------------------------------------------</span>
+  <span class="nv">ColorList</span> <span class="ss">(</span><span class="mi">7</span><span class="nv">x3</span> <span class="nv">default</span> <span class="o">|</span> <span class="nv">The</span> <span class="nv">color</span> <span class="nv">list</span> <span class="nv">to</span> <span class="nv">choose</span> <span class="nv">from</span>
+               <span class="nv">axes</span>      <span class="o">|</span>    <span class="nv">Examples</span>: <span class="nv">jet</span><span class="ss">(</span><span class="mi">256</span><span class="ss">)</span>, <span class="nv">gray</span><span class="ss">(</span><span class="mi">256</span><span class="ss">)</span>
+              <span class="nv">ColorOrder</span><span class="ss">)</span><span class="o">|</span>
+  <span class="nv">DoNotWrap</span> <span class="ss">(</span><span class="mi">0</span><span class="ss">)</span>          <span class="o">|</span> <span class="nv">Directs</span> <span class="nv">the</span> <span class="nv">function</span> <span class="nv">not</span> <span class="nv">to</span> <span class="nv">wrap</span> <span class="nv">the</span>
+                         <span class="o">|</span>    <span class="nv">selection</span> <span class="nv">around</span> <span class="nv">the</span> <span class="nv">list</span> <span class="k">if</span> <span class="nv">N</span>
+                         <span class="o">|</span>    <span class="nv">is</span> <span class="nv">greater</span> <span class="nv">than</span> <span class="nv">the</span> <span class="nv">number</span> <span class="nv">of</span> <span class="nv">colors</span>.
+                         <span class="o">|</span>    <span class="nv">Instead</span>, <span class="nv">an</span> <span class="nv">error</span> <span class="nv">will</span> <span class="nv">occur</span>.
 </code></pre></div>
-
-<p>returns the normal 7 colors that Matlab uses as the default
-   ColorOrder for new axes.</p>
-<div class="codehilite"><pre><span></span><code>  or
-
-C = vlt.plot.colorlist(N)
-
-   Returns a 1x3 color chosen from the color list. The Nth
-</code></pre></div>
-
-<p>entry is chosen. If N is greater than the number of colors in the
-   list, the selection 'wraps around' back to the beginning of the list.    </p>
-<p>This function also takes name/value pairs that extend its
-  functionality:
-  Parameter (default)    | Description </p>
-<hr />
-<p>ColorList (7x3 default | The color list to choose from
-               axes      |    Examples: jet(256), gray(256)
-              ColorOrder)|
-  DoNotWrap (0)          | Directs the function not to wrap the
-                         |    selection around the list if N
-                         |    is greater than the number of colors.
-                         |    Instead, an error will occur.</p>
                 
               
               

@@ -3225,6 +3225,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../%2Bgit/git_stash.m/" class="md-nav__link">
+        vlt.git.git_stash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../%2Bgit/git_status.m/" class="md-nav__link">
         vlt.git.git_status
       </a>
@@ -9237,21 +9249,26 @@
                 
                 
                 <h1 id="vltfileload2celllist">vlt.file.load2celllist<a class="headerlink" href="#vltfileload2celllist" title="Permanent link">&para;</a></h1>
-<p>vlt.file.load2celllist - Loads saved objects to a cell list</p>
-<p>[OBJS,OBJNAMES] = vlt.file.load2celllist(FILENAME, ...)</p>
-<p>Loads objects from a Matlab file FILENAME into a cell list.
-   Additional arguments are passed on to the Matlab LOAD command.</p>
-<p>OBJS is a cell list of all variables matching the loading
-   criteria</p>
-<p>Example:
-       [myobjs,mynames]=vlt.file.load2celllist('myfile','cell*','-mat');</p>
-<div class="codehilite"><pre><span></span><code>   <span class="n">If</span> <span class="n">the</span> <span class="n">file</span> <span class="s1">&#39;myfile&#39;</span> <span class="n">contains</span> <span class="n">two</span> <span class="n">variables</span> <span class="n">named</span> <span class="s1">&#39;cell1&#39;</span>
-   <span class="ow">and</span> <span class="s1">&#39;cell2&#39;</span><span class="p">,</span> <span class="n">then</span>
-    <span class="n">mynames</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;cell1&#39;</span> <span class="s1">&#39;cell2&#39;</span><span class="p">}</span> <span class="ow">and</span>
-    <span class="n">myobjs</span> <span class="o">=</span> <span class="p">{</span> <span class="p">(</span><span class="n">data</span> <span class="n">of</span> <span class="s1">&#39;cell1&#39;</span><span class="p">)</span>  <span class="p">(</span><span class="n">data</span> <span class="n">of</span> <span class="s1">&#39;cell2&#39;</span><span class="p">)</span> <span class="p">}</span>
-</code></pre></div>
+<div class="codehilite"><pre><span></span><code>  <span class="n">vlt</span><span class="o">.</span><span class="n">file</span><span class="o">.</span><span class="n">load2celllist</span> <span class="o">-</span> <span class="n">Loads</span> <span class="n">saved</span> <span class="n">objects</span> <span class="n">to</span> <span class="n">a</span> <span class="n">cell</span> <span class="n">list</span>
 
-<p>See also:  LOAD, READCELLSFROMEXPERIMENTLIST</p>
+   <span class="p">[</span><span class="n">OBJS</span><span class="p">,</span><span class="n">OBJNAMES</span><span class="p">]</span> <span class="o">=</span> <span class="n">vlt</span><span class="o">.</span><span class="n">file</span><span class="o">.</span><span class="n">load2celllist</span><span class="p">(</span><span class="n">FILENAME</span><span class="p">,</span> <span class="o">...</span><span class="p">)</span>
+
+   <span class="n">Loads</span> <span class="n">objects</span> <span class="n">from</span> <span class="n">a</span> <span class="n">Matlab</span> <span class="n">file</span> <span class="n">FILENAME</span> <span class="n">into</span> <span class="n">a</span> <span class="n">cell</span> <span class="n">list</span><span class="o">.</span>
+   <span class="n">Additional</span> <span class="n">arguments</span> <span class="n">are</span> <span class="n">passed</span> <span class="n">on</span> <span class="n">to</span> <span class="n">the</span> <span class="n">Matlab</span> <span class="n">LOAD</span> <span class="n">command</span><span class="o">.</span>
+
+   <span class="n">OBJS</span> <span class="k">is</span> <span class="n">a</span> <span class="n">cell</span> <span class="n">list</span> <span class="n">of</span> <span class="n">all</span> <span class="n">variables</span> <span class="n">matching</span> <span class="n">the</span> <span class="n">loading</span>
+   <span class="n">criteria</span>
+
+   <span class="n">Example</span><span class="p">:</span>
+       <span class="p">[</span><span class="n">myobjs</span><span class="p">,</span><span class="n">mynames</span><span class="p">]</span><span class="o">=</span><span class="n">vlt</span><span class="o">.</span><span class="n">file</span><span class="o">.</span><span class="n">load2celllist</span><span class="p">(</span><span class="s1">&#39;myfile&#39;</span><span class="p">,</span><span class="s1">&#39;cell*&#39;</span><span class="p">,</span><span class="s1">&#39;-mat&#39;</span><span class="p">);</span>
+
+       <span class="n">If</span> <span class="n">the</span> <span class="n">file</span> <span class="s1">&#39;myfile&#39;</span> <span class="n">contains</span> <span class="n">two</span> <span class="n">variables</span> <span class="n">named</span> <span class="s1">&#39;cell1&#39;</span>
+       <span class="ow">and</span> <span class="s1">&#39;cell2&#39;</span><span class="p">,</span> <span class="n">then</span>
+        <span class="n">mynames</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;cell1&#39;</span> <span class="s1">&#39;cell2&#39;</span><span class="p">}</span> <span class="ow">and</span>
+        <span class="n">myobjs</span> <span class="o">=</span> <span class="p">{</span> <span class="p">(</span><span class="n">data</span> <span class="n">of</span> <span class="s1">&#39;cell1&#39;</span><span class="p">)</span>  <span class="p">(</span><span class="n">data</span> <span class="n">of</span> <span class="s1">&#39;cell2&#39;</span><span class="p">)</span> <span class="p">}</span>
+
+   <span class="n">See</span> <span class="n">also</span><span class="p">:</span>  <span class="n">LOAD</span><span class="p">,</span> <span class="n">READCELLSFROMEXPERIMENTLIST</span>
+</code></pre></div>
                 
               
               

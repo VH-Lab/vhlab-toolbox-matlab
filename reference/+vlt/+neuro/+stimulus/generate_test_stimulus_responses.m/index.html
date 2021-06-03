@@ -3213,6 +3213,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../../%2Bgit/git_stash.m/" class="md-nav__link">
+        vlt.git.git_stash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../../%2Bgit/git_status.m/" class="md-nav__link">
         vlt.git.git_status
       </a>
@@ -9239,62 +9251,68 @@
                 
                 
                 <h1 id="vltneurostimulusgenerate_test_stimulus_responses">vlt.neuro.stimulus.generate_test_stimulus_responses<a class="headerlink" href="#vltneurostimulusgenerate_test_stimulus_responses" title="Permanent link">&para;</a></h1>
-<p>GENERATE_TEST_STIMULUS_RESPONSES - generate test stimuli and responses to test analysis code</p>
-<p>[TIMESERIES, TIMESTAMPS, STIMONSETOFFSETID] = GENERATE_TEST_STIMULUS_RESPONSE(...)</p>
-<p>Generates a timeseries (with timestamps) that exhibits responses to a stimulus (described
-  using options below). </p>
-<p>This function accepts additional arguments as name/value pairs that modify the default behavior:
-  Parameter (default value)                  | Description</p>
-<hr />
-<p>N (10)                                     | Number of stimuli
-  control_stim (1)                           | 0/1 Use a control stimulus? Value will just be 0.
-  reps (5)                                   | Number of full pseudorandom repetitions
-  userandom (1)                              | Display in random order?
-  f (1)                                      | Frequency component for stimfunc
-  DC (1)                                     | DC component for stimfunc
-  AC (1)                                     | Modulated component for stimfunc
-  stimfunc('sin(pi<em>(n-1)/N)</em>...              | n is the stimulus number from 1..N, t is the stimulus time
-      (DC+AC<em>sin(2</em>pi<em>f</em>t))')                |  <br />
-  ctrlfunc('0*t')                            | Function to evaluate for control stimulus
-  randomness(0.3)                            | Additive randomness to all stims (multiplies randn)
-  dt (0.001)                                 | Time step (in seconds)
-  T (2)                                      | Stimulus duration in seconds
-  ISI (2)                                    | Stimulus interstimulus interval
-  PoissonProcess (0)                         | Should the function produce a Poisson process? 
-                                             |   If so, TIMESTAMPS will only contain the values when the 
-                                             |   process is triggered and TIMESERIES will be a vector of 1s.
-  PoissonProcessMultiplier (10)              | The value that stimfunc should be multiplied by before checking whether
-                                             |   each dt of the Poisson process is a 'hit'.</p>
-<p>Example:
-    % continuous signal example
-    figure;
-    [timeseries, timestamps, stimonsetoffsetid] = vlt.neuro.stimulus.generate_test_stimulus_responses('reps',10);
-    plot(timestamps,timeseries,'k-');
-    hold on;
-    vlt.neuro.stimulus.plot_stimulus_timeseries(3, stimonsetoffsetid(:,1), stimonsetoffsetid(:,2), 'stimid', stimonsetoffsetid(:,3));
-    axis([timestamps(1) timestamps(end) -2 3+2]);
-    ylabel('Activity');
-    xlabel('Time (s)');
-    R=vlt.neuro.stimulus.stimulus_response_scalar(timeseries, timestamps, stimonsetoffsetid, 'control_stimid', 11, 'freq_response', 1);
-    S=vlt.neuro.stimulus.stimulus_response_stats(R,'control_normalization','subtract');
-    figure;
-    vlt.plot.myerrorbar(1:10,abs(S.mean),S.stderr,S.stderr);  % F1 response is complex, convert to magnitude
-    xlabel('Stim ID');
-    ylabel('F1 response');</p>
-<div class="codehilite"><pre><span></span><code><span class="c">% spike example</span><span class="w"></span>
-<span class="p">[</span><span class="nb">timeseries</span><span class="p">,</span><span class="w"> </span><span class="n">timestamps</span><span class="p">,</span><span class="w"> </span><span class="n">stimonsetoffsetid</span><span class="p">]</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">vlt</span><span class="p">.</span><span class="n">neuro</span><span class="p">.</span><span class="n">stimulus</span><span class="p">.</span><span class="n">generate_test_stimulus_responses</span><span class="p">(</span><span class="s">&#39;PoissonProcess&#39;</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="s">&#39;reps&#39;</span><span class="p">,</span><span class="mi">10</span><span class="p">);</span><span class="w"></span>
-<span class="n">vlt</span><span class="p">.</span><span class="n">neuro</span><span class="p">.</span><span class="n">spiketrains</span><span class="p">.</span><span class="n">spiketimes_plot</span><span class="p">(</span><span class="n">timestamps</span><span class="p">);</span><span class="w"></span>
-<span class="n">hold</span><span class="w"> </span><span class="s">on</span><span class="p">;</span><span class="w"></span>
-<span class="n">vlt</span><span class="p">.</span><span class="n">neuro</span><span class="p">.</span><span class="n">stimulus</span><span class="p">.</span><span class="n">plot_stimulus_timeseries</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="n">stimonsetoffsetid</span><span class="p">(:,</span><span class="mi">1</span><span class="p">),</span><span class="w"> </span><span class="n">stimonsetoffsetid</span><span class="p">(:,</span><span class="mi">2</span><span class="p">),</span><span class="w"> </span><span class="s">&#39;stimid&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">stimonsetoffsetid</span><span class="p">(:,</span><span class="mi">3</span><span class="p">));</span><span class="w"></span>
-<span class="nb">axis</span><span class="p">([</span><span class="n">timestamps</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="n">timestamps</span><span class="p">(</span><span class="k">end</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="mi">2</span><span class="w"> </span><span class="mi">3</span><span class="o">+</span><span class="mi">2</span><span class="p">]);</span><span class="w"></span>
-<span class="nb">ylabel</span><span class="p">(</span><span class="s">&#39;Activity&#39;</span><span class="p">);</span><span class="w"></span>
-<span class="nb">xlabel</span><span class="p">(</span><span class="s">&#39;Time (s)&#39;</span><span class="p">);</span><span class="w"></span>
-<span class="n">R</span><span class="p">=</span><span class="n">vlt</span><span class="p">.</span><span class="n">neuro</span><span class="p">.</span><span class="n">stimulus</span><span class="p">.</span><span class="n">stimulus_response_scalar</span><span class="p">(</span><span class="nb">timeseries</span><span class="p">,</span><span class="w"> </span><span class="n">timestamps</span><span class="p">,</span><span class="w"> </span><span class="n">stimonsetoffsetid</span><span class="p">,</span><span class="w"> </span><span class="s">&#39;control_stimid&#39;</span><span class="p">,</span><span class="w"> </span><span class="mi">11</span><span class="p">,</span><span class="w"> </span><span class="s">&#39;freq_response&#39;</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="s">&#39;isspike&#39;</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span><span class="w"></span>
-<span class="n">S</span><span class="p">=</span><span class="n">vlt</span><span class="p">.</span><span class="n">neuro</span><span class="p">.</span><span class="n">stimulus</span><span class="p">.</span><span class="n">stimulus_response_stats</span><span class="p">(</span><span class="n">R</span><span class="p">,</span><span class="s">&#39;control_normalization&#39;</span><span class="p">,</span><span class="s">&#39;subtract&#39;</span><span class="p">);</span><span class="w"></span>
-<span class="nb">figure</span><span class="p">;</span><span class="w"></span>
-<span class="n">vlt</span><span class="p">.</span><span class="n">plot</span><span class="p">.</span><span class="n">myerrorbar</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="mi">10</span><span class="p">,</span><span class="nb">abs</span><span class="p">(</span><span class="n">S</span><span class="p">.</span><span class="n">mean</span><span class="p">),</span><span class="n">S</span><span class="p">.</span><span class="n">stderr</span><span class="p">,</span><span class="n">S</span><span class="p">.</span><span class="n">stderr</span><span class="p">);</span><span class="w">  </span><span class="c">% F1 response is complex, convert to magnitude</span><span class="w"></span>
-<span class="nb">xlabel</span><span class="p">(</span><span class="s">&#39;Stim ID&#39;</span><span class="p">);</span><span class="w"></span>
-<span class="nb">ylabel</span><span class="p">(</span><span class="s">&#39;F1 response&#39;</span><span class="p">);</span><span class="w"></span>
+<div class="codehilite"><pre><span></span><code>  <span class="n">GENERATE_TEST_STIMULUS_RESPONSES</span> <span class="o">-</span> <span class="n">generate</span> <span class="n">test</span> <span class="n">stimuli</span> <span class="ow">and</span> <span class="n">responses</span> <span class="n">to</span> <span class="n">test</span> <span class="n">analysis</span> <span class="n">code</span>
+
+  <span class="p">[</span><span class="n">TIMESERIES</span><span class="p">,</span> <span class="n">TIMESTAMPS</span><span class="p">,</span> <span class="n">STIMONSETOFFSETID</span><span class="p">]</span> <span class="o">=</span> <span class="n">GENERATE_TEST_STIMULUS_RESPONSE</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
+
+  <span class="n">Generates</span> <span class="n">a</span> <span class="n">timeseries</span> <span class="p">(</span><span class="n">with</span> <span class="n">timestamps</span><span class="p">)</span> <span class="n">that</span> <span class="n">exhibits</span> <span class="n">responses</span> <span class="n">to</span> <span class="n">a</span> <span class="n">stimulus</span> <span class="p">(</span><span class="n">described</span>
+  <span class="n">using</span> <span class="n">options</span> <span class="n">below</span><span class="p">)</span><span class="o">.</span> 
+
+  <span class="n">This</span> <span class="n">function</span> <span class="n">accepts</span> <span class="n">additional</span> <span class="n">arguments</span> <span class="k">as</span> <span class="n">name</span><span class="o">/</span><span class="n">value</span> <span class="n">pairs</span> <span class="n">that</span> <span class="n">modify</span> <span class="n">the</span> <span class="n">default</span> <span class="n">behavior</span><span class="p">:</span>
+  <span class="n">Parameter</span> <span class="p">(</span><span class="n">default</span> <span class="n">value</span><span class="p">)</span>                  <span class="o">|</span> <span class="n">Description</span>
+  <span class="o">-----------------------------------------------------------------------------------------------</span>
+  <span class="n">N</span> <span class="p">(</span><span class="mi">10</span><span class="p">)</span>                                     <span class="o">|</span> <span class="n">Number</span> <span class="n">of</span> <span class="n">stimuli</span>
+  <span class="n">control_stim</span> <span class="p">(</span><span class="mi">1</span><span class="p">)</span>                           <span class="o">|</span> <span class="mi">0</span><span class="o">/</span><span class="mi">1</span> <span class="n">Use</span> <span class="n">a</span> <span class="n">control</span> <span class="n">stimulus</span><span class="err">?</span> <span class="n">Value</span> <span class="n">will</span> <span class="n">just</span> <span class="n">be</span> <span class="mf">0.</span>
+  <span class="n">reps</span> <span class="p">(</span><span class="mi">5</span><span class="p">)</span>                                   <span class="o">|</span> <span class="n">Number</span> <span class="n">of</span> <span class="n">full</span> <span class="n">pseudorandom</span> <span class="n">repetitions</span>
+  <span class="n">userandom</span> <span class="p">(</span><span class="mi">1</span><span class="p">)</span>                              <span class="o">|</span> <span class="n">Display</span> <span class="ow">in</span> <span class="n">random</span> <span class="n">order</span><span class="err">?</span>
+  <span class="n">f</span> <span class="p">(</span><span class="mi">1</span><span class="p">)</span>                                      <span class="o">|</span> <span class="n">Frequency</span> <span class="n">component</span> <span class="k">for</span> <span class="n">stimfunc</span>
+  <span class="n">DC</span> <span class="p">(</span><span class="mi">1</span><span class="p">)</span>                                     <span class="o">|</span> <span class="n">DC</span> <span class="n">component</span> <span class="k">for</span> <span class="n">stimfunc</span>
+  <span class="n">AC</span> <span class="p">(</span><span class="mi">1</span><span class="p">)</span>                                     <span class="o">|</span> <span class="n">Modulated</span> <span class="n">component</span> <span class="k">for</span> <span class="n">stimfunc</span>
+  <span class="n">stimfunc</span><span class="p">(</span><span class="s1">&#39;sin(pi*(n-1)/N)*...              | n is the stimulus number from 1..N, t is the stimulus time</span>
+      <span class="p">(</span><span class="n">DC</span><span class="o">+</span><span class="n">AC</span><span class="o">*</span><span class="nb">sin</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">pi</span><span class="o">*</span><span class="n">f</span><span class="o">*</span><span class="n">t</span><span class="p">))</span><span class="s1">&#39;)                |    </span>
+  <span class="n">ctrlfunc</span><span class="p">(</span><span class="s1">&#39;0*t&#39;</span><span class="p">)</span>                            <span class="o">|</span> <span class="n">Function</span> <span class="n">to</span> <span class="n">evaluate</span> <span class="k">for</span> <span class="n">control</span> <span class="n">stimulus</span>
+  <span class="n">randomness</span><span class="p">(</span><span class="mf">0.3</span><span class="p">)</span>                            <span class="o">|</span> <span class="n">Additive</span> <span class="n">randomness</span> <span class="n">to</span> <span class="n">all</span> <span class="n">stims</span> <span class="p">(</span><span class="n">multiplies</span> <span class="n">randn</span><span class="p">)</span>
+  <span class="n">dt</span> <span class="p">(</span><span class="mf">0.001</span><span class="p">)</span>                                 <span class="o">|</span> <span class="n">Time</span> <span class="n">step</span> <span class="p">(</span><span class="ow">in</span> <span class="n">seconds</span><span class="p">)</span>
+  <span class="n">T</span> <span class="p">(</span><span class="mi">2</span><span class="p">)</span>                                      <span class="o">|</span> <span class="n">Stimulus</span> <span class="n">duration</span> <span class="ow">in</span> <span class="n">seconds</span>
+  <span class="n">ISI</span> <span class="p">(</span><span class="mi">2</span><span class="p">)</span>                                    <span class="o">|</span> <span class="n">Stimulus</span> <span class="n">interstimulus</span> <span class="n">interval</span>
+  <span class="n">PoissonProcess</span> <span class="p">(</span><span class="mi">0</span><span class="p">)</span>                         <span class="o">|</span> <span class="n">Should</span> <span class="n">the</span> <span class="n">function</span> <span class="n">produce</span> <span class="n">a</span> <span class="n">Poisson</span> <span class="n">process</span><span class="err">?</span> 
+                                             <span class="o">|</span>   <span class="n">If</span> <span class="n">so</span><span class="p">,</span> <span class="n">TIMESTAMPS</span> <span class="n">will</span> <span class="n">only</span> <span class="n">contain</span> <span class="n">the</span> <span class="n">values</span> <span class="n">when</span> <span class="n">the</span> 
+                                             <span class="o">|</span>   <span class="n">process</span> <span class="k">is</span> <span class="n">triggered</span> <span class="ow">and</span> <span class="n">TIMESERIES</span> <span class="n">will</span> <span class="n">be</span> <span class="n">a</span> <span class="n">vector</span> <span class="n">of</span> <span class="mi">1</span><span class="n">s</span><span class="o">.</span>
+  <span class="n">PoissonProcessMultiplier</span> <span class="p">(</span><span class="mi">10</span><span class="p">)</span>              <span class="o">|</span> <span class="n">The</span> <span class="n">value</span> <span class="n">that</span> <span class="n">stimfunc</span> <span class="n">should</span> <span class="n">be</span> <span class="n">multiplied</span> <span class="n">by</span> <span class="n">before</span> <span class="n">checking</span> <span class="n">whether</span>
+                                             <span class="o">|</span>   <span class="n">each</span> <span class="n">dt</span> <span class="n">of</span> <span class="n">the</span> <span class="n">Poisson</span> <span class="n">process</span> <span class="k">is</span> <span class="n">a</span> <span class="s1">&#39;hit&#39;</span><span class="o">.</span>
+
+
+  <span class="n">Example</span><span class="p">:</span>
+    <span class="o">%</span> <span class="n">continuous</span> <span class="k">signal</span> <span class="n">example</span>
+    <span class="n">figure</span><span class="p">;</span>
+    <span class="p">[</span><span class="n">timeseries</span><span class="p">,</span> <span class="n">timestamps</span><span class="p">,</span> <span class="n">stimonsetoffsetid</span><span class="p">]</span> <span class="o">=</span> <span class="n">vlt</span><span class="o">.</span><span class="n">neuro</span><span class="o">.</span><span class="n">stimulus</span><span class="o">.</span><span class="n">generate_test_stimulus_responses</span><span class="p">(</span><span class="s1">&#39;reps&#39;</span><span class="p">,</span><span class="mi">10</span><span class="p">);</span>
+    <span class="n">plot</span><span class="p">(</span><span class="n">timestamps</span><span class="p">,</span><span class="n">timeseries</span><span class="p">,</span><span class="s1">&#39;k-&#39;</span><span class="p">);</span>
+    <span class="n">hold</span> <span class="n">on</span><span class="p">;</span>
+    <span class="n">vlt</span><span class="o">.</span><span class="n">neuro</span><span class="o">.</span><span class="n">stimulus</span><span class="o">.</span><span class="n">plot_stimulus_timeseries</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="n">stimonsetoffsetid</span><span class="p">(:,</span><span class="mi">1</span><span class="p">),</span> <span class="n">stimonsetoffsetid</span><span class="p">(:,</span><span class="mi">2</span><span class="p">),</span> <span class="s1">&#39;stimid&#39;</span><span class="p">,</span> <span class="n">stimonsetoffsetid</span><span class="p">(:,</span><span class="mi">3</span><span class="p">));</span>
+    <span class="n">axis</span><span class="p">([</span><span class="n">timestamps</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="n">timestamps</span><span class="p">(</span><span class="n">end</span><span class="p">)</span> <span class="o">-</span><span class="mi">2</span> <span class="mi">3</span><span class="o">+</span><span class="mi">2</span><span class="p">]);</span>
+    <span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Activity&#39;</span><span class="p">);</span>
+    <span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Time (s)&#39;</span><span class="p">);</span>
+    <span class="n">R</span><span class="o">=</span><span class="n">vlt</span><span class="o">.</span><span class="n">neuro</span><span class="o">.</span><span class="n">stimulus</span><span class="o">.</span><span class="n">stimulus_response_scalar</span><span class="p">(</span><span class="n">timeseries</span><span class="p">,</span> <span class="n">timestamps</span><span class="p">,</span> <span class="n">stimonsetoffsetid</span><span class="p">,</span> <span class="s1">&#39;control_stimid&#39;</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="s1">&#39;freq_response&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+    <span class="n">S</span><span class="o">=</span><span class="n">vlt</span><span class="o">.</span><span class="n">neuro</span><span class="o">.</span><span class="n">stimulus</span><span class="o">.</span><span class="n">stimulus_response_stats</span><span class="p">(</span><span class="n">R</span><span class="p">,</span><span class="s1">&#39;control_normalization&#39;</span><span class="p">,</span><span class="s1">&#39;subtract&#39;</span><span class="p">);</span>
+    <span class="n">figure</span><span class="p">;</span>
+    <span class="n">vlt</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">myerrorbar</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="mi">10</span><span class="p">,</span><span class="nb">abs</span><span class="p">(</span><span class="n">S</span><span class="o">.</span><span class="n">mean</span><span class="p">),</span><span class="n">S</span><span class="o">.</span><span class="n">stderr</span><span class="p">,</span><span class="n">S</span><span class="o">.</span><span class="n">stderr</span><span class="p">);</span>  <span class="o">%</span> <span class="n">F1</span> <span class="n">response</span> <span class="k">is</span> <span class="n">complex</span><span class="p">,</span> <span class="nb">convert</span> <span class="n">to</span> <span class="n">magnitude</span>
+    <span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Stim ID&#39;</span><span class="p">);</span>
+    <span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;F1 response&#39;</span><span class="p">);</span>
+
+    <span class="o">%</span> <span class="n">spike</span> <span class="n">example</span>
+    <span class="p">[</span><span class="n">timeseries</span><span class="p">,</span> <span class="n">timestamps</span><span class="p">,</span> <span class="n">stimonsetoffsetid</span><span class="p">]</span> <span class="o">=</span> <span class="n">vlt</span><span class="o">.</span><span class="n">neuro</span><span class="o">.</span><span class="n">stimulus</span><span class="o">.</span><span class="n">generate_test_stimulus_responses</span><span class="p">(</span><span class="s1">&#39;PoissonProcess&#39;</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="s1">&#39;reps&#39;</span><span class="p">,</span><span class="mi">10</span><span class="p">);</span>
+    <span class="n">vlt</span><span class="o">.</span><span class="n">neuro</span><span class="o">.</span><span class="n">spiketrains</span><span class="o">.</span><span class="n">spiketimes_plot</span><span class="p">(</span><span class="n">timestamps</span><span class="p">);</span>
+    <span class="n">hold</span> <span class="n">on</span><span class="p">;</span>
+    <span class="n">vlt</span><span class="o">.</span><span class="n">neuro</span><span class="o">.</span><span class="n">stimulus</span><span class="o">.</span><span class="n">plot_stimulus_timeseries</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="n">stimonsetoffsetid</span><span class="p">(:,</span><span class="mi">1</span><span class="p">),</span> <span class="n">stimonsetoffsetid</span><span class="p">(:,</span><span class="mi">2</span><span class="p">),</span> <span class="s1">&#39;stimid&#39;</span><span class="p">,</span> <span class="n">stimonsetoffsetid</span><span class="p">(:,</span><span class="mi">3</span><span class="p">));</span>
+    <span class="n">axis</span><span class="p">([</span><span class="n">timestamps</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="n">timestamps</span><span class="p">(</span><span class="n">end</span><span class="p">)</span> <span class="o">-</span><span class="mi">2</span> <span class="mi">3</span><span class="o">+</span><span class="mi">2</span><span class="p">]);</span>
+    <span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Activity&#39;</span><span class="p">);</span>
+    <span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Time (s)&#39;</span><span class="p">);</span>
+    <span class="n">R</span><span class="o">=</span><span class="n">vlt</span><span class="o">.</span><span class="n">neuro</span><span class="o">.</span><span class="n">stimulus</span><span class="o">.</span><span class="n">stimulus_response_scalar</span><span class="p">(</span><span class="n">timeseries</span><span class="p">,</span> <span class="n">timestamps</span><span class="p">,</span> <span class="n">stimonsetoffsetid</span><span class="p">,</span> <span class="s1">&#39;control_stimid&#39;</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="s1">&#39;freq_response&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span><span class="s1">&#39;isspike&#39;</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
+    <span class="n">S</span><span class="o">=</span><span class="n">vlt</span><span class="o">.</span><span class="n">neuro</span><span class="o">.</span><span class="n">stimulus</span><span class="o">.</span><span class="n">stimulus_response_stats</span><span class="p">(</span><span class="n">R</span><span class="p">,</span><span class="s1">&#39;control_normalization&#39;</span><span class="p">,</span><span class="s1">&#39;subtract&#39;</span><span class="p">);</span>
+    <span class="n">figure</span><span class="p">;</span>
+    <span class="n">vlt</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">myerrorbar</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="mi">10</span><span class="p">,</span><span class="nb">abs</span><span class="p">(</span><span class="n">S</span><span class="o">.</span><span class="n">mean</span><span class="p">),</span><span class="n">S</span><span class="o">.</span><span class="n">stderr</span><span class="p">,</span><span class="n">S</span><span class="o">.</span><span class="n">stderr</span><span class="p">);</span>  <span class="o">%</span> <span class="n">F1</span> <span class="n">response</span> <span class="k">is</span> <span class="n">complex</span><span class="p">,</span> <span class="nb">convert</span> <span class="n">to</span> <span class="n">magnitude</span>
+    <span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Stim ID&#39;</span><span class="p">);</span>
+    <span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;F1 response&#39;</span><span class="p">);</span>
 </code></pre></div>
                 
               

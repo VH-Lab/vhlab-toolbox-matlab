@@ -3213,6 +3213,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../%2Bgit/git_stash.m/" class="md-nav__link">
+        vlt.git.git_stash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../%2Bgit/git_status.m/" class="md-nav__link">
         vlt.git.git_status
       </a>
@@ -9237,20 +9249,26 @@
                 
                 
                 <h1 id="vltimagepadimage">vlt.image.padimage<a class="headerlink" href="#vltimagepadimage" title="Permanent link">&para;</a></h1>
-<p>PADIMAGE - Add a border to an image</p>
-<p>IM_OUT = PADIMAGE(IM_IN, N, PAD)</p>
-<p>Adds a border to an image IM_IN. The border
-   pixels have value PAD.</p>
-<p>IM_IN can be either a 2-D set of points or can be
-   a 3-D set of points, in which case it is assumed that
-   IM_IN is an RGB or CMYK image. PAD should have dimension 1 in the
-   case of a 2D image, or 3 or 4 dimensions in case of a 3-dimensional image.</p>
-<p>N can be a single integer if the number of pixels to add to all borders is
-   the same in X and Y. Or, N can be a vector [Nx1 Nx2 Ny1 Ny2] that indicates
-   that Nx1 points of value PAD should be added before the first dimension
-   of IM_IN, and that Nx2 points of value PAD should be added after the first
-   dimension, etc.</p>
-<p>The result is returned in IM_OUT.</p>
+<div class="codehilite"><pre><span></span><code>  <span class="nv">PADIMAGE</span> <span class="o">-</span> <span class="nv">Add</span> <span class="nv">a</span> <span class="nv">border</span> <span class="nv">to</span> <span class="nv">an</span> <span class="nv">image</span>
+
+   <span class="nv">IM_OUT</span> <span class="o">=</span> <span class="nv">PADIMAGE</span><span class="ss">(</span><span class="nv">IM_IN</span>, <span class="nv">N</span>, <span class="nv">PAD</span><span class="ss">)</span>
+
+   <span class="nv">Adds</span> <span class="nv">a</span> <span class="nv">border</span> <span class="nv">to</span> <span class="nv">an</span> <span class="nv">image</span> <span class="nv">IM_IN</span>. <span class="nv">The</span> <span class="nv">border</span>
+   <span class="nv">pixels</span> <span class="nv">have</span> <span class="nv">value</span> <span class="nv">PAD</span>.
+
+   <span class="nv">IM_IN</span> <span class="nv">can</span> <span class="nv">be</span> <span class="nv">either</span> <span class="nv">a</span> <span class="mi">2</span><span class="o">-</span><span class="nv">D</span> <span class="nv">set</span> <span class="nv">of</span> <span class="nv">points</span> <span class="nv">or</span> <span class="nv">can</span> <span class="nv">be</span>
+   <span class="nv">a</span> <span class="mi">3</span><span class="o">-</span><span class="nv">D</span> <span class="nv">set</span> <span class="nv">of</span> <span class="nv">points</span>, <span class="nv">in</span> <span class="nv">which</span> <span class="nv">case</span> <span class="nv">it</span> <span class="nv">is</span> <span class="nv">assumed</span> <span class="nv">that</span>
+   <span class="nv">IM_IN</span> <span class="nv">is</span> <span class="nv">an</span> <span class="nv">RGB</span> <span class="nv">or</span> <span class="nv">CMYK</span> <span class="nv">image</span>. <span class="nv">PAD</span> <span class="nv">should</span> <span class="nv">have</span> <span class="nv">dimension</span> <span class="mi">1</span> <span class="nv">in</span> <span class="nv">the</span>
+   <span class="nv">case</span> <span class="nv">of</span> <span class="nv">a</span> <span class="mi">2</span><span class="nv">D</span> <span class="nv">image</span>, <span class="nv">or</span> <span class="mi">3</span> <span class="nv">or</span> <span class="mi">4</span> <span class="nv">dimensions</span> <span class="nv">in</span> <span class="nv">case</span> <span class="nv">of</span> <span class="nv">a</span> <span class="mi">3</span><span class="o">-</span><span class="nv">dimensional</span> <span class="nv">image</span>.
+
+   <span class="nv">N</span> <span class="nv">can</span> <span class="nv">be</span> <span class="nv">a</span> <span class="nv">single</span> <span class="nv">integer</span> <span class="k">if</span> <span class="nv">the</span> <span class="nv">number</span> <span class="nv">of</span> <span class="nv">pixels</span> <span class="nv">to</span> <span class="nv">add</span> <span class="nv">to</span> <span class="nv">all</span> <span class="nv">borders</span> <span class="nv">is</span>
+   <span class="nv">the</span> <span class="nv">same</span> <span class="nv">in</span> <span class="nv">X</span> <span class="nv">and</span> <span class="nv">Y</span>. <span class="nv">Or</span>, <span class="nv">N</span> <span class="nv">can</span> <span class="nv">be</span> <span class="nv">a</span> <span class="nv">vector</span> [<span class="nv">Nx1</span> <span class="nv">Nx2</span> <span class="nv">Ny1</span> <span class="nv">Ny2</span>] <span class="nv">that</span> <span class="nv">indicates</span>
+   <span class="nv">that</span> <span class="nv">Nx1</span> <span class="nv">points</span> <span class="nv">of</span> <span class="nv">value</span> <span class="nv">PAD</span> <span class="nv">should</span> <span class="nv">be</span> <span class="nv">added</span> <span class="nv">before</span> <span class="nv">the</span> <span class="nv">first</span> <span class="nv">dimension</span>
+   <span class="nv">of</span> <span class="nv">IM_IN</span>, <span class="nv">and</span> <span class="nv">that</span> <span class="nv">Nx2</span> <span class="nv">points</span> <span class="nv">of</span> <span class="nv">value</span> <span class="nv">PAD</span> <span class="nv">should</span> <span class="nv">be</span> <span class="nv">added</span> <span class="nv">after</span> <span class="nv">the</span> <span class="nv">first</span>
+   <span class="nv">dimension</span>, <span class="nv">etc</span>.
+
+   <span class="nv">The</span> <span class="nb">result</span> <span class="nv">is</span> <span class="nv">returned</span> <span class="nv">in</span> <span class="nv">IM_OUT</span>.
+</code></pre></div>
                 
               
               

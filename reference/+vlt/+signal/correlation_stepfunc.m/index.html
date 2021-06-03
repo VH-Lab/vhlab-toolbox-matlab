@@ -3213,6 +3213,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../%2Bgit/git_stash.m/" class="md-nav__link">
+        vlt.git.git_stash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../%2Bgit/git_status.m/" class="md-nav__link">
         vlt.git.git_status
       </a>
@@ -9237,27 +9249,33 @@
                 
                 
                 <h1 id="vltsignalcorrelation_stepfunc">vlt.signal.correlation_stepfunc<a class="headerlink" href="#vltsignalcorrelation_stepfunc" title="Permanent link">&para;</a></h1>
-<p>vlt.signal.correlation_stepfunc - Perform correlation between a time series and a step function</p>
-<p>CORR = CORRELATION(T1, SIGNAL1, CORR_TIMES, T2, SIGNAL2)</p>
-<p>Computes the discrete approximation to the correlation
-    between a signal (SIGNAL1), which is sampled at times T1,
-    and up to N step-function signals in the columns SIGNAL2,
-    which change values at times T2.  SIGNAL2 does not have to
-    have the same sample interval (sample rate) as SIGNAL1.
-    Note that values of SIGNAL2 that are out of the range
-    are set to 0.</p>
-<p>WARNING: At present, this function produces tiny differences between
-   XCORR of the step function and SIGNAL1. I am at a loss to explain it...</p>
-<p>The correlation function is:</p>
-<div class="codehilite"><pre><span></span><code>   <span class="nv">Integral</span><span class="ss">(</span>{<span class="nv">t</span> <span class="nv">from</span> <span class="nv">T1</span><span class="ss">(</span><span class="mi">1</span><span class="ss">)</span> <span class="nv">to</span> <span class="nv">T1</span><span class="ss">(</span><span class="k">end</span><span class="ss">)</span>}, <span class="nv">dt</span> <span class="o">*</span> <span class="nv">SIGNAL1</span><span class="o">*</span><span class="nv">SIGNAL2</span><span class="ss">)</span>
-<span class="ss">(</span><span class="nv">Dayan</span> <span class="nv">and</span> <span class="nv">Abbott</span> <span class="mi">2005</span>, <span class="nv">equation</span> <span class="nv">in</span> <span class="nv">chapter</span> <span class="mi">1</span><span class="ss">)</span>
-</code></pre></div>
+<div class="codehilite"><pre><span></span><code>  <span class="n">vlt</span><span class="o">.</span><span class="k">signal</span><span class="o">.</span><span class="n">correlation_stepfunc</span> <span class="o">-</span> <span class="n">Perform</span> <span class="n">correlation</span> <span class="n">between</span> <span class="n">a</span> <span class="n">time</span> <span class="n">series</span> <span class="ow">and</span> <span class="n">a</span> <span class="n">step</span> <span class="n">function</span>
 
-<p>and the discrete version is:
-       Let dt = T1(2)-T1(1)  (use signal 1's sample interval)
-       CORR(tau) = sum over all times t in T1: dt<em>SIGNAL1(t)</em>SIGNAL2(t-tau)
-       where TAU assumes all values listed in the vector CORR_TIMES.</p>
-<p>See also: XCORR, vlt.math.stepfunc, vlt.signal.xcorr_stepfunc</p>
+  <span class="n">CORR</span> <span class="o">=</span> <span class="n">CORRELATION</span><span class="p">(</span><span class="n">T1</span><span class="p">,</span> <span class="n">SIGNAL1</span><span class="p">,</span> <span class="n">CORR_TIMES</span><span class="p">,</span> <span class="n">T2</span><span class="p">,</span> <span class="n">SIGNAL2</span><span class="p">)</span>
+
+   <span class="n">Computes</span> <span class="n">the</span> <span class="n">discrete</span> <span class="n">approximation</span> <span class="n">to</span> <span class="n">the</span> <span class="n">correlation</span>
+    <span class="n">between</span> <span class="n">a</span> <span class="k">signal</span> <span class="p">(</span><span class="n">SIGNAL1</span><span class="p">),</span> <span class="n">which</span> <span class="k">is</span> <span class="n">sampled</span> <span class="n">at</span> <span class="n">times</span> <span class="n">T1</span><span class="p">,</span>
+    <span class="ow">and</span> <span class="n">up</span> <span class="n">to</span> <span class="n">N</span> <span class="n">step</span><span class="o">-</span><span class="n">function</span> <span class="n">signals</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">columns</span> <span class="n">SIGNAL2</span><span class="p">,</span>
+    <span class="n">which</span> <span class="n">change</span> <span class="n">values</span> <span class="n">at</span> <span class="n">times</span> <span class="n">T2</span><span class="o">.</span>  <span class="n">SIGNAL2</span> <span class="n">does</span> <span class="ow">not</span> <span class="n">have</span> <span class="n">to</span>
+    <span class="n">have</span> <span class="n">the</span> <span class="n">same</span> <span class="n">sample</span> <span class="n">interval</span> <span class="p">(</span><span class="n">sample</span> <span class="n">rate</span><span class="p">)</span> <span class="k">as</span> <span class="n">SIGNAL1</span><span class="o">.</span>
+    <span class="n">Note</span> <span class="n">that</span> <span class="n">values</span> <span class="n">of</span> <span class="n">SIGNAL2</span> <span class="n">that</span> <span class="n">are</span> <span class="n">out</span> <span class="n">of</span> <span class="n">the</span> <span class="nb">range</span>
+    <span class="n">are</span> <span class="n">set</span> <span class="n">to</span> <span class="mf">0.</span>
+
+   <span class="n">WARNING</span><span class="p">:</span> <span class="n">At</span> <span class="n">present</span><span class="p">,</span> <span class="n">this</span> <span class="n">function</span> <span class="n">produces</span> <span class="n">tiny</span> <span class="n">differences</span> <span class="n">between</span>
+   <span class="n">XCORR</span> <span class="n">of</span> <span class="n">the</span> <span class="n">step</span> <span class="n">function</span> <span class="ow">and</span> <span class="n">SIGNAL1</span><span class="o">.</span> <span class="n">I</span> <span class="n">am</span> <span class="n">at</span> <span class="n">a</span> <span class="n">loss</span> <span class="n">to</span> <span class="n">explain</span> <span class="n">it</span><span class="o">...</span>
+
+   <span class="n">The</span> <span class="n">correlation</span> <span class="n">function</span> <span class="k">is</span><span class="p">:</span>
+
+       <span class="n">Integral</span><span class="p">({</span><span class="n">t</span> <span class="n">from</span> <span class="n">T1</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="n">to</span> <span class="n">T1</span><span class="p">(</span><span class="n">end</span><span class="p">)},</span> <span class="n">dt</span> <span class="o">*</span> <span class="n">SIGNAL1</span><span class="o">*</span><span class="n">SIGNAL2</span><span class="p">)</span>
+    <span class="p">(</span><span class="n">Dayan</span> <span class="ow">and</span> <span class="n">Abbott</span> <span class="mi">2005</span><span class="p">,</span> <span class="n">equation</span> <span class="ow">in</span> <span class="n">chapter</span> <span class="mi">1</span><span class="p">)</span>
+
+   <span class="ow">and</span> <span class="n">the</span> <span class="n">discrete</span> <span class="n">version</span> <span class="k">is</span><span class="p">:</span>
+       <span class="n">Let</span> <span class="n">dt</span> <span class="o">=</span> <span class="n">T1</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="o">-</span><span class="n">T1</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>  <span class="p">(</span><span class="n">use</span> <span class="k">signal</span> <span class="mi">1</span><span class="s1">&#39;s sample interval)</span>
+       <span class="n">CORR</span><span class="p">(</span><span class="n">tau</span><span class="p">)</span> <span class="o">=</span> <span class="n">sum</span> <span class="n">over</span> <span class="n">all</span> <span class="n">times</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">T1</span><span class="p">:</span> <span class="n">dt</span><span class="o">*</span><span class="n">SIGNAL1</span><span class="p">(</span><span class="n">t</span><span class="p">)</span><span class="o">*</span><span class="n">SIGNAL2</span><span class="p">(</span><span class="n">t</span><span class="o">-</span><span class="n">tau</span><span class="p">)</span>
+       <span class="n">where</span> <span class="bp">TAU</span> <span class="n">assumes</span> <span class="n">all</span> <span class="n">values</span> <span class="n">listed</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">vector</span> <span class="n">CORR_TIMES</span><span class="o">.</span>
+
+   <span class="n">See</span> <span class="n">also</span><span class="p">:</span> <span class="n">XCORR</span><span class="p">,</span> <span class="n">vlt</span><span class="o">.</span><span class="n">math</span><span class="o">.</span><span class="n">stepfunc</span><span class="p">,</span> <span class="n">vlt</span><span class="o">.</span><span class="k">signal</span><span class="o">.</span><span class="n">xcorr_stepfunc</span>
+</code></pre></div>
                 
               
               

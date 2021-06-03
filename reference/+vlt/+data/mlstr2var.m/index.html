@@ -3225,6 +3225,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../%2Bgit/git_stash.m/" class="md-nav__link">
+        vlt.git.git_stash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../%2Bgit/git_status.m/" class="md-nav__link">
         vlt.git.git_status
       </a>
@@ -9237,22 +9249,30 @@
                 
                 
                 <h1 id="vltdatamlstr2var">vlt.data.mlstr2var<a class="headerlink" href="#vltdatamlstr2var" title="Permanent link">&para;</a></h1>
-<p>MLSTR2VAR - creates a Matlab variable from markup language strings (STRUCT2MLSTR, CELL2MLSTR)</p>
-<p>V = vlt.data.mlstr2var(MLSTRING)</p>
-<p>Given a markup language string representation of Matlab structures or cells, this 
-  function produces a Matlab variable v.</p>
-<p>Matlab STRUCT types are specified in the markup language in the following way:
-  &lt;STRUCT size=[X Y Z ...] fields={ 'fieldname1','fieldname2',...} data=
-       &lt;<value1><value2>...<valuen>&gt;
-       &lt;<value1><value2>...<valuen>&gt;
-  /STRUCT&gt;</p>
-<p>and Matlab CELL types are specified in the markup language in the following way:
-  <CELL size=[X Y Z ...] data=
-       \<value1>
-       \<value2>
-  /CELL></p>
-<p>Consider also: JSONENCODE, JSONDECODE</p>
-<p>See also: vlt.data.cell2mlstr, vlt.data.struct2mlstr, JSONDECODE</p>
+<div class="codehilite"><pre><span></span><code>  <span class="n">MLSTR2VAR</span> <span class="o">-</span> <span class="n">creates</span> <span class="n">a</span> <span class="n">Matlab</span> <span class="n">variable</span> <span class="n">from</span> <span class="n">markup</span> <span class="n">language</span> <span class="n">strings</span> <span class="p">(</span><span class="n">STRUCT2MLSTR</span><span class="p">,</span> <span class="n">CELL2MLSTR</span><span class="p">)</span>
+
+  <span class="n">V</span> <span class="o">=</span> <span class="n">vlt</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">mlstr2var</span><span class="p">(</span><span class="n">MLSTRING</span><span class="p">)</span>
+
+  <span class="n">Given</span> <span class="n">a</span> <span class="n">markup</span> <span class="n">language</span> <span class="n">string</span> <span class="n">representation</span> <span class="n">of</span> <span class="n">Matlab</span> <span class="n">structures</span> <span class="ow">or</span> <span class="n">cells</span><span class="p">,</span> <span class="n">this</span> 
+  <span class="n">function</span> <span class="n">produces</span> <span class="n">a</span> <span class="n">Matlab</span> <span class="n">variable</span> <span class="n">v</span><span class="o">.</span>
+
+  <span class="n">Matlab</span> <span class="n">STRUCT</span> <span class="n">types</span> <span class="n">are</span> <span class="n">specified</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">markup</span> <span class="n">language</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">following</span> <span class="n">way</span><span class="p">:</span>
+  <span class="o">&lt;</span><span class="n">STRUCT</span> <span class="n">size</span><span class="o">=</span><span class="p">[</span><span class="n">X</span> <span class="n">Y</span> <span class="n">Z</span> <span class="o">...</span><span class="p">]</span> <span class="n">fields</span><span class="o">=</span><span class="p">{</span> <span class="s1">&#39;fieldname1&#39;</span><span class="p">,</span><span class="s1">&#39;fieldname2&#39;</span><span class="p">,</span><span class="o">...</span><span class="p">}</span> <span class="n">data</span><span class="o">=</span>
+       <span class="o">&lt;&lt;</span><span class="n">value1</span><span class="o">&gt;&lt;</span><span class="n">value2</span><span class="o">&gt;...&lt;</span><span class="n">valuen</span><span class="o">&gt;&gt;</span>
+       <span class="o">&lt;&lt;</span><span class="n">value1</span><span class="o">&gt;&lt;</span><span class="n">value2</span><span class="o">&gt;...&lt;</span><span class="n">valuen</span><span class="o">&gt;&gt;</span>
+  <span class="o">/</span><span class="n">STRUCT</span><span class="o">&gt;</span>
+
+  <span class="ow">and</span> <span class="n">Matlab</span> <span class="n">CELL</span> <span class="n">types</span> <span class="n">are</span> <span class="n">specified</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">markup</span> <span class="n">language</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">following</span> <span class="n">way</span><span class="p">:</span>
+  <span class="o">&lt;</span><span class="n">CELL</span> <span class="n">size</span><span class="o">=</span><span class="p">[</span><span class="n">X</span> <span class="n">Y</span> <span class="n">Z</span> <span class="o">...</span><span class="p">]</span> <span class="n">data</span><span class="o">=</span>
+       <span class="o">&lt;</span><span class="n">value1</span><span class="o">&gt;</span>
+       <span class="o">&lt;</span><span class="n">value2</span><span class="o">&gt;</span>
+  <span class="o">/</span><span class="n">CELL</span><span class="o">&gt;</span>
+
+
+  <span class="n">Consider</span> <span class="n">also</span><span class="p">:</span> <span class="n">JSONENCODE</span><span class="p">,</span> <span class="n">JSONDECODE</span>
+
+  <span class="n">See</span> <span class="n">also</span><span class="p">:</span> <span class="n">vlt</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">cell2mlstr</span><span class="p">,</span> <span class="n">vlt</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">struct2mlstr</span><span class="p">,</span> <span class="n">JSONDECODE</span>
+</code></pre></div>
                 
               
               

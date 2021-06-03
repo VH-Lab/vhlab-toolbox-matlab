@@ -3225,6 +3225,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../%2Bgit/git_stash.m/" class="md-nav__link">
+        vlt.git.git_stash
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../%2Bgit/git_status.m/" class="md-nav__link">
         vlt.git.git_status
       </a>
@@ -9237,20 +9249,26 @@
                 
                 
                 <h1 id="vltdatastruct2tabstr">vlt.data.struct2tabstr<a class="headerlink" href="#vltdatastruct2tabstr" title="Permanent link">&para;</a></h1>
-<p>STRUCT2TABSTR - convert a struct to a tab-delimited string</p>
-<p>S = vlt.data.struct2tabstr(A)</p>
-<p>Given a Matlab STRUCT variable A, this function creates a tab-delimited 
-  string with the values of the structure.</p>
-<p>Values are read from the FIELDNAMES of the structure in turn. If they are
-  of type 'char', then they are added to the string S directly. Otherwise,
-  they are converted using MAT2STR.</p>
-<p>See also: vlt.file.loadStructArray, vlt.file.saveStructArray, vlt.data.tabstr2struct</p>
-<p>Example:
-     a.fielda = 5;
-     a.fieldb = 'my string data';
-     s = vlt.data.struct2tabstr(a)
-     % convert back
-     a2 = vlt.data.tabstr2struct(s, {'fielda','fieldb'} )</p>
+<div class="codehilite"><pre><span></span><code>  <span class="n">STRUCT2TABSTR</span> <span class="o">-</span> <span class="nb">convert</span> <span class="n">a</span> <span class="n">struct</span> <span class="n">to</span> <span class="n">a</span> <span class="n">tab</span><span class="o">-</span><span class="n">delimited</span> <span class="n">string</span>
+
+  <span class="n">S</span> <span class="o">=</span> <span class="n">vlt</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">struct2tabstr</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+
+  <span class="n">Given</span> <span class="n">a</span> <span class="n">Matlab</span> <span class="n">STRUCT</span> <span class="n">variable</span> <span class="n">A</span><span class="p">,</span> <span class="n">this</span> <span class="n">function</span> <span class="n">creates</span> <span class="n">a</span> <span class="n">tab</span><span class="o">-</span><span class="n">delimited</span> 
+  <span class="n">string</span> <span class="n">with</span> <span class="n">the</span> <span class="n">values</span> <span class="n">of</span> <span class="n">the</span> <span class="n">structure</span><span class="o">.</span>
+
+  <span class="n">Values</span> <span class="n">are</span> <span class="n">read</span> <span class="n">from</span> <span class="n">the</span> <span class="n">FIELDNAMES</span> <span class="n">of</span> <span class="n">the</span> <span class="n">structure</span> <span class="ow">in</span> <span class="n">turn</span><span class="o">.</span> <span class="n">If</span> <span class="n">they</span> <span class="n">are</span>
+  <span class="n">of</span> <span class="n">type</span> <span class="s1">&#39;char&#39;</span><span class="p">,</span> <span class="n">then</span> <span class="n">they</span> <span class="n">are</span> <span class="n">added</span> <span class="n">to</span> <span class="n">the</span> <span class="n">string</span> <span class="n">S</span> <span class="n">directly</span><span class="o">.</span> <span class="n">Otherwise</span><span class="p">,</span>
+  <span class="n">they</span> <span class="n">are</span> <span class="n">converted</span> <span class="n">using</span> <span class="n">MAT2STR</span><span class="o">.</span>
+
+  <span class="n">See</span> <span class="n">also</span><span class="p">:</span> <span class="n">vlt</span><span class="o">.</span><span class="n">file</span><span class="o">.</span><span class="n">loadStructArray</span><span class="p">,</span> <span class="n">vlt</span><span class="o">.</span><span class="n">file</span><span class="o">.</span><span class="n">saveStructArray</span><span class="p">,</span> <span class="n">vlt</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">tabstr2struct</span>
+
+  <span class="n">Example</span><span class="p">:</span>
+     <span class="n">a</span><span class="o">.</span><span class="n">fielda</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>
+     <span class="n">a</span><span class="o">.</span><span class="n">fieldb</span> <span class="o">=</span> <span class="s1">&#39;my string data&#39;</span><span class="p">;</span>
+     <span class="n">s</span> <span class="o">=</span> <span class="n">vlt</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">struct2tabstr</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+     <span class="o">%</span> <span class="nb">convert</span> <span class="n">back</span>
+     <span class="n">a2</span> <span class="o">=</span> <span class="n">vlt</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">tabstr2struct</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;fielda&#39;</span><span class="p">,</span><span class="s1">&#39;fieldb&#39;</span><span class="p">}</span> <span class="p">)</span>
+</code></pre></div>
                 
               
               
