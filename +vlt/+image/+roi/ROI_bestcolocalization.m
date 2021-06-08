@@ -12,8 +12,8 @@ function [bc,best_distance] = ROI_bestcolocalization(overlaps_ba, overlap_thresh
 % (smallest difference).
 %
 
-bc = nan(size(overlaps_ba,1),1);
-best_distance = inf * ones(size(overlaps_ba,1),1);
+bc = nan(size(overlaps_ba,2),1);
+best_distance = inf * ones(size(overlaps_ba,2),1);
 
 if nargin<3,
 	property_mode = 0;
@@ -23,18 +23,18 @@ else,
 	property_mode = 1;
 end;
 
-[rois_with_overlaps,possible_matches] = find(overlaps_ba>=overlap_threshold);
+[possible_matches_in_A, rois_B_with_overlaps] = find(overlaps_ba>=overlap_threshold);
 
-for i=1:numel(rois_with_overlaps),
+for i=1:numel(rois_B_with_overlaps),
 	if ~property_mode,
-		dist = -overlaps_ba(rois_with_overlaps(i),possible_matches(i));
+		dist = -overlaps_ba(possible_matches_in_A(i),rois_B_with_overlaps(i));
 	else,
-		dist = abs (property_b(possible_matches(i)) - property_a(rois_with_overlaps(i))) ;
+		dist = abs (property_b(rois_B_with_overlaps(i)) - property_a(possible_matches_in_A(i))); 
 	end;
-	if dist<best_distance(rois_with_overlaps(i)),
+	if dist<best_distance(rois_B_with_overlaps(i)),
 		% new winner
-		bc(rois_with_overlaps(i)) = possible_matches(i);
-		best_distance(rois_with_overlaps(i)) = dist;
+		bc(rois_B_with_overlaps(i)) = possible_matches_in_A(i);
+		best_distance(rois_B_with_overlaps(i)) = dist;
 	end;
 end;
 

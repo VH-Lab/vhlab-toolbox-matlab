@@ -584,9 +584,9 @@ classdef dumbjsondb
 				
 				% a) the doc file
 				p = dumbjsondb_obj.documentpath();
-                if ~vlt.file.isfile(p), 
-                    mkdir(p);
-                end;
+		                if ~vlt.file.isfolder(p), 
+					mkdir(p);
+		                end;
 				docfile = vlt.file.dumbjsondb.uniqueid2filename(doc_unique_id, doc_version);
 				vlt.file.dumbjsondb.docobject2file(doc_object, [p docfile]);
 
@@ -686,7 +686,7 @@ classdef dumbjsondb
 
 				% Step 1) make the path directory if needed
 				[filepath] = path(dumbjsondb_obj);
-				if ~vlt.file.isfile(filepath),
+				if ~vlt.file.isfolder(filepath),
 					try,
 						mkdir(filepath);
 					catch,
