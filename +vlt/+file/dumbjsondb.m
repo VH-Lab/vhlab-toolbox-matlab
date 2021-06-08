@@ -164,7 +164,7 @@ classdef dumbjsondb
 				p = dumbjsondb_obj.documentpath();
 				f = vlt.file.dumbjsondb.uniqueid2filename(doc_unique_id, doc_version);
 
-				fileexist = isfile([p f]);
+				fileexist = vlt.file.isfile([p f]);
                 
 				we_know_we_have_latest_version = []; % we will assign this below
 
@@ -227,7 +227,7 @@ classdef dumbjsondb
 				else, % read specific version
 					p = dumbjsondb_obj.documentpath();
 					f = vlt.file.dumbjsondb.uniqueid2filename(doc_unique_id, doc_version);
-					if isfile([p f]),
+					if vlt.file.isfile([p f]),
 						t = vlt.file.textfile2char([p f]); % dev note: should this go in separate function? maybe
 						document = jsondecode(t);
 					else,
@@ -441,11 +441,11 @@ classdef dumbjsondb
 					bfname = vlt.file.dumbjsondb.uniqueid2binaryfilename(doc_unique_id,version(i));
 
 					% delete the object file
-					if isfile([p vfname]),
+					if vlt.file.isfile([p vfname]),
 						delete([p vfname]);
 					end
 					% delete any binary data
-					if isfile([p bfname]),
+					if vlt.file.isfile([p bfname]),
 						delete([p bfname]);
 					end
 				end
@@ -584,7 +584,7 @@ classdef dumbjsondb
 				
 				% a) the doc file
 				p = dumbjsondb_obj.documentpath();
-                if ~isfile(p), 
+                if ~vlt.file.isfile(p), 
                     mkdir(p);
                 end;
 				docfile = vlt.file.dumbjsondb.uniqueid2filename(doc_unique_id, doc_version);
@@ -636,13 +636,13 @@ classdef dumbjsondb
 						if numel(v)>0, % we have a version
 							str2text(metafile,mat2str(max(v)));
 						else,
-							if isfile(metafile),
+							if vlt.file.isfile(metafile),
 								delete(metafile);
 							end;
 						end;
 					case lower('Deleted all versions'), 
 						% if we know we deleted all versions, then we need to delete the metadata file
-						if isfile(metafile),
+						if vlt.file.isfile(metafile),
 							delete(metafile);
 						end;
 					otherwise, 
@@ -686,7 +686,7 @@ classdef dumbjsondb
 
 				% Step 1) make the path directory if needed
 				[filepath] = path(dumbjsondb_obj);
-				if ~isfile(filepath),
+				if ~vlt.file.isfile(filepath),
 					try,
 						mkdir(filepath);
 					catch,
@@ -774,7 +774,7 @@ classdef dumbjsondb
 			% decodes it using JSONDECODE. If FILENAME does not exist, then
 			% DOC_OBJECT is empty ([]).
 			%
-				if isfile(filename)
+				if vlt.file.isfile(filename)
 					t = vlt.file.textfile2char([p f]); 
 					doc_object = jsondecode(t);
 				else,
@@ -871,7 +871,7 @@ classdef dumbjsondb
 			%
 			% Read the parameters from the JSON file
 			%
-				if ~isfile(filename),
+				if ~vlt.file.isfile(filename),
 					error(['File ' filename ' does not exist.']);
 				end
 				t = vlt.file.textfile2char(filename);
