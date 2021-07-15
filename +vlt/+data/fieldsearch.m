@@ -23,6 +23,8 @@ function b = fieldsearch(A, searchstruct)
 %     |   'greaterthan'        - is the field value greater than 'param1' (and comparable size)
 %     |   'greaterthaneq'      - is the field value greater than or equal to 'param1' (and comparable size)
 %     |   'hasfield'           - is the field present? (no role for 'param1' or 'param2')
+%     |   'partial_struct'     - is the field value a structure that has all the fields of 'param1' with the same values?
+%     |                            (note that it may have additional fields not found in the structure in param1)
 %     |   'hasanysubfield_contains_string' - Is the field value an array of structs or cell array of structs
 %     |                        such that any has a field named 'param1' with a string that contains the string
 %     |                        in 'param2'? If 'param1' is a cell list, then 'param2' can be a cell list of contained
@@ -122,6 +124,12 @@ switch(lower(searchstruct.operation)),
 		end;
 	case 'hasfield',
 		b = isthere;
+	case 'partial_struct',
+		if isthere,
+			try,
+				b = vlt.data.structpartialmatch(value,searchstruct.param1);
+			end;
+		end;
 	case {'hasanysubfield_contains_string','hasanysubfield_exact_string'},
 		if isthere,
 			if ~ (isstruct(value) | iscell(value) ), return; end; % must be a structure or cell
