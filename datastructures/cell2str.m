@@ -3,16 +3,18 @@ function str = cell2str(theCell)
 %
 %   STR = CELL2STR(THECELL)
 %
-% Converts a 1-D cell to a string.
+% Converts a 1-D cell to a string representation that
+% can be evaluated to reproduce the cell array.
+% At present, this function works with 1-dimensional cells only,
+% and only chars and matrixes
 %
-% Example: 
+% Example:
 %   A = {'test','test2','test3'};
-%   str = cell2str(A)
+%   str = vlt.data.cell2str(A)
+%    % str = '{ 'test','test2','test3'}'
+%   B = eval(str);
+%   vlt.data.eqlen(A,B), % should return 1
 %
-%       produced str = 
-%    '{ 'test','test2','test3' }'
-% 
- %1-dim cells only, only chars and matricies
 
 if isempty(theCell), str = '{}'; return; end;
 
