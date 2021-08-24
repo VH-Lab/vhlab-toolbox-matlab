@@ -21,8 +21,13 @@ for k=0:kmax,
 end;
 
 advance = 1./(8*F_);
-[offx,offy] = meshgrid(1:3*M+1,F_);
-im_offscreen = cos(2*pi*offy.*offx);
+if mod(M,2)==0,
+	pixel_coords = (-M-1):(2*M)-1+1;
+else,
+	pixel_coords = ((-M+1)/2):(M+(M-1)/2);
+end;
+[offx_mesh,offy_mesh] = meshgrid(pixel_coords,F_);
+im_offscreen = cas(2*pi*offy_mesh.*offx_mesh)/(sqrt(2)); % divide by square root of 2 to make output in [-1..1]
 
 out = workspace2struct;
-out = rmfield(out,{'k','l'});
+out = rmfield(out,{'k','l','offx_mesh','offy_mesh'});
