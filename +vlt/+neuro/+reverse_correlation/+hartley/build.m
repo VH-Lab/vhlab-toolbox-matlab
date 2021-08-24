@@ -28,6 +28,7 @@ else,
 end;
 [offx_mesh,offy_mesh] = meshgrid(pixel_coords,F_);
 im_offscreen = cas(2*pi*offy_mesh.*offx_mesh)/(sqrt(2)); % divide by square root of 2 to make output in [-1..1]
+im_phase = mod(2*pi*offy_mesh.*offx_mesh,2*pi); % phase
 
 out = workspace2struct;
 out = rmfield(out,{'k','l','offx_mesh','offy_mesh'});
