@@ -24,5 +24,14 @@ hold on;
 plot(im(1,:),'g--');
 title('X axis');
 
-
 out = var2struct('out','out2','img','im');
+
+imagedisplay(img);
+ax1 = gca;
+title('Raw');
+
+imagedisplay(im);
+ax2 = gca;
+title('Rotated and computed')
+
+linkaxes([ax1 ax2]);
