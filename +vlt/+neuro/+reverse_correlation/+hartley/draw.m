@@ -1,4 +1,4 @@
-function [im,out] = draw(hstruct, k, l)
+function [im,out] = draw(hstruct, s, k, l)
 % DRAW - draw a Hartley stimulus
 %
 % [IM,OUT] = vlt.neuro.reverse_correlation.hartley.draw(HSTRUCT, K, L)
@@ -16,6 +16,9 @@ angle = vlt.math.rad2deg(atan2(k,l));
 
 [i] = findclosest(hstruct.F,sqrt(k^2+l^2)/M);
 center = floor(size(hstruct.im_offscreen,2)/2);
+if s==-1, % 180 degree phase shift
+	center = center+round(1/(2*hstruct.F(i)))-1;
+end;
 selection = center + (-(M-1):(M+1));
 im_big = repmat(hstruct.im_offscreen(i,selection),numel(selection),1);
 im_big = im_big'; 
@@ -35,6 +38,7 @@ im = im_bigrot(subselection,subselection);
 %real_phase = mod((2*pi*(k.*l_+l.*m_)/M),2*pi);
 
 out = workspace2struct;
+
 
 
 return;

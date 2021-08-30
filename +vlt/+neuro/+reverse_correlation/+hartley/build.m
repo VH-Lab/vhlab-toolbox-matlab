@@ -10,8 +10,6 @@ function out=build(M, kmax, lmax, normmax)
 % The image rotation used here works best for M > 50 and for K,L < M/2. This will not
 % faithfully reproduce the basis functions for M<50 or K,L near M, due to aliasing.
 %
-% 
-%
 % Inputs:
 %    M is the number of pixels per edge of the image (the image is square).
 %    KMAX is the number of Hartley components to use in X. Components from -KMAX...KMAX will be used.
