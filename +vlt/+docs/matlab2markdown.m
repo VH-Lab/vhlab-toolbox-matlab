@@ -124,7 +124,7 @@ for i=1:numel(w.m),
 end;
 
 for i=1:numel(w.classes),
-	error(['Do not know how to write classes yet. Fix me!']);
+	warning(['Do not know how to write classes yet. Fix me!']);
 end;
 
 packagelist = {};
@@ -146,3 +146,16 @@ for i=1:numel(w.packages),
 end;
 
 d = setdiff(d,packagelist);
+for i=1:numel(d),
+	out_here.title = [d{i} ' FOLDER'];
+	next_inputdir = [input_path filesep d{i}];
+	next_outputdir = [output_path filesep d{i}];
+	next_ymlpath = [ymlpath filesep d{i}];
+
+	outst = vlt.docs.matlab2markdown(next_inputdir, next_outputdir, next_ymlpath, objectstruct);
+
+	if ~isempty(outst),
+		out_here.path = outst;
+		out(end+1) = out_here;
+	end;
+end;
