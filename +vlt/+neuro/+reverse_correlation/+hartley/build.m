@@ -7,6 +7,9 @@ function out=build(M, kmax, lmax, normmax)
 % stimulus from Ringach et al. 1997. It is compact in memory and can be used to give input
 % to Psychtoolbox or other GPU renderers for fast drawing with minimal memory.
 %
+% The image rotation used here works best for M > 50 and for K,L < M/2. This will not
+% faithfully reproduce the basis functions for M<50 or K,L near M, due to aliasing.
+%
 % Inputs:
 %    M is the number of pixels per edge of the image (the image is square).
 %    KMAX is the number of Hartley components to use in X. Components from -KMAX...KMAX will be used.
@@ -40,6 +43,8 @@ end;
 
 if mod(M,2)==0, % even
 	pixel_coords = (-2*M+1):(2*M);
+else,
+	pixel_coords = (-2*M):(2*M);
 end;
 
 [offX_mesh,offF_mesh] = meshgrid(pixel_coords,F);
