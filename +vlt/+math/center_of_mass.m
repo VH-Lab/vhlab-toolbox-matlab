@@ -18,5 +18,5 @@ else,
 end;
 
 W = repmat(w,1,n);
-pos = sum(W.*points)/sum(w);
+pos = sum(W.*points,1)./sum(w);
 
