@@ -34,6 +34,7 @@ function b = fieldsearch(A, searchstruct)
 %     |                        in 'param2'? If 'param1' is a cell list, then 'param2' can be a cell list of contained
 %     |                        strings to be matched.
 %     |   'or'                 - are the searchstruct elements specified in 'param1' OR 'param2' true?
+%     |   '~'                  - NOT of any operator, such as ~regexp, negates the outcome of the search
 %     -----------------------|
 % param1                     | Search parameter 1. Meaning depends on 'operation' (see above).
 % param2                     | Search parameter 2. Meaning depends on 'operation' (see above).
@@ -58,6 +59,7 @@ function b = fieldsearch(A, searchstruct)
 b = 1; % assume it matches
 
 if numel(searchstruct)>1,
+	% we need to do an AND, everything has to be true
 	for i=1:numel(searchstruct),
 		b_ = vlt.data.fieldsearch(A, searchstruct(i));
 		if ~b_,
@@ -73,6 +75,13 @@ end;
 b = 0; % now it has to pass
 
 [isthere, value] = vlt.data.isfullfield(A,searchstruct.field);
+
+negation = 0;
+
+if searchstruct.operation(1) == '~',
+	negation = 1;
+	searchstruct.operation = searchstruct.operation(2:end);
+end;
 
 switch(lower(searchstruct.operation)),
 	case 'regexp',
@@ -175,3 +184,6 @@ switch(lower(searchstruct.operation)),
 		error(['Unknown search operation ' searchstruct.operation ]);
 end;
 
+if negation,
+	b = ~b;
+end;
