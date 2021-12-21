@@ -105,8 +105,8 @@ fo = fitoptions('Method','NonlinearLeastSquares', 'Lower',minParams',...
      'Upper', maxParams, 'StartPoint',initParams, 'MaxIter',4000);
  
     % Define the fit equation
-ft = fittype(@(rmax,c50,s,n,c) rmax * c.^(n)./ (c50^(s*n)+c.^(s*n)),...
-     'independent',{'c'},'options',fo); 
+ft = fittype(@(rmax,c50,n,s,c) rmax * (c.^(n))./ (c50^(s*n)+c.^(s*n)),...
+     'independent',{'c'},'coefficients',{'rmax','c50','n','s'}, 'options',fo); 
  
     % Solve for the fit (f).  Also get goodness-of-fit stats (g) 
     %    and output values about iteration information (o)
