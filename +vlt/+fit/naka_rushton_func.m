@@ -16,4 +16,8 @@ else,
 	s = ss;
 end;
 
+if nargin<3,
+	n = 1;
+end;
+
 R = sign(c).*abs(c).^n./(abs(c).^(s*n)+c50.^(s*n));
