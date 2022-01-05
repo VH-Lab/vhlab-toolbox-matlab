@@ -25,7 +25,7 @@
 #define MIN(A, B)   ((A) < (B) ? (A) : (B))
 #endif
 
-static void dotdisc(double y[],int ylen,double *t[],int *numT,double dots[],
+static void dotdisc(double y[],int ylen,double *t[],size_t *numT,double dots[],
 						int numdots)
 {
 	int ptsgood=0,i,j,m,earlydot=0,latedot=0,off,sg;
@@ -65,13 +65,24 @@ void mexFunction( int nlhs, mxArray *plhs[],
 		  int nrhs, const mxArray*prhs[] )
      
 { 
-	double *y,*dots; 
+#if MX_HAS_INTERLEAVED_COMPLEX
+    mxDouble *y, *dots;
+    mxDouble *t,*newt;
+#else
+    double *y,*dots; 
 	double *t,*newt;
-	int numdots, numY, numT,i;
+#endif
+	size_t numdots, numY, numT;
+    int i;
     
 	/* this is an internal function...let's dispense with argument checking*/
+
+#if MX_HAS_INTERLEAVED_COMPLEX
+    dots = mxGetDoubles(DOTS_IN); y = mxGetDoubles(Y_IN);
+#else
+    dots=mxGetPr(DOTS_IN); y=mxGetPr(Y_IN);
+#endif
     
-	dots=mxGetPr(DOTS_IN); y=mxGetPr(Y_IN);
 	numY = MAX(mxGetM(Y_IN),mxGetN(Y_IN));
 	numdots=mxGetM(DOTS_IN);
 	/*mexPrintf("Number of dots: %d\n",numdots);*/
@@ -80,7 +91,12 @@ void mexFunction( int nlhs, mxArray *plhs[],
 	/*mexPrintf("Done with dotdisc.\n");*/
 	/* Create a matrix for the return argument */ 
 	S_OUT = mxCreateDoubleMatrix(numT, 1, mxREAL); 
-	newt = mxGetPr(S_OUT);
+#if MX_HAS_INTERLEAVED_COMPLEX
+    newt = mxGetDoubles(S_OUT);
+#else
+    newt = mxGetPr(S_OUT);
+#endif
+
 	/* copy the data into the new matrix */
 	for (i=0;i<numT;i++) {newt[i]=t[i];}
 	free(t);
