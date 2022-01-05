@@ -30,7 +30,7 @@ if ~isvector(contrast),
 	error('CONTRAST input must be a vector.');
 end;
 
-if ~isvector(response),
+if ~isvector(responses),
 	error('RESPONSES input must be a vector.');
 end;
 
