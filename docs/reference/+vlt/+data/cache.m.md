@@ -93,8 +93,8 @@ el = ADDLISTENER(hSource, Eventname, callbackFcn) creates a listener
 
 Help for vlt.data.cache/addlistener is inherited from superclass HANDLE
 
-    Documentation for vlt.data.cache/addlistener
-       doc handle.addlistener
+    Reference page in Doc Center
+       doc vlt.data.cache/addlistener
 ```
 
 ---
@@ -142,15 +142,17 @@ CACHE_OBJ = CLEAR(CACHE_OBJ)
 **delete** - *DELETE   Delete a handle object.*
 
 ```
-DELETE(H) deletes all handle objects in array H. After the delete 
-    function call, H is an array of invalid objects.
+The DELETE method deletes a handle object but does not clear the handle
+    from the workspace.  A deleted handle is no longer valid.
+ 
+    DELETE(H) deletes the handle object H, where H is a scalar handle.
  
     See also VLT.DATA.CACHE, VLT.DATA.CACHE/ISVALID, CLEAR
 
 Help for vlt.data.cache/delete is inherited from superclass HANDLE
 
-    Documentation for vlt.data.cache/delete
-       doc handle.delete
+    Reference page in Doc Center
+       doc vlt.data.cache/delete
 ```
 
 ---
@@ -175,8 +177,8 @@ Handles are equal if they are handles for the same object.
 
 Help for vlt.data.cache/eq is inherited from superclass HANDLE
 
-    Documentation for vlt.data.cache/eq
-       doc handle.eq
+    Reference page in Doc Center
+       doc vlt.data.cache/eq
 ```
 
 ---
@@ -197,8 +199,8 @@ The FINDOBJ method of the HANDLE class follows the same syntax as the
 
 Help for vlt.data.cache/findobj is inherited from superclass HANDLE
 
-    Documentation for vlt.data.cache/findobj
-       doc handle.findobj
+    Reference page in Doc Center
+       doc vlt.data.cache/findobj
 ```
 
 ---
@@ -219,8 +221,8 @@ p = FINDPROP(H,PROPNAME) finds and returns the META.PROPERTY object
 
 Help for vlt.data.cache/findprop is inherited from superclass HANDLE
 
-    Documentation for vlt.data.cache/findprop
-       doc handle.findprop
+    Reference page in Doc Center
+       doc vlt.data.cache/findprop
 ```
 
 ---
@@ -256,8 +258,8 @@ H1 >= H2 performs element-wise comparisons between handle arrays H1 and
 
 Help for vlt.data.cache/ge is inherited from superclass HANDLE
 
-    Documentation for vlt.data.cache/ge
-       doc handle.ge
+    Reference page in Doc Center
+       doc vlt.data.cache/ge
 ```
 
 ---
@@ -280,8 +282,8 @@ H1 > H2 performs element-wise comparisons between handle arrays H1 and
 
 Help for vlt.data.cache/gt is inherited from superclass HANDLE
 
-    Documentation for vlt.data.cache/gt
-       doc handle.gt
+    Reference page in Doc Center
+       doc vlt.data.cache/gt
 ```
 
 ---
@@ -301,8 +303,8 @@ TF = ISVALID(H) performs an element-wise check for validity on the
 
 Help for vlt.data.cache/isvalid is inherited from superclass HANDLE
 
-    Documentation for vlt.data.cache/isvalid
-       doc handle.isvalid
+    Reference page in Doc Center
+       doc vlt.data.cache/isvalid
 ```
 
 ---
@@ -333,8 +335,8 @@ Handles are equal if they are handles for the same object.  All
 
 Help for vlt.data.cache/le is inherited from superclass HANDLE
 
-    Documentation for vlt.data.cache/le
-       doc handle.le
+    Reference page in Doc Center
+       doc vlt.data.cache/le
 ```
 
 ---
@@ -379,8 +381,8 @@ el = LISTENER(hSource, Eventname, callbackFcn) creates a listener
 
 Help for vlt.data.cache/listener is inherited from superclass HANDLE
 
-    Documentation for vlt.data.cache/listener
-       doc handle.listener
+    Reference page in Doc Center
+       doc vlt.data.cache/listener
 ```
 
 ---
@@ -423,8 +425,8 @@ H1 < H2 performs element-wise comparisons between handle arrays H1 and
 
 Help for vlt.data.cache/lt is inherited from superclass HANDLE
 
-    Documentation for vlt.data.cache/lt
-       doc handle.lt
+    Reference page in Doc Center
+       doc vlt.data.cache/lt
 ```
 
 ---
@@ -450,8 +452,8 @@ Handles are equal if they are handles for the same object and are
 
 Help for vlt.data.cache/ne is inherited from superclass HANDLE
 
-    Documentation for vlt.data.cache/ne
-       doc handle.ne
+    Reference page in Doc Center
+       doc vlt.data.cache/ne
 ```
 
 ---
@@ -473,8 +475,8 @@ NOTIFY(H, eventname) notifies listeners added to the event named
 
 Help for vlt.data.cache/notify is inherited from superclass HANDLE
 
-    Documentation for vlt.data.cache/notify
-       doc handle.notify
+    Reference page in Doc Center
+       doc vlt.data.cache/notify
 ```
 
 ---

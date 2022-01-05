@@ -95,8 +95,8 @@ el = ADDLISTENER(hSource, Eventname, callbackFcn) creates a listener
 
 Help for vlt.file.fileobj/addlistener is inherited from superclass HANDLE
 
-    Documentation for vlt.file.fileobj/addlistener
-       doc handle.addlistener
+    Reference page in Doc Center
+       doc vlt.file.fileobj/addlistener
 ```
 
 ---
@@ -134,8 +134,8 @@ Handles are equal if they are handles for the same object.
 
 Help for vlt.file.fileobj/eq is inherited from superclass HANDLE
 
-    Documentation for vlt.file.fileobj/eq
-       doc handle.eq
+    Reference page in Doc Center
+       doc vlt.file.fileobj/eq
 ```
 
 ---
@@ -236,8 +236,8 @@ The FINDOBJ method of the HANDLE class follows the same syntax as the
 
 Help for vlt.file.fileobj/findobj is inherited from superclass HANDLE
 
-    Documentation for vlt.file.fileobj/findobj
-       doc handle.findobj
+    Reference page in Doc Center
+       doc vlt.file.fileobj/findobj
 ```
 
 ---
@@ -258,8 +258,8 @@ p = FINDPROP(H,PROPNAME) finds and returns the META.PROPERTY object
 
 Help for vlt.file.fileobj/findprop is inherited from superclass HANDLE
 
-    Documentation for vlt.file.fileobj/findprop
-       doc handle.findprop
+    Reference page in Doc Center
+       doc vlt.file.fileobj/findprop
 ```
 
 ---
@@ -400,8 +400,8 @@ H1 >= H2 performs element-wise comparisons between handle arrays H1 and
 
 Help for vlt.file.fileobj/ge is inherited from superclass HANDLE
 
-    Documentation for vlt.file.fileobj/ge
-       doc handle.ge
+    Reference page in Doc Center
+       doc vlt.file.fileobj/ge
 ```
 
 ---
@@ -424,8 +424,8 @@ H1 > H2 performs element-wise comparisons between handle arrays H1 and
 
 Help for vlt.file.fileobj/gt is inherited from superclass HANDLE
 
-    Documentation for vlt.file.fileobj/gt
-       doc handle.gt
+    Reference page in Doc Center
+       doc vlt.file.fileobj/gt
 ```
 
 ---
@@ -445,8 +445,8 @@ TF = ISVALID(H) performs an element-wise check for validity on the
 
 Help for vlt.file.fileobj/isvalid is inherited from superclass HANDLE
 
-    Documentation for vlt.file.fileobj/isvalid
-       doc handle.isvalid
+    Reference page in Doc Center
+       doc vlt.file.fileobj/isvalid
 ```
 
 ---
@@ -477,8 +477,8 @@ Handles are equal if they are handles for the same object.  All
 
 Help for vlt.file.fileobj/le is inherited from superclass HANDLE
 
-    Documentation for vlt.file.fileobj/le
-       doc handle.le
+    Reference page in Doc Center
+       doc vlt.file.fileobj/le
 ```
 
 ---
@@ -523,8 +523,8 @@ el = LISTENER(hSource, Eventname, callbackFcn) creates a listener
 
 Help for vlt.file.fileobj/listener is inherited from superclass HANDLE
 
-    Documentation for vlt.file.fileobj/listener
-       doc handle.listener
+    Reference page in Doc Center
+       doc vlt.file.fileobj/listener
 ```
 
 ---
@@ -547,8 +547,8 @@ H1 < H2 performs element-wise comparisons between handle arrays H1 and
 
 Help for vlt.file.fileobj/lt is inherited from superclass HANDLE
 
-    Documentation for vlt.file.fileobj/lt
-       doc handle.lt
+    Reference page in Doc Center
+       doc vlt.file.fileobj/lt
 ```
 
 ---
@@ -574,8 +574,8 @@ Handles are equal if they are handles for the same object and are
 
 Help for vlt.file.fileobj/ne is inherited from superclass HANDLE
 
-    Documentation for vlt.file.fileobj/ne
-       doc handle.ne
+    Reference page in Doc Center
+       doc vlt.file.fileobj/ne
 ```
 
 ---
@@ -597,8 +597,8 @@ NOTIFY(H, eventname) notifies listeners added to the event named
 
 Help for vlt.file.fileobj/notify is inherited from superclass HANDLE
 
-    Documentation for vlt.file.fileobj/notify
-       doc handle.notify
+    Reference page in Doc Center
+       doc vlt.file.fileobj/notify
 ```
 
 ---

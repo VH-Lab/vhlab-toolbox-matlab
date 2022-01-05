@@ -67,7 +67,7 @@ cfit = 0:0.01:1;
 stddev_control = respstruct.blankresp(2);
 
 if stddev_control==0,
-	stddev_control = std([1 zeros(1,numel(resp.ind{1}))]);
+	stddev_control = std([1 zeros(1,numel(respstruct.ind{1}))]);
 end;
 
 switch fitterms,

@@ -25,6 +25,8 @@
       |   'greaterthan'        - is the field value greater than 'param1' (and comparable size)
       |   'greaterthaneq'      - is the field value greater than or equal to 'param1' (and comparable size)
       |   'hasfield'           - is the field present? (no role for 'param1' or 'param2')
+      |   'partial_struct'     - is the field value a structure that has all the fields of 'param1' with the same values?
+      |                            (note that it may have additional fields not found in the structure in param1)
       |   'hasanysubfield_contains_string' - Is the field value an array of structs or cell array of structs
       |                        such that any has a field named 'param1' with a string that contains the string
       |                        in 'param2'? If 'param1' is a cell list, then 'param2' can be a cell list of contained
@@ -34,6 +36,7 @@
       |                        in 'param2'? If 'param1' is a cell list, then 'param2' can be a cell list of contained
       |                        strings to be matched.
       |   'or'                 - are the searchstruct elements specified in 'param1' OR 'param2' true?
+      |   '~'                  - NOT of any operator, such as ~regexp, negates the outcome of the search
       -----------------------|
   param1                     | Search parameter 1. Meaning depends on 'operation' (see above).
   param2                     | Search parameter 2. Meaning depends on 'operation' (see above).

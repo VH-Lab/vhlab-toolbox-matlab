@@ -15,6 +15,8 @@ function out = matlab2markdown(input_path, output_path, ymlpath, objectstruct, p
 
 out = vlt.data.emptystruct('title','path');
 
+disp(['crawling ' input_path ' ... ']);
+
 if nargin<4,
 	objectstruct = [];
 end;
@@ -130,7 +132,7 @@ end;
 packagelist = {};
 
 for i=1:numel(w.packages),
-	packagelist = ['+' w.packages{i}];
+	packagelist{end+1} = ['+' w.packages{i}];
 	out_here.title = [w.packages{i} ' PACKAGE'];
 	next_inputdir = [input_path filesep '+' w.packages{i}];
 	next_outputdir = [output_path filesep '+' w.packages{i}];
