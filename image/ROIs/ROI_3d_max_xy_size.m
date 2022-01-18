@@ -36,7 +36,13 @@ if UseProgressBar,
 	progressbar('Max XY calculation progress');
 end;
 
-for z=1:CC.ImageSize(3),
+if numel(CC.ImageSize)>=3,
+    IMS3 = CC.ImageSize(3);
+else,
+    IMS3 = 1;
+end;
+
+for z=1:IMS3,
 	for j=1:numel(CC.PixelIdxList),
 		indexes_here = ROI_3d2dprojection(CC.PixelIdxList{j}, CC.ImageSize, z);
 		max_xy_size(j) = max( max_xy_size(j), numel(indexes_here) );
