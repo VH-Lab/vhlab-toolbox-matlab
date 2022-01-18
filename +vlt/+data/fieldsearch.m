@@ -22,6 +22,8 @@ function b = fieldsearch(A, searchstruct)
 %     |   'lessthaneq'         - is the field value less than or equal to 'param1' (and comparable size)
 %     |   'greaterthan'        - is the field value greater than 'param1' (and comparable size)
 %     |   'greaterthaneq'      - is the field value greater than or equal to 'param1' (and comparable size)
+%     |   'hassize'            - does the field value have the size as indicated in 'param1' [x y z ...]
+%     |   'hasmember'          - does the field value have the member indicated in 'param1' ?
 %     |   'hasfield'           - is the field present? (no role for 'param1' or 'param2')
 %     |   'partial_struct'     - is the field value a structure that has all the fields of 'param1' with the same values?
 %     |                            (note that it may have additional fields not found in the structure in param1)
@@ -129,6 +131,18 @@ switch(lower(searchstruct.operation)),
 		if isthere,
 			try,
 				b = all(value>=searchstruct.param1);
+			end;
+		end;
+	case 'hassize',
+		if isthere,
+			try,
+				b = vlt.data.eqlen(size(value),searchstruct.param1);
+			end;
+		end;
+	case 'hasmember',
+		if isthere,
+			try,
+				b = ismember(searchstruct.param1,value);
 			end;
 		end;
 	case 'hasfield',
