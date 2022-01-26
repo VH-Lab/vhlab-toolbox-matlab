@@ -47,7 +47,7 @@ for z=1:IMS3,
 		indexes_here = ROI_3d2dprojection(CC.PixelIdxList{j}, CC.ImageSize, z);
 		max_xy_size(j) = max( max_xy_size(j), numel(indexes_here) );
 		if UseProgressBar & ( (j==1) | mod(j,100)==0 ) ,
-			progressbar( (j+(z-1)*numel(CC.PixelIdxList))/(numel(CC.PixelIdxList)*CC.ImageSize(3)) );
+			progressbar( (j+(z-1)*numel(CC.PixelIdxList))/(numel(CC.PixelIdxList)*IMS3) );
 		end;
 	end;
 end;

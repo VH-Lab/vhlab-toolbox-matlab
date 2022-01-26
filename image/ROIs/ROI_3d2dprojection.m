@@ -18,7 +18,7 @@ function [indexes2d, perimeter2d] = roi_3d2dprojection(indexes3d, imagesize, zdi
 
 NX = imagesize(1);
 NY = imagesize(2);
-NZ = imagesize(3);
+%NZ = imagesize(3);
 
 [roi2d] = indexes3d - (zdim-1)*(NX * NY);
 [indexes2d] = roi2d(find(roi2d >= 1 & roi2d <= (NX * NY)));
