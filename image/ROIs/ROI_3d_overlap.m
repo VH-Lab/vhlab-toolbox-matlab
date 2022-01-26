@@ -24,6 +24,12 @@ function [overlapa,overlapb]= ROI_3d_overlap(rois3d1, rois3d2, xrange, yrange, z
 [i,j,k] = ind2sub(imsize,rois3d1);
 count=0;
 
+if numel(imsize)>=3,
+    IMS3 = imsize(3);
+else,
+    IMS3 = 1;
+end;
+
 for xi=1:length(xrange),
 	x = xrange(xi);
 	for yi=1:length(yrange),
@@ -40,9 +46,9 @@ for xi=1:length(xrange),
 			shifted_y = j+y;
 			shifted_z = k+z;
 
-            		good_x = find(shifted_x>=1 & shifted_x<=imsize(1));
+            good_x = find(shifted_x>=1 & shifted_x<=imsize(1));
 			good_y = find(shifted_y>=1 & shifted_y<=imsize(2));
-			good_z = find(shifted_z>=1 & shifted_z<=imsize(3));
+			good_z = find(shifted_z>=1 & shifted_z<=IMS3);
 
 			good = intersect(intersect(good_x, good_y), good_z);
 
