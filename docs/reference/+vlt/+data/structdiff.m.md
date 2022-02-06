@@ -2,6 +2,6 @@
 
 ```
 vlt.data.structdiff is a function.
-    c = structdiff(a, b)
+    c = vlt.data.structdiff(a, b)
 
 ```

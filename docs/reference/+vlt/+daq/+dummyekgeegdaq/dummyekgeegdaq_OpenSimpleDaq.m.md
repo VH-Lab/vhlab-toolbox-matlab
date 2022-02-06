@@ -2,6 +2,6 @@
 
 ```
 vlt.daq.dummyekgeegdaq.dummyekgeegdaq_OpenSimpleDaq is a function.
-    newsd = dummyekgeegdaq_OpenSimpleDaq(sd)
+    newsd = vlt.daq.dummyekgeegdaq.dummyekgeegdaq_OpenSimpleDaq(sd)
 
 ```

@@ -2,6 +2,6 @@
 
 ```
 vlt.stats.discrimin_iterative is a function.
-    [a, c, P] = discrimin_iterative(DATA, G)
+    [a, c, P] = vlt.stats.discrimin_iterative(DATA, G)
 
 ```

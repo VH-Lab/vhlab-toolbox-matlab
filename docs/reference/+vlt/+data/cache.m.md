@@ -91,10 +91,10 @@ el = ADDLISTENER(hSource, Eventname, callbackFcn) creates a listener
  
     See also LISTENER, EVENT.LISTENER, VLT.DATA.CACHE, NOTIFY, DELETE, META.PROPERTY, EVENTS
 
-Help for vlt.data.cache/addlistener is inherited from superclass HANDLE
+Help for vlt.data.cache/addlistener is inherited from superclass handle
 
-    Reference page in Doc Center
-       doc vlt.data.cache/addlistener
+    Documentation for vlt.data.cache/addlistener
+       doc handle/addlistener
 ```
 
 ---
@@ -125,6 +125,9 @@ CACHE_OBJ = vlt.data.cache(...)
   Note that the cache is not 'secure', any function can query the data added.
  
   See also: vlt.data.namevaluepair
+
+    Documentation for vlt.data.cache/cache
+       doc vlt.data.cache
 ```
 
 ---
@@ -142,17 +145,15 @@ CACHE_OBJ = CLEAR(CACHE_OBJ)
 **delete** - *DELETE   Delete a handle object.*
 
 ```
-The DELETE method deletes a handle object but does not clear the handle
-    from the workspace.  A deleted handle is no longer valid.
- 
-    DELETE(H) deletes the handle object H, where H is a scalar handle.
+DELETE(H) deletes all handle objects in array H. After the delete 
+    function call, H is an array of invalid objects.
  
     See also VLT.DATA.CACHE, VLT.DATA.CACHE/ISVALID, CLEAR
 
-Help for vlt.data.cache/delete is inherited from superclass HANDLE
+Help for vlt.data.cache/delete is inherited from superclass handle
 
-    Reference page in Doc Center
-       doc vlt.data.cache/delete
+    Documentation for vlt.data.cache/delete
+       doc handle/delete
 ```
 
 ---
@@ -175,10 +176,7 @@ Handles are equal if they are handles for the same object.
  
     See also VLT.DATA.CACHE, VLT.DATA.CACHE/GE, VLT.DATA.CACHE/GT, VLT.DATA.CACHE/LE, VLT.DATA.CACHE/LT, VLT.DATA.CACHE/NE
 
-Help for vlt.data.cache/eq is inherited from superclass HANDLE
-
-    Reference page in Doc Center
-       doc vlt.data.cache/eq
+Help for vlt.data.cache/eq is inherited from superclass handle
 ```
 
 ---
@@ -197,10 +195,10 @@ The FINDOBJ method of the HANDLE class follows the same syntax as the
  
     See also FINDOBJ, VLT.DATA.CACHE
 
-Help for vlt.data.cache/findobj is inherited from superclass HANDLE
+Help for vlt.data.cache/findobj is inherited from superclass handle
 
-    Reference page in Doc Center
-       doc vlt.data.cache/findobj
+    Documentation for vlt.data.cache/findobj
+       doc handle/findobj
 ```
 
 ---
@@ -219,10 +217,10 @@ p = FINDPROP(H,PROPNAME) finds and returns the META.PROPERTY object
  
     See also VLT.DATA.CACHE, VLT.DATA.CACHE/FINDOBJ, DYNAMICPROPS, META.PROPERTY
 
-Help for vlt.data.cache/findprop is inherited from superclass HANDLE
+Help for vlt.data.cache/findprop is inherited from superclass handle
 
-    Reference page in Doc Center
-       doc vlt.data.cache/findprop
+    Documentation for vlt.data.cache/findprop
+       doc handle/findprop
 ```
 
 ---
@@ -256,10 +254,7 @@ H1 >= H2 performs element-wise comparisons between handle arrays H1 and
  
     See also VLT.DATA.CACHE, VLT.DATA.CACHE/EQ, VLT.DATA.CACHE/GT, VLT.DATA.CACHE/LE, VLT.DATA.CACHE/LT, VLT.DATA.CACHE/NE
 
-Help for vlt.data.cache/ge is inherited from superclass HANDLE
-
-    Reference page in Doc Center
-       doc vlt.data.cache/ge
+Help for vlt.data.cache/ge is inherited from superclass handle
 ```
 
 ---
@@ -280,10 +275,7 @@ H1 > H2 performs element-wise comparisons between handle arrays H1 and
  
     See also VLT.DATA.CACHE, VLT.DATA.CACHE/EQ, VLT.DATA.CACHE/GE, VLT.DATA.CACHE/LE, VLT.DATA.CACHE/LT, VLT.DATA.CACHE/NE
 
-Help for vlt.data.cache/gt is inherited from superclass HANDLE
-
-    Reference page in Doc Center
-       doc vlt.data.cache/gt
+Help for vlt.data.cache/gt is inherited from superclass handle
 ```
 
 ---
@@ -301,10 +293,10 @@ TF = ISVALID(H) performs an element-wise check for validity on the
  
     See also VLT.DATA.CACHE, VLT.DATA.CACHE/DELETE
 
-Help for vlt.data.cache/isvalid is inherited from superclass HANDLE
+Help for vlt.data.cache/isvalid is inherited from superclass handle
 
-    Reference page in Doc Center
-       doc vlt.data.cache/isvalid
+    Documentation for vlt.data.cache/isvalid
+       doc handle/isvalid
 ```
 
 ---
@@ -333,10 +325,7 @@ Handles are equal if they are handles for the same object.  All
  
     See also VLT.DATA.CACHE, VLT.DATA.CACHE/EQ, VLT.DATA.CACHE/GE, VLT.DATA.CACHE/GT, VLT.DATA.CACHE/LT, VLT.DATA.CACHE/NE
 
-Help for vlt.data.cache/le is inherited from superclass HANDLE
-
-    Reference page in Doc Center
-       doc vlt.data.cache/le
+Help for vlt.data.cache/le is inherited from superclass handle
 ```
 
 ---
@@ -379,10 +368,10 @@ el = LISTENER(hSource, Eventname, callbackFcn) creates a listener
  
     See also ADDLISTENER, EVENT.LISTENER, VLT.DATA.CACHE, NOTIFY, DELETE, META.PROPERTY, EVENTS
 
-Help for vlt.data.cache/listener is inherited from superclass HANDLE
+Help for vlt.data.cache/listener is inherited from superclass handle
 
-    Reference page in Doc Center
-       doc vlt.data.cache/listener
+    Documentation for vlt.data.cache/listener
+       doc handle/listener
 ```
 
 ---
@@ -423,10 +412,7 @@ H1 < H2 performs element-wise comparisons between handle arrays H1 and
  
     See also VLT.DATA.CACHE, VLT.DATA.CACHE/EQ, VLT.DATA.CACHE/GE, VLT.DATA.CACHE/GT, VLT.DATA.CACHE/LE, VLT.DATA.CACHE/NE
 
-Help for vlt.data.cache/lt is inherited from superclass HANDLE
-
-    Reference page in Doc Center
-       doc vlt.data.cache/lt
+Help for vlt.data.cache/lt is inherited from superclass handle
 ```
 
 ---
@@ -450,10 +436,7 @@ Handles are equal if they are handles for the same object and are
  
     See also VLT.DATA.CACHE, VLT.DATA.CACHE/EQ, VLT.DATA.CACHE/GE, VLT.DATA.CACHE/GT, VLT.DATA.CACHE/LE, VLT.DATA.CACHE/LT
 
-Help for vlt.data.cache/ne is inherited from superclass HANDLE
-
-    Reference page in Doc Center
-       doc vlt.data.cache/ne
+Help for vlt.data.cache/ne is inherited from superclass handle
 ```
 
 ---
@@ -473,10 +456,10 @@ NOTIFY(H, eventname) notifies listeners added to the event named
  
     See also VLT.DATA.CACHE, VLT.DATA.CACHE/ADDLISTENER, VLT.DATA.CACHE/LISTENER, EVENT.EVENTDATA, EVENTS
 
-Help for vlt.data.cache/notify is inherited from superclass HANDLE
+Help for vlt.data.cache/notify is inherited from superclass handle
 
-    Reference page in Doc Center
-       doc vlt.data.cache/notify
+    Documentation for vlt.data.cache/notify
+       doc handle/notify
 ```
 
 ---

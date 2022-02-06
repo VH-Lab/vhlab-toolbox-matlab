@@ -360,6 +360,7 @@
         - vlt.math.slidingwindowfunc: 'reference/+vlt/+math/slidingwindowfunc.m.md'
         - vlt.math.slidingwindowfunc2: 'reference/+vlt/+math/slidingwindowfunc2.m.md'
         - vlt.math.stepfunc: 'reference/+vlt/+math/stepfunc.m.md'
+        - vlt.math.vector2mesh: 'reference/+vlt/+math/vector2mesh.m.md'
         - identity_tests FOLDER:
           - vlt.math/identity_tests.autocorr_step_white_poles: 'reference/+vlt/+math/identity_tests/autocorr_step_white_poles.m.md'
           - vlt.math/identity_tests.autocorr_step_zeros: 'reference/+vlt/+math/identity_tests/autocorr_step_zeros.m.md'
@@ -388,6 +389,8 @@
           - vlt.matlab.graphics.savefigurelist: 'reference/+vlt/+matlab/+graphics/savefigurelist.m.md'
           - vlt.matlab.graphics.selectpoints3d: 'reference/+vlt/+matlab/+graphics/selectpoints3d.m.md'
           - vlt.matlab.graphics.viewpoint3dto2d: 'reference/+vlt/+matlab/+graphics/viewpoint3dto2d.m.md'
+      - music PACKAGE:
+        - vlt.music.tone: 'reference/+vlt/+music/tone.m.md'
       - neuro PACKAGE:
         - anatomy PACKAGE:
           - vlt.neuro.anatomy.calc_cluster_index: 'reference/+vlt/+neuro/+anatomy/calc_cluster_index.m.md'
@@ -559,6 +562,13 @@
             - plot PACKAGE:
               - vlt.neuro.vision.oridir.plot.polarplot_dir: 'reference/+vlt/+neuro/+vision/+oridir/+plot/polarplot_dir.m.md'
               - vlt.neuro.vision.oridir.plot.polarplot_ori: 'reference/+vlt/+neuro/+vision/+oridir/+plot/polarplot_ori.m.md'
+          - speed PACKAGE:
+            - vlt.neuro.vision.speed.fit: 'reference/+vlt/+neuro/+vision/+speed/fit.m.md'
+            - vlt.neuro.vision.speed.plottuning: 'reference/+vlt/+neuro/+vision/+speed/plottuning.m.md'
+            - vlt.neuro.vision.speed.tuningfunc: 'reference/+vlt/+neuro/+vision/+speed/tuningfunc.m.md'
+            - test PACKAGE:
+              - vlt.neuro.vision.speed.test.fittest: 'reference/+vlt/+neuro/+vision/+speed/+test/fittest.m.md'
+              - vlt.neuro.vision.speed.test.responseplay: 'reference/+vlt/+neuro/+vision/+speed/+test/responseplay.m.md'
       - office PACKAGE:
         - vlt.office.addresslabels2pdf: 'reference/+vlt/+office/addresslabels2pdf.m.md'
         - vlt.office.vcarddata2addresslabels: 'reference/+vlt/+office/vcarddata2addresslabels.m.md'

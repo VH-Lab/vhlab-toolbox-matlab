@@ -222,6 +222,9 @@ DUMBJSONDB_OBJ = DUMBJSONDB(COMMAND, ...)
   unique_object_id_field ('id') | The field name in the database for the unique object identifier 
  
   See also: DUMBJSONDB, DUMBJSONDB/READ, DUMBJSONDB/REMOVE, DUMBJSONDB/DOCVERSIONS, DUMBJSONDB/ALLDOCIDS
+
+    Documentation for vlt.file.dumbjsondb/dumbjsondb
+       doc vlt.file.dumbjsondb
 ```
 
 ---

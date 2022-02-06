@@ -2,6 +2,6 @@
 
 ```
 vlt.neuro.models.synapses.probabilistic_release is a function.
-    [g, g_] = probabilistic_release(varargin)
+    [g, g_] = vlt.neuro.models.synapses.probabilistic_release(varargin)
 
 ```

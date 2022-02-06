@@ -57,7 +57,8 @@ dsdt = dsdt(neuronmodel_obj, S_value)
 **neuronmodelclass** - *developed by Steve Van Hooser and Ishaan Khurana*
 
 ```
-
+Documentation for vlt.neuro.models.hh.neuronmodelclass/neuronmodelclass
+       doc vlt.neuro.models.hh.neuronmodelclass
 ```
 
 ---

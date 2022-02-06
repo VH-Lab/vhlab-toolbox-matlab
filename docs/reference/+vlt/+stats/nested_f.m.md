@@ -2,6 +2,6 @@
 
 ```
 vlt.stats.nested_f is a function.
-    [p, F] = nested_f(SE1, p1, SE2, p2, ndata)
+    [p, F] = vlt.stats.nested_f(SE1, p1, SE2, p2, ndata)
 
 ```

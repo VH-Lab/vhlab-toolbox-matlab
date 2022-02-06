@@ -2,6 +2,6 @@
 
 ```
 vlt.daq.MCCUSB1208FS.MCCUSB1208FS_OpenSimpleDaq is a function.
-    newsd = MCCUSB1208FS_OpenSimpleDaq(sd)
+    newsd = vlt.daq.MCCUSB1208FS.MCCUSB1208FS_OpenSimpleDaq(sd)
 
 ```

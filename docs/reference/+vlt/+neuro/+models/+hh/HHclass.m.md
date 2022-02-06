@@ -66,6 +66,9 @@
 
 ```
 _An Introductory Course in Computational Neuroscience_ by Paul Miller
+
+    Documentation for vlt.neuro.models.hh.HHclass/HHclass
+       doc vlt.neuro.models.hh.HHclass
 ```
 
 ---
@@ -113,7 +116,7 @@ neuronmodel_obj = setup_command(neuronmodel_obj, varargin)
 **simulate** - *perform a simulation*
 
 ```
-Help for vlt.neuro.models.hh.HHclass/simulate is inherited from superclass VLT.NEURO.MODELS.HH.NEURONMODELCLASS
+Help for vlt.neuro.models.hh.HHclass/simulate is inherited from superclass vlt.neuro.models.hh.neuronmodelclass
 ```
 
 ---
@@ -121,7 +124,7 @@ Help for vlt.neuro.models.hh.HHclass/simulate is inherited from superclass VLT.N
 **statemodifier** - *nothing to do in base class*
 
 ```
-Help for vlt.neuro.models.hh.HHclass/statemodifier is inherited from superclass VLT.NEURO.MODELS.HH.NEURONMODELCLASS
+Help for vlt.neuro.models.hh.HHclass/statemodifier is inherited from superclass vlt.neuro.models.hh.neuronmodelclass
 ```
 
 ---

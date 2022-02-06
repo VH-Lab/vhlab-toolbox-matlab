@@ -2,6 +2,6 @@
 
 ```
 vlt.neuro.stdp.stdp_tripletvsratecorrelation is a function.
-    [W, Werr, shifts, freqs, lambda] = stdp_tripletvsratecorrelation
+    [W, Werr, shifts, freqs, lambda] = vlt.neuro.stdp.stdp_tripletvsratecorrelation
 
 ```

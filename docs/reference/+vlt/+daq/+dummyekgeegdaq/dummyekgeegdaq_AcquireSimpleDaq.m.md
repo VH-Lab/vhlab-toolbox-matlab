@@ -2,6 +2,6 @@
 
 ```
 vlt.daq.dummyekgeegdaq.dummyekgeegdaq_AcquireSimpleDaq is a function.
-    [data, newsd] = dummyekgeegdaq_AcquireSimpleDaq(sd)
+    [data, newsd] = vlt.daq.dummyekgeegdaq.dummyekgeegdaq_AcquireSimpleDaq(sd)
 
 ```

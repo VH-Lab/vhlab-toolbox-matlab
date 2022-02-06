@@ -2,6 +2,6 @@
 
 ```
 vlt.daq.dummyekgeegdaq.dummyekgeegdaq_CloseSimpleDaq is a function.
-    newsd = dummyekgeegdaq_CloseSimpleDaq(sd)
+    newsd = vlt.daq.dummyekgeegdaq.dummyekgeegdaq_CloseSimpleDaq(sd)
 
 ```
