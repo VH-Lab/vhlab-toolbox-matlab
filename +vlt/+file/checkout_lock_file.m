@@ -102,8 +102,8 @@ loop = 0;
 expiration_time_of_file = Inf;
 isexpired = 0;
 
-while ( exist(filename,'file') & loop<loops ),
-	file_exists = exist(filename,'file');
+while ( vlt.file.isfile(filename) & loop<loops ),
+	file_exists = vlt.file.isfile(filename);
 
 	if file_exists,
 		C = vlt.file.text2cellstr(filename);

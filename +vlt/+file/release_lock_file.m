@@ -30,13 +30,23 @@ elseif ischar(fid_or_filename),
 	fid = -1;
 end;
 
-if ~exist(filename, 'file'),
+if ~vlt.file.isfile(filename),
 	% the file is gone, so it is already released
 	b = 1;
 	return;
 end;
 
-C = vlt.file.text2cellstr(filename);
+try,
+	C = vlt.file.text2cellstr(filename);
+catch,
+	% if there was an error, the file probably vanished in between our isfile and vlt.file.text2cellstr call
+	if ~vlt.file.isfile(filename), 
+		b = 1;
+		return;
+	else, % could not read it for some reason but it is still there, that's an error
+		error([filename ' could not be opened for some reason: ' lasterr]);
+	end;
+end;
 
 if numel(C)~=2,
 	error([filename ' does not appear to be a lock file created by vlt.file.checkout_lock_file.']);
