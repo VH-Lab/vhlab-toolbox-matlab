@@ -16,6 +16,7 @@ function plottuning(SF,TF,R,varargin)
 %  |------------------------|---------------------------------------|
 %  |'marker' ('o')          | Marker type to use in plot            |
 %  |'linestyle' ('none')    | Line style to use                     |
+%  |'do_surf' (1)           | 0/1 Should we do the surface plot?    |
 %  |------------------------|---------------------------------------|
 %
 %  Example:
@@ -26,6 +27,7 @@ function plottuning(SF,TF,R,varargin)
 
 marker = 'o';
 linestyle = 'none';
+do_surf = 1;
 vlt.data.assign(varargin{:});
 % On the left side
 subplot(1,2,1);
@@ -46,6 +48,10 @@ xlabel('Speed (deg/s)','FontAngle','italic');
 ylabel('Response','FontAngle','italic');
 
 % On the right side
+if ~do_surf, 
+    return; % stop if we aren't plotting the surface
+end;
+
 subplot(1,2,2);
 
 % Use surf

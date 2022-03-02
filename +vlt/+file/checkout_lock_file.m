@@ -106,12 +106,16 @@ while ( vlt.file.isfile(filename) & loop<loops ),
 	file_exists = vlt.file.isfile(filename);
 
 	if file_exists,
-		C = vlt.file.text2cellstr(filename);
-		if ~isempty(C),
-			try,
-				expiration_time_of_file = datetime(strtrim(C{1}),'TimeZone','UTCLeapSeconds');
-			end;
-		end;
+        try,
+		    C = vlt.file.text2cellstr(filename);
+		    if ~isempty(C),
+			    try,
+				    expiration_time_of_file = datetime(strtrim(C{1}),'TimeZone','UTCLeapSeconds');
+			    end;
+		    end;
+        catch,
+            file_exists = 0; % it was gone before we could read it
+        end;
 	end;
 	
 	if ~isinf(expiration_time_of_file),
