@@ -39,7 +39,8 @@ function [rm,c50,n,s] = naka_rushton_fit(c, r, varargin)
 % | initc50 (contrast value   | Initial C50 search point            |
 % |    with response closest  |                                     |
 % |    to the empirical max/2)|                                     |
-% | min_c50 (0)               | Minimum C50 value                   |
+% | min_c50 (low/2)           | Minimum C50 value (low is the lowest|
+% |                           |    contrast tested                  |
 % | max_c50 (1)               | Maximum value of C50                |
 % | init_N (1)                | Initial value for N                 |
 % | min_N (0.1)               | Minimum value of N                  |
@@ -73,7 +74,7 @@ rMid = ((max(r)-min(r))/2) + min(r);
 [dummy,rMidIndex] = min(abs(r-rMid));
 initC50 = c(rMidIndex(1));
 
-min_c50 = 0;
+min_c50 = min(c)/2;
 max_c50 = 1;
 init_N = 1;
 min_N = 0.1;
