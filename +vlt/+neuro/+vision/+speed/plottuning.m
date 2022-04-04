@@ -35,11 +35,13 @@ hold on;
 
 all_sfs = unique(SF); % All the spatial frequencies present
 
+colors = jet(numel(all_sfs));
+
 for s = 1:numel(all_sfs)
     indexes = find(SF==all_sfs(s));
     % Plot the responses and calculate the speed for each spot
     speed_here = TF(indexes)./SF(indexes);
-    h = plot(speed_here,R(indexes),'marker',marker,'linestyle',linestyle);
+    h = plot(speed_here,R(indexes),'marker',marker,'linestyle',linestyle,colors(s,:));
 end
 set(gca,'XScale','log');
 set(gca,'FontAngle','italic');
