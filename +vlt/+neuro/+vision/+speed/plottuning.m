@@ -29,6 +29,7 @@ marker = 'o';
 linestyle = 'none';
 do_surf = 1;
 vlt.data.assign(varargin{:});
+
 % On the left side
 subplot(1,2,1);
 hold on;
@@ -41,7 +42,7 @@ for s = 1:numel(all_sfs)
     indexes = find(SF==all_sfs(s));
     % Plot the responses and calculate the speed for each spot
     speed_here = TF(indexes)./SF(indexes);
-    h = plot(speed_here,R(indexes),'marker',marker,'linestyle',linestyle,colors(s,:));
+    h = plot(speed_here,R(indexes),'marker',marker,'linestyle',linestyle,'color',colors(s,:));
 end
 set(gca,'XScale','log');
 set(gca,'FontAngle','italic');
