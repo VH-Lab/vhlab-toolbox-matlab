@@ -1,4 +1,4 @@
-function out = matlab2markdown(input_path, output_path, ymlpath, objectstruct, packageprefix)
+function out = matlab2markdown(input_path, output_path, ymlpath, objectstruct, packageprefix, url_prefix)
 % MATLAB2MARKDOWN - convert Matlab documentation to markdown
 %
 % OUT = MATLAB2MARKDOWN(INPUT_PATH, OUTPUT_PATH, YMLPATH, OBJECTSTRUCT)
@@ -13,7 +13,7 @@ function out = matlab2markdown(input_path, output_path, ymlpath, objectstruct, p
 %
 % See also: vlt.docs.markdownoutput2objectstruct
 
-out = vlt.data.emptystruct('title','path');
+out = vlt.data.emptystruct('title','path','url_prefix');
 
 disp(['crawling ' input_path ' ... ']);
 
@@ -23,6 +23,10 @@ end;
 
 if nargin<5,
 	packageprefix = '';
+end;
+
+if nargin<6,
+	url_prefix = 'https://vh-lab.github.io/NDI-matlab/';
 end;
 
 if exist([input_path filesep '.matlab2markdown-ignore'],'file'),
@@ -57,6 +61,7 @@ for i=1:numel(w.m),
 
 	out_here.title = vlt.matlab.mfile2package([input_path filesep w.m{i}]);
 	out_here.path = [ymlpath filesep w.m{i} '.md'];
+	out_here.url_prefix = url_prefix;
 
 	if isclass,
 		[classhelp, prop_struct, methods_struct,superclassnames] = vlt.docs.class2help([input_path filesep w.m{i}]);
@@ -77,9 +82,17 @@ for i=1:numel(w.m),
 			linkopen = '';
 			linkclose = '';
 			if ~isempty(index),
-				linkhere = ['(' vlt.path.absolute2relative(objectstruct(index).path,out_here.path) ')'];
 				linkopen = '[';
 				linkclose = ']';
+				if strcmp(url_prefix,objectstruct(index).url_prefix), % if it is in our package
+					linkhere = ['(' vlt.path.absolute2relative(objectstruct(index).path,out_here.path) ')'];
+				else,   % it's in another package
+					objhere = strrep(objectstruct(index).path,'+','%2B'); % make the + URL friendly
+					if endsWith(objhere,'.md'), 
+						objhere = objhere(1:end-3);
+					end;
+					linkhere = ['(' objectstruct(index).url_prefix objhere ')'];
+				end;
 			end;
 			doctext = cat(2,doctext, ['**' linkopen superclassnames{j} linkclose linkhere '**']);
 			if j~=numel(superclassnames),
@@ -134,12 +147,13 @@ packagelist = {};
 for i=1:numel(w.packages),
 	packagelist{end+1} = ['+' w.packages{i}];
 	out_here.title = [w.packages{i} ' PACKAGE'];
+	out_here.url_prefix = url_prefix;
 	next_inputdir = [input_path filesep '+' w.packages{i}];
 	next_outputdir = [output_path filesep '+' w.packages{i}];
 	next_ymlpath = [ymlpath filesep '+' w.packages{i}];
 	next_packageprefix = [packageprefix w.packages{i} '.'];
 
-	outst = vlt.docs.matlab2markdown(next_inputdir, next_outputdir, next_ymlpath, objectstruct, next_packageprefix);
+	outst = vlt.docs.matlab2markdown(next_inputdir, next_outputdir, next_ymlpath, objectstruct, next_packageprefix,url_prefix);
 
 	if ~isempty(outst),
 		out_here.path = outst;
@@ -150,11 +164,12 @@ end;
 d = setdiff(d,packagelist);
 for i=1:numel(d),
 	out_here.title = [d{i} ' FOLDER'];
+	out_here.url_prefix = url_prefix;
 	next_inputdir = [input_path filesep d{i}];
 	next_outputdir = [output_path filesep d{i}];
 	next_ymlpath = [ymlpath filesep d{i}];
 
-	outst = vlt.docs.matlab2markdown(next_inputdir, next_outputdir, next_ymlpath, objectstruct);
+	outst = vlt.docs.matlab2markdown(next_inputdir, next_outputdir, next_ymlpath, objectstruct,'',url_prefix);
 
 	if ~isempty(outst),
 		out_here.path = outst;
