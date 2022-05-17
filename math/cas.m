@@ -3,7 +3,7 @@ function y = cas(x)
 %   Y = CAS(X)
 %
 %  Returns the abbreviated CAS function where
-%  CAS(X) = SIN(X) + COS(X)
+%  CAS(X) = COS(X) + SIN(X)
 %  
 
 y = cos(x) + sin(x);
