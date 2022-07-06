@@ -18,7 +18,7 @@ b = 0;
 value = [];
 
 try,
-	value = A.(field);
+	value = eval(['A.' field]);
 	b = 1;
 end;
 
