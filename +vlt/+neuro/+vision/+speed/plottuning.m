@@ -29,17 +29,20 @@ marker = 'o';
 linestyle = 'none';
 do_surf = 1;
 vlt.data.assign(varargin{:});
+
 % On the left side
 subplot(1,2,1);
 hold on;
 
 all_sfs = unique(SF); % All the spatial frequencies present
 
+colors = jet(numel(all_sfs));
+
 for s = 1:numel(all_sfs)
     indexes = find(SF==all_sfs(s));
     % Plot the responses and calculate the speed for each spot
     speed_here = TF(indexes)./SF(indexes);
-    h = plot(speed_here,R(indexes),'marker',marker,'linestyle',linestyle);
+    h = plot(speed_here,R(indexes),'marker',marker,'linestyle',linestyle,'color',colors(s,:));
 end
 set(gca,'XScale','log');
 set(gca,'FontAngle','italic');

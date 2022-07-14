@@ -7,12 +7,13 @@ function objectstruct = markdownoutput2objectstruct(markdown_output)
 % fields 'object' and 'path'. 'object' has the name of each object, and 'path' has its absolute path.
 % 
 
-objectstruct = vlt.data.emptystruct('object','path');
+objectstruct = vlt.data.emptystruct('object','path','url_prefix');
 
 for i=1:numel(markdown_output),
 	if ~isstruct(markdown_output(i).path),
 		newentry.object = markdown_output(i).title;
 		newentry.path = markdown_output(i).path;
+        newentry.url_prefix = markdown_output(i).url_prefix;
 		objectstruct(end+1) = newentry;
 	else, 
 		objectstruct = cat(2,objectstruct, vlt.docs.markdownoutput2objectstruct(markdown_output(i).path));
