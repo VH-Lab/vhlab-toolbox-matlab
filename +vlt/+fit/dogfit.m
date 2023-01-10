@@ -20,26 +20,26 @@ function [p,sse] = dogfit(x, y, varargin)
 % | a_initial (NaN)         | a initial guess (NaN means choose|
 % |                         |   randomly between limits)       |
 % | b_low (0)               | Low search limit for b           |
-% | b_high (2*max(Y))       | High search limit for b          |
+% | b_high (100*max(Y))     | High search limit for b          |
 % | b_initial (NaN)         | b initial guess (NaN means choose|
 % |                         |   randomly between limits)       |
 % | c_low (0)               | Low search limit for c           |
 % | c_high (0)              | High search limit for c          |
 % | c_initial (NaN)         | c initial guess (NaN means choose|
 % |                         |   randomly between limits)       |
-% | d_low (2*min(diff(X)))  | Low search limit for d           |
+% | d_low (0.00001)         | Low search limit for d           |
 % | d_high (2*max(X))       | High search limit for d          |
 % | d_initial (NaN)         | d initial guess (NaN means choose|
 % |                         |   randomly between limits)       |
 % | e_low (0)               | Low search limit for e           |
-% | e_high (2*max(Y))       | High search limit for e          |
+% | e_high (100*max(Y))     | High search limit for e          |
 % | e_initial (NaN)         | e initial guess (NaN means choose|
 % |                         |   randomly between limits)       |
 % | f_low (0)               | Low search limit for f           |
 % | f_high (0)              | High search limit for f          |
 % | f_initial (NaN)         | f initial guess (NaN means choose|
 % |                         |   randomly between limits)       |
-% | g_low (2*min(diff(X)))  | Low search limit for g           |
+% | g_low (0.00001)         | Low search limit for g           |
 % | g_high (2*max(X))       | High search limit for g          |
 % | g_initial (NaN)         | g initial guess (NaN means choose|
 % |-------------------------|----------------------------------|
@@ -68,31 +68,28 @@ a_high = 0;
 a_initial = NaN;
 
 b_low = 0;
-b_high = 2*max(y);
+b_high = 10*max(y);
 b_initial = NaN;
 
 c_low = 0;
 c_high = 0;
 c_initial = NaN;
 
-d_low = 2*min(diff(x));
+d_low =0.001; 2*min(diff(x)); 
 d_high = 2*max(x);
 d_initial = NaN;
 
 e_low = 0;
-e_high = 2*max(y);
+e_high = 10*max(y);
 e_initial = NaN;
 
 f_low = 0;
 f_high = 0;
 f_initial = NaN;
 
-g_low = 2*min(diff(x));
+g_low = 0.001; 2*min(diff(x));
 g_high = 2*max(x);
 g_initial = NaN;
-
-x = vlt.data.colvec(x);
-y = vlt.data.colvec(y);
 
 vlt.data.assign(varargin{:});
 
