@@ -29,7 +29,7 @@ function [corr,lags] = spiketimes_correlation(train1,train2, binsize, maxlag)
   % note: future development could handle the case when this vector is too big for memory;
   % could handle this by looping over all train1 spikes and calling histc
 
-bins = min(min(train1),min(train2)):binsize:max(max(train1),max(train2));
+bins = -binsize+min(min(train1),min(train2)):binsize:max(max(train1),max(train2))+binsize;
 
 train1_bins = vlt.neuro.spiketrains.spiketimes2bins(train1,bins);
 train2_bins = vlt.neuro.spiketrains.spiketimes2bins(train2,bins);
