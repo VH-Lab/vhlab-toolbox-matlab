@@ -22,6 +22,7 @@ function [mu, C, a, fit_responses] = gaussspotfit(xrange, yrange, x_ctr, y_ctr,r
 [X,Y] = meshgrid(xrange,yrange);
 
 radii = unique(radius);
+response = response(:);  % make sure we have a vector
 
  % initial guesses
 amp_initial = [];

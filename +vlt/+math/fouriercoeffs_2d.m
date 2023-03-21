@@ -52,6 +52,11 @@ Y_ = 2 * fft2(X) / (M*N); % use factor of 2 to normalize so coefficient of a * s
 Y_(1,1) = Y_(1,1)/2;      % but don't do this for the DC component
 Y = fftshift(Y_);
 
+if nargout<4,
+    return;
+end;
+
+
 R2 = FX.^2 + FY.^2;
 
 [u_sorted, sorted_indexes] = sort(R2(:));
