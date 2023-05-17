@@ -11,10 +11,13 @@ function [p,gof,fitcurve] = skewgaussfit_constraints(x, y, varargin)
 % c is the peak location; d is the width; e is the degree of skewness (0 is none)
 %
 % The outputs are the parameters P = [a b c d e] and the goodness-of-fit values
-% GOF. FITCURVE is the fit value for all values of x.
+% GOF. FITCURVE is the fit value for all values of x; the first row is all x values, the
+% second row is the fit function values.
 %
 % Inspired by the skew normal distribution: https://en.wikipedia.org/wiki/Skew_normal_distribution
 % (But this is not normalized the same way; in real skew normal, b must be 0.5 * 1/(sqrt(2*pi)*d))
+%
+% See also: vlt.math.skewgauss
 %
 % The user can pass initial guesses and constraints as name/value pairs:
 % Parameter (default)              | Description
