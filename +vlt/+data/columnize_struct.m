@@ -20,10 +20,11 @@ s_out = s_in(:); % columize it
 
 f = fields(s_out);
 
-for i=1:numel(f),
-	v = getfield(s_out,f{i});
-	if isstruct(v),
-		s_out = setfield(s_out,f{i},vlt.data.columnize_struct(v));
-	end;
+if ~isempty(s_out)
+    for i=1:numel(f),
+	    v = getfield(s_out,f{i});
+	    if isstruct(v),
+		    s_out = setfield(s_out,f{i},vlt.data.columnize_struct(v));
+	    end;
+    end;
 end;
- 
