@@ -28,8 +28,20 @@ x_select = right - left + 1;
 [Y,X] = size(im);
 
 top_pad = max(0,-(top-1));
+bottom_pad = -min(0,-(bottom-Y));
+left_pad = max(0,-(left-1));
+right_pad = -min(0,-(right-X));
 
+ % now what are we actually going to grab from the image
 
+select_start_Y = max(1,top);
+select_stop_Y = min(Y,bottom);
 
+select_start_X = max(1,left);
+select_stop_X = min(X,right);
 
- 
+im_sub = [ pad*ones(y_select,left_pad) ...
+    [ pad*ones(top_pad,x_select-left_pad-right_pad) ; ...
+     im(select_start_Y:select_stop_Y,select_start_X:select_stop_X) ; ...
+      pad*ones(bottom_pad,x_select-left_pad-right_pad) ]  pad*ones(y_select,right_pad) ];
+
