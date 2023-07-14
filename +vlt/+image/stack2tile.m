@@ -1,7 +1,7 @@
-function im_out = stack2tile(im_in, m, n)
+function [im_out,stack_coords_in_tile] = stack2tile(im_in, m, n)
 % vlt.image.stack2tile - write a 3D stack of images to a 2D tiled image set
 %
-% IM_OUT = STACK2TILE(IM_IN, M, N)
+% [IM_OUT, STACK_COORDS_IN_TILE] = STACK2TILE(IM_IN, M, N)
 %
 % Takes a stack of images of size XxYxZ and creates a set of tiled images.
 % The Z planes are distributed from left to right in the tiled image and then
@@ -13,6 +13,10 @@ function im_out = stack2tile(im_in, m, n)
 %
 % If the stack does not exactly cover the last M x N tiled image, then
 % that part of the image is filled with zeros.
+%
+% STACK_COORDS_IN_TILE is a matrix of row vectors. Each row j contains the
+% TILE_NUMBER, X_TOP, X_BOTTOM, Y_LEFT, Y_RIGHT coordinates of the stack in
+% the tile.
 %
 %
 % Example:
@@ -29,9 +33,12 @@ function im_out = stack2tile(im_in, m, n)
 
 im_out = {};
 
+stack_coords_in_tile = [];
+
 z_count = 0;
 row_count = 0;
 col_count = 0;
+image_count = 1;
 
 [x,y,z] = size(im_in);
 
@@ -42,10 +49,12 @@ while z_count < z,
 			if z_count < z,
 				z_count = z_count + 1;
 				im_out_( (1+(r-1)*x):(r*x), (1+(c-1)*y):(c*y) ) = im_in(:,:,z_count);
+				stack_coords_in_tile(end+1,[1:5]) = [image_count 1+(r-1)*x r*x 1+(c-1)*y c*y];
 			end;
 		end;
 	end;
 	im_out{end+1} = im_out_;
+	image_count = image_count + 1;
 end;
 
 
