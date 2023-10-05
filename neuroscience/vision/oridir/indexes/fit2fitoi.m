@@ -23,9 +23,11 @@ function oiindfit = fit2fitoi(R, blank)
 [mx,Ot] = max(R(2,:));
 directions = R(1,:);
 
-OtPi = findclosest(directions,Ot); OtNi = findclosest(directions,mod(Ot+180,360));
-OtO1i = findclosest(directions,mod(Ot+90,360)); OtO2i = findclosest(directions,mod(Ot-90,360));
-
+OtPi = Ot;
+OtNi = findclosest(directions,mod(directions(Ot)+180,360));
+OtO1i = findclosest(directions,mod(directions(Ot)+90,360));
+OtO2i = findclosest(directions,mod(directions(Ot)-90,360));
 R = R(2,:);
+%[R(OtPi) R(OtNi) R(OtO1i) R(OtO2i)] for debugging
 
 oiindfit = (R(OtPi)+R(OtNi)-R(OtO1i)-R(OtO2i))/(R(OtPi)+R(OtNi));

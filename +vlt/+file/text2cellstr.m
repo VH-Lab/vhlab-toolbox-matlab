@@ -17,10 +17,10 @@ if fid<0,
 end;
 
 while ~feof(fid),
-    nextline = fgetl(fid);
-    if ischar(nextline),
-    	c{end+1} = fgetl(fid);
-    end;
+	nextline = fgetl(fid);
+	if ischar(nextline),
+		c{end+1} = nextline;
+	end;
 end;
 fclose(fid);
 
