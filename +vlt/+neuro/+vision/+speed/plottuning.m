@@ -58,12 +58,18 @@ end;
 subplot(1,2,2);
 
 % Use surf
-surf(SF,TF,R,R);
+R_surf = [ R R(:,end) ; R(end,:) R(end,end)];
+SF_surf = [SF SF(:,end)*2; SF(end,:) SF(end,end)*2 ];
+TF_surf = [ TF TF(:,end); TF(end,:)*2 TF(end,end)*2];
+surf(SF_surf,TF_surf,R_surf,R_surf);
 set(gca,'View',[0 90]);
 set(gca,'XScale','log','YScale','log');
-set(gca,'XTick',[0.05 0.1 0.2 0.4 0.8 1.6]);
-set(gca,'YTick',[0.5 1 2 4 8 16 32 64]);
+set(gca,'XTick',[SF(1,:)]);
+set(gca,'YTick',[TF(:,1)]);
 set(gca,'FontAngle','italic');
+axis([SF_surf(1,1) SF_surf(1,end) TF_surf(1,1) TF_surf(end,1)]);
+shading faceted;
+
 
 xlabel('Spatial frequency (c/deg)','FontAngle','italic');
 ylabel('Temporal frequency (Hz)','FontAngle','italic');
