@@ -100,6 +100,10 @@ block0_s = mod(s0,blockinfo(c).samples_per_block) + ...
 block1 = ceil(s1/blockinfo(c).samples_per_block);
 block1_s = mod(s1,blockinfo(c).samples_per_block) + ...
 	(mod(s1,blockinfo(c).samples_per_block)==0)*blockinfo(c).samples_per_block; % s1 is the block1_s sample in block1
+if block1>num_data_blocks, % can happen if we request a non-60 sample per block channel
+	block1 = num_data_blocks;
+	block1_s = blockinfo(c).samples_per_block;
+end;
 
 
 % NOW, WE KNOW WHAT TO READ, LET'S READ IT
