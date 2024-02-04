@@ -71,16 +71,6 @@ if t1>(total_time-1/header.frequency_parameters.amplifier_sample_rate),
 	t1 = total_time-1/header.frequency_parameters.amplifier_sample_rate;
 end;
 
- % now compute starting and ending samples to read
-s0 = 1+round(t0 * header.frequency_parameters.amplifier_sample_rate);
-s1 = 1+round(t1 * header.frequency_parameters.amplifier_sample_rate);
-
- % where do these samples live? in which blocks?
-block0 = ceil(s0/60);
-block0_s = mod(s0,60) + (mod(s0,60)==0)*60; % s0 is the block0_s sample in block0
-block1 = ceil(s1/60);
-block1_s = mod(s1,60) + (mod(s1,60)==0)*60; % s1 is the block1_s sample in block1
-
 % determine which channels are going to be read into memory
 ch = zeros(1,8);
 if ischar(channel_type),
@@ -98,6 +88,18 @@ if ischar(channel_type),
 end;
 ch(channel_type) = 1;
 c = find(ch);
+
+ % now compute starting and ending samples to read
+s0 = 1+round(t0 * blockinfo(c).sample_rate);
+s1 = 1+round(t1 * blockinfo(c).sample_rate);
+
+ % where do these samples live? in which blocks?
+block0 = ceil(s0/blockinfo(c).samples_per_block);
+block0_s = mod(s0,blockinfo(c).samples_per_block) + ...
+	(mod(s0,blockinfo(c).samples_per_block)==0)*blockinfo(c).samples_per_block; % s0 is the block0_s sample in block0
+block1 = ceil(s1/blockinfo(c).samples_per_block);
+block1_s = mod(s1,blockinfo(c).samples_per_block) + ...
+	(mod(s1,blockinfo(c).samples_per_block)==0)*blockinfo(c).samples_per_block; % s1 is the block1_s sample in block1
 
 
 % NOW, WE KNOW WHAT TO READ, LET'S READ IT
@@ -185,8 +187,8 @@ end;
 fclose(fid);  % close the file
 
 % trim to match user requested samples
-if block0_s~=0 | block1_~=60,
-	data = data(block0_s:end-(60-block1_s),:);
+if block0_s~=0 | block1_~=blockinfo(c).samples_per_block,
+	data = data(block0_s:end-(blockinfo(c).samples_per_block-block1_s),:);
 end;
 
 if blockinfo(c).shift ~=0, 
