@@ -28,7 +28,7 @@ end
 
 tf=[];
 for i=1:n,
-	tf(i) = ~vlt.data.eqlen(in(i),out); 
+	tf(i) = ~isequaln(in(i),out);  % who is not equal to out
 end
 
 if any(tf),

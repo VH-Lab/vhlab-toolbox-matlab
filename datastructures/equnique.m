@@ -28,7 +28,7 @@ end
 
 tf=[];
 for i=1:n,
-	tf(i) = ~eqlen(in(i),out); 
+	tf(i) = ~isequaln(in(i),out); 
 end
 
 if any(tf),
