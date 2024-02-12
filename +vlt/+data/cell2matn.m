@@ -4,7 +4,7 @@ function m = cell2matn(c)
 % M = CELL2MATN(C)
 %
 % Create a numeric matrix from a cell matrix C. Empty entries of C will be
-% coded as NaN entries in M. C must contain only numeric entries.
+% coded as NaN entries in M. C must contain only single numeric entries.
 % 
 % Example:
 %   a{1,1} = 1; a{1,2} = 2; a{2,1} = 3;
@@ -20,6 +20,9 @@ for i=1:numel(c),
 	if ~isempty(v),
 		if ~isnumeric(v),
 			error(['Non-numeric entry encountered in C.']);
+		end;
+		if ~isscalar(v),
+			error(['Non-scalar entry encountered in C.']);
 		end;
 		m(i) = v;
 	end;
