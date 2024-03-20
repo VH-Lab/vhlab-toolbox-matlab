@@ -56,16 +56,13 @@ switch (header.channelinfo(channel_index).kind),
 		sampleinterval = chheader.sampleinterval * 1e-6;
 
 	case {2,3,4}, % event
-		fclose(fid);
-		error(['need to implement this channel type.']);
+		sampleinterval=NaN;
 
 	case {5,7,8}, % marker
-		fclose(fid);
-		error(['need to implement this channel type.']);
+		sampleinterval=NaN;
 
 	case 6, % wavemark
-		fclose(fid);
-		error(['need to implement this channel type.']);
+		sampleinterval=NaN;
 
 	otherwise,
 		fclose(fid);
