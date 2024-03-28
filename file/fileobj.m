@@ -15,7 +15,7 @@ classdef fileobj < handle
 	end; % properties
 
 	methods,
-		function fileobj_obj = fileobj(varargin)
+        function fileobj_obj = fileobj(name_value_pairs)
 			% FILEOBJ - create a new binary file object
 			%
 			% FILEOBJ_OBJ = FILEOBJ(...)
@@ -23,18 +23,18 @@ classdef fileobj < handle
 			% Creates an empty FILEOBJ object. If FILENAME is provided,
 			% then the filename is stored.
 			%
-				machineformat = 'n'; % native machine format
-				permission = 'r';
-				fid = -1;
-				fullpathfilename = '';
-
-				assign(varargin{:});
-
-				fileobj_obj = fileobj_obj.setproperties('fullpathfilename',fullpathfilename,'fid',fid,...
-						'permission',permission,'machineformat',machineformat);
+                arguments
+                    name_value_pairs.fullpathfilename = '';
+                    name_value_pairs.fid              = -1;
+                    name_value_pairs.permission       = 'r';
+                    name_value_pairs.machineformat    = 'n'; % native machine format
+                end
+                
+                name_value_pairs = namedargs2cell(name_value_pairs); % struct to cell
+                fileobj_obj.setproperties(name_value_pairs{:});
 		end; % fileobj()
 
-		function fileobj_obj = setproperties(fileobj_obj, varargin)
+		function fileobj_obj = setproperties(fileobj_obj, name_value_pairs)
 			% SETPROPERTIES - set the properties of a FILEOBJ
 			%
 			% FILEOBJ_OBJ = SETPROPERTIES(FILEOBJ_OBJ, 'PROPERTY1',VALUE1, ...)
@@ -47,20 +47,18 @@ classdef fileobj < handle
 			%   permission;       % The file permission
 			%   machineformat     % big-endian ('b'), little-endian ('l'), or native ('n')
 
-				fn = fieldnames(fileobj_obj);
-				for i=1:numel(fn),
-					eval([fn{i} '=getfield(fileobj_obj,fn{i});']);
-				end;
+                arguments
+                    fileobj_obj (1,1) fileobj % Object of this class
+                    name_value_pairs.fullpathfilename = '';
+                    name_value_pairs.fid              = -1;
+                    name_value_pairs.permission       = 'r';
+                    name_value_pairs.machineformat    = 'n'; % native machine format
+                end
 
-				assign(varargin{:});
-
-				% check for accuracy would be a good idea
-
-				fn = fieldnames(fileobj_obj);
-				for i=1:numel(fn),
-					eval(['fileobj_obj.' fn{i} '= ' fn{i} ';']);
-				end;
-
+                prop_names = reshape(fieldnames(name_value_pairs), 1, []);  % Ensure row
+                for prop_name = string(prop_names)
+                    fileobj_obj.(prop_name) = name_value_pairs.(prop_name);
+                end
 		end; % setproperties()
 
 		function fileobj_obj = fopen(fileobj_obj, permission, machineformat, filename)
