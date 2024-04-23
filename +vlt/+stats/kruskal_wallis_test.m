@@ -16,6 +16,7 @@ function [pval, k, df] = kruskal_wallis_test(varargin)
 %
 %  If no output argument is given, the p-value is displayed.
 %   [From Octave 2.5.1]
+%  (2024-04-23: NaN values will be removed. SDV)
 %  Author: KH <Kurt.Hornik@ci.tuwien.ac.at>
 %  Description: Kruskal-Wallis test
 pval = []; k = []; df = [];
@@ -33,6 +34,7 @@ for i=1:m,
 	if size(x,1)~=1&size(x,2)~=1,
 		error('vlt.stats.kruskal_wallis_test: all arguments must be vectors');
 	end;
+	x = x(find(~isnan(x)));
 	l = length(x);
 	n(end+1) = l;
 	p = cat(2,p,reshape(x,1,l));
