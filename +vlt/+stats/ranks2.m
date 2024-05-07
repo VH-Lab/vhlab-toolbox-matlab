@@ -12,6 +12,9 @@ function y = ranks (x)
 % Author: KH <Kurt.Hornik@ci.tuwien.ac.at>
 %
 % Modified 9/9/2004 by SDV for speed; assumes ties are rare.
+%
+% SEE ALSO: vlt.data.sortorder, SORTORDER (recommended)
+%
 
 
 
