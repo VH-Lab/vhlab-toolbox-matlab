@@ -41,5 +41,8 @@ if rankorder == 1,
 	data = vlt.data.sortorder(data);
 end;
 
-lm = fitlm(categor_reordered,data,'VarNames',{categories_name,Y_name});
+newtable = table(categor_reordered,data,'VariableNames',{categories_name,Y_name});
+
+lm = fitlm(newtable, [Y_name ' ~ 1+ ' categories_name]);
+
 
