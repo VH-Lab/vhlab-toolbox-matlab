@@ -18,6 +18,7 @@
  
    If no output argument is given, the p-value is displayed.
     [From Octave 2.5.1]
+   (2024-04-23: NaN values will be removed. SDV)
    Author: KH <Kurt.Hornik@ci.tuwien.ac.at>
    Description: Kruskal-Wallis test
 
