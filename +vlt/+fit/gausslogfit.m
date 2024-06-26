@@ -5,7 +5,7 @@ function [p,gof,fitcurve] = gausslogfit(x, y, varargin)
 %
 % Fits the data Y at positions X to:
 %
-% Y = a+b*exp((log10(x)-log10(c)).^2/(2*d^2))
+% Y = a+b*exp(-((log10(x)-log10(c)).^2/(2*d^2)))
 %
 % a is an offset parameter; b is a height parameter above the offset; 
 % c is the peak location; d is the width; e is the degree of skewness (0 is none)
@@ -38,7 +38,9 @@ c_hint = vlt.math.center_of_mass(x,y);
 c_range = [min(x) max(x)];
 total_w = max(x) - min(x);
 d_hint = 0.1*total_w;
-d_range = [0.01 1] * total_w;
+%trying to force better fit
+%d_range = [0.01 1] * total_w;
+d_range = [.01 1];
 
 vlt.data.assign(varargin{:});
 
