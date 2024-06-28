@@ -50,6 +50,7 @@ offset_effect = [];
 condition_effect = [];
 condition_boundaries = [];
 
+Y_name_fixed = strrep(Y_name,'.','__');
 
  % plot categories in order
 
@@ -84,14 +85,14 @@ for i=1:numel(cats),
 		end;
 		I_ = find(cats{i}==newtable.(categories_name) & strcmp(bnames_levels{j},grp));
 		if ~isempty(I_),
-			n_here = numel(newtable(I_,:).(Y_name));
+			n_here = numel(newtable(I_,:).(Y_name_fixed));
 			random_xaxis_offsets = (rand(n_here,1) - 0.5)/2;
 			x{end+1} = current_spot + vo.within_category_space*0.5 + random_xaxis_offsets;
 			x_center(end+1) = current_spot + vo.within_category_space*0.5;
 			if vo.isranked & vo.plot_original_data,
 				Y = newtable(I_,:).('original_data');
 			else,
-				Y = newtable(I_,:).(Y_name);
+				Y = newtable(I_,:).(Y_name_fixed);
 			end;
 			y{end+1} = Y; % Y_op already evaluated
 			condition(end+1) = i;
@@ -113,9 +114,9 @@ for i=1:numel(cats),
 end;
 
 if vo.isranked & vo.plot_original_data,
-	original_data = newtable(I_,:).('original_data');
+	original_data = newtable.('original_data');
 	[u,u_indexes] = unique(original_data);
-	ranked_data = newtable(I_,:).(Y_name);
+	ranked_data = newtable.(Y_name_fixed);
 end;
 
 h = [];
@@ -151,11 +152,13 @@ for i=1:numel(cats),
 	condition_value = cc.Estimate(i)+intercept*(i>1);
 	condition_stderr_bar = [-1 1] * cc.SE(i) + condition_value;
 	if vo.isranked & vo.plot_original_data,
-		X = interp1(ranked_data(u_indexes),original_data(u_indexes),...
-			[condition_value condition_stderr_bar],...
-			'linear');
-		condition_value = X(1);
-		condition_stderr_bar = X(2:3);
+        if ~isempty(u_indexes),
+		    X = interp1(ranked_data(u_indexes),original_data(u_indexes),...
+			    [condition_value condition_stderr_bar],...
+			    'linear');
+		    condition_value = X(1);
+		    condition_stderr_bar = X(2:3);
+        end;
 	end;
 	h(end+1) = plot(condition_boundaries(i,:),[1 1]*condition_value,...
 		'linewidth',vo.category_mean_linewidth,...

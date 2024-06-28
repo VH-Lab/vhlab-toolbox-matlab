@@ -50,8 +50,9 @@ if rankorder == 1,
 	data = vlt.data.sortorder(data);
 end;
 
-newtable = table(categor_reordered,data,'VariableNames',{categories_name,Y_name});
+Y_name_fixed = strrep(Y_name,'.','__');
 
-lm = fitlm(newtable, [Y_name ' ~ 1+ ' categories_name]);
+newtable = table(categor_reordered,data,'VariableNames',{categories_name,Y_name_fixed});
 
+lm = fitlm(newtable, [Y_name_fixed ' ~ 1+ ' categories_name]);
 

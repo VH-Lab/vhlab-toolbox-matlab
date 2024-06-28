@@ -62,8 +62,10 @@ end;
 
 group_data = tbl.(group);
 
-newtable = table(categor_reordered,group_data,data,original_data,'VariableNames',{categories_name,group,Y_name,'original_data'});
+Y_name_fixed = strrep(Y_name,'.','__');
 
-lme = fitlme(newtable, [Y_name ' ~ 1+ ' categories_name ' + (1 | ' group ')']);
+newtable = table(categor_reordered,group_data,data,original_data,'VariableNames',{categories_name,group,Y_name_fixed,'original_data'});
+
+lme = fitlme(newtable, [Y_name_fixed ' ~ 1+ ' categories_name ' + (1 | ' group ')']);
 
 
