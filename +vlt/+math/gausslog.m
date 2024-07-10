@@ -4,7 +4,7 @@ function y = gausslog(x, p)
 % Y = GAUSSLOG(X, P)
 %
 % Evaluates 
-%    Y = a+b*exp((log10(x)-log10(c)).^2/(2*d^2))
+%    Y = a+b*exp(-((log10(x)-log10(c)).^2)/((2*d^2)))
 %
 % a is an offset parameter; b is a height parameter above the offset;
 % c is the peak location; d is the width; e is the degree of skewness (0 is none)
