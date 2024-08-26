@@ -43,7 +43,7 @@ end;
 xx=0:0.01:1;
 yy=interp1(contrast,responses,xx,'linear');
 [CmaxR,i] = max(yy);
-[j,c50R] = vlt.data.findclosest(yy,CmaxR/2);
+[dummy,j] = find(yy>=CmaxR/2,1);
 c50i = xx(j);
 
 if units_are_percent,

@@ -36,12 +36,16 @@ for i=1:length(fields)
 	if numel(find(t=='/')) > 1 | ~isempty(regexp(t,'(\s*)\d\d\d\d-\d\d-\d\d(\s*)')), % assume it is a date, pass as string
 		u = []; 
 	else,
-		u = str2num(t);
-		if ~isempty(u),
-			if ~isnumeric(u),
-				u = [];
-			end
-		end
+%        if ~isempty(regexp(t, '^(-)?(\d*)(\.?)(\d*)(e^(+|-)?(\d*))?$', 'once'));
+		    u = str2num(t);
+		    if ~isempty(u),
+			    if ~isnumeric(u),
+				    u = [];
+			    end
+            end
+%        else,
+%            u = [];
+%        end;
 	end
 
 	if ~isempty(u)
