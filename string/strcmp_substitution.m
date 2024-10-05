@@ -1,4 +1,4 @@
-function [tf, match_string, substitute_string] = strcmp_substitution(s1, s2, varargin)
+function [tf, match_string, substitute_string] = strcmp_substitution(s1, s2, options)
 % STRCMP_SUBSTITUTION - Checks strings for match with ability to substitute a symbol for a string
 %
 %  [TF, MATCH_STRING, SUBSTITUTE_STRING] = STRCMP_SUBSTITUTION(S1, S2, ...)
@@ -44,13 +44,15 @@ function [tf, match_string, substitute_string] = strcmp_substitution(s1, s2, var
 %            [tf, matchstring, substring] = strcmp_substitution(s1,s2)
 %
 
-SubstituteStringSymbol = '#';
-UseSubstituteString = 1;
-LiteralCharacter = '\';
-SubstituteString = '';
-ForceCellOutput = 0;
-
-assign(varargin{:});
+    arguments
+        s1 (1,:) char
+        s2 (1,:) cell
+        options.SubstituteStringSymbol = '#';
+        options.UseSubstituteString = 1;
+        options.LiteralCharacter = '\';
+        options.SubstituteString = '';
+        options.ForceCellOutput = 0;
+    end
 
 made_cell = 0;
 
@@ -78,21 +80,21 @@ tf(indexes) = tf2;
 
   % step 3, identify all substitution matches
 
-if UseSubstituteString,
+if options.UseSubstituteString,
 		% what work do we have remaining?
 	indexes = find(~tf); % things that don't match and clean up match string indexes
-	myregexp_literalexception = ['[\' LiteralCharacter ']' SubstituteStringSymbol];
-	myregexp = SubstituteStringSymbol;
+	myregexp_literalexception = ['[\' options.LiteralCharacter ']' options.SubstituteStringSymbol];
+	myregexp = options.SubstituteStringSymbol;
 	mymatches = setdiff( regexp(s1,myregexp), 1+regexp(s1,myregexp_literalexception) );
 	s1_ = s1;
 
 	% the function operates in 2 modes; either we are given the SubstituteString and we look for matches,
 	% or we look, for each string, if there exists a SubstituteString and return it
 
-	if ~isempty(SubstituteString), % we are looking for this string
+	if ~isempty(options.SubstituteString), % we are looking for this string
 		for i=1:length(mymatches),
-			s1_ = [s1_(1:(mymatches(i)-1)) SubstituteString s1_(mymatches(i)+1:end)];
-			mymatches(i+1:end) = mymatches(i+1:end) + length(SubstituteString) - 1; % move these guys along
+			s1_ = [s1_(1:(mymatches(i)-1)) options.SubstituteString s1_(mymatches(i)+1:end)];
+			mymatches(i+1:end) = mymatches(i+1:end) + length(options.SubstituteString) - 1; % move these guys along
 		end;
 
 		% ok, now we can have either a regular expression match or exact match
@@ -103,7 +105,7 @@ if UseSubstituteString,
 		indexeshere = find(tf2);
 		tf(indexes(indexeshere)) = 1; % we found a match
 		for j=1:length(indexeshere)
-			substitute_string{indexes(indexeshere(j))} = SubstituteString;
+			substitute_string{indexes(indexeshere(j))} = options.SubstituteString;
 		end;
 	else, % we need to see if there is a string that fits
 		if length(mymatches)>1,
@@ -129,7 +131,7 @@ end;
 
   % clean up outputs, string or cell
 
-if made_cell & ~ForceCellOutput,
+if made_cell & ~options.ForceCellOutput,
 	match_string = match_string{1};
 	substitute_string = substitute_string{1};
 end;
