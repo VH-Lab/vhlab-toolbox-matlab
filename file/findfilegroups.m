@@ -96,7 +96,7 @@ if SearchParent,
 	s2 = {d(regularfiles).name}';
 
 	[tf, match_string, searchString] = strcmp_substitution(fileparameters{1}, s2, ...
-		'SubstituteStringSymbol', SameStringSearchSymbol, 'UseSubstiteString',UseSameStringSearchSymbol);
+		'SubstituteStringSymbol', SameStringSearchSymbol, 'UseSubstituteString',UseSameStringSearchSymbol);
 	tf = tf(:);
 	match_string = match_string(:);
 	searchString = searchString(:);
@@ -112,7 +112,7 @@ if SearchParent,
 		new_filelist_potential = emptystruct('searchString','filelist'); % we will add to this list
 		for j=1:length(filelist_potential),
 			[tf,match_string,newSearchString] = strcmp_substitution(fileparameters{k}, s2, ...
-				'SubstituteStringSymbol', SameStringSearchSymbol, 'UseSubstiteString',UseSameStringSearchSymbol,...
+				'SubstituteStringSymbol', SameStringSearchSymbol, 'UseSubstituteString',UseSameStringSearchSymbol,...
 				'SubstituteString',filelist_potential(j).searchString);
 
 			indexes = find(tf);
