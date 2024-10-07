@@ -1,4 +1,4 @@
-function filelist = findfilegroups(parentdir, fileparameters, varargin)
+function filelist = findfilegroups(parentdir, fileparameters, options)
 % FINDFILEGROUPS - Find a group of files based on parameters
 %
 %  FILELIST = FINDFILEGROUPS(PARENTDIR, FILEPARAMETERS, ...)
@@ -59,33 +59,39 @@ function filelist = findfilegroups(parentdir, fileparameters, varargin)
 %
 %  See also: STRCMP_SUBSTITUTE
 
-SameStringSearchSymbol = '#';
-UseSameStringSearchSymbol = 1;
-SearchParentFirst = 1;
-SearchDepth = Inf;
-SearchParent = 1;
-
-assign(varargin{:});
+    arguments
+        parentdir (1,:) char
+        fileparameters
+        options.SameStringSearchSymbol char = '#';
+        options.UseSameStringSearchSymbol logical = true;
+        options.SearchParentFirst logical = true;
+        options.SearchDepth (1,1) double = Inf;
+        options.SearchParent logical = true;
+    end
 
 filelist = {};
 
-if SearchDepth < 0, return; end; % we're done if we've exceeded search depth
+if options.SearchDepth < 0, return; end; % we're done if we've exceeded search depth
 
 d = dirstrip(dir(parentdir));
 
 subdirs = find([d.isdir]);
 regularfiles = find(~[d.isdir]);
 
-if ~SearchParentFirst,
+if ~options.SearchParentFirst,
 	for i=subdirs,
-		filelist = cat(1,filelist,findfilegroups([parentdir filesep d(i).name], ...
-			fileparameters, varargin{:},'SearchParent',1));
+        subfolderdir = fullfile(parentdir, d(i).name);
+        newOptions = options;
+        newOptions.SearchParent = true;
+        nvPairs = namedargs2cell(newOptions);
+		filelist = cat(1,filelist,findfilegroups(subfolderdir, ...
+			fileparameters, nvPairs{:}));
 	end;
 end;
 
  % now look in this directory, if we are supposed to
 
-if SearchParent,
+if options.SearchParent,
 
 	   % could be many groups of matches in the directory, find all potential lists
 
@@ -96,7 +102,7 @@ if SearchParent,
 	s2 = {d(regularfiles).name}';
 
 	[tf, match_string, searchString] = strcmp_substitution(fileparameters{1}, s2, ...
-		'SubstituteStringSymbol', SameStringSearchSymbol, 'UseSubstiteString',UseSameStringSearchSymbol);
+		'SubstituteStringSymbol', options.SameStringSearchSymbol, 'UseSubstituteString',options.UseSameStringSearchSymbol);
 	tf = tf(:);
 	match_string = match_string(:);
 	searchString = searchString(:);
@@ -112,7 +118,7 @@ if SearchParent,
 		new_filelist_potential = emptystruct('searchString','filelist'); % we will add to this list
 		for j=1:length(filelist_potential),
 			[tf,match_string,newSearchString] = strcmp_substitution(fileparameters{k}, s2, ...
-				'SubstituteStringSymbol', SameStringSearchSymbol, 'UseSubstiteString',UseSameStringSearchSymbol,...
+				'SubstituteStringSymbol', options.SameStringSearchSymbol, 'UseSubstituteString',options.UseSameStringSearchSymbol,...
 				'SubstituteString',filelist_potential(j).searchString);
 
 			indexes = find(tf);
@@ -148,10 +154,15 @@ end
 
 filelist = filelist(:); % columns
 
-if SearchParentFirst,  % now that we've searched the parent, we need to search the subdirs
+if options.SearchParentFirst,  % now that we've searched the parent, we need to search the subdirs
 	for i=subdirs,
-		filelist = cat(1,filelist,findfilegroups([parentdir filesep d(i).name], ...
-			fileparameters, varargin{:},'SearchDepth',SearchDepth-1,'SearchParent',1));
+        subfolderdir = fullfile(parentdir, d(i).name);
+        newOptions = options;
+        newOptions.SearchDepth = options.SearchDepth-1;
+        newOptions.SearchParent = true;
+        nvPairs = namedargs2cell(newOptions);
+		filelist = cat(1,filelist,findfilegroups(subfolderdir, ...
+			fileparameters, nvPairs{:}));
 	end;
 end;
 
