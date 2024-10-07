@@ -46,13 +46,14 @@ function [tf, match_string, substitute_string] = strcmp_substitution(s1, s2, opt
 
     arguments
         s1 (1,:) char
-        s2 (1,:) cell
-        options.SubstituteStringSymbol = '#';
-        options.UseSubstituteString = 1;
-        options.LiteralCharacter = '\';
-        options.SubstituteString = '';
-        options.ForceCellOutput = 0;
+        s2
+        options.SubstituteStringSymbol char = '#';
+        options.UseSubstituteString logical = true;
+        options.LiteralCharacter char = '\';
+        options.SubstituteString char = '';
+        options.ForceCellOutput logical = false;
     end
+
 
 made_cell = 0;
 
