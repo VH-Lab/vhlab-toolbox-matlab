@@ -38,7 +38,9 @@ f = figure;
 for i=1:numel(Y_name_array),
 	supersubplot(f,2,2,i);
 	try, [lme{i},newtable{i}] = vlt.stats.lme_category(tbl,categories_name,Y_name_array{i},...
-		Y_op{i}, reference_category,group_name,0,log_type(i)); end;
+		Y_op{i}, reference_category,group_name,0,log_type(i));
+        catch, warning(['LME non-ranked calculation failed.']);
+    end;
 	[lme_{i},newtable_{i}] = vlt.stats.lme_category(tbl,categories_name,Y_name_array{i},...
 		Y_op{i}, reference_category,group_name,1);
 

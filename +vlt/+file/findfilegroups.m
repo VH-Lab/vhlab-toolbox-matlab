@@ -1,4 +1,4 @@
-function filelist = findfilegroups(parentdir, fileparameters, varargin)
+function filelist = findfilegroups(parentdir, fileparameters, options)
 % FINDFILEGROUPS - Find a group of files based on parameters
 %
 %  FILELIST = vlt.file.findfilegroups(PARENTDIR, FILEPARAMETERS, ...)
@@ -59,13 +59,18 @@ function filelist = findfilegroups(parentdir, fileparameters, varargin)
 %
 %  See also: VLT.STRING.STRCMP_SUBSTITUTE
 
-SameStringSearchSymbol = '#';
-UseSameStringSearchSymbol = 1;
-SearchParentFirst = 1;
-SearchDepth = Inf;
-SearchParent = 1;
+arguments
+    parentdir (1,:) char {mustBeFolder}
+    fileparameters cell {mustBeText}
+    options.SameStringSearchSymbol = '#'
+    options.UseSameStringSearchSymbol = 1
+    options.SearchParentFirst = 1
+    options.SearchDepth = Inf
+    options.SearchParent = 1
+end
 
-vlt.data.assign(varargin{:});
+vlt.data.struct2var(options);
+namevaluepairs = vlt.data.struct2namevaluepair(options);
 
 filelist = {};
 
@@ -79,7 +84,7 @@ regularfiles = find(~[d.isdir]);
 if ~SearchParentFirst,
 	for i=subdirs,
 		filelist = cat(1,filelist,vlt.file.findfilegroups([parentdir filesep d(i).name], ...
-			fileparameters, varargin{:},'SearchParent',1));
+			fileparameters, namevaluepairs{:},'SearchParent',1));
 	end;
 end;
 
@@ -151,7 +156,7 @@ filelist = filelist(:); % columns
 if SearchParentFirst,  % now that we've searched the parent, we need to search the subdirs
 	for i=subdirs,
 		filelist = cat(1,filelist,vlt.file.findfilegroups([parentdir filesep d(i).name], ...
-			fileparameters, varargin{:},'SearchDepth',SearchDepth-1,'SearchParent',1));
+			fileparameters, namevaluepairs{:},'SearchDepth',SearchDepth-1,'SearchParent',1));
 	end;
 end;
 
