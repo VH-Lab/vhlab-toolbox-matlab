@@ -132,7 +132,7 @@ h = vhsb_writeheader(fo,parameters);
 
  % vhsb_writeheader will close the file
 
-fo = fopen(fo,'r+','ieee-le');
+fo = fopen(fo,'r+','l');
 
 fseek(fo,h.headersize,'bof');
 

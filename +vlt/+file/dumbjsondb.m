@@ -288,7 +288,7 @@ classdef dumbjsondb
 				[lockfid,key] = vlt.file.checkout_lock_file(lockfilename);
 				if lockfid > 0,
 					%disp(['about to open file ' [p f] ' with permissions a+']);
-					fid = fopen([p f], 'a+', 'ieee-le'); % open in read/write mode, impose little-endian for cross-platform compatibility
+					fid = fopen([p f], 'a+', 'l'); % open in read/write mode, impose little-endian for cross-platform compatibility
 					if fid > 0, % we are okay
 					else, % need to close and delete the lock file before reporting error
 						fid = -1;

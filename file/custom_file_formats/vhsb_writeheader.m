@@ -82,7 +82,7 @@ end;
 
  % open file for writing, set machine-type to little-endian
 
-fo = fopen(fo,'w','ieee-le');
+fo = fopen(fo,'w','l');
 
 fseek(fo, 0, 'bof');
 

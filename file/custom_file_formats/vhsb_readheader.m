@@ -53,7 +53,7 @@ if isempty(d),
 	error(['Could not find file ' filename_value(fo) '.']);
 end;
 
-fo = fopen(fo,'r','ieee-le');
+fo = fopen(fo,'r','l');
 
 headersize = 1836;
 

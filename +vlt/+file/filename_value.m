@@ -8,7 +8,7 @@ function filename = filename_value(filename_or_fileobj)
 %
 %
 
-if isa(filename_or_fileobj,'fileobj') | isa(filename_or_fileobj,'vlt.file.fileobj'),
+if isa(filename_or_fileobj,'fileobj') | isa(filename_or_fileobj,'vlt.file.fileobj') | isa(filename_or_fileobj,'did.file.fileobj'),
 	filename = filename_or_fileobj.fullpathfilename;
 else,
 	filename = filename_or_fileobj;

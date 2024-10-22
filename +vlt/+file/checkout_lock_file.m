@@ -137,7 +137,7 @@ while ( vlt.file.isfile(filename) & loop<loops ),
 end;
 
 if loop<loops, % we made it
-	fid = fopen(filename,'wt','ieee-le');
+	fid = fopen(filename,'wt','l');
 	t1 = datetime('now','TimeZone','UTCLeapSeconds');
 	t2 = t1 + seconds(expiration_time);
 	exp_str = char(datetime(t2,'TimeZone','UTCLeapSeconds'));

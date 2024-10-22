@@ -30,7 +30,7 @@ h = vlt.file.custom_file_formats.vhsb_readheader(fo);
 
  % vlt.file.custom_file_formats.vhsb_readheader will close the file
 
-fo = fopen(fo,'r','ieee-le');
+fo = fopen(fo,'r','l');
 
  % calculate sample number
 
