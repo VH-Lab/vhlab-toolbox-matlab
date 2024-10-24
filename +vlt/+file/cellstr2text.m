@@ -14,7 +14,7 @@ newline = sprintf('\n');
 
 if fid>=0,
 	for i=1:numel(cs),
-		fwrite(fid,[cs{i} newline],'char');
+		fwrite(fid,[char(cs{i}) newline],'char');
 	end;
 	fclose(fid);
 else,

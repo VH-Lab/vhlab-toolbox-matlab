@@ -46,14 +46,13 @@ function h = vhsb_readheader(fo)
 % skip 200 bytes for future
 
 skip = 200; 
-vlt.file.filename_value(fo)
 d = dir(vlt.file.filename_value(fo));
 
 if isempty(d),
 	error(['Could not find file ' vlt.file.filename_value(fo) '.']);
 end;
 
-fo = fopen(fo,'r','l');
+fo = fopen(fo,'r','ieee-le');
 
 headersize = 1836;
 

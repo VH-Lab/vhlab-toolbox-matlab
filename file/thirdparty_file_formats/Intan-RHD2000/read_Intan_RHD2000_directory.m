@@ -128,7 +128,7 @@ switch channel_type,
 		if numel(channel_numbers)~=1,
 			error(['Only 1 time channel, ' int2str(channel_numbers) ' requested.']);
 		end;
-		fid = fopen([directoryname filesep 'time.dat'],'r','l');
+		fid = fopen([directoryname filesep 'time.dat'],'r','ieee-le');
 		if fid<0,
 			error(['Could not open file ' directoryname filesep 'time.dat for reading.']);
 		end;
@@ -144,7 +144,7 @@ switch channel_type,
 				error(['Channel ' int2str(channel_numbers(i)) ' not in range 1 ... ' int2str(numel(hinfo)) ' listed in header.']);
 			end;
 			fname = [fileprefix{channel_type} hinfo(channel_numbers(i)).custom_channel_name '.dat'];
-			fid = fopen([directoryname filesep fname],'r','l');
+			fid = fopen([directoryname filesep fname],'r','ieee-le');
 			fseek(fid,sample_size_bytes(channel_type)*(s0-1),'bof'); % move to point in file where our samples are saved
 			data_here = double(fread(fid,s1-s0+1,sample_precision{channel_type}));
 			fclose(fid);

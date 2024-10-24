@@ -14,4 +14,5 @@ else,
 	filename = filename_or_fileobj;
 end;
 
+filename = char(filename); % make sure it is a character array
 
