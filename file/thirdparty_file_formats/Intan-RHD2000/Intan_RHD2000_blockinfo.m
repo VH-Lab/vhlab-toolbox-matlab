@@ -19,7 +19,8 @@ function [blockinfo, bytes_per_block, bytes_present, num_data_blocks] = Intan_RH
 % BLOCK_INFO is a structure describing the parameters of each block.
 % BYTES_PER_BLOCK is the number of bytes per data block
 % BYTES_PRESENT is the number of non-header bytes in the file.
-% NUMDATABLOCKS is the number of data blocks in the file.
+% NUMDATABLOCKS is the number of data blocks in the file. If there was a
+% fractional block stored in the file, it will be ignored.
 %
 % See also: READ_INTAN_RHD2000_HEADER, READ_INTAN_RHD2000_DATAFILE, CAT_INTAN_RHD2000_FILES
 
@@ -93,5 +94,5 @@ bytes_per_block = block_offset;
 
 % How many data blocks are in this file?
 bytes_present = header.fileinfo.filesize - header.fileinfo.headersize;
-num_data_blocks = bytes_present / bytes_per_block;
+num_data_blocks = floor(bytes_present / bytes_per_block);
 
