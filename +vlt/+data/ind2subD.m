@@ -20,5 +20,5 @@ end
 
 stride = prod([1 matrix_size(N-1:-1:1)]);
 
-sub_indexes = uint64(mod(floor( (X - 1)/ stride), matrix_size(N) ) + 1);
+sub_indexes = uint64(round(mod(floor( (double(X) - 1)/ stride), matrix_size(N) ) + 1));
 

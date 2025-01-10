@@ -80,7 +80,8 @@ while ~feof(fid),
 				end;
 				%['v_here(1).' param ' = ' myvalue ';'];
 				if ~strcmpi(param, 'end'),
-					eval(['v_here(1).' param ' = ' myvalue ';']);
+					eval(['v_here(1).' param ' = NaN;']);
+                    v_here = setfield(v_here,param,string(myvalue));
 				end
 			else, % multi-line
 				try,
@@ -104,7 +105,10 @@ while ~feof(fid),
 				end;
 				value = nextline(c(1)+1:end);
 				value = strrep(value,char(39),char([39 39]));
-				eval(['s.data = ' '''' value '''' ';']);
+                eval(['s.data=NaN;']);
+                s=setfield(s,'data',string(value));
+				%eval(['s.data = ' '''' value '''' ';']);
+
 				if ~isempty(here),
 					fn = matlab.lang.makeValidName(here{1});
 					if isfield(v_here,fn),
