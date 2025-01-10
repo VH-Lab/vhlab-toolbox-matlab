@@ -46,3 +46,13 @@ end
 percentile = sum(rho_perm >= rho) / N * 100;
 
 end
+
+function mustBeEqualSize(a,b)
+    % Test for equal size
+    if ~isequal(size(a),size(b))
+        eid = 'Size:notEqual';
+        msg = 'Inputs must have equal size.';
+        error(eid,msg)
+    end
+end
+
