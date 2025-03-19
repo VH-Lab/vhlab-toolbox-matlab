@@ -94,5 +94,6 @@ bytes_per_block = block_offset;
 
 % How many data blocks are in this file?
 bytes_present = header.fileinfo.filesize - header.fileinfo.headersize;
-num_data_blocks = floor(bytes_present / bytes_per_block);
+num_data_blocks = bytes_present / bytes_per_block;
 
+num_data_blocks = floor(num_data_blocks);
