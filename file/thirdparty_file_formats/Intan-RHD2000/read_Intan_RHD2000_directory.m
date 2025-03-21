@@ -61,7 +61,8 @@ force_single_channel_read = 0;
 assign(varargin{:});
 
 if isempty(header),
-	header = read_Intan_RHD2000_header([directoryname filesep 'info.rhd'] );
+    headerfile = fixdatfilename([directoryname filesep 'info.rhd']);
+	header = read_Intan_RHD2000_header(headerfile);
 end;
 
 [blockinfo, bytes_per_block, bytes_present, num_data_blocks] = Intan_RHD2000_blockinfo('', header);
@@ -69,7 +70,7 @@ end;
  % we need to look at files to see what the total time is
  % usually time should always be present
 
-fileinfo = dir([directoryname filesep 'time.dat']);
+fileinfo = dir(fixdatfilename([directoryname filesep 'time.dat']));
 
 if isempty(fileinfo),
 	error(['No file ' directoryname filesep 'time.dat, required file.']);
@@ -106,6 +107,15 @@ if ischar(channel_type),
 	end;
 end;
 
+% figure out whether we have one channel per file
+
+try
+    fixdatfilename([directoryname filesep 'amplifier.dat']);
+    one_channel_per_file = false;
+catch
+    one_channel_per_file = true;
+end
+
 data = []; % start out with blank data initially
 
 % channel_type will be a single number
@@ -128,7 +138,8 @@ switch channel_type,
 		if numel(channel_numbers)~=1,
 			error(['Only 1 time channel, ' int2str(channel_numbers) ' requested.']);
 		end;
-		fid = fopen([directoryname filesep 'time.dat'],'r','ieee-le');
+        fname = fixdatfilename([directoryname filesep 'time.dat'])
+		fid = fopen(fname,'r','ieee-le');
 		if fid<0,
 			error(['Could not open file ' directoryname filesep 'time.dat for reading.']);
 		end;
@@ -143,11 +154,15 @@ switch channel_type,
 			if channel_numbers(i) > numel(hinfo) | channel_numbers(i)<1,
 				error(['Channel ' int2str(channel_numbers(i)) ' not in range 1 ... ' int2str(numel(hinfo)) ' listed in header.']);
 			end;
-			fname = [fileprefix{channel_type} hinfo(channel_numbers(i)).custom_channel_name '.dat'];
-			fid = fopen([directoryname filesep fname],'r','ieee-le');
-			fseek(fid,sample_size_bytes(channel_type)*(s0-1),'bof'); % move to point in file where our samples are saved
-			data_here = double(fread(fid,s1-s0+1,sample_precision{channel_type}));
-			fclose(fid);
+            if one_channel_per_file
+			    fname = fixdatfilename([fileprefix{channel_type} hinfo(channel_numbers(i)).custom_channel_name '.dat'])
+			    fid = fopen([directoryname filesep fname],'r','ieee-le');
+			    fseek(fid,sample_size_bytes(channel_type)*(s0-1),'bof'); % move to point in file where our samples are saved
+			    data_here = double(fread(fid,s1-s0+1,sample_precision{channel_type}));
+			    fclose(fid);
+            else
+                data_here = read_IntanRHD2000_one_file_per_channel_type(directoryname, channel_type, i, numel(hinfo), s0, s1);
+            end
 			if conversion_shift(channel_type) ~=0,
 				data_here = data_here - conversion_shift(channel_type);
 			end;
@@ -156,4 +171,28 @@ switch channel_type,
 	case 5,
 		error(['Do not know how to read temperature in this mode yet.']);
 end;
+
+function fn = fixdatfilename(filename)
+% FIXDATFILENAME - if the filename has a prefix, find it
+%
+% FN = FIXDATFILENAME(FILENAME)
+%
+% Checks to make sure filename exists. If not, it looks for a file with
+% a prefix (e.g., XXXfilename).
+%
+if isfile(filename)
+    fn = filename;
+    return;
+end;
+
+[parentdir,fname,ext] = fileparts(filename);
+
+d = dir([parentdir filesep '*' fname ext]);
+
+if ~isempty(d)
+    fn = [parentdir filesep d(1).name];
+    return;
+end;
+
+error(['Could not find file related to ' filename]);
 
