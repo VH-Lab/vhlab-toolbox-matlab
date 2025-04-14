@@ -21,11 +21,14 @@ function data = read_IntanRHD2000_one_file_per_channel_type(directory_name, chan
     %
     %   DATA is a vector containing the requested data samples.
     %
+    %   DIGITAL data is always the 16-bit digital input/output regardless of which channel is requested.
+    %
     %   Example:
     %       data = read_IntanRHD2000_one_file_per_channel_type('data', 2, 1, 32, 100, 200);
     %       % Reads samples 100 to 200 from the first amplifier channel from 32 channels.
     %
     %   See also: fixdatfilename
+
     arguments
         directory_name (1, :) char {mustBeFolder(directory_name)}
         channel_type (1, 1) double {mustBeMember(channel_type, 1:8)}
@@ -34,7 +37,6 @@ function data = read_IntanRHD2000_one_file_per_channel_type(directory_name, chan
         s0 (1, 1) double {mustBeInteger, mustBePositive}
         s1 (1, 1) double {mustBeInteger, mustBePositive, mustBeGreaterThanOrEqual(s1, s0)}
     end
-
 
 sample_size_bytes = [ 4 2 2 2 2 2 2];
 sample_precision = { 'int32', 'int16', 'uint16', 'uint16', 'uint16', 'uint16', 'uint16' };
@@ -67,11 +69,23 @@ if fid<0
     error(['Could not open ' fn ' for reading.']);
 end
 
-% move num_channels * size * (s0-1) samples in, and then channel_index - 1 further
-fseek(fid,sample_size_bytes(channel_type)*(num_channels*(s0-1) + channel_index-1),'bof');
+if channel_type<7
+	% move num_channels * size * (s0-1) samples in, and then channel_index - 1 further
+	fseek(fid,sample_size_bytes(channel_type)*(num_channels*(s0-1) + channel_index-1),'bof');
 
-% now read the data, skipping numchannels-1 samples each time
-data = fread(fid,s1-s0+1,sample_precision{channel_type},sample_size_bytes(channel_type)*(num_channels-1));
+	% now read the data, skipping numchannels-1 samples each time
+	data = fread(fid,s1-s0+1,sample_precision{channel_type},sample_size_bytes(channel_type)*(num_channels-1));
+else
+        % different rules for digital channels
+
+        % num_channels is effectively 1 for this data type because it is a 16 bit value
+        % channel_index is effectively 1 for this data type because it is a 16 bit value
+	% move num_channels * size * (s0-1) samples in, and then channel_index - 1 further
+	fseek(fid,sample_size_bytes(channel_type)*(s0-1),'bof');
+
+	% now read the data 
+	data = fread(fid,s1-s0+1,sample_precision{channel_type});
+end
 
 fclose(fid);
 
