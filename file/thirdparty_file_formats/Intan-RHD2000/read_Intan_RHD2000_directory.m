@@ -138,7 +138,7 @@ switch channel_type,
 		if numel(channel_numbers)~=1,
 			error(['Only 1 time channel, ' int2str(channel_numbers) ' requested.']);
 		end;
-        fname = fixdatfilename([directoryname filesep 'time.dat'])
+		fname = fixdatfilename([directoryname filesep 'time.dat']);
 		fid = fopen(fname,'r','ieee-le');
 		if fid<0,
 			error(['Could not open file ' directoryname filesep 'time.dat for reading.']);
