@@ -165,4 +165,6 @@ if use_filelock,
 	delete(lock_fname);
 end;
 
+fclose(fo);
+
 b = 1;
