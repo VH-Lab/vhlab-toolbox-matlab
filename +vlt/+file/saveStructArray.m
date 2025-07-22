@@ -26,7 +26,7 @@ end
 
 [fid,msg] = fopen(fname, 'wt');
 if fid == -1
-	disp(msg);
+	disp([msg,': ',fname]);
 	return;
 end
 
