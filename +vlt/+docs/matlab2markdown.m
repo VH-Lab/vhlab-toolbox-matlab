@@ -15,6 +15,12 @@ function out = matlab2markdown(input_path, output_path, ymlpath, objectstruct, p
 
 out = vlt.data.emptystruct('title','path','url_prefix');
 
+% Skip private, internal and +internal folders
+[~, folder_name] = fileparts(input_path);
+if any(strcmp(folder_name, {'private', 'internal', '+internal'}))
+    return
+end
+
 disp(['crawling ' input_path ' ... ']);
 
 if nargin<4,
