@@ -1,101 +1,111 @@
 function C = corrcoef(image1, image2, mask1, mask2, N)
-% CORRCOEF - Computes a 2D spatial cross-correlation between two images.
+% CORRCOEF - Computes a 2D spatial cross-correlation coefficient map.
 %
 %   C = vlt.image.corrcoef(IMAGE1, IMAGE2, MASK1, MASK2, N)
 %
-%   Calculates the Pearson correlation coefficient between two images (IMAGE1
-%   and IMAGE2) at various spatial lags or shifts. The correlation is
-%   computed over a square range of shifts from -N to +N pixels in both the
-%   x and y dimensions.
+%   Calculates the 2D cross-correlation coefficient between two images for a
+%   range of spatial shifts up to N pixels in x and y. The correlation is
+%   only computed over pixels that are valid in both provided masks.
+%
+%   The function leverages the symmetry of the correlation coefficient,
+%   C(dy, dx) = C(-dy, -dx), to reduce computations by about half.
 %
 %   Inputs:
-%     IMAGE1  - The first input image (an MxP matrix).
-%     IMAGE2  - The second input image (must be the same size as IMAGE1).
-%     MASK1   - A logical mask for IMAGE1. Pixels are included in the
-%               correlation only if the corresponding mask value is true.
-%     MASK2   - A logical mask for IMAGE2.
-%     N       - An integer defining the half-width of the shift range. The
-%               total range of shifts will be from -N to +N, resulting in a
-%               (2*N+1) x (2*N+1) output matrix.
+%     IMAGE1 - The first 2D data matrix.
+%     IMAGE2 - The second 2D data matrix, must be the same size as IMAGE1.
+%     MASK1  - A logical matrix of the same size as IMAGE1. True values
+%              indicate valid pixels to be included in the correlation.
+%     MASK2  - A logical matrix for IMAGE2, same size and meaning as MASK1.
+%     N      - A scalar integer specifying the maximum shift in pixels for
+%              the correlation calculation. The output will be (2N+1)x(2N+1).
 %
 %   Outputs:
-%     C       - A (2*N+1)x(2*N+1) matrix of correlation coefficients.
-%               - The center element, C(N+1, N+1), is the correlation with
-%                 zero shift.
-%               - An element C(y+N+1, x+N+1) corresponds to the correlation
-%                 between IMAGE1 and a version of IMAGE2 shifted by 'y' pixels
-%                 vertically and 'x' pixels horizontally.
+%     C      - A (2N+1)x(2N+1) matrix containing the correlation coefficients.
+%              The center of the matrix (C(N+1, N+1)) corresponds to a
+%              zero-pixel shift.
 %
-%   The correlation at each shift is calculated only using the pixels that
-%   are valid in both images' masks after the shift is applied.
+%   Example:
+%     img = rand(100);
+%     img_shifted = circshift(img, [5 10]);
+%     mask = true(100);
+%     C = vlt.image.corrcoef(img, img_shifted, mask, mask, 20);
+%     figure;
+%     imagesc(-20:20, -20:20, C);
+%     colorbar;
+%     title('Spatial Cross-Correlation');
+%     xlabel('X Shift (pixels)'); ylabel('Y Shift (pixels)');
 %
 
 % --- Input Validation ---
-if ~isequal(size(image1), size(image2)) || ...
-   ~isequal(size(image1), size(mask1)) || ...
-   ~isequal(size(image1), size(mask2))
-    error('All input images and masks must be the same size.');
-end
-
-if ~(isnumeric(N) && isscalar(N) && N >= 0 && floor(N) == N)
-    error('N must be a non-negative integer scalar.');
+arguments
+    image1 (:,:) {mustBeNumeric}
+    image2 (:,:) {mustBeNumeric, mustBeEqualSize(image1, image2)}
+    mask1 (:,:) logical {mustBeEqualSize(mask1, image1)}
+    mask2 (:,:) logical {mustBeEqualSize(mask2, image1)}
+    N (1,1) {mustBeInteger, mustBeNonnegative}
 end
 
 % --- Initialization ---
-output_size = 2 * N + 1;
-C = NaN(output_size, output_size); % Initialize with NaNs
+C = NaN(2 * N + 1, 2 * N + 1);
 [rows, cols] = size(image1);
 
-% --- Loop through half of the pixel shifts, leveraging symmetry ---
+% --- Correlation Calculation ---
+% Loop through half of the shifts, including the zero shift.
 for y_shift = 0:N
-    % Define the range for x_shift to avoid redundant calculations
-    if y_shift == 0
-        x_range = 0:N; % For the central row, only compute half
-    else
-        x_range = -N:N; % For other rows, compute the full width
-    end
+    for x_shift = -N:N
+        % Skip redundant calculation for the first row
+        if y_shift == 0 && x_shift < 0
+            continue;
+        end
 
-    for x_shift = x_range
-        % --- Determine overlapping regions for the current shift ---
-        % This logic finds the valid index ranges for both images after one
-        % is hypothetically shifted relative to the other.
+        % Define the overlapping regions for both images based on the shift
+        y_range1 = max(1, 1 - y_shift):min(rows, rows - y_shift);
+        x_range1 = max(1, 1 - x_shift):min(cols, cols - x_shift);
 
-        y1_start = max(1, 1 - y_shift);
-        y1_end = min(rows, rows - y_shift);
-        x1_start = max(1, 1 - x_shift);
-        x1_end = min(cols, cols - x_shift);
+        y_range2 = max(1, 1 + y_shift):min(rows, rows + y_shift);
+        x_range2 = max(1, 1 + x_shift):min(cols, cols + x_shift);
 
-        y2_start = max(1, 1 + y_shift);
-        y2_end = min(rows, rows + y_shift);
-        x2_start = max(1, 1 + x_shift);
-        x2_end = min(cols, cols + x_shift);
+        % Extract the data and mask for the overlapping regions
+        sub_img1 = image1(y_range1, x_range1);
+        sub_img2 = image2(y_range2, x_range2);
+        sub_mask1 = mask1(y_range1, x_range1);
+        sub_mask2 = mask2(y_range2, x_range2);
 
-        % --- Extract the overlapping data and masks ---
-        sub_img1 = image1(y1_start:y1_end, x1_start:x1_end);
-        sub_img2 = image2(y2_start:y2_end, x2_start:x2_end);
-        sub_mask1 = mask1(y1_start:y1_end, x1_start:x1_end);
-        sub_mask2 = mask2(y2_start:y2_end, x2_start:x2_end);
-
-        % --- Combine masks and vectorize data ---
-        % The final mask includes only pixels that are valid in both masks
-        % and are not NaN in either sub-image.
+        % Create a combined mask of valid pixels for the current shift
+        % A pixel is valid if it's true in both masks and not NaN in either image
         combined_mask = sub_mask1 & sub_mask2 & ~isnan(sub_img1) & ~isnan(sub_img2);
 
-        vec1 = sub_img1(combined_mask);
-        vec2 = sub_img2(combined_mask);
-
-        % --- Calculate and store the correlation coefficient ---
-        % Ensure there are enough data points to compute a correlation
-        if numel(vec1) >= 2
-            R = corrcoef(vec1, vec2);
-            val = R(1, 2);
-
-            % Store the result and its symmetric counterpart
-            C(y_shift + N + 1, x_shift + N + 1) = val;
-            C(-y_shift + N + 1, -x_shift + N + 1) = val;
+        % If there are enough overlapping valid pixels, compute the correlation
+        if sum(combined_mask, 'all') > 1
+            v1 = sub_img1(combined_mask);
+            v2 = sub_img2(combined_mask);
+            R = corrcoef(v1, v2);
+            C(y_shift + N + 1, x_shift + N + 1) = R(1, 2);
+        else
+            C(y_shift + N + 1, x_shift + N + 1) = NaN;
         end
-    end % x_shift loop
-end % y_shift loop
+
+        % Use symmetry to fill in the other half of the correlation matrix
+        if y_shift ~= 0 || x_shift ~= 0
+             C(-y_shift + N + 1, -x_shift + N + 1) = C(y_shift + N + 1, x_shift + N + 1);
+        end
+    end
+end
 
 end
 
+function mustBeEqualSize(a, b)
+    if ~isequal(size(a), size(b))
+        eid = 'Size:notEqual';
+        msg = 'Size of inputs must be equal.';
+        throwAsCaller(MException(eid, msg));
+    end
+end
+
+function mustBeInteger(a)
+    if mod(a, 1) ~= 0
+        eid = 'Type:notInteger';
+        msg = 'Input must be an integer.';
+        throwAsCaller(MException(eid, msg));
+    end
+end
