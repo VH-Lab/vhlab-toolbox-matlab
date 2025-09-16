@@ -26,6 +26,8 @@ function results = rotateToMax(image, mask, pointsOfInterest, windowSize, option
 %                          point. (Default: 18)
 %     'wedgeAngleWidth'  - The angular width of each wedge in degrees.
 %                          (Default: 30)
+%     'wedgeRadius'      - The radial extent of the wedge from the center point
+%                          in pixels. (Default: windowSize / 2)
 %
 %   Outputs:
 %     RESULTS - A structure array with one element for each point of interest,
@@ -46,6 +48,7 @@ arguments
     windowSize (1,1) {mustBeNumeric, mustBePositive}
     options.numDirections (1,1) {mustBeInteger, mustBePositive} = 18
     options.wedgeAngleWidth (1,1) {mustBeNumeric, mustBePositive} = 30
+    options.wedgeRadius (1,1) {mustBeNumeric, mustBePositive} = windowSize / 2
 end
 
 % Pre-allocate the results structure
@@ -65,40 +68,34 @@ wedgeDirections_compass = wedgeDirections_compass(1:end-1);
 halfWin = floor(windowSize / 2);
 win_dim = 2 * halfWin + 1;
 
-% Create a coordinate grid for the thumbnail, centered at (0,0)
+% Create coordinate grids for the thumbnail, centered at (0,0)
 [X, Y] = meshgrid(-halfWin:halfWin, -halfWin:halfWin);
-% Calculate the angle of each pixel in Cartesian coordinates
-% (degrees, CCW from +x axis). Note the -Y to account for image coordinates.
+% Calculate the angle and radius of each pixel in the grid
 Theta_cartesian = atan2d(-Y, X);
+R_pixels = sqrt(X.^2 + Y.^2);
 
 % --- Main loop over each point of interest ---
 for i = 1:size(pointsOfInterest, 1)
     poi = pointsOfInterest(i, :);
     
     % --- 1. Extract the thumbnail region ---
-    % Define the rectangular region of interest (ROI)
     x_start = round(poi(1)) - halfWin;
     x_end = round(poi(1)) + halfWin;
     y_start = round(poi(2)) - halfWin;
     y_end = round(poi(2)) + halfWin;
     
-    % Create a blank thumbnail to handle edge cases
     thumb_data = NaN(win_dim, win_dim);
     
-    % Define the intersection of the ROI and the actual image dimensions
     img_x_range = max(1, x_start):min(size(image, 2), x_end);
     img_y_range = max(1, y_start):min(size(image, 1), y_end);
     
-    % Define where this data will go in our thumbnail
     thumb_x_range = img_x_range - x_start + 1;
     thumb_y_range = img_y_range - y_start + 1;
     
-    % Extract the data and mask
     thumb_data(thumb_y_range, thumb_x_range) = image(img_y_range, img_x_range);
     thumb_mask = false(win_dim, win_dim);
     thumb_mask(thumb_y_range, thumb_x_range) = mask(img_y_range, img_x_range);
     
-    % Apply the mask to the thumbnail data
     thumb_data(~thumb_mask) = NaN;
     
     % --- 2. Calculate signal within each wedge ---
@@ -106,23 +103,22 @@ for i = 1:size(pointsOfInterest, 1)
     for j = 1:options.numDirections
         center_angle_compass = wedgeDirections_compass(j);
         
-        % Convert from compass (0=up, CW) to Cartesian (0=right, CCW)
         center_angle_cartesian = mod(450 - center_angle_compass, 360);
-        % Normalize to [-180, 180] to match atan2d output range
         if center_angle_cartesian > 180
             center_angle_cartesian = center_angle_cartesian - 360;
         end
         
-        % Find the angular difference for every pixel in the grid
         delta_theta = Theta_cartesian - center_angle_cartesian;
-        % Wrap the difference to the [-180, 180] interval
         delta_theta(delta_theta > 180) = delta_theta(delta_theta > 180) - 360;
         delta_theta(delta_theta < -180) = delta_theta(delta_theta < -180) + 360;
         
-        % Create a logical mask for pixels inside this wedge
-        wedge_mask = abs(delta_theta) <= options.wedgeAngleWidth / 2;
+        % Create masks for both angular and radial constraints
+        angular_mask = abs(delta_theta) <= options.wedgeAngleWidth / 2;
+        radial_mask = R_pixels <= options.wedgeRadius;
         
-        % Calculate the mean of the valid, non-NaN pixels within the wedge
+        % Combine masks to define the final wedge
+        wedge_mask = angular_mask & radial_mask;
+        
         wedgeSignalValues(j) = mean(thumb_data(wedge_mask), 'omitnan');
     end
     
@@ -130,10 +126,8 @@ for i = 1:size(pointsOfInterest, 1)
     [~, max_idx] = max(wedgeSignalValues);
     maximumDirection = wedgeDirections_compass(max_idx);
     
-    % The rotation angle needed to make the max direction point up (0 degrees)
     rotation_angle = -maximumDirection;
     
-    % Rotate the original thumbnail, filling empty space with NaN
     rotatedImage = imrotate(thumb_data, rotation_angle, 'bilinear', 'crop');
     
     % --- 4. Store results in the output structure ---
@@ -153,4 +147,5 @@ function mustBeEqualSize(a, b)
         throwAsCaller(MException(eid, msg));
     end
 end
+
 
