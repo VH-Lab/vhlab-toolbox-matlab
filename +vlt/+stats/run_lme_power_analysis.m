@@ -53,7 +53,8 @@ function [mdes, power_curve] = run_lme_power_analysis(tbl, categories_name, y_na
     % --- 3. Visualize the Results ---
     disp('Generating power curve plot...');
 
-    f = figure('Name', ['LME Power Analysis (' upper(options.Method) ')'], 'NumberTitle', 'off', 'Visible', 'off');
+    figure_name_str = ['LME Power Analysis (' char(upper(options.Method)) ')'];
+    f = figure('Name', figure_name_str, 'NumberTitle', 'off', 'Visible', 'off');
     plot(power_curve.EffectSize, power_curve.Power * 100, '-o', 'LineWidth', 1.5, 'MarkerFaceColor', 'b');
     hold on;
 
