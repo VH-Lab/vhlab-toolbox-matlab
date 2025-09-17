@@ -85,6 +85,8 @@ function [mdes, power_curve] = lme_power_effectsize(tbl, categories_name, y_name
         fprintf('Parallel Computing Toolbox detected. Using parfor for simulations.\n');
     end
 
+    sim_func = vlt.stats.getLMESimFunc(options.Method);
+
     while current_power < target_power
         test_effect_size = test_effect_size + options.EffectStep;
 
@@ -93,7 +95,7 @@ function [mdes, power_curve] = lme_power_effectsize(tbl, categories_name, y_name
 
         if use_parallel
             parfor i = sim_loop
-                simTbl = feval(vlt.stats.getLMESimFunc(options.Method), lme_base, tbl_base, test_effect_size, categories_name, category_to_test, y_name_fixed, group_name);
+                simTbl = sim_func(lme_base, tbl_base, test_effect_size, categories_name, category_to_test, y_name_fixed, group_name);
                 lme_sim = fitlme(simTbl, lme_base.Formula.char);
                 p_value = lme_sim.Coefficients.pValue(coeff_name);
                 if p_value < options.Alpha
@@ -102,7 +104,7 @@ function [mdes, power_curve] = lme_power_effectsize(tbl, categories_name, y_name
             end
         else % Regular for loop
             for i = sim_loop
-                simTbl = feval(vlt.stats.getLMESimFunc(options.Method), lme_base, tbl_base, test_effect_size, categories_name, category_to_test, y_name_fixed, group_name);
+                simTbl = sim_func(lme_base, tbl_base, test_effect_size, categories_name, category_to_test, y_name_fixed, group_name);
                 lme_sim = fitlme(simTbl, lme_base.Formula.char);
                 p_value = lme_sim.Coefficients.pValue(coeff_name);
                 if p_value < options.Alpha

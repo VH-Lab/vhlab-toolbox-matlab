@@ -28,7 +28,8 @@ function simTbl = simulate_lme_data_shuffled(lme_base, tbl_base, effect_size, ca
 %       mixed models, as it ignores the dependency within groups. This can
 %       make it less accurate than the hierarchical method.
 %
-    fixed_prediction = lme_base.fixedEffects(1);
+    beta = lme_base.fixedEffects;
+    fixed_prediction = beta(1);
     y_observed = tbl_base.(y_name);
     num_obs = height(tbl_base);
     residuals = y_observed - fixed_prediction;
