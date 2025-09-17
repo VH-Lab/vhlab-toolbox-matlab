@@ -1,18 +1,26 @@
 function savevar(filename,vrbl,name,varargin)
 
-% vlt.data.savevar - Saves variables in a Matlab file
+% VLT.DATA.SAVEVAR - Save a variable to a .mat file with a specified name
 %
-%  vlt.data.savevar(FILENAME,VARIABLE,VARIABLENAME,OPTIONSTRING1,OPTIONSTRING2,...)
+%   vlt.data.savevar(FILENAME, VARIABLE, VARIABLENAME, OPTIONSTRING1, OPTIONSTRING2, ...)
 %
-%  Saves the variable VARIABLE to the file FILENAME.  The name of 
-%  the variable in the file will be VARIABLENAME.  OPTIONS is a 
-%  string of options passed to the MATLAB SAVE command.
+%   Saves the given VARIABLE to a .mat file named FILENAME. The variable will
+%   be saved with the name specified by VARIABLENAME.
 %
-%  For example:
+%   Additional options can be passed to the built-in SAVE command as
+%   trailing string arguments (e.g., '-append', '-v7.3').
 %
-%    vlt.data.savevar('myfile',5,'myvariable','-append','-mat');
-% 
-%  See also: SAVE
+%   This function includes a simple locking mechanism to prevent file
+%   corruption when multiple Matlab instances might be saving to the same
+%   file concurrently.
+%
+%   Example:
+%       my_data = [1 2 3];
+%       vlt.data.savevar('mydata.mat', my_data, 'my_variable_name');
+%       % This creates 'mydata.mat' containing the variable 'my_variable_name'
+%
+%   See also: SAVE, LOAD, EVAL
+%
 
 eval([name '=vrbl;']);
 

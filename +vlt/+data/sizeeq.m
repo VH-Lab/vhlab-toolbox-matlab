@@ -1,10 +1,18 @@
 function b = sizeeq(x,y)
 
-% vlt.data.sizeeq  Determines if size of two variables is same
-%   
+% VLT.DATA.SIZEEQ - Check if two variables have the same size
+%
 %   B = vlt.data.sizeeq(X,Y)
 %
-%  Returns 1 if the size of X and Y are equal.  Otherwise, returns 0.
+%   Returns 1 if the size of variables X and Y are identical.
+%   Otherwise, it returns 0.
+%
+%   Example:
+%       vlt.data.sizeeq([1 2], [3 4])      % returns 1
+%       vlt.data.sizeeq([1 2], [3; 4])     % returns 0
+%
+%   See also: SIZE, EQLEN
+%
 
 sz1 = size(x);
 sz2 = size(y);

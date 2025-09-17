@@ -1,29 +1,26 @@
 function sf = flattenstruct(s, prefix, depth)
-% FLATTENSTRUCT - flatten a structure so that substructures are fields
+% VLT.DATA.FLATTENSTRUCT - Flatten a structure by merging substructures into top-level fields
 %
-% SF = vlt.data.flattenstruct(S, [PREFIX])
+%   SF = vlt.data.flattenstruct(S, [PREFIX])
 %
-% Returns a flatten structure where any substructures are renamed to be fields
-% of the structure S. 
+%   This function flattens a structure S by taking any nested substructures
+%   and making their fields top-level fields of the output structure SF.
+%   The new field names are created by concatenating the original field names
+%   with a double underscore '__'.
 %
-% For example, if a structure A has fields AA and AB, and AA is a structure
-% with fields AAA and AAB, then SF will have fields {'A__AA__AAA','A__AA__AAB','A__AB'}.
+%   If a substructure is an array, the index is appended to the field name.
 %
-% If a substructure is a structure array with more than one element, then the entry number
-% will be prepended to the field name.
+%   Note: This function is not recommended for structures with deep nesting
+%   or long field names, as it may create field names that exceed Matlab's
+%   63-character limit. Consider using vlt.data.flattenstruct2table instead.
 %
-% There is a chance that the function will not be able to flatten a structure array,
-% if say S(1).field1 is a scalar and S(2).field1 is a structure. Then, the fields of SF(1)
-% and SF(2) would differ, which will be an error.
+%   Example:
+%       A = struct('AA', struct('AAA', 5, 'AAB', 7), 'AB', 2);
+%       SF = vlt.data.flattenstruct(A, 'A__');
+%       % SF will have fields: 'A__AA__AAA', 'A__AA__AAB', 'A__AB'
 %
-% If PREFIX is provided, it will be pre-pended to to the structure names.
+%   See also: vlt.data.flattenstruct2table, fieldnames, orderfields
 %
-% Note: FLATTENSTRUCT is not recommended.  Fieldnames have a limit of 63 characters.
-% This function may create truncated fields. Instead, see FLATTENSTRUCT2TABLE.
-%
-% Example:
-%    A = struct('AA',struct('AAA',5,'AAB',7),'AB',2);
-%    SF = vlt.data.flattenstruct(A);
 
 if nargin<2,
 	prefix = '';

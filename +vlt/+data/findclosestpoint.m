@@ -3,15 +3,28 @@ function [i,pointc] = findclosestpoint(pointlist,point)
 %
 % [I,POINTC] = vlt.data.findclosestpoint(POINTLIST,POINT)
 %
-% Finds the index and value to the closest member of POINTLIST to POINT
-% in Euclidean distance. POINTLIST should be a list of points, with 1 
-% row per point. It returns the index in I and the value
-% in POINTC.  If ARRAY is empointy, so are I and POINTC.
+%   Finds the index and value of the closest point in POINTLIST to POINT,
+%   based on Euclidean distance.
 %
-% If there are multiple occurances of POINT within POINTLIST,
-% only the first is returned in I.
+%   Inputs:
+%   'POINTLIST' is a matrix where each row represents a point.
+%   'POINT' is a single point (a row vector).
 %
-% See also: FIND, vlt.data.findclosest
+%   Outputs:
+%   'I' is the index of the closest point in POINTLIST.
+%   'POINTC' is the value of the closest point.
+%
+%   If there are multiple points with the same minimum distance, the index
+%   of the first one is returned.
+%
+%   Example:
+%       pointlist = [1 1; 5 5; 10 10];
+%       point = [6 6];
+%       [i, pointc] = vlt.data.findclosestpoint(pointlist, point);
+%       % i will be 2, pointc will be [5 5]
+%
+%   See also: FIND, vlt.data.findclosest
+%
 
 [NumPoints,Dim] = size(pointlist);
 

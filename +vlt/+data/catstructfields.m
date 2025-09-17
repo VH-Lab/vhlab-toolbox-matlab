@@ -17,8 +17,9 @@ function struct_out = catstructfields(struct1, struct2, dimension)
 %    c = vlt.data.catstructfields(a,b);
 %    c.field1 % is [1 2 3 4 5 6]
 %    c.field2 % is [1 2 3 4 5 6]
-%     
-%  
+%
+%  See also: CAT, FIELDNAMES, GETFIELD, SETFIELD
+%
 
 if nargin<3,
 	dimension=0;

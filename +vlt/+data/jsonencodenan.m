@@ -1,15 +1,19 @@
 function t=jsonencodenan(obj)
-% JSONENCODENAN - encode a JSON object allowing Nan/Infinity
+% VLT.DATA.JSONENCODENAN - Encode a JSON object, preserving NaN and Infinity values
 %
-% T = vlt.data.jsonencodenan(OBJ)
+%   T = vlt.data.jsonencodenan(OBJ)
 %
-% Encodes the Matlab variable OBJ into a JSON object in a manner that 
-% allows the use of NaN and -Inf and Inf.
-% 
-% JSONENCODE is called with 1 argument or 2 (Matlab 2018b) to ensure
-% these numbers are allowed.
+%   Encodes a Matlab variable OBJ into a JSON string T, while preserving
+%   special numeric values like NaN, Inf, and -Inf. This function attempts
+%   to use the 'ConvertInfAndNaN' option of Matlab's built-in JSONENCODE
+%   function, with fallbacks for older versions.
 %
-% See also: JSONENCODE
+%   Example:
+%       my_struct.a = [1 2 NaN Inf -Inf];
+%       json_str = vlt.data.jsonencodenan(my_struct);
+%
+%   See also: JSONENCODE, JSONDECODE
+%
 
 try,
     t = jsonencode(obj,'ConvertInfAndNaN',false,'PrettyPrint',true);

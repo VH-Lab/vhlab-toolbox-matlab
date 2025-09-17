@@ -6,11 +6,19 @@ function b = matrow2cell(a)
 % Given a matrix A, a cell array B is created such that the entries of 
 % B{i} are the ith rows of A.
 %
-% If A is a cell array, then no action is taken and B = A.
+%   If A is a cell array, then no action is taken and B = A.
 %
-% One might want to use this when using JSONDECODE, when regularly-sized
-% items might be returned as a matrix instead of the more general cell array.
-% 
+%   This can be useful when working with data from sources like JSON, where
+%   uniformly-sized arrays may be represented as a matrix instead of a cell
+%   array.
+%
+%   Example:
+%       A = [1 2; 3 4];
+%       B = vlt.data.matrow2cell(A);
+%       % B will be {[1 2], [3 4]}
+%
+%   See also: MAT2CELL, NUM2CELL
+%
 
 if iscell(a),
 	b = a;

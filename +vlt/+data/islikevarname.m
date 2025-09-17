@@ -12,7 +12,12 @@ function [b, errormsg] = islikevarname(name)
 %  B is 1 if NAME meets the criteria and is 0 otherwise.
 %  ERRORMSG is a text message describing the problem.
 %
+%  Example:
+%      [b,e] = vlt.data.islikevarname('my_var');   % b is 1, e is ''
+%      [b,e] = vlt.data.islikevarname('1my_var');  % b is 0, e has an error message
+%
 %  See also: ISVARNAME, vlt.data.valid_varname
+%
 
 b = 0;
 

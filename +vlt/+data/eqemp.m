@@ -1,13 +1,24 @@
 function b = eqemp(x,y)
 
-%  vlt.data.eqemp
+% VLT.DATA.EQEMP - Compare two variables, with special handling for empty values
 %
-%    B = vlt.data.eqemp(X,Y)
+%   B = vlt.data.eqemp(X,Y)
 %
-%  If both X and Y are not empty, returns X==Y.  If both X and Y are empty, b=1.
-%  Otherwise, b=0;  Note that if X==Y is not defined, there will be an error.
+%   Compares two variables X and Y.
+%   - If both X and Y are not empty, it returns the result of X == Y.
+%   - If both X and Y are empty, it returns 1 (true).
+%   - Otherwise (if one is empty and the other is not), it returns 0 (false).
 %
-%  See also:  EQ, vlt.data.eqtot, vlt.data.eqlen
+%   Note: An error will occur if the '==' operator is not defined for the
+%   data types of X and Y.
+%
+%   Example:
+%       vlt.data.eqemp([], [])          % returns 1
+%       vlt.data.eqemp([1 2], [1 2])    % returns [1 1]
+%       vlt.data.eqemp([1 2], [])        % returns 0
+%
+%   See also: EQ, vlt.data.eqtot, vlt.data.eqlen
+%
 
 b=1;
 xe=isempty(x);

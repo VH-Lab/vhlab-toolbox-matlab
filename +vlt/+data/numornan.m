@@ -1,16 +1,23 @@
 function n_out = numornan(n_in, dims)
-% NUMORNAN - Return a number, or a NaN if the number is empty
+% VLT.DATA.NUMORNAN - Return a number, or a NaN if the input is empty
 %
-%  N_OUT = vlt.data.numornan(N_IN)
-%    or 
-%  N_OUT = vlt.data.numornan(N_IN, DIMS)
+%   N_OUT = vlt.data.numornan(N_IN)
+%   N_OUT = vlt.data.numornan(N_IN, DIMS)
 %
-%  If N_IN is not empty, then N_OUT is set to N_IN.
-%  If N_IN is empty, then a NaN is returned.
-%  
-%  If the optional input argument DIMS is provided, then the NaN
-%  matrix has dimension DIMS. If N_IN is smaller than DIMS, then
-%  N_OUT is padded to be filled with NaN.
+%   This function checks if the input N_IN is empty.
+%   - If N_IN is not empty, it returns N_IN.
+%   - If N_IN is empty, it returns a NaN value.
+%
+%   If the optional argument DIMS is provided, the returned NaN will have the
+%   specified dimensions. If N_IN is not empty but smaller than DIMS, it will
+%   be padded with NaNs to match DIMS.
+%
+%   Example:
+%       vlt.data.numornan(5)          % returns 5
+%       vlt.data.numornan([])         % returns NaN
+%       vlt.data.numornan([], [2 2])  % returns a 2x2 matrix of NaNs
+%
+%   See also: ISNAN, ISEMPTY
 %
 
 if nargin<2,

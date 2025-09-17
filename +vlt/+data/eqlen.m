@@ -1,17 +1,23 @@
 function b = eqlen(x,y)
 
-%  vlt.data.eqlen  Returns 1 if objects to compare are equal and have same size
-%  
-%    B = vlt.data.eqlen(X,Y)
+% VLT.DATA.EQLEN - Check if two variables are equal in both size and content
 %
-%  Returns 1 iff X and Y have the same length and all of the entries in X and
-%  Y are the same.
+%   B = vlt.data.eqlen(X,Y)
 %
-%  Examples:  vlt.data.eqlen([1],[1 1])=0, whereas [1]==[1 1]=[1 1], vlt.data.eqtot([1],[1 1])=1
-%             vlt.data.eqlen([1 1],[1 1])=1
-%             vlt.data.eqlen([],[]) = 1
+%   Returns 1 if and only if X and Y have the same size and all of their
+%   corresponding entries are equal.
 %
-%  See also:  vlt.data.eqtot, vlt.data.eqemp, EQ
+%   This function is useful for ensuring that two variables are truly
+%   identical, as opposed to the element-wise comparison of '==' which
+%   can return true for arrays of different sizes.
+%
+%   Example:
+%       vlt.data.eqlen([1], [1 1])      % returns 0
+%       vlt.data.eqlen([1 1], [1 1])    % returns 1
+%       vlt.data.eqlen([], [])          % returns 1
+%
+%   See also: vlt.data.eqtot, vlt.data.eqemp, vlt.data.sizeeq, EQ
+%
 
 if vlt.data.sizeeq(x,y),
 	b = vlt.data.eqtot(x,y);

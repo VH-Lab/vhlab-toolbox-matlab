@@ -13,6 +13,16 @@ function sub_indexes = ind2subD(matrix_size, X, N)
 %
 % Output:
 %   SUB_INDEXES: The sub-index in dimension N, in uint64 format.
+%
+% Example:
+%   matrix_size = [4 5 6];
+%   linear_index = 50;
+%   sub_index_dim2 = vlt.data.ind2subD(matrix_size, linear_index, 2);
+%   % This is equivalent to:
+%   % [~, sub_index_dim2_builtin] = ind2sub(matrix_size, linear_index);
+%
+% See also: ind2sub, sub2ind
+%
 
 if N < 1 || N > numel(matrix_size)
     error('Invalid dimension N.');

@@ -1,28 +1,31 @@
 function [good, errormsg] = hasAllFields(variable, fieldNames, fieldSizes)
 
-%  Part of the NewStim package
-%  [GOOD,ERRORMSG] = vlt.data.hasAllFields(VARIABLE,FIELDNAMES,FIELDSIZES)
+% VLT.DATA.HASALLFIELDS - Check if a structure has all specified fields and correct sizes
 %
-%  Checks to see if VARIABLE has all of the fieldnames in the cellstr FIELDNAMES
-%  and also checks to see if the values of those names match the dimensions
-%  given in the cell array FIELDSIZES.  If you don't care to analyze one
-%  dimension, pass -1 for that dimension.
+%   [GOOD, ERRORMSG] = vlt.data.hasAllFields(VARIABLE, FIELDNAMES, [FIELDSIZES])
 %
-%  For example,
-%      r = struct('test1',5,'test2',[6 1]);
-%      s = struct('test1',5,'test3',[6 1]);
+%   Checks if a structure VARIABLE contains all the field names listed in the
+%   cell array FIELDNAMES. Optionally, it can also check if the dimensions of
+%   each field match the sizes specified in the cell array FIELDSIZES.
 %
-%      [g,e]=vlt.data.hasAllFields(r,{'test1','test2'},{[1 1],[1 2]})
-%               gives g = 1, e=''.
-%      [g,e]=vlt.data.hasAllFields(s,{'test1','test2'},{[1 1],[1 2]})
-%               gives g = 0, e=['''test2''' not present.']
-%  If you didn't care how many columns the test2 field of r was, then you could
-%  pass [1 -1] instead of [1 2], or if you didn't care what size it was at all
-%  then you could pass [-1 -1].
+%   Inputs:
+%   'VARIABLE' is the structure to check.
+%   'FIELDNAMES' is a cell array of strings with the required field names.
+%   'FIELDSIZES' (optional) is a cell array of the same size as FIELDNAMES,
+%     where each element specifies the expected size of the corresponding field.
+%     Use -1 for any dimension that should not be checked.
 %
-%  Note:  At present, this function does not work on arrays of structs, only
-%  structs.  As a work-around, pass the first element of a struct array to see
-%  if it is good.
+%   Outputs:
+%   'GOOD' is 1 if all checks pass, and 0 otherwise.
+%   'ERRORMSG' is a string containing an error message if a check fails.
+%
+%   Example:
+%       r = struct('test1', 5, 'test2', [6 1]);
+%       [g,e] = vlt.data.hasAllFields(r, {'test1','test2'}, {[1 1], [1 2]});
+%       % g will be 1, e will be ''
+%
+%   See also: ISFIELD, SIZE
+%
 
 good = 1; errormsg = '';
 

@@ -1,21 +1,24 @@
 function s = celltable2struct(c)
-% CELLTABLE2STRUCT - convert a table stored in a CELL datatype to a structure
+% VLT.DATA.CELLTABLE2STRUCT - Convert a cell array table to a structure array
 %
-% S = vlt.data.celltable2struct(C)
+%   S = vlt.data.celltable2struct(C)
 %
-% Converts a table stored in the cell matrix C to a structure.
-% It is assumed that the first row of C (C{1}) has structure labels.
-% If any of these labels are not valid Matlab variables, then 
-% they are converted to be.
-% If rows of C{j} (j>1) have fewer entries than the header row,
-% then all subsequent fields in the structure will have empty ([])
-% values.
+%   Converts a table stored in a cell array C to a structure array S.
+%   The first row of C is assumed to contain the field names for the structure.
+%   If any of these names are not valid Matlab variable names, they are
+%   converted using matlab.lang.makeValidName.
 %
-% Example:
-%    %Read a tab-seperated-value file with truncated entries (that is,
-%    %where each line ends prematurely if later fields are empty):
-%    o = vlt.file.read_tab_delimited_file(filename);
-%    s = vlt.data.celltable2struct(o);
+%   If subsequent rows of C have fewer entries than the header row, the
+%   corresponding fields in the structure will be empty.
+%
+%   Example:
+%       C = { {'header1', 'header2'}, {'data1', 10}, {'data2', 20} };
+%       S = vlt.data.celltable2struct(C);
+%       % S will be a 1x2 struct with fields 'header1' and 'header2'.
+%       % S(1).header1 will be 'data1', S(1).header2 will be 10.
+%       % S(2).header1 will be 'data2', S(2).header2 will be 20.
+%
+%   See also: STRUCT2CELL, TABLE, matlab.lang.makeValidName
 %
 
 fn = matlab.lang.makeValidName(c{1});

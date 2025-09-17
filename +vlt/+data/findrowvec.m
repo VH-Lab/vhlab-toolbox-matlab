@@ -1,11 +1,25 @@
 function i = findrowvec(a,b)
 % FINDROWVEC - finds the occurrence of a complete row in a matrix
 %
-% I = vlt.data.findrowvec(A,B)
+%   I = vlt.data.findrowvec(A,B)
 %
-% Given a row vector B and a matrix A that has the same number of columns as B,
-% I will be all rows such that all elements of A(i,:) equal those of B.
-% 
+%   Finds all rows in matrix A that are identical to the row vector B.
+%
+%   Inputs:
+%   'A' is a matrix.
+%   'B' is a row vector with the same number of columns as A.
+%
+%   Output:
+%   'I' is a column vector containing the indices of the matching rows.
+%
+%   Example:
+%       A = [1 2 3; 4 5 6; 1 2 3];
+%       B = [1 2 3];
+%       I = vlt.data.findrowvec(A, B);
+%       % I will be [1; 3]
+%
+%   See also: FIND, REPMAT, ALL
+%
 
 [na,ma] = size(a);
 [nb,mb] = size(b);

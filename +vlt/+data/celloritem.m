@@ -1,39 +1,32 @@
 function item = celloritem(var, index, useindexforvar)
-% CELLORITEM - Returns the ith element of a cell list, or a single item
+% VLT.DATA.CELLORITEM - Returns an element from a cell array or a default item
 %
 %   ITEM = vlt.data.celloritem(VAR, [INDEX], [USEINDEXFORVAR])
 %
-%  This function examines VAR:
-%    if VAR is a cell list, then it returns the INDEXth element of VAR;
-%    if VAR is not a cell list, then it returns VAR, unless the user specifies
-%        that the INDEXth element of var should be returned (USEINDEXFORVAR=1).
+%   This function provides flexible access to elements within a variable VAR.
 %
-%    If INDEX is not provided, it is assumed to be 1.
-%    If USEINDEXFORVAR is not provided, it is assumed to be 0.
+%   If VAR is a cell array, it returns VAR{INDEX}.
+%   If VAR is not a cell array, it returns VAR itself, unless USEINDEXFORVAR is
+%   set to 1, in which case it returns VAR(INDEX).
 %
+%   Inputs:
+%   'VAR' can be any variable.
+%   'INDEX' is the index of the element to retrieve (default is 1).
+%   'USEINDEXFORVAR' is a boolean (0 or 1) that determines whether to index
+%   into VAR if it is not a cell array (default is 0).
 %
-%  This can be used to allow the user the option of providing a cell list or
-%  a single entry (Example 1) or to pull an item that may be stored as a cell list or
-%  a struct (Example 2:, a JSON encoding/decoding into Matlab is underspecified and may result
-%  in either a cell array or a struct array).
+%   Example 1:
+%       mycell = {'a', 'b', 'c'};
+%       myvar = 'default';
+%       item1 = vlt.data.celloritem(mycell, 2); % returns 'b'
+%       item2 = vlt.data.celloritem(myvar, 2);  % returns 'default'
 %
-%  Example 1:
-%      mylist1 = {'Joe','Larry','Curly'};
-%      mylist2 = 'Joe';
+%   Example 2:
+%       myarray = [10 20 30];
+%       item3 = vlt.data.celloritem(myarray, 2, 1); % returns 20
 %
-%      for i=1:3, 
-%           vlt.data.celloritem(mylist1,i),
-%           vlt.data.celloritem(mylist2,i),
-%      end;
+%   See also: ISCELL
 %
-%  Example 2: 
-%     myotherlist1 = [1 2 3];
-%     myotherlist2 = { [1] [2] [3]};
-%
-%     for i=1:3,
-%           vlt.data.celloritem(myotherlist1,i,1),
-%           vlt.data.celloritem(myotherlist2,i,1),
-%     end
 
 if nargin<2,
 	index = 1;

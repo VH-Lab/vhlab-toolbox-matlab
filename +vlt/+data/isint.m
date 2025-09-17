@@ -1,8 +1,18 @@
 function b = isint(X)
 
-%  B = vlt.data.isint(X)
+% VLT.DATA.ISINT - Check if a matrix contains only integers
 %
-%  B = 1 iff X is a matrix of integers.
+%   B = vlt.data.isint(X)
+%
+%   Returns 1 if the input matrix X contains only integer values.
+%   Otherwise, it returns 0.
+%
+%   Example:
+%       vlt.data.isint([1 2 3])      % returns 1
+%       vlt.data.isint([1 2.5 3])    % returns 0
+%
+%   See also: ISINTEGER, ISNUMERIC, ISREAL, FIX
+%
 
 b=0;
 if (isnumeric(X)&isreal(X)),b=all(X==fix(X));end;

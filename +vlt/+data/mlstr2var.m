@@ -1,27 +1,30 @@
 function v = mlstr2var(mlstring)
-% MLSTR2VAR - creates a Matlab variable from markup language strings (STRUCT2MLSTR, CELL2MLSTR)
+% VLT.DATA.MLSTR2VAR - Convert a markup language string to a Matlab variable
 %
-% V = vlt.data.mlstr2var(MLSTRING)
+%   V = vlt.data.mlstr2var(MLSTRING)
 %
-% Given a markup language string representation of Matlab structures or cells, this 
-% function produces a Matlab variable v.
+%   Converts a markup language string representation of a Matlab structure or
+%   cell array back into a Matlab variable. This function is the inverse of
+%   vlt.data.struct2mlstr and vlt.data.cell2mlstr.
 %
-% Matlab STRUCT types are specified in the markup language in the following way:
-% <STRUCT size=[X Y Z ...] fields={ 'fieldname1','fieldname2',...} data=
-%      <<value1><value2>...<valuen>>
-%      <<value1><value2>...<valuen>>
-% /STRUCT>
+%   The markup language format is as follows:
+%   For structs:
+%   <STRUCT size=[X Y Z...] fields={'f1','f2',...} data=
+%       <<val1><val2>...>
+%   /STRUCT>
 %
-% and Matlab CELL types are specified in the markup language in the following way:
-% <CELL size=[X Y Z ...] data=
-%      <value1>
-%      <value2>
-% /CELL>
+%   For cells:
+%   <CELL size=[X Y Z...] data=
+%       <val1>
+%       <val2>
+%   /CELL>
 %
+%   Example:
+%       str = '<CELL size=[1 3] data=\n     <''test''>\n     <[5]>\n     <[3 4 5]>\n/CELL>';
+%       C = vlt.data.mlstr2var(str); % C will be {'test', 5, [3 4 5]}
 %
-% Consider also: JSONENCODE, JSONDECODE
+%   See also: vlt.data.cell2mlstr, vlt.data.struct2mlstr, JSONENCODE, JSONDECODE
 %
-% See also: vlt.data.cell2mlstr, vlt.data.struct2mlstr, JSONDECODE
 
 mlstring = strip(mlstring); % remove whitespace
 

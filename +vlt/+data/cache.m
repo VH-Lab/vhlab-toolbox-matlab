@@ -1,12 +1,17 @@
 classdef cache < handle
-% cache - Cache class
+% VLT.DATA.CACHE - A class for caching data in memory.
 %
-% 
+%   The VLT.DATA.CACHE class provides a way to store data in memory with a maximum
+%   size limit. When the cache is full, it uses a replacement rule to decide
+%   which items to discard.
+%
+%   See also: VLT.DATA.CACHE/CACHE
+%
 
 	properties (SetAccess=protected,GetAccess=public)
-		maxMemory % The maximum memory, in bytes, that can be consumed by an CACHE before it is emptied
+		maxMemory        % The maximum memory, in bytes, that can be consumed by an CACHE before it is emptied
 		replacement_rule % The rule to be used to replace entries when memory is exceeded ('FIFO','LIFO','error', etc)
-		table  % The variable that has the data and metadata for the cache
+		table            % The variable that has the data and metadata for the cache
 	end % properties
 
 	properties (SetAccess=protected,GetAccess=private)
@@ -16,21 +21,21 @@ classdef cache < handle
 	methods
 		
 		function cache_obj = cache(varargin)
-			% CACHE - create a new NDI cache handle
+			% CACHE - create a new vlt.data.cache handle
 			%
-			% CACHE_OBJ = vlt.data.cache(...)
+			%   CACHE_OBJ = vlt.data.cache(...)
 			%
-			% Creates a new vlt.data.cache object. Additional arguments can be specified as
-			% name value pairs:
+			%   Creates a new vlt.data.cache object. Additional arguments can be specified as
+			%   name value pairs:
 			%
-			% Parameter (default)         | Description
-			% ------------------------------------------------------------
-			% maxMemory (100e6)           | Max memory for cache, in bytes (100MB default)
-			% replacement_rule ('fifo')   | Replacement rule (see CACHE/SET_REPLACEMENT_RULE
+			%   Parameter (default)         | Description
+			%   ------------------------------------------------------------
+			%   maxMemory (100e6)           | Max memory for cache, in bytes (100MB default)
+			%   replacement_rule ('fifo')   | Replacement rule (see vlt.data.cache/set_replacement_rule)
 			%
-			% Note that the cache is not 'secure', any function can query the data added.
+			%   Note that the cache is not 'secure', any function can query the data added.
 			%
-			% See also: vlt.data.namevaluepair
+			%   See also: vlt.data.namevaluepair, vlt.data.cache/set_replacement_rule
 
 				maxMemory = 100e6; % 100 MB
 				replacement_rule = 'fifo';

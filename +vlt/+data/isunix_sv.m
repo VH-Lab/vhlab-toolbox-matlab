@@ -1,10 +1,17 @@
 function b = isunix_sv
 
-% vlt.data.isunix_sv - Returns true if we are running a Unix system
+% VLT.DATA.ISUNIX_SV - Check if the operating system is Unix-based
 %
-%  If Matlab version is greater than 5, returns ISUNIX.  Else,
-%  returns ISUNIX is computer is not a PC or Mac2.
+%   B = vlt.data.isunix_sv
 %
+%   Returns 1 if the current operating system is Unix-based, and 0 otherwise.
+%   This function provides a wrapper around Matlab's ISUNIX function for
+%   backward compatibility with older Matlab versions.
+%
+%   Example:
+%       is_unix = vlt.data.isunix_sv();
+%
+%   See also: ISUNIX, ISPC, ISMAC, COMPUTER
 %
 
 if version>=13,

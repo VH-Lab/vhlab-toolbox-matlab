@@ -1,23 +1,28 @@
 function [S_sorted, indexes] = sortstruct(S, varargin)
-% SORTSTRUCT - sort structure by fieldname values
-% 
-% [S_sorted, indexes] = vlt.data.sortstruct(S, 'sign_fieldname1', 'sign_fieldname2', ...)
+% VLT.DATA.SORTSTRUCT - Sort a structure array based on field values
 %
-% Sorts the structure S according to the values in successive fieldnames.
+%   [S_sorted, indexes] = vlt.data.sortstruct(S, 'sign_fieldname1', 'sign_fieldname2', ...)
 %
-% Given a structure S, S_sorted is the sorted version according to the values
-% in fieldname1, fieldname2, etc. 
+%   Sorts a structure array S based on the values of one or more fields.
 %
-% sign should either be +1 or -1 depending upon if the data are to be sorted in
-% ascending or descending order.
+%   Inputs:
+%   'S' is the structure array to be sorted.
+%   'sign_fieldname' arguments are strings specifying the field to sort by
+%     and the direction ('+' for ascending, '-' for descending).
 %
+%   Outputs:
+%   'S_sorted' is the sorted structure array.
+%   'indexes' are the indices that map the original structure to the sorted one.
 %
-% Example: 
-%    s = struct('test1',[1],'test2',5);
-%    s(2) = struct('test1',[1],'test2',4); 
+%   Example:
+%       s(1) = struct('a', 1, 'b', 10);
+%       s(2) = struct('a', 2, 'b', 5);
+%       s(3) = struct('a', 1, 'b', 20);
+%       [S_sorted, indexes] = vlt.data.sortstruct(s, '+a', '-b');
+%       % S_sorted will be s([3 1 2])
 %
-%   [S_sorted,indexes] = vlt.data.sortstruct(s,'+test1','+test2');
-%    % indexes == [2;1] and S_sorted = s([2;1])
+%   See also: SORTROWS, STRUCT, FIELDNAMES
+%
 
 
  % parse inputs

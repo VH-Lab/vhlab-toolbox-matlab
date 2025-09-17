@@ -1,15 +1,24 @@
 function s_out = columnize_struct(s_in)
-% vlt.data.columize_struct - turn all vector substructures into columns
+% VLT.DATA.COLUMNIZE_STRUCT - Ensure all vector fields in a struct are columns
 %
-% S_OUT = COLUMNIZE_STRUCT(S_IN)
+%   S_OUT = VLT.DATA.COLUMNIZE_STRUCT(S_IN)
 %
-% Given a structure S_IN, that potentially has structures as fields,
-% return an almost equivalent structure S_OUT where all of the structure vector arrays
-% are organized in columns.
+%   Given a structure S_IN, which may contain nested structures, this function
+%   returns a new structure S_OUT where all vector fields within the structure
+%   and its substructures are converted to column vectors.
 %
-% This function is useful because, when converting a Matlab structure to and from
-% JSON using JSONENCODE and JSONDECODE, sometimes the row/column ordering of structure
-% vectors is altered.
+%   This is particularly useful for ensuring data consistency, for example,
+%   after converting a Matlab structure to and from JSON, which may alter the
+%   row/column ordering of vectors.
+%
+%   Example:
+%       my_struct.a = [1 2 3];
+%       my_struct.b.c = [4 5 6];
+%       columnized_struct = vlt.data.columnize_struct(my_struct);
+%       % columnized_struct.a will be [1; 2; 3]
+%       % columnized_struct.b.c will be [4; 5; 6]
+%
+%   See also: JSONENCODE, JSONDECODE, ISCOLUMN, ISROW
 %
 
 if ~isstruct(s_in),

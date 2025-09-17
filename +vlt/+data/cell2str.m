@@ -8,13 +8,15 @@ function str = cell2str(theCell)
 % At present, this function works with 1-dimensional cells only,
 % and only chars and matrixes
 %
-% Example: 
-%   A = {'test','test2','test3'};
-%   str = vlt.data.cell2str(A)
-%    % str = '{ 'test','test2','test3'}'
-%   B = eval(str);
-%   vlt.data.eqlen(A,B), % should return 1
-% 
+%   Example:
+%     A = {'test','test2','test3'};
+%     str = vlt.data.cell2str(A)
+%     % str is '{ ''test'',''test2'',''test3'' }'
+%     B = eval(str);
+%     vlt.data.eqlen(A,B) % returns 1
+%
+%   See also: MAT2STR, EVAL
+%
 
 if isempty(theCell), str = '{}'; return; end;
 
