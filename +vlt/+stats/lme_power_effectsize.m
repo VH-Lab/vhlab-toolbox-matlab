@@ -97,7 +97,15 @@ function [mdes, power_curve] = lme_power_effectsize(tbl, categories_name, y_name
             parfor i = sim_loop
                 simTbl = sim_func(lme_base, tbl_base, test_effect_size, categories_name, category_to_test, y_name_fixed, group_name);
                 lme_sim = fitlme(simTbl, lme_base.Formula.char);
-                p_value = lme_sim.Coefficients.pValue(coeff_name);
+
+                % Robustly find the p-value by searching for the coefficient name
+                coeff_idx = find(strcmp(lme_sim.Coefficients.Name, coeff_name));
+                if ~isempty(coeff_idx)
+                    p_value = lme_sim.Coefficients.pValue(coeff_idx);
+                else
+                    p_value = 1; % If coefficient is missing, it's not significant
+                end
+
                 if p_value < options.Alpha
                     significant_count = significant_count + 1;
                 end
@@ -106,7 +114,15 @@ function [mdes, power_curve] = lme_power_effectsize(tbl, categories_name, y_name
             for i = sim_loop
                 simTbl = sim_func(lme_base, tbl_base, test_effect_size, categories_name, category_to_test, y_name_fixed, group_name);
                 lme_sim = fitlme(simTbl, lme_base.Formula.char);
-                p_value = lme_sim.Coefficients.pValue(coeff_name);
+
+                % Robustly find the p-value by searching for the coefficient name
+                coeff_idx = find(strcmp(lme_sim.Coefficients.Name, coeff_name));
+                if ~isempty(coeff_idx)
+                    p_value = lme_sim.Coefficients.pValue(coeff_idx);
+                else
+                    p_value = 1; % If coefficient is missing, it's not significant
+                end
+
                 if p_value < options.Alpha
                     significant_count = significant_count + 1;
                 end

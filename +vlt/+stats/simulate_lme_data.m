@@ -28,7 +28,7 @@ function simTbl = simulate_lme_data(lme_base, tbl_base, effect_size, category_na
 %       are skewed, heavy-tailed, or otherwise non-normal.
 %
     beta_base = lme_base.fixedEffects;
-    sigma_resid = lme_base.RMSE;
+    sigma_resid = sqrt(lme_base.MSE);
     D = lme_base.covarianceParameters{1};
     sigma_random = sqrt(D(1,1));
     group_var_name = lme_base.RandomEffectInfo.GroupingVariableName{1};
