@@ -1,4 +1,4 @@
-function simTbl = simulate_lme_data(lme_base, tbl_base, effect_size, category_name, category_level, y_name, ~)
+function simTbl = simulate_lme_data(lme_base, tbl_base, effect_size, category_name, category_level, y_name, group_name)
 % SIMULATE_LME_DATA - (Helper) Generates data using the 'gaussian' (parametric) method.
 %
 %   Methodology:
@@ -31,7 +31,7 @@ function simTbl = simulate_lme_data(lme_base, tbl_base, effect_size, category_na
     sigma_resid = sqrt(lme_base.MSE);
     D = lme_base.covarianceParameters{1};
     sigma_random = sqrt(D(1,1));
-    group_var_name = lme_base.GroupingVariableNames{1};
+    group_var_name = group_name;
     groups = tbl_base.(group_var_name);
     [unique_groups, ~, group_idx] = unique(groups);
     num_groups = length(unique_groups);
