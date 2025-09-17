@@ -19,7 +19,11 @@ function assign (varargin)
 %   where VAR1 is the first field name of the input, VAL1 is the value
 %   of the field name, etc.
 %
-%   See also: VLT.DATA.NAMEVALUEPAIR, VLT.DATA.STRUCT2NAMEVALUEPAIR
+%   Note: This function is not recommended for new projects. Instead, use the
+%   Matlab arguments block to validate and indicate optional inputs and assign
+%   default values.
+%
+%   See also: VLT.DATA.NAMEVALUEPAIR, VLT.DATA.STRUCT2NAMEVALUEPAIR, ARGUMENTS
 %
 
 if numel(varargin)==1,
