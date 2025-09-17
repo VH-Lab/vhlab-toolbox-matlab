@@ -1,5 +1,5 @@
-function func_handle = get_sim_func(method)
-% GET_SIM_FUNC - Selects the correct simulation function handle.
+function func_handle = getLMESimFunc(method)
+% GETLMESIMFUNC - Selects the correct simulation function handle.
 %   This helper function acts as a router. Based on the user's 'Method'
 %   selection ('gaussian', 'shuffle', or 'hierarchical'), it returns a
 %   function handle to the appropriate simulation function. This allows the

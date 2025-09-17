@@ -1,5 +1,5 @@
-classdef test_get_sim_func < matlab.unittest.TestCase
-    % TEST_GET_SIM_FUNC - Test for the get_sim_func function
+classdef test_getLMESimFunc < matlab.unittest.TestCase
+    % TEST_GETLMESIMFUNC - Test for the getLMESimFunc function
     %
 
     methods (Test)
@@ -7,17 +7,17 @@ classdef test_get_sim_func < matlab.unittest.TestCase
             % TEST_RETURNS_CORRECT_HANDLES - Verify correct function handles are returned
 
             % Test for 'gaussian'
-            gaussian_handle = vlt.stats.get_sim_func('gaussian');
+            gaussian_handle = vlt.stats.getLMESimFunc('gaussian');
             testCase.verifyEqual(gaussian_handle, @vlt.stats.simulate_lme_data, ...
                 'Did not return the correct handle for "gaussian".');
 
             % Test for 'shuffle'
-            shuffle_handle = vlt.stats.get_sim_func('shuffle');
+            shuffle_handle = vlt.stats.getLMESimFunc('shuffle');
             testCase.verifyEqual(shuffle_handle, @vlt.stats.simulate_lme_data_shuffled, ...
                 'Did not return the correct handle for "shuffle".');
 
             % Test for 'hierarchical'
-            hierarchical_handle = vlt.stats.get_sim_func('hierarchical');
+            hierarchical_handle = vlt.stats.getLMESimFunc('hierarchical');
             testCase.verifyEqual(hierarchical_handle, @vlt.stats.simulate_lme_data_hierarchical, ...
                 'Did not return the correct handle for "hierarchical".');
         end
