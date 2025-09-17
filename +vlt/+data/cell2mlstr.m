@@ -65,9 +65,13 @@ for i=1:numel(thecell),
 	if ischar(value),
 		valuestr = char([39 value 39]);
 	elseif vlt.data.isint(value),
-		valuestr = ['[' mat2str(value) ']'];
+		s = mat2str(value);
+        if isscalar(value), s = ['[' s ']']; end;
+		valuestr = s;
 	elseif isnumeric(value),
-		valuestr = [ '[' mat2str(value,precision) ']'];
+		s = mat2str(value,precision);
+        if isscalar(value), s = ['[' s ']']; end;
+		valuestr = s;
 	elseif isstruct(value)
 		valuestr = vlt.data.struct2mlstr(value,'indent',indent+indentshift);
 	elseif iscell(value),

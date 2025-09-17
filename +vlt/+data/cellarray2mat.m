@@ -13,6 +13,11 @@ function m = cellarray2mat(c)
 %    m = vlt.data.cellarray2mat(c);
 %      % m == [ 1 4; 2 5; 3 NaN]
 
+if isempty(c),
+	m = [];
+	return;
+end;
+
  % determine number of columns
 
 if ~isvector(c),

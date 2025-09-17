@@ -25,7 +25,11 @@ for i=1:length(theCell),
         if ischar(theCell{i})
                 str = [str '''' theCell{i} ''', '];
         elseif isnumeric(theCell{i}),
-                str = [str mat2str(theCell{i}) ', '];
+                s = mat2str(theCell{i});
+                if isscalar(theCell{i})
+                    s = ['[' s ']'];
+                end
+                str = [str s ', '];
         end;
 end;
 str = [str(1:end-2) ' }'];

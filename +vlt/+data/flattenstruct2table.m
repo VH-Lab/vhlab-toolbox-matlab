@@ -129,7 +129,12 @@ for i = 1:numel(fn)
                 % The value is a cell containing ALL values from that
                 % sub-field (e.g., {[10, 20]}). This is the critical
                 % part that matches the original's nested output.
-                values = [values, {{v.(sub_field_name)}}];
+                sub_field_value = v(1).(sub_field_name);
+                if iscell(sub_field_value)
+                    values = [values, {{v.(sub_field_name)}}];
+                else
+                    values = [values, {[v.(sub_field_name)]}];
+                end
             end
         end
     end

@@ -14,3 +14,4 @@ function i = sortorder(varargin)
 %   A(I) % shows sorted values
 
 [b,i] = sort(varargin{:});
+i = i(:);

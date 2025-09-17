@@ -21,6 +21,11 @@ function i = findrowvec(a,b)
 %   See also: FIND, REPMAT, ALL
 %
 
+if isempty(a),
+	i = [];
+	return;
+end;
+
 [na,ma] = size(a);
 [nb,mb] = size(b);
 

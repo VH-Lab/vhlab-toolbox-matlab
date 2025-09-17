@@ -42,8 +42,8 @@ C = unique(condition_indexes);
 
 for c=1:length(C),
 	indexes = find(condition_indexes==C(c));
-	data{c} = values(indexes);
-	exper_indexes{c} = experiment_indexes(indexes);
+	data{c} = values(indexes)(:);
+	exper_indexes{c} = experiment_indexes(indexes)(:);
 end;
  
  

@@ -5,6 +5,7 @@ classdef sortstructTest < matlab.unittest.TestCase
 
     methods (TestMethodSetup)
         function createStruct(testCase)
+            testCase.s = vlt.data.emptystruct('a','b');
             testCase.s(1) = struct('a', 1, 'b', 10);
             testCase.s(2) = struct('a', 2, 'b', 5);
             testCase.s(3) = struct('a', 1, 'b', 20);

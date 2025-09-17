@@ -31,14 +31,14 @@ function b = fieldsearch(A, searchstruct)
 %   See also: REGEXP, STRCMP, STRCMPI, STRFIND, ISMEMBER, ISFIELD
 %
 
-b = 1; % assume it matches
+b = true; % assume it matches
 
 if numel(searchstruct)>1,
 	% we need to do an AND, everything has to be true
 	for i=1:numel(searchstruct),
 		b_ = vlt.data.fieldsearch(A, searchstruct(i));
 		if ~b_,
-			b = 0;
+			b = false;
 			break;
 		end;
 	end;
@@ -47,14 +47,14 @@ end;
 
  % if we are here, we will implement the searchstruct
 
-b = 0; % now it has to pass
+b = false; % now it has to pass
 
 [isthere, value] = vlt.data.isfullfield(A,searchstruct.field);
 
-negation = 0;
+negation = false;
 
 if searchstruct.operation(1) == '~',
-	negation = 1;
+	negation = true;
 	searchstruct.operation = searchstruct.operation(2:end);
 end;
 
@@ -146,7 +146,7 @@ switch(lower(searchstruct.operation)),
 					if ~iscell(searchstruct.param2),
 						searchstruct.param2 = {searchstruct.param2};
 					end;
-					b_ = 1; % does this one match?
+					b_ = true; % does this one match?
 					for k=1:numel(searchstruct.param1),
 						[isthere2,value2] = vlt.data.isfullfield(item,searchstruct.param1{k});
 						if ischar(value2) | isempty(value2),

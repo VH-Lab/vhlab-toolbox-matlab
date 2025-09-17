@@ -11,10 +11,10 @@ classdef prettyjsonTest < matlab.unittest.TestCase
             j = vlt.data.jsonencodenan(mystruct);
             j_pretty = vlt.data.prettyjson(j);
 
-            testCase.verifyTrue(contains(j_pretty, '\n'));
-            testCase.verifyTrue(contains(j_pretty, '"a"'));
-            testCase.verifyTrue(contains(j_pretty, '"b"'));
-            testCase.verifyTrue(contains(j_pretty, '"c"'));
+            testCase.verifyTrue(contains(char(j_pretty), sprintf('\n')));
+            testCase.verifyTrue(contains(char(j_pretty), '"a"'));
+            testCase.verifyTrue(contains(char(j_pretty), '"b"'));
+            testCase.verifyTrue(contains(char(j_pretty), '"c"'));
         end
     end
 end

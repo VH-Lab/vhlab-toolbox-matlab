@@ -19,7 +19,7 @@ function [b, errormsg] = islikevarname(name)
 %  See also: ISVARNAME, vlt.data.valid_varname
 %
 
-b = 0;
+b = false;
 
 errormsg = ['Error in ' name ': '];
 
@@ -38,11 +38,11 @@ if ~isletter(name(1)),
 	return;
 end;
 
-if ~strcmp(name,strtrim(name)),
-	errormsg = [errormsg 'must have no whitespace.'];
-	return;
+if any(isspace(name)),
+    errormsg = [errormsg 'must have no whitespace.'];
+    return;
 end;
 
-b = 1;
+b = true;
 errormsg = '';
 

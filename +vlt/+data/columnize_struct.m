@@ -34,6 +34,8 @@ if ~isempty(s_out)
 	    v = getfield(s_out,f{i});
 	    if isstruct(v),
 		    s_out = setfield(s_out,f{i},vlt.data.columnize_struct(v));
+        elseif isvector(v),
+            s_out = setfield(s_out,f{i},v(:));
 	    end;
     end;
 end;

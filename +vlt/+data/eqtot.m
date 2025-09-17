@@ -18,5 +18,4 @@ function b = eqtot(x,y)
 %   See also: vlt.data.eqemp, vlt.data.eqlen, EQ
 %
 
-b=double(vlt.data.eqemp(x,y));
-b=prod(reshape(b,1,prod(size(b))));
+b = all(vlt.data.eqemp(x,y)(:));

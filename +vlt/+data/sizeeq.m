@@ -14,13 +14,4 @@ function b = sizeeq(x,y)
 %   See also: SIZE, EQLEN
 %
 
-sz1 = size(x);
-sz2 = size(y);
-
-if length(sz1)==length(sz2),
-	f=double(vlt.data.eqemp(sz1,sz2));
-	sz=size(f);
-	b=prod(reshape(f,1,prod(sz)));
-else,
-	b=0;
-end;
+b = isequal(size(x),size(y));
