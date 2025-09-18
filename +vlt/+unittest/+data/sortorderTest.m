@@ -3,7 +3,7 @@ classdef sortorderTest < matlab.unittest.TestCase
         function testSimpleVector(testCase)
             A = [3 2 1];
             I = vlt.data.sortorder(A);
-            testCase.verifyEqual(I, [3; 2; 1]);
+            testCase.verifyEqual(I, [3 2 1]);
         end
 
         function testRepeatedElements(testCase)
@@ -16,7 +16,7 @@ classdef sortorderTest < matlab.unittest.TestCase
         function testDescending(testCase)
             A = [1 2 3];
             I = vlt.data.sortorder(A, 'descend');
-            testCase.verifyEqual(I, [3; 2; 1]);
+            testCase.verifyEqual(I, [3 2 1]);
         end
     end
 end

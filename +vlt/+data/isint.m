@@ -14,8 +14,5 @@ function b = isint(X)
 %   See also: ISINTEGER, ISNUMERIC, ISREAL, FIX
 %
 
-if isnumeric(X) && isreal(X),
-    b = all(X(:)==fix(X(:)));
-else,
-    b = false;
-end;
+b=0;
+if (isnumeric(X)&isreal(X)),b=all(X==fix(X));end;

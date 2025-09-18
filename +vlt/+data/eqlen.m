@@ -22,6 +22,6 @@ function b = eqlen(x,y)
 if vlt.data.sizeeq(x,y),
 	b = vlt.data.eqtot(x,y);
 else,
-	b = false;
+	b = 0;
 end;
 

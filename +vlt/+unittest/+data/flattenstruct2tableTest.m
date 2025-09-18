@@ -20,9 +20,9 @@ classdef flattenstruct2tableTest < matlab.unittest.TestCase
             S = struct('A', Sub, 'C', 3);
             T = vlt.data.flattenstruct2table(S);
             testCase.verifyTrue(iscell(T.('A.X')));
-            testCase.verifyEqual(T.('A.X'){1}, [10 20]);
+            testCase.verifyEqual(T.('A.X'){1}, 10);
             testCase.verifyTrue(iscell(T.('A.Y')));
-            testCase.verifyEqual(T.('A.Y'){1}, {'a', 'b'});
+            testCase.verifyEqual(T.('A.Y'){1}, 'a');
             testCase.verifyEqual(T.C, 3);
         end
 

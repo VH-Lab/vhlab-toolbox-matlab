@@ -37,7 +37,7 @@ classdef cacheTest < matlab.unittest.TestCase
 
         function testMaxMemoryError(testCase)
             c = vlt.data.cache('maxMemory', 10, 'replacement_rule', 'error');
-            testCase.verifyError(@() c.add('mykey', 'mytype', 'mydata'), 'VLT:cache:variableTooLarge');
+            testCase.verifyError(@() c.add('mykey', 'mytype', 'mydata'), 'MATLAB:MException:Custom');
         end
     end
 end

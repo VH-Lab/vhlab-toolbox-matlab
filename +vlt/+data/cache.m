@@ -93,13 +93,13 @@ classdef cache < handle
 				% before we reorganize anything, make sure it will fit
 				s = whos('data');
 				if s.bytes > cache_obj.maxMemory,
-					error('VLT:cache:variableTooLarge','This variable is too large to fit in the cache; cache''s maxMemory exceeded.');
+					error(['This variable is too large to fit in the cache; cache''s maxMemory exceeded.']);
 				end
 
 				total_memory = cache_obj.bytes() + s.bytes;
 				if total_memory > cache_obj.maxMemory, % it doesn't fit
 					if strcmpi(cache_obj.replacement_rule,'error'),
-						error('VLT:cache:cacheFull','Cache is too full too accommodate the new data; error was requested rather than replacement.');
+						error(['Cache is too full too accommodate the new data; error was requested rather than replacement.']);
 					end
 					freespaceneeded = total_memory - cache_obj.maxMemory;
 					cache_obj.freebytes(freespaceneeded);

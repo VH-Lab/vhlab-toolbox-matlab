@@ -20,10 +20,11 @@ function b = eqemp(x,y)
 %   See also: EQ, vlt.data.eqtot, vlt.data.eqlen
 %
 
-if isempty(x) && isempty(y),
-    b = true;
-elseif isempty(x) || isempty(y),
-    b = false;
-else,
-    b = (x==y);
-end
+b=1;
+xe=isempty(x);
+ye=isempty(y);
+if (xe&(~ye))|(xe&(~ye)),
+	b=0;
+elseif ~xe&~ye,
+	b=(x==y);
+end;

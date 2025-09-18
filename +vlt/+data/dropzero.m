@@ -14,7 +14,7 @@ function b = dropzero(a)
 %   See also: VLT.DATA.DROPNAN
 %
 
-if min(size(a))~=1 && ~isempty(a),
+if min(size(a))~=1,
 	error(['This function requires a vector as input.']);
 end
 

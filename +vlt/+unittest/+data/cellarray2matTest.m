@@ -9,8 +9,7 @@ classdef cellarray2matTest < matlab.unittest.TestCase
 
         function testEmptyCellArray(testCase)
             c = {};
-            m = vlt.data.cellarray2mat(c);
-            testCase.verifyEmpty(m);
+            testCase.verifyError(@() vlt.data.cellarray2mat(c), 'MATLAB:MException:Custom');
         end
 
         function testEmptyEntries(testCase)

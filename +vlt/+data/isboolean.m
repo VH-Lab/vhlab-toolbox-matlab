@@ -14,8 +14,5 @@ function b = isboolean(x)
 %   See also: ISLOGICAL, ALL
 %
 
-if isnumeric(x),
-	b=all(x(:)==0 | x(:)==1);
-else,
-	b = false;
-end;
+b = 0;
+if isnumeric(x),b=all((x==0)|(x==1));end;

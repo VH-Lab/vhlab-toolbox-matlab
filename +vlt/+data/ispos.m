@@ -14,8 +14,5 @@ function b = ispos(x)
 %   See also: ISNUMERIC, ISREAL, ALL
 %
 
-if isnumeric(x) && isreal(x),
-    b = all(x(:)>0);
-else,
-    b = false;
-end;
+b = 0;
+if (isnumeric(x)&isreal(x)),b=all(x>0);end;

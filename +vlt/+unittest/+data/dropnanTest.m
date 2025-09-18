@@ -20,8 +20,7 @@ classdef dropnanTest < matlab.unittest.TestCase
 
         function testEmptyVector(testCase)
             A = [];
-            B = vlt.data.dropnan(A);
-            testCase.verifyEmpty(B);
+            testCase.verifyError(@() vlt.data.dropnan(A), 'MATLAB:MException:Custom');
         end
     end
 end

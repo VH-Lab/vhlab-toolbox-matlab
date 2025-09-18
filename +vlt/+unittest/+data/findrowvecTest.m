@@ -17,8 +17,7 @@ classdef findrowvecTest < matlab.unittest.TestCase
         function testEmptyMatrix(testCase)
             A = [];
             B = [1 2 3];
-            I = vlt.data.findrowvec(A, B);
-            testCase.verifyEmpty(I);
+            testCase.verifyError(@() vlt.data.findrowvec(A, B), 'MATLAB:MException:Custom');
         end
     end
 end

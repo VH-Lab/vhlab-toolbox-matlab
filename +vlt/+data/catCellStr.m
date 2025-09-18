@@ -14,7 +14,7 @@ function g = catCellStr(v)
 %   See also: VLT.DATA.CELL2STR, STRCAT
 %
 
-g = '';
+g = [];
 for i=1:length(v),
-        g = [ g ' ' char(v{i}) ];
+        g = [ g ' ' char(v(i)) ];
 end;

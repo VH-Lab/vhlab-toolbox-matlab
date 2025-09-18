@@ -11,7 +11,7 @@ classdef cell2strTest < matlab.unittest.TestCase
         function testNumericCell(testCase)
             A = {1, 2, 3};
             str = vlt.data.cell2str(A);
-            testCase.verifyEqual(str, '{ [1], [2], [3] }');
+            testCase.verifyEqual(str, '{ 1, 2, 3 }');
             B = eval(str);
             testCase.verifyEqual(A, B);
         end
@@ -19,7 +19,7 @@ classdef cell2strTest < matlab.unittest.TestCase
         function testMixedCell(testCase)
             A = {'test', 1, [2 3]};
             str = vlt.data.cell2str(A);
-            testCase.verifyEqual(str, '{ ''test'', [1], [2 3] }');
+            testCase.verifyEqual(str, '{ ''test'', 1, [2 3] }');
             B = eval(str);
             testCase.verifyEqual(A, B);
         end

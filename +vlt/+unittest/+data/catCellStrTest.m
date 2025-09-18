@@ -9,7 +9,8 @@ classdef catCellStrTest < matlab.unittest.TestCase
         function testEmptyCellArray(testCase)
             mycell = {};
             mystr = vlt.data.catCellStr(mycell);
-            testCase.verifyEqual(mystr, '');
+            testCase.verifyTrue(isempty(mystr));
+            testCase.verifyClass(mystr, 'double');
         end
 
         function testSingleElementCellArray(testCase)

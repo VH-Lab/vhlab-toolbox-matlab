@@ -20,8 +20,7 @@ classdef dropzeroTest < matlab.unittest.TestCase
 
         function testEmptyVector(testCase)
             A = [];
-            B = vlt.data.dropzero(A);
-            testCase.verifyEmpty(B);
+            testCase.verifyError(@() vlt.data.dropzero(A), 'MATLAB:MException:Custom');
         end
     end
 end

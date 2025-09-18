@@ -14,13 +14,12 @@ function [b, value] = isfullfield(A, field)
 %     [b2,value2] = vlt.data.isfullfield(A, 'a.sub3') % returns b==0 and value==[]
 % 
 
-b = false;
+b = 0;
 value = [];
 
 try,
 	value = eval(['A.' field]);
-	b = true;
-catch,
+	b = 1;
 end;
 
 

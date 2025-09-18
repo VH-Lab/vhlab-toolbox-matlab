@@ -14,7 +14,7 @@ function b = dropnan(a)
 %   See also: ISNAN, VLT.DATA.DROPZERO
 %
 
-if min(size(a))~=1 && ~isempty(a),
+if min(size(a))~=1,
 	error(['This function requires a vector as input.']);
 end
 
