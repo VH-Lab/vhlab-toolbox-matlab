@@ -42,9 +42,7 @@ if ~isempty(command_rows)
     max_y = max(row_centers) + options.rowHeight/2;
 
     ylim(ax, [min_y max_y]);
-    set(ax, 'YTick', row_centers);
-    set(ax, 'YTickLabel', arrayfun(@num2str, unique_rows, 'UniformOutput', false));
-    set(ax, 'TickLength', [0 0]);
+    set(ax, 'YTick', []); % Remove Y-tick labels and marks
     ax.YDir = 'reverse';
 end
 
@@ -129,7 +127,7 @@ for i = 1:length(command_rows)
                 y_pos = row_center;
                 text_va = cmd.VerticalAlignment;
                 if ismember(cmd.VerticalAlignment, ["above", "below"])
-                    font_size_in_points = get(ax,'FontSize');
+                    font_size_in_points = options.Heading3FontSize; % Use a sensible default
                     font_height_in_data_units = font_size_in_points / 72 * options.rowHeight;
                     y_offset = font_height_in_data_units;
                     if strcmp(cmd.VerticalAlignment, 'above')

@@ -11,21 +11,7 @@ classdef testTimeline < matlab.unittest.TestCase
             vlt.plot.timeline(commands);
             testCase.verifyNotEmpty(findobj(groot, 'Type', 'figure'), 'A figure should be created.');
             ax = gca;
-            testCase.verifyEqual(ax.TickLength, [0 0], 'Tick marks should be turned off by default.');
-            close(f);
-        end
-
-        function testNonIntegerRows(testCase)
-            commands(1) = vlt.plot.timelineRow('Row', 1.5, 'Type', "Bar", 'T0', 2, 'T1', 4);
-            commands(2) = vlt.plot.timelineRow('Row', 3, 'Type', "Marker", 'T0', 6);
-            f = figure('Visible','off');
-            vlt.plot.timeline(commands, 'timeStartVerticalBar', false);
-            ax = gca;
-            expectedLabels = {'1.5'; '3'};
-            testCase.verifyEqual(ax.YTickLabel, expectedLabels, 'Y-tick labels for non-integer rows are incorrect.');
-            rowHeight = 1; % default
-            expectedTicks = [(1.5-1)*rowHeight + rowHeight/2, (3-1)*rowHeight + rowHeight/2];
-            testCase.verifyEqual(ax.YTick, expectedTicks, 'AbsTol', 1e-6, 'Y-tick positions for non-integer rows are incorrect.');
+            testCase.verifyEmpty(ax.YTick, 'Y-ticks should be empty by default.');
             close(f);
         end
 
@@ -141,7 +127,6 @@ classdef testTimeline < matlab.unittest.TestCase
             rightLabel = findobj(ax, 'Type', 'Text', 'String', 'Right');
             testCase.verifyEqual(rightLabel.Position(1), 2, 'AbsTol', 1e-6, 'Right-aligned RowLabel has incorrect X position.');
 
-            testCase.verifyEqual(ax.TickLength, [0 0], 'Tick marks should be turned off.');
             close(f);
         end
 
