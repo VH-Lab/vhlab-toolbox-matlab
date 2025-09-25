@@ -93,7 +93,7 @@ for i = 1:length(command_rows)
         case "RowLabel"
             label_pos = options.timePre + (options.timeStart - options.timePre) / 2;
             text(ax, label_pos, row_center, cmd.String, 'FontSize', options.Heading1FontSize, ...
-                'HorizontalAlignment', 'center', 'VerticalAlignment', cmd.VerticalAlignment, 'Color', cmd.Color);
+                'HorizontalAlignment', cmd.HorizontalAlignment, 'VerticalAlignment', cmd.VerticalAlignment, 'Color', cmd.Color);
         case {"Heading1", "Heading2", "Heading3"}
             fontSize = options.([char(cmd.Type) 'FontSize']);
             y_pos = row_center;

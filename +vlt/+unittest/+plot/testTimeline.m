@@ -141,6 +141,26 @@ classdef testTimeline < matlab.unittest.TestCase
             close(f);
         end
 
+        function testTimelineFromJSON_CellArray(testCase)
+            % Test JSON parsing when timelineRows is a heterogeneous cell array.
+            jsonStr = ['{', ...
+                '"timelineRows": [', ...
+                '  {"Row": 1, "Type": "Bar", "T0": 2, "T1": 8, "BarHeight": 0.5},', ...
+                '  {"Row": 2, "Type": "Marker", "T0": 5, "Symbol": "s" }', ...
+                ']', ...
+            '}'];
+            f = figure('Visible','off');
+
+            % This should execute without error
+            testCase.verifyWarningFree(@() vlt.plot.timelineFromJSON(jsonStr));
+
+            ax = gca;
+            testCase.verifyNotEmpty(findobj(ax, 'Type', 'Rectangle'), 'Bar should be created from cell array JSON.');
+            testCase.verifyNotEmpty(findobj(ax, 'Type', 'Line', 'Marker', 's'), 'Marker should be created from cell array JSON.');
+
+            close(f);
+        end
+
         function testHeadingWithMarker(testCase)
             % Test that a heading with a symbol plots both text and marker correctly.
             commands(1) = vlt.plot.timelineRow('Row', 1, 'Type', "Heading2", 'T0', 10, ...
@@ -164,37 +184,18 @@ classdef testTimeline < matlab.unittest.TestCase
             close(f);
         end
 
-        function testTimelineFromJSON_CellArray(testCase)
-            % Test JSON parsing when timelineRows is a heterogeneous cell array.
-            jsonStr = ['{', ...
-                '"timelineRows": [', ...
-                '  {"Row": 1, "Type": "Bar", "T0": 2, "T1": 8, "BarHeight": 0.5},', ...
-                '  {"Row": 2, "Type": "Marker", "T0": 5, "Symbol": "s" }', ...
-                ']', ...
-            '}'];
-            f = figure('Visible','off');
-
-            % This should execute without error
-            testCase.verifyWarningFree(@() vlt.plot.timelineFromJSON(jsonStr));
-
-            ax = gca;
-            testCase.verifyNotEmpty(findobj(ax, 'Type', 'Rectangle'), 'Bar should be created from cell array JSON.');
-            testCase.verifyNotEmpty(findobj(ax, 'Type', 'Line', 'Marker', 's'), 'Marker should be created from cell array JSON.');
-
-            close(f);
-        end
-
-        function testRowLabelFontSize(testCase)
-            % Test that RowLabel uses the Heading1FontSize.
-            commands(1) = vlt.plot.timelineRow('Row', 1, 'Type', "RowLabel", 'String', "Big Label");
+        function testRowLabelFontAndAlignment(testCase)
+            % Test that RowLabel uses the Heading1FontSize and its own alignment.
+            commands(1) = vlt.plot.timelineRow('Row', 1, 'Type', "RowLabel", 'String', "Big Left Label", 'HorizontalAlignment', 'left');
 
             f = figure('Visible','off');
-            vlt.plot.timeline(commands, 'Heading1FontSize', 20);
+            vlt.plot.timeline(commands, 'Heading1FontSize', 22);
             ax = gca;
 
-            labelObj = findobj(ax, 'Type', 'Text', 'String', 'Big Label');
+            labelObj = findobj(ax, 'Type', 'Text', 'String', 'Big Left Label');
             testCase.verifyNotEmpty(labelObj, 'RowLabel object should be created.');
-            testCase.verifyEqual(labelObj.FontSize, 20, 'RowLabel should use Heading1FontSize.');
+            testCase.verifyEqual(labelObj.FontSize, 22, 'RowLabel should use Heading1FontSize.');
+            testCase.verifyEqual(labelObj.HorizontalAlignment, 'left', 'RowLabel should use its own alignment.');
 
             close(f);
         end
