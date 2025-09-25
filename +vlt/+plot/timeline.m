@@ -157,13 +157,9 @@ for i = 1:length(command_rows)
             y_bottom = row_center + cmd.BarHeight * options.rowHeight / 2;
             patch(ax, [cmd.T0 cmd.T0 cmd.T1], [y_top, y_bottom, y_bottom], cmd.Color, 'EdgeColor', 'none');
         case "verticalDashedBar"
-            y_top = row_center - 0.5 * options.rowHeight;
-            y_bottom = row_center + 0.5 * options.rowHeight;
-            plot(ax, [cmd.T0 cmd.T0], [y_top y_bottom], '--', 'Color', cmd.Color, 'LineWidth', cmd.LineWidth);
+            plot(ax, [cmd.T0 cmd.T0], ylim(ax), '--', 'Color', cmd.Color, 'LineWidth', cmd.LineWidth);
         case "verticalSolidBar"
-            y_top = row_center - 0.5 * options.rowHeight;
-            y_bottom = row_center + 0.5 * options.rowHeight;
-            plot(ax, [cmd.T0 cmd.T0], [y_top y_bottom], '-', 'Color', cmd.Color, 'LineWidth', cmd.LineWidth);
+            plot(ax, [cmd.T0 cmd.T0], ylim(ax), '-', 'Color', cmd.Color, 'LineWidth', cmd.LineWidth);
     end
 end
 

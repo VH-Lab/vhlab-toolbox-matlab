@@ -39,15 +39,22 @@ classdef testTimeline < matlab.unittest.TestCase
         end
 
         function testVerticalBars(testCase)
-            commands(1) = vlt.plot.timelineRow('Row', 1, 'Type', "verticalDashedBar", 'T0', 3, 'LineWidth', 2);
-            commands(2) = vlt.plot.timelineRow('Row', 2, 'Type', "verticalSolidBar", 'T0', 5, 'Color', [1 0 0]);
+            % Test that vertical bars span the full height of the plot.
+            commands(1) = vlt.plot.timelineRow('Row', 1, 'Type', "Bar", 'T0', 0, 'T1', 1); % To set Y-limits
+            commands(2) = vlt.plot.timelineRow('Row', 3, 'Type', "Bar", 'T0', 0, 'T1', 1); % To set Y-limits
+            commands(3) = vlt.plot.timelineRow('Row', 1, 'Type', "verticalSolidBar", 'T0', 5);
+
             f = figure('Visible','off');
             vlt.plot.timeline(commands, 'timeStartVerticalBar', false);
             ax = gca;
-            dashedBar = findobj(ax, 'Type', 'Line', 'LineStyle', '--');
-            testCase.verifyNotEmpty(dashedBar, 'Dashed bar should be created.');
+
             solidBar = findobj(ax, 'Type', 'Line', 'LineStyle', '-');
             testCase.verifyNotEmpty(solidBar, 'Solid bar should be created.');
+
+            % Verify that the YData of the bar matches the axes' Y-limits
+            current_ylim = ylim(ax);
+            testCase.verifyEqual(sort(solidBar.YData), sort(current_ylim), 'AbsTol', 1e-6, 'Vertical bar should span the full plot height.');
+
             close(f);
         end
 
