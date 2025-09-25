@@ -17,7 +17,7 @@ classdef timelineRow
     end
 
     methods
-        function obj = timelineRow(args)
+        function obj = timelineRow(options)
             % TIMELINEROW - Constructor for the timelineRow class
             %
             %   OBJ = vlt.plot.timelineRow('NAME1', VALUE1, 'NAME2', VALUE2, ...)
@@ -28,25 +28,39 @@ classdef timelineRow
             %   Example:
             %     row = vlt.plot.timelineRow('Row', 2, 'Type', "Bar", 'T0', 5, 'T1', 10);
             %
-            arguments (Repeating)
-                args.?timelineRow
+            arguments
+                options.Row
+                options.Type
+                options.String
+                options.Color
+                options.Symbol
+                options.BarHeight
+                options.T0
+                options.T1
             end
 
-            % If arguments were provided, assign them
-            if ~isempty(args)
-                for i = 1:numel(args)
-                    s = args{i};
-                    fn = fieldnames(s);
-                    for j=1:numel(fn)
-                        obj.(fn{j}) = s.(fn{j});
-                    end
-                end
+            % Get field names of options that were actually passed in
+            passedOptions = fieldnames(options);
+
+            % Assign passed options to object properties.
+            % The validation defined in the properties block will be triggered here.
+            for i = 1:numel(passedOptions)
+                propName = passedOptions{i};
+                obj.(propName) = options.(propName);
             end
 
             % Post-construction validation
+            % Check if T0 or T1 was passed for relevant types
             if ismember(obj.Type, ["Marker", "Heading1", "Heading2", "Heading3"])
-                if obj.T0 ~= obj.T1
-                    warning('For Type %s, T0 and T1 are typically the same. T1 will be set to T0.', obj.Type);
+                t0_passed = ismember('T0', passedOptions);
+                t1_passed = ismember('T1', passedOptions);
+
+                if t0_passed && ~t1_passed
+                    obj.T1 = obj.T0;
+                elseif ~t0_passed && t1_passed
+                    obj.T0 = obj.T1;
+                elseif t0_passed && t1_passed && obj.T0 ~= obj.T1
+                    warning('For Type %s, T0 and T1 should be the same. Setting T1 to T0.', obj.Type);
                     obj.T1 = obj.T0;
                 end
             end
