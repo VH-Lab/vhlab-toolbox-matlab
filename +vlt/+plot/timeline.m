@@ -37,6 +37,7 @@ arguments
     options.timeStartVerticalBar (1,1) logical = true
     options.timeStartVerticalBarLineWidth (1,1) double = 1
     options.timeStartVerticalBarColor (1,3) double = [0 0 0]
+    options.timelineBackgroundColor (1,3) double = [0.9 0.9 0.9]
 end
 
 % Auto-calculate time boundaries if not provided
@@ -69,6 +70,7 @@ end
 % Set up the plot
 figure;
 ax = gca;
+set(ax, 'Color', options.timelineBackgroundColor);
 hold(ax, 'on');
 ylim([0.5 max_row * options.rowHeight + 0.5]);
 set(ax, 'YTick', (options.rowHeight/2):options.rowHeight:((max_row-1)*options.rowHeight + options.rowHeight/2) );
@@ -112,6 +114,14 @@ for i = 1:length(command_rows)
             y_top = row_center - cmd.BarHeight * options.rowHeight / 2;
             y_bottom = row_center + cmd.BarHeight * options.rowHeight / 2;
             patch([cmd.T0 cmd.T0 cmd.T1], [y_top, y_bottom, y_bottom], cmd.Color, 'EdgeColor', 'none');
+        case "verticalDashedBar"
+            y_top = row_center - 0.5 * options.rowHeight;
+            y_bottom = row_center + 0.5 * options.rowHeight;
+            plot([cmd.T0 cmd.T0], [y_top y_bottom], '--', 'Color', cmd.Color, 'LineWidth', cmd.LineWidth);
+        case "verticalSolidBar"
+            y_top = row_center - 0.5 * options.rowHeight;
+            y_bottom = row_center + 0.5 * options.rowHeight;
+            plot([cmd.T0 cmd.T0], [y_top y_bottom], '-', 'Color', cmd.Color, 'LineWidth', cmd.LineWidth);
     end
 end
 

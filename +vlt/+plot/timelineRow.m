@@ -7,7 +7,7 @@ classdef timelineRow
 
     properties
         Row (1,1) {mustBeInteger, mustBePositive} = 1
-        Type (1,1) string {mustBeMember(Type,["Heading1","Heading2","Heading3","Marker","Bar","OnsetTriangle","OffsetTriangle","RowLabel"])} = "Marker"
+        Type (1,1) string {mustBeMember(Type,["Heading1","Heading2","Heading3","Marker","Bar","OnsetTriangle","OffsetTriangle","RowLabel","verticalDashedBar","verticalSolidBar"])} = "Marker"
         String (1,1) string = ""
         Color (1,3) {mustBeNumeric, mustBeNonnegative, mustBeLessThanOrEqual(Color, 1)} = [0 0 0]
         Symbol (1,1) string = "o"
@@ -16,6 +16,7 @@ classdef timelineRow
         T1 (1,1) {mustBeNumeric} = 0
         HorizontalAlignment (1,1) string {mustBeMember(HorizontalAlignment,["left","center","right"])} = "center"
         VerticalAlignment (1,1) string {mustBeMember(VerticalAlignment,["top","cap","middle","baseline","bottom"])} = "middle"
+        LineWidth (1,1) {mustBeNumeric, mustBePositive} = 0.76
     end
 
     methods
@@ -33,6 +34,7 @@ classdef timelineRow
                 options.T1
                 options.HorizontalAlignment
                 options.VerticalAlignment
+                options.LineWidth
             end
 
             passedOptions = fieldnames(options);
@@ -41,7 +43,7 @@ classdef timelineRow
                 obj.(propName) = options.(propName);
             end
 
-            if ismember(obj.Type, ["Marker", "Heading1", "Heading2", "Heading3"])
+            if ismember(obj.Type, ["Marker", "Heading1", "Heading2", "Heading3", "verticalDashedBar", "verticalSolidBar"])
                 t0_passed = ismember('T0', passedOptions);
                 t1_passed = ismember('T1', passedOptions);
                 if t0_passed && ~t1_passed

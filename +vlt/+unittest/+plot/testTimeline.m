@@ -40,28 +40,59 @@ classdef testTimeline < matlab.unittest.TestCase
         end
 
         function testNewFeatures(testCase)
-            % Test the RowLabel, time boundaries, and vertical bar features.
-            timePre = -2;
-            timeStart = 0;
-            timeEnd = 12;
-            labelString = "Test Label";
+            % Test the RowLabel, time boundaries, and background color features.
+            bgColor = [1 1 0.8]; % A light yellow
+            f = figure('Visible','off');
+            vlt.plot.timeline([], 'timelineBackgroundColor', bgColor);
+            ax = gca;
+            testCase.verifyEqual(ax.Color, bgColor, 'AbsTol', 1e-6, ...
+                'Axes background color should be set by the parameter.');
+            close(f);
+        end
 
-            commands(1) = vlt.plot.timelineRow('Row', 1, 'Type', "RowLabel", 'String', labelString);
-            commands(2) = vlt.plot.timelineRow('Row', 2, 'Type', "Heading1", 'String', "H1", 'T0', 5, 'T1', 5, 'HorizontalAlignment', 'left');
+        function testVerticalBars(testCase)
+            % Test the verticalDashedBar and verticalSolidBar types.
+            commands(1) = vlt.plot.timelineRow('Row', 1, 'Type', "verticalDashedBar", 'T0', 3, 'LineWidth', 2);
+            commands(2) = vlt.plot.timelineRow('Row', 2, 'Type', "verticalSolidBar", 'T0', 5, 'Color', [1 0 0]);
 
             f = figure('Visible','off');
-            vlt.plot.timeline(commands, 'timePre', timePre, 'timeEnd', timeEnd, 'timeStart', timeStart);
+            vlt.plot.timeline(commands);
             ax = gca;
 
-            % Verify RowLabel text object position and alignment
-            labelObj = findobj(ax, 'Type', 'Text', 'String', labelString);
-            expectedLabelPos = timePre + (timeStart - timePre) / 2;
-            testCase.verifyEqual(labelObj.Position(1), expectedLabelPos, 'AbsTol', 1e-6, 'RowLabel should be centered between timePre and timeStart.');
-            testCase.verifyEqual(labelObj.HorizontalAlignment, 'center', 'RowLabel should be center-aligned.');
+            % Verify dashed bar
+            dashedBar = findobj(ax, 'Type', 'Line', 'LineStyle', '--');
+            testCase.verifyNotEmpty(dashedBar, 'Dashed bar should be created.');
+            testCase.verifyEqual(dashedBar.XData, [3 3], 'AbsTol', 1e-6);
+            testCase.verifyEqual(dashedBar.LineWidth, 2, 'AbsTol', 1e-6);
 
-            % Verify custom alignment for heading
-            headingObj = findobj(ax, 'Type', 'Text', 'String', "H1");
-            testCase.verifyEqual(headingObj.HorizontalAlignment, 'left', 'Heading should have custom horizontal alignment.');
+            % Verify solid bar
+            solidBar = findobj(ax, 'Type', 'Line', 'LineStyle', '-');
+            testCase.verifyNotEmpty(solidBar, 'Solid bar should be created.');
+            testCase.verifyEqual(solidBar.XData, [5 5], 'AbsTol', 1e-6);
+            testCase.verifyEqual(solidBar.Color, [1 0 0], 'AbsTol', 1e-6);
+            testCase.verifyEqual(solidBar.LineWidth, 0.76, 'AbsTol', 1e-6); % Default value
+
+            close(f);
+        end
+        function testTimelineFromJSON(testCase)
+            % Test the creation of a timeline from a JSON string.
+            jsonStr = ['{', ...
+                '"timelineParameters": [', ...
+                '  {"Name": "timelineBackgroundColor", "Value": [0.8, 1, 0.8]}', ...
+                '],', ...
+                '"timelineRows": [', ...
+                '  {"Row": 1, "Type": "Bar", "T0": 2, "T1": 8}', ...
+                ']', ...
+            '}'];
+
+            f = figure('Visible','off');
+            vlt.plot.timelineFromJSON(jsonStr);
+            ax = gca;
+
+            % Verify background color from JSON
+            expectedColor = [0.8 1 0.8];
+            testCase.verifyEqual(ax.Color, expectedColor, 'AbsTol', 1e-6, ...
+                'Axes background color should be set from JSON.');
 
             close(f);
         end
