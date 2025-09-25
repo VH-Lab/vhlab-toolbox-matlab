@@ -6,7 +6,7 @@ classdef timelineRow
     %
 
     properties
-        Row (1,1) {mustBeInteger, mustBePositive} = 1
+        Row (1,1) {mustBeNumeric, mustBePositive} = 1
         Type (1,1) string {mustBeMember(Type,["Heading1","Heading2","Heading3","Marker","Bar","OnsetTriangle","OffsetTriangle","RowLabel","verticalDashedBar","verticalSolidBar"])} = "Marker"
         String (1,1) string = ""
         Color (1,3) {mustBeNumeric, mustBeNonnegative, mustBeLessThanOrEqual(Color, 1)} = [0 0 0]

@@ -14,6 +14,33 @@ classdef testTimeline < matlab.unittest.TestCase
             close(f);
         end
 
+        function testNonIntegerRows(testCase)
+            % Test that non-integer rows are handled correctly.
+            commands(1) = vlt.plot.timelineRow('Row', 1.5, 'Type', "Bar", 'T0', 2, 'T1', 4);
+            commands(2) = vlt.plot.timelineRow('Row', 3, 'Type', "Marker", 'T0', 6);
+
+            f = figure('Visible','off');
+            vlt.plot.timeline(commands, 'timeStartVerticalBar', false);
+            ax = gca;
+
+            % Verify Y-Tick labels
+            expectedLabels = {'1.5', '3'};
+            testCase.verifyEqual(ax.YTickLabel, expectedLabels, 'Y-tick labels for non-integer rows are incorrect.');
+
+            % Verify Y-Tick positions
+            rowHeight = 1; % default
+            expectedTicks = [(1.5-1)*rowHeight + rowHeight/2, (3-1)*rowHeight + rowHeight/2];
+            testCase.verifyEqual(ax.YTick, expectedTicks, 'AbsTol', 1e-6, 'Y-tick positions for non-integer rows are incorrect.');
+
+            % Verify object positions
+            barObj = findobj(ax, 'Type', 'Rectangle');
+            bar_y_center = (1.5 - 1) * rowHeight + rowHeight/2;
+            expected_bar_y = bar_y_center - 0.8 * rowHeight / 2;
+            testCase.verifyEqual(barObj.Position(2), expected_bar_y, 'AbsTol', 1e-6, 'Bar position with non-integer row is incorrect.');
+
+            close(f);
+        end
+
         function testPlotObjectProperties(testCase)
             % A more detailed test to verify the properties of plotted objects.
             rowHeight = 2;

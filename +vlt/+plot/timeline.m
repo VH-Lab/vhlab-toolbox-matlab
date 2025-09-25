@@ -34,16 +34,18 @@ set(ax, 'Color', options.timelineBackgroundColor);
 hold(ax, 'on');
 
 % Get the number of rows and set up Y axis
-max_row = 0;
 if ~isempty(command_rows)
-    max_row = max([command_rows.Row]);
-end
+    unique_rows = unique([command_rows.Row]);
+    row_centers = (unique_rows - 1) * options.rowHeight + options.rowHeight/2;
 
-if max_row > 0
-    ylim(ax, [0.5 max_row * options.rowHeight + 0.5]);
-    set(ax, 'YTick', (options.rowHeight/2):options.rowHeight:((max_row-1)*options.rowHeight + options.rowHeight/2) );
-    set(ax, 'YTickLabel', 1:max_row);
+    min_y = min(row_centers) - options.rowHeight/2;
+    max_y = max(row_centers) + options.rowHeight/2;
+
+    ylim(ax, [min_y max_y]);
+    set(ax, 'YTick', row_centers);
+    set(ax, 'YTickLabel', arrayfun(@num2str, unique_rows, 'UniformOutput', false));
     ax.YDir = 'reverse';
+    max_row = max(unique_rows); % for font height calculation
 end
 
 % Auto-calculate time boundaries if not provided
@@ -103,7 +105,7 @@ for i = 1:length(command_rows)
 
                 % Estimate font height and set offset
                 font_size_in_points = fontSize;
-                font_height_in_data_units = font_size_in_points / 72 * diff(ylim(ax)) / (max_row*options.rowHeight);
+                font_height_in_data_units = font_size_in_points / 72 * diff(ylim(ax));
 
                 if strcmp(cmd.VerticalAlignment, 'top')
                     y_pos = row_center - font_height_in_data_units * 0.5 * options.rowHeight;
@@ -120,7 +122,7 @@ for i = 1:length(command_rows)
             plot(ax, cmd.T0, row_center, cmd.Symbol, 'MarkerEdgeColor', cmd.MarkerEdgeColor, 'MarkerFaceColor', cmd.MarkerFaceColor, 'MarkerSize', cmd.MarkerSize);
             if ~isempty(cmd.String) && strlength(cmd.String) > 0
                 font_size_in_points = get(ax,'FontSize');
-                font_height_in_data_units = font_size_in_points / 72 * diff(ylim(ax)) / (max_row*options.rowHeight);
+                font_height_in_data_units = font_size_in_points / 72 * diff(ylim(ax));
                 y_offset = 0;
                 text_va = 'middle';
                 if strcmp(cmd.VerticalAlignment, 'top')
