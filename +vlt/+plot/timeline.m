@@ -109,7 +109,8 @@ for i = 1:length(command_rows)
                 plot(ax, cmd.T0, row_center, cmd.Symbol, 'MarkerEdgeColor', cmd.MarkerEdgeColor, 'MarkerFaceColor', cmd.MarkerFaceColor, 'MarkerSize', cmd.MarkerSize);
 
                 if ismember(cmd.VerticalAlignment, ["above", "below"])
-                    y_offset = 0.4 * options.rowHeight; % A simple, predictable offset
+                    font_height_in_data_units = (fontSize/72) * options.rowHeight;
+                    y_offset = font_height_in_data_units;
                     if strcmp(cmd.VerticalAlignment, 'above')
                         y_pos = row_center - y_offset;
                     else % 'below'
@@ -129,7 +130,9 @@ for i = 1:length(command_rows)
                 y_pos = row_center;
                 text_va = cmd.VerticalAlignment;
                 if ismember(cmd.VerticalAlignment, ["above", "below"])
-                    y_offset = 0.4 * options.rowHeight; % A simple, predictable offset
+                    font_size_in_points = options.Heading3FontSize; % Use a sensible default
+                    font_height_in_data_units = (font_size_in_points/72) * options.rowHeight;
+                    y_offset = font_height_in_data_units;
                     if strcmp(cmd.VerticalAlignment, 'above')
                         y_pos = row_center - y_offset;
                     else % 'below'

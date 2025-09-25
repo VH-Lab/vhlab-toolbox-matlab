@@ -24,9 +24,14 @@ classdef testTimeline < matlab.unittest.TestCase
             ax = gca;
             barObj = findobj(ax, 'Type', 'Rectangle');
             triangleObj = findobj(ax, 'Type', 'Patch');
+
             expectedBarPosition = [2, 0.2, 3, 1.6];
             testCase.verifyEqual(barObj.Position, expectedBarPosition, 'AbsTol', 1e-6, 'Bar position is incorrect.');
-            expectedTriangleVertices = [7, 3.4; 9, 3.4; 9, 2.2];
+
+            row_center_2 = (2-1)*rowHeight + rowHeight/2;
+            y_top = row_center_2 - (0.6 * rowHeight / 2);
+            y_bottom = row_center_2 + (0.6 * rowHeight / 2);
+            expectedTriangleVertices = [7, y_bottom; 9, y_bottom; 9, y_top];
             testCase.verifyEqual(triangleObj.Vertices, expectedTriangleVertices, 'AbsTol', 1e-6, 'Triangle vertices are incorrect.');
             close(f);
         end
@@ -48,7 +53,7 @@ classdef testTimeline < matlab.unittest.TestCase
             close(f);
         end
 
-        function testMarkerLabelsAndColors(testCase)
+        function testMarkerLabels(testCase)
             rowHeight = 3;
             commands(1) = vlt.plot.timelineRow('Row', 1, 'Type', "Marker", 'T0', 5, 'String', "Above", 'VerticalAlignment', 'above', 'Symbol', 'o');
             f = figure('Visible','off');
@@ -58,7 +63,8 @@ classdef testTimeline < matlab.unittest.TestCase
             aboveLabel = findobj(ax, 'Type', 'Text', 'String', 'Above');
             markerObj = findobj(ax, 'Type', 'Line');
 
-            expected_offset = 0.4 * rowHeight;
+            h3_font_size = 10; % Default Heading3FontSize
+            expected_offset = (h3_font_size / 72) * rowHeight;
             row_center = (1-1)*rowHeight + rowHeight/2;
 
             testCase.verifyEqual(aboveLabel.Position(2), row_center - expected_offset, 'AbsTol', 1e-6, 'Text "above" has incorrect offset.');
@@ -112,6 +118,7 @@ classdef testTimeline < matlab.unittest.TestCase
 
         function testHeadingWithMarker(testCase)
             rowHeight = 4;
+            fontSize = 12; % default Heading2 size
             commands(1) = vlt.plot.timelineRow('Row', 1, 'Type', "Heading2", 'T0', 10, 'String', "Event Above", 'Symbol', 's', 'VerticalAlignment', 'above');
             f = figure('Visible','off');
             vlt.plot.timeline(commands, 'timeStartVerticalBar', false, 'rowHeight', rowHeight);
@@ -119,7 +126,7 @@ classdef testTimeline < matlab.unittest.TestCase
             marker = findobj(ax, 'Type', 'Line', 'Marker', 's');
             textObj = findobj(ax, 'Type', 'Text', 'String', 'Event Above');
 
-            expected_offset = 0.4 * rowHeight;
+            expected_offset = (fontSize / 72) * rowHeight;
             row_center = (1-1)*rowHeight + rowHeight/2;
 
             testCase.verifyEqual(textObj.Position(2), row_center - expected_offset, 'AbsTol', 1e-6, 'Heading text "above" has incorrect offset.');
@@ -138,6 +145,18 @@ classdef testTimeline < matlab.unittest.TestCase
 
             rightLabel = findobj(ax, 'Type', 'Text', 'String', 'Right');
             testCase.verifyEqual(rightLabel.Position(1), 2, 'AbsTol', 1e-6, 'Right-aligned RowLabel has incorrect X position.');
+
+            close(f);
+        end
+
+        function testXAxisCustomization(testCase)
+            commands(1) = vlt.plot.timelineRow('Row', 1, 'Type', "Bar", 'T0', 5, 'T1', 15);
+            f = figure('Visible','off');
+            vlt.plot.timeline(commands, 'timePre', -10, 'timeStart', 0, 'XLabel', 'Time (s)');
+            ax = gca;
+
+            testCase.verifyEqual(ax.XLabel.String, 'Time (s)', 'XLabel was not set correctly.');
+            testCase.verifyGreaterThanOrEqual(min(ax.XTick), 0, 'XTicks before timeStart were not removed.');
 
             close(f);
         end
