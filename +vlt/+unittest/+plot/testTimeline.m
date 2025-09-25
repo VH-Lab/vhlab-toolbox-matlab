@@ -128,14 +128,20 @@ classdef testTimeline < matlab.unittest.TestCase
         end
 
         function testRowLabelFontAndAlignment(testCase)
-            commands(1) = vlt.plot.timelineRow('Row', 1, 'Type', "RowLabel", 'String', "Big Left Label", 'HorizontalAlignment', 'left');
+            commands(1) = vlt.plot.timelineRow('Row', 1, 'Type', "RowLabel", 'String', "Left", 'HorizontalAlignment', 'left');
+            commands(2) = vlt.plot.timelineRow('Row', 2, 'Type', "RowLabel", 'String', "Right", 'HorizontalAlignment', 'right');
             f = figure('Visible','off');
-            vlt.plot.timeline(commands, 'Heading1FontSize', 22);
+            vlt.plot.timeline(commands, 'timePre', 0, 'timeStart', 2, 'timeEnd', 10);
             ax = gca;
-            labelObj = findobj(ax, 'Type', 'Text', 'String', 'Big Left Label');
-            testCase.verifyNotEmpty(labelObj, 'RowLabel object should be created.');
-            testCase.verifyEqual(labelObj.FontSize, 22, 'RowLabel should use Heading1FontSize.');
-            testCase.verifyEqual(labelObj.HorizontalAlignment, 'left', 'RowLabel should use its own alignment.');
+
+            leftLabel = findobj(ax, 'Type', 'Text', 'String', 'Left');
+            testCase.verifyEqual(leftLabel.Position(1), 0, 'AbsTol', 1e-6, 'Left-aligned RowLabel has incorrect X position.');
+
+            rightLabel = findobj(ax, 'Type', 'Text', 'String', 'Right');
+            testCase.verifyEqual(rightLabel.Position(1), 2, 'AbsTol', 1e-6, 'Right-aligned RowLabel has incorrect X position.');
+
+            % Verify tick marks are off
+            testCase.verifyEqual(ax.TickLength, [0 0], 'Tick marks should be turned off.');
             close(f);
         end
 

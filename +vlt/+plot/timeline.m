@@ -44,6 +44,7 @@ if ~isempty(command_rows)
     ylim(ax, [min_y max_y]);
     set(ax, 'YTick', row_centers);
     set(ax, 'YTickLabel', arrayfun(@num2str, unique_rows, 'UniformOutput', false));
+    set(ax, 'TickLength', [0 0]);
     ax.YDir = 'reverse';
 end
 
@@ -90,7 +91,13 @@ for i = 1:length(command_rows)
 
     switch cmd.Type
         case "RowLabel"
-            label_pos = options.timePre + (options.timeStart - options.timePre) / 2;
+            if strcmp(cmd.HorizontalAlignment, 'left')
+                label_pos = options.timePre;
+            elseif strcmp(cmd.HorizontalAlignment, 'right')
+                label_pos = options.timeStart;
+            else % center
+                label_pos = options.timePre + (options.timeStart - options.timePre) / 2;
+            end
             text(ax, label_pos, row_center, cmd.String, 'FontSize', options.Heading1FontSize, ...
                 'HorizontalAlignment', cmd.HorizontalAlignment, 'VerticalAlignment', cmd.VerticalAlignment, 'Color', cmd.Color);
 
