@@ -8,7 +8,7 @@ function timeline(command_rows, options)
 %
 
 arguments
-    command_rows (1,*) vlt.plot.timelineRow
+    command_rows (1,:) vlt.plot.timelineRow
     options.rowHeight (1,1) double = 1
     options.Heading1FontSize (1,1) double = 14
     options.Heading2FontSize (1,1) double = 12

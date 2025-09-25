@@ -42,7 +42,7 @@ classdef testTimeline < matlab.unittest.TestCase
         function testEmptyTimeline(testCase)
             % Test that calling with an empty command array doesn't error.
             f = figure('Visible','off');
-            vlt.plot.timeline(vlt.plot.timelineRow.empty(), 'timelineBackgroundColor', [1 1 1]);
+            vlt.plot.timeline(vlt.plot.timelineRow.empty(1,0), 'timelineBackgroundColor', [1 1 1]);
             ax = gca;
             testCase.verifyEqual(ax.Color, [1 1 1], 'AbsTol', 1e-6, 'Background color should be set even for empty timeline.');
             close(f);
@@ -85,34 +85,30 @@ classdef testTimeline < matlab.unittest.TestCase
             testCase.verifyNotEmpty(bottomLabel, 'Bottom label should be created.');
             testCase.verifyEqual(bottomLabel.VerticalAlignment, 'top', 'Bottom label VA is incorrect.');
 
-            % Verify marker colors
             markerObjs = findobj(ax, 'Type', 'Line');
-            % findobj returns in reverse order of creation
             testCase.verifyEqual(markerObjs(2).MarkerFaceColor, [1 0 0], 'Custom marker face color is incorrect.');
             testCase.verifyEqual(markerObjs(2).MarkerEdgeColor, [0 1 0], 'Custom marker edge color is incorrect.');
             testCase.verifyEqual(markerObjs(1).MarkerFaceColor, [1 1 1], 'Default marker face color is incorrect.');
             testCase.verifyEqual(markerObjs(1).MarkerEdgeColor, [0 0 0], 'Default marker edge color is incorrect.');
-
             close(f);
         end
 
         function testTimelineFromJSON(testCase)
             % Test the creation of a timeline from a JSON string.
-            f = figure('Visible','off');
-            ax_handle = axes(f);
             jsonStr = ['{', ...
                 '"timelineParameters": [', ...
-                '  {"Name": "timelineBackgroundColor", "Value": [0.8, 1, 0.8]},', ...
-                '  {"Name": "axes", "Value": ', num2str(ax_handle.Number), '}', ...
+                '  {"Name": "timelineBackgroundColor", "Value": [0.8, 1, 0.8]}', ...
                 '],', ...
                 '"timelineRows": [', ...
                 '  {"Row": 1, "Type": "Bar", "T0": 2, "T1": 8}', ...
                 ']', ...
             '}'];
+            f = figure('Visible','off');
             vlt.plot.timelineFromJSON(jsonStr);
+            ax = gca;
 
-            testCase.verifyEqual(ax_handle.Color, [0.8 1 0.8], 'AbsTol', 1e-6, 'Background color from JSON is incorrect.');
-            testCase.verifyNotEmpty(findobj(ax_handle, 'Type', 'Rectangle'), 'Bar should be plotted in the specified axes.');
+            testCase.verifyEqual(ax.Color, [0.8 1 0.8], 'AbsTol', 1e-6, 'Background color from JSON is incorrect.');
+            testCase.verifyNotEmpty(findobj(ax, 'Type', 'Rectangle'), 'Bar should be plotted in the specified axes.');
             close(f);
         end
 
