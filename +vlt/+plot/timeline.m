@@ -69,6 +69,10 @@ if isnan(options.timeEnd)
     options.timeEnd = max(all_times);
 end
 
+if options.timeEnd <= options.timePre
+    options.timeEnd = options.timePre + 1; % Ensure there is a valid interval
+end
+
 xlim(ax, [options.timePre options.timeEnd]);
 
 % Draw vertical start bar
