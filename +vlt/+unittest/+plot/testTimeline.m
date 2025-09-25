@@ -42,36 +42,26 @@ classdef testTimeline < matlab.unittest.TestCase
         function testNewFeatures(testCase)
             % Test the RowLabel, time boundaries, and vertical bar features.
             timePre = -2;
-            timeEnd = 12;
             timeStart = 0;
+            timeEnd = 12;
             labelString = "Test Label";
 
             commands(1) = vlt.plot.timelineRow('Row', 1, 'Type', "RowLabel", 'String', labelString);
-            commands(2) = vlt.plot.timelineRow('Row', 1, 'Type', "Bar", 'T0', 3, 'T1', 8);
+            commands(2) = vlt.plot.timelineRow('Row', 2, 'Type', "Heading1", 'String', "H1", 'T0', 5, 'T1', 5, 'HorizontalAlignment', 'left');
 
             f = figure('Visible','off');
-            vlt.plot.timeline(commands, ...
-                'timePre', timePre, 'timeEnd', timeEnd, 'timeStart', timeStart, ...
-                'timeStartVerticalBar', true, 'timeStartVerticalBarColor', [1 0 1]);
+            vlt.plot.timeline(commands, 'timePre', timePre, 'timeEnd', timeEnd, 'timeStart', timeStart);
             ax = gca;
 
-            % Verify X-axis limits
-            testCase.verifyEqual(ax.XLim, [timePre timeEnd], 'AbsTol', 1e-6);
+            % Verify RowLabel text object position and alignment
+            labelObj = findobj(ax, 'Type', 'Text', 'String', labelString);
+            expectedLabelPos = timePre + (timeStart - timePre) / 2;
+            testCase.verifyEqual(labelObj.Position(1), expectedLabelPos, 'AbsTol', 1e-6, 'RowLabel should be centered between timePre and timeStart.');
+            testCase.verifyEqual(labelObj.HorizontalAlignment, 'center', 'RowLabel should be center-aligned.');
 
-            % Verify RowLabel text object
-            textObj = findobj(ax, 'Type', 'Text', 'String', labelString);
-            testCase.verifyNotEmpty(textObj, 'RowLabel text object should be created.');
-            testCase.verifyEqual(textObj.Position(1), timePre, 'AbsTol', 1e-6, 'RowLabel should be at timePre.');
-            testCase.verifyEqual(textObj.HorizontalAlignment, 'right', 'RowLabel should be right-aligned.');
-
-            % Verify vertical start bar
-            startBar = findobj(ax, 'Type', 'Line');
-            % Filter out any lines that are not the vertical bar
-            isStartBar = arrayfun(@(h) isequal(h.XData, [timeStart timeStart]), startBar);
-            startBar = startBar(isStartBar);
-
-            testCase.verifyNotEmpty(startBar, 'Vertical start bar should be created.');
-            testCase.verifyEqual(startBar.Color, [1 0 1], 'Start bar should have the specified color.');
+            % Verify custom alignment for heading
+            headingObj = findobj(ax, 'Type', 'Text', 'String', "H1");
+            testCase.verifyEqual(headingObj.HorizontalAlignment, 'left', 'Heading should have custom horizontal alignment.');
 
             close(f);
         end

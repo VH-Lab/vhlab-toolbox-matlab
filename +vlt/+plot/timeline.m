@@ -90,12 +90,13 @@ for i = 1:length(command_rows)
 
     switch cmd.Type
         case "RowLabel"
-            text(options.timePre, row_center, cmd.String, 'FontSize', options.Heading3FontSize, ...
-                'HorizontalAlignment', 'right', 'VerticalAlignment', 'middle', 'Color', cmd.Color);
+            label_pos = options.timePre + (options.timeStart - options.timePre) / 2;
+            text(label_pos, row_center, cmd.String, 'FontSize', options.Heading3FontSize, ...
+                'HorizontalAlignment', 'center', 'VerticalAlignment', cmd.VerticalAlignment, 'Color', cmd.Color);
         case {"Heading1", "Heading2", "Heading3"}
             fontSize = options.([char(cmd.Type) 'FontSize']);
             text(cmd.T0, row_center, cmd.String, 'FontSize', fontSize, ...
-                'HorizontalAlignment', 'center', 'VerticalAlignment', 'middle', 'Color', cmd.Color);
+                'HorizontalAlignment', cmd.HorizontalAlignment, 'VerticalAlignment', cmd.VerticalAlignment, 'Color', cmd.Color);
         case "Marker"
             plot(cmd.T0, row_center, cmd.Symbol, 'Color', cmd.Color, 'MarkerFaceColor', cmd.Color);
         case "Bar"
