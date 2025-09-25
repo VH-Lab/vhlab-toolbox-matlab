@@ -10,6 +10,8 @@ classdef testTimeline < matlab.unittest.TestCase
             f = figure('Visible','off');
             vlt.plot.timeline(commands);
             testCase.verifyNotEmpty(findobj(groot, 'Type', 'figure'), 'A figure should be created.');
+            ax = gca;
+            testCase.verifyEqual(ax.TickLength, [0 0], 'Tick marks should be turned off by default.');
             close(f);
         end
 
