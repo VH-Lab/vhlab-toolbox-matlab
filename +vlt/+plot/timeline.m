@@ -45,7 +45,6 @@ if ~isempty(command_rows)
     set(ax, 'YTick', row_centers);
     set(ax, 'YTickLabel', arrayfun(@num2str, unique_rows, 'UniformOutput', false));
     ax.YDir = 'reverse';
-    max_row = max(unique_rows); % for font height calculation
 end
 
 % Auto-calculate time boundaries if not provided
@@ -94,48 +93,50 @@ for i = 1:length(command_rows)
             label_pos = options.timePre + (options.timeStart - options.timePre) / 2;
             text(ax, label_pos, row_center, cmd.String, 'FontSize', options.Heading1FontSize, ...
                 'HorizontalAlignment', cmd.HorizontalAlignment, 'VerticalAlignment', cmd.VerticalAlignment, 'Color', cmd.Color);
+
         case {"Heading1", "Heading2", "Heading3"}
             fontSize = options.([char(cmd.Type) 'FontSize']);
             y_pos = row_center;
             text_va = cmd.VerticalAlignment;
 
-            % If there's a symbol, plot it and adjust text position
             if ~isempty(cmd.Symbol) && strlength(cmd.Symbol) > 0
                 plot(ax, cmd.T0, row_center, cmd.Symbol, 'MarkerEdgeColor', cmd.MarkerEdgeColor, 'MarkerFaceColor', cmd.MarkerFaceColor, 'MarkerSize', cmd.MarkerSize);
 
-                % Estimate font height and set offset
-                font_size_in_points = fontSize;
-                font_height_in_data_units = font_size_in_points / 72 * diff(ylim(ax));
-
-                if strcmp(cmd.VerticalAlignment, 'top')
-                    y_pos = row_center - font_height_in_data_units * 0.5 * options.rowHeight;
-                    text_va = 'bottom';
-                elseif strcmp(cmd.VerticalAlignment, 'bottom')
-                    y_pos = row_center + font_height_in_data_units * 0.5 * options.rowHeight;
-                    text_va = 'top';
+                if ismember(cmd.VerticalAlignment, ["above", "below"])
+                    font_height_in_data_units = fontSize / 72 * options.rowHeight;
+                    y_offset = 0.5 * font_height_in_data_units;
+                    if strcmp(cmd.VerticalAlignment, 'above')
+                        y_pos = row_center - y_offset;
+                    else % 'below'
+                        y_pos = row_center + y_offset;
+                    end
+                    text_va = 'middle';
                 end
             end
-
             text(ax, cmd.T0, y_pos, cmd.String, 'FontSize', fontSize, ...
                 'HorizontalAlignment', cmd.HorizontalAlignment, 'VerticalAlignment', text_va, 'Color', cmd.Color);
+
         case "Marker"
             plot(ax, cmd.T0, row_center, cmd.Symbol, 'MarkerEdgeColor', cmd.MarkerEdgeColor, 'MarkerFaceColor', cmd.MarkerFaceColor, 'MarkerSize', cmd.MarkerSize);
             if ~isempty(cmd.String) && strlength(cmd.String) > 0
-                font_size_in_points = get(ax,'FontSize');
-                font_height_in_data_units = font_size_in_points / 72 * diff(ylim(ax));
-                y_offset = 0;
-                text_va = 'middle';
-                if strcmp(cmd.VerticalAlignment, 'top')
-                    y_offset = -font_height_in_data_units * 0.5 * options.rowHeight;
-                    text_va = 'bottom';
-                elseif strcmp(cmd.VerticalAlignment, 'bottom')
-                    y_offset = font_height_in_data_units * 0.5 * options.rowHeight;
-                    text_va = 'top';
+                y_pos = row_center;
+                text_va = cmd.VerticalAlignment;
+                if ismember(cmd.VerticalAlignment, ["above", "below"])
+                    font_size_in_points = get(ax,'FontSize');
+                    font_height_in_data_units = font_size_in_points / 72 * options.rowHeight;
+                    y_offset = 0.5 * font_height_in_data_units;
+                    if strcmp(cmd.VerticalAlignment, 'above')
+                        y_pos = row_center - y_offset;
+                    else % 'below'
+                        y_pos = row_center + y_offset;
+                    end
+                    text_va = 'middle';
                 end
-                text(ax, cmd.T0, row_center + y_offset, cmd.String, ...
+                text(ax, cmd.T0, y_pos, cmd.String, ...
                     'HorizontalAlignment', cmd.HorizontalAlignment, ...
                     'VerticalAlignment', text_va, 'Color', cmd.Color);
             end
+
         case "Bar"
             y_start = row_center - cmd.BarHeight * options.rowHeight / 2;
             h = cmd.BarHeight * options.rowHeight;

@@ -15,7 +15,7 @@ classdef timelineRow
         T0 (1,1) {mustBeNumeric} = 0
         T1 (1,1) {mustBeNumeric} = 0
         HorizontalAlignment (1,1) string {mustBeMember(HorizontalAlignment,["left","center","right"])} = "center"
-        VerticalAlignment (1,1) string {mustBeMember(VerticalAlignment,["top","cap","middle","baseline","bottom"])} = "middle"
+        VerticalAlignment (1,1) string {mustBeMember(VerticalAlignment,["top","cap","middle","baseline","bottom","above","below"])} = "middle"
         LineWidth (1,1) {mustBeNumeric, mustBePositive} = 0.76
         MarkerFaceColor (1,3) {mustBeNumeric, mustBeNonnegative, mustBeLessThanOrEqual(MarkerFaceColor, 1)} = [1 1 1]
         MarkerEdgeColor (1,3) {mustBeNumeric, mustBeNonnegative, mustBeLessThanOrEqual(MarkerEdgeColor, 1)} = [0 0 0]

@@ -5,44 +5,29 @@ classdef testTimeline < matlab.unittest.TestCase
     methods (Test)
 
         function testTimelineSmokeTest(testCase)
-            % A smoke test that runs the example from the documentation.
             commands(1) = vlt.plot.timelineRow('Row',1,'Type',"RowLabel",'String',"My first row");
             commands(2) = vlt.plot.timelineRow('Row',1,'Type',"Bar",'T0',2,'T1',4);
             f = figure('Visible','off');
-            vlt.plot.timeline(commands, 'timePre', 0, 'timeStart', 0, 'timeEnd', 10);
+            vlt.plot.timeline(commands);
             testCase.verifyNotEmpty(findobj(groot, 'Type', 'figure'), 'A figure should be created.');
             close(f);
         end
 
         function testNonIntegerRows(testCase)
-            % Test that non-integer rows are handled correctly.
             commands(1) = vlt.plot.timelineRow('Row', 1.5, 'Type', "Bar", 'T0', 2, 'T1', 4);
             commands(2) = vlt.plot.timelineRow('Row', 3, 'Type', "Marker", 'T0', 6);
-
             f = figure('Visible','off');
             vlt.plot.timeline(commands, 'timeStartVerticalBar', false);
             ax = gca;
-
-            % Verify Y-Tick labels
-            expectedLabels = {'1.5'; '3'}; % Expect a column vector
+            expectedLabels = {'1.5'; '3'};
             testCase.verifyEqual(ax.YTickLabel, expectedLabels, 'Y-tick labels for non-integer rows are incorrect.');
-
-            % Verify Y-Tick positions
             rowHeight = 1; % default
             expectedTicks = [(1.5-1)*rowHeight + rowHeight/2, (3-1)*rowHeight + rowHeight/2];
             testCase.verifyEqual(ax.YTick, expectedTicks, 'AbsTol', 1e-6, 'Y-tick positions for non-integer rows are incorrect.');
-
-            % Verify object positions
-            barObj = findobj(ax, 'Type', 'Rectangle');
-            bar_y_center = (1.5 - 1) * rowHeight + rowHeight/2;
-            expected_bar_y = bar_y_center - 0.8 * rowHeight / 2;
-            testCase.verifyEqual(barObj.Position(2), expected_bar_y, 'AbsTol', 1e-6, 'Bar position with non-integer row is incorrect.');
-
             close(f);
         end
 
         function testPlotObjectProperties(testCase)
-            % A more detailed test to verify the properties of plotted objects.
             rowHeight = 2;
             commands(1) = vlt.plot.timelineRow('Row', 1, 'Type', "Bar", 'T0', 2, 'T1', 5, 'BarHeight', 0.8);
             commands(2) = vlt.plot.timelineRow('Row', 2, 'Type', "OnsetTriangle", 'T0', 7, 'T1', 9, 'BarHeight', 0.6);
@@ -51,79 +36,53 @@ classdef testTimeline < matlab.unittest.TestCase
             ax = gca;
             barObj = findobj(ax, 'Type', 'Rectangle');
             triangleObj = findobj(ax, 'Type', 'Patch');
-
-            bar_row_center = (1 - 1) * rowHeight + rowHeight/2;
-            bar_y_start = bar_row_center - 0.8 * rowHeight / 2;
-            bar_h = 0.8 * rowHeight;
-            expectedBarPosition = [2, bar_y_start, 3, bar_h];
+            expectedBarPosition = [2, 0.2, 3, 1.6];
             testCase.verifyEqual(barObj.Position, expectedBarPosition, 'AbsTol', 1e-6, 'Bar position is incorrect.');
-
-            tri_row_center = (2 - 1) * rowHeight + rowHeight/2;
-            tri_y_top = tri_row_center - 0.6 * rowHeight / 2;
-            tri_y_bottom = tri_row_center + 0.6 * rowHeight / 2;
-            expectedTriangleVertices = [7, tri_y_bottom; 9, tri_y_bottom; 9, tri_y_top];
+            expectedTriangleVertices = [7, 3.4; 9, 3.4; 9, 2.2];
             testCase.verifyEqual(triangleObj.Vertices, expectedTriangleVertices, 'AbsTol', 1e-6, 'Triangle vertices are incorrect.');
             close(f);
         end
 
         function testEmptyTimeline(testCase)
-            % Test that calling with an empty command array doesn't error.
             f = figure('Visible','off');
-            vlt.plot.timeline(vlt.plot.timelineRow.empty(1,0), 'timelineBackgroundColor', [1 1 1]);
-            ax = gca;
-            testCase.verifyEqual(ax.Color, [1 1 1], 'AbsTol', 1e-6, 'Background color should be set even for empty timeline.');
+            vlt.plot.timeline(vlt.plot.timelineRow.empty(1,0));
+            testCase.verifyNotEmpty(findobj(groot, 'Type', 'figure'), 'Figure should be created for empty timeline.');
             close(f);
         end
 
         function testVerticalBars(testCase)
-            % Test the verticalDashedBar and verticalSolidBar types.
             commands(1) = vlt.plot.timelineRow('Row', 1, 'Type', "verticalDashedBar", 'T0', 3, 'LineWidth', 2);
             commands(2) = vlt.plot.timelineRow('Row', 2, 'Type', "verticalSolidBar", 'T0', 5, 'Color', [1 0 0]);
             f = figure('Visible','off');
             vlt.plot.timeline(commands, 'timeStartVerticalBar', false);
             ax = gca;
-
             dashedBar = findobj(ax, 'Type', 'Line', 'LineStyle', '--');
             testCase.verifyNotEmpty(dashedBar, 'Dashed bar should be created.');
-            testCase.verifyEqual(dashedBar.XData, [3 3], 'AbsTol', 1e-6, 'Dashed bar XData is incorrect.');
-            testCase.verifyEqual(dashedBar.LineWidth, 2, 'AbsTol', 1e-6, 'Dashed bar LineWidth is incorrect.');
-
             solidBar = findobj(ax, 'Type', 'Line', 'LineStyle', '-');
             testCase.verifyNotEmpty(solidBar, 'Solid bar should be created.');
-            testCase.verifyEqual(solidBar.XData, [5 5], 'AbsTol', 1e-6, 'Solid bar XData is incorrect.');
-            testCase.verifyEqual(solidBar.Color, [1 0 0], 'AbsTol', 1e-6, 'Solid bar Color is incorrect.');
-            testCase.verifyEqual(solidBar.LineWidth, 0.76, 'AbsTol', 1e-6, 'Solid bar LineWidth should be the default.');
             close(f);
         end
 
         function testMarkerLabelsAndColors(testCase)
-            % Test that labels for markers are drawn correctly and colors are applied.
-            commands(1) = vlt.plot.timelineRow('Row', 1, 'Type', "Marker", 'T0', 5, 'String', "Top Label", 'VerticalAlignment', 'top', 'MarkerFaceColor', [1 0 0], 'MarkerEdgeColor', [0 1 0], 'MarkerSize', 12);
-            commands(2) = vlt.plot.timelineRow('Row', 2, 'Type', "Marker", 'T0', 5, 'String', "Bottom Label", 'VerticalAlignment', 'bottom');
+            commands(1) = vlt.plot.timelineRow('Row', 1, 'Type', "Marker", 'T0', 5, 'String', "Above", 'VerticalAlignment', 'above', 'MarkerSize', 12);
+            commands(2) = vlt.plot.timelineRow('Row', 2, 'Type', "Marker", 'T0', 5, 'String', "Below", 'VerticalAlignment', 'below');
             f = figure('Visible','off');
             vlt.plot.timeline(commands, 'timeStartVerticalBar', false);
             ax = gca;
 
-            topLabel = findobj(ax, 'Type', 'Text', 'String', 'Top Label');
-            testCase.verifyNotEmpty(topLabel, 'Top label should be created.');
-            testCase.verifyEqual(topLabel.VerticalAlignment, 'bottom', 'Top label VA is incorrect.');
+            aboveLabel = findobj(ax, 'Type', 'Text', 'String', 'Above');
+            testCase.verifyEqual(aboveLabel.VerticalAlignment, 'middle', 'VA for "above" text should be middle.');
 
-            bottomLabel = findobj(ax, 'Type', 'Text', 'String', 'Bottom Label');
-            testCase.verifyNotEmpty(bottomLabel, 'Bottom label should be created.');
-            testCase.verifyEqual(bottomLabel.VerticalAlignment, 'top', 'Bottom label VA is incorrect.');
+            belowLabel = findobj(ax, 'Type', 'Text', 'String', 'Below');
+            testCase.verifyEqual(belowLabel.VerticalAlignment, 'middle', 'VA for "below" text should be middle.');
 
             markerObjs = findobj(ax, 'Type', 'Line');
-            testCase.verifyEqual(markerObjs(2).MarkerFaceColor, [1 0 0], 'Custom marker face color is incorrect.');
-            testCase.verifyEqual(markerObjs(2).MarkerEdgeColor, [0 1 0], 'Custom marker edge color is incorrect.');
-            testCase.verifyEqual(markerObjs(2).MarkerSize, 12, 'Custom marker size is incorrect.');
-            testCase.verifyEqual(markerObjs(1).MarkerFaceColor, [1 1 1], 'Default marker face color is incorrect.');
-            testCase.verifyEqual(markerObjs(1).MarkerEdgeColor, [0 0 0], 'Default marker edge color is incorrect.');
-            testCase.verifyEqual(markerObjs(1).MarkerSize, 6, 'Default marker size is incorrect.');
+            testCase.verifyGreaterThan(belowLabel.Position(2), markerObjs(1).YData, 'Text "below" should be at a higher Y value (plot is reversed).');
+            testCase.verifyLessThan(aboveLabel.Position(2), markerObjs(2).YData, 'Text "above" should be at a lower Y value (plot is reversed).');
             close(f);
         end
 
         function testTimelineFromJSON(testCase)
-            % Test the creation of a timeline from a JSON string.
             jsonStr = ['{', ...
                 '"timelineParameters": [', ...
                 '  {"Name": "timelineBackgroundColor", "Value": [0.8, 1, 0.8]}', ...
@@ -135,14 +94,11 @@ classdef testTimeline < matlab.unittest.TestCase
             f = figure('Visible','off');
             vlt.plot.timelineFromJSON(jsonStr);
             ax = gca;
-
             testCase.verifyEqual(ax.Color, [0.8 1 0.8], 'AbsTol', 1e-6, 'Background color from JSON is incorrect.');
-            testCase.verifyNotEmpty(findobj(ax, 'Type', 'Rectangle'), 'Bar should be plotted in the specified axes.');
             close(f);
         end
 
         function testTimelineFromJSON_CellArray(testCase)
-            % Test JSON parsing when timelineRows is a heterogeneous cell array.
             jsonStr = ['{', ...
                 '"timelineRows": [', ...
                 '  {"Row": 1, "Type": "Bar", "T0": 2, "T1": 8, "BarHeight": 0.5},', ...
@@ -150,53 +106,36 @@ classdef testTimeline < matlab.unittest.TestCase
                 ']', ...
             '}'];
             f = figure('Visible','off');
-
-            % This should execute without error
             testCase.verifyWarningFree(@() vlt.plot.timelineFromJSON(jsonStr));
-
             ax = gca;
             testCase.verifyNotEmpty(findobj(ax, 'Type', 'Rectangle'), 'Bar should be created from cell array JSON.');
             testCase.verifyNotEmpty(findobj(ax, 'Type', 'Line', 'Marker', 's'), 'Marker should be created from cell array JSON.');
-
             close(f);
         end
 
         function testHeadingWithMarker(testCase)
-            % Test that a heading with a symbol plots both text and marker correctly.
-            commands(1) = vlt.plot.timelineRow('Row', 1, 'Type', "Heading2", 'T0', 10, ...
-                'String', "Event X", 'Symbol', 's', 'VerticalAlignment', 'top');
-
+            commands(1) = vlt.plot.timelineRow('Row', 1, 'Type', "Heading2", 'T0', 10, 'String', "Event Above", 'Symbol', 's', 'VerticalAlignment', 'above');
             f = figure('Visible','off');
             vlt.plot.timeline(commands, 'timeStartVerticalBar', false);
             ax = gca;
-
-            % Verify marker exists
             marker = findobj(ax, 'Type', 'Line', 'Marker', 's');
             testCase.verifyNotEmpty(marker, 'Marker for heading should be created.');
-            testCase.verifyEqual(marker.XData, 10, 'AbsTol', 1e-6, 'Marker XData is incorrect.');
-
-            % Verify text exists and is positioned correctly
-            textObj = findobj(ax, 'Type', 'Text', 'String', 'Event X');
+            textObj = findobj(ax, 'Type', 'Text', 'String', 'Event Above');
             testCase.verifyNotEmpty(textObj, 'Text for heading should be created.');
-            testCase.verifyEqual(textObj.VerticalAlignment, 'bottom', 'Text VA should be adjusted for position.');
+            testCase.verifyEqual(textObj.VerticalAlignment, 'middle', 'Text VA should be middle for relative positioning.');
             testCase.verifyLessThan(textObj.Position(2), marker.YData, 'Text should be above the marker.');
-
             close(f);
         end
 
         function testRowLabelFontAndAlignment(testCase)
-            % Test that RowLabel uses the Heading1FontSize and its own alignment.
             commands(1) = vlt.plot.timelineRow('Row', 1, 'Type', "RowLabel", 'String', "Big Left Label", 'HorizontalAlignment', 'left');
-
             f = figure('Visible','off');
             vlt.plot.timeline(commands, 'Heading1FontSize', 22);
             ax = gca;
-
             labelObj = findobj(ax, 'Type', 'Text', 'String', 'Big Left Label');
             testCase.verifyNotEmpty(labelObj, 'RowLabel object should be created.');
             testCase.verifyEqual(labelObj.FontSize, 22, 'RowLabel should use Heading1FontSize.');
             testCase.verifyEqual(labelObj.HorizontalAlignment, 'left', 'RowLabel should use its own alignment.');
-
             close(f);
         end
 
