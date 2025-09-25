@@ -24,7 +24,7 @@ classdef testTimeline < matlab.unittest.TestCase
             ax = gca;
 
             % Verify Y-Tick labels
-            expectedLabels = {'1.5', '3'};
+            expectedLabels = {'1.5'; '3'}; % Expect a column vector
             testCase.verifyEqual(ax.YTickLabel, expectedLabels, 'Y-tick labels for non-integer rows are incorrect.');
 
             % Verify Y-Tick positions
