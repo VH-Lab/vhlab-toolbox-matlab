@@ -6,66 +6,72 @@ classdef testTimeline < matlab.unittest.TestCase
 
         function testTimelineSmokeTest(testCase)
             % A smoke test that runs the example from the documentation.
-            % This verifies that the function executes without throwing an error.
-
-            % Create an array of timelineRow objects
-            commands(1) = vlt.plot.timelineRow(...
-                'Row', 1, 'Type', "Heading1", 'String', "Experiment Timeline", 'T0', 5, 'T1', 5);
-            commands(2) = vlt.plot.timelineRow(...
-                'Row', 2, 'Type', "Bar", 'T0', 2, 'T1', 6, 'Color', [0.5 0.5 1], 'BarHeight', 0.8);
-            commands(3) = vlt.plot.timelineRow(...
-                'Row', 2, 'Type', "Marker", 'T0', 4, 'T1', 4, 'Symbol', "o", 'Color', [1 0 0]);
-            commands(4) = vlt.plot.timelineRow(...
-                'Row', 3, 'Type', "Bar", 'T0', 6, 'T1', 10, 'Color', [0.5 1 0.5], 'BarHeight', 0.6);
-            commands(5) = vlt.plot.timelineRow(...
-                'Row', 3, 'Type', "Marker", 'T0', 8, 'T1', 8, 'Symbol', "s", 'Color', [0 0 1]);
-            commands(6) = vlt.plot.timelineRow(...
-                'Row', 4, 'Type', "OnsetTriangle", 'T0', 1, 'T1', 3, 'Color', [1 0.5 0.5]);
-            commands(7) = vlt.plot.timelineRow(...
-                'Row', 4, 'Type', "OffsetTriangle", 'T0', 9, 'T1', 10, 'Color', [0.5 0.5 1]);
-
-            % Call the function and verify that a figure is created
-            f = figure('Visible','off'); % Create an invisible figure
-            vlt.plot.timeline(commands, 'rowHeight', 1.5, 'Heading1FontSize', 16);
-
-            testCase.verifyNotEmpty(findobj(groot, 'Type', 'figure'), ...
-                'A figure should be created by the timeline function.');
-
-            close(f); % Close the figure
+            commands(1) = vlt.plot.timelineRow('Row',1,'Type',"RowLabel",'String',"My first row");
+            commands(2) = vlt.plot.timelineRow('Row',1,'Type',"Bar",'T0',2,'T1',4);
+            f = figure('Visible','off');
+            vlt.plot.timeline(commands, 'timePre', 0, 'timeStart', 0, 'timeEnd', 10);
+            testCase.verifyNotEmpty(findobj(groot, 'Type', 'figure'));
+            close(f);
         end
 
         function testPlotObjectProperties(testCase)
             % A more detailed test to verify the properties of plotted objects.
-            % This confirms that bars and triangles are drawn with the correct
-            % coordinates and dimensions.
-
             rowHeight = 2;
-
-            % Create a simple set of commands for verification
             commands(1) = vlt.plot.timelineRow('Row', 1, 'Type', "Bar", 'T0', 2, 'T1', 5, 'BarHeight', 0.8);
             commands(2) = vlt.plot.timelineRow('Row', 2, 'Type', "OnsetTriangle", 'T0', 7, 'T1', 9, 'BarHeight', 0.6);
-
             f = figure('Visible','off');
             vlt.plot.timeline(commands, 'rowHeight', rowHeight);
             ax = gca;
-
-            % Find the plotted objects
             barObj = findobj(ax, 'Type', 'Rectangle');
             triangleObj = findobj(ax, 'Type', 'Patch');
 
-            % --- Verification for the bar ---
             bar_row_center = (1 - 1) * rowHeight + rowHeight/2;
             bar_y_start = bar_row_center - 0.8 * rowHeight / 2;
             bar_h = 0.8 * rowHeight;
             expectedBarPosition = [2, bar_y_start, 3, bar_h];
             testCase.verifyEqual(barObj.Position, expectedBarPosition, 'AbsTol', 1e-6);
 
-            % --- Verification for the triangle ---
             tri_row_center = (2 - 1) * rowHeight + rowHeight/2;
             tri_y_top = tri_row_center - 0.6 * rowHeight / 2;
             tri_y_bottom = tri_row_center + 0.6 * rowHeight / 2;
             expectedTriangleVertices = [7, tri_y_bottom; 9, tri_y_bottom; 9, tri_y_top];
             testCase.verifyEqual(triangleObj.Vertices, expectedTriangleVertices, 'AbsTol', 1e-6);
+            close(f);
+        end
+
+        function testNewFeatures(testCase)
+            % Test the RowLabel, time boundaries, and vertical bar features.
+            timePre = -2;
+            timeEnd = 12;
+            timeStart = 0;
+            labelString = "Test Label";
+
+            commands(1) = vlt.plot.timelineRow('Row', 1, 'Type', "RowLabel", 'String', labelString);
+            commands(2) = vlt.plot.timelineRow('Row', 1, 'Type', "Bar", 'T0', 3, 'T1', 8);
+
+            f = figure('Visible','off');
+            vlt.plot.timeline(commands, ...
+                'timePre', timePre, 'timeEnd', timeEnd, 'timeStart', timeStart, ...
+                'timeStartVerticalBar', true, 'timeStartVerticalBarColor', [1 0 1]);
+            ax = gca;
+
+            % Verify X-axis limits
+            testCase.verifyEqual(ax.XLim, [timePre timeEnd], 'AbsTol', 1e-6);
+
+            % Verify RowLabel text object
+            textObj = findobj(ax, 'Type', 'Text', 'String', labelString);
+            testCase.verifyNotEmpty(textObj, 'RowLabel text object should be created.');
+            testCase.verifyEqual(textObj.Position(1), timePre, 'AbsTol', 1e-6, 'RowLabel should be at timePre.');
+            testCase.verifyEqual(textObj.HorizontalAlignment, 'right', 'RowLabel should be right-aligned.');
+
+            % Verify vertical start bar
+            startBar = findobj(ax, 'Type', 'Line');
+            % Filter out any lines that are not the vertical bar
+            isStartBar = arrayfun(@(h) isequal(h.XData, [timeStart timeStart]), startBar);
+            startBar = startBar(isStartBar);
+
+            testCase.verifyNotEmpty(startBar, 'Vertical start bar should be created.');
+            testCase.verifyEqual(startBar.Color, [1 0 1], 'Start bar should have the specified color.');
 
             close(f);
         end

@@ -11,26 +11,18 @@ function timeline(command_rows, options)
 %   'Heading1FontSize'  : Font size for 'Heading1' text. Default is 14.
 %   'Heading2FontSize'  : Font size for 'Heading2' text. Default is 12.
 %   'Heading3FontSize'  : Font size for 'Heading3' text. Default is 10.
+%   'timePre'           : The time to start the x-axis for labels. Default is calculated from data.
+%   'timeStart'         : The time for the "start" of events. Default is calculated from data.
+%   'timeEnd'           : The time to end the x-axis. Default is calculated from data.
+%   'timeStartVerticalBar': Draw a vertical bar at timeStart. Default is true.
+%   'timeStartVerticalBarLineWidth': Line width of the start bar. Default is 1.
+%   'timeStartVerticalBarColor': Color of the start bar. Default is black.
 %
 % Example:
-%   % Create an array of timelineRow objects
-%   commands(1) = vlt.plot.timelineRow(...
-%       'Row', 1, 'Type', "Heading1", 'String', "Experiment Timeline", 'T0', 5, 'T1', 5);
-%   commands(2) = vlt.plot.timelineRow(...
-%       'Row', 2, 'Type', "Bar", 'T0', 2, 'T1', 6, 'Color', [0.5 0.5 1], 'BarHeight', 0.8);
-%   commands(3) = vlt.plot.timelineRow(...
-%       'Row', 2, 'Type', "Marker", 'T0', 4, 'T1', 4, 'Symbol', "o", 'Color', [1 0 0]);
-%   commands(4) = vlt.plot.timelineRow(...
-%       'Row', 3, 'Type', "Bar", 'T0', 6, 'T1', 10, 'Color', [0.5 1 0.5], 'BarHeight', 0.6);
-%   commands(5) = vlt.plot.timelineRow(...
-%       'Row', 3, 'Type', "Marker", 'T0', 8, 'T1', 8, 'Symbol', "s", 'Color', [0 0 1]);
-%   commands(6) = vlt.plot.timelineRow(...
-%       'Row', 4, 'Type', "OnsetTriangle", 'T0', 1, 'T1', 3, 'Color', [1 0.5 0.5]);
-%   commands(7) = vlt.plot.timelineRow(...
-%       'Row', 4, 'Type', "OffsetTriangle", 'T0', 9, 'T1', 10, 'Color', [0.5 0.5 1]);
-%
+%   commands(1) = vlt.plot.timelineRow('Row',1,'Type',"RowLabel",'String',"My first row");
+%   commands(2) = vlt.plot.timelineRow('Row',1,'Type',"Bar",'T0',2,'T1',4);
 %   figure;
-%   vlt.plot.timeline(commands, 'rowHeight', 1.5, 'Heading1FontSize', 16);
+%   vlt.plot.timeline(commands, 'timePre', 0, 'timeStart', 0, 'timeEnd', 10);
 %
 
 arguments
@@ -39,6 +31,31 @@ arguments
     options.Heading1FontSize (1,1) double = 14
     options.Heading2FontSize (1,1) double = 12
     options.Heading3FontSize (1,1) double = 10
+    options.timePre (1,1) double = NaN
+    options.timeStart (1,1) double = NaN
+    options.timeEnd (1,1) double = NaN
+    options.timeStartVerticalBar (1,1) logical = true
+    options.timeStartVerticalBarLineWidth (1,1) double = 1
+    options.timeStartVerticalBarColor (1,3) double = [0 0 0]
+end
+
+% Auto-calculate time boundaries if not provided
+all_times = [];
+for i=1:length(command_rows)
+    if ~strcmp(command_rows(i).Type,"RowLabel")
+        all_times(end+1) = command_rows(i).T0;
+        all_times(end+1) = command_rows(i).T1;
+    end
+end
+
+if isnan(options.timePre)
+    options.timePre = min(all_times);
+end
+if isnan(options.timeStart)
+    options.timeStart = min(all_times);
+end
+if isnan(options.timeEnd)
+    options.timeEnd = max(all_times);
 end
 
 % Get the number of rows from the command objects
@@ -57,6 +74,14 @@ ylim([0.5 max_row * options.rowHeight + 0.5]);
 set(ax, 'YTick', (options.rowHeight/2):options.rowHeight:((max_row-1)*options.rowHeight + options.rowHeight/2) );
 set(ax, 'YTickLabel', 1:max_row);
 ax.YDir = 'reverse';
+xlim([options.timePre options.timeEnd]);
+
+% Draw vertical start bar
+if options.timeStartVerticalBar
+    plot([options.timeStart options.timeStart], ylim, '-', ...
+        'Color', options.timeStartVerticalBarColor, ...
+        'LineWidth', options.timeStartVerticalBarLineWidth);
+end
 
 % Loop through commands and plot
 for i = 1:length(command_rows)
@@ -64,6 +89,9 @@ for i = 1:length(command_rows)
     row_center = (cmd.Row - 1) * options.rowHeight + options.rowHeight/2;
 
     switch cmd.Type
+        case "RowLabel"
+            text(options.timePre, row_center, cmd.String, 'FontSize', options.Heading3FontSize, ...
+                'HorizontalAlignment', 'right', 'VerticalAlignment', 'middle', 'Color', cmd.Color);
         case {"Heading1", "Heading2", "Heading3"}
             fontSize = options.([char(cmd.Type) 'FontSize']);
             text(cmd.T0, row_center, cmd.String, 'FontSize', fontSize, ...
