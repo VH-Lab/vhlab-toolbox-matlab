@@ -184,5 +184,20 @@ classdef testTimeline < matlab.unittest.TestCase
             close(f);
         end
 
+        function testRowLabelFontSize(testCase)
+            % Test that RowLabel uses the Heading1FontSize.
+            commands(1) = vlt.plot.timelineRow('Row', 1, 'Type', "RowLabel", 'String', "Big Label");
+
+            f = figure('Visible','off');
+            vlt.plot.timeline(commands, 'Heading1FontSize', 20);
+            ax = gca;
+
+            labelObj = findobj(ax, 'Type', 'Text', 'String', 'Big Label');
+            testCase.verifyNotEmpty(labelObj, 'RowLabel object should be created.');
+            testCase.verifyEqual(labelObj.FontSize, 20, 'RowLabel should use Heading1FontSize.');
+
+            close(f);
+        end
+
     end
 end
