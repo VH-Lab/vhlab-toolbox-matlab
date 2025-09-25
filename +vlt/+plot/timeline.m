@@ -76,11 +76,13 @@ for i = 1:length(command_rows)
             rectangle('Position', [cmd.T0, y_start, cmd.T1 - cmd.T0, h], ...
                       'FaceColor', cmd.Color, 'EdgeColor', 'none');
         case "OnsetTriangle"
-            y_bottom = row_center - 0.5*options.rowHeight;
-            patch([cmd.T0 cmd.T1 cmd.T1], [y_bottom, y_bottom, y_bottom+options.rowHeight], cmd.Color, 'EdgeColor', 'none');
+            y_top = row_center - cmd.BarHeight * options.rowHeight / 2;
+            y_bottom = row_center + cmd.BarHeight * options.rowHeight / 2;
+            patch([cmd.T0 cmd.T1 cmd.T1], [y_bottom, y_bottom, y_top], cmd.Color, 'EdgeColor', 'none');
         case "OffsetTriangle"
-            y_bottom = row_center - 0.5*options.rowHeight;
-            patch([cmd.T0 cmd.T0 cmd.T1], [y_bottom, y_bottom+options.rowHeight, y_bottom], cmd.Color, 'EdgeColor', 'none');
+            y_top = row_center - cmd.BarHeight * options.rowHeight / 2;
+            y_bottom = row_center + cmd.BarHeight * options.rowHeight / 2;
+            patch([cmd.T0 cmd.T0 cmd.T1], [y_top, y_bottom, y_bottom], cmd.Color, 'EdgeColor', 'none');
     end
 end
 

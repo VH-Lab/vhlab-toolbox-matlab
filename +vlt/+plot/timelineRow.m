@@ -17,25 +17,28 @@ classdef timelineRow
     end
 
     methods
-        function obj = timelineRow(varargin)
+        function obj = timelineRow(args)
             % TIMELINEROW - Constructor for the timelineRow class
             %
-            %   OBJ = vlt.plot.timelineRow(NAME, VALUE, ...)
+            %   OBJ = vlt.plot.timelineRow('NAME1', VALUE1, 'NAME2', VALUE2, ...)
             %
             %   Creates a timelineRow object, allowing properties to be set
-            %   using name-value pairs.
+            %   using name-value pairs. Tab completion is enabled for property names.
             %
             %   Example:
             %     row = vlt.plot.timelineRow('Row', 2, 'Type', "Bar", 'T0', 5, 'T1', 10);
             %
+            arguments (Repeating)
+                args.?timelineRow
+            end
 
-            % Use a dynamic properties assignment loop
-            if nargin > 0
-                for i = 1:2:nargin
-                    if isprop(obj, varargin{i})
-                        obj.(varargin{i}) = varargin{i+1};
-                    else
-                        error('vlt:plot:timelineRow', 'Invalid property name: %s', varargin{i});
+            % If arguments were provided, assign them
+            if ~isempty(args)
+                for i = 1:numel(args)
+                    s = args{i};
+                    fn = fieldnames(s);
+                    for j=1:numel(fn)
+                        obj.(fn{j}) = s.(fn{j});
                     end
                 end
             end
