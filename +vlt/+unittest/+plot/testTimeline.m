@@ -137,5 +137,25 @@ classdef testTimeline < matlab.unittest.TestCase
             close(f);
         end
 
+        function testTimelineFromJSON_CellArray(testCase)
+            % Test JSON parsing when timelineRows is a heterogeneous cell array.
+            jsonStr = ['{', ...
+                '"timelineRows": [', ...
+                '  {"Row": 1, "Type": "Bar", "T0": 2, "T1": 8, "BarHeight": 0.5},', ...
+                '  {"Row": 2, "Type": "Marker", "T0": 5, "Symbol": "s" }', ...
+                ']', ...
+            '}'];
+            f = figure('Visible','off');
+
+            % This should execute without error
+            testCase.verifyWarningFree(@() vlt.plot.timelineFromJSON(jsonStr));
+
+            ax = gca;
+            testCase.verifyNotEmpty(findobj(ax, 'Type', 'Rectangle'), 'Bar should be created from cell array JSON.');
+            testCase.verifyNotEmpty(findobj(ax, 'Type', 'Line', 'Marker', 's'), 'Marker should be created from cell array JSON.');
+
+            close(f);
+        end
+
     end
 end

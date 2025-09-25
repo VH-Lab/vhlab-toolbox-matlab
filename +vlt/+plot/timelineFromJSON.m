@@ -10,20 +10,19 @@ function timelineFromJSON(jsonString)
 %                         and 'Value' field. These correspond to the optional
 %                         name-value arguments for vlt.plot.timeline.
 %
-%   'timelineRows'      : An array of objects, where each object defines the
-%                         properties for a single vlt.plot.timelineRow.
+%   'timelineRows'      : An array of objects (can be heterogeneous), where each
+%                         object defines the properties for a single vlt.plot.timelineRow.
 %
 % Example:
 %   jsonStr = ['{', ...
 %       '"timelineParameters": [', ...
 %       '  {"Name": "timePre", "Value": -2},', ...
-%       '  {"Name": "timeStart", "Value": 0},', ...
-%       '  {"Name": "timeEnd", "Value": 10},', ...
-%       '  {"Name": "timelineBackgroundColor", "Value": [0.8, 0.8, 1]}', ...
+%       '  {"Name": "timeEnd", "Value": 10}', ...
 %       '],', ...
 %       '"timelineRows": [', ...
 %       '  {"Row": 1, "Type": "RowLabel", "String": "My JSON Row"},', ...
-%       '  {"Row": 1, "Type": "Bar", "T0": 2, "T1": 8, "Color": [1,0,0]}', ...
+%       '  {"Row": 1, "Type": "Bar", "T0": 2, "T1": 8, "BarHeight": 0.5},', ...
+%       '  {"Row": 2, "Type": "Marker", "T0": 5, "Symbol": "s" }', ...
 %       ']', ...
 %   '}'];
 %   vlt.plot.timelineFromJSON(jsonStr);
@@ -37,7 +36,6 @@ end
 data = jsondecode(jsonString);
 
 % --- Process timelineParameters ---
-% Convert the array of structs into a cell array of name-value pairs
 params = {};
 if isfield(data, 'timelineParameters')
     for i = 1:numel(data.timelineParameters)
@@ -47,31 +45,35 @@ if isfield(data, 'timelineParameters')
 end
 
 % --- Process timelineRows ---
-% Convert the array of structs into an array of vlt.plot.timelineRow objects
 if isfield(data, 'timelineRows') && ~isempty(data.timelineRows)
-    command_rows = vlt.plot.timelineRow.empty(0, numel(data.timelineRows));
-    for i = 1:numel(data.timelineRows)
-        rowStruct = data.timelineRows(i);
-        rowFields = fieldnames(rowStruct);
+    rowsData = data.timelineRows;
+    isCell = iscell(rowsData);
+    numRows = numel(rowsData);
+    command_rows = vlt.plot.timelineRow.empty(1, 0);
 
-        % Create a cell array of name-value pairs for the constructor
+    for i = 1:numRows
+        if isCell
+            rowStruct = rowsData{i};
+        else
+            rowStruct = rowsData(i);
+        end
+
+        rowFields = fieldnames(rowStruct);
         rowParams = {};
         for j = 1:numel(rowFields)
             rowParams{end+1} = rowFields{j};
-            % JSON can decode numeric arrays as cell arrays, so convert if needed
-            if iscell(rowStruct.(rowFields{j}))
-                rowParams{end+1} = cell2mat(rowStruct.(rowFields{j}));
+            value = rowStruct.(rowFields{j});
+            if iscell(value)
+                rowParams{end+1} = cell2mat(value);
             else
-                rowParams{end+1} = rowStruct.(rowFields{j});
+                rowParams{end+1} = value;
             end
         end
 
-        % Create the timelineRow object
-        command_rows(i) = vlt.plot.timelineRow(rowParams{:});
+        command_rows(end+1) = vlt.plot.timelineRow(rowParams{:});
     end
 else
-    % If no rows, create a properly typed empty array
-    command_rows = vlt.plot.timelineRow.empty();
+    command_rows = vlt.plot.timelineRow.empty(1,0);
 end
 
 % Call the main timeline function with the processed data
