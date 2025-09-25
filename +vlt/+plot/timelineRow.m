@@ -10,7 +10,7 @@ classdef timelineRow
         Type (1,1) string {mustBeMember(Type,["Heading1","Heading2","Heading3","Marker","Bar","OnsetTriangle","OffsetTriangle","RowLabel","verticalDashedBar","verticalSolidBar"])} = "Marker"
         String (1,1) string = ""
         Color (1,3) {mustBeNumeric, mustBeNonnegative, mustBeLessThanOrEqual(Color, 1)} = [0 0 0]
-        Symbol (1,1) string = "o"
+        Symbol (1,1) string = ""
         BarHeight (1,1) {mustBeNumeric, mustBePositive, mustBeLessThanOrEqual(BarHeight, 1)} = 0.8
         T0 (1,1) {mustBeNumeric} = 0
         T1 (1,1) {mustBeNumeric} = 0

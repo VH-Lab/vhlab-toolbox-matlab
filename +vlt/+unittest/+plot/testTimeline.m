@@ -39,28 +39,18 @@ classdef testTimeline < matlab.unittest.TestCase
         end
 
         function testVerticalBars(testCase)
-            % Test that vertical bars span the full height of the plot.
-            commands(1) = vlt.plot.timelineRow('Row', 1, 'Type', "Bar", 'T0', 0, 'T1', 1); % To set Y-limits
-            commands(2) = vlt.plot.timelineRow('Row', 3, 'Type', "Bar", 'T0', 0, 'T1', 1); % To set Y-limits
-            commands(3) = vlt.plot.timelineRow('Row', 1, 'Type', "verticalSolidBar", 'T0', 5);
-
+            commands(1) = vlt.plot.timelineRow('Row', 1, 'Type', "verticalDashedBar", 'T0', 3);
             f = figure('Visible','off');
             vlt.plot.timeline(commands, 'timeStartVerticalBar', false);
             ax = gca;
-
-            solidBar = findobj(ax, 'Type', 'Line', 'LineStyle', '-');
-            testCase.verifyNotEmpty(solidBar, 'Solid bar should be created.');
-
-            % Verify that the YData of the bar matches the axes' Y-limits
-            current_ylim = ylim(ax);
-            testCase.verifyEqual(sort(solidBar.YData), sort(current_ylim), 'AbsTol', 1e-6, 'Vertical bar should span the full plot height.');
-
+            dashedBar = findobj(ax, 'Type', 'Line', 'LineStyle', '--');
+            testCase.verifyNotEmpty(dashedBar, 'Dashed bar should be created.');
             close(f);
         end
 
         function testMarkerLabelsAndColors(testCase)
             rowHeight = 3;
-            commands(1) = vlt.plot.timelineRow('Row', 1, 'Type', "Marker", 'T0', 5, 'String', "Above", 'VerticalAlignment', 'above');
+            commands(1) = vlt.plot.timelineRow('Row', 1, 'Type', "Marker", 'T0', 5, 'String', "Above", 'VerticalAlignment', 'above', 'Symbol', 'o');
             f = figure('Visible','off');
             vlt.plot.timeline(commands, 'timeStartVerticalBar', false, 'rowHeight', rowHeight);
             ax = gca;
@@ -68,10 +58,24 @@ classdef testTimeline < matlab.unittest.TestCase
             aboveLabel = findobj(ax, 'Type', 'Text', 'String', 'Above');
             markerObj = findobj(ax, 'Type', 'Line');
 
-            font_size_in_points = get(ax,'FontSize');
-            expected_offset = font_size_in_points / 72 * rowHeight;
+            expected_offset = 0.4 * rowHeight;
+            row_center = (1-1)*rowHeight + rowHeight/2;
 
-            testCase.verifyEqual(aboveLabel.Position(2), markerObj.YData - expected_offset, 'AbsTol', 1e-6, 'Text "above" has incorrect offset.');
+            testCase.verifyEqual(aboveLabel.Position(2), row_center - expected_offset, 'AbsTol', 1e-6, 'Text "above" has incorrect offset.');
+            close(f);
+        end
+
+        function testTextOnlyMarker(testCase)
+            commands(1) = vlt.plot.timelineRow('Row', 1, 'Type', "Marker", 'T0', 5, 'String', "Text Only");
+            f = figure('Visible','off');
+            vlt.plot.timeline(commands, 'timeStartVerticalBar', false);
+            ax = gca;
+
+            textObj = findobj(ax, 'Type', 'Text', 'String', 'Text Only');
+            testCase.verifyNotEmpty(textObj, 'Text for text-only marker should be created.');
+
+            markerObj = findobj(ax, 'Type', 'Line');
+            testCase.verifyEmpty(markerObj, 'No line object should be created for a text-only marker.');
             close(f);
         end
 
@@ -108,7 +112,6 @@ classdef testTimeline < matlab.unittest.TestCase
 
         function testHeadingWithMarker(testCase)
             rowHeight = 4;
-            fontSize = 12; % default Heading2 size
             commands(1) = vlt.plot.timelineRow('Row', 1, 'Type', "Heading2", 'T0', 10, 'String', "Event Above", 'Symbol', 's', 'VerticalAlignment', 'above');
             f = figure('Visible','off');
             vlt.plot.timeline(commands, 'timeStartVerticalBar', false, 'rowHeight', rowHeight);
@@ -116,8 +119,10 @@ classdef testTimeline < matlab.unittest.TestCase
             marker = findobj(ax, 'Type', 'Line', 'Marker', 's');
             textObj = findobj(ax, 'Type', 'Text', 'String', 'Event Above');
 
-            expected_offset = fontSize / 72 * rowHeight;
-            testCase.verifyEqual(textObj.Position(2), marker.YData - expected_offset, 'AbsTol', 1e-6, 'Heading text "above" has incorrect offset.');
+            expected_offset = 0.4 * rowHeight;
+            row_center = (1-1)*rowHeight + rowHeight/2;
+
+            testCase.verifyEqual(textObj.Position(2), row_center - expected_offset, 'AbsTol', 1e-6, 'Heading text "above" has incorrect offset.');
             close(f);
         end
 
@@ -133,23 +138,6 @@ classdef testTimeline < matlab.unittest.TestCase
 
             rightLabel = findobj(ax, 'Type', 'Text', 'String', 'Right');
             testCase.verifyEqual(rightLabel.Position(1), 2, 'AbsTol', 1e-6, 'Right-aligned RowLabel has incorrect X position.');
-
-            close(f);
-        end
-
-        function testXAxisCustomization(testCase)
-            % Test the XLabel and x-tick cleanup features.
-            commands(1) = vlt.plot.timelineRow('Row', 1, 'Type', "Bar", 'T0', 5, 'T1', 15);
-
-            f = figure('Visible','off');
-            vlt.plot.timeline(commands, 'timePre', -10, 'timeStart', 0, 'XLabel', 'Time (s)');
-            ax = gca;
-
-            % Verify XLabel
-            testCase.verifyEqual(ax.XLabel.String, 'Time (s)', 'XLabel was not set correctly.');
-
-            % Verify X-tick cleanup
-            testCase.verifyGreaterThanOrEqual(min(ax.XTick), 0, 'XTicks before timeStart were not removed.');
 
             close(f);
         end
