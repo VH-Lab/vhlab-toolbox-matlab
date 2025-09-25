@@ -111,7 +111,7 @@ for i = 1:length(command_rows)
 
                 if ismember(cmd.VerticalAlignment, ["above", "below"])
                     font_height_in_data_units = fontSize / 72 * options.rowHeight;
-                    y_offset = 0.5 * font_height_in_data_units;
+                    y_offset = font_height_in_data_units;
                     if strcmp(cmd.VerticalAlignment, 'above')
                         y_pos = row_center - y_offset;
                     else % 'below'
@@ -131,7 +131,7 @@ for i = 1:length(command_rows)
                 if ismember(cmd.VerticalAlignment, ["above", "below"])
                     font_size_in_points = get(ax,'FontSize');
                     font_height_in_data_units = font_size_in_points / 72 * options.rowHeight;
-                    y_offset = 0.5 * font_height_in_data_units;
+                    y_offset = font_height_in_data_units;
                     if strcmp(cmd.VerticalAlignment, 'above')
                         y_pos = row_center - y_offset;
                     else % 'below'

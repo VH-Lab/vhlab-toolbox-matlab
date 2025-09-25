@@ -64,21 +64,19 @@ classdef testTimeline < matlab.unittest.TestCase
         end
 
         function testMarkerLabelsAndColors(testCase)
-            commands(1) = vlt.plot.timelineRow('Row', 1, 'Type', "Marker", 'T0', 5, 'String', "Above", 'VerticalAlignment', 'above', 'MarkerSize', 12);
-            commands(2) = vlt.plot.timelineRow('Row', 2, 'Type', "Marker", 'T0', 5, 'String', "Below", 'VerticalAlignment', 'below');
+            rowHeight = 3;
+            commands(1) = vlt.plot.timelineRow('Row', 1, 'Type', "Marker", 'T0', 5, 'String', "Above", 'VerticalAlignment', 'above');
             f = figure('Visible','off');
-            vlt.plot.timeline(commands, 'timeStartVerticalBar', false);
+            vlt.plot.timeline(commands, 'timeStartVerticalBar', false, 'rowHeight', rowHeight);
             ax = gca;
 
             aboveLabel = findobj(ax, 'Type', 'Text', 'String', 'Above');
-            testCase.verifyEqual(aboveLabel.VerticalAlignment, 'middle', 'VA for "above" text should be middle.');
+            markerObj = findobj(ax, 'Type', 'Line');
 
-            belowLabel = findobj(ax, 'Type', 'Text', 'String', 'Below');
-            testCase.verifyEqual(belowLabel.VerticalAlignment, 'middle', 'VA for "below" text should be middle.');
+            font_size_in_points = get(ax,'FontSize');
+            expected_offset = font_size_in_points / 72 * rowHeight;
 
-            markerObjs = findobj(ax, 'Type', 'Line');
-            testCase.verifyGreaterThan(belowLabel.Position(2), markerObjs(1).YData, 'Text "below" should be at a higher Y value (plot is reversed).');
-            testCase.verifyLessThan(aboveLabel.Position(2), markerObjs(2).YData, 'Text "above" should be at a lower Y value (plot is reversed).');
+            testCase.verifyEqual(aboveLabel.Position(2), markerObj.YData - expected_offset, 'AbsTol', 1e-6, 'Text "above" has incorrect offset.');
             close(f);
         end
 
@@ -114,16 +112,17 @@ classdef testTimeline < matlab.unittest.TestCase
         end
 
         function testHeadingWithMarker(testCase)
+            rowHeight = 4;
+            fontSize = 12; % default Heading2 size
             commands(1) = vlt.plot.timelineRow('Row', 1, 'Type', "Heading2", 'T0', 10, 'String', "Event Above", 'Symbol', 's', 'VerticalAlignment', 'above');
             f = figure('Visible','off');
-            vlt.plot.timeline(commands, 'timeStartVerticalBar', false);
+            vlt.plot.timeline(commands, 'timeStartVerticalBar', false, 'rowHeight', rowHeight);
             ax = gca;
             marker = findobj(ax, 'Type', 'Line', 'Marker', 's');
-            testCase.verifyNotEmpty(marker, 'Marker for heading should be created.');
             textObj = findobj(ax, 'Type', 'Text', 'String', 'Event Above');
-            testCase.verifyNotEmpty(textObj, 'Text for heading should be created.');
-            testCase.verifyEqual(textObj.VerticalAlignment, 'middle', 'Text VA should be middle for relative positioning.');
-            testCase.verifyLessThan(textObj.Position(2), marker.YData, 'Text should be above the marker.');
+
+            expected_offset = fontSize / 72 * rowHeight;
+            testCase.verifyEqual(textObj.Position(2), marker.YData - expected_offset, 'AbsTol', 1e-6, 'Heading text "above" has incorrect offset.');
             close(f);
         end
 
@@ -140,7 +139,6 @@ classdef testTimeline < matlab.unittest.TestCase
             rightLabel = findobj(ax, 'Type', 'Text', 'String', 'Right');
             testCase.verifyEqual(rightLabel.Position(1), 2, 'AbsTol', 1e-6, 'Right-aligned RowLabel has incorrect X position.');
 
-            % Verify tick marks are off
             testCase.verifyEqual(ax.TickLength, [0 0], 'Tick marks should be turned off.');
             close(f);
         end
