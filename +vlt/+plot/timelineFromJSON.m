@@ -49,9 +49,7 @@ end
 % --- Process timelineRows ---
 % Convert the array of structs into an array of vlt.plot.timelineRow objects
 if isfield(data, 'timelineRows') && ~isempty(data.timelineRows)
-    % Initialize an empty timelineRow object array
-    command_rows(1, numel(data.timelineRows)) = vlt.plot.timelineRow();
-
+    command_rows = vlt.plot.timelineRow.empty(0, numel(data.timelineRows));
     for i = 1:numel(data.timelineRows)
         rowStruct = data.timelineRows(i);
         rowFields = fieldnames(rowStruct);
@@ -60,14 +58,20 @@ if isfield(data, 'timelineRows') && ~isempty(data.timelineRows)
         rowParams = {};
         for j = 1:numel(rowFields)
             rowParams{end+1} = rowFields{j};
-            rowParams{end+1} = rowStruct.(rowFields{j});
+            % JSON can decode numeric arrays as cell arrays, so convert if needed
+            if iscell(rowStruct.(rowFields{j}))
+                rowParams{end+1} = cell2mat(rowStruct.(rowFields{j}));
+            else
+                rowParams{end+1} = rowStruct.(rowFields{j});
+            end
         end
 
         % Create the timelineRow object
         command_rows(i) = vlt.plot.timelineRow(rowParams{:});
     end
 else
-    error('JSON string must contain a non-empty "timelineRows" field.');
+    % If no rows, create a properly typed empty array
+    command_rows = vlt.plot.timelineRow.empty();
 end
 
 % Call the main timeline function with the processed data

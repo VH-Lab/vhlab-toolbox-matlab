@@ -17,6 +17,8 @@ classdef timelineRow
         HorizontalAlignment (1,1) string {mustBeMember(HorizontalAlignment,["left","center","right"])} = "center"
         VerticalAlignment (1,1) string {mustBeMember(VerticalAlignment,["top","cap","middle","baseline","bottom"])} = "middle"
         LineWidth (1,1) {mustBeNumeric, mustBePositive} = 0.76
+        MarkerFaceColor (1,3) {mustBeNumeric, mustBeNonnegative, mustBeLessThanOrEqual(MarkerFaceColor, 1)} = [1 1 1]
+        MarkerEdgeColor (1,3) {mustBeNumeric, mustBeNonnegative, mustBeLessThanOrEqual(MarkerEdgeColor, 1)} = [0 0 0]
     end
 
     methods
@@ -35,6 +37,8 @@ classdef timelineRow
                 options.HorizontalAlignment
                 options.VerticalAlignment
                 options.LineWidth
+                options.MarkerFaceColor
+                options.MarkerEdgeColor
             end
 
             passedOptions = fieldnames(options);
