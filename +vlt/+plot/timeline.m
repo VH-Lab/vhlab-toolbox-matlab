@@ -94,8 +94,28 @@ for i = 1:length(command_rows)
                 'HorizontalAlignment', 'center', 'VerticalAlignment', cmd.VerticalAlignment, 'Color', cmd.Color);
         case {"Heading1", "Heading2", "Heading3"}
             fontSize = options.([char(cmd.Type) 'FontSize']);
-            text(ax, cmd.T0, row_center, cmd.String, 'FontSize', fontSize, ...
-                'HorizontalAlignment', cmd.HorizontalAlignment, 'VerticalAlignment', cmd.VerticalAlignment, 'Color', cmd.Color);
+            y_pos = row_center;
+            text_va = cmd.VerticalAlignment;
+
+            % If there's a symbol, plot it and adjust text position
+            if ~isempty(cmd.Symbol) && strlength(cmd.Symbol) > 0
+                plot(ax, cmd.T0, row_center, cmd.Symbol, 'MarkerEdgeColor', cmd.MarkerEdgeColor, 'MarkerFaceColor', cmd.MarkerFaceColor, 'MarkerSize', cmd.MarkerSize);
+
+                % Estimate font height and set offset
+                font_size_in_points = fontSize;
+                font_height_in_data_units = font_size_in_points / 72 * diff(ylim(ax)) / (max_row*options.rowHeight);
+
+                if strcmp(cmd.VerticalAlignment, 'top')
+                    y_pos = row_center - font_height_in_data_units * 0.5 * options.rowHeight;
+                    text_va = 'bottom';
+                elseif strcmp(cmd.VerticalAlignment, 'bottom')
+                    y_pos = row_center + font_height_in_data_units * 0.5 * options.rowHeight;
+                    text_va = 'top';
+                end
+            end
+
+            text(ax, cmd.T0, y_pos, cmd.String, 'FontSize', fontSize, ...
+                'HorizontalAlignment', cmd.HorizontalAlignment, 'VerticalAlignment', text_va, 'Color', cmd.Color);
         case "Marker"
             plot(ax, cmd.T0, row_center, cmd.Symbol, 'MarkerEdgeColor', cmd.MarkerEdgeColor, 'MarkerFaceColor', cmd.MarkerFaceColor, 'MarkerSize', cmd.MarkerSize);
             if ~isempty(cmd.String) && strlength(cmd.String) > 0

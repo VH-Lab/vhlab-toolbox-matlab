@@ -114,5 +114,28 @@ classdef testTimeline < matlab.unittest.TestCase
             close(f);
         end
 
+        function testHeadingWithMarker(testCase)
+            % Test that a heading with a symbol plots both text and marker correctly.
+            commands(1) = vlt.plot.timelineRow('Row', 1, 'Type', "Heading2", 'T0', 10, ...
+                'String', "Event X", 'Symbol', 's', 'VerticalAlignment', 'top');
+
+            f = figure('Visible','off');
+            vlt.plot.timeline(commands, 'timeStartVerticalBar', false);
+            ax = gca;
+
+            % Verify marker exists
+            marker = findobj(ax, 'Type', 'Line', 'Marker', 's');
+            testCase.verifyNotEmpty(marker, 'Marker for heading should be created.');
+            testCase.verifyEqual(marker.XData, 10, 'AbsTol', 1e-6, 'Marker XData is incorrect.');
+
+            % Verify text exists and is positioned correctly
+            textObj = findobj(ax, 'Type', 'Text', 'String', 'Event X');
+            testCase.verifyNotEmpty(textObj, 'Text for heading should be created.');
+            testCase.verifyEqual(textObj.VerticalAlignment, 'bottom', 'Text VA should be adjusted for position.');
+            testCase.verifyLessThan(textObj.Position(2), marker.YData, 'Text should be above the marker.');
+
+            close(f);
+        end
+
     end
 end
