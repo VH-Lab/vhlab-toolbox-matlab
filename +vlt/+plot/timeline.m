@@ -21,6 +21,7 @@ arguments
     options.timeStartVerticalBarColor (1,3) double = [0 0 0]
     options.timelineBackgroundColor (1,3) double = [0.9 0.9 0.9]
     options.axes = []
+    options.XLabel (1,:) char = ''
 end
 
 % Set up axes
@@ -165,5 +166,13 @@ for i = 1:length(command_rows)
             plot(ax, [cmd.T0 cmd.T0], [y_top y_bottom], '-', 'Color', cmd.Color, 'LineWidth', cmd.LineWidth);
     end
 end
+
+% Finalize X-axis
+if ~isempty(options.XLabel)
+    xlabel(ax, options.XLabel);
+end
+% remove ticks before timeStart
+current_ticks = get(ax,'XTick');
+set(ax, 'XTick', current_ticks(current_ticks>=options.timeStart));
 
 end

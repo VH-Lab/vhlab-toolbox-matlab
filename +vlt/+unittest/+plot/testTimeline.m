@@ -130,5 +130,22 @@ classdef testTimeline < matlab.unittest.TestCase
             close(f);
         end
 
+        function testXAxisCustomization(testCase)
+            % Test the XLabel and x-tick cleanup features.
+            commands(1) = vlt.plot.timelineRow('Row', 1, 'Type', "Bar", 'T0', 5, 'T1', 15);
+
+            f = figure('Visible','off');
+            vlt.plot.timeline(commands, 'timePre', -10, 'timeStart', 0, 'XLabel', 'Time (s)');
+            ax = gca;
+
+            % Verify XLabel
+            testCase.verifyEqual(ax.XLabel.String, 'Time (s)', 'XLabel was not set correctly.');
+
+            % Verify X-tick cleanup
+            testCase.verifyGreaterThanOrEqual(min(ax.XTick), 0, 'XTicks before timeStart were not removed.');
+
+            close(f);
+        end
+
     end
 end
