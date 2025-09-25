@@ -71,7 +71,7 @@ classdef testTimeline < matlab.unittest.TestCase
 
         function testMarkerLabelsAndColors(testCase)
             % Test that labels for markers are drawn correctly and colors are applied.
-            commands(1) = vlt.plot.timelineRow('Row', 1, 'Type', "Marker", 'T0', 5, 'String', "Top Label", 'VerticalAlignment', 'top', 'MarkerFaceColor', [1 0 0], 'MarkerEdgeColor', [0 1 0]);
+            commands(1) = vlt.plot.timelineRow('Row', 1, 'Type', "Marker", 'T0', 5, 'String', "Top Label", 'VerticalAlignment', 'top', 'MarkerFaceColor', [1 0 0], 'MarkerEdgeColor', [0 1 0], 'MarkerSize', 12);
             commands(2) = vlt.plot.timelineRow('Row', 2, 'Type', "Marker", 'T0', 5, 'String', "Bottom Label", 'VerticalAlignment', 'bottom');
             f = figure('Visible','off');
             vlt.plot.timeline(commands, 'timeStartVerticalBar', false);
@@ -88,8 +88,10 @@ classdef testTimeline < matlab.unittest.TestCase
             markerObjs = findobj(ax, 'Type', 'Line');
             testCase.verifyEqual(markerObjs(2).MarkerFaceColor, [1 0 0], 'Custom marker face color is incorrect.');
             testCase.verifyEqual(markerObjs(2).MarkerEdgeColor, [0 1 0], 'Custom marker edge color is incorrect.');
+            testCase.verifyEqual(markerObjs(2).MarkerSize, 12, 'Custom marker size is incorrect.');
             testCase.verifyEqual(markerObjs(1).MarkerFaceColor, [1 1 1], 'Default marker face color is incorrect.');
             testCase.verifyEqual(markerObjs(1).MarkerEdgeColor, [0 0 0], 'Default marker edge color is incorrect.');
+            testCase.verifyEqual(markerObjs(1).MarkerSize, 6, 'Default marker size is incorrect.');
             close(f);
         end
 

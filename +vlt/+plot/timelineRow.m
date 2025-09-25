@@ -19,6 +19,7 @@ classdef timelineRow
         LineWidth (1,1) {mustBeNumeric, mustBePositive} = 0.76
         MarkerFaceColor (1,3) {mustBeNumeric, mustBeNonnegative, mustBeLessThanOrEqual(MarkerFaceColor, 1)} = [1 1 1]
         MarkerEdgeColor (1,3) {mustBeNumeric, mustBeNonnegative, mustBeLessThanOrEqual(MarkerEdgeColor, 1)} = [0 0 0]
+        MarkerSize (1,1) {mustBeNumeric, mustBePositive} = 6
     end
 
     methods
@@ -39,6 +40,7 @@ classdef timelineRow
                 options.LineWidth
                 options.MarkerFaceColor
                 options.MarkerEdgeColor
+                options.MarkerSize
             end
 
             passedOptions = fieldnames(options);

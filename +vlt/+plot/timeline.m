@@ -97,7 +97,7 @@ for i = 1:length(command_rows)
             text(ax, cmd.T0, row_center, cmd.String, 'FontSize', fontSize, ...
                 'HorizontalAlignment', cmd.HorizontalAlignment, 'VerticalAlignment', cmd.VerticalAlignment, 'Color', cmd.Color);
         case "Marker"
-            plot(ax, cmd.T0, row_center, cmd.Symbol, 'MarkerEdgeColor', cmd.MarkerEdgeColor, 'MarkerFaceColor', cmd.MarkerFaceColor);
+            plot(ax, cmd.T0, row_center, cmd.Symbol, 'MarkerEdgeColor', cmd.MarkerEdgeColor, 'MarkerFaceColor', cmd.MarkerFaceColor, 'MarkerSize', cmd.MarkerSize);
             if ~isempty(cmd.String) && strlength(cmd.String) > 0
                 font_size_in_points = get(ax,'FontSize');
                 font_height_in_data_units = font_size_in_points / 72 * diff(ylim(ax)) / (max_row*options.rowHeight);
