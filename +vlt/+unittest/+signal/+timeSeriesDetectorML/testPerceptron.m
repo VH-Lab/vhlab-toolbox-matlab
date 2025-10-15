@@ -78,28 +78,28 @@ classdef testPerceptron < matlab.unittest.TestCase
 
         function testFalsePositivePenalty(testCase)
             % Test that the false positive penalty is applied correctly
-
-            % False Negative case
-            p_fn = vlt.signal.timeseriesDetectorML.perceptron(2, 0.1);
-            p_fn.weights = zeros(size(p_fn.weights)); % Start at zero
-            obs_fn = [-1; -1];
-            tf_fn = true; % Should be 1, will be 0 -> False Negative
-            p_fn_trained = p_fn.train(obs_fn, tf_fn);
-
-            % False Positive case
-            p_fp = vlt.signal.timeseriesDetectorML.perceptron(2, 0.1);
-            p_fp.weights = zeros(size(p_fp.weights)); % Start at zero
-            obs_fp = [1; 1];
-            tf_fp = false; % Should be 0, will be 1 -> False Positive
+            observation = [-1; -1]; % Input that will cause an error
+            initial_weights = [1; 1; 1]; % Weights that will cause a false positive
+            tf = false; % The correct answer is 0
             penalty = 5;
-            p_fp_trained = p_fp.train(obs_fp, tf_fp, false, 1, penalty);
 
-            % The change in weights for the false positive should be larger
-            % by a factor of the penalty. The errors are 1 and -1 respectively.
-            weight_change_fn = norm(p_fn_trained.weights - p_fn.weights);
-            weight_change_fp = norm(p_fp_trained.weights - p_fp.weights);
+            % Case 1: No penalty
+            p1 = vlt.signal.timeseriesDetectorML.perceptron(2, 0.1);
+            p1.weights = initial_weights;
+            p1_trained = p1.train(observation, tf, false, 1, 1); % Penalty of 1
 
-            testCase.verifyEqual(weight_change_fp, penalty * weight_change_fn, 'AbsTol', 1e-9);
+            % Case 2: With penalty
+            p2 = vlt.signal.timeseriesDetectorML.perceptron(2, 0.1);
+            p2.weights = initial_weights;
+            p2_trained = p2.train(observation, tf, false, 1, penalty);
+
+            % Calculate the exact weight change vectors
+            weight_change_1 = p1_trained.weights - p1.weights;
+            weight_change_2 = p2_trained.weights - p2.weights;
+
+            % The weight change vector with the penalty should be exactly
+            % 'penalty' times the unpenalized one.
+            testCase.verifyEqual(weight_change_2, penalty * weight_change_1, 'AbsTol', 1e-9);
         end
     end
 end
