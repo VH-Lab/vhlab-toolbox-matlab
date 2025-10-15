@@ -9,7 +9,7 @@ classdef testPerceptron < matlab.unittest.TestCase
             learningRate = 0.05;
             p = vlt.signal.timeseriesDetectorML.perceptron(detectorSamples, learningRate);
 
-            testCase.verifyEqual(p.detectorSamples, detectorSamples);
+            testCase.verifyEqual(p.detectorSamples, uint64(detectorSamples));
             testCase.verifyEqual(p.learningRate, learningRate);
             testCase.verifyEqual(size(p.weights), [detectorSamples + 1, 1]);
         end
