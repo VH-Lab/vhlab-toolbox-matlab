@@ -79,18 +79,24 @@ classdef perceptron < vlt.signal.timeseriesDetectorML.base
         function [detectLikelihood] = evaluateTimeSeries(obj, timeSeriesData)
             % EVALUATETIMESERIES - Evaluate the likelihood of a pattern at each time step
             %
-            if isrow(timeSeriesData)
-                timeSeriesData = timeSeriesData'; % Ensure it's a column vector
-            end
+            if isrow(timeSeriesData), timeSeriesData = timeSeriesData'; end
 
             numSamples = length(timeSeriesData);
             detectLikelihood = zeros(1, numSamples);
-            halfWindow = floor(double(obj.detectorSamples)/2);
 
-            for i = obj.detectorSamples:numSamples
-                inputVector = [timeSeriesData(i - obj.detectorSamples + 1:i); 1]; % Add bias term
-                center_idx = i - halfWindow;
-                detectLikelihood(center_idx) = double(inputVector' * obj.weights > 0);
+            start_offset = -floor((double(obj.detectorSamples)-1)/2);
+            end_offset = ceil((double(obj.detectorSamples)-1)/2);
+
+            for i = 1:numSamples
+                windowStart = i + start_offset;
+                windowEnd = i + end_offset;
+
+                if windowStart >= 1 && windowEnd <= numSamples
+                    inputVector = [timeSeriesData(windowStart:windowEnd); 1];
+                    detectLikelihood(i) = double(inputVector' * obj.weights > 0);
+                else
+                    detectLikelihood(i) = 0; % Cannot evaluate at the edges
+                end
             end
         end
     end

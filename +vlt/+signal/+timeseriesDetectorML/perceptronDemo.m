@@ -31,7 +31,8 @@ event_times = zeros(1, num_events);
 for i = 1:num_events
     % Ensure events do not overlap and are not at the very edge
     event_start_idx = randi([event_duration_samples, N - event_duration_samples]);
-    event_times(i) = t(event_start_idx);
+    event_center_idx = event_start_idx + floor(event_duration_samples/2);
+    event_times(i) = t(event_center_idx);
     timeSeriesData(event_start_idx:event_start_idx+event_duration_samples-1) = ...
         timeSeriesData(event_start_idx:event_start_idx+event_duration_samples-1) + event_waveform;
 end

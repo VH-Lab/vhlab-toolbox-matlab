@@ -39,10 +39,15 @@ classdef testPerceptron < matlab.unittest.TestCase
 
             pattern_pos = [0.5; 1.0; 0.5];
             pattern_neg = [-0.5; -1.0; -0.5];
-            observations = [pattern_pos, pattern_neg];
-            TFvalues = [true, false];
+            % Add more negative examples to make training more robust
+            pattern_neg_2 = [0.1; 0.2; 0.1];
+            pattern_neg_3 = [-0.1; -0.2; -0.1];
 
-            p = p.train(observations, TFvalues, false, 100);
+            observations = [pattern_pos, pattern_neg, pattern_neg_2, pattern_neg_3];
+            TFvalues = [true, false, false, false];
+
+            % Increase iterations to ensure convergence
+            p = p.train(observations, TFvalues, false, 500);
 
             % Create a time series with the patterns embedded
             timeSeriesData = [zeros(5,1); pattern_pos; zeros(5,1); pattern_neg; zeros(5,1)];
@@ -51,8 +56,8 @@ classdef testPerceptron < matlab.unittest.TestCase
 
             % The likelihood should be 1 at the center of the positive pattern
             % and 0 at the center of the negative pattern.
-            centerOfPosPatternIndex = 5 + floor(length(pattern_pos)/2);
-            centerOfNegPatternIndex = 5 + length(pattern_pos) + 5 + floor(length(pattern_neg)/2);
+            centerOfPosPatternIndex = 5 + ceil(length(pattern_pos)/2);
+            centerOfNegPatternIndex = 5 + length(pattern_pos) + 5 + ceil(length(pattern_neg)/2);
 
             testCase.verifyEqual(likelihood(centerOfPosPatternIndex), 1, ...
                 'Should detect the positive pattern');
