@@ -1,64 +1,63 @@
 classdef testBase < matlab.unittest.TestCase
-    % testBase - Unit tests for the vlt.signal.timeseriesDetectorML.base class
-    %
-
     methods (Test)
         function testTimeStamps2Observations(testCase)
-            % Test the basic functionality of timeStamps2Observations
+            timeSeriesTimeStamps = (0.1:0.1:10)';
             timeSeriesData = (1:100)';
-            detectedTimeStamps = [10, 50, 90];
+            detectedTimeStamps = [1.0, 5.0, 9.0];
             detectorSamples = 5;
 
             [observations, newTimeStamps] = vlt.signal.timeseriesDetectorML.base.timeStamps2Observations(...
-                timeSeriesData, detectedTimeStamps, detectorSamples);
+                timeSeriesTimeStamps, timeSeriesData, detectedTimeStamps, detectorSamples);
 
             testCase.verifyEqual(size(observations), [5, 3]);
-            testCase.verifyEqual(newTimeStamps, [10, 50, 90]);
+            testCase.verifyEqual(newTimeStamps, [1.0, 5.0, 9.0], 'AbsTol', 1e-9);
             testCase.verifyEqual(observations(:, 2), (48:52)');
         end
 
         function testTimeStamps2ObservationsPeakFinding(testCase)
-            % Test the peak finding functionality
-            timeSeriesData = sin(0:0.1:20)'; % A simple sine wave
-            % Place a peak near sample 16 (pi/2)
-            timeSeriesData(16) = 2;
-            detectedTimeStamps = [15];
+            timeSeriesTimeStamps = (0:0.1:20)';
+            timeSeriesData = sin(timeSeriesTimeStamps)';
+            peak_time = 1.5; % near pi/2
+            [~,peak_idx] = min(abs(timeSeriesTimeStamps-peak_time));
+            timeSeriesData(peak_idx) = 2;
+
+            detectedTimeStamps = [1.4];
             detectorSamples = 5;
 
             [~, newTimeStamps] = vlt.signal.timeseriesDetectorML.base.timeStamps2Observations(...
-                timeSeriesData, detectedTimeStamps, detectorSamples, 'optimizeForPeak', true, 'peakFindingSamples', 10);
+                timeSeriesTimeStamps, timeSeriesData, detectedTimeStamps, detectorSamples, 'optimizeForPeak', true, 'peakFindingSamples', 10);
 
-            testCase.verifyEqual(newTimeStamps, [16]);
+            testCase.verifyEqual(newTimeStamps, timeSeriesTimeStamps(peak_idx), 'AbsTol', 1e-9);
         end
 
         function testTimeStamps2ObservationsNegativePeakFinding(testCase)
-            % Test the negative peak finding functionality
-            timeSeriesData = sin(0:0.1:20)'; % A simple sine wave
-            % Place a negative peak near sample 47 (3*pi/2)
-            timeSeriesData(47) = -2;
-            detectedTimeStamps = [45];
+            timeSeriesTimeStamps = (0:0.1:20)';
+            timeSeriesData = sin(timeSeriesTimeStamps)';
+            neg_peak_time = 4.7; % near 3*pi/2
+            [~,neg_peak_idx] = min(abs(timeSeriesTimeStamps-neg_peak_time));
+            timeSeriesData(neg_peak_idx) = -2;
+
+            detectedTimeStamps = [4.6];
             detectorSamples = 5;
 
             [~, newTimeStamps] = vlt.signal.timeseriesDetectorML.base.timeStamps2Observations(...
-                timeSeriesData, detectedTimeStamps, detectorSamples, 'optimizeForPeak', true, ...
+                timeSeriesTimeStamps, timeSeriesData, detectedTimeStamps, detectorSamples, 'optimizeForPeak', true, ...
                 'peakFindingSamples', 10, 'useNegativeForPeak', true);
 
-            testCase.verifyEqual(newTimeStamps, [47]);
+            testCase.verifyEqual(newTimeStamps, timeSeriesTimeStamps(neg_peak_idx), 'AbsTol', 1e-9);
         end
 
         function testTimeStamps2ObservationsEdgeCases(testCase)
-            % Test edge cases where the window is out of bounds
+            timeSeriesTimeStamps = (0.1:0.1:2.0)';
             timeSeriesData = (1:20)';
-            detectedTimeStamps = [2, 10, 19];
+            detectedTimeStamps = [0.2, 1.0, 1.9];
             detectorSamples = 5;
 
             [observations, newTimeStamps] = vlt.signal.timeseriesDetectorML.base.timeStamps2Observations(...
-                timeSeriesData, detectedTimeStamps, detectorSamples);
+                timeSeriesTimeStamps, timeSeriesData, detectedTimeStamps, detectorSamples);
 
-            % Expect only the middle observation to be valid
             testCase.verifyEqual(size(observations), [5, 1]);
-            testCase.verifyEqual(newTimeStamps, [10]);
+            testCase.verifyEqual(newTimeStamps, 1.0, 'AbsTol', 1e-9);
         end
-
     end
 end

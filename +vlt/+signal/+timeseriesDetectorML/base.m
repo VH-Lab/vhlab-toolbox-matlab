@@ -48,26 +48,11 @@ classdef (Abstract) base
     end
 
     methods (Static)
-        function [observations, newTimeStamps] = timeStamps2Observations(timeSeriesData, detectedTimeStamps, detectorSamples, options)
+        function [observations, newTimeStamps] = timeStamps2Observations(timeSeriesTimeStamps, timeSeriesData, detectedTimeStamps, detectorSamples, options)
             % TIMESTAMPS2OBSERVATIONS - convert timestamps to observations for training/evaluation
             %
-            %   [OBSERVATIONS, NEWTIMESTAMPS] = vlt.signal.timeseriesDetectorML.base.timeStamps2Observations(...
-            %       TIMESERIESDATA, DETECTEDTIMESTAMPS, DETECTORSAMPLES, Name, Value, ...)
-            %
-            %   Inputs:
-            %     timeSeriesData - The time series data (1-D vector).
-            %     detectedTimeStamps - The timestamps (indices) of the detected events.
-            %     detectorSamples - The number of samples for each observation window.
-            %   Optional Name-Value pairs:
-            %     'optimizeForPeak'    - (logical) If true, find the peak around the timestamp. Default false.
-            %     'peakFindingSamples' - (integer) The number of samples to search for a peak. Default 10.
-            %     'useNegativeForPeak' - (logical) If true, search for a minimum instead of a maximum. Default false.
-            %
-            %   Outputs:
-            %     observations - A matrix of observations (detectorSamples x N).
-            %     newTimeStamps - The adjusted timestamps after peak finding (1 x N).
-            %
             arguments
+                timeSeriesTimeStamps (:,1) double
                 timeSeriesData (:,1) double
                 detectedTimeStamps (1,:) double
                 detectorSamples (1,1) uint64
@@ -83,37 +68,135 @@ classdef (Abstract) base
             halfWindow = floor(double(options.peakFindingSamples)/2);
 
             for i = 1:numTimeStamps
-                currentStamp = newTimeStamps(i);
+                [~, currentIdx] = min(abs(timeSeriesTimeStamps - newTimeStamps(i)));
 
                 if options.optimizeForPeak
-                    searchStart = max(1, currentStamp - halfWindow);
-                    searchEnd = min(length(timeSeriesData), currentStamp + halfWindow);
+                    searchStart = max(1, currentIdx - halfWindow);
+                    searchEnd = min(length(timeSeriesData), currentIdx + halfWindow);
 
                     if options.useNegativeForPeak
                         [~, peakIdx] = min(timeSeriesData(searchStart:searchEnd));
                     else
                         [~, peakIdx] = max(timeSeriesData(searchStart:searchEnd));
                     end
-                    currentStamp = searchStart + peakIdx - 1;
-                    newTimeStamps(i) = currentStamp;
+                    currentIdx = searchStart + peakIdx - 1;
+                    newTimeStamps(i) = timeSeriesTimeStamps(currentIdx);
                 end
 
-                % Define observation window, centered on the (potentially new) timestamp
-                obsStart = currentStamp - floor(double(detectorSamples)/2);
+                obsStart = currentIdx - floor(double(detectorSamples)/2);
                 obsEnd = obsStart + double(detectorSamples) - 1;
 
                 if obsStart >= 1 && obsEnd <= length(timeSeriesData)
                     observations(:, i) = timeSeriesData(obsStart:obsEnd);
                 else
-                    % Handle edge cases where the window is out of bounds.
-                    % Fill with NaN to indicate invalid observation.
                     observations(:, i) = NaN;
                 end
             end
-            % Remove columns with NaN, and their corresponding timestamps
             validCols = ~any(isnan(observations), 1);
             observations = observations(:, validCols);
             newTimeStamps = newTimeStamps(validCols);
+        end
+
+        function [observations, TFvalues] = markObservations(timeSeriesTimeStamps, timeSeriesData, options)
+            % MARKOBSERVATIONS - Interactively mark positive and negative observations in a time series
+            %
+            arguments
+                timeSeriesTimeStamps (:,1) double
+                timeSeriesData (:,1) double
+                options.detectorSamples (1,1) uint64 = 25
+                options.positiveTimeStamps (1,:) double = []
+                options.negativeTimeStamps (1,:) double = []
+                options.optimizeForPeak (1,1) logical = false
+                options.peakFindingSamples (1,1) uint64 = 10
+                options.useNegativeForPeak (1,1) logical = false
+            end
+
+            h_fig = figure('Name', 'Mark Observations', 'NumberTitle', 'off', 'Position', [100, 100, 1000, 800]);
+            h_ax = subplot(3,1,[1 2]);
+            plot(h_ax, timeSeriesTimeStamps, timeSeriesData, 'k-');
+            hold on;
+
+            marker_data = struct('timestamp', {}, 'value', {}, 'type', {}, 'handle', {});
+
+            for i = 1:numel(options.positiveTimeStamps)
+                addMarker(options.positiveTimeStamps(i), true);
+            end
+            for i = 1:numel(options.negativeTimeStamps)
+                addMarker(options.negativeTimeStamps(i), false);
+            end
+
+            controls = [];
+            controls(end+1) = uicontrol('Style', 'pushbutton', 'String', 'Zoom', 'Position', [20, 50, 100, 30], 'Callback', @(~,~) zoom(h_fig, 'on'));
+            controls(end+1) = uicontrol('Style', 'pushbutton', 'String', 'Pan', 'Position', [130, 50, 100, 30], 'Callback', @(~,~) pan(h_fig, 'on'));
+            controls(end+1) = uicontrol('Style', 'pushbutton', 'String', 'Mark Positive', 'Position', [20, 10, 100, 30], 'Callback', @(~,~) markPoints(true));
+            controls(end+1) = uicontrol('Style', 'pushbutton', 'String', 'Mark Negative', 'Position', [130, 10, 100, 30], 'Callback', @(~,~) markPoints(false));
+            controls(end+1) = uicontrol('Style', 'pushbutton', 'String', 'Delete Examples', 'Position', [240, 10, 100, 30], 'Callback', @(~,~) deletePoints());
+            controls(end+1) = uicontrol('Style', 'pushbutton', 'String', 'Done', 'Position', [400, 30, 100, 30], 'Callback', @(~,~) uiresume(h_fig));
+
+            uiwait(h_fig);
+
+            pos_stamps = [marker_data([marker_data.type]).timestamp];
+            neg_stamps = [marker_data(~[marker_data.type]).timestamp];
+
+            [pos_obs, ~] = vlt.signal.timeseriesDetectorML.base.timeStamps2Observations(timeSeriesTimeStamps, timeSeriesData, pos_stamps, options.detectorSamples, 'optimizeForPeak', options.optimizeForPeak, 'peakFindingSamples', options.peakFindingSamples, 'useNegativeForPeak', options.useNegativeForPeak);
+            [neg_obs, ~] = vlt.signal.timeseriesDetectorML.base.timeStamps2Observations(timeSeriesTimeStamps, timeSeriesData, neg_stamps, options.detectorSamples, 'optimizeForPeak', options.optimizeForPeak, 'peakFindingSamples', options.peakFindingSamples, 'useNegativeForPeak', options.useNegativeForPeak);
+
+            observations = [pos_obs, neg_obs];
+            TFvalues = [true(1, size(pos_obs, 2)), false(1, size(neg_obs, 2))];
+
+            if ishandle(h_fig)
+                close(h_fig);
+            end
+
+            function addMarker(timestamp, is_positive)
+                [~,idx] = min(abs(timeSeriesTimeStamps - timestamp));
+                data_val = timeSeriesData(idx);
+                if is_positive
+                    h = plot(h_ax, timeSeriesTimeStamps(idx), data_val, 'gs', 'MarkerFaceColor', 'g');
+                else
+                    h = plot(h_ax, timeSeriesTimeStamps(idx), data_val, 'rx', 'MarkerSize', 10, 'LineWidth', 2);
+                end
+                new_entry = struct('timestamp', timeSeriesTimeStamps(idx), 'value', data_val, 'type', is_positive, 'handle', h);
+                marker_data(end+1) = new_entry;
+            end
+
+            function markPoints(is_positive)
+                set(controls, 'Enable', 'off');
+                title(h_ax, 'Click points, press Enter when done.');
+                [x, ~] = ginput;
+                if isempty(x), title(h_ax, ''); set(controls, 'Enable', 'on'); return; end
+                for k=1:numel(x)
+                    addMarker(x(k), is_positive);
+                end
+                title(h_ax, '');
+                set(controls, 'Enable', 'on');
+            end
+
+            function deletePoints()
+                set(controls, 'Enable', 'off');
+                title(h_ax, 'Click markers to delete, press Enter when done.');
+                [x,y] = ginput;
+                if isempty(x), title(h_ax, ''); set(controls, 'Enable', 'on'); return; end
+
+                for k=1:numel(x)
+                    if isempty(marker_data), continue; end
+
+                    timestamps = [marker_data.timestamp];
+                    datavals = [marker_data.value];
+
+                    x_range = diff(xlim(h_ax));
+                    y_range = diff(ylim(h_ax));
+
+                    dist_sq = ((timestamps - x(k))/x_range).^2 + ((datavals - y(k))/y_range).^2;
+
+                    [~, closest_idx] = min(dist_sq);
+
+                    delete(marker_data(closest_idx).handle);
+                    marker_data(closest_idx) = [];
+                end
+                title(h_ax, '');
+                set(controls, 'Enable', 'on');
+            end
         end
     end
 end
