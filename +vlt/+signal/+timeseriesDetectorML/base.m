@@ -233,5 +233,52 @@ classdef (Abstract) base
                 set(controls, 'Enable', 'on');
             end
         end
+
+        function [eventTimes, filtered_signal] = detectIndividualEvents(timeSeriesTimeStamps, detectorOutput, options)
+            % DETECTINDIVIDUALEVENTS - Detect individual events from a detector's output
+            %
+            arguments
+                timeSeriesTimeStamps (:,1) double
+                detectorOutput (1,:) double
+                options.useGaussianBlur (1,1) logical = true
+                options.gaussianSigmaTime (1,1) double {mustBePositive} = 0.010
+                options.refractoryPeriod (1,1) double {mustBePositive} = 0.010
+                options.threshold (1,1) double = 0.9
+            end
+
+            if ~options.useGaussianBlur
+                error('Non-Gaussian blur detection not yet implemented.');
+            end
+
+            dt = timeSeriesTimeStamps(2) - timeSeriesTimeStamps(1);
+            gaussian_sigma_samples = options.gaussianSigmaTime / dt;
+
+            % Create a Gaussian kernel
+            kernel_width = 4 * gaussian_sigma_samples;
+            x = -kernel_width:kernel_width;
+            gaussian_kernel = exp(-x.^2 / (2*gaussian_sigma_samples^2));
+            gaussian_kernel = gaussian_kernel / sum(gaussian_kernel);
+
+            % Apply the blur
+            filtered_signal = conv(detectorOutput, gaussian_kernel, 'same');
+
+            % Find episodes above threshold
+            crossings_up = vlt.signal.threshold_crossings(filtered_signal, options.threshold);
+            crossings_down = vlt.signal.threshold_crossings(-filtered_signal, -options.threshold);
+
+            event_centers = [];
+            for i=1:numel(crossings_up)
+                next_down = crossings_down(find(crossings_down > crossings_up(i), 1, 'first'));
+                if ~isempty(next_down)
+                    event_centers(end+1) = round(mean([crossings_up(i) next_down]));
+                end
+            end
+
+            % Apply refractory period
+            refractory_samples = options.refractoryPeriod / dt;
+            final_event_indices = vlt.signal.refractory(event_centers, refractory_samples);
+
+            eventTimes = timeSeriesTimeStamps(final_event_indices);
+        end
     end
 end

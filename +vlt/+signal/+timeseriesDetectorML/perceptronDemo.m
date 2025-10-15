@@ -43,11 +43,12 @@ detectorSamples = numel(event_t);
 % Use a threshold to find initial positive events
 threshold = 5;
 initial_positive_indices = vlt.signal.threshold_crossings(timeSeriesData, threshold);
+refractory_samples = 0.010 / dt;
+initial_positive_indices = vlt.signal.refractory(initial_positive_indices, refractory_samples);
 initial_positive_times = t(initial_positive_indices);
 
 % Generate augmented training data from the true event times
-[observations_pos, TFvalues_pos, corrected_pos_times, labels_pos] = vlt.signal.timeseriesDetectorML.base.timeStamps2Observations(...
-    t, timeSeriesData, event_times, detectorSamples, 'optimizeForPeak', true);
+[observations_pos, TFvalues_pos, corrected_pos_times, labels_pos] = vlt.signal.timeseriesDetectorML.base.timeStamps2Observations(t, timeSeriesData, event_times, detectorSamples, 'optimizeForPeak', true);
 
 % Generate random negative examples
 num_random_negative = 20 * numel(event_times); % 20x random negatives
@@ -58,8 +59,7 @@ while numel(random_negative_times) < num_random_negative
         random_negative_times(end+1) = t(rand_idx);
     end
 end
-[observations_neg, TFvalues_neg, ~, labels_neg] = vlt.signal.timeseriesDetectorML.base.timeStamps2Observations(...
-    t, timeSeriesData, random_negative_times, detectorSamples, 'examplesArePositives', false, 'jitterPositive', false, 'makeShoulderNegatives', false);
+[observations_neg, TFvalues_neg, ~, labels_neg] = vlt.signal.timeseriesDetectorML.base.timeStamps2Observations(t, timeSeriesData, random_negative_times, detectorSamples, 'examplesArePositives', false, 'jitterPositive', false, 'makeShoulderNegatives', false);
 
 % Combine all training data
 observations = [observations_pos, observations_neg];
@@ -73,12 +73,13 @@ p = vlt.signal.timeseriesDetectorML.perceptron(detectorSamples, 0.1);
 
 % 4. Evaluate on the full time series
 detectionLikelihood = p.evaluateTimeSeries(timeSeriesData);
+[detected_events, filtered_likelihood] = vlt.signal.timeseriesDetectorML.base.detectIndividualEvents(t, detectionLikelihood);
 
 % 5. Visualization
 figure;
 
 % Plot the time series data and true event locations
-ax1 = subplot(3,1,1);
+ax1 = subplot(4,1,1);
 plot(t, timeSeriesData, 'k-');
 hold on;
 plot(event_times, event_amplitude * ones(size(event_times)), 'gv', 'MarkerFaceColor', 'g', 'DisplayName', 'True Events');
@@ -95,20 +96,31 @@ ylabel('Amplitude');
 legend;
 
 % Plot the detector's output
-ax2 = subplot(3,1,2);
+ax2 = subplot(4,1,2);
 plot(t, detectionLikelihood, 'r', 'DisplayName', 'Detector Output');
 title('Perceptron Detector Output');
 xlabel('Time (s)');
 ylabel('Likelihood');
 legend;
 
+% Plot the filtered signal and detected events
+ax3 = subplot(4,1,3);
+plot(t, filtered_likelihood, 'm', 'DisplayName', 'Filtered Output');
+hold on;
+plot(event_times, max(filtered_likelihood) * ones(size(event_times)), 'gv', 'MarkerFaceColor', 'g', 'DisplayName', 'True Events');
+plot(detected_events, max(filtered_likelihood) * ones(size(detected_events)), 'rx', 'MarkerSize', 10, 'DisplayName', 'Detected Events');
+title('Filtered Detector Output and Detections');
+xlabel('Time (s)');
+ylabel('Filtered Likelihood');
+legend;
+
 % Plot the training error
-ax3 = subplot(3,1,3);
+ax4 = subplot(4,1,4);
 plot(1:numel(errorHistory), errorHistory, 'b-o');
 title('Training Error (MSE)');
 xlabel('Iteration');
 ylabel('Mean Squared Error');
 
-linkaxes([ax1, ax2], 'x');
+linkaxes([ax1, ax2, ax3], 'x');
 
 end

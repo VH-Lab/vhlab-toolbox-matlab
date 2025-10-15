@@ -26,22 +26,26 @@ classdef testBase < matlab.unittest.TestCase
 
         function testJitter(testCase)
             stamps = [0.5];
-            [~, ~, ~, labels] = vlt.signal.timeseriesDetectorML.base.timeStamps2Observations(...
-                testCase.t_vec, testCase.d_vec, stamps, testCase.detectorSamples, 'jitterPositive', true, ...
+            jitterRange = 0.002;
+            [~, tf, ~, labels] = vlt.signal.timeseriesDetectorML.base.timeStamps2Observations(...
+                testCase.t_vec, testCase.d_vec, stamps, testCase.detectorSamples, 'jitterPositive', true, 'jitterRange', jitterRange, ...
                 'makeShoulderNegatives', false);
 
-            testCase.verifyTrue(any(strcmp(labels, "originalPositive")));
-            testCase.verifyTrue(any(strcmp(labels, "jitterPositive")));
+            testCase.verifyTrue(all(tf));
+            testCase.verifyEqual(sum(strcmp(labels, "originalPositive")), 1);
+            testCase.verifyEqual(sum(strcmp(labels, "jitterPositive")), 4);
         end
 
         function testShoulderNegatives(testCase)
             stamps = [0.5];
             [~, tf, ~, labels] = vlt.signal.timeseriesDetectorML.base.timeStamps2Observations(...
                 testCase.t_vec, testCase.d_vec, stamps, testCase.detectorSamples, 'jitterPositive', false, ...
-                'makeShoulderNegatives', true);
+                'makeShoulderNegatives', true, 'shoulderRangeStart', 0.010, 'shoulderRangeStop', 0.012);
 
-            testCase.verifyTrue(any(strcmp(labels, "originalPositive")));
-            testCase.verifyTrue(any(strcmp(labels, "shoulderNegative")));
+            testCase.verifyEqual(sum(tf), 1);
+            testCase.verifyEqual(sum(~tf), 6);
+            testCase.verifyEqual(sum(strcmp(labels, "originalPositive")), 1);
+            testCase.verifyEqual(sum(strcmp(labels, "shoulderNegative")), 6);
         end
 
         function testPeakFindingOrder(testCase)
