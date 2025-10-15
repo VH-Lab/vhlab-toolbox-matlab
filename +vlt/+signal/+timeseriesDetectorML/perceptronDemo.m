@@ -21,7 +21,7 @@ timeSeriesData = randn(size(t)); % Background noise
 % Create a Gaussian-like event waveform
 event_t = -0.1:dt:0.1;
 event_sigma = 0.030;
-event_amplitude = 2;
+event_amplitude = 3;
 event_waveform = event_amplitude * exp(-event_t.^2 / (2 * event_sigma^2))';
 event_duration_samples = numel(event_t);
 
@@ -45,7 +45,7 @@ crossings = vlt.signal.threshold_crossings(timeSeriesData, threshold);
 positiveTimeStamps = t(crossings);
 
 % Choose random negative examples (avoiding actual event locations)
-num_negative = 10 * numel(positiveTimeStamps); % Provide 10x more negative examples
+num_negative = 20 * numel(positiveTimeStamps); % Provide 20x more negative examples
 negativeTimeStamps = [];
 while numel(negativeTimeStamps) < num_negative
     rand_idx = randi(N);
