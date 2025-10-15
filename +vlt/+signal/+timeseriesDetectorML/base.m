@@ -71,22 +71,24 @@ classdef (Abstract) base
             halfWindow = floor(double(options.peakFindingSamples)/2);
 
             for i = 1:numTimeStamps
-                [~, currentIdx] = min(abs(timeSeriesTimeStamps - newTimeStamps(i)));
+                [~, initial_idx] = min(abs(timeSeriesTimeStamps - newTimeStamps(i)));
+
+                final_idx = initial_idx;
 
                 if options.optimizeForPeak
-                    searchStart = max(1, currentIdx - halfWindow);
-                    searchEnd = min(length(timeSeriesData), currentIdx + halfWindow);
+                    searchStart = max(1, initial_idx - halfWindow);
+                    searchEnd = min(length(timeSeriesData), initial_idx + halfWindow);
 
                     if options.useNegativeForPeak
-                        [~, peakIdx] = min(timeSeriesData(searchStart:searchEnd));
+                        [~, peakOffset] = min(timeSeriesData(searchStart:searchEnd));
                     else
-                        [~, peakIdx] = max(timeSeriesData(searchStart:searchEnd));
+                        [~, peakOffset] = max(timeSeriesData(searchStart:searchEnd));
                     end
-                    currentIdx = searchStart + peakIdx - 1;
-                    newTimeStamps(i) = timeSeriesTimeStamps(currentIdx);
+                    final_idx = searchStart + peakOffset - 1;
+                    newTimeStamps(i) = timeSeriesTimeStamps(final_idx);
                 end
 
-                obsStart = currentIdx - floor(double(detectorSamples)/2);
+                obsStart = final_idx - floor(double(detectorSamples)/2);
                 obsEnd = obsStart + double(detectorSamples) - 1;
 
                 if obsStart >= 1 && obsEnd <= length(timeSeriesData)

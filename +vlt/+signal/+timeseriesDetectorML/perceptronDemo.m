@@ -39,24 +39,34 @@ end
 % 2. Training Set Preparation
 detectorSamples = numel(event_t);
 
-% Use a threshold to find potential positive events
+% Use a threshold to find initial positive events
 threshold = 1.5;
-crossings = vlt.signal.threshold_crossings(timeSeriesData, threshold);
-positiveTimeStamps = t(crossings);
+initial_positive_indices = vlt.signal.threshold_crossings(timeSeriesData, threshold);
+initial_positive_times = t(initial_positive_indices);
 
-% Choose random negative examples (avoiding actual event locations)
-num_negative = 20 * numel(positiveTimeStamps); % Provide 20x more negative examples
-negativeTimeStamps = [];
-while numel(negativeTimeStamps) < num_negative
+% Augment positive examples
+time_shifts_pos = [-0.005 -0.004 -0.003 -0.002 -0.001 0 0.001 0.002 0.003 0.004 0.005];
+positiveTimeStamps = repmat(event_times, numel(time_shifts_pos), 1) + repmat(time_shifts_pos', 1, numel(event_times));
+positiveTimeStamps = positiveTimeStamps(:)';
+
+% Augment negative examples
+time_shifts_neg = [-0.1 -0.09 -0.08 -0.07 -0.06 -0.05 0.05 0.06 0.07 0.08 0.09 0.1];
+deterministic_negative_times = repmat(event_times, numel(time_shifts_neg), 1) + repmat(time_shifts_neg', 1, numel(event_times));
+deterministic_negative_times = deterministic_negative_times(:)';
+
+% Choose random negative examples
+num_random_negative = 20 * numel(positiveTimeStamps);
+random_negative_times = [];
+while numel(random_negative_times) < num_random_negative
     rand_idx = randi(N);
-    % Ensure we are not too close to a known positive event
     if ~any(abs(t(rand_idx) - event_times) < (event_duration_samples * dt * 2))
-        negativeTimeStamps(end+1) = t(rand_idx);
+        random_negative_times(end+1) = t(rand_idx);
     end
 end
+negativeTimeStamps = [deterministic_negative_times, random_negative_times];
 
-% Prepare observations for training
-[pos_obs, ~] = vlt.signal.timeseriesDetectorML.base.timeStamps2Observations(t, timeSeriesData, positiveTimeStamps, detectorSamples);
+% Prepare observations for training, using peak finding for positive examples
+[pos_obs, corrected_pos_times] = vlt.signal.timeseriesDetectorML.base.timeStamps2Observations(t, timeSeriesData, positiveTimeStamps, detectorSamples, 'optimizeForPeak', true);
 [neg_obs, ~] = vlt.signal.timeseriesDetectorML.base.timeStamps2Observations(t, timeSeriesData, negativeTimeStamps, detectorSamples);
 observations = [pos_obs, neg_obs];
 TFvalues = [true(1, size(pos_obs, 2)), false(1, size(neg_obs, 2))];
@@ -76,6 +86,7 @@ ax1 = subplot(3,1,1);
 plot(t, timeSeriesData, 'k');
 hold on;
 plot(event_times, event_amplitude * ones(size(event_times)), 'gv', 'MarkerFaceColor', 'g', 'DisplayName', 'True Events');
+plot(corrected_pos_times, event_amplitude * ones(size(corrected_pos_times)), 'bx', 'MarkerSize', 10, 'DisplayName', 'Corrected Detections');
 title('Time Series Data with Events');
 xlabel('Time (s)');
 ylabel('Amplitude');
