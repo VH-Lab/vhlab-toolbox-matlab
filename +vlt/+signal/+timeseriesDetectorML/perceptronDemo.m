@@ -45,7 +45,7 @@ crossings = vlt.signal.threshold_crossings(timeSeriesData, threshold);
 positiveTimeStamps = t(crossings);
 
 % Choose random negative examples (avoiding actual event locations)
-num_negative = numel(positiveTimeStamps);
+num_negative = 10 * numel(positiveTimeStamps); % Provide 10x more negative examples
 negativeTimeStamps = [];
 while numel(negativeTimeStamps) < num_negative
     rand_idx = randi(N);
