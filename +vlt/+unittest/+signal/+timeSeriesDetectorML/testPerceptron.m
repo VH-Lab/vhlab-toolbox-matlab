@@ -51,9 +51,8 @@ classdef testPerceptron < matlab.unittest.TestCase
 
             % The likelihood should be 1 at the center of the positive pattern
             % and 0 at the center of the negative pattern.
-            halfWindow = floor(detectorSamples/2);
-            centerOfPosPatternIndex = 5 + halfWindow;
-            centerOfNegPatternIndex = 5 + length(pattern_pos) + 5 + halfWindow;
+            centerOfPosPatternIndex = 5 + floor(length(pattern_pos)/2);
+            centerOfNegPatternIndex = 5 + length(pattern_pos) + 5 + floor(length(pattern_neg)/2);
 
             testCase.verifyEqual(likelihood(centerOfPosPatternIndex), 1, ...
                 'Should detect the positive pattern');
