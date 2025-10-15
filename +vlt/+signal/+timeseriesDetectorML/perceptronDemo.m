@@ -40,7 +40,7 @@ end
 detectorSamples = numel(event_t);
 
 % Use a threshold to find initial positive events
-threshold = 1.5;
+threshold = 5;
 initial_positive_indices = vlt.signal.threshold_crossings(timeSeriesData, threshold);
 initial_positive_times = t(initial_positive_indices);
 

@@ -85,10 +85,12 @@ classdef perceptron < vlt.signal.timeseriesDetectorML.base
 
             numSamples = length(timeSeriesData);
             detectLikelihood = zeros(1, numSamples);
+            halfWindow = floor(double(obj.detectorSamples)/2);
 
             for i = obj.detectorSamples:numSamples
                 inputVector = [timeSeriesData(i - obj.detectorSamples + 1:i); 1]; % Add bias term
-                detectLikelihood(i) = double(inputVector' * obj.weights > 0);
+                center_idx = i - halfWindow;
+                detectLikelihood(center_idx) = double(inputVector' * obj.weights > 0);
             end
         end
     end

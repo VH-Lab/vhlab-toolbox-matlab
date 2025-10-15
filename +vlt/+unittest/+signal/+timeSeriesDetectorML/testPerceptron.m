@@ -49,14 +49,15 @@ classdef testPerceptron < matlab.unittest.TestCase
 
             likelihood = p.evaluateTimeSeries(timeSeriesData);
 
-            % The likelihood should be 1 at the end of the positive pattern
-            % and 0 at the end of the negative pattern.
-            endOfPosPatternIndex = 5 + length(pattern_pos);
-            endOfNegPatternIndex = 5 + length(pattern_pos) + 5 + length(pattern_neg);
+            % The likelihood should be 1 at the center of the positive pattern
+            % and 0 at the center of the negative pattern.
+            halfWindow = floor(detectorSamples/2);
+            centerOfPosPatternIndex = 5 + halfWindow;
+            centerOfNegPatternIndex = 5 + length(pattern_pos) + 5 + halfWindow;
 
-            testCase.verifyEqual(likelihood(endOfPosPatternIndex), 1, ...
+            testCase.verifyEqual(likelihood(centerOfPosPatternIndex), 1, ...
                 'Should detect the positive pattern');
-            testCase.verifyEqual(likelihood(endOfNegPatternIndex), 0, ...
+            testCase.verifyEqual(likelihood(centerOfNegPatternIndex), 0, ...
                 'Should not detect the negative pattern');
         end
 
