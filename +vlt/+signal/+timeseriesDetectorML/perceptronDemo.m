@@ -45,18 +45,12 @@ threshold = 5;
 initial_positive_indices = vlt.signal.threshold_crossings(timeSeriesData, threshold);
 initial_positive_times = t(initial_positive_indices);
 
-% Augment positive examples
-time_shifts_pos = [-0.005 -0.004 -0.003 -0.002 -0.001 0 0.001 0.002 0.003 0.004 0.005];
-positiveTimeStamps = repmat(event_times, numel(time_shifts_pos), 1) + repmat(time_shifts_pos', 1, numel(event_times));
-positiveTimeStamps = positiveTimeStamps(:)';
+% Generate augmented training data from the true event times
+[observations_pos, TFvalues_pos, corrected_pos_times] = vlt.signal.timeseriesDetectorML.base.timeStamps2Observations(...
+    t, timeSeriesData, event_times, detectorSamples, 'optimizeForPeak', true);
 
-% Augment negative examples
-time_shifts_neg = [-0.1 -0.09 -0.08 -0.07 -0.06 -0.05 0.05 0.06 0.07 0.08 0.09 0.1];
-deterministic_negative_times = repmat(event_times, numel(time_shifts_neg), 1) + repmat(time_shifts_neg', 1, numel(event_times));
-deterministic_negative_times = deterministic_negative_times(:)';
-
-% Choose random negative examples
-num_random_negative = 20 * numel(positiveTimeStamps);
+% Generate random negative examples
+num_random_negative = 20 * numel(event_times); % 20x random negatives
 random_negative_times = [];
 while numel(random_negative_times) < num_random_negative
     rand_idx = randi(N);
@@ -64,13 +58,12 @@ while numel(random_negative_times) < num_random_negative
         random_negative_times(end+1) = t(rand_idx);
     end
 end
-negativeTimeStamps = [deterministic_negative_times, random_negative_times];
+[observations_neg, TFvalues_neg, ~] = vlt.signal.timeseriesDetectorML.base.timeStamps2Observations(...
+    t, timeSeriesData, random_negative_times, detectorSamples, 'examplesArePositives', false, 'jitterPositive', false, 'makeShoulderNegatives', false);
 
-% Prepare observations for training, using peak finding for positive examples
-[pos_obs, corrected_pos_times] = vlt.signal.timeseriesDetectorML.base.timeStamps2Observations(t, timeSeriesData, positiveTimeStamps, detectorSamples, 'optimizeForPeak', true);
-[neg_obs, ~] = vlt.signal.timeseriesDetectorML.base.timeStamps2Observations(t, timeSeriesData, negativeTimeStamps, detectorSamples);
-observations = [pos_obs, neg_obs];
-TFvalues = [true(1, size(pos_obs, 2)), false(1, size(neg_obs, 2))];
+% Combine all training data
+observations = [observations_pos, observations_neg];
+TFvalues = [TFvalues_pos, TFvalues_neg];
 
 % 3. Training and Evaluation
 p = vlt.signal.timeseriesDetectorML.perceptron(detectorSamples, 0.1);

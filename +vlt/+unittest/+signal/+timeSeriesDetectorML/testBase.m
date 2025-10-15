@@ -1,63 +1,76 @@
 classdef testBase < matlab.unittest.TestCase
+    properties
+        t_vec = (0:0.001:1-0.001)';
+        d_vec = randn(1000,1);
+        detectorSamples = 5;
+    end
     methods (Test)
-        function testTimeStamps2Observations(testCase)
-            timeSeriesTimeStamps = (0.1:0.1:10)';
-            timeSeriesData = (1:100)';
-            detectedTimeStamps = [1.0, 5.0, 9.0];
-            detectorSamples = 5;
-
-            [observations, newTimeStamps] = vlt.signal.timeseriesDetectorML.base.timeStamps2Observations(...
-                timeSeriesTimeStamps, timeSeriesData, detectedTimeStamps, detectorSamples);
-
-            testCase.verifyEqual(size(observations), [5, 3]);
-            testCase.verifyEqual(newTimeStamps, [1.0, 5.0, 9.0], 'AbsTol', 1e-9);
-            testCase.verifyEqual(observations(:, 2), (48:52)');
+        function testBasicPositiveCase(testCase)
+            stamps = [0.5];
+            [obs, tf, new_stamps] = vlt.signal.timeseriesDetectorML.base.timeStamps2Observations(...
+                testCase.t_vec, testCase.d_vec, stamps, testCase.detectorSamples, 'examplesArePositives', true, ...
+                'jitterPositive', false, 'makeShoulderNegatives', false);
+            testCase.verifyEqual(size(obs), [testCase.detectorSamples, 1]);
+            testCase.verifyTrue(all(tf));
+            testCase.verifyEqual(stamps, new_stamps, 'AbsTol', 1e-9);
         end
 
-        function testTimeStamps2ObservationsPeakFinding(testCase)
-            timeSeriesTimeStamps = (0:0.1:20)';
-            timeSeriesData = sin(timeSeriesTimeStamps)';
-            peak_time = 1.5; % near pi/2
-            [~,peak_idx] = min(abs(timeSeriesTimeStamps-peak_time));
-            timeSeriesData(peak_idx) = 2;
-
-            detectedTimeStamps = [1.4];
-            detectorSamples = 5;
-
-            [~, newTimeStamps] = vlt.signal.timeseriesDetectorML.base.timeStamps2Observations(...
-                timeSeriesTimeStamps, timeSeriesData, detectedTimeStamps, detectorSamples, 'optimizeForPeak', true, 'peakFindingSamples', 10);
-
-            testCase.verifyEqual(newTimeStamps, timeSeriesTimeStamps(peak_idx), 'AbsTol', 1e-9);
+        function testBasicNegativeCase(testCase)
+            stamps = [0.5];
+            [obs, tf, ~] = vlt.signal.timeseriesDetectorML.base.timeStamps2Observations(...
+                testCase.t_vec, testCase.d_vec, stamps, testCase.detectorSamples, 'examplesArePositives', false, ...
+                'jitterPositive', false, 'makeShoulderNegatives', false);
+            testCase.verifyEqual(size(obs), [testCase.detectorSamples, 1]);
+            testCase.verifyFalse(all(tf));
         end
 
-        function testTimeStamps2ObservationsNegativePeakFinding(testCase)
-            timeSeriesTimeStamps = (0:0.1:20)';
-            timeSeriesData = sin(timeSeriesTimeStamps)';
-            neg_peak_time = 4.7; % near 3*pi/2
-            [~,neg_peak_idx] = min(abs(timeSeriesTimeStamps-neg_peak_time));
-            timeSeriesData(neg_peak_idx) = -2;
+        function testJitter(testCase)
+            stamps = [0.5];
+            jitterRange = 0.002;
+            [obs, tf, ~] = vlt.signal.timeseriesDetectorML.base.timeStamps2Observations(...
+                testCase.t_vec, testCase.d_vec, stamps, testCase.detectorSamples, 'jitterPositive', true, 'jitterRange', jitterRange, ...
+                'makeShoulderNegatives', false);
 
-            detectedTimeStamps = [4.6];
-            detectorSamples = 5;
-
-            [~, newTimeStamps] = vlt.signal.timeseriesDetectorML.base.timeStamps2Observations(...
-                timeSeriesTimeStamps, timeSeriesData, detectedTimeStamps, detectorSamples, 'optimizeForPeak', true, ...
-                'peakFindingSamples', 10, 'useNegativeForPeak', true);
-
-            testCase.verifyEqual(newTimeStamps, timeSeriesTimeStamps(neg_peak_idx), 'AbsTol', 1e-9);
+            expected_num_obs = 1 + 2 * (jitterRange / 0.001);
+            testCase.verifyEqual(size(obs, 2), expected_num_obs);
+            testCase.verifyTrue(all(tf));
         end
 
-        function testTimeStamps2ObservationsEdgeCases(testCase)
-            timeSeriesTimeStamps = (0.1:0.1:2.0)';
-            timeSeriesData = (1:20)';
-            detectedTimeStamps = [0.2, 1.0, 1.9];
-            detectorSamples = 5;
+        function testShoulderNegatives(testCase)
+            stamps = [0.5];
+            [obs, tf, ~] = vlt.signal.timeseriesDetectorML.base.timeStamps2Observations(...
+                testCase.t_vec, testCase.d_vec, stamps, testCase.detectorSamples, 'jitterPositive', false, ...
+                'makeShoulderNegatives', true);
 
-            [observations, newTimeStamps] = vlt.signal.timeseriesDetectorML.base.timeStamps2Observations(...
-                timeSeriesTimeStamps, timeSeriesData, detectedTimeStamps, detectorSamples);
+            % Should have 1 positive and many negative 'shoulder' examples
+            testCase.verifyTrue(sum(tf) == 1);
+            testCase.verifyTrue(sum(~tf) > 1);
+        end
 
-            testCase.verifyEqual(size(observations), [5, 1]);
-            testCase.verifyEqual(newTimeStamps, 1.0, 'AbsTol', 1e-9);
+        function testCombinedAugmentation(testCase)
+            stamps = [0.5];
+            [obs, tf, ~] = vlt.signal.timeseriesDetectorML.base.timeStamps2Observations(...
+                testCase.t_vec, testCase.d_vec, stamps, testCase.detectorSamples, 'jitterPositive', true, ...
+                'makeShoulderNegatives', true);
+
+            num_pos = sum(tf);
+            num_neg = sum(~tf);
+
+            testCase.verifyTrue(num_pos > 1);
+            testCase.verifyTrue(num_neg > 1);
+            testCase.verifyEqual(size(obs, 2), num_pos + num_neg);
+        end
+
+        function testPeakFinding(testCase)
+            stamps = [0.5];
+            % Create a peak
+            testCase.d_vec(502) = 10; % peak at t=0.501
+
+            [~, ~, new_stamps] = vlt.signal.timeseriesDetectorML.base.timeStamps2Observations(...
+                testCase.t_vec, testCase.d_vec, stamps, testCase.detectorSamples, 'jitterPositive', false, ...
+                'makeShoulderNegatives', false, 'optimizeForPeak', true);
+
+            testCase.verifyEqual(new_stamps, 0.501, 'AbsTol', 1e-9);
         end
     end
 end
