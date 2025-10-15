@@ -46,7 +46,7 @@ initial_positive_indices = vlt.signal.threshold_crossings(timeSeriesData, thresh
 initial_positive_times = t(initial_positive_indices);
 
 % Generate augmented training data from the true event times
-[observations_pos, TFvalues_pos, corrected_pos_times] = vlt.signal.timeseriesDetectorML.base.timeStamps2Observations(...
+[observations_pos, TFvalues_pos, corrected_pos_times, labels_pos] = vlt.signal.timeseriesDetectorML.base.timeStamps2Observations(...
     t, timeSeriesData, event_times, detectorSamples, 'optimizeForPeak', true);
 
 % Generate random negative examples
@@ -58,12 +58,14 @@ while numel(random_negative_times) < num_random_negative
         random_negative_times(end+1) = t(rand_idx);
     end
 end
-[observations_neg, TFvalues_neg, ~] = vlt.signal.timeseriesDetectorML.base.timeStamps2Observations(...
+[observations_neg, TFvalues_neg, ~, labels_neg] = vlt.signal.timeseriesDetectorML.base.timeStamps2Observations(...
     t, timeSeriesData, random_negative_times, detectorSamples, 'examplesArePositives', false, 'jitterPositive', false, 'makeShoulderNegatives', false);
 
 % Combine all training data
 observations = [observations_pos, observations_neg];
 TFvalues = [TFvalues_pos, TFvalues_neg];
+all_labels = [labels_pos, labels_neg];
+all_stamps = [corrected_pos_times, random_negative_times]; % Note: random negatives are not 'corrected'
 
 % 3. Training and Evaluation
 p = vlt.signal.timeseriesDetectorML.perceptron(detectorSamples, 0.1);
@@ -77,11 +79,17 @@ figure;
 
 % Plot the time series data and true event locations
 ax1 = subplot(3,1,1);
-plot(t, timeSeriesData, 'k');
+plot(t, timeSeriesData, 'k-');
 hold on;
 plot(event_times, event_amplitude * ones(size(event_times)), 'gv', 'MarkerFaceColor', 'g', 'DisplayName', 'True Events');
-plot(corrected_pos_times, event_amplitude * ones(size(corrected_pos_times)), 'bx', 'MarkerSize', 10, 'DisplayName', 'Corrected Detections');
-title('Time Series Data with Events');
+unique_labels = unique(all_labels);
+colors = lines(numel(unique_labels));
+for i=1:numel(unique_labels)
+    label = unique_labels{i};
+    inds = strcmp(all_labels, label);
+    plot(all_stamps(inds), (event_amplitude+1) * ones(sum(inds),1), 's', 'MarkerFaceColor', colors(i,:), 'DisplayName', label);
+end
+title('Time Series Data with Events and Training Examples');
 xlabel('Time (s)');
 ylabel('Amplitude');
 legend;

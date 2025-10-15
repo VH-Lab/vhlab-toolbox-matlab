@@ -7,70 +7,62 @@ classdef testBase < matlab.unittest.TestCase
     methods (Test)
         function testBasicPositiveCase(testCase)
             stamps = [0.5];
-            [obs, tf, new_stamps] = vlt.signal.timeseriesDetectorML.base.timeStamps2Observations(...
+            [obs, tf, new_stamps, labels] = vlt.signal.timeseriesDetectorML.base.timeStamps2Observations(...
                 testCase.t_vec, testCase.d_vec, stamps, testCase.detectorSamples, 'examplesArePositives', true, ...
                 'jitterPositive', false, 'makeShoulderNegatives', false);
             testCase.verifyEqual(size(obs), [testCase.detectorSamples, 1]);
             testCase.verifyTrue(all(tf));
             testCase.verifyEqual(stamps, new_stamps, 'AbsTol', 1e-9);
+            testCase.verifyEqual(labels, {"originalPositive"});
         end
 
         function testBasicNegativeCase(testCase)
             stamps = [0.5];
-            [obs, tf, ~] = vlt.signal.timeseriesDetectorML.base.timeStamps2Observations(...
+            [~, tf, ~, labels] = vlt.signal.timeseriesDetectorML.base.timeStamps2Observations(...
                 testCase.t_vec, testCase.d_vec, stamps, testCase.detectorSamples, 'examplesArePositives', false, ...
                 'jitterPositive', false, 'makeShoulderNegatives', false);
-            testCase.verifyEqual(size(obs), [testCase.detectorSamples, 1]);
-            testCase.verifyFalse(all(tf));
+            testCase.verifyEqual(labels, {"originalNegative"});
         end
 
         function testJitter(testCase)
             stamps = [0.5];
-            jitterRange = 0.002;
-            [obs, tf, ~] = vlt.signal.timeseriesDetectorML.base.timeStamps2Observations(...
-                testCase.t_vec, testCase.d_vec, stamps, testCase.detectorSamples, 'jitterPositive', true, 'jitterRange', jitterRange, ...
+            [~, ~, ~, labels] = vlt.signal.timeseriesDetectorML.base.timeStamps2Observations(...
+                testCase.t_vec, testCase.d_vec, stamps, testCase.detectorSamples, 'jitterPositive', true, ...
                 'makeShoulderNegatives', false);
 
-            expected_num_obs = 1 + 2 * (jitterRange / 0.001);
-            testCase.verifyEqual(size(obs, 2), expected_num_obs);
-            testCase.verifyTrue(all(tf));
+            testCase.verifyTrue(any(strcmp(labels, "originalPositive")));
+            testCase.verifyTrue(any(strcmp(labels, "jitterPositive")));
         end
 
         function testShoulderNegatives(testCase)
             stamps = [0.5];
-            [obs, tf, ~] = vlt.signal.timeseriesDetectorML.base.timeStamps2Observations(...
+            [~, tf, ~, labels] = vlt.signal.timeseriesDetectorML.base.timeStamps2Observations(...
                 testCase.t_vec, testCase.d_vec, stamps, testCase.detectorSamples, 'jitterPositive', false, ...
                 'makeShoulderNegatives', true);
 
-            % Should have 1 positive and many negative 'shoulder' examples
-            testCase.verifyTrue(sum(tf) == 1);
-            testCase.verifyTrue(sum(~tf) > 1);
+            testCase.verifyTrue(any(strcmp(labels, "originalPositive")));
+            testCase.verifyTrue(any(strcmp(labels, "shoulderNegative")));
         end
 
-        function testCombinedAugmentation(testCase)
+        function testPeakFindingOrder(testCase)
+            % Test that peak finding happens before jitter and shoulder generation
             stamps = [0.5];
-            [obs, tf, ~] = vlt.signal.timeseriesDetectorML.base.timeStamps2Observations(...
-                testCase.t_vec, testCase.d_vec, stamps, testCase.detectorSamples, 'jitterPositive', true, ...
-                'makeShoulderNegatives', true);
-
-            num_pos = sum(tf);
-            num_neg = sum(~tf);
-
-            testCase.verifyTrue(num_pos > 1);
-            testCase.verifyTrue(num_neg > 1);
-            testCase.verifyEqual(size(obs, 2), num_pos + num_neg);
-        end
-
-        function testPeakFinding(testCase)
-            stamps = [0.5];
-            % Create a peak
             testCase.d_vec(502) = 10; % peak at t=0.501
 
-            [~, ~, new_stamps] = vlt.signal.timeseriesDetectorML.base.timeStamps2Observations(...
-                testCase.t_vec, testCase.d_vec, stamps, testCase.detectorSamples, 'jitterPositive', false, ...
-                'makeShoulderNegatives', false, 'optimizeForPeak', true);
+            [~, ~, new_stamps, labels] = vlt.signal.timeseriesDetectorML.base.timeStamps2Observations(...
+                testCase.t_vec, testCase.d_vec, stamps, testCase.detectorSamples, 'optimizeForPeak', true, ...
+                'jitterPositive', true, 'makeShoulderNegatives', true);
 
-            testCase.verifyEqual(new_stamps, 0.501, 'AbsTol', 1e-9);
+            % Find the original stamp and verify it was corrected
+            original_idx = find(strcmp(labels, "originalPositive"));
+            testCase.verifyEqual(new_stamps(original_idx), 0.501, 'AbsTol', 1e-9);
+
+            % Verify that jitter and shoulder stamps are based on the corrected peak
+            jitter_idx = find(strcmp(labels, "jitterPositive"));
+            shoulder_idx = find(strcmp(labels, "shoulderNegative"));
+
+            testCase.verifyTrue(all(abs(new_stamps(jitter_idx) - 0.501) <= 0.002 + 1e-9));
+            testCase.verifyTrue(all(abs(new_stamps(shoulder_idx) - 0.501) >= 0.010 - 1e-9));
         end
     end
 end

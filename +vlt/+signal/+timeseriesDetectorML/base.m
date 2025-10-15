@@ -51,7 +51,7 @@ classdef (Abstract) base
     end
 
     methods (Static)
-        function [observations, TFvalues, newTimeStamps] = timeStamps2Observations(timeSeriesTimeStamps, timeSeriesData, detectedTimeStamps, detectorSamples, options)
+        function [observations, TFvalues, newTimeStamps, exampleLabels] = timeStamps2Observations(timeSeriesTimeStamps, timeSeriesData, detectedTimeStamps, detectorSamples, options)
             % TIMESTAMPS2OBSERVATIONS - Convert timestamps to observations with data augmentation
             %
             arguments
@@ -64,49 +64,56 @@ classdef (Abstract) base
             end
 
             dt = timeSeriesTimeStamps(2) - timeSeriesTimeStamps(1);
-            positive_stamps = [];
-            negative_stamps = [];
+            final_stamps = [];
+            final_tf = [];
+            final_labels = {};
 
             if options.examplesArePositives
-                positive_stamps = detectedTimeStamps;
-                if options.jitterPositive
-                    jitter_shifts = -options.jitterRange:dt:options.jitterRange;
-                    jitter_shifts(jitter_shifts==0) = [];
-                    jittered_stamps = repmat(detectedTimeStamps(:), 1, numel(jitter_shifts)) + repmat(jitter_shifts, numel(detectedTimeStamps), 1);
-                    positive_stamps = [positive_stamps, jittered_stamps(:)'];
-                end
-
-                % Peak finding on all positive stamps
+                % Step 1: Start with original positive events and correct their peaks if requested
+                corrected_stamps = detectedTimeStamps;
                 if options.optimizeForPeak
-                    halfWindow = floor(double(options.peakFindingSamples)/2);
-                    for i = 1:numel(positive_stamps)
-                        [~, idx] = min(abs(timeSeriesTimeStamps - positive_stamps(i)));
-                        searchStart = max(1, idx - halfWindow);
-                        searchEnd = min(length(timeSeriesData), idx + halfWindow);
+                    for i = 1:numel(corrected_stamps)
+                        [~, idx] = min(abs(timeSeriesTimeStamps - corrected_stamps(i)));
+                        searchStart = max(1, idx - floor(double(options.peakFindingSamples)/2));
+                        searchEnd = min(length(timeSeriesData), idx + floor(double(options.peakFindingSamples)/2));
                         if options.useNegativeForPeak, [~, peakOffset] = min(timeSeriesData(searchStart:searchEnd));
                         else, [~, peakOffset] = max(timeSeriesData(searchStart:searchEnd));
                         end
-                        positive_stamps(i) = timeSeriesTimeStamps(searchStart + peakOffset - 1);
+                        corrected_stamps(i) = timeSeriesTimeStamps(searchStart + peakOffset - 1);
                     end
                 end
+                final_stamps = [final_stamps, corrected_stamps];
+                final_tf = [final_tf, true(1, numel(corrected_stamps))];
+                final_labels = [final_labels, repmat({"originalPositive"}, 1, numel(corrected_stamps))];
 
+                % Step 2: Add jitter relative to the corrected stamps
+                if options.jitterPositive
+                    jitter_shifts = -options.jitterRange:dt:options.jitterRange;
+                    jitter_shifts(jitter_shifts==0) = [];
+                    jittered_stamps = repmat(corrected_stamps(:), 1, numel(jitter_shifts)) + repmat(jitter_shifts, numel(corrected_stamps), 1);
+                    final_stamps = [final_stamps, jittered_stamps(:)'];
+                    final_tf = [final_tf, true(1, numel(jittered_stamps))];
+                    final_labels = [final_labels, repmat({"jitterPositive"}, 1, numel(jittered_stamps))];
+                end
+
+                % Step 3: Add shoulder negatives relative to the corrected stamps
                 if options.makeShoulderNegatives
                     shoulder_shifts = [-options.shoulderRangeStop:dt:-options.shoulderRangeStart, options.shoulderRangeStart:dt:options.shoulderRangeStop];
-                    % IMPORTANT: shoulders are based on original detectedTimeStamps, not jittered ones
-                    shoulder_stamps = repmat(detectedTimeStamps(:), 1, numel(shoulder_shifts)) + repmat(shoulder_shifts, numel(detectedTimeStamps), 1);
-                    negative_stamps = [negative_stamps, shoulder_stamps(:)'];
+                    shoulder_stamps = repmat(corrected_stamps(:), 1, numel(shoulder_shifts)) + repmat(shoulder_shifts, numel(corrected_stamps), 1);
+                    final_stamps = [final_stamps, shoulder_stamps(:)'];
+                    final_tf = [final_tf, false(1, numel(shoulder_stamps))];
+                    final_labels = [final_labels, repmat({"shoulderNegative"}, 1, numel(shoulder_stamps))];
                 end
             else % examples are negative
-                negative_stamps = detectedTimeStamps;
+                final_stamps = [final_stamps, detectedTimeStamps];
+                final_tf = [final_tf, false(1, numel(detectedTimeStamps))];
+                final_labels = [final_labels, repmat({"originalNegative"}, 1, numel(detectedTimeStamps))];
             end
 
             % Create observations
-            all_stamps = [positive_stamps, negative_stamps];
-            all_tf = [true(1, numel(positive_stamps)), false(1, numel(negative_stamps))];
-
-            observations = zeros(detectorSamples, numel(all_stamps));
-            for i = 1:numel(all_stamps)
-                [~, idx] = min(abs(timeSeriesTimeStamps - all_stamps(i)));
+            observations = zeros(detectorSamples, numel(final_stamps));
+            for i = 1:numel(final_stamps)
+                [~, idx] = min(abs(timeSeriesTimeStamps - final_stamps(i)));
                 obsStart = idx - floor(double(detectorSamples)/2);
                 obsEnd = obsStart + double(detectorSamples) - 1;
                 if obsStart >= 1 && obsEnd <= length(timeSeriesData)
@@ -118,11 +125,12 @@ classdef (Abstract) base
 
             validCols = ~any(isnan(observations), 1);
             observations = observations(:, validCols);
-            newTimeStamps = all_stamps(validCols);
-            TFvalues = all_tf(validCols);
+            newTimeStamps = final_stamps(validCols);
+            TFvalues = final_tf(validCols);
+            exampleLabels = final_labels(validCols);
         end
 
-        function [observations, TFvalues, newTimeStamps] = markObservations(timeSeriesTimeStamps, timeSeriesData, options)
+        function [observations, TFvalues, newTimeStamps, exampleLabels] = markObservations(timeSeriesTimeStamps, timeSeriesData, options)
             % MARKOBSERVATIONS - Interactively mark positive and negative observations in a time series
             %
             arguments
@@ -163,12 +171,13 @@ classdef (Abstract) base
             pos_stamps = [marker_data([marker_data.type]).timestamp];
             neg_stamps = [marker_data(~[marker_data.type]).timestamp];
 
-            [pos_obs, pos_tf, pos_new_stamps] = vlt.signal.timeseriesDetectorML.base.timeStamps2Observations(timeSeriesTimeStamps, timeSeriesData, pos_stamps, options.detectorSamples, 'examplesArePositives', true, 'optimizeForPeak', options.optimizeForPeak, 'peakFindingSamples', options.peakFindingSamples, 'useNegativeForPeak', options.useNegativeForPeak, 'jitterPositive', true, 'makeShoulderNegatives', true);
-            [neg_obs, neg_tf, neg_new_stamps] = vlt.signal.timeseriesDetectorML.base.timeStamps2Observations(timeSeriesTimeStamps, timeSeriesData, neg_stamps, options.detectorSamples, 'examplesArePositives', false, 'jitterPositive', false, 'makeShoulderNegatives', false);
+            [pos_obs, pos_tf, pos_new_stamps, pos_labels] = vlt.signal.timeseriesDetectorML.base.timeStamps2Observations(timeSeriesTimeStamps, timeSeriesData, pos_stamps, options.detectorSamples, 'examplesArePositives', true, 'optimizeForPeak', options.optimizeForPeak, 'peakFindingSamples', options.peakFindingSamples, 'useNegativeForPeak', options.useNegativeForPeak, 'jitterPositive', true, 'makeShoulderNegatives', true);
+            [neg_obs, neg_tf, neg_new_stamps, neg_labels] = vlt.signal.timeseriesDetectorML.base.timeStamps2Observations(timeSeriesTimeStamps, timeSeriesData, neg_stamps, options.detectorSamples, 'examplesArePositives', false, 'jitterPositive', false, 'makeShoulderNegatives', false);
 
             observations = [pos_obs, neg_obs];
             TFvalues = [pos_tf, neg_tf];
             newTimeStamps = [pos_new_stamps, neg_new_stamps];
+            exampleLabels = [pos_labels, neg_labels];
 
             if ishandle(h_fig)
                 close(h_fig);
