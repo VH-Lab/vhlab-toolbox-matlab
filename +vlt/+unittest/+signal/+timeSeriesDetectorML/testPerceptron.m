@@ -17,6 +17,7 @@ classdef testPerceptron < matlab.unittest.TestCase
         function testTraining(testCase)
             % Test that the training process modifies the weights and returns error history
             p = vlt.signal.timeseriesDetectorML.perceptron(2, 0.1);
+            p.weights = zeros(size(p.weights)); % Ensure a deterministic starting point
             initialWeights = p.weights;
 
             observations = [1 1; -1 -1]';
@@ -27,8 +28,8 @@ classdef testPerceptron < matlab.unittest.TestCase
 
             testCase.verifyNotEqual(p.weights, initialWeights);
             testCase.verifyEqual(size(errorHistory), [1, numIterations]);
-            % Error should decrease over time for separable data
-            testCase.verifyLessThan(errorHistory(end), errorHistory(1));
+            % Error should be 0 at the end for this separable data
+            testCase.verifyEqual(errorHistory(end), 0);
         end
 
         function testEvaluation(testCase)
