@@ -14,19 +14,19 @@ function perceptronDemo()
 
 % 1. Data Generation
 dt = 0.001; % 1ms sampling interval
-t = (0:dt:10-dt)'; % 10 seconds of data, as a column vector
+t = (0:dt:100-dt)'; % 100 seconds of data, as a column vector
 N = numel(t);
 timeSeriesData = randn(size(t)); % Background noise
 
 % Create a Gaussian-like event waveform
 event_t = -0.1:dt:0.1;
 event_sigma = 0.030;
-event_amplitude = 3;
+event_amplitude = 10;
 event_waveform = event_amplitude * exp(-event_t.^2 / (2 * event_sigma^2))';
 event_duration_samples = numel(event_t);
 
-% Add 5-10 events to the data
-num_events = randi([5, 10]);
+% Add 50-100 events to the data (maintaining 5-10 per 10s)
+num_events = randi([50, 100]);
 event_times = zeros(1, num_events);
 for i = 1:num_events
     % Ensure events do not overlap and are not at the very edge
@@ -63,7 +63,7 @@ TFvalues = [true(1, size(pos_obs, 2)), false(1, size(neg_obs, 2))];
 
 % 3. Training and Evaluation
 p = vlt.signal.timeseriesDetectorML.perceptron(detectorSamples, 0.1);
-[p, ~, errorHistory] = p.train(observations, TFvalues, false, 100);
+[p, ~, errorHistory] = p.train(observations, TFvalues, false, 100, 10); % Use penalty of 10
 
 % 4. Evaluate on the full time series
 detectionLikelihood = p.evaluateTimeSeries(timeSeriesData);

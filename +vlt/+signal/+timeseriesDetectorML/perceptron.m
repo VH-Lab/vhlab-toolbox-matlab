@@ -35,7 +35,7 @@ classdef perceptron < vlt.signal.timeseriesDetectorML.base
             obj.weights = (rand(obj.detectorSamples + 1, 1) * 2) - 1; % Initialize weights between -1 and 1, +1 for bias
         end
 
-        function [obj, scores, errorEachIteration] = train(obj, observation, TFvalues, doReset, numIterations)
+        function [obj, scores, errorEachIteration] = train(obj, observation, TFvalues, doReset, numIterations, falsePositivePenalty)
             % TRAIN - Train the detector
             %
             arguments
@@ -44,6 +44,7 @@ classdef perceptron < vlt.signal.timeseriesDetectorML.base
                 TFvalues (1,:) logical
                 doReset (1,1) logical = false
                 numIterations (1,1) uint64 = 100
+                falsePositivePenalty (1,1) double = 1
             end
 
             if doReset
@@ -58,13 +59,15 @@ classdef perceptron < vlt.signal.timeseriesDetectorML.base
                 scores = double(all_inputs' * obj.weights > 0)';
                 errors = double(TFvalues) - scores;
 
-                % Calculate MSE for this iteration
                 errorEachIteration(iter) = mean(errors.^2);
 
-                % Update weights for each observation
                 for i = 1:numObservations
                     if errors(i) ~= 0
-                        obj.weights = obj.weights + obj.learningRate * errors(i) * all_inputs(:, i);
+                        penalty = 1;
+                        if errors(i) < 0 % This is a false positive (expected 0, got 1)
+                            penalty = falsePositivePenalty;
+                        end
+                        obj.weights = obj.weights + penalty * obj.learningRate * errors(i) * all_inputs(:, i);
                     end
                 end
             end

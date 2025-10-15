@@ -75,5 +75,31 @@ classdef testPerceptron < matlab.unittest.TestCase
             % The weights should be different from the trained weights
             testCase.verifyNotEqual(p_reset.weights, trained_weights);
         end
+
+        function testFalsePositivePenalty(testCase)
+            % Test that the false positive penalty is applied correctly
+
+            % False Negative case
+            p_fn = vlt.signal.timeseriesDetectorML.perceptron(2, 0.1);
+            p_fn.weights = zeros(size(p_fn.weights)); % Start at zero
+            obs_fn = [-1; -1];
+            tf_fn = true; % Should be 1, will be 0 -> False Negative
+            p_fn_trained = p_fn.train(obs_fn, tf_fn);
+
+            % False Positive case
+            p_fp = vlt.signal.timeseriesDetectorML.perceptron(2, 0.1);
+            p_fp.weights = zeros(size(p_fp.weights)); % Start at zero
+            obs_fp = [1; 1];
+            tf_fp = false; % Should be 0, will be 1 -> False Positive
+            penalty = 5;
+            p_fp_trained = p_fp.train(obs_fp, tf_fp, false, 1, penalty);
+
+            % The change in weights for the false positive should be larger
+            % by a factor of the penalty. The errors are 1 and -1 respectively.
+            weight_change_fn = norm(p_fn_trained.weights - p_fn.weights);
+            weight_change_fp = norm(p_fp_trained.weights - p_fp.weights);
+
+            testCase.verifyEqual(weight_change_fp, penalty * weight_change_fn, 'AbsTol', 1e-9);
+        end
     end
 end
