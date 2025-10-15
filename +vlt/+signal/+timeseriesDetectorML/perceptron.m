@@ -76,15 +76,9 @@ classdef perceptron < vlt.signal.timeseriesDetectorML.base
         function [detectLikelihood] = evaluateTimeSeries(obj, timeSeriesData)
             % EVALUATETIMESERIES - Evaluate the likelihood of a pattern at each time step
             %
-            %   [detectLikelihood] = evaluateTimeSeries(obj, timeSeriesData)
-            %
-            %   Inputs:
-            %     obj - The detector object.
-            %     timeSeriesData - A 1-D time series vector.
-            %
-            %   Outputs:
-            %     detectLikelihood - The likelihood of the pattern at each time step.
-            %
+            if isrow(timeSeriesData)
+                timeSeriesData = timeSeriesData'; % Ensure it's a column vector
+            end
 
             numSamples = length(timeSeriesData);
             detectLikelihood = zeros(1, numSamples);

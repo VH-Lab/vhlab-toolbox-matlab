@@ -14,7 +14,7 @@ function perceptronDemo()
 
 % 1. Data Generation
 dt = 0.001; % 1ms sampling interval
-t = 0:dt:10-dt; % 10 seconds of data
+t = (0:dt:10-dt)'; % 10 seconds of data, as a column vector
 N = numel(t);
 timeSeriesData = randn(size(t)); % Background noise
 
@@ -22,7 +22,7 @@ timeSeriesData = randn(size(t)); % Background noise
 event_t = -0.1:dt:0.1;
 event_sigma = 0.030;
 event_amplitude = 2;
-event_waveform = event_amplitude * exp(-event_t.^2 / (2 * event_sigma^2));
+event_waveform = event_amplitude * exp(-event_t.^2 / (2 * event_sigma^2))';
 event_duration_samples = numel(event_t);
 
 % Add 5-10 events to the data
