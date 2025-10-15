@@ -15,17 +15,20 @@ classdef testPerceptron < matlab.unittest.TestCase
         end
 
         function testTraining(testCase)
-            % Test that the training process modifies the weights
+            % Test that the training process modifies the weights and returns error history
             p = vlt.signal.timeseriesDetectorML.perceptron(2, 0.1);
             initialWeights = p.weights;
 
-            % Simple linearly separable data
             observations = [1 1; -1 -1]';
             TFvalues = [true, false];
+            numIterations = 50;
 
-            p = p.train(observations, TFvalues);
+            [p, ~, errorHistory] = p.train(observations, TFvalues, false, numIterations);
 
             testCase.verifyNotEqual(p.weights, initialWeights);
+            testCase.verifyEqual(size(errorHistory), [1, numIterations]);
+            % Error should decrease over time for separable data
+            testCase.verifyLessThan(errorHistory(end), errorHistory(1));
         end
 
         function testEvaluation(testCase)
@@ -33,16 +36,12 @@ classdef testPerceptron < matlab.unittest.TestCase
             detectorSamples = 3;
             p = vlt.signal.timeseriesDetectorML.perceptron(detectorSamples, 0.1);
 
-            % Define a positive and negative pattern
             pattern_pos = [0.5; 1.0; 0.5];
             pattern_neg = [-0.5; -1.0; -0.5];
             observations = [pattern_pos, pattern_neg];
             TFvalues = [true, false];
 
-            % Train for several epochs to ensure convergence
-            for i = 1:20
-                p = p.train(observations, TFvalues);
-            end
+            p = p.train(observations, TFvalues, false, 100);
 
             % Create a time series with the patterns embedded
             timeSeriesData = [zeros(5,1); pattern_pos; zeros(5,1); pattern_neg; zeros(5,1)];

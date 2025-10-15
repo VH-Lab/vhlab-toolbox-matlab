@@ -35,18 +35,15 @@ classdef perceptron < vlt.signal.timeseriesDetectorML.base
             obj.weights = (rand(obj.detectorSamples + 1, 1) * 2) - 1; % Initialize weights between -1 and 1, +1 for bias
         end
 
-        function [obj, scores] = train(obj, observation, TFvalues, doReset)
+        function [obj, scores, errorEachIteration] = train(obj, observation, TFvalues, doReset, numIterations)
             % TRAIN - Train the detector
-            %
-            %   [obj, scores] = train(obj, observation, TFvalues, doReset)
-            %
-            %   Trains the detector with training data.
             %
             arguments
                 obj
                 observation (:,:) double
                 TFvalues (1,:) logical
                 doReset (1,1) logical = false
+                numIterations (1,1) uint64 = 100
             end
 
             if doReset
@@ -54,16 +51,26 @@ classdef perceptron < vlt.signal.timeseriesDetectorML.base
             end
 
             numObservations = size(observation, 2);
-            scores = zeros(1, numObservations);
+            errorEachIteration = zeros(1, numIterations);
+            all_inputs = [observation; ones(1, numObservations)]; % Add bias term to all observations
 
-            for i = 1:numObservations
-                inputVector = [observation(:, i); 1]; % Add bias term
-                actual_output = double(inputVector' * obj.weights > 0);
-                scores(i) = actual_output;
-                expected_output = double(TFvalues(i));
-                error = expected_output - actual_output;
-                obj.weights = obj.weights + obj.learningRate * error * inputVector;
+            for iter = 1:numIterations
+                scores = double(all_inputs' * obj.weights > 0)';
+                errors = double(TFvalues) - scores;
+
+                % Calculate MSE for this iteration
+                errorEachIteration(iter) = mean(errors.^2);
+
+                % Update weights for each observation
+                for i = 1:numObservations
+                    if errors(i) ~= 0
+                        obj.weights = obj.weights + obj.learningRate * errors(i) * all_inputs(:, i);
+                    end
+                end
             end
+
+            % Final scores after all iterations
+            scores = double(all_inputs' * obj.weights > 0)';
         end
 
         function [detectLikelihood] = evaluateTimeSeries(obj, timeSeriesData)

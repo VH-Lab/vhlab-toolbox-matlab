@@ -9,7 +9,7 @@ classdef (Abstract) base
     methods (Abstract)
         % TRAIN - Train the detector
         %
-        %   [obj, scores] = train(obj, observation, TFvalues, doReset)
+        %   [obj, scores, errorEachIteration] = train(obj, observation, TFvalues, doReset, numIterations)
         %
         %   Trains the detector with training data.
         %
@@ -17,13 +17,15 @@ classdef (Abstract) base
         %     obj - The detector object.
         %     observation - A matrix of training data (one column per observation).
         %     TFvalues - A boolean vector indicating if the observation is a match.
-        %     doReset - (Optional) If true, re-initializes the learned parameters (default: false).
+        %     doReset - (Optional) If true, re-initializes the learned parameters. Default false.
+        %     numIterations - (Optional) The number of training iterations. Default 100.
         %
         %   Outputs:
         %     obj - The trained detector object.
         %     scores - The scores from the training.
+        %     errorEachIteration - The mean squared error for each iteration.
         %
-        [obj, scores] = train(obj, observation, TFvalues, doReset)
+        [obj, scores, errorEachIteration] = train(obj, observation, TFvalues, doReset, numIterations)
 
         % EVALUATETIMESERIES - Evaluate the likelihood of a pattern at each time step
         %
