@@ -152,27 +152,17 @@ classdef (Abstract) base
         end
 
         function plotTrainingExamples(observations, TFvalues)
-            % PLOTTRAININGEXAMPLES - Visualize the training data
-            %
-            %   vlt.signal.timeseriesDetectorML.base.plotTrainingExamples(OBSERVATIONS, TFVALUES)
-            %
-            %   Creates a new figure and plots the positive and negative training
-            %   examples in separate panels.
-            %
-
             positive_examples = observations(:, TFvalues);
             negative_examples = observations(:, ~TFvalues);
 
             figure;
 
-            % Plot positive examples
             subplot(1, 2, 1);
             plot(positive_examples, 'Color', [0.5 0.5 0.5]);
             title('Positive Training Examples');
             xlabel('Sample Number');
             ylabel('Value');
 
-            % Plot negative examples
             subplot(1, 2, 2);
             plot(negative_examples, 'Color', [0.5 0.5 0.5]);
             title('Negative Training Examples');

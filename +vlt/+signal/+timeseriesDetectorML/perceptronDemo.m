@@ -95,32 +95,35 @@ title('Time Series Data with Events and Training Data');
 xlabel('Time (s)');
 ylabel('Amplitude');
 legend([h_true, h_detected_initial, h_detected_peak_corrected, h_train_pos, h_train_neg], ...
-    'Location', 'northeastoutside');
-ylim([min(timeSeriesData), y_level*1.25]);
+    'Location', 'northeast');
+box off;
 
 ax2 = subplot(4,1,2);
 plot(t, detectionLikelihood, 'r', 'DisplayName', 'Detector Output');
 title('Perceptron Detector Output (Likelihood)');
 xlabel('Time (s)');
 ylabel('Likelihood');
-legend;
+box off;
 
 ax3 = subplot(4,1,3);
 plot(t, filtered_likelihood, 'm', 'DisplayName', 'Filtered Output');
 hold on;
-plot(ground_truth_event_times, max(filtered_likelihood) * ones(size(ground_truth_event_times)), 'gv', 'MarkerFaceColor', 'g', 'DisplayName', 'True Events');
-plot(detected_events, max(filtered_likelihood) * ones(size(detected_events)), 'rx', 'MarkerSize', 10, 'DisplayName', 'Final Detected Events (from Detector)');
+plot(ground_truth_event_times, max(filtered_likelihood) * ones(size(ground_truth_event_times)), 'gv', 'MarkerFaceColor', 'g');
+plot(detected_events, max(filtered_likelihood) * ones(size(detected_events)), 'rx', 'MarkerSize', 10);
 title('Filtered Detector Output and Final Detections');
 xlabel('Time (s)');
 ylabel('Filtered Likelihood');
-legend;
+box off;
 
 ax4 = subplot(4,1,4);
 plot(1:numel(errorHistory), errorHistory, 'b-o');
 title('Training Error (MSE)');
 xlabel('Iteration');
 ylabel('Mean Squared Error');
+box off;
 
 linkaxes([ax1, ax2, ax3], 'x');
+
+legend(ax1, 'Location', 'northeast');
 
 end
