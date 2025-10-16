@@ -43,7 +43,8 @@ initial_detected_times = t(initial_detected_indices);
 
 % 3. Training Set Preparation
 % Peak-correct the initially detected times to use as the core positive examples
-[obs_pos, tf_pos, peak_corrected_times] = vlt.signal.timeseriesDetectorML.base.timeStamps2Observations(t, timeSeriesData, initial_detected_times, detectorSamples, true, 'optimizeForPeak', true);
+peakFindingSamples = round(0.1 / dt);
+[obs_pos, tf_pos, peak_corrected_times] = vlt.signal.timeseriesDetectorML.base.timeStamps2Observations(t, timeSeriesData, initial_detected_times, detectorSamples, true, 'optimizeForPeak', true, 'peakFindingSamples', peakFindingSamples);
 
 % Jitter positive examples around the peak-corrected times
 [obs_jitter, tf_jitter, jittered_stamps] = vlt.signal.timeseriesDetectorML.base.jitterPositiveObservations(peak_corrected_times, t, timeSeriesData, detectorSamples);
