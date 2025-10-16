@@ -13,7 +13,10 @@ function rgb = cmyk2rgb(cmyk)
 %  Ch Begler at Scripps Institute of Oceanography
 %  
 
-rgb = 1 - (cmyk(1:3) + cmyk(4)*[1 1 1]);
-rgb(find(rgb<0)) = 0;
+c = cmyk(1); m = cmyk(2); y = cmyk(3); k = cmyk(4);
+r = (1 - c) * (1 - k);
+g = (1 - m) * (1 - k);
+b = (1 - y) * (1 - k);
+rgb = [r g b];
 
 

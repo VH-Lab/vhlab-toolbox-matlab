@@ -1,6 +1,94 @@
 classdef TestColorspace < matlab.unittest.TestCase
 
+    properties
+        rgb_colors
+        cmyk_colors
+        angle_ybgr_colors
+        angle_ycgr_colors
+    end
+
+    methods (TestClassSetup)
+        function setupOnce(testCase)
+            % RGB Test Colors (normalized 0-1)
+            testCase.rgb_colors = { ...
+                [1, 0, 0], ...         % Red
+                [0, 1, 0], ...         % Green
+                [0, 0, 1], ...         % Blue
+                [1, 1, 0], ...         % Yellow
+                [0, 1, 1], ...         % Cyan
+                [1, 0, 1], ...         % Magenta
+                [0.5, 0.5, 0.5], ...   % Gray
+                [192/255, 192/255, 192/255], ... % Silver
+                [128/255, 0, 0], ...   % Maroon
+                [0, 128/255, 0], ...   % Dark Green
+                [0, 0, 0], ...         % Black
+                [1, 1, 1] ...          % White
+            };
+
+            % Corresponding CMYK Test Colors
+            testCase.cmyk_colors = { ...
+                [0, 1, 1, 0], ...         % Red
+                [1, 0, 1, 0], ...         % Green
+                [1, 1, 0, 0], ...         % Blue
+                [0, 0, 1, 0], ...         % Yellow
+                [1, 0, 0, 0], ...         % Cyan
+                [0, 1, 0, 0], ...         % Magenta
+                [0, 0, 0, 0.5], ...       % Gray
+                [0, 0, 0, 1 - 192/255], ... % Silver
+                [0, 1, 1, 1 - 128/255], ... % Maroon
+                [1, 0, 1, 1 - 128/255], ... % Dark Green
+                [0, 0, 0, 1], ...         % Black
+                [0, 0, 0, 0] ...          % White
+            };
+
+            % Angle test cases for angle2ybgr
+            testCase.angle_ybgr_colors = { ...
+                0,   [1.0, 1.0, 0.0]; ...
+                45,  [0.5, 1.0, 0.0]; ...
+                90,  [0.0, 1.0, 0.0]; ...
+                135, [0.0, 0.5, 0.5]; ...
+                180, [0.0, 0.0, 1.0]; ...
+                225, [0.5, 0.0, 0.5]; ...
+                270, [1.0, 0.0, 0.0]; ...
+                315, [1.0, 0.5, 0.0]; ...
+                360, [1.0, 1.0, 0.0]  ...
+            };
+
+            % Angle test cases for angle2ycgr
+            testCase.angle_ycgr_colors = { ...
+                0,   [1.0, 1.0, 0.0]; ...
+                45,  [0.5, 1.0, 0.0]; ...
+                90,  [0.0, 1.0, 0.0]; ...
+                135, [0.0, 1.0, 0.5]; ...
+                180, [0.0, 1.0, 1.0]; ...
+                225, [0.5, 0.5, 0.5]; ...
+                270, [1.0, 0.0, 0.0]; ...
+                315, [1.0, 0.5, 0.0]; ...
+                360, [1.0, 1.0, 0.0]  ...
+            };
+        end
+    end
+
     methods (Test)
+        function testRgb2Cmyk(testCase)
+            for i = 1:numel(testCase.rgb_colors)
+                rgb_in = testCase.rgb_colors{i};
+                expected_cmyk = testCase.cmyk_colors{i};
+                actual_cmyk = vlt.colorspace.rgb2cmyk(rgb_in);
+                testCase.verifyEqual(actual_cmyk, expected_cmyk, 'AbsTol', 1e-9, ...
+                    ['Failed for RGB color: ' mat2str(rgb_in)]);
+            end
+        end
+
+        function testCmyk2Rgb(testCase)
+            for i = 1:numel(testCase.cmyk_colors)
+                cmyk_in = testCase.cmyk_colors{i};
+                expected_rgb = testCase.rgb_colors{i};
+                actual_rgb = vlt.colorspace.cmyk2rgb(cmyk_in);
+                testCase.verifyEqual(actual_rgb, expected_rgb, 'AbsTol', 1e-9, ...
+                    ['Failed for CMYK color: ' mat2str(cmyk_in)]);
+            end
+        end
 
         function testAngle2ybgr(testCase)
             % Test with no input arguments
@@ -9,12 +97,14 @@ classdef TestColorspace < matlab.unittest.TestCase
             testCase.verifyEmpty(value);
             testCase.verifyEmpty(rgb);
 
-            % Test with a specific angle
-            [ctab, value, rgb] = vlt.colorspace.angle2ybgr(45);
-            testCase.verifyEqual(size(ctab), [360, 3]);
-            testCase.verifyNotEmpty(value);
-            testCase.verifyNotEmpty(rgb);
-            testCase.verifyEqual(rgb, [0.5 1 0], 'AbsTol', 1e-9);
+            % Test with specific angles
+            for i = 1:size(testCase.angle_ybgr_colors, 1)
+                angle = testCase.angle_ybgr_colors{i, 1};
+                expected_rgb = testCase.angle_ybgr_colors{i, 2};
+                [~, ~, actual_rgb] = vlt.colorspace.angle2ybgr(angle);
+                testCase.verifyEqual(actual_rgb, expected_rgb, 'AbsTol', 1e-9, ...
+                    ['Failed for angle: ' num2str(angle)]);
+            end
         end
 
         function testAngle2ycgr(testCase)
@@ -24,47 +114,14 @@ classdef TestColorspace < matlab.unittest.TestCase
             testCase.verifyEmpty(value);
             testCase.verifyEmpty(rgb);
 
-            % Test with a specific angle
-            [ctab, value, rgb] = vlt.colorspace.angle2ycgr(135);
-            testCase.verifyEqual(size(ctab), [360, 3]);
-            testCase.verifyNotEmpty(value);
-            testCase.verifyNotEmpty(rgb);
-            testCase.verifyEqual(rgb, [0 1 0.5], 'AbsTol', 1e-9);
+            % Test with specific angles
+            for i = 1:size(testCase.angle_ycgr_colors, 1)
+                angle = testCase.angle_ycgr_colors{i, 1};
+                expected_rgb = testCase.angle_ycgr_colors{i, 2};
+                [~, ~, actual_rgb] = vlt.colorspace.angle2ycgr(angle);
+                testCase.verifyEqual(actual_rgb, expected_rgb, 'AbsTol', 1e-9, ...
+                    ['Failed for angle: ' num2str(angle)]);
+            end
         end
-
-        function testCmyk2rgb(testCase)
-            % Test black
-            cmyk_black = [0 0 0 1];
-            rgb_black = vlt.colorspace.cmyk2rgb(cmyk_black);
-            testCase.verifyEqual(rgb_black, [0 0 0], 'AbsTol', 1e-9);
-
-            % Test white
-            cmyk_white = [0 0 0 0];
-            rgb_white = vlt.colorspace.cmyk2rgb(cmyk_white);
-            testCase.verifyEqual(rgb_white, [1 1 1], 'AbsTol', 1e-9);
-
-            % Test red
-            cmyk_red = [0 1 1 0];
-            rgb_red = vlt.colorspace.cmyk2rgb(cmyk_red);
-            testCase.verifyEqual(rgb_red, [1 0 0], 'AbsTol', 1e-9);
-        end
-
-        function testRgb2cmyk(testCase)
-            % Test black
-            rgb_black = [0 0 0];
-            cmyk_black = vlt.colorspace.rgb2cmyk(rgb_black);
-            testCase.verifyEqual(cmyk_black, [0 0 0 1], 'AbsTol', 1e-9);
-
-            % Test white
-            rgb_white = [1 1 1];
-            cmyk_white = vlt.colorspace.rgb2cmyk(rgb_white);
-            testCase.verifyEqual(cmyk_white, [0 0 0 0], 'AbsTol', 1e-9);
-
-            % Test red
-            rgb_red = [1 0 0];
-            cmyk_red = vlt.colorspace.rgb2cmyk(rgb_red);
-            testCase.verifyEqual(cmyk_red, [0 1 1 0], 'AbsTol', 1e-9);
-        end
-
     end
 end
