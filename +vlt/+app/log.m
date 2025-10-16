@@ -42,8 +42,7 @@ classdef log < handle
 
 
 	methods
-		
-		function log_obj = log(varargin)
+		function log_obj = log(options)
 			% LOG - create a vlt.app.log for writing system, debugging, error information to log files
 			%
 			% LOG_OBJ = LOG(PROPERTY1, VALUE1, ... )
@@ -62,29 +61,28 @@ classdef log < handle
 			% log_name                  | ''
 			% log_error_behavior        | 'warning'
 			%
-				system_logfile = [userpath filesep 'system.log'];
-				error_logfile = [userpath filesep 'error.log'];
-				debug_logfile = [userpath filesep 'debug.log'];
+				arguments
+					options.system_logfile (1,:) char = [userpath filesep 'system.log']
+					options.error_logfile (1,:) char = [userpath filesep 'error.log']
+					options.debug_logfile (1,:) char = [userpath filesep 'debug.log']
+					options.system_verbosity (1,1) double = 1.0
+					options.error_verbosity (1,1) double = 1.0
+					options.debug_verbosity (1,1) double = 1.0
+					options.log_name (1,:) char = ''
+					options.log_error_behavior (1,:) char = 'warning'
+				end
 
-				system_verbosity = 1.0;
-				error_verbosity = 1.0;
-				debug_verbosity = 1.0;
+				log_obj.system_logfile = options.system_logfile;
+				log_obj.error_logfile = options.error_logfile;
+				log_obj.debug_logfile = options.debug_logfile;
+				log_obj.system_verbosity = options.system_verbosity;
+				log_obj.error_verbosity = options.error_verbosity;
+				log_obj.debug_verbosity = options.debug_verbosity;
+				log_obj.log_name = options.log_name;
 
-				log_error_behavior = 'warning';
-				log_name = '';
-
-				vlt.data.assign(varargin{:});
-
-				fn = fieldnames(log_obj);
-				for i=1:numel(fn),
-					if ~strcmp(fn{i},'log_error_behavior'),
-						log_obj = setfield(log_obj,fn{i},eval(fn{i}));
-					end;
-				end;
-				log_obj = log_obj.seterrorbehavior(log_error_behavior);
+				log_obj.seterrorbehavior(options.log_error_behavior);
 
 				log_obj.touch();
-
 		end; % log(), constructor
 
 		function b = msg(log_obj, type, priority,message)
