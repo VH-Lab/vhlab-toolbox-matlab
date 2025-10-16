@@ -208,31 +208,49 @@ classdef (Abstract) base
             gaussian_sigma_samples = options.gaussianSigmaTime / dt;
 
             % Create a Gaussian kernel
-            kernel_width = 4 * gaussian_sigma_samples;
+            kernel_width = 4 * round(gaussian_sigma_samples);
             x = -kernel_width:kernel_width;
             gaussian_kernel = exp(-x.^2 / (2*gaussian_sigma_samples^2));
             gaussian_kernel = gaussian_kernel / sum(gaussian_kernel);
 
-            % Apply the blur
-            filtered_signal = conv(detectorOutput(:), gaussian_kernel, 'same');
+            % Apply the blur and ensure it's a row vector
+            filtered_signal = conv(detectorOutput(:)', gaussian_kernel, 'same');
 
-            % Find episodes above threshold
-            above_threshold_indices = find(filtered_signal > options.threshold);
+            % Find all peaks in the signal that are above the threshold
+            [peak_values, peak_indices] = findpeaks(filtered_signal, 'MinPeakHeight', options.threshold);
 
-            if isempty(above_threshold_indices), eventTimes = []; return; end;
+            if isempty(peak_indices), eventTimes = []; return; end;
 
-            % group contiguous indices
-            island_boundaries = find(diff(above_threshold_indices)>1);
-            island_starts = [above_threshold_indices(1) ; above_threshold_indices(island_boundaries+1)];
-            island_stops = [above_threshold_indices(island_boundaries) ; above_threshold_indices(end)];
+            % Now, apply a refractory period to the detected peaks
+            % We will keep the peak with the highest value in any refractory window
 
-            event_centers = round(mean([island_starts island_stops],2));
+            peak_times = timeSeriesTimeStamps(peak_indices);
 
-            % Apply refractory period
-            refractory_samples = options.refractoryPeriod / dt;
-            final_event_indices = vlt.signal.refractory(event_centers, refractory_samples);
+            final_indices = [];
 
-            eventTimes = timeSeriesTimeStamps(final_event_indices);
+            i = 1;
+            while i <= numel(peak_indices)
+                % find all events in the refractory period of event i
+                j = i;
+                while j < numel(peak_indices) && peak_times(j+1) <= peak_times(i) + options.refractoryPeriod
+                    j = j + 1;
+                end
+
+                % The conflict window is from i to j
+                window_indices_for_search = i:j;
+
+                % Find the winner (max value) in this window
+                [~, max_local_idx] = max(peak_values(window_indices_for_search));
+                winner_absolute_idx = peak_indices(window_indices_for_search(max_local_idx));
+
+                % Add the winner to our list of survivors
+                final_indices(end+1) = winner_absolute_idx;
+
+                % Move pointer past the current conflict window
+                i = j + 1;
+            end
+
+            eventTimes = timeSeriesTimeStamps(sort(final_indices));
         end
 
         function jittered_stamps = jitterPositiveObservations(timestamps, timeSeriesTimeStamps, options)
@@ -245,9 +263,12 @@ classdef (Abstract) base
             end
             dt = timeSeriesTimeStamps(2) - timeSeriesTimeStamps(1);
             jitter_shifts = -options.jitterRange:dt:options.jitterRange;
-            jitter_shifts(jitter_shifts==0) = [];
-            jittered_stamps = repmat(timestamps(:), 1, numel(jitter_shifts)) + repmat(jitter_shifts, numel(timestamps), 1);
-            jittered_stamps = jittered_stamps(:)';
+            jitter_shifts(abs(jitter_shifts)<(dt/2)) = []; % remove 0
+
+            jittered_stamps = [];
+            for t = timestamps
+                jittered_stamps = [jittered_stamps, t + jitter_shifts];
+            end
         end
 
         function shoulder_stamps = shoulderNegativeObservations(timestamps, timeSeriesTimeStamps, options)
@@ -261,8 +282,11 @@ classdef (Abstract) base
             end
             dt = timeSeriesTimeStamps(2) - timeSeriesTimeStamps(1);
             shoulder_shifts = [-options.shoulderRangeStop:dt:-options.shoulderRangeStart, options.shoulderRangeStart:dt:options.shoulderRangeStop];
-            shoulder_stamps = repmat(timestamps(:), 1, numel(shoulder_shifts)) + repmat(shoulder_shifts, numel(timestamps), 1);
-            shoulder_stamps = shoulder_stamps(:)';
+
+            shoulder_stamps = [];
+            for t = timestamps
+                shoulder_stamps = [shoulder_stamps, t + shoulder_shifts];
+            end
         end
     end
 end
