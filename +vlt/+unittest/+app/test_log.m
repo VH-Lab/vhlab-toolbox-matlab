@@ -33,7 +33,7 @@ classdef test_log < matlab.unittest.TestCase
             testCase.verifyEqual(log_obj.system_verbosity, 1.0);
             testCase.verifyEqual(log_obj.error_verbosity, 1.0);
             testCase.verifyEqual(log_obj.debug_verbosity, 1.0);
-            testCase.verifyEqual(log_obj.log_name, '');
+            testCase.verifyEqual(log_obj.log_name, char.empty(1,0));
             testCase.verifyEqual(log_obj.log_error_behavior, 'warning');
         end
 
