@@ -50,7 +50,7 @@ peakFindingSamples = round(0.1 / dt);
 [obs_jitter, tf_jitter, jittered_stamps] = vlt.signal.timeseriesDetectorML.base.jitterPositiveObservations(peak_corrected_times, t, timeSeriesData, detectorSamples);
 
 % Shoulder negative examples around the peak-corrected times
-[obs_shoulder, tf_shoulder, shoulder_stamps] = vlt.signal.timeseriesDetectorML.base.shoulderNegativeObservations(peak_corrected_times, t, timeSeriesData, detectorSamples);
+[obs_shoulder, tf_shoulder, shoulder_stamps] = vlt.signal.timeseriesDetectorML.base.shoulderNegativeObservations(peak_corrected_times, t, timeSeriesData, detectorSamples, 'shoulderRangeStart', 0.1, 'shoulderRangeStop', 0.2);
 
 % Random negative examples
 num_random_negative = 5 * numel(peak_corrected_times);

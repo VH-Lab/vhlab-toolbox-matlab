@@ -167,14 +167,14 @@ classdef (Abstract) base
 
             % Plot positive examples
             subplot(1, 2, 1);
-            plot(positive_examples);
+            plot(positive_examples, 'Color', [0.5 0.5 0.5]);
             title('Positive Training Examples');
             xlabel('Sample Number');
             ylabel('Value');
 
             % Plot negative examples
             subplot(1, 2, 2);
-            plot(negative_examples);
+            plot(negative_examples, 'Color', [0.5 0.5 0.5]);
             title('Negative Training Examples');
             xlabel('Sample Number');
             ylabel('Value');
