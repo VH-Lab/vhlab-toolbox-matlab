@@ -1,102 +1,64 @@
 classdef perceptron < vlt.signal.timeseriesDetectorML.base
-    % vlt.signal.timeseriesDetectorML.perceptron - A perceptron-based time series detector
-    %
+    % PERCEPTRON - A perceptron-based time series detector
 
     properties
-        learningRate (1,1) double {mustBePositive} = 0.1; % The learning rate for the perceptron
-        weights      (:,1) double;                         % The weights for the perceptron
+        learningRate (1,1) double {mustBePositive} = 0.1;
+        weights (:,1) double
     end
 
     methods
         function obj = perceptron(detectorSamples, learningRate)
-            % PERCEPTRON - Create a new Perceptron detector
-            %
-            %   obj = vlt.signal.timeseriesDetectorML.perceptron(detectorSamples, learningRate)
-            %
-            %   Creates a new Perceptron detector with the given number of detector samples
-            %   and learning rate.
-            %
             if nargin > 0
                 obj.detectorSamples = detectorSamples;
+                if nargin > 1
+                    obj.learningRate = learningRate;
+                end
+                obj = obj.initialize();
             end
-            if nargin > 1
-                obj.learningRate = learningRate;
-            end
-            obj = obj.initialize();
         end
 
         function obj = initialize(obj)
-            % INITIALIZE - Initialize the learning parameters
-            %
-            %   obj = initialize(obj)
-            %
-            %   Initializes or re-initializes the learning parameters of the detector.
-            %
-            obj.weights = (rand(obj.detectorSamples + 1, 1) * 2) - 1; % Initialize weights between -1 and 1, +1 for bias
+            obj.weights = (rand(obj.detectorSamples + 1, 1) - 0.5) / 10;
         end
 
         function [obj, scores, errorEachIteration] = train(obj, observation, TFvalues, doReset, numIterations, falsePositivePenalty)
-            % TRAIN - Train the detector
-            %
-            arguments
-                obj
-                observation (:,:) double
-                TFvalues (1,:) logical
-                doReset (1,1) logical = false
-                numIterations (1,1) uint64 = 100
-                falsePositivePenalty (1,1) double = 1
-            end
+            if nargin < 4, doReset = false; end
+            if nargin < 5, numIterations = 100; end
+            if nargin < 6, falsePositivePenalty = 1; end
 
             if doReset
                 obj = obj.initialize();
             end
 
-            numObservations = size(observation, 2);
+            X = [ones(1, size(observation, 2)); observation];
+            y = double(TFvalues(:)');
+
             errorEachIteration = zeros(1, numIterations);
-            all_inputs = [observation; ones(1, numObservations)]; % Add bias term to all observations
 
             for iter = 1:numIterations
-                scores = double(all_inputs' * obj.weights > 0)';
-                errors = double(TFvalues) - scores;
+                scores = obj.weights' * X;
+                predictions = 1 ./ (1 + exp(-scores)); % Sigmoid activation
+                errors = y - predictions;
+
+                fp_indices = (errors < 0);
+                errors(fp_indices) = errors(fp_indices) * falsePositivePenalty;
+
+                obj.weights = obj.weights + obj.learningRate * X * errors';
 
                 errorEachIteration(iter) = mean(errors.^2);
-
-                for i = 1:numObservations
-                    if errors(i) ~= 0
-                        penalty = 1;
-                        if errors(i) < 0 % This is a false positive (expected 0, got 1)
-                            penalty = falsePositivePenalty;
-                        end
-                        obj.weights = obj.weights + penalty * obj.learningRate * errors(i) * all_inputs(:, i);
-                    end
-                end
             end
-
-            % Final scores after all iterations
-            scores = double(all_inputs' * obj.weights > 0)';
+            scores = 1 ./ (1 + exp(-(obj.weights' * X))); % Final scores as likelihoods
         end
 
         function [detectLikelihood] = evaluateTimeSeries(obj, timeSeriesData)
-            % EVALUATETIMESERIES - Evaluate the likelihood of a pattern at each time step
-            %
-            if isrow(timeSeriesData), timeSeriesData = timeSeriesData'; end
+            detectLikelihood = zeros(size(timeSeriesData));
+            for i = 1:numel(timeSeriesData) - obj.detectorSamples + 1
+                obs = timeSeriesData(i:i+obj.detectorSamples-1);
+                obs_with_bias = [1; obs(:)];
+                score = obj.weights' * obs_with_bias;
 
-            numSamples = length(timeSeriesData);
-            detectLikelihood = zeros(1, numSamples);
-
-            start_offset = -floor((double(obj.detectorSamples)-1)/2);
-            end_offset = ceil((double(obj.detectorSamples)-1)/2);
-
-            for i = 1:numSamples
-                windowStart = i + start_offset;
-                windowEnd = i + end_offset;
-
-                if windowStart >= 1 && windowEnd <= numSamples
-                    inputVector = [timeSeriesData(windowStart:windowEnd); 1];
-                    detectLikelihood(i) = double(inputVector' * obj.weights > 0);
-                else
-                    detectLikelihood(i) = 0; % Cannot evaluate at the edges
-                end
+                center_index = i + floor(obj.detectorSamples/2);
+                detectLikelihood(center_index) = 1 ./ (1 + exp(-score)); % Sigmoid activation
             end
         end
     end
