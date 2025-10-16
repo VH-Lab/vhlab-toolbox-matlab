@@ -72,6 +72,7 @@ positive_training_stamps = [peak_corrected_times, jittered_stamps];
 negative_training_stamps = [shoulder_stamps, random_negative_times];
 
 % 4. Training and Evaluation
+vlt.signal.timeseriesDetectorML.base.plotTrainingExamples(observations, TFvalues);
 p = vlt.signal.timeseriesDetectorML.perceptron(detectorSamples, 0.1);
 [p, ~, errorHistory] = p.train(observations, TFvalues, true, 100, 10);
 
