@@ -34,6 +34,7 @@ i = find(tf);
 
 if ~isempty(i)
     v = thestruct(i(1)).value;
+    i = i(1);
 else
     v = [];
 end
