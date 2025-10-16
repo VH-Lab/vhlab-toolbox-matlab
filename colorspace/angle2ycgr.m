@@ -1,7 +1,7 @@
 function [ctab, value, rgb] = angle2ycgr(angle)
 % ANGLE2YBRG - Determine color by angle 0-360 degrees
 %
-% [CTAB, VALUE, RGB] = ANGLE2YCGR([ANGLE])
+% [CTAB, VALUE, RGB] = angle2ycgr([ANGLE])
 %
 % Returns a color table for angle values 0:1:359. If a specific
 % ANGLE is given as an an input argument, the function will also return
@@ -39,4 +39,3 @@ else
 	value = interp1([0;360], [0;1]*size(ctab,2), angle, 'linear');
 	rgb= interp1(x1, y1, angle, 'linear');
 end
-

@@ -1,7 +1,7 @@
 function cmyk = rgb2cmyk(rgb)
 % RGB2CMYK - Convert RGB to CMYK
 %
-%  CMYK = RGB2CMYK(RGB)
+%  CMYK = rgb2cmyk(RGB)
 %
 %  Converts from RGB color space to CMYK space.
 %
@@ -17,13 +17,14 @@ arguments
 	rgb (1,3) double {mustBeGreaterThanOrEqual(rgb,0), mustBeLessThanOrEqual(rgb,1)}
 end
 
-c = 1 - rgb;
-k = min(c);
-if k==1
-    m = [0 0 0];
+k = 1 - max(rgb);
+if k == 1
+    c = 0;
+    m = 0;
+    y = 0;
 else
-    m = (c-k)./(1-k);
+    c = (1-rgb(1)-k) / (1-k);
+    m = (1-rgb(2)-k) / (1-k);
+    y = (1-rgb(3)-k) / (1-k);
 end
-cmyk = [m k];
-
-
+cmyk = [c m y k];
