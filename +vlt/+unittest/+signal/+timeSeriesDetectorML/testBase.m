@@ -26,7 +26,7 @@ classdef testBase < matlab.unittest.TestCase
         end
 
         function testDetectIndividualEvents(testCase)
-            detectorOutput = zeros(1, 100);
+            detectorOutput = zeros(1, numel(testCase.t_vec));
             detectorOutput(20:30) = 1;
             detectorOutput(70:80) = 1;
             [eventTimes, ~] = vlt.signal.timeseriesDetectorML.base.detectIndividualEvents(testCase.t_vec, detectorOutput, 'threshold', 0.5, 'refractoryPeriod', 0.020);
