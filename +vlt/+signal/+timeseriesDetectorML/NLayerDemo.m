@@ -1,14 +1,14 @@
-function perceptronDemo()
-% PERCEPTRONDEMO - A demonstration of the vlt.signal.timeseriesDetectorML.perceptron class
+function NLayerDemo()
+% NLAYERDEMO - A demonstration of the vlt.signal.timeseriesDetectorML.NLayer class
 %
-%   vlt.signal.timeseriesDetectorML.perceptronDemo()
+%   vlt.signal.timeseriesDetectorML.NLayerDemo()
 %
 %   Generates artificial data with embedded Gaussian events, then uses the
-%   perceptron detector to identify them. The function demonstrates:
+%   NLayer detector to identify them. The function demonstrates:
 %     1. Artificial data generation.
 %     2. Detection of events in raw data to seed training.
 %     3. Data augmentation (jitter, shoulders) based on detected events.
-%     4. Training the perceptron detector.
+%     4. Training the NLayer detector.
 %     5. Evaluating the detector on the full time series.
 %     6. Visualization of the results.
 %
@@ -42,17 +42,10 @@ initial_detected_indices = vlt.signal.refractory(initial_detected_indices, refra
 initial_detected_times = t(initial_detected_indices);
 
 % 3. Training Set Preparation
-% Peak-correct the initially detected times to use as the core positive examples
 peakFindingSamples = round(0.1 / dt);
 [obs_pos, tf_pos, peak_corrected_times] = vlt.signal.timeseriesDetectorML.base.timeStamps2Observations(t, timeSeriesData, initial_detected_times, detectorSamples, true, 'optimizeForPeak', true, 'peakFindingSamples', peakFindingSamples);
-
-% Jitter positive examples around the peak-corrected times
-[obs_jitter, tf_jitter, jittered_stamps] = vlt.signal.timeseriesDetectorML.base.jitterPositiveObservations(peak_corrected_times, t, timeSeriesData, detectorSamples);
-
-% Shoulder negative examples around the peak-corrected times
-[obs_shoulder, tf_shoulder, shoulder_stamps] = vlt.signal.timeseriesDetectorML.base.shoulderNegativeObservations(peak_corrected_times, t, timeSeriesData, detectorSamples, 'shoulderRangeStart', 0.1, 'shoulderRangeStop', 0.2);
-
-% Random negative examples
+[obs_jitter, tf_jitter, ~] = vlt.signal.timeseriesDetectorML.base.jitterPositiveObservations(peak_corrected_times, t, timeSeriesData, detectorSamples);
+[obs_shoulder, tf_shoulder, ~] = vlt.signal.timeseriesDetectorML.base.shoulderNegativeObservations(peak_corrected_times, t, timeSeriesData, detectorSamples, 'shoulderRangeStart', 0.1, 'shoulderRangeStop', 0.2);
 num_random_negative = 10 * numel(peak_corrected_times);
 random_negative_times = [];
 while numel(random_negative_times) < num_random_negative
@@ -62,22 +55,17 @@ while numel(random_negative_times) < num_random_negative
     end
 end
 [obs_random_neg, tf_random_neg, ~] = vlt.signal.timeseriesDetectorML.base.timeStamps2Observations(t, timeSeriesData, random_negative_times, detectorSamples, false);
-
-% Combine all training data
 observations = [obs_pos, obs_jitter, obs_shoulder, obs_random_neg];
 TFvalues = [tf_pos, tf_jitter, tf_shoulder, tf_random_neg];
 
-% For plotting
-positive_training_stamps = [peak_corrected_times, jittered_stamps];
-negative_training_stamps = [shoulder_stamps, random_negative_times];
-
 % 4. Training and Evaluation
 vlt.signal.timeseriesDetectorML.base.plotTrainingExamples(observations, TFvalues);
-p = vlt.signal.timeseriesDetectorML.perceptron(detectorSamples, 0.1);
-[p, ~, errorHistory] = p.train(observations, TFvalues, true, 100, 10);
+M = [4 1]; % The network architecture
+nlayer = vlt.signal.timeseriesDetectorML.NLayer(detectorSamples, M, 0.1);
+[nlayer, ~, errorHistory] = nlayer.train(observations, TFvalues, true, 200, 10); % More iterations for NLayer
 
 % 5. Evaluate on the full time series
-detectionLikelihood = p.evaluateTimeSeries(timeSeriesData);
+detectionLikelihood = nlayer.evaluateTimeSeries(timeSeriesData);
 [detected_events, filtered_likelihood] = vlt.signal.timeseriesDetectorML.base.detectIndividualEvents(t, detectionLikelihood, 'threshold', 0.8);
 
 % 6. Visualization
@@ -86,21 +74,17 @@ ax1 = subplot(4,1,1);
 plot(t, timeSeriesData, 'k-', 'DisplayName', 'Time Series Data');
 hold on;
 y_level = max(timeSeriesData) * 1.1;
-h_true = plot(ground_truth_event_times, y_level*ones(size(ground_truth_event_times)), 'gv', 'MarkerFaceColor', 'g', 'DisplayName', 'a) True Events');
-h_detected_initial = plot(initial_detected_times, (y_level*1.05)*ones(size(initial_detected_times)), 'c^', 'DisplayName', 'b) Detections by Threshold');
-h_detected_peak_corrected = plot(peak_corrected_times, (y_level*1.1)*ones(size(peak_corrected_times)), 'ms', 'DisplayName', 'c) Corrected by Peak Adjustment');
-h_train_pos = plot(positive_training_stamps, (y_level*0.95)*ones(size(positive_training_stamps)), 'b+', 'DisplayName', 'd) Positive Training Examples');
-h_train_neg = plot(negative_training_stamps, (y_level*0.9)*ones(size(negative_training_stamps)), 'm.', 'DisplayName', 'e) Negative Training Examples');
-title('Time Series Data with Events and Training Data');
+h_true = plot(ground_truth_event_times, y_level*ones(size(ground_truth_event_times)), 'gv', 'MarkerFaceColor', 'g', 'DisplayName', 'True Events');
+h_detected = plot(detected_events, y_level*ones(size(detected_events)), 'rx', 'MarkerSize', 10, 'LineWidth', 2, 'DisplayName', 'Detected Events');
+title('Time Series Data with Events');
 xlabel('Time (s)');
 ylabel('Amplitude');
-legend([h_true, h_detected_initial, h_detected_peak_corrected, h_train_pos, h_train_neg], ...
-    'Location', 'northeast');
+legend([h_true, h_detected], 'Location', 'northeast');
 box off;
 
 ax2 = subplot(4,1,2);
 plot(t, detectionLikelihood, 'r', 'DisplayName', 'Detector Output');
-title('Perceptron Detector Output (Likelihood)');
+title('N-Layer Detector Output (Likelihood)');
 xlabel('Time (s)');
 ylabel('Likelihood');
 box off;
