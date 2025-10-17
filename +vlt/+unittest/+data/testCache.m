@@ -56,6 +56,7 @@ classdef testCache < matlab.unittest.TestCase
             c = vlt.data.cache();
             c = c.set_replacement_rule('lifo');
             c.add('key1', 'type1', rand(1, 7500000)); % 60 MB
+            pause(0.01); % ensure unique timestamps
             c.add('key2', 'type2', rand(1, 7500000)); % 60 MB
             % key2 should be gone
             retrieved1 = c.lookup('key1', 'type1');
