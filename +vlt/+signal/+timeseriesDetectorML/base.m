@@ -17,10 +17,10 @@ classdef (Abstract) base
                 timeSeriesTimeStamps (:,1) double
                 timeSeriesData (:,1) double
                 detectedTimeStamps (1,:) double
-                detectorSamples (1,1) uint64
+                detectorSamples (1,1) double
                 examplesArePositives (1,1) logical = true
                 options.optimizeForPeak (1,1) logical = false
-                options.peakFindingSamples (1,1) uint64 = 10
+                options.peakFindingSamples (1,1) double = 10
                 options.useNegativeForPeak (1,1) logical = false
             end
 

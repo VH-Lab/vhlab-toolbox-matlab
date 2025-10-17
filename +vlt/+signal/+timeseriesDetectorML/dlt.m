@@ -55,7 +55,7 @@ classdef dlt
             end
         end
 
-        function obj = train(obj, observations, TFvalues, X_validation, Y_validation)
+        function obj = train(obj, observations, TFvalues)
             % TRAIN - Train the network using the Deep Learning Toolbox
             %
             %   Reshapes the data and trains the network using trainNetwork.
@@ -64,12 +64,8 @@ classdef dlt
             X_train = reshape(observations, [obj.DetectorSamples, 1, 1, size(observations, 2)]);
             Y_train = categorical(TFvalues);
 
+            % The DLToptions property should be set with validation data before calling train
             current_options = obj.DLToptions;
-            if nargin > 3 && ~isempty(X_validation) && ~isempty(Y_validation)
-                X_val_reshaped = reshape(X_validation, [obj.DetectorSamples, 1, 1, size(X_validation,2)]);
-                Y_val_cat = categorical(Y_validation);
-                current_options.ValidationData = {X_val_reshaped, Y_val_cat};
-            end
 
             obj.Net = trainNetwork(X_train, Y_train, obj.Layers, current_options);
         end
@@ -77,7 +73,7 @@ classdef dlt
         function [detectLikelihood] = evaluateTimeSeries(obj, timeSeriesData)
             % EVALUATETIMESERIES - Evaluate the network on a time series
             %
-            %   Uses a batched approach with dlarray for efficient prediction.
+            %   Uses a batched approach for efficient prediction.
             %
 
             if isempty(obj.Net)
@@ -101,8 +97,8 @@ classdef dlt
             % Run prediction on the entire batch
             predictions = predict(obj.Net, batchData4D);
 
-            % The predict function returns a categorical array, so we need to get the scores
-            % for the 'true' category. The second column corresponds to the positive class.
+            % The predict function returns scores for each class. The second column
+            % corresponds to the 'true' or 'positive' class.
             likelihoods = predictions(:,2)';
 
             % Pad the output to match the original time series length

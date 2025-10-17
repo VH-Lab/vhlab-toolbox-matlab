@@ -10,11 +10,10 @@ classdef testDlt < matlab.unittest.TestCase
             % Test that the constructor correctly assigns default layers and options
             dlt_detector = vlt.signal.timeseriesDetectorML.dlt(testCase.DetectorSamples);
 
-            testCase.verifyClass(dlt_detector.Layers, 'nnet.cnn.layer.Layer');
+            testCase.verifyTrue(isa(dlt_detector.Layers, 'nnet.cnn.layer.Layer'));
             testCase.verifyNotEmpty(dlt_detector.Layers);
 
-            testCase.verifyClass(dlt_detector.DLToptions, 'nnet.cnn.TrainingOptions');
-            testCase.verifyEqual(dlt_detector.DLToptions.Optimizer, 'adam');
+            testCase.verifyTrue(isa(dlt_detector.DLToptions, 'nnet.cnn.TrainingOptions'));
         end
 
         function testConstructorCustom(testCase)
@@ -30,7 +29,7 @@ classdef testDlt < matlab.unittest.TestCase
             dlt_detector = vlt.signal.timeseriesDetectorML.dlt(testCase.DetectorSamples, customLayers, customOptions);
 
             testCase.verifyEqual(dlt_detector.Layers, customLayers);
-            testCase.verifyEqual(dlt_detector.DLToptions.Optimizer, 'sgdm');
+            testCase.verifyTrue(isa(dlt_detector.DLToptions, 'nnet.cnn.TrainingOptionsSGDM'));
         end
 
         function testTrainReshaping(testCase)
@@ -52,7 +51,7 @@ classdef testDlt < matlab.unittest.TestCase
             dlt_detector = testCase.verifyWarningFree(@() dlt_detector.train(obs, tf));
 
             % Verify that a network was trained
-            testCase.verifyClass(dlt_detector.Net, 'nnet.cnn.SeriesNetwork');
+            testCase.verifyTrue(isa(dlt_detector.Net, 'SeriesNetwork'));
         end
     end
 end

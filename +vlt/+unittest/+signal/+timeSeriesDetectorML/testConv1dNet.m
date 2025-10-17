@@ -8,7 +8,7 @@ classdef testConv1dNet < matlab.unittest.TestCase
             cnn = vlt.signal.timeseriesDetectorML.conv1dNet();
 
             % Verify that it is a subclass of dlt
-            testCase.verifyClass(cnn, 'vlt.signal.timeseriesDetectorML.dlt');
+            testCase.verifyTrue(isa(cnn, 'vlt.signal.timeseriesDetectorML.dlt'));
 
             % Verify some default parameters were used to build the layers
             layers = cnn.Layers;
