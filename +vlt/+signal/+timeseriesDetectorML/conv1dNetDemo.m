@@ -1,14 +1,10 @@
-function dltDemo()
-% DLTDEMO - A demonstration of the vlt.signal.timeseriesDetectorML.dlt class
+function conv1dNetDemo()
+% CONV1DNETDEMO - A demonstration of the vlt.signal.timeseriesDetectorML.conv1dNet class
 %
-%   vlt.signal.timeseriesDetectorML.dltDemo()
+%   vlt.signal.timeseriesDetectorML.conv1dNetDemo()
 %
-%   Generates artificial data, then uses the DLT-based detector to identify events.
-%   The function demonstrates:
-%     1. Artificial data generation and splitting into train/validation sets.
-%     2. Instantiating and training the DLT detector.
-%     3. Evaluating the detector on the full time series.
-%     4. Visualization of the results.
+%   Generates artificial data, then uses the conv1dNet class to build,
+%   train, and evaluate a 1D CNN for event detection.
 %
 
 % 1. Data Generation
@@ -33,10 +29,7 @@ end
 % 2. Training and Validation Set Preparation
 detectorSamples = uint64(event_duration_samples);
 
-% Positive examples from ground truth
 [obs_pos, tf_pos, ~] = vlt.signal.timeseriesDetectorML.base.timeStamps2Observations(t, timeSeriesData, ground_truth_event_times, detectorSamples, true);
-
-% Negative examples from random points
 num_random_negative = 2 * size(obs_pos, 2);
 random_negative_times = [];
 while numel(random_negative_times) < num_random_negative
@@ -47,32 +40,37 @@ while numel(random_negative_times) < num_random_negative
 end
 [obs_neg, tf_neg, ~] = vlt.signal.timeseriesDetectorML.base.timeStamps2Observations(t, timeSeriesData, random_negative_times, detectorSamples, false);
 
-% Combine all data
 observations = [obs_pos, obs_neg];
 TFvalues = [tf_pos, tf_neg];
 
-% Shuffle and split data into training and validation sets (80/20 split)
 cv = cvpartition(size(observations, 2), 'HoldOut', 0.2);
 idx_train = training(cv);
 idx_val = test(cv);
-
 X_train = observations(:, idx_train);
 Y_train = TFvalues(idx_train);
 X_validation = observations(:, idx_val);
 Y_validation = TFvalues(idx_val);
 
 % 3. Training and Evaluation
-dlt_detector = vlt.signal.timeseriesDetectorML.dlt(detectorSamples);
-dlt_detector = dlt_detector.train(X_train, Y_train, X_validation, Y_validation);
+% Create the training options with validation data
+dlt_options = trainingOptions('adam', ...
+    'InitialLearnRate', 0.001, ...
+    'MaxEpochs', 10, ...
+    'MiniBatchSize', 128, ...
+    'Shuffle', 'every-epoch', ...
+    'Verbose', true, ...
+    'Plots', 'training-progress', ...
+    'ValidationData', {reshape(X_validation, [detectorSamples, 1, 1, size(X_validation,2)]), categorical(Y_validation)});
+
+% Instantiate the conv1dNet with default architecture but custom options
+cnn_detector = vlt.signal.timeseriesDetectorML.conv1dNet('detectorSamples', detectorSamples, 'DLToptions', dlt_options);
+cnn_detector = cnn_detector.train(X_train, Y_train);
 
 % 4. Evaluate on the full time series
-detectionLikelihood = dlt_detector.evaluateTimeSeries(timeSeriesData);
-
-% We can use the base class helper to find discrete events from the likelihood signal
+detectionLikelihood = cnn_detector.evaluateTimeSeries(timeSeriesData);
 [detected_events, filtered_likelihood] = vlt.signal.timeseriesDetectorML.base.detectIndividualEvents(t, detectionLikelihood, 'threshold', 0.5, 'gaussianSigmaTime', 0.005);
 
 % 5. Visualization
-% The training progress plot is generated automatically by trainNetwork
 figure('Position', [100, 100, 1200, 600]);
 ax1 = subplot(3,1,1);
 plot(t, timeSeriesData, 'k-', 'DisplayName', 'Time Series Data');
@@ -88,7 +86,7 @@ box off;
 
 ax2 = subplot(3,1,2);
 plot(t, detectionLikelihood, 'r', 'DisplayName', 'Detector Output');
-title('DLT Detector Output (Likelihood)');
+title('1D CNN Detector Output (Likelihood)');
 xlabel('Time (s)');
 ylabel('Likelihood');
 box off;

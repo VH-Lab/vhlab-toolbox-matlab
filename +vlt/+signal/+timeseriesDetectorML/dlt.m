@@ -50,6 +50,7 @@ classdef dlt
                     'MiniBatchSize', 128, ...
                     'Shuffle', 'every-epoch', ...
                     'Verbose', false, ...
+                    'Plots', 'none', ...
                     'L2Regularization', 0.001);
             end
         end
@@ -60,11 +61,7 @@ classdef dlt
             %   Reshapes the data and trains the network using trainNetwork.
             %
 
-            % Reshape observations for imageInputLayer: [height, width, channels, numObservations]
-            % Our observations are [detectorSamples, numObservations]
             X_train = reshape(observations, [obj.DetectorSamples, 1, 1, size(observations, 2)]);
-
-            % Convert boolean TFvalues to a categorical array
             Y_train = categorical(TFvalues);
 
             current_options = obj.DLToptions;
@@ -88,21 +85,23 @@ classdef dlt
                 error('The network has not been trained. Call the train() method first.');
             end
 
-            detectLikelihood = zeros(size(timeSeriesData));
+            % Create overlapping windows from the time series data
+            windows = im2col(timeSeriesData(:)', [obj.DetectorSamples, 1], 'sliding');
 
-            for i = 1:numel(timeSeriesData) - obj.DetectorSamples + 1
-                obs = timeSeriesData(i:i+obj.DetectorSamples-1);
+            % Reshape for prediction
+            windows_reshaped = reshape(windows, [obj.DetectorSamples, 1, 1, size(windows, 2)]);
 
-                % Reshape for prediction
-                obs_reshaped = reshape(obs, [obj.DetectorSamples, 1, 1]);
+            % Predict returns scores for each class
+            scores = predict(obj.Net, windows_reshaped);
 
-                % Predict returns scores for each class
-                scores = predict(obj.Net, obs_reshaped);
+            % The second column corresponds to the 'true' or 'positive' class
+            likelihoods = scores(:,2)';
 
-                center_index = i + floor(obj.DetectorSamples/2);
-                % The second column corresponds to the 'true' or 'positive' class
-                detectLikelihood(center_index) = scores(2);
-            end
+            % Pad the output to match the original time series length
+            padding_start = floor(obj.DetectorSamples/2);
+            padding_end = numel(timeSeriesData) - numel(likelihoods) - padding_start;
+            detectLikelihood = padarray(likelihoods, [0, padding_start], 0, 'pre');
+            detectLikelihood = padarray(detectLikelihood, [0, padding_end], 0, 'post');
         end
     end
 end

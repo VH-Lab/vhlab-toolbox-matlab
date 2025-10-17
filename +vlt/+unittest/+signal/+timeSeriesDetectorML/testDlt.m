@@ -45,7 +45,7 @@ classdef testDlt < matlab.unittest.TestCase
             tf = logical([1 0 1 0 1 0 1 0 1 0]);
 
             % Use minimal training options to speed up the test
-            fastOptions = trainingOptions('sgdm', 'MaxEpochs', 1, 'Verbose', false);
+            fastOptions = trainingOptions('sgdm', 'MaxEpochs', 1, 'Verbose', false, 'Plots', 'none');
             dlt_detector.DLToptions = fastOptions;
 
             % Verify that train runs without error
