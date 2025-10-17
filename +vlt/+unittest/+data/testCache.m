@@ -42,8 +42,8 @@ classdef testCache < matlab.unittest.TestCase
             % Test FIFO replacement rule
             c = vlt.data.cache();
             c = c.set_replacement_rule('fifo');
-            c.add('key1', 'type1', zeros(1, 7500000)); % 60 MB
-            c.add('key2', 'type2', zeros(1, 7500000)); % 60 MB
+            c.add('key1', 'type1', rand(1, 7500000)); % 60 MB
+            c.add('key2', 'type2', rand(1, 7500000)); % 60 MB
             % key1 should be gone
             retrieved1 = c.lookup('key1', 'type1');
             retrieved2 = c.lookup('key2', 'type2');
@@ -55,8 +55,8 @@ classdef testCache < matlab.unittest.TestCase
             % Test LIFO replacement rule
             c = vlt.data.cache();
             c = c.set_replacement_rule('lifo');
-            c.add('key1', 'type1', zeros(1, 7500000)); % 60 MB
-            c.add('key2', 'type2', zeros(1, 7500000)); % 60 MB
+            c.add('key1', 'type1', rand(1, 7500000)); % 60 MB
+            c.add('key2', 'type2', rand(1, 7500000)); % 60 MB
             % key2 should be gone
             retrieved1 = c.lookup('key1', 'type1');
             retrieved2 = c.lookup('key2', 'type2');
@@ -68,8 +68,8 @@ classdef testCache < matlab.unittest.TestCase
             % Test error replacement rule
             c = vlt.data.cache();
             c = c.set_replacement_rule('error');
-            c.add('key1', 'type1', zeros(1, 7500000)); % 60 MB
-            testCase.verifyError(@() c.add('key2', 'type2', zeros(1, 7500000)), '');
+            c.add('key1', 'type1', rand(1, 7500000)); % 60 MB
+            testCase.verifyError(@() c.add('key2', 'type2', rand(1, 7500000)), '');
         end
 
     end
