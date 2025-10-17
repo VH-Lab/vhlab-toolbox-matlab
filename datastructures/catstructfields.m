@@ -26,7 +26,7 @@ end;
 
 fn1 = fieldnames(struct1);
 if ~eqlen(fn1,fieldnames(struct2)),
-	error(['Fieldnames of STRUCT1 and STRUCT2 must match exactly.']);
+	error('MATLAB:catstructfields:mismatchedFields','Fieldnames of STRUCT1 and STRUCT2 must match exactly.');
 end;
 
 struct_out = struct1;
