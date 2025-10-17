@@ -89,10 +89,11 @@ hold on;
 y_level = max(timeSeriesData) * 1.1;
 h_true = plot(ground_truth_event_times, y_level*ones(size(ground_truth_event_times)), 'gv', 'MarkerFaceColor', 'g', 'DisplayName', 'True Events');
 h_detected = plot(detected_events, y_level*ones(size(detected_events)), 'rx', 'MarkerSize', 10, 'LineWidth', 2, 'DisplayName', 'Detected Events');
+h_neg = plot(random_negative_times, y_level*0.95*ones(size(random_negative_times)), 'm.', 'DisplayName', 'Negative Examples');
 title('Time Series Data with Detections');
 xlabel('Time (s)');
 ylabel('Amplitude');
-legend('Location', 'northeast');
+legend([h_true, h_detected, h_neg], 'Location', 'northeast');
 box off;
 
 ax2 = subplot(3,1,2);
