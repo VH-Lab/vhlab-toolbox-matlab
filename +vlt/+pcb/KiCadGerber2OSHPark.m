@@ -14,7 +14,7 @@ function KiCadGerber2OSHPark(dirname)
 % F.Mask.gbr    -> F.Mask.gbr.GTS
 % F.SilkS.gbr   -> F.SilkS.gbr.GTO
 % Edge.Cuts.gbr -> Edge.Cuts.gbr.GKO
-% .drl          -> drl.XLN
+% .drl          -> drl.XLN (any .drl file is renamed)
 %
 %
 
@@ -24,6 +24,11 @@ searchCell = { 'B.Cu.gbr' 'B.Mask.gbr' 'B.SilkS.gbr' 'F.Cu.gbr' 'F.Mask.gbr' ...
 replaceCell = {'B.Cu.gbr.GBL' 'B.Mask.gbr.GBS' 'B.SilkS.gbr.GBO' ...
 	'F.Cu.gbr.GTL' 'F.Mask.gbr.GTS' 'F.SilkS.gbr.GTO' ...
 	'Edge.Cuts.gbr.GKO' 'drl.XLN'};
+
+d = dir([dirname filesep '*.drl']);
+if ~isempty(d),
+	searchCell{end} = d(1).name;
+end;
 
 vlt.file.filenamesearchreplace(dirname,searchCell,replaceCell,'useOutputDir',1,...
 	'OutputDir', 'OSHPark', 'noOp',0);
