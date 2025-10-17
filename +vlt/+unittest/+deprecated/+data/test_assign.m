@@ -4,24 +4,6 @@ classdef test_assign < matlab.unittest.TestCase
     %
 
     properties
-        vltroot
-        datapath
-    end
-
-    methods (TestMethodSetup)
-        function setup_path(testCase)
-            % find the path to the VLT repository
-            [pathstr, ~, ~] = fileparts(mfilename('fullpath'));
-            testCase.vltroot = fileparts(fileparts(fileparts(fileparts(fileparts(pathstr)))));
-            testCase.datapath = fullfile(testCase.vltroot, 'datastructures');
-            addpath(testCase.datapath);
-        end
-    end
-
-    methods (TestMethodTeardown)
-        function teardown_path(testCase)
-            rmpath(testCase.datapath);
-        end
     end
 
     methods (Test)
