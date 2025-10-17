@@ -74,47 +74,31 @@ classdef dlt
             obj.Net = trainNetwork(X_train, Y_train, obj.Layers, current_options);
         end
 
-        function [detectLikelihood] = evaluateTimeSeries(obj, timeSeriesTimeStamps, timeSeriesData, options)
+        function [detectLikelihood] = evaluateTimeSeries(obj, timeSeriesData)
             % EVALUATETIMESERIES - Evaluate the network on a time series
             %
             %   Slides the detection window across the time series and uses
-            %   the trained network's 'predict' function in batches for efficiency.
+            %   the trained network's 'predict' function.
             %
-            arguments
-                obj
-                timeSeriesTimeStamps (:,1) double
-                timeSeriesData (:,1) double
-                options.chunkTime (1,1) double {mustBePositive} = 100
-            end
 
             if isempty(obj.Net)
                 error('The network has not been trained. Call the train() method first.');
             end
 
-            dt = timeSeriesTimeStamps(2) - timeSeriesTimeStamps(1);
-            chunkSamples = round(options.chunkTime / dt);
-
             detectLikelihood = zeros(size(timeSeriesData));
 
-            for i = 1:chunkSamples:numel(timeSeriesData)
-                chunk_end = min(i + chunkSamples - 1, numel(timeSeriesData));
-                chunk_data = timeSeriesData(i:chunk_end);
+            for i = 1:numel(timeSeriesData) - obj.DetectorSamples + 1
+                obs = timeSeriesData(i:i+obj.DetectorSamples-1);
 
-                if numel(chunk_data) < obj.DetectorSamples
-                    continue; % Skip last partial chunk if it's too small
-                end
+                % Reshape for prediction
+                obs_reshaped = reshape(obs, [obj.DetectorSamples, 1, 1]);
 
-                windows = im2col(chunk_data(:)', [obj.DetectorSamples, 1], 'sliding');
-                windows_reshaped = reshape(windows, [obj.DetectorSamples, 1, 1, size(windows, 2)]);
+                % Predict returns scores for each class
+                scores = predict(obj.Net, obs_reshaped);
 
-                scores = predict(obj.Net, windows_reshaped);
-                likelihoods = scores(:,2)';
-
-                % Calculate the indices for placing the results
-                start_idx = i + floor(obj.DetectorSamples/2);
-                end_idx = start_idx + numel(likelihoods) - 1;
-
-                detectLikelihood(start_idx:end_idx) = likelihoods;
+                center_index = i + floor(obj.DetectorSamples/2);
+                % The second column corresponds to the 'true' or 'positive' class
+                detectLikelihood(center_index) = scores(2);
             end
         end
     end

@@ -75,7 +75,7 @@ dlt_detector = vlt.signal.timeseriesDetectorML.dlt(detectorSamples, [], dlt_opti
 dlt_detector = dlt_detector.train(X_train, Y_train);
 
 % 4. Evaluate on the full time series
-detectionLikelihood = dlt_detector.evaluateTimeSeries(t, timeSeriesData);
+detectionLikelihood = dlt_detector.evaluateTimeSeries(timeSeriesData);
 
 % We can use the base class helper to find discrete events from the likelihood signal
 [detected_events, filtered_likelihood] = vlt.signal.timeseriesDetectorML.base.detectIndividualEvents(t, detectionLikelihood, 'threshold', 0.5, 'gaussianSigmaTime', 0.005);

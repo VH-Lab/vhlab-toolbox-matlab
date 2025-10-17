@@ -67,7 +67,7 @@ cnn_detector = vlt.signal.timeseriesDetectorML.conv1dNet('detectorSamples', dete
 cnn_detector = cnn_detector.train(X_train, Y_train);
 
 % 4. Evaluate on the full time series
-detectionLikelihood = cnn_detector.evaluateTimeSeries(t, timeSeriesData);
+detectionLikelihood = cnn_detector.evaluateTimeSeries(timeSeriesData);
 [detected_events, filtered_likelihood] = vlt.signal.timeseriesDetectorML.base.detectIndividualEvents(t, detectionLikelihood, 'threshold', 0.5, 'gaussianSigmaTime', 0.005);
 
 % 5. Visualization
