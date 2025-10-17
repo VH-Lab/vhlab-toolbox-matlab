@@ -77,29 +77,38 @@ classdef dlt
         function [detectLikelihood] = evaluateTimeSeries(obj, timeSeriesData)
             % EVALUATETIMESERIES - Evaluate the network on a time series
             %
-            %   Slides the detection window across the time series and uses
-            %   the trained network's 'predict' function.
+            %   Uses a batched approach with dlarray for efficient prediction.
             %
 
             if isempty(obj.Net)
                 error('The network has not been trained. Call the train() method first.');
             end
 
-            detectLikelihood = zeros(size(timeSeriesData));
+            V = timeSeriesData(:);
+            L = length(V);
+            windowSize = obj.DetectorSamples;
+            numWindows = L - windowSize + 1;
 
-            for i = 1:numel(timeSeriesData) - obj.DetectorSamples + 1
-                obs = timeSeriesData(i:i+obj.DetectorSamples-1);
+            % Create sliding windows using im2col for efficiency
+            batchData2D = im2col(V, [windowSize 1], 'sliding');
 
-                % Reshape for prediction
-                obs_reshaped = reshape(obs, [obj.DetectorSamples, 1, 1]);
+            % Reshape to 4D for the image layer: [Height, Width, Channels, Batch]
+            batchData4D = reshape(batchData2D, [windowSize, 1, 1, numWindows]);
 
-                % Predict returns scores for each class
-                scores = predict(obj.Net, obs_reshaped);
+            % Create dlarray with dimension labels
+            dlBatch = dlarray(batchData4D, 'SSCB');
 
-                center_index = i + floor(obj.DetectorSamples/2);
-                % The second column corresponds to the 'true' or 'positive' class
-                detectLikelihood(center_index) = scores(2);
-            end
+            % Run prediction on the entire batch
+            predictions = predict(obj.Net, dlBatch);
+
+            % Extract data and get the likelihood for the 'true' class
+            likelihoods = extractdata(predictions(2,:));
+
+            % Pad the output to match the original time series length
+            padding_start = floor(windowSize/2);
+            padding_end = L - numel(likelihoods) - padding_start;
+            detectLikelihood = padarray(likelihoods, [0, padding_start], 0, 'pre');
+            detectLikelihood = padarray(detectLikelihood, [0, padding_end], 0, 'post')';
         end
     end
 end
