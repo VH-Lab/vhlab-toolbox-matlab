@@ -6,7 +6,7 @@ classdef dlt
         Layers
         DLToptions
         Net
-        DetectorSamples (1,1) uint64 {mustBePositive} = 50;
+        DetectorSamples (1,1) double {mustBeInteger, mustBePositive} = 50;
     end
 
     methods

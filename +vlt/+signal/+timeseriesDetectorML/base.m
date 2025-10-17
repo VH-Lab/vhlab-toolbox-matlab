@@ -2,7 +2,7 @@ classdef (Abstract) base
     % vlt.signal.timeseriesDetectorML.base - Abstract base class for time series machine learning detectors
 
     properties
-        detectorSamples (1,1) uint64 {mustBePositive} = 1; % The number of samples to be considered for the detection
+        detectorSamples (1,1) double {mustBeInteger, mustBePositive} = 1; % The number of samples to be considered for the detection
     end
 
     methods (Abstract)
