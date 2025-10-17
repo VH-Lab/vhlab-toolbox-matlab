@@ -89,8 +89,11 @@ classdef dlt
             windowSize = obj.DetectorSamples;
             numWindows = L - windowSize + 1;
 
-            % Create sliding windows using im2col for efficiency
-            batchData2D = im2col(V, [windowSize 1], 'sliding');
+            % Create sliding windows
+            batchData2D = zeros(windowSize, numWindows);
+            for i = 1:numWindows
+                batchData2D(:, i) = V(i : i + windowSize - 1);
+            end
 
             % Reshape to 4D for the image layer: [Height, Width, Channels, Batch]
             batchData4D = reshape(batchData2D, [windowSize, 1, 1, numWindows]);
