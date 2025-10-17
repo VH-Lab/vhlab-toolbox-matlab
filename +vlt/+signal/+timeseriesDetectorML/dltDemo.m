@@ -69,7 +69,7 @@ dlt_detector = dlt_detector.train(X_train, Y_train, X_validation, Y_validation);
 detectionLikelihood = dlt_detector.evaluateTimeSeries(timeSeriesData);
 
 % We can use the base class helper to find discrete events from the likelihood signal
-[detected_events, filtered_likelihood] = vlt.signal.timeseriesDetectorML.base.detectIndividualEvents(t, detectionLikelihood, 'threshold', 0.8, 'gaussianSigmaTime', 0.005);
+[detected_events, filtered_likelihood] = vlt.signal.timeseriesDetectorML.base.detectIndividualEvents(t, detectionLikelihood, 'threshold', 0.5, 'gaussianSigmaTime', 0.005);
 
 % 5. Visualization
 % The training progress plot is generated automatically by trainNetwork
