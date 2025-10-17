@@ -98,14 +98,12 @@ classdef dlt
             % Reshape to 4D for the image layer: [Height, Width, Channels, Batch]
             batchData4D = reshape(batchData2D, [windowSize, 1, 1, numWindows]);
 
-            % Create dlarray with dimension labels
-            dlBatch = dlarray(batchData4D, 'SSCB');
-
             % Run prediction on the entire batch
-            predictions = predict(obj.Net, dlBatch);
+            predictions = predict(obj.Net, batchData4D);
 
-            % Extract data and get the likelihood for the 'true' class
-            likelihoods = extractdata(predictions(2,:));
+            % The predict function returns a categorical array, so we need to get the scores
+            % for the 'true' category. The second column corresponds to the positive class.
+            likelihoods = predictions(:,2)';
 
             % Pad the output to match the original time series length
             padding_start = floor(windowSize/2);
