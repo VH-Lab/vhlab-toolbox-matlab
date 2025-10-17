@@ -85,23 +85,21 @@ classdef dlt
                 error('The network has not been trained. Call the train() method first.');
             end
 
-            % Create overlapping windows from the time series data
-            windows = im2col(timeSeriesData(:)', [obj.DetectorSamples, 1], 'sliding');
+            detectLikelihood = zeros(size(timeSeriesData));
 
-            % Reshape for prediction
-            windows_reshaped = reshape(windows, [obj.DetectorSamples, 1, 1, size(windows, 2)]);
+            for i = 1:numel(timeSeriesData) - obj.DetectorSamples + 1
+                obs = timeSeriesData(i:i+obj.DetectorSamples-1);
 
-            % Predict returns scores for each class
-            scores = predict(obj.Net, windows_reshaped);
+                % Reshape for prediction
+                obs_reshaped = reshape(obs, [obj.DetectorSamples, 1, 1]);
 
-            % The second column corresponds to the 'true' or 'positive' class
-            likelihoods = scores(:,2)';
+                % Predict returns scores for each class
+                scores = predict(obj.Net, obs_reshaped);
 
-            % Pad the output to match the original time series length
-            padding_start = floor(obj.DetectorSamples/2);
-            padding_end = numel(timeSeriesData) - numel(likelihoods) - padding_start;
-            detectLikelihood = padarray(likelihoods, [0, padding_start], 0, 'pre');
-            detectLikelihood = padarray(detectLikelihood, [0, padding_end], 0, 'post');
+                center_index = i + floor(obj.DetectorSamples/2);
+                % The second column corresponds to the 'true' or 'positive' class
+                detectLikelihood(center_index) = scores(2);
+            end
         end
     end
 end
