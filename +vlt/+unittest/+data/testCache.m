@@ -76,7 +76,7 @@ classdef testCache < matlab.unittest.TestCase
 
         function testPriorityEviction(testCase)
             % Test that high priority items are preserved
-            c = vlt.data.cache(maxMemory=1200000, replacement_rule='fifo');
+            c = vlt.data.cache(maxMemory=800000, replacement_rule='fifo');
             c.add('low_priority_old', 'type', rand(1,50000), 0); % 400KB
             pause(0.01);
             c.add('high_priority', 'type', rand(1,50000), 10); % 400KB
