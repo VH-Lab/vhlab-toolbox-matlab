@@ -11,7 +11,7 @@ classdef testCache < matlab.unittest.TestCase
 
             c2 = vlt.data.cache('maxMemory', 5e6, 'replacement_rule', 'lifo');
             testCase.verifyEqual(c2.maxMemory, 5e6);
-            testCase.verifyEqual(c2.replacement_rule', 'lifo');
+            testCase.verifyEqual(c2.replacement_rule, 'lifo');
         end
 
         function testAddAndLookup(testCase)
