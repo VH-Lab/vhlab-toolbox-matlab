@@ -36,9 +36,12 @@ classdef cache < handle
 					options.replacement_rule (1,:) char = 'fifo';
 				end
 
+				disp('DEBUG (cache constructor): Start');
 				cache_obj.table = vlt.data.emptystruct('key','type','timestamp','priority','bytes','data');
 				cache_obj.maxMemory = options.maxMemory;
 				cache_obj = set_replacement_rule(cache_obj, options.replacement_rule);
+				disp('DEBUG (cache constructor): End. Cache contents:');
+				disp(cache_obj.table);
 		end % cache creator
 
 		function cache_obj = set_replacement_rule(cache_obj, rule)
@@ -55,13 +58,15 @@ classdef cache < handle
 			% 'fifo'          | First in, first out; discard oldest entries first.
 			% 'lifo'          | Last in, first out; discard newest entries first.
 			% 'error'         | Don't discard anything, just produce an error saying cache is full
-
+				disp('DEBUG (set_replacement_rule): Start');
 				therules = {'fifo','lifo','error'};
 				if any(strcmpi(rule,therules)),
 					cache_obj.replacement_rule = lower(rule);
 				else,
 					error(['Unknown replacement rule requested: ' rule '.']);
 				end
+				disp('DEBUG (set_replacement_rule): End. Cache contents:');
+				disp(cache_obj.table);
 		end % set_replacement_rule
 
 		function cache_obj = add(cache_obj, key, type, data, priority)
@@ -73,6 +78,7 @@ classdef cache < handle
 			% If desired, a PRIORITY can be added; items with greatest PRIORITY will be
 			% deleted last.
 			%
+				disp('DEBUG (add): Start');
 				if nargin < 5,
 					priority = 0;
 				end
@@ -105,6 +111,8 @@ classdef cache < handle
 
 				% now there's room
 				cache_obj.table(end+1) = newentry;
+				disp('DEBUG (add): End. Cache contents:');
+				disp(cache_obj.table);
 		end % add
 
 		function cache_obj = remove(cache_obj, index_or_key, type, varargin)
@@ -127,7 +135,7 @@ classdef cache < handle
 			%                             |   leave it in memory.
 			%
 			% See also: vlt.data.namevaluepair
-
+				disp('DEBUG (remove): Start');
 				leavehandle = 0;	
 				vlt.data.assign(varargin{:});
 			
@@ -147,7 +155,8 @@ classdef cache < handle
 					end
 				end;
 				cache_obj.table = cache_obj.table(setdiff(1:numel(cache_obj.table),index));
-
+				disp('DEBUG (remove): End. Cache contents:');
+				disp(cache_obj.table);
 		end % remove
 
 		function cache_obj = clear(cache_obj)
@@ -157,7 +166,10 @@ classdef cache < handle
 			%
 			% Clears all entries from the NDI.CACHE object CACHE_OBJ.
 			%
+				disp('DEBUG (clear): Start');
 				cache_obj = cache_obj.remove(1:numel(cache_obj.table),[]);
+				disp('DEBUG (clear): End. Cache contents:');
+				disp(cache_obj.table);
 		end % clear
 
 		function cache_obj = freebytes(cache_obj, freebytes, newitem)
@@ -173,20 +185,21 @@ classdef cache < handle
 			%
 			% See also: NDI.CACHE/ADD, NDI.CACHE/SET_REPLACEMENT_RULE
 			%
+				disp('DEBUG (freebytes): Start');
 				if nargin > 2,
 					table_plus_new = cat(2,cache_obj.table,newitem);
 				else,
 					table_plus_new = cache_obj.table;
 				end;
 
-				stats = [ [table_plus_new.priority]' [table_plus_new.timestamp]' [table_plus_new.bytes]' ];
-				disp('DEBUG (freebytes): Cache stats before sorting for eviction:');
+				stats = [ [table_plus_new.priority]' [table_plus_new.timestamp]' (1:numel(table_plus_new))' [table_plus_new.bytes]' ];
+				disp('DEBUG (freebytes): Cache stats before sorting for eviction (Priority, Timestamp, Index, Bytes):');
 				disp(stats);
 				thesign = 1;
 				if strcmpi(cache_obj.replacement_rule,'lifo'), 
 					thesign = -1;
 				end
-				[y,i] = sortrows(stats,[1 thesign*2]);
+				[y,i] = sortrows(stats,[1 thesign*2 thesign*3]);
 				disp('DEBUG (freebytes): Sorted indices for eviction:');
 				disp(i');
 				cumulative_memory_saved = cumsum([table_plus_new(i).bytes]);
@@ -200,6 +213,8 @@ classdef cache < handle
 				% we can only remove items that are actually in the cache
 				inds_to_remove = inds_to_remove(find(inds_to_remove<=numel(cache_obj.table)));
 				cache_obj.remove(inds_to_remove,[]);
+				disp('DEBUG (freebytes): End. Cache contents:');
+				disp(cache_obj.table);
 		end
 
 		function tableentry = lookup(cache_obj, key, type)
@@ -218,9 +233,11 @@ classdef cache < handle
 			% priority          | The priority of maintaining the data (higher is better)
 			% bytes             | The size of the data in this entry (bytes)
 			% data              | The data stored
-
+				disp('DEBUG (lookup): Start');
 				index = find ( strcmp(key,{cache_obj.table.key}) & strcmp(type,{cache_obj.table.type}) );
 				tableentry = cache_obj.table(index);
+				disp('DEBUG (lookup): End. Cache contents:');
+				disp(cache_obj.table);
 		end % tableentry
 
 		function b = bytes(cache_obj)
@@ -231,10 +248,13 @@ classdef cache < handle
 			% Return the current memory that is occupied by the table of CACHE_OBJ.
 			%
 			%
+				disp('DEBUG (bytes): Start');
 				b = 0;
 				if numel(cache_obj.table) > 0,
 					b = sum([cache_obj.table.bytes]);
 				end
+				disp('DEBUG (bytes): End. Cache contents:');
+				disp(cache_obj.table);
 		end % bytes
 
 	end % methods
