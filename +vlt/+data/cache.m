@@ -83,16 +83,6 @@ classdef cache < handle
 					error(['This variable is too large to fit in the cache; cache''s maxMemory exceeded.']);
 				end
 
-				total_memory = cache_obj.bytes() + s.bytes;
-				if total_memory > cache_obj.maxMemory, % it doesn't fit
-					if strcmpi(cache_obj.replacement_rule,'error'),
-						error(['Cache is too full too accommodate the new data; error was requested rather than replacement.']);
-					end
-					freespaceneeded = total_memory - cache_obj.maxMemory;
-					cache_obj = cache_obj.freebytes(freespaceneeded, struct('key',key,'type',type,'timestamp',now,'priority',priority,'bytes',s.bytes));
-				end
-
-				% now there's room
 				newentry = vlt.data.emptystruct('key','type','timestamp','priority','bytes','data');
 				newentry(1).key = key;
 				newentry(1).type = type;
@@ -101,6 +91,19 @@ classdef cache < handle
 				newentry(1).bytes = s.bytes;
 				newentry(1).data = data;
 
+				total_memory = cache_obj.bytes() + s.bytes;
+				disp(['DEBUG (add): Current bytes: ' num2str(cache_obj.bytes()) ', New item bytes: ' num2str(s.bytes) ', Total memory: ' num2str(total_memory) ', Max memory: ' num2str(cache_obj.maxMemory)]);
+				if total_memory > cache_obj.maxMemory, % it doesn't fit
+					disp(['DEBUG (add): Memory limit exceeded. Rule: ' cache_obj.replacement_rule]);
+					if strcmpi(cache_obj.replacement_rule,'error'),
+						error(['Cache is too full too accommodate the new data; error was requested rather than replacement.']);
+					end
+					freespaceneeded = total_memory - cache_obj.maxMemory;
+					disp(['DEBUG (add): Freeing ' num2str(freespaceneeded) ' bytes.']);
+					cache_obj = cache_obj.freebytes(freespaceneeded, newentry);
+				end
+
+				% now there's room
 				cache_obj.table(end+1) = newentry;
 		end % add
 
@@ -177,17 +180,23 @@ classdef cache < handle
 				end;
 
 				stats = [ [table_plus_new.priority]' [table_plus_new.timestamp]' [table_plus_new.bytes]' ];
+				disp('DEBUG (freebytes): Cache stats before sorting for eviction:');
+				disp(stats);
 				thesign = 1;
 				if strcmpi(cache_obj.replacement_rule,'lifo'), 
 					thesign = -1;
 				end
 				[y,i] = sortrows(stats,[1 thesign*2]);
+				disp('DEBUG (freebytes): Sorted indices for eviction:');
+				disp(i');
 				cumulative_memory_saved = cumsum([table_plus_new(i).bytes]);
 				spot = find(cumulative_memory_saved>=freebytes,1,'first');
+				disp(['DEBUG (freebytes): Evicting up to index: ' num2str(spot)]);
 				if isempty(spot),
 					error(['did not expect to be here.']);
 				end;
 				inds_to_remove = i(1:spot);
+				disp(['DEBUG (freebytes): Removing keys: ' strjoin({table_plus_new(inds_to_remove).key}, ', ')]);
 				% we can only remove items that are actually in the cache
 				inds_to_remove = inds_to_remove(find(inds_to_remove<=numel(cache_obj.table)));
 				cache_obj.remove(inds_to_remove,[]);
