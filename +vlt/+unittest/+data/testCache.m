@@ -74,5 +74,74 @@ classdef testCache < matlab.unittest.TestCase
             testCase.verifyError(@() c.add('key2', 'type2', rand(1,1)), '');
         end
 
+        function testPriorityEviction(testCase)
+            % Test that high priority items are preserved
+            c = vlt.data.cache(maxMemory=1200000, replacement_rule='fifo');
+            c.add('low_priority_old', 'type', rand(1,500000), 0); % 4MB
+            pause(0.01);
+            c.add('high_priority', 'type', rand(1,500000), 10); % 4MB
+            pause(0.01);
+            c.add('low_priority_new', 'type', rand(1,500000), 0); % 4MB
+
+            % low_priority_old should be gone, high_priority should be preserved
+            testCase.verifyEmpty(c.lookup('low_priority_old','type'));
+            testCase.verifyNotEmpty(c.lookup('high_priority','type'));
+            testCase.verifyNotEmpty(c.lookup('low_priority_new','type'));
+        end
+
+        function testAddingLargeItem(testCase)
+            % Test adding an item that is larger than the cache
+            c = vlt.data.cache(maxMemory=1e6);
+            c.add('small_item', 'type', rand(1,100));
+
+            % This should fail with an error
+            testCase.verifyError(@() c.add('large_item', 'type', rand(1,200000)), '');
+
+            % And the cache should be unchanged
+            testCase.verifyNotEmpty(c.lookup('small_item','type'));
+        end
+
+        function testComplexLifoEviction(testCase)
+            % Test LIFO eviction with multiple small items
+            c = vlt.data.cache(maxMemory=1e6, replacement_rule='lifo');
+            for i=1:10
+                c.add(['small' num2str(i)], 'type', rand(1,10000), i); % 80KB each
+                pause(0.01);
+            end
+            % Cache is now at 800KB
+
+            % Add a large item that will force eviction of several recent items
+            c.add('large_item', 'type', rand(1,50000)); % 400KB
+
+            % The last 4 small items should be gone (4*80KB=320KB needed to make space)
+            testCase.verifyNotEmpty(c.lookup('small6','type'));
+            testCase.verifyEmpty(c.lookup('small7','type'));
+            testCase.verifyEmpty(c.lookup('small8','type'));
+            testCase.verifyEmpty(c.lookup('small9','type'));
+            testCase.verifyEmpty(c.lookup('small10','type'));
+            testCase.verifyNotEmpty(c.lookup('large_item','type'));
+        end
+
+        function testCacheHandles(testCase)
+            % Test caching object handles
+            c = vlt.data.cache(maxMemory=1e6);
+            fig_handle = figure('Visible','off');
+            c.add('myhandle', 'figure', fig_handle);
+
+            retrieved = c.lookup('myhandle','figure');
+            testCase.verifyEqual(retrieved.data, fig_handle);
+
+            % Test default remove (deletes handle)
+            c.remove('myhandle','figure');
+            testCase.verifyFalse(ishandle(fig_handle));
+
+            % Test remove with 'leavehandle'
+            fig_handle2 = figure('Visible','off');
+            c.add('myhandle2', 'figure', fig_handle2);
+            c.remove('myhandle2','figure','leavehandle',1);
+            testCase.verifyTrue(ishandle(fig_handle2));
+            delete(fig_handle2);
+        end
+
     end
 end
