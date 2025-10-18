@@ -77,11 +77,11 @@ classdef testCache < matlab.unittest.TestCase
         function testPriorityEviction(testCase)
             % Test that high priority items are preserved
             c = vlt.data.cache(maxMemory=800000, replacement_rule='fifo');
-            c.add('low_priority_old', 'type', rand(1,50000), 0); % 400KB
+            c.add('low_priority_old', 'type', rand(1,50000), priority=0);
             pause(0.01);
-            c.add('high_priority', 'type', rand(1,50000), 10); % 400KB
+            c.add('high_priority', 'type', rand(1,50000), priority=10);
             pause(0.01);
-            c.add('low_priority_new', 'type', rand(1,50000), 0); % 400KB
+            c.add('low_priority_new', 'type', rand(1,50000), priority=0);
 
             % low_priority_old should be gone, high_priority should be preserved
             testCase.verifyEmpty(c.lookup('low_priority_old','type'));
@@ -105,13 +105,13 @@ classdef testCache < matlab.unittest.TestCase
             % Test LIFO eviction with multiple small items
             c = vlt.data.cache(maxMemory=1e6, replacement_rule='lifo');
             for i=1:10
-                c.add(['small' num2str(i)], 'type', rand(1,10000), i); % 80KB each
+                c.add(['small' num2str(i)], 'type', rand(1,10000), priority=i);
                 pause(0.01);
             end
             % Cache is now at 800KB
 
             % Add a large item that will be rejected because it has the lowest priority
-            c.add('large_item', 'type', rand(1,50000), 0); % 400KB
+            c.add('large_item', 'type', rand(1,50000), priority=0);
 
             % The cache should be unchanged because the new item was not safe to add
             for i=1:10
@@ -136,7 +136,7 @@ classdef testCache < matlab.unittest.TestCase
             % Test remove with 'leavehandle'
             fig_handle2 = figure('Visible','off');
             c.add('myhandle2', 'figure', fig_handle2);
-            c.remove('myhandle2','figure','leavehandle',1);
+            c.remove('myhandle2','figure',leavehandle=1);
             testCase.verifyTrue(ishandle(fig_handle2));
             delete(fig_handle2);
         end
