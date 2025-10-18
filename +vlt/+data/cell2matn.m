@@ -19,10 +19,10 @@ for i=1:numel(c),
 	v = c{i};
 	if ~isempty(v),
 		if ~isnumeric(v),
-			error(['Non-numeric entry encountered in C.']);
+			error('VLT:data:cell2matn:nonNumericEntry','Non-numeric entry encountered in C.');
 		end;
 		if ~isscalar(v),
-			error(['Non-scalar entry encountered in C.']);
+			error('VLT:data:cell2matn:nonScalarEntry','Non-scalar entry encountered in C.');
 		end;
 		m(i) = v;
 	end;
