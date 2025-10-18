@@ -77,11 +77,11 @@ classdef testCache < matlab.unittest.TestCase
         function testPriorityEviction(testCase)
             % Test that high priority items are preserved
             c = vlt.data.cache(maxMemory=1200000, replacement_rule='fifo');
-            c.add('low_priority_old', 'type', rand(1,500000), 0); % 4MB
+            c.add('low_priority_old', 'type', rand(1,50000), 0); % 400KB
             pause(0.01);
-            c.add('high_priority', 'type', rand(1,500000), 10); % 4MB
+            c.add('high_priority', 'type', rand(1,50000), 10); % 400KB
             pause(0.01);
-            c.add('low_priority_new', 'type', rand(1,500000), 0); % 4MB
+            c.add('low_priority_new', 'type', rand(1,50000), 0); % 400KB
 
             % low_priority_old should be gone, high_priority should be preserved
             testCase.verifyEmpty(c.lookup('low_priority_old','type'));
@@ -110,16 +110,14 @@ classdef testCache < matlab.unittest.TestCase
             end
             % Cache is now at 800KB
 
-            % Add a large item that will force eviction of several recent items
-            c.add('large_item', 'type', rand(1,50000)); % 400KB
+            % Add a large item that will be rejected because it has the lowest priority
+            c.add('large_item', 'type', rand(1,50000), 0); % 400KB
 
-            % The last 4 small items should be gone (4*80KB=320KB needed to make space)
-            testCase.verifyNotEmpty(c.lookup('small6','type'));
-            testCase.verifyEmpty(c.lookup('small7','type'));
-            testCase.verifyEmpty(c.lookup('small8','type'));
-            testCase.verifyEmpty(c.lookup('small9','type'));
-            testCase.verifyEmpty(c.lookup('small10','type'));
-            testCase.verifyNotEmpty(c.lookup('large_item','type'));
+            % The cache should be unchanged because the new item was not safe to add
+            for i=1:10
+                testCase.verifyNotEmpty(c.lookup(['small' num2str(i)],'type'));
+            end
+            testCase.verifyEmpty(c.lookup('large_item','type'));
         end
 
         function testCacheHandles(testCase)
