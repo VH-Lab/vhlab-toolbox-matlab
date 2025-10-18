@@ -15,7 +15,7 @@ classdef cache < handle
 
 	methods
 		
-		function cache_obj = cache(varargin)
+		function cache_obj = cache(options)
 			% CACHE - create a new NDI cache handle
 			%
 			% CACHE_OBJ = vlt.data.cache(...)
@@ -31,23 +31,14 @@ classdef cache < handle
 			% Note that the cache is not 'secure', any function can query the data added.
 			%
 			% See also: vlt.data.namevaluepair
+				arguments
+					options.maxMemory (1,1) double = 100e6;
+					options.replacement_rule (1,:) char = 'fifo';
+				end
 
-				maxMemory = 100e6; % 100 MB
-				replacement_rule = 'fifo';
-
-				vlt.data.assign(varargin{:});
-
-				if nargin==0,
-					cache_obj.maxMemory = maxMemory;
-					cache_obj.replacement_rule = replacement_rule;
-					cache_obj.table = vlt.data.emptystruct('key','type','timestamp','priority','bytes','data');
-					return;
-				end;
-
-				cache_obj = vlt.data.cache();
-				cache_obj.maxMemory = maxMemory;
-				cache_obj = set_replacement_rule(cache_obj,replacement_rule);
-
+				cache_obj.maxMemory = options.maxMemory;
+				cache_obj = set_replacement_rule(cache_obj, options.replacement_rule);
+				cache_obj.table = vlt.data.emptystruct('key','type','timestamp','priority','bytes','data');
 		end % cache creator
 
 		function cache_obj = set_replacement_rule(cache_obj, rule)
@@ -183,7 +174,7 @@ classdef cache < handle
 				end
 				[y,i] = sortrows(stats,[1 thesign*2]);
 				cumulative_memory_saved = cumsum([cache_obj.table(i).bytes]);
-				spot = find(cumulative_memory_saved>=freebytes,1,'first'),
+				spot = find(cumulative_memory_saved>=freebytes,1,'first');
 				if isempty(spot),
 					error(['did not expect to be here.']);
 				end;
