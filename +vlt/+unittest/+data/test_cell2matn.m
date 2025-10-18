@@ -23,12 +23,12 @@ classdef test_cell2matn < matlab.unittest.TestCase
 
         function test_non_numeric_error(testCase)
             a = {1, 'hello'; 3, 4};
-            testCase.verifyError(@() vlt.data.cell2matn(a), 'MATLAB:nonNumericEntry');
+            testCase.verifyError(@() vlt.data.cell2matn(a), 'VLT:data:cell2matn:nonNumericEntry');
         end
 
         function test_non_scalar_error(testCase)
             a = {[1 2], 3; 4, 5};
-            testCase.verifyError(@() vlt.data.cell2matn(a), 'MATLAB:nonScalarEntry');
+            testCase.verifyError(@() vlt.data.cell2matn(a), 'VLT:data:cell2matn:nonScalarEntry');
         end
     end
 end
