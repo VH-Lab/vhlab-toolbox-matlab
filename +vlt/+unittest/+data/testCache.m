@@ -8,11 +8,15 @@ classdef testCache < matlab.unittest.TestCase
             testCase.verifyClass(c, 'vlt.data.cache');
             testCase.verifyEqual(c.maxMemory, 100e6);
             testCase.verifyEqual(c.replacement_rule, 'fifo');
+
+            c2 = vlt.data.cache('maxMemory', 5e6, 'replacement_rule', 'lifo');
+            testCase.verifyEqual(c2.maxMemory, 5e6);
+            testCase.verifyEqual(c2.replacement_rule', 'lifo');
         end
 
         function testAddAndLookup(testCase)
             % Test adding and looking up data
-            c = vlt.data.cache(); % Workaround for bug in constructor
+            c = vlt.data.cache('maxMemory', 1e6);
             testData = rand(100,100);
             c.add('mykey', 'mytype', testData);
             retrieved = c.lookup('mykey', 'mytype');
@@ -21,7 +25,7 @@ classdef testCache < matlab.unittest.TestCase
 
         function testRemove(testCase)
             % Test removing data
-            c = vlt.data.cache(); % Workaround for bug in constructor
+            c = vlt.data.cache('maxMemory', 1e6);
             testData = rand(100,100);
             c.add('mykey', 'mytype', testData);
             c.remove('mykey', 'mytype');
@@ -31,7 +35,7 @@ classdef testCache < matlab.unittest.TestCase
 
         function testClear(testCase)
             % Test clearing the cache
-            c = vlt.data.cache(); % Workaround for bug in constructor
+            c = vlt.data.cache('maxMemory', 1e6);
             c.add('mykey1', 'mytype', rand(10,10));
             c.add('mykey2', 'mytype', rand(10,10));
             c.clear();
@@ -40,10 +44,9 @@ classdef testCache < matlab.unittest.TestCase
 
         function testFifoReplacement(testCase)
             % Test FIFO replacement rule
-            c = vlt.data.cache();
-            c = c.set_replacement_rule('fifo');
-            c.add('key1', 'type1', rand(1, 7500000)); % 60 MB
-            c.add('key2', 'type2', rand(1, 7500000)); % 60 MB
+            c = vlt.data.cache('maxMemory', 900000, 'replacement_rule', 'fifo');
+            c.add('key1', 'type1', rand(1,100000)); % 800000 bytes
+            c.add('key2', 'type2', rand(1,100000)); % 800000 bytes
             % key1 should be gone
             retrieved1 = c.lookup('key1', 'type1');
             retrieved2 = c.lookup('key2', 'type2');
@@ -53,11 +56,10 @@ classdef testCache < matlab.unittest.TestCase
 
         function testLifoReplacement(testCase)
             % Test LIFO replacement rule
-            c = vlt.data.cache();
-            c = c.set_replacement_rule('lifo');
-            c.add('key1', 'type1', rand(1, 7500000)); % 60 MB
+            c = vlt.data.cache('maxMemory', 900000, 'replacement_rule', 'lifo');
+            c.add('key1', 'type1', rand(1,100000)); % 800000 bytes
             pause(0.01); % ensure unique timestamps
-            c.add('key2', 'type2', rand(1, 7500000)); % 60 MB
+            c.add('key2', 'type2', rand(1,100000)); % 800000 bytes
             % key2 should be gone
             retrieved1 = c.lookup('key1', 'type1');
             retrieved2 = c.lookup('key2', 'type2');
@@ -67,10 +69,9 @@ classdef testCache < matlab.unittest.TestCase
 
         function testErrorReplacement(testCase)
             % Test error replacement rule
-            c = vlt.data.cache();
-            c = c.set_replacement_rule('error');
-            c.add('key1', 'type1', rand(1, 7500000)); % 60 MB
-            testCase.verifyError(@() c.add('key2', 'type2', rand(1, 7500000)), '');
+            c = vlt.data.cache('maxMemory', 800000, 'replacement_rule', 'error');
+            c.add('key1', 'type1', rand(1,100000)); % 800000 bytes
+            testCase.verifyError(@() c.add('key2', 'type2', rand(1,1)), '');
         end
 
     end

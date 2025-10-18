@@ -44,6 +44,7 @@ classdef cache < handle
 					return;
 				end;
 
+				cache_obj = vlt.data.cache();
 				cache_obj.maxMemory = maxMemory;
 				cache_obj = set_replacement_rule(cache_obj,replacement_rule);
 
