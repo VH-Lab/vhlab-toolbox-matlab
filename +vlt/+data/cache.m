@@ -36,9 +36,9 @@ classdef cache < handle
 					options.replacement_rule (1,:) char = 'fifo';
 				end
 
+				cache_obj.table = vlt.data.emptystruct('key','type','timestamp','priority','bytes','data');
 				cache_obj.maxMemory = options.maxMemory;
 				cache_obj = set_replacement_rule(cache_obj, options.replacement_rule);
-				cache_obj.table = vlt.data.emptystruct('key','type','timestamp','priority','bytes','data');
 		end % cache creator
 
 		function cache_obj = set_replacement_rule(cache_obj, rule)
