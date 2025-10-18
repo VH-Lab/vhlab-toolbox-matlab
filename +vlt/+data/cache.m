@@ -106,11 +106,15 @@ classdef cache < handle
 					end
 					freespaceneeded = total_memory - cache_obj.maxMemory;
 					disp(['DEBUG (add): Freeing ' num2str(freespaceneeded) ' bytes.']);
-					cache_obj = cache_obj.freebytes(freespaceneeded, newentry);
+					[inds_to_remove, is_new_item_safe_to_add] = cache_obj.evaluateItemsForRemoval(freespaceneeded, newentry);
+					if is_new_item_safe_to_add,
+						cache_obj.remove(inds_to_remove,[]);
+						cache_obj.table(end+1) = newentry;
+					end;
+				else,
+					% now there's room
+					cache_obj.table(end+1) = newentry;
 				end
-
-				% now there's room
-				cache_obj.table(end+1) = newentry;
 				disp('DEBUG (add): End. Cache contents:');
 				disp(cache_obj.table);
 		end % add
@@ -172,20 +176,20 @@ classdef cache < handle
 				disp(cache_obj.table);
 		end % clear
 
-		function cache_obj = freebytes(cache_obj, freebytes, newitem)
-			% FREEBYTES - remove the lowest priority entries from the cache to free a certain amount of memory
+		function [inds_to_remove, is_new_item_safe_to_add] = evaluateItemsForRemoval(cache_obj, freebytes, newitem)
+			% EVALUATEITEMSFORREMOVAL - decide which items to remove from the cache to free memory
 			%
-			% CACHE_OBJ = FREEBYTES(CACHE_OBJ, FREEBYTES, [NEWITEM])
+			% [INDS_TO_REMOVE, IS_NEW_ITEM_SAFE_TO_ADD] = EVALUATEITEMSFORREMOVAL(CACHE_OBJ, FREEBYTES, [NEWITEM])
 			%
-			% Remove entries to free at least FREEBYTES memory. Entries will be removed, first by PRIORITY and then by
+			% Decide which entries to remove to free at least FREEBYTES memory. Entries will be removed, first by PRIORITY and then by
 			% the replacement_rule parameter.
 			%
 			% If NEWITEM is provided (a structure with fields 'priority','timestamp','bytes'), it is as if that item
 			% is already in the cache for the purposes of deciding what to remove.
 			%
-			% See also: NDI.CACHE/ADD, NDI.CACHE/SET_REPLACEMENT_RULE
+			% See also: vlt.data.cache/add, vlt.data.cache/set_replacement_rule
 			%
-				disp('DEBUG (freebytes): Start');
+				disp('DEBUG (evaluateItemsForRemoval): Start');
 				if nargin > 2,
 					table_plus_new = cat(2,cache_obj.table,newitem);
 				else,
@@ -193,28 +197,29 @@ classdef cache < handle
 				end;
 
 				stats = [ [table_plus_new.priority]' [table_plus_new.timestamp]' (1:numel(table_plus_new))' [table_plus_new.bytes]' ];
-				disp('DEBUG (freebytes): Cache stats before sorting for eviction (Priority, Timestamp, Index, Bytes):');
+				disp('DEBUG (evaluateItemsForRemoval): Cache stats before sorting for eviction (Priority, Timestamp, Index, Bytes):');
 				disp(stats);
 				thesign = 1;
 				if strcmpi(cache_obj.replacement_rule,'lifo'), 
 					thesign = -1;
 				end
 				[y,i] = sortrows(stats,[1 thesign*2 thesign*3]);
-				disp('DEBUG (freebytes): Sorted indices for eviction:');
+				disp('DEBUG (evaluateItemsForRemoval): Sorted indices for eviction:');
 				disp(i');
 				cumulative_memory_saved = cumsum([table_plus_new(i).bytes]);
 				spot = find(cumulative_memory_saved>=freebytes,1,'first');
-				disp(['DEBUG (freebytes): Evicting up to index: ' num2str(spot)]);
+				disp(['DEBUG (evaluateItemsForRemoval): Evicting up to index: ' num2str(spot)]);
 				if isempty(spot),
 					error(['did not expect to be here.']);
 				end;
-				inds_to_remove = i(1:spot);
-				disp(['DEBUG (freebytes): Removing keys: ' strjoin({table_plus_new(inds_to_remove).key}, ', ')]);
+				inds_to_remove_all = i(1:spot);
+				disp(['DEBUG (evaluateItemsForRemoval): Candidate keys for removal: ' strjoin({table_plus_new(inds_to_remove_all).key}, ', ')]);
+
+				is_new_item_safe_to_add = ~any(inds_to_remove_all==numel(table_plus_new));
+
 				% we can only remove items that are actually in the cache
-				inds_to_remove = inds_to_remove(find(inds_to_remove<=numel(cache_obj.table)));
-				cache_obj.remove(inds_to_remove,[]);
-				disp('DEBUG (freebytes): End. Cache contents:');
-				disp(cache_obj.table);
+				inds_to_remove = inds_to_remove_all(find(inds_to_remove_all<=numel(cache_obj.table)));
+				disp('DEBUG (evaluateItemsForRemoval): End.');
 		end
 
 		function tableentry = lookup(cache_obj, key, type)
