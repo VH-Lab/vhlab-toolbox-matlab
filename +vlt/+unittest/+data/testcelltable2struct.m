@@ -5,7 +5,7 @@ classdef testcelltable2struct < matlab.unittest.TestCase
                   {1, 'a', true}, ...
                   {2, 'b', false} };
             s = vlt.data.celltable2struct(c);
-            expected = struct('col1', {1; 2}, 'col2', {'a'; 'b'}, 'col3', {true; false});
+            expected = struct('col1', {1, 2}, 'col2', {'a', 'b'}, 'col3', {true, false});
             testCase.verifyEqual(s, expected);
         end
 
@@ -13,7 +13,7 @@ classdef testcelltable2struct < matlab.unittest.TestCase
             c = { {'1col', 'col 2', 'col-3'}, ...
                   {1, 'a', true} };
             s = vlt.data.celltable2struct(c);
-            expected = struct('x1col', {1}, 'col_2', {'a'}, 'col_3', {true});
+            expected = struct('x1col', {1}, 'col2', {'a'}, 'col_3', {true});
             testCase.verifyEqual(s, expected);
         end
 
@@ -22,7 +22,7 @@ classdef testcelltable2struct < matlab.unittest.TestCase
                   {1, 'a'}, ...
                   {2} };
             s = vlt.data.celltable2struct(c);
-            expected = struct('col1', {1; 2}, 'col2', {'a'; []}, 'col3', {[]; []});
+            expected = struct('col1', {1, 2}, 'col2', {'a', []}, 'col3', {[], []});
             testCase.verifyEqual(s, expected);
         end
     end
