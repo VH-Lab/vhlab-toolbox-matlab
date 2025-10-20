@@ -45,8 +45,9 @@ classdef test_cellarray2mat < matlab.unittest.TestCase
             c{1} = [1 2];
             c{2} = [3 4; 5 6]; % matrix, not a vector
 
-            % The original function uses a generic error, so we catch the message
-            testCase.verifyError(@() vlt.data.cellarray2mat(c), 'MATLAB:UndefinedFunction', ...
+            % The original function uses a generic error without a specific ID,
+            % so we catch any error by expecting an empty error ID.
+            testCase.verifyError(@() vlt.data.cellarray2mat(c), '', ...
                 'The function should throw an error for non-vector cell entries.');
         end
 
@@ -54,8 +55,9 @@ classdef test_cellarray2mat < matlab.unittest.TestCase
             % Test that the function errors if the input C is not a vector
             c = {[1 2], [3 4]; [5 6], [7 8]}; % 2x2 cell array
 
-            % The original function uses a generic error, so we catch the message
-            testCase.verifyError(@() vlt.data.cellarray2mat(c), 'MATLAB:UndefinedFunction', ...
+            % The original function uses a generic error without a specific ID,
+            % so we catch any error by expecting an empty error ID.
+            testCase.verifyError(@() vlt.data.cellarray2mat(c), '', ...
                 'The function should throw an error for non-vector cell array inputs.');
         end
 
