@@ -83,7 +83,7 @@ classdef test_columnize_struct < matlab.unittest.TestCase
 
             % The getfield on s_out.b will return multiple outputs,
             % causing isstruct to fail.
-            testCase.verifyError(@() vlt.data.columnize_struct(s_in), '');
+            testCase.verifyError(@() vlt.data.columnize_struct(s_in), 'MATLAB:scalarStrucRequired');
         end
 
     end
