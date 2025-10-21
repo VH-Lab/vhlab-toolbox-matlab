@@ -35,8 +35,8 @@ num_simulations = options.num_simulations;
 sample1 = randn(1, n_samples);
 sample2 = randn(1, n_samples);
 
-% --- 3. Run Power Analysis using 'corr' (Standard t-test based) ---
-disp("Running power analysis using 'corr' (standard t-test based)...");
+% --- 3. Run Power Analysis using 'corrcoef' (Standard t-test based) ---
+disp("Running power analysis using 'corrcoef' (standard t-test based)...");
 p_corr = vlt.stats.power.power2corrcoef(sample1, sample2, correlations, ...
     'test', 'corrcoef', ...
     'numSimulations', num_simulations, ...
