@@ -8,7 +8,7 @@ function b = dropnan(a)
 %
 
 arguments
-    a {mustBeNumeric, mustBeVector}
+    a {mustBeNumeric, vlt.validators.mustBeVectorOrEmpty}
 end
 
 g = ~isnan(a);

@@ -44,7 +44,7 @@ classdef test_dropnan < matlab.unittest.TestCase
         function test_matrix_input_error(testCase)
             % Test that a matrix input throws an error
             a = [1 2; 3 4];
-            testCase.verifyError(@() vlt.data.dropnan(a), 'MATLAB:validation:mustBeVector', 'A matrix input did not throw the expected error.');
+            testCase.verifyError(@() vlt.data.dropnan(a), 'vlt:validators:mustBeVectorOrEmpty', 'A matrix input did not throw the expected error.');
         end
     end
 end
