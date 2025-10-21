@@ -66,6 +66,28 @@ classdef testpower2sample < matlab.unittest.TestCase
             end
         end
 
+        function test_power2sample_pairedTTest(testCase)
+            % Test pairedTTest functionality of power2sample
+
+            sample1 = randn(1, 20);
+            sample2 = randn(1, 20);
+            % Add some NaNs to test NaN handling
+            sample1(1) = NaN;
+            sample2(5) = NaN;
+
+            differences = [0 1];
+
+            % Test pairedTTest
+            p_pairedTTest = vlt.stats.power2sample(sample1, sample2, differences, 'test', 'pairedTTest', 'numSimulations', 100);
+            testCase.verifyEqual(numel(p_pairedTTest), numel(differences), 'Output size mismatch for pairedTTest');
+            testCase.verifyGreaterThanOrEqual(p_pairedTTest(2), p_pairedTTest(1), 'Power should be monotonic for pairedTTest');
+
+            % Test error for unequal sample sizes
+            sample3 = randn(1,19);
+            % The custom error doesn't have a specific ID, so expect a generic one ('')
+            testCase.verifyError(@() vlt.stats.power2sample(sample1, sample3, differences, 'test', 'pairedTTest'),'');
+        end
+
     end
 
 end
