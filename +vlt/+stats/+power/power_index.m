@@ -1,7 +1,7 @@
 function N = power_index(mn, stddev, change, G, conf)
 % POWER_INDEX - Compute the number of observations needed to find a change
 %
-%  N = vlt.stats.power_index(MN, STDDEV, CHANGE, G, CONF)
+%  N = vlt.stats.power.power_index(MN, STDDEV, CHANGE, G, CONF)
 %
 %  Uses Monte Carlo techniques to estimate number of samples needed to
 %  see a change of size CHANGE from a mean of MN across G groups,
