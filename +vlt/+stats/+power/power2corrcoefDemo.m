@@ -1,16 +1,32 @@
-function power2corrcoefDemo()
+function power2corrcoefDemo(options)
 % POWER2CORRCOEFDEMO - Demonstrates the vlt.stats.power.power2corrcoef function
+%
+%   POWER2CORRCOEFDEMO(..., 'NAME', VALUE)
 %
 %   Calculates and plots the power of a correlation test for a range of
 %   correlation coefficients using simulated data.
+%
+%   Optional Name-Value Pairs:
+%   - 'n_samples' (integer > 0): Number of data points in each sample.
+%     Default is 30.
+%   - 'correlations' (vector): Range of correlations to test.
+%     Default is -1:0.1:1.
+%   - 'num_simulations' (integer > 0): Number of simulations per correlation value.
+%     Default is 500.
 %
 %   See also: VLT.STATS.POWER.POWER2CORRCOEF
 %
 
 % --- 1. Define Simulation Parameters ---
-n_samples = 30;         % Number of data points in each sample
-correlations = -1:0.1:1; % Range of correlations to test
-num_simulations = 500;  % Number of simulations per correlation value (lower for faster demo)
+arguments
+    options.n_samples (1,1) double {mustBeInteger, mustBeGreaterThan(options.n_samples,0)} = 30
+    options.correlations (1,:) double {mustBeGreaterThanOrEqual(options.correlations,-1), mustBeLessThanOrEqual(options.correlations,1)} = -1:0.1:1
+    options.num_simulations (1,1) double {mustBeInteger, mustBeGreaterThan(options.num_simulations,0)} = 500
+end
+
+n_samples = options.n_samples;
+correlations = options.correlations;
+num_simulations = options.num_simulations;
 
 % --- 2. Generate Sample Data ---
 % Create two independent, normally distributed datasets.
@@ -19,13 +35,12 @@ num_simulations = 500;  % Number of simulations per correlation value (lower for
 sample1 = randn(1, n_samples);
 sample2 = randn(1, n_samples);
 
-% --- 3. Run Power Analysis using 'corrcoef' (Standard t-test based) ---
-disp("Running power analysis using 'corrcoef' (standard t-test based)...");
+% --- 3. Run Power Analysis using 'corr' (Standard t-test based) ---
+disp("Running power analysis using 'corr' (standard t-test based)...");
 p_corr = vlt.stats.power.power2corrcoef(sample1, sample2, correlations, ...
     'test', 'corrcoef', ...
     'numSimulations', num_simulations, ...
-    'plot', true, ...
-    'titleText', "Power of Standard Correlation Test (corrcoef)", ...
+    'plot', false, ...
     'verbose', true);
 
 % --- 4. Run Power Analysis using 'corrcoefResample' (Permutation test) ---
@@ -36,8 +51,7 @@ p_resample = vlt.stats.power.power2corrcoef(sample1, sample2, correlations, ...
     'test', 'corrcoefResample', ...
     'numSimulations', num_simulations, ...
     'resampleNum', 500, ... % Lower for faster demo
-    'plot', true, ...
-    'titleText', "Power of Resampled Correlation Test (corrcoefResample)", ...
+    'plot', false, ...
     'verbose', true);
 
 % --- 5. Plot Both Results on a Single Figure for Comparison ---

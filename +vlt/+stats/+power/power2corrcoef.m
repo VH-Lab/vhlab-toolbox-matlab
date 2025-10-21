@@ -21,10 +21,10 @@ function p = power2corrcoef(sample1, sample2, correlations, options)
 %   - CORRELATIONS: A vector of target correlation coefficients to examine.
 %
 %   Optional Name-Value Pairs:
-%   - 'test' ('corr' | 'corrcoefResample'): The statistical test to use.
-%     'corr' uses MATLAB's built-in `corr` function (t-test based).
+%   - 'test' ('corrcoef' | 'corrcoefResample'): The statistical test to use.
+%     'corrcoef' uses MATLAB's built-in `corr` function (t-test based).
 %     'corrcoefResample' uses `vlt.stats.corrcoefResample` for a permutation-based test.
-%     Default is 'corr'.
+%     Default is 'corrcoef'.
 %   - 'alpha' (0 < alpha < 1): The significance level. Default is 0.05.
 %   - 'numSimulations' (integer > 0): The number of simulations. Default is 1000.
 %   - 'resampleNum' (integer > 0): Number of resamples for 'corrcoefResample'. Default is 1000.
@@ -51,7 +51,7 @@ arguments
     sample1 (1,:) double
     sample2 (1,:) double
     correlations (1,:) double {mustBeGreaterThanOrEqual(correlations,-1), mustBeLessThanOrEqual(correlations,1)}
-    options.test {mustBeMember(options.test,{'corr','corrcoefResample'})} = 'corr'
+    options.test {mustBeMember(options.test,{'corrcoef','corrcoefResample'})} = 'corrcoef'
     options.alpha (1,1) double {mustBeGreaterThan(options.alpha,0), mustBeLessThan(options.alpha,1)} = 0.05
     options.numSimulations (1,1) double {mustBeInteger, mustBeGreaterThan(options.numSimulations,0)} = 1000
     options.resampleNum (1,1) double {mustBeInteger, mustBeGreaterThan(options.resampleNum,0)} = 1000
@@ -81,7 +81,7 @@ for i = 1:numel(correlations)
         % Perform the statistical test
         p_val = NaN;
         switch options.test
-            case 'corr'
+            case 'corrcoef'
                 [~, p_val_matrix] = corr([sim_sample1 sim_sample2]);
                 p_val = p_val_matrix(1,2);
             case 'corrcoefResample'
