@@ -1,4 +1,4 @@
-function p = power2sample(sample1, sample2, differences, varargin)
+function p = power2sample(sample1, sample2, differences, options)
 % VLT.STATS.POWER2SAMPLE - Calculate statistical power for a 2-sample test by simulation
 %
 %   P = VLT.STATS.POWER2SAMPLE(SAMPLE1, SAMPLE2, DIFFERENCES, ...)
@@ -35,9 +35,9 @@ arguments
     sample1 (1,:) double
     sample2 (1,:) double
     differences (1,:) double
-    varargin.test {mustBeMember(varargin.test,{'ttest2','kstest2','ranksum'})} = 'ttest2'
-    varargin.alpha (1,1) double {mustBeGreaterThan(varargin.alpha,0), mustBeLessThan(varargin.alpha,1)} = 0.05
-    varargin.numSimulations (1,1) double {mustBeInteger, mustBeGreaterThan(varargin.numSimulations,0)} = 10000
+    options.test {mustBeMember(options.test,{'ttest2','kstest2','ranksum'})} = 'ttest2'
+    options.alpha (1,1) double {mustBeGreaterThan(options.alpha,0), mustBeLessThan(options.alpha,1)} = 0.05
+    options.numSimulations (1,1) double {mustBeInteger, mustBeGreaterThan(options.numSimulations,0)} = 10000
 end
 
 p = zeros(size(differences));
@@ -49,7 +49,7 @@ n_total = n1 + n2;
 for i = 1:numel(differences)
     disp(['Running difference ' int2str(i) ' of ' int2str(numel(differences)) '.']);
     significant_count = 0;
-    for j = 1:varargin.numSimulations
+    for j = 1:options.numSimulations
         % Shuffle the data
         shuffled_indices = randperm(n_total);
         shuffled_data = combined_samples(shuffled_indices);
@@ -58,20 +58,20 @@ for i = 1:numel(differences)
         shuffled_sample2 = shuffled_data(n1+1:end) + differences(i);
 
         % Perform the test
-        switch varargin.test
+        switch options.test
             case 'ttest2'
-                [~, p_val] = ttest2(shuffled_sample1, shuffled_sample2, 'alpha', varargin.alpha);
+                [~, p_val] = ttest2(shuffled_sample1, shuffled_sample2, 'alpha', options.alpha);
             case 'kstest2'
-                [~, p_val] = kstest2(shuffled_sample1, shuffled_sample2, 'alpha', varargin.alpha);
+                [~, p_val] = kstest2(shuffled_sample1, shuffled_sample2, 'alpha', options.alpha);
             case 'ranksum'
-                p_val = ranksum(shuffled_sample1, shuffled_sample2, 'alpha', varargin.alpha);
+                p_val = ranksum(shuffled_sample1, shuffled_sample2, 'alpha', options.alpha);
         end
 
-        if p_val < varargin.alpha
+        if p_val < options.alpha
             significant_count = significant_count + 1;
         end
     end
-    p(i) = significant_count / varargin.numSimulations;
+    p(i) = significant_count / options.numSimulations;
 end
 
 end
