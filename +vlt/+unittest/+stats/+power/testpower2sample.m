@@ -31,30 +31,30 @@ classdef testpower2sample < matlab.unittest.TestCase
 
             sample1 = randn(1, 15);
             sample2 = randn(1, 15);
-            differences = [0 1];
+            differences = [0 0.5 1.0 1.5];
 
             % Test ttest2
-            p_ttest = vlt.stats.power.power2sample(sample1, sample2, differences, 'test', 'ttest2', 'numSimulations', 100, 'plot', false);
+            p_ttest = vlt.stats.power.power2sample(sample1, sample2, differences, 'test', 'ttest2', 'numSimulations', 100, 'plot', false, 'verbose', false);
             testCase.verifyEqual(numel(p_ttest), numel(differences), 'Output size mismatch for ttest2');
-            testCase.verifyGreaterThanOrEqual(p_ttest(2), p_ttest(1), 'Power should be monotonic for ttest2');
+            testCase.verifyGreaterThanOrEqual(p_ttest(end), p_ttest(1), 'Power should be monotonic for ttest2');
 
             % Test kstest2
-            p_kstest = vlt.stats.power.power2sample(sample1, sample2, differences, 'test', 'kstest2', 'numSimulations', 100, 'plot', false);
+            p_kstest = vlt.stats.power.power2sample(sample1, sample2, differences, 'test', 'kstest2', 'numSimulations', 100, 'plot', false, 'verbose', false);
             testCase.verifyEqual(numel(p_kstest), numel(differences), 'Output size mismatch for kstest2');
-            testCase.verifyGreaterThanOrEqual(p_kstest(2), p_kstest(1), 'Power should be monotonic for kstest2');
+            testCase.verifyGreaterThanOrEqual(p_kstest(end), p_kstest(1), 'Power should be monotonic for kstest2');
 
             % Test ranksum
-            p_ranksum = vlt.stats.power.power2sample(sample1, sample2, differences, 'test', 'ranksum', 'numSimulations', 100, 'plot', false);
+            p_ranksum = vlt.stats.power.power2sample(sample1, sample2, differences, 'test', 'ranksum', 'numSimulations', 100, 'plot', false, 'verbose', false);
             testCase.verifyEqual(numel(p_ranksum), numel(differences), 'Output size mismatch for ranksum');
-            testCase.verifyGreaterThanOrEqual(p_ranksum(2), p_ranksum(1), 'Power should be monotonic for ranksum');
+            testCase.verifyGreaterThanOrEqual(p_ranksum(end), p_ranksum(1), 'Power should be monotonic for ranksum');
         end
 
         function test_power2sample_demo(testCase)
             % Test if the demo runs without error
-            testCase.verifyWarningFree(@() vlt.stats.power.power2sampleDemo());
-            testCase.verifyWarningFree(@() vlt.stats.power.power2sampleDemo('numSamples1', 10, 'numSamples2', 20));
-            testCase.verifyWarningFree(@() vlt.stats.power.power2sampleDemo('sampleStdDev', 2.0));
-            testCase.verifyWarningFree(@() vlt.stats.power.power2sampleDemo('differences', [0 0.5 1]));
+            testCase.verifyWarningFree(@() vlt.stats.power.power2sampleDemo('verbose',false));
+            testCase.verifyWarningFree(@() vlt.stats.power.power2sampleDemo('numSamples1', 10, 'numSamples2', 20, 'verbose',false));
+            testCase.verifyWarningFree(@() vlt.stats.power.power2sampleDemo('sampleStdDev', 2.0, 'verbose',false));
+            testCase.verifyWarningFree(@() vlt.stats.power.power2sampleDemo('differences', [0 0.5 1], 'verbose',false));
         end
 
         function test_power2sample_pairedTTest(testCase)
@@ -66,17 +66,17 @@ classdef testpower2sample < matlab.unittest.TestCase
             sample1(1) = NaN;
             sample2(5) = NaN;
 
-            differences = [0 1];
+            differences = [0 0.5 1.0 1.5];
 
             % Test pairedTTest
-            p_pairedTTest = vlt.stats.power.power2sample(sample1, sample2, differences, 'test', 'pairedTTest', 'numSimulations', 100, 'plot', false);
+            p_pairedTTest = vlt.stats.power.power2sample(sample1, sample2, differences, 'test', 'pairedTTest', 'numSimulations', 100, 'plot', false, 'verbose', false);
             testCase.verifyEqual(numel(p_pairedTTest), numel(differences), 'Output size mismatch for pairedTTest');
-            testCase.verifyGreaterThanOrEqual(p_pairedTTest(2), p_pairedTTest(1), 'Power should be monotonic for pairedTTest');
+            testCase.verifyGreaterThanOrEqual(p_pairedTTest(end), p_pairedTTest(1), 'Power should be monotonic for pairedTTest');
 
             % Test error for unequal sample sizes
             sample3 = randn(1,19);
             % The custom error doesn't have a specific ID, so expect a generic one ('')
-            testCase.verifyError(@() vlt.stats.power.power2sample(sample1, sample3, differences, 'test', 'pairedTTest', 'plot', false),'');
+            testCase.verifyError(@() vlt.stats.power.power2sample(sample1, sample3, differences, 'test', 'pairedTTest', 'plot', false, 'verbose', false),'');
         end
 
         function test_power2sample_plot_and_verbose_options(testCase)
@@ -84,7 +84,7 @@ classdef testpower2sample < matlab.unittest.TestCase
 
             sample1 = randn(1, 10);
             sample2 = randn(1, 10);
-            differences = [0 1];
+            differences = [0 0.5 1.0 1.5];
 
             % 1. Test plot=true (default) and custom labels
             custom_title = "My Custom Title";
@@ -92,7 +92,7 @@ classdef testpower2sample < matlab.unittest.TestCase
             custom_ylabel = "Y Axis";
 
             vlt.stats.power.power2sample(sample1, sample2, differences, 'numSimulations', 10, ...
-                'titleText', custom_title, 'xLabel', custom_xlabel, 'yLabel', custom_ylabel);
+                'titleText', custom_title, 'xLabel', custom_xlabel, 'yLabel', custom_ylabel, 'verbose', false);
 
             current_figs = findall(0, 'Type', 'figure');
             new_fig = setdiff(current_figs, testCase.InitialFigures);
@@ -105,7 +105,7 @@ classdef testpower2sample < matlab.unittest.TestCase
             testCase.verifyEqual(ax.YLabel.String, char(custom_ylabel), 'Custom ylabel was not set correctly.');
 
             % 2. Test plot=false
-            vlt.stats.power.power2sample(sample1, sample2, differences, 'numSimulations', 10, 'plot', false);
+            vlt.stats.power.power2sample(sample1, sample2, differences, 'numSimulations', 10, 'plot', false, 'verbose', false);
             current_figs_after_no_plot = findall(0, 'Type', 'figure');
             new_figs_after_no_plot = setdiff(current_figs_after_no_plot, current_figs);
             testCase.verifyEmpty(new_figs_after_no_plot, 'No new figure should be created when plot is false.');

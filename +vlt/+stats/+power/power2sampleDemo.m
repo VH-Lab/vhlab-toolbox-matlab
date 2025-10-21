@@ -15,6 +15,7 @@ function power2sampleDemo(options)
 %   'numSamples2' (default 20) : number of samples in sample 2
 %   'sampleStdDev' (default 1) : The standard deviation of the samples.
 %   'differences' (default [0:0.1:2]) : The differences to test.
+%   'verbose' (default true) : should we be verbose?
 %
 %   Example:
 %     vlt.stats.power.power2sampleDemo();
@@ -34,6 +35,7 @@ arguments
     options.numSamples2 (1,1) double {mustBeInteger, mustBeGreaterThan(options.numSamples2,0)} = 20
     options.sampleStdDev (1,1) double {mustBeGreaterThanOrEqual(options.sampleStdDev,0)} = 1
     options.differences (1,:) double = 0:0.1:2
+    options.verbose (1,1) logical = true
 end
 
 % Generate some data
@@ -42,7 +44,7 @@ sample2 = options.sampleStdDev * randn(1, options.numSamples2);
 sd = std([sample1 sample2]); % pooled standard deviation
 
 % Calculate power using vlt.stats.power.power2sample
-p_simulated = vlt.stats.power.power2sample(sample1, sample2, options.differences, 'test', 'ttest2', 'plot', false);
+p_simulated = vlt.stats.power.power2sample(sample1, sample2, options.differences, 'test', 'ttest2', 'plot', false, 'verbose', options.verbose);
 
 % Calculate theoretical power using sampsizepwr
 n_smaller = min(options.numSamples1, options.numSamples2);
