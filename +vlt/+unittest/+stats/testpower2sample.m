@@ -88,6 +88,45 @@ classdef testpower2sample < matlab.unittest.TestCase
             testCase.verifyError(@() vlt.stats.power2sample(sample1, sample3, differences, 'test', 'pairedTTest'),'');
         end
 
+        function test_power2sample_plot_and_verbose_options(testCase)
+            % Test plotting and verbose options
+
+            sample1 = randn(1, 10);
+            sample2 = randn(1, 10);
+            differences = [0 1];
+
+            % 1. Test plot=true (default) and custom labels
+            initial_figs = findall(0, 'Type', 'figure');
+            custom_title = "My Custom Title";
+            custom_xlabel = "X Axis";
+            custom_ylabel = "Y Axis";
+
+            vlt.stats.power2sample(sample1, sample2, differences, 'numSimulations', 10, ...
+                'titleText', custom_title, 'xLabel', custom_xlabel, 'yLabel', custom_ylabel);
+
+            current_figs = findall(0, 'Type', 'figure');
+            new_fig = setdiff(current_figs, initial_figs);
+            testCase.verifyNumElements(new_fig, 1, 'A new figure should have been created.');
+
+            % Verify title and labels
+            ax = get(new_fig, 'CurrentAxes');
+            testCase.verifyEqual(ax.Title.String, custom_title, 'Custom title was not set correctly.');
+            testCase.verifyEqual(ax.XLabel.String, custom_xlabel, 'Custom xlabel was not set correctly.');
+            testCase.verifyEqual(ax.YLabel.String, custom_ylabel, 'Custom ylabel was not set correctly.');
+
+            % Clean up the figure
+            close(new_fig);
+
+            % 2. Test plot=false
+            initial_figs = findall(0, 'Type', 'figure');
+            vlt.stats.power2sample(sample1, sample2, differences, 'numSimulations', 10, 'plot', false);
+            current_figs = findall(0, 'Type', 'figure');
+            new_figs = setdiff(current_figs, initial_figs);
+            testCase.verifyEmpty(new_figs, 'No new figure should be created when plot is false.');
+
+            % No need to test verbose, as it only affects command window output.
+        end
+
     end
 
 end

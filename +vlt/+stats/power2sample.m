@@ -17,6 +17,11 @@ function p = power2sample(sample1, sample2, differences, options)
 %     before the test is run.
 %   - 'alpha' (0 < alpha < 1): The significance level. Default is 0.05.
 %   - 'numSimulations' (integer > 0): The number of simulations. Default is 10000.
+%   - 'verbose' (logical): If true, displays progress. Default is true.
+%   - 'plot' (logical): If true, plots the power curve. Default is true.
+%   - 'titleText' (string): The title for the plot.
+%   - 'xLabel' (string): The x-axis label for the plot.
+%   - 'yLabel' (string): The y-axis label for the plot.
 %
 %   Output:
 %   - P: A vector the same size as DIFFERENCES, indicating the fraction of
@@ -28,10 +33,6 @@ function p = power2sample(sample1, sample2, differences, options)
 %     sample2 = randn(1, 10);
 %     differences = 0:0.1:1;
 %     p = vlt.stats.power2sample(sample1, sample2, differences, 'test', 'ttest2');
-%     figure;
-%     plot(differences, p);
-%     xlabel('Difference');
-%     ylabel('Power');
 %
 %   Example:
 %     % Load data from an Excel file and calculate power
@@ -50,6 +51,11 @@ arguments
     options.test {mustBeMember(options.test,{'ttest2','kstest2','ranksum','pairedTTest'})} = 'ttest2'
     options.alpha (1,1) double {mustBeGreaterThan(options.alpha,0), mustBeLessThan(options.alpha,1)} = 0.05
     options.numSimulations (1,1) double {mustBeInteger, mustBeGreaterThan(options.numSimulations,0)} = 10000
+    options.verbose (1,1) logical = true
+    options.plot (1,1) logical = true
+    options.titleText (1,1) string = "Power Analysis"
+    options.xLabel (1,1) string = "Difference"
+    options.yLabel (1,1) string = "Power"
 end
 
 p = zeros(size(differences));
@@ -60,7 +66,9 @@ if strcmp(options.test, 'pairedTTest')
     end
     n = numel(sample1);
     for i = 1:numel(differences)
-        disp(['Running difference ' int2str(i) ' of ' int2str(numel(differences)) '.']);
+        if options.verbose
+            disp(['Running difference ' int2str(i) ' of ' int2str(numel(differences)) '.']);
+        end
         significant_count = 0;
         for j = 1:options.numSimulations
             % Permutation within pairs
@@ -97,7 +105,9 @@ else % Existing logic for independent samples
     n_total = n1 + n2;
 
     for i = 1:numel(differences)
-        disp(['Running difference ' int2str(i) ' of ' int2str(numel(differences)) '.']);
+        if options.verbose
+            disp(['Running difference ' int2str(i) ' of ' int2str(numel(differences)) '.']);
+        end
         significant_count = 0;
         for j = 1:options.numSimulations
             % Shuffle the data
@@ -123,6 +133,16 @@ else % Existing logic for independent samples
         end
         p(i) = significant_count / options.numSimulations;
     end
+end
+
+if options.plot
+    figure;
+    plot(differences, p, 'bo');
+    box off;
+    title(options.titleText);
+    xlabel(options.xLabel);
+    ylabel(options.yLabel);
+    legend('Simulated Power');
 end
 
 end
