@@ -86,7 +86,7 @@ for i = 1:numel(correlations)
                 p_val = p_val_matrix(1,2);
             case 'corrcoefResample'
                 [~, ~, percentile] = vlt.stats.corrcoefResample(sim_sample1, sim_sample2, options.resampleNum);
-                p_val = 2 * min(percentile, 1 - percentile);
+                p_val = 2 * min(percentile/100, 1 - percentile/100);
         end
 
         if ~isnan(p_val) && p_val < options.alpha
