@@ -16,13 +16,12 @@ classdef test_emptytable < matlab.unittest.TestCase
 
             % need to check variable types
             varTypes = t.Properties.VariableTypes;
-            testCase.verifyEqual(varTypes, cellstr(types')); % Note: MATLAB returns this as a column
+            testCase.verifyEqual(varTypes, cellstr(types));
 		end
 
-		function test_empty_call(testCase)
-			% test calling with no arguments
-			t = vlt.data.emptytable();
-			testCase.verifyEqual(size(t),[0 0]);
+		function test_empty_call_error(testCase)
+			% test calling with no arguments throws an error as expected
+			testCase.verifyError(@() vlt.data.emptytable(), 'MATLAB:table:InvalidVarNames');
 		end
 
     end
