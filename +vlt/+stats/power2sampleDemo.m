@@ -43,13 +43,14 @@ p_theoretical = sampsizepwr('t2', [mean(sample1) sd], mean(sample1) + difference
 
 % Plot the results
 figure;
-plot(differences, p_simulated, 'b-o', 'DisplayName', 'Simulated Power');
+plot(differences, p_simulated, 'bo', 'DisplayName', 'Simulated Power');
 hold on;
 plot(differences, p_theoretical, 'r--', 'DisplayName', 'Theoretical Power');
 xlabel('Difference between means');
 ylabel('Power');
 title(['Simulated vs. Theoretical Power, N1=' int2str(options.numSamples1) ', N2=' int2str(options.numSamples2)]);
 legend('show');
+box off;
 grid on;
 
 end

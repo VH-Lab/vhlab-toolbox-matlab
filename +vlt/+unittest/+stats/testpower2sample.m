@@ -40,6 +40,14 @@ classdef testpower2sample < matlab.unittest.TestCase
             catch e
                 testCase.verifyFail(['The demo function failed with error: ' e.message]);
             end
+
+            try
+                vlt.stats.power2sampleDemo('numSamples1', 10, 'numSamples2', 20);
+                % Close the figure created by the demo
+                close(gcf);
+            catch e
+                testCase.verifyFail(['The demo function failed with error on unequal samples: ' e.message]);
+            end
         end
 
     end
