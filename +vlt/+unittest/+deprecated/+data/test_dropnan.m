@@ -31,15 +31,13 @@ classdef test_dropnan < matlab.unittest.TestCase
             % Test with a vector containing only NaNs
             a = [NaN NaN NaN];
             b = dropnan(a);
-            expected = [];
-            testCase.verifyEqual(b, expected, 'The vector was not empty after dropping all NaNs.');
+            testCase.verifyTrue(isempty(b), 'The vector was not empty after dropping all NaNs.');
         end
 
-        function test_empty_input(testCase)
-            % Test with an empty vector
+        function test_empty_input_error(testCase)
+            % Test that an empty vector input throws an error
             a = [];
-            b = dropnan(a);
-            testCase.verifyEqual(b, a, 'The empty vector was unexpectedly changed.');
+            testCase.verifyError(@() dropnan(a), '', 'An empty vector input did not throw the expected error.');
         end
 
         function test_matrix_input_error(testCase)
