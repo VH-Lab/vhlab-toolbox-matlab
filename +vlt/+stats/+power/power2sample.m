@@ -1,7 +1,7 @@
 function p = power2sample(sample1, sample2, differences, options)
-% VLT.STATS.POWER2SAMPLE - Calculate statistical power for a 2-sample test by simulation
+% VLT.STATS.POWER.POWER2SAMPLE - Calculate statistical power for a 2-sample test by simulation
 %
-%   P = VLT.STATS.POWER2SAMPLE(SAMPLE1, SAMPLE2, DIFFERENCES, ...)
+%   P = VLT.STATS.POWER.POWER2SAMPLE(SAMPLE1, SAMPLE2, DIFFERENCES, ...)
 %
 %   Calculates the statistical power of a 2-sample test by simulation.
 %
@@ -32,7 +32,7 @@ function p = power2sample(sample1, sample2, differences, options)
 %     sample1 = randn(1, 10);
 %     sample2 = randn(1, 10);
 %     differences = 0:0.1:1;
-%     p = vlt.stats.power2sample(sample1, sample2, differences, 'test', 'ttest2');
+%     p = vlt.stats.power.power2sample(sample1, sample2, differences, 'test', 'ttest2');
 %
 %   Example:
 %     % Load data from an Excel file and calculate power
@@ -41,7 +41,7 @@ function p = power2sample(sample1, sample2, differences, options)
 %     sample1 = T.("Sample 1");
 %     sample2 = T.("Sample 2");
 %     differences = 0:0.1:1;
-%     p = vlt.stats.power2sample(sample1, sample2, differences, 'test', 'ttest2');
+%     p = vlt.stats.power.power2sample(sample1, sample2, differences, 'test', 'ttest2');
 %
 
 arguments

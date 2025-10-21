@@ -1,10 +1,10 @@
 function power2sampleDemo(options)
-% VLT.STATS.POWER2SAMPLEDEMO - Demonstrate the vlt.stats.power2sample function
+% VLT.STATS.POWER.POWER2SAMPLEDEMO - Demonstrate the vlt.stats.power.power2sample function
 %
-%   VLT.STATS.POWER2SAMPLEDEMO()
+%   VLT.STATS.POWER.POWER2SAMPLEDEMO()
 %
-%   Demonstrates the usage of the vlt.stats.power2sample function.
-%   It compares the simulated power from vlt.stats.power2sample with the
+%   Demonstrates the usage of the vlt.stats.power.power2sample function.
+%   It compares the simulated power from vlt.stats.power.power2sample with the
 %   theoretical power calculated by MATLAB's 'sampsizepwr' function for a
 %   two-sample t-test.
 %
@@ -17,16 +17,16 @@ function power2sampleDemo(options)
 %   'differences' (default [0:0.1:2]) : The differences to test.
 %
 %   Example:
-%     vlt.stats.power2sampleDemo();
+%     vlt.stats.power.power2sampleDemo();
 %
 %   Example:
-%     vlt.stats.power2sampleDemo('numSamples1',50,'numSamples2',50);
+%     vlt.stats.power.power2sampleDemo('numSamples1',50,'numSamples2',50);
 %
 %   Example:
-%     vlt.stats.power2sampleDemo('numSamples1',50,'numSamples2',10,'sampleStdDev',20)
+%     vlt.stats.power.power2sampleDemo('numSamples1',50,'numSamples2',10,'sampleStdDev',20)
 %
 %   Example:
-%     vlt.stats.power2sampleDemo('numSamples1',50,'numSamples2',10,'sampleStdDev',20,'differences',[0:1:5])
+%     vlt.stats.power.power2sampleDemo('numSamples1',50,'numSamples2',10,'sampleStdDev',20,'differences',[0:1:5])
 %
 
 arguments
@@ -41,8 +41,8 @@ sample1 = options.sampleStdDev * randn(1, options.numSamples1);
 sample2 = options.sampleStdDev * randn(1, options.numSamples2);
 sd = std([sample1 sample2]); % pooled standard deviation
 
-% Calculate power using vlt.stats.power2sample
-p_simulated = vlt.stats.power2sample(sample1, sample2, options.differences, 'test', 'ttest2');
+% Calculate power using vlt.stats.power.power2sample
+p_simulated = vlt.stats.power.power2sample(sample1, sample2, options.differences, 'test', 'ttest2');
 
 % Calculate theoretical power using sampsizepwr
 n_smaller = min(options.numSamples1, options.numSamples2);
