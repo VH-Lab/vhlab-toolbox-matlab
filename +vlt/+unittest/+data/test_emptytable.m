@@ -16,7 +16,7 @@ classdef test_emptytable < matlab.unittest.TestCase
 
             % need to check variable types
             varTypes = t.Properties.VariableTypes;
-            testCase.verifyEqual(varTypes, cellstr(types));
+            testCase.verifyEqual(varTypes, types);
 		end
 
 		function test_empty_call_error(testCase)
