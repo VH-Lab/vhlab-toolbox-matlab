@@ -50,30 +50,42 @@ classdef testpower2sample < matlab.unittest.TestCase
         function test_power2sample_demo(testCase)
             % Test if the demo runs without error
 
+            initial_figs = findall(0, 'Type', 'figure');
             try
                 vlt.stats.power.power2sampleDemo();
-                testCase.FiguresToClose(end+1) = gcf;
+                current_figs = findall(0, 'Type', 'figure');
+                new_figs = setdiff(current_figs, initial_figs);
+                testCase.FiguresToClose = [testCase.FiguresToClose new_figs(:)'];
             catch e
                 testCase.verifyFail(['The demo function failed with error: ' e.message]);
             end
 
+            initial_figs = findall(0, 'Type', 'figure');
             try
                 vlt.stats.power.power2sampleDemo('numSamples1', 10, 'numSamples2', 20);
-                testCase.FiguresToClose(end+1) = gcf;
+                current_figs = findall(0, 'Type', 'figure');
+                new_figs = setdiff(current_figs, initial_figs);
+                testCase.FiguresToClose = [testCase.FiguresToClose new_figs(:)'];
             catch e
                 testCase.verifyFail(['The demo function failed with error on unequal samples: ' e.message]);
             end
 
+            initial_figs = findall(0, 'Type', 'figure');
             try
                 vlt.stats.power.power2sampleDemo('sampleStdDev', 2.0);
-                testCase.FiguresToClose(end+1) = gcf;
+                current_figs = findall(0, 'Type', 'figure');
+                new_figs = setdiff(current_figs, initial_figs);
+                testCase.FiguresToClose = [testCase.FiguresToClose new_figs(:)'];
             catch e
                 testCase.verifyFail(['The demo function failed with error on non-default standard deviation: ' e.message]);
             end
 
+            initial_figs = findall(0, 'Type', 'figure');
             try
                 vlt.stats.power.power2sampleDemo('differences', [0 0.5 1]);
-                testCase.FiguresToClose(end+1) = gcf;
+                current_figs = findall(0, 'Type', 'figure');
+                new_figs = setdiff(current_figs, initial_figs);
+                testCase.FiguresToClose = [testCase.FiguresToClose new_figs(:)'];
             catch e
                 testCase.verifyFail(['The demo function failed with error on non-default differences: ' e.message]);
             end
