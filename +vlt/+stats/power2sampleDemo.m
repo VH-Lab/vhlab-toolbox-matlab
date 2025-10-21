@@ -36,7 +36,10 @@ differences = 0:0.1:2;
 p_simulated = vlt.stats.power2sample(sample1, sample2, differences, 'test', 'ttest2');
 
 % Calculate theoretical power using sampsizepwr
-p_theoretical = sampsizepwr('t2', [mean(sample1) sd], mean(sample1) + differences, [], [options.numSamples1 options.numSamples2]);
+n_smaller = min(options.numSamples1, options.numSamples2);
+n_larger = max(options.numSamples1, options.numSamples2);
+ratio = n_larger / n_smaller;
+p_theoretical = sampsizepwr('t2', [mean(sample1) sd], mean(sample1) + differences, [], n_smaller, 'ratio', ratio);
 
 % Plot the results
 figure;
