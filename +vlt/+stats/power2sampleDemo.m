@@ -1,4 +1,4 @@
-function power2sampleDemo()
+function power2sampleDemo(options)
 % VLT.STATS.POWER2SAMPLEDEMO - Demonstrate the vlt.stats.power2sample function
 %
 %   VLT.STATS.POWER2SAMPLEDEMO()
@@ -8,13 +8,27 @@ function power2sampleDemo()
 %   theoretical power calculated by MATLAB's 'sampsizepwr' function for a
 %   two-sample t-test.
 %
+%   This function can also be called with name/value pairs to alter
+%   the simulation parameters.
+%
+%   'numSamples1' (default 20) : number of samples in sample 1
+%   'numSamples2' (default 20) : number of samples in sample 2
+%
 %   Example:
 %     vlt.stats.power2sampleDemo();
 %
+%   Example:
+%     vlt.stats.power2sampleDemo('numSamples1',50,'numSamples2',50);
+%
+
+arguments
+    options.numSamples1 (1,1) double {mustBeInteger, mustBeGreaterThan(options.numSamples1,0)} = 20
+    options.numSamples2 (1,1) double {mustBeInteger, mustBeGreaterThan(options.numSamples2,0)} = 20
+end
 
 % Generate some data
-sample1 = randn(1, 20);
-sample2 = randn(1, 20);
+sample1 = randn(1, options.numSamples1);
+sample2 = randn(1, options.numSamples2);
 sd = std([sample1 sample2]); % pooled standard deviation
 differences = 0:0.1:2;
 
@@ -31,7 +45,7 @@ hold on;
 plot(differences, p_theoretical, 'r--', 'DisplayName', 'Theoretical Power');
 xlabel('Difference between means');
 ylabel('Power');
-title('Simulated vs. Theoretical Power for a Two-Sample t-test');
+title(['Simulated vs. Theoretical Power, N1=' int2str(options.numSamples1) ', N2=' int2str(options.numSamples2)]);
 legend('show');
 grid on;
 
