@@ -21,6 +21,7 @@ function p = power2sample(sample1, sample2, differences, options)
 %     simulations where the test yielded a significant difference.
 %
 %   Example:
+%     % Generate some data and calculate power
 %     sample1 = randn(1, 10);
 %     sample2 = randn(1, 10);
 %     differences = 0:0.1:1;
@@ -29,6 +30,15 @@ function p = power2sample(sample1, sample2, differences, options)
 %     plot(differences, p);
 %     xlabel('Difference');
 %     ylabel('Power');
+%
+%   Example:
+%     % Load data from an Excel file and calculate power
+%     % (Assumes the file 'mydata.xls' has columns "Sample 1" and "Sample 2")
+%     T = readtable('mydata.xls');
+%     sample1 = T.("Sample 1");
+%     sample2 = T.("Sample 2");
+%     differences = 0:0.1:1;
+%     p = vlt.stats.power2sample(sample1, sample2, differences, 'test', 'ttest2');
 %
 
 arguments

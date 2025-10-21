@@ -56,6 +56,14 @@ classdef testpower2sample < matlab.unittest.TestCase
             catch e
                 testCase.verifyFail(['The demo function failed with error on non-default standard deviation: ' e.message]);
             end
+
+            try
+                vlt.stats.power2sampleDemo('differences', [0 0.5 1]);
+                % Close the figure created by the demo
+                close(gcf);
+            catch e
+                testCase.verifyFail(['The demo function failed with error on non-default differences: ' e.message]);
+            end
         end
 
     end
