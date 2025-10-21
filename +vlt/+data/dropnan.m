@@ -7,8 +7,8 @@ function b = dropnan(a)
 % all non-NaN entries of A but will exclude NaN entries.
 %
 
-if min(size(a))~=1,
-	error(['This function requires a vector as input.']);
+arguments
+    a {mustBeNumeric, mustBeVector}
 end
 
 g = ~isnan(a);
