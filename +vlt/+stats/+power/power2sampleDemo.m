@@ -42,7 +42,7 @@ sample2 = options.sampleStdDev * randn(1, options.numSamples2);
 sd = std([sample1 sample2]); % pooled standard deviation
 
 % Calculate power using vlt.stats.power.power2sample
-p_simulated = vlt.stats.power.power2sample(sample1, sample2, options.differences, 'test', 'ttest2');
+p_simulated = vlt.stats.power.power2sample(sample1, sample2, options.differences, 'test', 'ttest2', 'plot', false);
 
 % Calculate theoretical power using sampsizepwr
 n_smaller = min(options.numSamples1, options.numSamples2);
