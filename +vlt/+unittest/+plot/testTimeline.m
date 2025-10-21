@@ -2,17 +2,37 @@ classdef testTimeline < matlab.unittest.TestCase
     % testTimeline - Unit tests for the vlt.plot.timeline and related functions.
     %
 
+    properties
+        Figures
+    end
+
+    methods (TestClassSetup)
+        function initializeFigureList(testCase)
+            testCase.Figures = [];
+        end
+    end
+
+    methods (TestClassTeardown)
+        function closeFigures(testCase)
+            for i = 1:numel(testCase.Figures)
+                if ishandle(testCase.Figures(i))
+                    close(testCase.Figures(i));
+                end
+            end
+        end
+    end
+
     methods (Test)
 
         function testTimelineSmokeTest(testCase)
             commands(1) = vlt.plot.timelineRow('Row',1,'Type',"RowLabel",'String',"My first row");
             commands(2) = vlt.plot.timelineRow('Row',1,'Type',"Bar",'T0',2,'T1',4);
             f = figure('Visible','off');
+            testCase.Figures(end+1) = f;
             vlt.plot.timeline(commands);
             testCase.verifyNotEmpty(findobj(groot, 'Type', 'figure'), 'A figure should be created.');
             ax = gca;
             testCase.verifyEmpty(ax.YTick, 'Y-ticks should be empty by default.');
-            close(f);
         end
 
         function testPlotObjectProperties(testCase)
@@ -20,6 +40,7 @@ classdef testTimeline < matlab.unittest.TestCase
             commands(1) = vlt.plot.timelineRow('Row', 1, 'Type', "Bar", 'T0', 2, 'T1', 5, 'BarHeight', 0.8);
             commands(2) = vlt.plot.timelineRow('Row', 2, 'Type', "OnsetTriangle", 'T0', 7, 'T1', 9, 'BarHeight', 0.6);
             f = figure('Visible','off');
+            testCase.Figures(end+1) = f;
             vlt.plot.timeline(commands, 'rowHeight', rowHeight, 'timeStartVerticalBar', false);
             ax = gca;
             barObj = findobj(ax, 'Type', 'Rectangle');
@@ -33,30 +54,30 @@ classdef testTimeline < matlab.unittest.TestCase
             y_bottom = row_center_2 + (0.6 * rowHeight / 2);
             expectedTriangleVertices = [7, y_bottom; 9, y_bottom; 9, y_top];
             testCase.verifyEqual(triangleObj.Vertices, expectedTriangleVertices, 'AbsTol', 1e-6, 'Triangle vertices are incorrect.');
-            close(f);
         end
 
         function testEmptyTimeline(testCase)
             f = figure('Visible','off');
+            testCase.Figures(end+1) = f;
             vlt.plot.timeline(vlt.plot.timelineRow.empty(1,0));
             testCase.verifyNotEmpty(findobj(groot, 'Type', 'figure'), 'Figure should be created for empty timeline.');
-            close(f);
         end
 
         function testVerticalBars(testCase)
             commands(1) = vlt.plot.timelineRow('Row', 1, 'Type', "verticalDashedBar", 'T0', 3);
             f = figure('Visible','off');
+            testCase.Figures(end+1) = f;
             vlt.plot.timeline(commands, 'timeStartVerticalBar', false);
             ax = gca;
             dashedBar = findobj(ax, 'Type', 'Line', 'LineStyle', '--');
             testCase.verifyNotEmpty(dashedBar, 'Dashed bar should be created.');
-            close(f);
         end
 
         function testMarkerLabels(testCase)
             rowHeight = 3;
             commands(1) = vlt.plot.timelineRow('Row', 1, 'Type', "Marker", 'T0', 5, 'String', "Above", 'VerticalAlignment', 'above', 'Symbol', 'o');
             f = figure('Visible','off');
+            testCase.Figures(end+1) = f;
             vlt.plot.timeline(commands, 'timeStartVerticalBar', false, 'rowHeight', rowHeight);
             ax = gca;
 
@@ -68,12 +89,12 @@ classdef testTimeline < matlab.unittest.TestCase
             row_center = (1-1)*rowHeight + rowHeight/2;
 
             testCase.verifyEqual(aboveLabel.Position(2), row_center - expected_offset, 'AbsTol', 1e-6, 'Text "above" has incorrect offset.');
-            close(f);
         end
 
         function testTextOnlyMarker(testCase)
             commands(1) = vlt.plot.timelineRow('Row', 1, 'Type', "Marker", 'T0', 5, 'String', "Text Only");
             f = figure('Visible','off');
+            testCase.Figures(end+1) = f;
             vlt.plot.timeline(commands, 'timeStartVerticalBar', false);
             ax = gca;
 
@@ -82,7 +103,6 @@ classdef testTimeline < matlab.unittest.TestCase
 
             markerObj = findobj(ax, 'Type', 'Line');
             testCase.verifyEmpty(markerObj, 'No line object should be created for a text-only marker.');
-            close(f);
         end
 
         function testTimelineFromJSON(testCase)
@@ -95,10 +115,10 @@ classdef testTimeline < matlab.unittest.TestCase
                 ']', ...
             '}'];
             f = figure('Visible','off');
+            testCase.Figures(end+1) = f;
             vlt.plot.timelineFromJSON(jsonStr);
             ax = gca;
             testCase.verifyEqual(ax.Color, [0.8 1 0.8], 'AbsTol', 1e-6, 'Background color from JSON is incorrect.');
-            close(f);
         end
 
         function testTimelineFromJSON_CellArray(testCase)
@@ -109,11 +129,11 @@ classdef testTimeline < matlab.unittest.TestCase
                 ']', ...
             '}'];
             f = figure('Visible','off');
+            testCase.Figures(end+1) = f;
             testCase.verifyWarningFree(@() vlt.plot.timelineFromJSON(jsonStr));
             ax = gca;
             testCase.verifyNotEmpty(findobj(ax, 'Type', 'Rectangle'), 'Bar should be created from cell array JSON.');
             testCase.verifyNotEmpty(findobj(ax, 'Type', 'Line', 'Marker', 's'), 'Marker should be created from cell array JSON.');
-            close(f);
         end
 
         function testHeadingWithMarker(testCase)
@@ -121,6 +141,7 @@ classdef testTimeline < matlab.unittest.TestCase
             fontSize = 12; % default Heading2 size
             commands(1) = vlt.plot.timelineRow('Row', 1, 'Type', "Heading2", 'T0', 10, 'String', "Event Above", 'Symbol', 's', 'VerticalAlignment', 'above');
             f = figure('Visible','off');
+            testCase.Figures(end+1) = f;
             vlt.plot.timeline(commands, 'timeStartVerticalBar', false, 'rowHeight', rowHeight);
             ax = gca;
             marker = findobj(ax, 'Type', 'Line', 'Marker', 's');
@@ -130,13 +151,13 @@ classdef testTimeline < matlab.unittest.TestCase
             row_center = (1-1)*rowHeight + rowHeight/2;
 
             testCase.verifyEqual(textObj.Position(2), row_center - expected_offset, 'AbsTol', 1e-6, 'Heading text "above" has incorrect offset.');
-            close(f);
         end
 
         function testRowLabelFontAndAlignment(testCase)
             commands(1) = vlt.plot.timelineRow('Row', 1, 'Type', "RowLabel", 'String', "Left", 'HorizontalAlignment', 'left');
             commands(2) = vlt.plot.timelineRow('Row', 2, 'Type', "RowLabel", 'String', "Right", 'HorizontalAlignment', 'right');
             f = figure('Visible','off');
+            testCase.Figures(end+1) = f;
             vlt.plot.timeline(commands, 'timePre', 0, 'timeStart', 2, 'timeEnd', 10);
             ax = gca;
 
@@ -146,19 +167,18 @@ classdef testTimeline < matlab.unittest.TestCase
             rightLabel = findobj(ax, 'Type', 'Text', 'String', 'Right');
             testCase.verifyEqual(rightLabel.Position(1), 2, 'AbsTol', 1e-6, 'Right-aligned RowLabel has incorrect X position.');
 
-            close(f);
         end
 
         function testXAxisCustomization(testCase)
             commands(1) = vlt.plot.timelineRow('Row', 1, 'Type', "Bar", 'T0', 5, 'T1', 15);
             f = figure('Visible','off');
+            testCase.Figures(end+1) = f;
             vlt.plot.timeline(commands, 'timePre', -10, 'timeStart', 0, 'XLabel', 'Time (s)');
             ax = gca;
 
             testCase.verifyEqual(ax.XLabel.String, 'Time (s)', 'XLabel was not set correctly.');
             testCase.verifyGreaterThanOrEqual(min(ax.XTick), 0, 'XTicks before timeStart were not removed.');
 
-            close(f);
         end
 
     end
