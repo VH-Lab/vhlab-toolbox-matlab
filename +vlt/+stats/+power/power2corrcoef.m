@@ -100,7 +100,7 @@ if options.plot
     figure;
     plot(correlations, p, 'bo-');
     hold on;
-    plot(correlations, 1-options.alpha+0*p, 'k--');
+    plot(correlations, options.alpha+0*p, 'k--');
     box off;
     title(options.titleText);
     xlabel(options.xLabel);

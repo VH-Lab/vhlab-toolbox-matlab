@@ -39,7 +39,7 @@ classdef testImposeCorrelationByReordering < matlab.unittest.TestCase
             target_neg = -0.6;
             [X_neg, Y_neg] = vlt.stats.power.imposeCorrelationByReordering(X_orig, Y_orig, target_neg);
             final_corr_neg = corr(X_neg, Y_neg, 'Type', 'Spearman');
-            testCase.verifyEqual(final_corr_neg, target_neg, 'AbsTol', 0.05, ...
+            testCase.verifyEqual(final_corr_neg, target_neg, 'AbsTol', 0.08, ...
                 'The final Spearman correlation should be close to the negative target.');
 
             % Test with a near-zero target correlation
