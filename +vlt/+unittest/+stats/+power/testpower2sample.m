@@ -3,20 +3,22 @@ classdef testpower2sample < matlab.unittest.TestCase
     %
 
     properties
-        FiguresToClose = [];
+        InitialFigures;
     end
 
-    methods (TestClassSetup)
-        function setup_figs(testCase)
-            testCase.FiguresToClose = [];
+    methods (MethodSetup)
+        function capture_initial_figures(testCase)
+            testCase.InitialFigures = findall(0, 'Type', 'figure');
         end
     end
 
-    methods (TestClassTeardown)
-        function teardown_figs(testCase)
-            for i=1:numel(testCase.FiguresToClose)
-                if ishandle(testCase.FiguresToClose(i))
-                    close(testCase.FiguresToClose(i));
+    methods (MethodTeardown)
+        function close_new_figures(testCase)
+            current_figs = findall(0, 'Type', 'figure');
+            new_figs = setdiff(current_figs, testCase.InitialFigures);
+            for i=1:numel(new_figs)
+                if ishandle(new_figs(i))
+                    close(new_figs(i));
                 end
             end
         end
@@ -49,46 +51,10 @@ classdef testpower2sample < matlab.unittest.TestCase
 
         function test_power2sample_demo(testCase)
             % Test if the demo runs without error
-
-            initial_figs = findall(0, 'Type', 'figure');
-            try
-                vlt.stats.power.power2sampleDemo();
-                current_figs = findall(0, 'Type', 'figure');
-                new_figs = setdiff(current_figs, initial_figs);
-                testCase.FiguresToClose = [testCase.FiguresToClose new_figs(:)'];
-            catch e
-                testCase.verifyFail(['The demo function failed with error: ' e.message]);
-            end
-
-            initial_figs = findall(0, 'Type', 'figure');
-            try
-                vlt.stats.power.power2sampleDemo('numSamples1', 10, 'numSamples2', 20);
-                current_figs = findall(0, 'Type', 'figure');
-                new_figs = setdiff(current_figs, initial_figs);
-                testCase.FiguresToClose = [testCase.FiguresToClose new_figs(:)'];
-            catch e
-                testCase.verifyFail(['The demo function failed with error on unequal samples: ' e.message]);
-            end
-
-            initial_figs = findall(0, 'Type', 'figure');
-            try
-                vlt.stats.power.power2sampleDemo('sampleStdDev', 2.0);
-                current_figs = findall(0, 'Type', 'figure');
-                new_figs = setdiff(current_figs, initial_figs);
-                testCase.FiguresToClose = [testCase.FiguresToClose new_figs(:)'];
-            catch e
-                testCase.verifyFail(['The demo function failed with error on non-default standard deviation: ' e.message]);
-            end
-
-            initial_figs = findall(0, 'Type', 'figure');
-            try
-                vlt.stats.power.power2sampleDemo('differences', [0 0.5 1]);
-                current_figs = findall(0, 'Type', 'figure');
-                new_figs = setdiff(current_figs, initial_figs);
-                testCase.FiguresToClose = [testCase.FiguresToClose new_figs(:)'];
-            catch e
-                testCase.verifyFail(['The demo function failed with error on non-default differences: ' e.message]);
-            end
+            testCase.verifyWarningFree(@() vlt.stats.power.power2sampleDemo());
+            testCase.verifyWarningFree(@() vlt.stats.power.power2sampleDemo('numSamples1', 10, 'numSamples2', 20));
+            testCase.verifyWarningFree(@() vlt.stats.power.power2sampleDemo('sampleStdDev', 2.0));
+            testCase.verifyWarningFree(@() vlt.stats.power.power2sampleDemo('differences', [0 0.5 1]));
         end
 
         function test_power2sample_pairedTTest(testCase)
@@ -121,7 +87,6 @@ classdef testpower2sample < matlab.unittest.TestCase
             differences = [0 1];
 
             % 1. Test plot=true (default) and custom labels
-            initial_figs = findall(0, 'Type', 'figure');
             custom_title = "My Custom Title";
             custom_xlabel = "X Axis";
             custom_ylabel = "Y Axis";
@@ -130,8 +95,7 @@ classdef testpower2sample < matlab.unittest.TestCase
                 'titleText', custom_title, 'xLabel', custom_xlabel, 'yLabel', custom_ylabel);
 
             current_figs = findall(0, 'Type', 'figure');
-            new_fig = setdiff(current_figs, initial_figs);
-            testCase.FiguresToClose(end+1) = new_fig;
+            new_fig = setdiff(current_figs, testCase.InitialFigures);
             testCase.verifyNumElements(new_fig, 1, 'A new figure should have been created.');
 
             % Verify title and labels
@@ -141,11 +105,10 @@ classdef testpower2sample < matlab.unittest.TestCase
             testCase.verifyEqual(ax.YLabel.String, char(custom_ylabel), 'Custom ylabel was not set correctly.');
 
             % 2. Test plot=false
-            initial_figs = findall(0, 'Type', 'figure');
             vlt.stats.power.power2sample(sample1, sample2, differences, 'numSimulations', 10, 'plot', false);
-            current_figs = findall(0, 'Type', 'figure');
-            new_figs = setdiff(current_figs, initial_figs);
-            testCase.verifyEmpty(new_figs, 'No new figure should be created when plot is false.');
+            current_figs_after_no_plot = findall(0, 'Type', 'figure');
+            new_figs_after_no_plot = setdiff(current_figs_after_no_plot, current_figs);
+            testCase.verifyEmpty(new_figs_after_no_plot, 'No new figure should be created when plot is false.');
 
             % No need to test verbose, as it only affects command window output.
         end
