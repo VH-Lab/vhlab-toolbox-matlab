@@ -13,6 +13,7 @@ function power2sampleDemo(options)
 %
 %   'numSamples1' (default 20) : number of samples in sample 1
 %   'numSamples2' (default 20) : number of samples in sample 2
+%   'sampleStdDev' (default 1) : The standard deviation of the samples.
 %
 %   Example:
 %     vlt.stats.power2sampleDemo();
@@ -24,11 +25,12 @@ function power2sampleDemo(options)
 arguments
     options.numSamples1 (1,1) double {mustBeInteger, mustBeGreaterThan(options.numSamples1,0)} = 20
     options.numSamples2 (1,1) double {mustBeInteger, mustBeGreaterThan(options.numSamples2,0)} = 20
+    options.sampleStdDev (1,1) double {mustBeGreaterThanOrEqual(options.sampleStdDev,0)} = 1
 end
 
 % Generate some data
-sample1 = randn(1, options.numSamples1);
-sample2 = randn(1, options.numSamples2);
+sample1 = options.sampleStdDev * randn(1, options.numSamples1);
+sample2 = options.sampleStdDev * randn(1, options.numSamples2);
 sd = std([sample1 sample2]); % pooled standard deviation
 differences = 0:0.1:2;
 
