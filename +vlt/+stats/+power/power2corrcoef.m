@@ -82,7 +82,7 @@ for i = 1:numel(correlations)
         p_val = NaN;
         switch options.test
             case 'corrcoef'
-                [~, p_val_matrix] = corr(sim_sample1, sim_sample2);
+                [~, p_val_matrix] = corrcoef(sim_sample1, sim_sample2);
                 p_val = p_val_matrix(1,2);
             case 'corrcoefResample'
                 p_val = vlt.stats.corrcoefResample(sim_sample1, sim_sample2, options.resampleNum);
