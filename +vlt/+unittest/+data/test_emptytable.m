@@ -7,7 +7,7 @@ classdef test_emptytable < matlab.unittest.TestCase
             % tests creation of a simple table
 
             names = {"id","a","b"};
-            types = {"string","double","uint8"};
+            types = {'string','double','uint8'};
 
             t = vlt.data.emptytable(names{1},types{1},names{2},types{2},names{3},types{3});
 
@@ -16,7 +16,7 @@ classdef test_emptytable < matlab.unittest.TestCase
 
             % need to check variable types
             varTypes = t.Properties.VariableTypes;
-            testCase.verifyEqual(varTypes, types);
+            testCase.verifyEqual(cellstr(varTypes), types);
 		end
 
 		function test_empty_call_error(testCase)
