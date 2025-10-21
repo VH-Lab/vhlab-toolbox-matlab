@@ -3,6 +3,23 @@ classdef testpower2sample < matlab.unittest.TestCase
     %
 
     properties
+        FiguresToClose = [];
+    end
+
+    methods (TestClassSetup)
+        function setup_figs(testCase)
+            testCase.FiguresToClose = [];
+        end
+    end
+
+    methods (TestClassTeardown)
+        function teardown_figs(testCase)
+            for i=1:numel(testCase.FiguresToClose)
+                if ishandle(testCase.FiguresToClose(i))
+                    close(testCase.FiguresToClose(i));
+                end
+            end
+        end
     end
 
     methods (Test)
@@ -15,17 +32,17 @@ classdef testpower2sample < matlab.unittest.TestCase
             differences = [0 1];
 
             % Test ttest2
-            p_ttest = vlt.stats.power.power2sample(sample1, sample2, differences, 'test', 'ttest2', 'numSimulations', 100);
+            p_ttest = vlt.stats.power.power2sample(sample1, sample2, differences, 'test', 'ttest2', 'numSimulations', 100, 'plot', false);
             testCase.verifyEqual(numel(p_ttest), numel(differences), 'Output size mismatch for ttest2');
             testCase.verifyGreaterThanOrEqual(p_ttest(2), p_ttest(1), 'Power should be monotonic for ttest2');
 
             % Test kstest2
-            p_kstest = vlt.stats.power.power2sample(sample1, sample2, differences, 'test', 'kstest2', 'numSimulations', 100);
+            p_kstest = vlt.stats.power.power2sample(sample1, sample2, differences, 'test', 'kstest2', 'numSimulations', 100, 'plot', false);
             testCase.verifyEqual(numel(p_kstest), numel(differences), 'Output size mismatch for kstest2');
             testCase.verifyGreaterThanOrEqual(p_kstest(2), p_kstest(1), 'Power should be monotonic for kstest2');
 
             % Test ranksum
-            p_ranksum = vlt.stats.power.power2sample(sample1, sample2, differences, 'test', 'ranksum', 'numSimulations', 100);
+            p_ranksum = vlt.stats.power.power2sample(sample1, sample2, differences, 'test', 'ranksum', 'numSimulations', 100, 'plot', false);
             testCase.verifyEqual(numel(p_ranksum), numel(differences), 'Output size mismatch for ranksum');
             testCase.verifyGreaterThanOrEqual(p_ranksum(2), p_ranksum(1), 'Power should be monotonic for ranksum');
         end
@@ -35,32 +52,28 @@ classdef testpower2sample < matlab.unittest.TestCase
 
             try
                 vlt.stats.power.power2sampleDemo();
-                % Close the figure created by the demo
-                close(gcf);
+                testCase.FiguresToClose(end+1) = gcf;
             catch e
                 testCase.verifyFail(['The demo function failed with error: ' e.message]);
             end
 
             try
                 vlt.stats.power.power2sampleDemo('numSamples1', 10, 'numSamples2', 20);
-                % Close the figure created by the demo
-                close(gcf);
+                testCase.FiguresToClose(end+1) = gcf;
             catch e
                 testCase.verifyFail(['The demo function failed with error on unequal samples: ' e.message]);
             end
 
             try
                 vlt.stats.power.power2sampleDemo('sampleStdDev', 2.0);
-                % Close the figure created by the demo
-                close(gcf);
+                testCase.FiguresToClose(end+1) = gcf;
             catch e
                 testCase.verifyFail(['The demo function failed with error on non-default standard deviation: ' e.message]);
             end
 
             try
                 vlt.stats.power.power2sampleDemo('differences', [0 0.5 1]);
-                % Close the figure created by the demo
-                close(gcf);
+                testCase.FiguresToClose(end+1) = gcf;
             catch e
                 testCase.verifyFail(['The demo function failed with error on non-default differences: ' e.message]);
             end
@@ -78,14 +91,14 @@ classdef testpower2sample < matlab.unittest.TestCase
             differences = [0 1];
 
             % Test pairedTTest
-            p_pairedTTest = vlt.stats.power.power2sample(sample1, sample2, differences, 'test', 'pairedTTest', 'numSimulations', 100);
+            p_pairedTTest = vlt.stats.power.power2sample(sample1, sample2, differences, 'test', 'pairedTTest', 'numSimulations', 100, 'plot', false);
             testCase.verifyEqual(numel(p_pairedTTest), numel(differences), 'Output size mismatch for pairedTTest');
             testCase.verifyGreaterThanOrEqual(p_pairedTTest(2), p_pairedTTest(1), 'Power should be monotonic for pairedTTest');
 
             % Test error for unequal sample sizes
             sample3 = randn(1,19);
             % The custom error doesn't have a specific ID, so expect a generic one ('')
-            testCase.verifyError(@() vlt.stats.power.power2sample(sample1, sample3, differences, 'test', 'pairedTTest'),'');
+            testCase.verifyError(@() vlt.stats.power.power2sample(sample1, sample3, differences, 'test', 'pairedTTest', 'plot', false),'');
         end
 
         function test_power2sample_plot_and_verbose_options(testCase)
@@ -106,16 +119,14 @@ classdef testpower2sample < matlab.unittest.TestCase
 
             current_figs = findall(0, 'Type', 'figure');
             new_fig = setdiff(current_figs, initial_figs);
+            testCase.FiguresToClose(end+1) = new_fig;
             testCase.verifyNumElements(new_fig, 1, 'A new figure should have been created.');
 
             % Verify title and labels
             ax = get(new_fig, 'CurrentAxes');
-            testCase.verifyEqual(ax.Title.String, custom_title, 'Custom title was not set correctly.');
-            testCase.verifyEqual(ax.XLabel.String, custom_xlabel, 'Custom xlabel was not set correctly.');
-            testCase.verifyEqual(ax.YLabel.String, custom_ylabel, 'Custom ylabel was not set correctly.');
-
-            % Clean up the figure
-            close(new_fig);
+            testCase.verifyEqual(ax.Title.String, char(custom_title), 'Custom title was not set correctly.');
+            testCase.verifyEqual(ax.XLabel.String, char(custom_xlabel), 'Custom xlabel was not set correctly.');
+            testCase.verifyEqual(ax.YLabel.String, char(custom_ylabel), 'Custom ylabel was not set correctly.');
 
             % 2. Test plot=false
             initial_figs = findall(0, 'Type', 'figure');
