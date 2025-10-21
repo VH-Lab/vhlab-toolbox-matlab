@@ -6,13 +6,13 @@ classdef testpower2sample < matlab.unittest.TestCase
         InitialFigures;
     end
 
-    methods (MethodSetup)
+    methods (TestMethodSetup)
         function capture_initial_figures(testCase)
             testCase.InitialFigures = findall(0, 'Type', 'figure');
         end
     end
 
-    methods (MethodTeardown)
+    methods (TestMethodTeardown)
         function close_new_figures(testCase)
             current_figs = findall(0, 'Type', 'figure');
             new_figs = setdiff(current_figs, testCase.InitialFigures);
