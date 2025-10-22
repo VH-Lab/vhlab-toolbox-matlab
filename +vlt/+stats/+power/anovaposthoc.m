@@ -59,7 +59,12 @@ for s = 1:numel(groupShuffles)
         grouping_vars{i} = dataTable.(groupColumnNames{i});
     end
 
-    [~, ~, stats] = anovan(dataTable.(options.dataColumnName), grouping_vars, 'model', 'interaction', 'display', 'off', 'varnames', groupColumnNames);
+    if numel(grouping_vars) > 1
+        model = 'interaction';
+    else
+        model = 'linear';
+    end
+    [~, ~, stats] = anovan(dataTable.(options.dataColumnName), grouping_vars, 'model', model, 'display', 'off', 'varnames', groupColumnNames);
 
     [c, ~, ~, gnames] = multcompare(stats, 'Dimension', groupComparisons, 'display', 'off', 'ctype', matlabPosthocTest);
 
@@ -112,7 +117,12 @@ for s = 1:numel(groupShuffles)
                 grouping_vars_surrogate{i} = surrogateTable.(groupColumnNames{i});
             end
 
-            [~, ~, stats_surr] = anovan(surrogateTable.(options.dataColumnName), grouping_vars_surrogate, 'model', 'interaction', 'display', 'off', 'varnames', groupColumnNames);
+            if numel(grouping_vars_surrogate) > 1
+                model = 'interaction';
+            else
+                model = 'linear';
+            end
+            [~, ~, stats_surr] = anovan(surrogateTable.(options.dataColumnName), grouping_vars_surrogate, 'model', model, 'display', 'off', 'varnames', groupColumnNames);
 
             c_surr = multcompare(stats_surr, 'Dimension', groupComparisons, 'display', 'off', 'ctype', matlabPosthocTest);
 
