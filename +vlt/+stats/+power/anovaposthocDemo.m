@@ -4,29 +4,44 @@ function anovaposthocDemo(options)
 %   VLT.STATS.POWER.ANOVAPOSTHOCDEMO(...)
 %
 %   Demonstrates the usage of the vlt.stats.power.anovaposthoc function by creating a sample
-%   dataset and running a power analysis on it.
+%   dataset and running a power analysis on it. This function serves as a practical example
+%   of how to structure the input data and parameters for a power analysis of a multi-factor
+%   ANOVA design.
 %
-%   The sample dataset is a table with the following columns:
-%   - Animal: An identifier for each subject.
-%   - Drug: A categorical variable with two levels ('DrugA', 'DrugB').
-%   - TestDay: A categorical variable with two levels ('Day1', 'Day2').
-%   - Measurement: A continuous variable representing the data.
+%   The sample dataset created is a table with columns for Animal, Drug, TestDay, and
+%   Measurement. This represents a typical repeated-measures design where multiple animals
+%   are tested with different drugs on different days.
+%
+%   The demo then calculates the statistical power for detecting differences in the 'Measurement'
+%   variable based on the 'Drug' and 'TestDay' factors. It explores three different shuffling
+%   schemes to evaluate power under different assumptions about the data's variance structure.
 %
 %   Optional Name-Value Pairs:
-%   - 'numSamplesPerGroup' (integer > 0): Number of samples per group. Default is 10.
+%   - 'numberOfAnimals' (integer > 0): The number of animals (subjects) in the simulation. Default is 5.
+%   - 'numberOfDrugs' (integer > 0): The number of drug conditions. Default is 2.
+%   - 'numberOfDays' (integer > 0): The number of test days. Default is 5.
 %   - 'numShuffles' (integer > 0): Number of simulations for the power analysis. Default is 1000.
 %
 
 arguments
-    options.numSamplesPerGroup (1,1) double {mustBeInteger, mustBeGreaterThan(options.numSamplesPerGroup,0)} = 10
+    options.numberOfAnimals (1,1) double {mustBeInteger, mustBeGreaterThan(options.numberOfAnimals,0)} = 5
+    options.numberOfDrugs (1,1) double {mustBeInteger, mustBeGreaterThan(options.numberOfDrugs,0)} = 2
+    options.numberOfDays (1,1) double {mustBeInteger, mustBeGreaterThan(options.numberOfDays,0)} = 5
     options.numShuffles (1,1) double {mustBeInteger, mustBeGreaterThan(options.numShuffles,0)} = 1000
 end
 
 % Create a sample data table
-Animal = repelem(1:options.numSamplesPerGroup, 4)';
-Drug = repmat(repelem(["DrugA"; "DrugB"], 2), options.numSamplesPerGroup, 1);
-TestDay = repmat(["Day1"; "Day2"], 2 * options.numSamplesPerGroup, 1);
-Measurement = randn(4 * options.numSamplesPerGroup, 1);
+num_total_measurements = options.numberOfAnimals * options.numberOfDrugs * options.numberOfDays;
+
+Animal = repelem(1:options.numberOfAnimals, options.numberOfDrugs * options.numberOfDays)';
+
+drug_labels = "Drug" + (1:options.numberOfDrugs)';
+Drug = repmat(repelem(drug_labels, options.numberOfDays), options.numberOfAnimals, 1);
+
+day_labels = "Day" + (1:options.numberOfDays)';
+TestDay = repmat(day_labels, num_total_measurements / options.numberOfDays, 1);
+
+Measurement = randn(num_total_measurements, 1);
 
 dataTable = table(Animal, Drug, TestDay, Measurement);
 
