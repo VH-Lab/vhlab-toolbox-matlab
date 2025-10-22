@@ -6,6 +6,12 @@ function anovaposthocDemo(options)
 %   Demonstrates the usage of the vlt.stats.power.anovaposthoc function by creating a sample
 %   dataset and running a power analysis on it.
 %
+%   The sample dataset is a table with the following columns:
+%   - Animal: An identifier for each subject.
+%   - Drug: A categorical variable with two levels ('DrugA', 'DrugB').
+%   - TestDay: A categorical variable with two levels ('Day1', 'Day2').
+%   - Measurement: A continuous variable representing the data.
+%
 %   Optional Name-Value Pairs:
 %   - 'numSamplesPerGroup' (integer > 0): Number of samples per group. Default is 10.
 %   - 'numShuffles' (integer > 0): Number of simulations for the power analysis. Default is 1000.
@@ -23,6 +29,9 @@ TestDay = repmat(["Day1"; "Day2"], 2 * options.numSamplesPerGroup, 1);
 Measurement = randn(4 * options.numSamplesPerGroup, 1);
 
 dataTable = table(Animal, Drug, TestDay, Measurement);
+
+disp('Sample data table:');
+disp(dataTable);
 
 % Define the parameters for the power analysis
 differences = 0:0.5:2;
