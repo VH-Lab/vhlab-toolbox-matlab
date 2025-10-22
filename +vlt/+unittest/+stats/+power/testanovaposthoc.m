@@ -41,7 +41,7 @@ classdef testanovaposthoc < matlab.unittest.TestCase
             alpha = 0.05;
 
             results = vlt.stats.power.anovaposthoc(dataTable, differences, groupColumnNames, ...
-                groupComparisons, groupShuffles, 'numShuffles', 500, 'alpha', alpha);
+                groupComparisons, groupShuffles, 'numShuffles', 500, 'alpha', alpha, 'plot', false);
 
             testCase.verifyEqual(numel(results), 1);
 
@@ -71,7 +71,7 @@ classdef testanovaposthoc < matlab.unittest.TestCase
             alpha = 0.05;
 
             results = vlt.stats.power.anovaposthoc(dataTable, differences, groupColumnNames, ...
-                groupComparisons, groupShuffles, 'numShuffles', 500, 'alpha', alpha);
+                groupComparisons, groupShuffles, 'numShuffles', 500, 'alpha', alpha, 'plot', false);
 
             testCase.verifyEqual(numel(results), 1);
 
@@ -89,6 +89,36 @@ classdef testanovaposthoc < matlab.unittest.TestCase
         function test_anovaposthoc_demo(testCase)
             % Test if the demo runs without error
             testCase.verifyWarningFree(@() vlt.stats.power.anovaposthocDemo('numberOfAnimals', 5, 'numShuffles', 20));
+        end
+
+        function test_anovaposthoc_plot_option(testCase)
+            % Test the plot option
+            Animal = repelem(1:5, 4)';
+            Drug = repmat(repelem(["DrugA"; "DrugB"], 2), 5, 1);
+            TestDay = repmat(["Day1"; "Day2"], 10, 1);
+            Measurement = randn(20, 1);
+            dataTable = table(Animal, Drug, TestDay, Measurement);
+            differences = [0 1];
+            groupColumnNames = {'Drug', 'TestDay'};
+            groupComparisons = [1 2];
+            groupShuffles = {[1 2]};
+
+            % Test plot=true (default)
+            vlt.stats.power.anovaposthoc(dataTable, differences, groupColumnNames, ...
+                groupComparisons, groupShuffles, 'numShuffles', 10);
+
+            current_figs = findall(0, 'Type', 'figure');
+            new_fig = setdiff(current_figs, testCase.InitialFigures);
+            testCase.verifyNumElements(new_fig, 1, 'A new figure should have been created.');
+            close(new_fig); % clean up
+
+            % Test plot=false
+            vlt.stats.power.anovaposthoc(dataTable, differences, groupColumnNames, ...
+                groupComparisons, groupShuffles, 'numShuffles', 10, 'plot', false);
+
+            current_figs_after_no_plot = findall(0, 'Type', 'figure');
+            new_figs_after_no_plot = setdiff(current_figs_after_no_plot, testCase.InitialFigures);
+            testCase.verifyEmpty(new_figs_after_no_plot, 'No new figure should be created when plot is false.');
         end
 
     end

@@ -67,16 +67,4 @@ for i = 1:numel(anovaposthoc_results)
     disp(anovaposthoc_results(i).groupComparisonName);
 end
 
-% Plot the results
-figure;
-for i = 1:numel(anovaposthoc_results)
-    subplot(1, numel(anovaposthoc_results), i);
-    plot(differences, anovaposthoc_results(i).groupComparisonPower, '-o');
-    title(['Shuffle: ' mat2str(groupShuffles{i})]);
-    xlabel('Difference');
-    ylabel('Power');
-    legend(anovaposthoc_results(i).groupComparisonName, 'Location', 'best');
-    box off;
-end
-
 end

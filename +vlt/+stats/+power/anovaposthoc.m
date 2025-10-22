@@ -39,6 +39,7 @@ arguments
     options.numShuffles (1,1) double {mustBeInteger, mustBeGreaterThan(options.numShuffles,0)} = 10000
     options.alpha (1,1) double {mustBeGreaterThan(options.alpha,0), mustBeLessThan(options.alpha,1)} = 0.05
     options.dataColumnName (1,1) string = dataTable.Properties.VariableNames{end}
+    options.plot (1,1) logical = true
 end
 
 if strcmp(options.posthocTest, 'Tukey')
@@ -144,5 +145,19 @@ for s = 1:numel(groupShuffles)
     end % for d (differences)
 
 end % for s (groupShuffles)
+
+if options.plot
+    figure;
+    num_plots = numel(anovaposthoc_results);
+    for i = 1:num_plots
+        subplot(1, num_plots, i);
+        plot(differences, anovaposthoc_results(i).groupComparisonPower, '-o');
+        title(['Shuffle: ' mat2str(groupShuffles{i})]);
+        xlabel('Difference');
+        ylabel('Power');
+        legend(anovaposthoc_results(i).groupComparisonName, 'Location', 'best');
+        box off;
+    end
+end
 
 end
