@@ -80,9 +80,9 @@ for s = 1:numel(groupShuffles)
     anovaposthoc_results(s).groupComparisonPower = zeros(numel(differences), numComparisons);
 
     % Determine the target group values before the simulation
-    last_group_values = cell(1, numel(groupComparisons));
-    for i = 1:numel(groupComparisons)
-        group_values = unique(dataTable.(groupColumnNames{groupComparisons(i)}));
+    last_group_values = cell(1, numel(currentShuffle));
+    for i = 1:numel(currentShuffle)
+        group_values = unique(dataTable.(groupColumnNames{currentShuffle(i)}));
         last_group_values{i} = group_values(end);
     end
 
@@ -102,9 +102,9 @@ for s = 1:numel(groupShuffles)
 
             % Determine the target group for adding the difference *within the loop*
             target_group_indices = true(height(surrogateTable), 1);
-            for i = 1:numel(groupComparisons)
+            for i = 1:numel(currentShuffle)
                 target_group_indices = target_group_indices & ...
-                    (surrogateTable.(groupColumnNames{groupComparisons(i)}) == last_group_values{i});
+                    (surrogateTable.(groupColumnNames{currentShuffle(i)}) == last_group_values{i});
             end
 
             % Add the difference
