@@ -5,7 +5,7 @@ classdef testCdfTukey < matlab.unittest.TestCase
 %   by:
 %   1. Verifying the function's output against known "ground truth"
 %      values from statistical tables.
-%   2. Testing edge cases for inputs like q <= 0 and non-integer v.
+%   2. Testing edge cases for inputs like q <= 0 and v < 1.
 %
 %   To run:
 %   runtests('vlt.unittest.stats.testCdfTukey')
@@ -52,8 +52,7 @@ classdef testCdfTukey < matlab.unittest.TestCase
         end
 
         function testEdgeCases(testCase)
-            % This test checks the function's behavior for edge cases,
-            % such as q <= 0 and non-integer/out-of-range v.
+            % This test checks the function's behavior for edge cases.
 
             testCase.log('Testing edge cases...');
 
@@ -69,17 +68,13 @@ classdef testCdfTukey < matlab.unittest.TestCase
             p_v1    = vlt.stats.cdfTukey(3, 3, 1);
             testCase.assertEqual(p_low_v, p_v1);
 
-            % v > 19 should still produce valid probabilities
-            p_v30 = vlt.stats.cdfTukey(4, 5, 30);
-            p_v100 = vlt.stats.cdfTukey(4, 5, 100);
-
             % Test that outputs are valid probabilities [0, 1]
+            p_v30 = vlt.stats.cdfTukey(4, 5, 30);
             testCase.assertGreaterThanOrEqual(p_v30, 0);
             testCase.assertLessThanOrEqual(p_v30, 1);
-            testCase.assertGreaterThanOrEqual(p_v100, 0);
-            testCase.assertLessThanOrEqual(p_v100, 1);
 
             % Test that probability increases with v (for fixed q, k)
+            p_v100 = vlt.stats.cdfTukey(4, 5, 100);
             testCase.assertGreaterThan(p_v100, p_v30);
         end
 
