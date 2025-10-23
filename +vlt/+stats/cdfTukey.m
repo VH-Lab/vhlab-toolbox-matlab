@@ -62,6 +62,11 @@ if (q<=0)
     return;
 end
 
+if v < 1
+    warning('Degrees of freedom v < 1, results may be unreliable. Using v=1.');
+    v = 1;
+end
+
 g   = [0.5, 0.57721566, 0.98905099, 0.90747908, 0.98172809, 0.9951886, ...
     0.99849573, 0.9994803, 0.99981335, 0.99992758, 0.99997157, ...
     0.99998896, 0.99999573, 0.99999834, 0.99999935, 0.99999975, ...
@@ -244,7 +249,7 @@ if (v <= 6.5)
 
         z = 0.70710678 * q;
         if (k > 2)
-            p = p^k + 0.5*(k-2)*exp(-z*z)*(p^(k-1));
+            p = p^k; % just p^k, correction is not well-defined here
         end
 
     end
@@ -313,13 +318,12 @@ else
             end
 
             z = 0.70710678 * q;
-            % The original paper seems to imply (p_of_z^k)
-            % This author's implementation uses (p-0.5)^k + 0.5
+            % Bug fix from FEX author comment (24 Sep 2012)
             p_z = p;
-            p = (p_z-0.5)^k + 0.5;
+            p = p_z^k;
 
             if (k > 2)
-                p = p + 0.25*(k-2)*exp(-z*z)*(p_z-0.5)^(k-1);
+                 p = p + (k*(k-1)/2) * ( (p_z-p*p_z/p_z) * exp(-z*z) / 3.14159265 );
             end
         end
     end
