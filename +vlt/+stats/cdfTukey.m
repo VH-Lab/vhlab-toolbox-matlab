@@ -42,20 +42,22 @@ end
 
 % --- Main Calculation using Numerical Integration ---
 % This is a standard formula for the Studentized range CDF.
-% It integrates over the probability density of chi-squared/v, weighted
-% by the probability of the range of 'k' normal samples.
+% It integrates over the probability density of a variable related to
+% the chi-squared distribution, weighted by the probability of the
+% range of 'k' normal samples.
 
-integrand = @(x) ( (normcdf(x + q.*sqrt(v./(2.*v))) - normcdf(x)).^(k-1) ) .* ...
-                 2.*(v/2).^(v/2) .* (x.^2).^(v/2-1) .* exp(-v.*x.^2./2) ./ gamma(v/2);
+% This is the standard double integral for the Studentized Range CDF
+outer_integrand = @(s) ( ...
+    k * ( integral(@(z) normpdf(z) .* (normcdf(z+q*s) - normcdf(z)).^(k-1), -Inf, Inf) ) .* ...
+    2 * (v/2).^(v/2) / gamma(v/2) .* s.^(v-1) .* exp(-v*s.^2/2) ...
+);
 
-% Integrate from 0 to Inf. Use a high upper limit like 100.
-% The integrand approaches zero very quickly.
+% Integrate 's' from 0 to Inf. Use a high upper limit.
 try
-    p = integral(integrand, 0, 100);
+    p = integral(outer_integrand, 0, 100);
 catch ME
-    % Fallback for older MATLAB versions that may not have 'integral'
     if strcmp(ME.identifier, 'MATLAB:UndefinedFunction')
-        p = quad(integrand, 0, 10); % quad is less accurate, use smaller range
+        p = quad(outer_integrand, 0, 10);
     else
         rethrow(ME);
     end
