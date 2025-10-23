@@ -1,222 +1,236 @@
 function [T, powerParams] = artificialAnovaTable(factorNames, factorLevels, nPerGroup, differenceToTest, differenceFactors, SD_Components)
-%vlt.stats.artificialAnovaTable Generates an artificial data table for a mixed-effects ANOVA.
+%vlt.stats.artificialAnovaTable Generates an artificial data table for ANOVA power analysis.
 %
 %   [T, powerParams] = vlt.stats.artificialAnovaTable(factorNames, factorLevels, ...
 %       nPerGroup, differenceToTest, differenceFactors, SD_Components)
 %
-%   Generates a data table 'T' suitable for testing a repeated-measures
-%   (linear mixed-effects) N-way ANOVA.
+%   Generates a data table T for a repeated-measures (mixed-effects)
+%   design. It assumes the first factor (e.g., 'Drug') is the
+%   between-subjects grouping factor, and all subsequent factors (e.g., 'Day')
+%   are within-subjects (repeated measures).
 %
-%   This function assumes a common experimental design:
-%   1.  The first factor (factorNames{1}) is a BETWEEN-SUBJECT factor
-%       (e.g., 'Drug').
-%   2.  All subsequent factors (factorNames{2:end}) are WITHIN-SUBJECT
-%       factors (e.g., 'Day'), meaning they are repeated measures on the
-%       same subject.
+%   This function is ideal for generating data to test a power simulation.
 %
-%   INPUTS:
+%   Inputs:
 %
-%   factorNames     (cell array): The names of the fixed factors.
-%                   Example: {'Drug', 'Day'}
+%     factorNames (cell array): The names of the *fixed factors* only.
+%         Example: {'Drug', 'Day'}
 %
-%   factorLevels    (vector): The number of levels for each fixed factor.
-%                   Example: [2, 4] (for 2 drugs and 4 time points)
+%     factorLevels (vector): The number of levels for each fixed factor.
+%         Example: [2, 4] (for 2 drugs and 4 time points)
 %
-%   nPerGroup       (scalar): The number of unique subjects (e.g., animals)
-%                   per level of the *first* (between-subject) factor.
-%                   Example: 10
+%     nPerGroup (scalar): The number of random subjects (e.g., animals)
+%         per group in the *first* factor.
+%         Example: 10 (Creates 10 animals for 'Drug_1' and 10 for 'Drug_2')
 %
-%   differenceToTest (scalar): The effect size to add to the baseline mean (0).
-%                   Example: 5.0
+%     differenceToTest (scalar): The effect size (mean difference) to apply.
+%         Example: 5.0
 %
-%   differenceFactors (vector): 1-based indices of factors to apply the
-%                   difference to. The difference is applied only to
-%                   the *last level* of each specified factor.
-%                   Example 1 (Main Effect): [1]
-%                       Applies difference to all cells of 'Drug_2'.
-%                   Example 2 (Interaction): [1, 2]
-%                       Applies difference only to cell ('Drug_2', 'Day_4').
+%     differenceFactors (vector): 1-based indices of the factors to apply
+%         the difference to. The difference is *always* applied to the
+%         *last level* of these factors.
+%         Example 1 (Main Effect): [1] -> Applies diff to all 'Drug_2' cells.
+%         Example 2 (Interaction): [1, 2] -> Applies diff to the
+%                                           ('Drug_2', 'Day_4') cell.
 %
-%   SD_Components   (struct): Struct with the standard deviations for the
-%                   mixed-effects model.
-%                   Example: struct('RandomIntercept', 2.0, 'Residual', 3.0)
+%     SD_Components (struct): Struct with standard deviations.
+%         Example: struct('RandomIntercept', 2.0, 'Residual', 3.0)
+%         .RandomIntercept: The "between-subject" SD (e.g., sigma_animal).
+%         .Residual: The "within-subject" SD (e.g., sqrt(MSE) or sigma_error).
 %
-%     .RandomIntercept - The "between-subject" SD (e.g., sigma_animal).
-%     .Residual        - The "within-subject" SD (e.g., sigma_residual,
-%                        or sqrt(MSE)).
+%   Outputs:
 %
-%   OUTPUTS:
+%     T (table): The generated artificial data table.
+%         Columns: [factorNames..., 'Animal', 'Measurement']
+%         (e.g., 'Drug', 'Day', 'Animal', 'Measurement')
 %
-%   T               (table): The generated artificial data table. Columns
-%                   will be the factor names (e.g., 'Drug', 'Day'), plus
-%                   'Animal' (the random factor) and 'Measurement'.
+%     powerParams (struct): A struct formatted to pass to
+%         vlt.stats.calculateTukeyPairwisePower.
 %
-%   powerParams     (struct): A struct of parameters formatted for use with
-%                   vlt.stats.calculateTukeyPairwisePower.
-%
-%   EXAMPLE:
-%   % Generate data for a 2x3 (Drug x Day) design with 10 animals per drug.
-%   % We want to test for an interaction effect in the last cell.
-%
-%   factorNames = {'Drug', 'Day'};
-%   factorLevels = [2, 3];
-%   nPerGroup = 10;
-%   differenceToTest = 5;
-%   differenceFactors = [1, 2]; % Apply to last Drug AND last Day
-%   SD_Components = struct('RandomIntercept', 2.0, 'Residual', 3.0);
-%
-%   [T, p] = vlt.stats.artificialAnovaTable(factorNames, factorLevels, ...
-%       nPerGroup, differenceToTest, differenceFactors, SD_Components);
-%
-%   % T will have 2 (drugs) * 10 (animals) * 3 (days) = 60 rows.
-%   % p will be:
-%   %   p.expectedDifference: 5
-%   %   p.expectedMSE: 9  (3.0^2)
-%   %   p.nPerGroup: 10
-%   %   p.kTotalGroups: 6  (2*3 cells)
-%   %   p.alpha: 0.05
-%
-%   See also: vlt.stats.calculateTukeyPairwisePower, fullfact, fitlme
+%   See also: vlt.stats.calculateTukeyPairwisePower, fitlme
 
-% --- 1. Input Validation & Parameter Setup ---
+% --- 1. Input Validation and Setup ---
 arguments
     factorNames (1,:) cell {mustBeText}
-    factorLevels (1,:) double {mustBeInteger, mustBePositive}
+    factorLevels (1,:) double {mustBeInteger, mustBePositive, mustHaveEqualSize(factorNames, factorLevels)}
     nPerGroup (1,1) double {mustBeInteger, mustBePositive}
     differenceToTest (1,1) double {mustBeNumeric}
-    differenceFactors (1,:) double {mustBeInteger, mustBePositive}
-    SD_Components (1,1) struct
+    differenceFactors (1,:) double {mustBeInteger, mustBePositive, mustBeValidFactorIndex(differenceFactors, factorNames)}
+    SD_Components (1,1) struct {mustContainFields(SD_Components, {'RandomIntercept', 'Residual'})}
 end
 
-if numel(factorNames) ~= numel(factorLevels)
-    error('Number of factorNames must equal number of factorLevels.');
-end
-if max(differenceFactors) > numel(factorNames)
-    error('differenceFactors contains an index larger than the number of factors.');
-end
-if ~isfield(SD_Components, 'RandomIntercept') || ~isfield(SD_Components, 'Residual')
-    error('SD_Components struct must contain fields "RandomIntercept" and "Residual".');
-end
-
-baselineMean = 0;
 nFactors = numel(factorNames);
-kTotalCells = prod(factorLevels);
-sd_intercept = SD_Components.RandomIntercept;
-sd_residual = SD_Components.Residual;
+kTotalGroups = prod(factorLevels);
+nBetweenGroups = factorLevels(1);
+nSubjectsPerGroup = nPerGroup;
+nTotalSubjects = nBetweenGroups * nSubjectsPerGroup;
 
-% --- 2. Define Cell Means (The H1 Hypothesis) ---
+% --- 2. Create the Fixed-Effects Design Table (the "Mean Table") ---
 
-% Use fullfact to get all combinations of level indices
-% E.g., for [2, 3], this is:
-% [1 1; 2 1; 1 2; 2 2; 1 3; 2 3]
-levelIndices = fullfact(factorLevels);
+% Create a grid of all factor level combinations
+% FIX: Create cell array of vectors (e.g., {1:2, 1:4}) for ndgrid
+gridVectors = arrayfun(@(x) 1:x, factorLevels, 'UniformOutput', false);
+levelGrids = cell(1, nFactors);
+[levelGrids{:}] = ndgrid(gridVectors{:});
 
-% Find rows to apply the difference
-rowsToModify = true(kTotalCells, 1);
-for i = 1:numel(differenceFactors)
-    factorIdx = differenceFactors(i);
-    lastLevel = factorLevels(factorIdx);
-    rowsToModify = rowsToModify & (levelIndices(:, factorIdx) == lastLevel);
-end
-
-% Create the vector of cell means
-cellMeans = repmat(baselineMean, kTotalCells, 1);
-cellMeans(rowsToModify) = baselineMean + differenceToTest;
-
-% Create a "lookup" for the cell means
-% E.g., meanLookup(1,1)=0, meanLookup(2,1)=0, ..., meanLookup(2,3)=5
-meanLookup = zeros(factorLevels);
-linIndices = sub2ind(factorLevels, levelIndices(:,1), levelIndices(:,2));
-if nFactors > 2
-    % Handle N-way case
-    indicesCell = num2cell(levelIndices, 1);
-    linIndices = sub2ind(factorLevels, indicesCell{:});
-end
-meanLookup(linIndices) = cellMeans;
-
-
-% --- 3. Generate Factor Level Names (e.g., 'Drug_1', 'Drug_2') ---
-levelNames = cell(1, nFactors);
+% This table will have kTotalGroups rows
+meanTable = table();
 for i = 1:nFactors
-    levelNames{i} = cell(factorLevels(i), 1);
-    for j = 1:factorLevels(i)
-        levelNames{i}{j} = sprintf('%s_%d', factorNames{i}, j);
+    factorName = string(factorNames{i}); % Convert to string
+
+    % FIX: Use string concatenation which categorical() handles correctly.
+    levelNames = categorical(factorName + "_" + string(levelGrids{i}(:)));
+
+    meanTable.(factorNames{i}) = levelNames; % Use original char name for column
+end
+
+% --- 3. Define and Apply the Effect (The H1 Hypothesis) ---
+% Start with a baseline mean of 0 for all cells
+meanTable.Mean = zeros(kTotalGroups, 1);
+
+if ~isempty(differenceToTest) && ~isempty(differenceFactors)
+    % Create a logical index for the rows to apply the difference
+
+    % Start with all rows (all true)
+    effectIdx = true(kTotalGroups, 1);
+
+    for i = 1:numel(differenceFactors)
+        factorIdx = differenceFactors(i);
+        factorName = factorNames{factorIdx};
+        lastLevel = factorLevels(factorIdx);
+
+        % FIX: Use string concatenation and convert to categorical
+        lastLevelName = categorical(string(factorName) + "_" + string(lastLevel));
+
+        % Intersect the index
+        effectIdx = effectIdx & (meanTable.(factorName) == lastLevelName);
     end
+
+    % Apply the difference to the selected rows
+    meanTable.Mean(effectIdx) = differenceToTest;
 end
 
-% --- 4. Generate Data Table ---
+% --- 4. Create the Full Data Table with Subjects (Random Effects) ---
 
-% Define "between-subject" (grouping) and "within-subject" factors
-betweenFactorName = factorNames{1};
-nBetweenLevels = factorLevels(1);
-nWithinLevels = kTotalCells / nBetweenLevels; % Total # of repeated measures
+% Generate random intercepts for each subject
+% One unique intercept for each of the nTotalSubjects
+subjectIntercepts = normrnd(0, SD_Components.RandomIntercept, [nTotalSubjects, 1]);
 
-nTotalAnimals = nBetweenLevels * nPerGroup;
-nTotalRows = nTotalAnimals * nWithinLevels; % Total rows in final table
+% Create subject names ('Animal_1', 'Animal_2', ...)
+% FIX: Use string array, then convert to categorical
+subjectNames_str = "Animal_" + string((1:nTotalSubjects)');
+subjectNames = categorical(subjectNames_str);
 
-% Generate random intercepts for EACH animal
-animalIntercepts = normrnd(0, sd_intercept, [nTotalAnimals, 1]);
 
-% Pre-allocate the output table
-T = table('Size', [nTotalRows, nFactors + 2], ...
-    'VariableTypes', [repmat("categorical", 1, nFactors+1), "double"]);
-T.Properties.VariableNames = [factorNames, 'Animal', 'Measurement'];
+% Create the final table design
+% This is complex, so we build it step-by-step
 
-% Get all combinations of *within-subject* factor levels
-if nFactors > 1
-    withinLevelIndices = fullfact(factorLevels(2:end));
-else
-    withinLevelIndices = 1; % No within-factors
+% Replicate the meanTable for each subject, but this is tricky
+% because subjects are nested within the first factor.
+
+% Initialize empty cell arrays to build the final table columns
+tableCells = cell(1, nFactors + 2); % factors + 'Animal' + 'Measurement'
+colNames = [factorNames, 'Animal', 'Measurement'];
+
+% Get the number of within-subject levels (all factors *except* the first)
+withinLevels = factorLevels(2:end);
+nWithinMeasurements = prod(withinLevels);
+if isempty(nWithinMeasurements)
+    nWithinMeasurements = 1; % Handle case with only 1 factor
 end
 
-% --- Loop through all subjects and fill the table ---
-row = 1;
-animalCounter = 1;
-for i = 1:nBetweenLevels % Loop per between-group (e.g., 'Drug_1', 'Drug_2')
-    betweenLevelName = levelNames{1}{i};
+% Total rows in final table
+nTotalRows = nTotalSubjects * nWithinMeasurements;
 
-    for j = 1:nPerGroup % Loop per animal in that group
-        animalName = sprintf('Animal_%d', animalCounter);
-        animalIntercept = animalIntercepts(animalCounter);
+% Pre-allocate columns
+for i = 1:nFactors
+    tableCells{i} = repmat(categorical(missing), nTotalRows, 1);
+end
+tableCells{nFactors + 1} = repmat(categorical(missing), nTotalRows, 1); % Animal
+tableCells{nFactors + 2} = zeros(nTotalRows, 1); % Measurement
 
-        for w = 1:nWithinLevels % Loop per repeated measure (e.g., 'Day_1', 'Day_2'...)
+rowCounter = 1;
+subjectCounter = 1;
 
-            % Get full index for this cell
-            if nFactors > 1
-                fullFactorIndex = [i, withinLevelIndices(w, :)];
-            else
-                fullFactorIndex = i;
-            end
+% Loop over the *between-subject* factor (Factor 1)
+for i = 1:nBetweenGroups
 
-            % Get the mean for this cell
-            idxCell = num2cell(fullFactorIndex);
-            cellMean = meanLookup(idxCell{:});
+    % Get the name of this between-subject level (e.g., 'Drug_1')
+    % FIX: Use string concatenation and convert to categorical
+    betweenLevelName = categorical(string(factorNames{1}) + "_" + string(i));
 
-            % Generate measurement
-            residualError = normrnd(0, sd_residual);
-            measurement = cellMean + animalIntercept + residualError;
+    % Find all rows in the meanTable matching this level
+    meanTable_subset = meanTable(meanTable.(factorNames{1}) == betweenLevelName, :);
 
-            % --- Assign data to table ---
-            T(row, 'Measurement') = {measurement};
-            T(row, 'Animal') = {animalName};
+    % Loop over the subjects *in this group*
+    for j = 1:nSubjectsPerGroup
 
-            % Assign all factor levels
-            for f = 1:nFactors
-                T(row, factorNames{f}) = levelNames{f}(fullFactorIndex(f));
-            end
+        % Get this subject's ID and random intercept
+        subjectID = subjectNames(subjectCounter);
+        subjectIntercept = subjectIntercepts(subjectCounter);
 
-            row = row + 1;
+        % Get the indices for this subject's rows in the final table
+        rows_to_fill = rowCounter : (rowCounter + nWithinMeasurements - 1);
+
+        % Fill in the fixed factor columns
+        for f = 1:nFactors
+            tableCells{f}(rows_to_fill) = meanTable_subset.(factorNames{f});
         end
-        animalCounter = animalCounter + 1;
+
+        % Fill in the Animal column
+        tableCells{nFactors + 1}(rows_to_fill) = subjectID;
+
+        % Generate measurement = mean + subject_intercept + residual_error
+        tableCells{nFactors + 2}(rows_to_fill) = ...
+            meanTable_subset.Mean + ...
+            subjectIntercept + ...
+            normrnd(0, SD_Components.Residual, [nWithinMeasurements, 1]);
+
+        % Increment counters
+        rowCounter = rowCounter + nWithinMeasurements;
+        subjectCounter = subjectCounter + 1;
     end
 end
 
-% --- 5. Prepare Power Parameter Output ---
+% Create the final table
+T = table(tableCells{:}, 'VariableNames', colNames);
+
+% --- 5. Prepare the powerParams Output Struct ---
 powerParams = struct();
 powerParams.expectedDifference = differenceToTest;
-powerParams.expectedMSE = sd_residual^2;
-powerParams.nPerGroup = nPerGroup; % n per cell
-powerParams.kTotalGroups = kTotalCells;
-powerParams.alpha = 0.05; % Default alpha
+powerParams.expectedMSE = SD_Components.Residual^2;
+powerParams.nPerGroup = nPerGroup;
+powerParams.kTotalGroups = kTotalGroups;
+powerParams.alpha = 0.05; % Set default alpha
 
+end
+
+% --- Custom Validation Functions for Arguments Block ---
+
+function mustHaveEqualSize(a, b)
+    % Custom validator to ensure numel matches
+    if ~isequal(numel(a), numel(b))
+        error('MATLAB:InputParser:ArgumentFailedValidation', ...
+            'Number of factorNames must equal number of factorLevels.');
+    end
+end
+
+function mustBeValidFactorIndex(indices, factorNames)
+    % Custom validator for differenceFactors
+    if any(indices > numel(factorNames))
+        error('MATLAB:InputParser:ArgumentFailedValidation', ...
+            'differenceFactors contains an index larger than the number of factors.');
+    end
+end
+
+function mustContainFields(s, fields)
+    % Custom validator for SD_Components struct
+    if ~isstruct(s)
+         error('MATLAB:InputParser:ArgumentFailedValidation', 'SD_Components must be a struct.');
+    end
+    if ~all(isfield(s, fields))
+        missing = fields(~isfield(s, fields));
+        error('MATLAB:InputParser:ArgumentFailedValidation', ...
+            'SD_Components struct is missing required field(s): %s', strjoin(missing, ', '));
+    end
 end
