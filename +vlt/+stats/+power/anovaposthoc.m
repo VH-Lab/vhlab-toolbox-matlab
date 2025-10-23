@@ -40,6 +40,7 @@ arguments
     options.alpha (1,1) double {mustBeGreaterThan(options.alpha,0), mustBeLessThan(options.alpha,1)} = 0.05
     options.dataColumnName (1,1) string = dataTable.Properties.VariableNames{end}
     options.plot (1,1) logical = true
+    options.verbose (1,1) logical = true
 end
 
 if strcmp(options.posthocTest, 'Tukey')
@@ -88,6 +89,10 @@ for s = 1:numel(groupShuffles)
     end
 
     for d = 1:numel(differences)
+
+        if options.verbose
+            disp(['Now working on difference ' int2str(d) ' of ' int2str(numel(differences)) '...']);
+        end
 
         significant_counts = zeros(1, numComparisons);
 

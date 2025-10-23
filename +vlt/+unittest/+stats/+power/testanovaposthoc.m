@@ -41,7 +41,7 @@ classdef testanovaposthoc < matlab.unittest.TestCase
             alpha = 0.05;
 
             results = vlt.stats.power.anovaposthoc(dataTable, differences, groupColumnNames, ...
-                groupComparisons, groupShuffles, 'numShuffles', 500, 'alpha', alpha, 'plot', false);
+                groupComparisons, groupShuffles, 'numShuffles', 500, 'alpha', alpha, 'plot', false, 'verbose', false);
 
             testCase.verifyEqual(numel(results), 1);
 
@@ -71,7 +71,7 @@ classdef testanovaposthoc < matlab.unittest.TestCase
             alpha = 0.05;
 
             results = vlt.stats.power.anovaposthoc(dataTable, differences, groupColumnNames, ...
-                groupComparisons, groupShuffles, 'numShuffles', 500, 'alpha', alpha, 'plot', false);
+                groupComparisons, groupShuffles, 'numShuffles', 500, 'alpha', alpha, 'plot', false, 'verbose', false);
 
             testCase.verifyEqual(numel(results), 1);
 
@@ -105,7 +105,7 @@ classdef testanovaposthoc < matlab.unittest.TestCase
 
             % Test plot=true (default)
             vlt.stats.power.anovaposthoc(dataTable, differences, groupColumnNames, ...
-                groupComparisons, groupShuffles, 'numShuffles', 10);
+                groupComparisons, groupShuffles, 'numShuffles', 10, 'verbose', false);
 
             current_figs = findall(0, 'Type', 'figure');
             new_fig = setdiff(current_figs, testCase.InitialFigures);
@@ -114,7 +114,7 @@ classdef testanovaposthoc < matlab.unittest.TestCase
 
             % Test plot=false
             vlt.stats.power.anovaposthoc(dataTable, differences, groupColumnNames, ...
-                groupComparisons, groupShuffles, 'numShuffles', 10, 'plot', false);
+                groupComparisons, groupShuffles, 'numShuffles', 10, 'plot', false, 'verbose', false);
 
             current_figs_after_no_plot = findall(0, 'Type', 'figure');
             new_figs_after_no_plot = setdiff(current_figs_after_no_plot, testCase.InitialFigures);
