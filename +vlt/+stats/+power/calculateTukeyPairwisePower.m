@@ -139,7 +139,7 @@ switch method
             % We need to find the value 'q' where the CDF equals (1-alpha).
             % We are solving the equation: cdfTukey(q, k, v) - (1-alpha) = 0
             target_p = 1 - a;
-            fun_to_solve = @(q) cdfTukey(q, k, v) - target_p;
+            fun_to_solve = @(q) vlt.stats.cdfTukey(q, k, v) - target_p;
 
             % Provide a reasonable starting guess for fzero (e.g., 4.0)
             q_crit = fzero(fun_to_solve, 4.0);
