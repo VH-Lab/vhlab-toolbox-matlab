@@ -19,6 +19,11 @@ function output = var2struct(varargin)
 %        b: 6
 %
 
+if nargin==0,
+    output = emptystruct();
+    return;
+end;
+
 for i=1:length(varargin)
 	myval = evalin('caller',varargin{i});
 	eval(['output.' varargin{i} '=myval;']);
