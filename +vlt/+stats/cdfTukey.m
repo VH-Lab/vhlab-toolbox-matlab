@@ -54,10 +54,10 @@ outer_integrand = @(s) ( ...
 
 % Integrate 's' from 0 to Inf. Use a high upper limit.
 try
-    p = integral(outer_integrand, 0, 100);
+    p = integral(outer_integrand, 0, 100, 'ArrayValued', true);
 catch ME
     if strcmp(ME.identifier, 'MATLAB:UndefinedFunction')
-        p = quad(outer_integrand, 0, 10);
+        p = quad(outer_integrand, 0, 10, 'ArrayValued', true);
     else
         rethrow(ME);
     end
