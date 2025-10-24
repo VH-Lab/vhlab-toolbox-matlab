@@ -34,7 +34,7 @@ classdef testfindrowvec < matlab.unittest.TestCase
 
         function test_findrowvec_empty_a(testCase)
             % test case with empty a
-            a = [];
+            a = zeros(0,2);
             b = [1 2];
             i = findrowvec(a,b);
             testCase.verifyTrue(isempty(i));
