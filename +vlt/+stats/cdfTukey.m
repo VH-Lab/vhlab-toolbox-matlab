@@ -8,8 +8,8 @@ function p = cdfTukey(q, k, v)
 %
 %   This function uses a standard numerical integration approach based on
 %   the normal distribution's CDF, which is a common and robust method for
-%   approximating the Studentized range CDF. It also uses a direct
-%   calculation based on the t-distribution for the special case k=2.
+%   approximating the Studentized range CDF. It also includes a direct
+%   calculation using the t-distribution CDF for the special case k=2.
 %
 %   **********************************************************************
 %   *** PACKAGE NOTE & CITATION                                        ***
@@ -23,13 +23,12 @@ function p = cdfTukey(q, k, v)
 %   numerical integration method for k>2 and the exact t-distribution
 %   relationship for k=2.
 %
-%   See also: normcdf, integral, quad, tcdf, tinv,
-%             vlt.stats.power.calculateTukeyPairwisePower
+%   See also: normcdf, integral, tcdf, vlt.stats.power.calculateTukeyPairwisePower
 % --- Input Parsing ---
 arguments
     q (1,1) double {mustBeNumeric}
     k (1,1) double {mustBeInteger, mustBeGreaterThanOrEqual(k, 2)}
-    v (1,1) double {mustBeNumeric} % Degrees of freedom
+    v (1,1) double {mustBeNumeric}
 end
 
 % --- Handle Edge Cases ---
@@ -43,40 +42,45 @@ if v < 1
     v = 1;
 end
 
-% --- Main Calculation ---
-
+% --- Special Case for k=2 ---
+% The Studentized range is related to the t-distribution when k=2:
+% q = sqrt(2) * |t|
+% P(q <= Q) = P(sqrt(2)*|t| <= Q) = P(|t| <= Q/sqrt(2))
+%           = P(-Q/sqrt(2) <= t <= Q/sqrt(2))
+%           = tcdf(Q/sqrt(2), v) - tcdf(-Q/sqrt(2), v)
 if k == 2
-    % Special case for k=2, directly related to t-distribution
-    % q = sqrt(2) * |t|
-    t_val = q / sqrt(2);
-    p = tcdf(t_val, v) - tcdf(-t_val, v);
+    p = tcdf(q / sqrt(2), v) - tcdf(-q / sqrt(2), v);
+    % Ensure probability is within [0, 1] - handles potential numerical inaccuracies
+    p = max(0, min(1, p));
+    return; % Calculation complete for k=2
+end
 
-else
-    % Use numerical integration for k > 2
-    % This is the standard double integral for the Studentized Range CDF
-    outer_integrand = @(s) ( ...
-        k * ( integral(@(z) normpdf(z) .* (normcdf(z+q.*s) - normcdf(z)).^(k-1), -Inf, Inf) ) .* ...
-        2 * (v/2).^(v/2) / gamma(v/2) .* s.^(v-1) .* exp(-v.*s.^2/2) ...
-    );
+% --- Main Calculation using Numerical Integration (for k > 2) ---
+% This is the standard double integral for the Studentized Range CDF
+% Integrate over the PDF of s (related to chi-distribution)
+% weighted by the probability of the range of 'k' normal samples.
 
-    % Integrate 's' from 0 to Inf.
-    try
-        % Use Inf for the upper limit, which is more accurate
-        p = integral(outer_integrand, 0, Inf, 'ArrayValued', true, 'AbsTol', 1e-6, 'RelTol', 1e-4); % Added tolerances
-    catch ME
+% Inner integral (over z)
+inner_integrand = @(z, q_val, s_val, k_val) ...
+    normpdf(z) .* (normcdf(z + q_val * s_val) - normcdf(z)).^(k_val - 1);
+
+% Outer integral (over s)
+outer_integrand = @(s) ( ...
+    k * ( integral(@(z) inner_integrand(z, q, s, k), -Inf, Inf, 'ArrayValued', true) ) .* ...
+    2 * (v/2).^(v/2) / gamma(v/2) .* s.^(v-1) .* exp(-v*s.^2/2) ...
+);
+
+% Integrate 's' from 0 to Inf.
+try
+    % Use Inf for the upper limit, which is more accurate
+    p = integral(outer_integrand, 0, Inf, 'ArrayValued', true);
+catch ME
+    if strcmp(ME.identifier, 'MATLAB:UndefinedFunction')
         % Fallback for older MATLAB versions (quad does not support Inf)
-        % or if integral fails
-        if strcmp(ME.identifier, 'MATLAB:UndefinedFunction') || contains(ME.message, 'tolerance')
-            warning('vlt:stats:cdfTukey:IntegralFailed', 'Integral function failed or unavailable, falling back to quad with finite limit.');
-            try
-                p = quad(outer_integrand, 0, 100); % Use quad with a large finite limit
-            catch ME_quad
-                warning('vlt:stats:cdfTukey:QuadFailed', 'Quad function also failed. Returning NaN.');
-                p = NaN; % Return NaN if both fail
-            end
-        else
-            rethrow(ME);
-        end
+        % Using a reasonably large upper limit (e.g., 100)
+        p = quad(outer_integrand, 0, 100);
+    else
+        rethrow(ME);
     end
 end
 
