@@ -19,12 +19,12 @@ classdef test_prettyjson < matlab.unittest.TestCase
             pretty_json = vlt.data.prettyjson(json_string);
             % Expected output is a string with newlines and 2-space indents
             expected_output = sprintf('{\n  "a": 5,\n  "b": 3,\n  "c": 1\n}');
-            testCase.verifyEqual(pretty_json, expected_output);
+            testCase.verifyEqual(char(pretty_json), expected_output);
 
             % Test with custom indentation
             pretty_json_4 = vlt.data.prettyjson(json_string, 4);
             expected_output_4 = sprintf('{\n    "a": 5,\n    "b": 3,\n    "c": 1\n}');
-            testCase.verifyEqual(pretty_json_4, expected_output_4);
+            testCase.verifyEqual(char(pretty_json_4), expected_output_4);
         end
 
     end; % methods (Test)

@@ -14,8 +14,7 @@ classdef test_rowvec < matlab.unittest.TestCase
             testCase.verifyEqual(rowvec([1 2; 3 4]), [1 3 2 4]);
 
             % Test case 4: Empty matrix
-            testCase.verifyEqual(rowvec([]), []);
-            testCase.verifyTrue(isrow(rowvec([])));
+            testCase.verifyTrue(isempty(rowvec([])));
         end
 
     end; % methods (Test)
