@@ -46,10 +46,7 @@ SD_Components = struct('RandomIntercept', SD_RandomIntercept, 'Residual', SD_Res
 
 % --- Get Parameters for Analytical Calculation FROM the Generator Output ---
 powerParamsFromGen.alpha = options.alpha; % Use the alpha passed to this function
-% The internal function 'lme_category' renames the grouping variable to the value of the 'group' argument.
-% To prevent errors, we will rename our grouping column ('Animal') to match the internal variable name.
-dataTable = renamevars(dataTable, "Animal", "group_data");
-dataTable.Properties.VariableNames{2} = 'Y'; % Rename for compatibility
+dataTable.Properties.VariableNames{3} = 'Y'; % Rename the 'Measurement' column for compatibility
 alpha = powerParamsFromGen.alpha;
 
 % --- Step 2: Run the simulation-based power analysis to get the power curve ---
@@ -65,7 +62,7 @@ category_to_test = char(group_names(end));
 targetPowerForFunc = 0.80;
 
 [~, power_curve] = vlt.stats.power.run_lme_power_analysis(dataTable, 'Group', 'Y', ...
-    reference_category, 'group_data', category_to_test, targetPowerForFunc, ...
+    reference_category, 'Animal', category_to_test, targetPowerForFunc, ...
     'Alpha', alpha, ...
     'NumSimulations', options.numShuffles, ...
     'Method', 'shuffle', ...
