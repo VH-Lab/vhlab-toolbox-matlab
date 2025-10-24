@@ -1,4 +1,4 @@
-function anovaposthocValidation(varargin)
+function anovaposthocValidation(options)
 % ANOVAPOSTHOCVALIDATION - Validate the anovaposthoc simulation against analytical results
 %
 %   vlt.stats.power.anovaposthocValidation
@@ -23,22 +23,35 @@ function anovaposthocValidation(varargin)
 %
 
 arguments
-    varargin.numShuffles (1,1) double = 2000;
-    varargin.alpha (1,1) double = 0.05;
+    options.numShuffles (1,1) double = 2000;
+    options.alpha (1,1) double = 0.05;
 end
 
 % --- Step 1: Define the experimental parameters and create the data table ---
 
-group_means = [10 10 10];
-group_stdevs = [2 2 2];
-group_n = [10 10 10];
+% Parameters for a simple 1-way ANOVA design with 3 groups
+factorNames = {'Group'};
+factorLevels = [3];
+nPerGroup = 10;
+SD_Residual = 2.0; % The within-group standard deviation
+SD_RandomIntercept = 0; % No subject-specific random effect for this simple case
 
-k = numel(group_means); % Total number of groups
-n = group_n(1);         % N per group (balanced design)
-mse = group_stdevs(1)^2;  % Mean squared error
-alpha = varargin.alpha;
+% We will apply the 'difference' to the last level of the 'Group' factor
+differenceFactors = [1];
 
-dataTable = vlt.stats.artificialAnovaTable(group_means, group_stdevs, group_n);
+% The SD_Components struct is required by the generation function
+SD_Components = struct('RandomIntercept', SD_RandomIntercept, 'Residual', SD_Residual);
+
+% Generate a baseline data table with NO difference added yet.
+% The 'difference' will be added manually within the simulation loop of anovaposthoc.
+dataTable = vlt.stats.artificialAnovaTable(factorNames, factorLevels, nPerGroup, ...
+    0, differenceFactors, SD_Components); % Start with difference = 0
+
+% Parameters needed for the analytical calculation
+k = factorLevels(1);    % Total number of groups
+n = nPerGroup;          % N per group (balanced design)
+mse = SD_Residual^2;      % Mean squared error
+alpha = options.alpha;
 
 % --- Step 2: Set up the power analysis ---
 
@@ -61,7 +74,7 @@ for i=1:numel(differences)
     % Run the simulation
     power_struct = vlt.stats.power.anovaposthoc(dataTable, d, groupColumnNames, ...
         groupComparisons, groupShuffles, ...
-        'numShuffles', varargin.numShuffles, 'alpha', alpha, ...
+        'numShuffles', options.numShuffles, 'alpha', alpha, ...
         'plot', false, 'verbose', false);
 
     % The difference is added to the last group. We want to find the power for a
