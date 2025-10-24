@@ -64,24 +64,21 @@ for i=1:numel(differences)
         'numShuffles', varargin.numShuffles, 'alpha', alpha, ...
         'plot', false, 'verbose', false);
 
-    % The difference is added to the last group (GroupC). We want to find the
-    % power for the comparison between the first group (GroupA) and the last.
-    % The names are like 'Group-GroupA vs. Group-GroupC'
-    comparison_name_to_find = [char(power_struct(1).groupComparisonName(1)) ' vs. ' char(power_struct(1).groupComparisonName(end))];
+    % The difference is added to the last group. We want to find the power for a
+    % comparison involving this group, e.g., between the first and last groups.
+    group_names = unique(dataTable.Group);
+    group_name_first = string(group_names(1));
+    group_name_last = string(group_names(end));
 
-    % Find the index of this comparison
-    % Note: the returned names might be in a different order, so we check both directions
-    name1 = [string(dataTable.Properties.VariableNames{2}) '-' string(unique(dataTable.Group){1}) ' vs. ' string(dataTable.Properties.VariableNames{2}) '-' string(unique(dataTable.Group){k})];
-    idx = find(strcmp(power_struct.groupComparisonName, name1));
-    if isempty(idx),
-        name2 = [string(dataTable.Properties.VariableNames{2}) '-' string(unique(dataTable.Group){k}) ' vs. ' string(dataTable.Properties.VariableNames{2}) '-' string(unique(dataTable.Group){1})];
-        idx = find(strcmp(power_struct.groupComparisonName, name2));
-    end
+    % Find the index for this comparison in the power results
+    idx = find(contains(power_struct.groupComparisonName, group_name_first) & ...
+               contains(power_struct.groupComparisonName, group_name_last));
 
     if ~isempty(idx)
-        simulated_power(i) = power_struct.groupComparisonPower(idx);
+        % If multiple matches, take the first (should only be one)
+        simulated_power(i) = power_struct.groupComparisonPower(idx(1));
     else
-        error(['Could not find the expected group comparison name: ' name1 ' or ' name2]);
+        error('Could not find the expected group comparison name in the power results.');
     end
 
 
