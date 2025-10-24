@@ -108,5 +108,112 @@ classdef (Abstract) base
 
             eventTimes = timeSeriesTimeStamps(sort(final_indices));
         end
+
+        function detector = buildTimeseriesDetectorMLFromDirectory(dirname)
+            % BUILDTIMESERIESDETECTORMLFROMDIRECTORY - build a detector from a directory
+            %
+            % DETECTOR = vlt.signal.timeseriesDetectorML.base.buildTimeseriesDetectorMLFromDirectory(DIRNAME)
+            %
+            % Builds a new vlt.signal.timeseriesDetectorML object from a directory DIRNAME.
+            %
+            % The directory must contain:
+            %   1) 'parameters.json' - a file that describes how to build the object.
+            %      It should have a field 'timeseriesDetectorMLClassName' that has the classname
+            %      of the object to create.
+            %      It should have a field 'creatorInputArgs' that is a structure array with fields
+            %      'name' and 'value'. These are the arguments to be passed to the creator.
+            %      Argument names 'requiredArg1', 'requiredArg2', etc, are assumed to be required
+            %      positional arguments. Other argument names are assumed to be name/value pairs.
+            %   2) '*positive*.mat' files - one or more MAT-files that contain a variable 'positiveExamples'
+            %      which is a matrix of positive examples.
+            %   3) '*negative*.mat' files - one or more MAT-files that contain a variable 'negativeExamples'
+            %      which is a matrix of negative examples.
+            %
+            % The DETECTOR is returned with its parameters trained on the positive and negative examples.
+            %
+            arguments
+                dirname (1,:) char {mustBeFolder}
+            end
+
+            % Step 1: read parameters.json
+            p_file = fullfile(dirname, 'parameters.json');
+            if ~exist(p_file,'file'),
+                error(['Could not find ' p_file '.']);
+            end;
+            params = jsondecode(fileread(p_file));
+
+            % Step 2: build the creator string
+            req_arg_str = '';
+            name_value_str = '';
+
+            if isfield(params, 'creatorInputArgs')
+                for i=1:numel(params.creatorInputArgs)
+                    if startsWith(params.creatorInputArgs(i).name, 'requiredArg')
+                        % it is a required argument
+                        value = params.creatorInputArgs(i).value;
+                        if ischar(value)
+                            req_arg_str = [req_arg_str '''' value ''','];
+                        elseif isnumeric(value)
+                            req_arg_str = [req_arg_str num2str(value) ','];
+                        else
+                            error(['Do not know how to handle this value type.']);
+                        end
+                    else
+                        % it is a name/value pair
+                        name = params.creatorInputArgs(i).name;
+                        value = params.creatorInputArgs(i).value;
+                        name_value_str = [name_value_str '''' name ''','];
+                        if ischar(value)
+                            name_value_str = [name_value_str '''' value ''','];
+                        elseif isnumeric(value)
+                            name_value_str = [name_value_str num2str(value) ','];
+                        else
+                            error(['Do not know how to handle this value type.']);
+                        end
+                    end
+                end
+            end
+            if endsWith(req_arg_str,','), req_arg_str = req_arg_str(1:end-1); end;
+            if endsWith(name_value_str,','), name_value_str = name_value_str(1:end-1); end;
+
+            constructor_str = [params.timeseriesDetectorMLClassName '(' req_arg_str ];
+            if ~isempty(name_value_str)
+                if ~isempty(req_arg_str)
+                    constructor_str = [ constructor_str ',' name_value_str];
+                else
+                    constructor_str = [ constructor_str name_value_str];
+                end
+            end
+            constructor_str = [constructor_str ')'];
+
+            detector = eval(constructor_str);
+
+            % Step 3: load the positive and negative examples
+
+            positive_files = dir(fullfile(dirname, '*positive*.mat'));
+            negative_files = dir(fullfile(dirname, '*negative*.mat'));
+
+            positiveExamples = [];
+            for i=1:numel(positive_files)
+                data = load(fullfile(dirname, positive_files(i).name),'positiveExamples');
+                if isfield(data,'positiveExamples')
+                    positiveExamples = cat(2, positiveExamples, data.positiveExamples);
+                end
+            end
+
+            negativeExamples = [];
+            for i=1:numel(negative_files)
+                data = load(fullfile(dirname, negative_files(i).name),'negativeExamples');
+                if isfield(data,'negativeExamples')
+                    negativeExamples = cat(2, negativeExamples, data.negativeExamples);
+                end
+            end
+
+            % Step 4: train the detector
+            observations = [positiveExamples negativeExamples];
+            TFvalues = [true(1,size(positiveExamples,2)) false(1,size(negativeExamples,2))];
+
+            detector = detector.train(observations, TFvalues);
+        end
     end
 end
