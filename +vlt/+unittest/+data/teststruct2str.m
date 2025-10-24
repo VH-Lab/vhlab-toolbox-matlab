@@ -11,7 +11,7 @@ classdef teststruct2str < matlab.unittest.TestCase
         function testStructWithCell(testCase)
             % Test a struct with a cell, which should now be handled correctly
             S = struct('field1', {{'a', 'b'}});
-            expectedStr = '{''a'' ''b''}';
+            expectedStr = '{ ''a'', ''b'' }';
             actualStr = vlt.data.struct2str(S);
             testCase.verifyEqual(actualStr, expectedStr);
         end
