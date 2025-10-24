@@ -8,7 +8,8 @@ function p = cdfTukey(q, k, v)
 %
 %   This function uses a standard numerical integration approach based on
 %   the normal distribution's CDF, which is a common and robust method for
-%   approximating the Studentized range CDF.
+%   approximating the Studentized range CDF. It also uses a direct
+%   calculation based on the t-distribution for the special case k=2.
 %
 %   **********************************************************************
 %   *** PACKAGE NOTE & CITATION                                        ***
@@ -19,17 +20,19 @@ function p = cdfTukey(q, k, v)
 %   found to contain bugs that produced incorrect probabilities.
 %
 %   This version has been re-written to use a more standard and reliable
-%   numerical integration method.
+%   numerical integration method for k>2 and the exact t-distribution
+%   relationship for k=2.
 %
-%   See also: normcdf, integral, vlt.stats.power.calculateTukeyPairwisePower
-
+%   See also: normcdf, integral, quad, tcdf, tinv,
+%             vlt.stats.power.calculateTukeyPairwisePower
 % --- Input Parsing ---
 arguments
     q (1,1) double {mustBeNumeric}
     k (1,1) double {mustBeInteger, mustBeGreaterThanOrEqual(k, 2)}
-    v (1,1) double {mustBeNumeric}
+    v (1,1) double {mustBeNumeric} % Degrees of freedom
 end
 
+% --- Handle Edge Cases ---
 if q <= 0
     p = 0;
     return;
@@ -40,30 +43,45 @@ if v < 1
     v = 1;
 end
 
-% --- Main Calculation using Numerical Integration ---
-% This is a standard formula for the Studentized range CDF.
-% It integrates over the probability density of a variable related to
-% the chi-squared distribution, weighted by the probability of the
-% range of 'k' normal samples.
+% --- Main Calculation ---
 
-% This is the standard double integral for the Studentized Range CDF
-outer_integrand = @(s) ( ...
-    k * ( integral(@(z) normpdf(z) .* (normcdf(z+q*s) - normcdf(z)).^(k-1), -Inf, Inf) ) .* ...
-    2 * (v/2).^(v/2) / gamma(v/2) .* s.^(v-1) .* exp(-v*s.^2/2) ...
-);
+if k == 2
+    % Special case for k=2, directly related to t-distribution
+    % q = sqrt(2) * |t|
+    t_val = q / sqrt(2);
+    p = tcdf(t_val, v) - tcdf(-t_val, v);
 
-% Integrate 's' from 0 to Inf. Use a high upper limit.
-try
-    p = integral(outer_integrand, 0, 100, 'ArrayValued', true);
-catch ME
-    if strcmp(ME.identifier, 'MATLAB:UndefinedFunction')
-        p = quad(outer_integrand, 0, 10, 'ArrayValued', true);
-    else
-        rethrow(ME);
+else
+    % Use numerical integration for k > 2
+    % This is the standard double integral for the Studentized Range CDF
+    outer_integrand = @(s) ( ...
+        k * ( integral(@(z) normpdf(z) .* (normcdf(z+q.*s) - normcdf(z)).^(k-1), -Inf, Inf) ) .* ...
+        2 * (v/2).^(v/2) / gamma(v/2) .* s.^(v-1) .* exp(-v.*s.^2/2) ...
+    );
+
+    % Integrate 's' from 0 to Inf.
+    try
+        % Use Inf for the upper limit, which is more accurate
+        p = integral(outer_integrand, 0, Inf, 'ArrayValued', true, 'AbsTol', 1e-6, 'RelTol', 1e-4); % Added tolerances
+    catch ME
+        % Fallback for older MATLAB versions (quad does not support Inf)
+        % or if integral fails
+        if strcmp(ME.identifier, 'MATLAB:UndefinedFunction') || contains(ME.message, 'tolerance')
+            warning('vlt:stats:cdfTukey:IntegralFailed', 'Integral function failed or unavailable, falling back to quad with finite limit.');
+            try
+                p = quad(outer_integrand, 0, 100); % Use quad with a large finite limit
+            catch ME_quad
+                warning('vlt:stats:cdfTukey:QuadFailed', 'Quad function also failed. Returning NaN.');
+                p = NaN; % Return NaN if both fail
+            end
+        else
+            rethrow(ME);
+        end
     end
 end
 
-% Ensure probability is within [0, 1]
+% Ensure probability is within [0, 1] - handles potential numerical inaccuracies
 p = max(0, min(1, p));
 
 end
+
