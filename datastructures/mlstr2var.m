@@ -59,8 +59,10 @@ if startsWith(lower(codingregion), lower('STRUCT')) | startsWith(lower(codingreg
 	cellhere = 1-structhere;
 
 	if structhere,
+		fprintf('DEBUG_62: size(datastart-1) is %s, class %s\n', mat2str(size(datastart-1)), class(datastart-1));
 		parametersregion = strtrim(codingregion(1+length('STRUCT'):datastart-1)); 
 	else,
+		fprintf('DEBUG_62: size(datastart-1) is %s, class %s\n', mat2str(size(datastart-1)), class(datastart-1));
 		parametersregion = strtrim(codingregion(1+length('CELL'):datastart-1)); 
 	end
 
@@ -104,6 +106,7 @@ if startsWith(lower(codingregion), lower('STRUCT')) | startsWith(lower(codingreg
 	end
 	endofdata = endofdata(end)-1; % should be correct even if these occur within the data
 
+	fprintf('DEBUG_107: size(endofdata) is %s, class %s, value %s\n', mat2str(size(endofdata)), class(endofdata), mat2str(endofdata));
 	dataregion = codingregion(datastart+length('data='):endofdata);
 
 	if structhere,
