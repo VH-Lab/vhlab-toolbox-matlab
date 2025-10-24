@@ -23,7 +23,7 @@ classdef test_findclosestpoint < matlab.unittest.TestCase
             point = [1 1];
             % This will error because repmat(point, 0, 1) is 0x2, but pointlist is 0x0.
             % Matrix dimensions must agree.
-            testCase.verifyError(@() findclosestpoint(pointlist, point), 'MATLAB:dimagree');
+            testCase.verifyError(@() findclosestpoint(pointlist, point), 'MATLAB:sizeDimensionsMustMatch');
         end
 
         function test_empty_pointlist_0xN(testCase)
