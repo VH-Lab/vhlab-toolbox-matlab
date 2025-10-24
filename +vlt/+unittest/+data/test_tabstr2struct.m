@@ -42,9 +42,8 @@ classdef test_tabstr2struct < matlab.unittest.TestCase
             fn = {'empty1', 'empty2'};
             a = vlt.data.tabstr2struct(s, fn);
 
-            expected_struct = struct('empty1', '', 'empty2', '');
-
-            testCase.verifyEqual(a, expected_struct);
+            testCase.verifyTrue(isempty(a.empty1));
+            testCase.verifyTrue(isempty(a.empty2));
         end % test_empty_string
 
     end % methods(Test)

@@ -76,7 +76,7 @@ while linesread<length(eol_marks),
 	[nextline,position] = vlt.string.line_n(str,1+linesread,'eol_marks',eol_marks),
 
 	while (~isempty(nextline) & linesread<length(eol_marks)), % while no end of structure mark
-		disp(['nextline: ' nextline ])
+		% disp(['nextline: ' nextline ])
 		field = sscanf(nextline,'%s:');
 		field = field(1:end-1);
 		b = struct;
