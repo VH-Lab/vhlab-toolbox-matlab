@@ -62,7 +62,7 @@ for j=1:numel(s),
 		end;
 	end;
 
-	s_here = orderfields(s_here)
+	s_here = orderfields(s_here);
 
 	if j==1,
 		sf = s_here;
