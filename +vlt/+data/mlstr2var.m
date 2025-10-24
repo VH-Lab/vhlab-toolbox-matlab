@@ -51,6 +51,7 @@ codingregion = strtrim(mlstring(2:end-1));
 if startsWith(lower(codingregion), lower('STRUCT')) | startsWith(lower(codingregion), lower('CELL')),
 	% import struct or cell
 	datastart = strfind(lower(codingregion), 'data=');
+	datastart = datastart(1);
 	if isempty(datastart),
 		error(['Could not find ''data='' segment.']);
 	end
@@ -59,10 +60,8 @@ if startsWith(lower(codingregion), lower('STRUCT')) | startsWith(lower(codingreg
 	cellhere = 1-structhere;
 
 	if structhere,
-		fprintf('DEBUG_62: size(datastart-1) is %s, class %s\n', mat2str(size(datastart-1)), class(datastart-1));
 		parametersregion = strtrim(codingregion(1+length('STRUCT'):datastart-1)); 
 	else,
-		fprintf('DEBUG_62: size(datastart-1) is %s, class %s\n', mat2str(size(datastart-1)), class(datastart-1));
 		parametersregion = strtrim(codingregion(1+length('CELL'):datastart-1)); 
 	end
 
@@ -106,7 +105,6 @@ if startsWith(lower(codingregion), lower('STRUCT')) | startsWith(lower(codingreg
 	end
 	endofdata = endofdata(end)-1; % should be correct even if these occur within the data
 
-	fprintf('DEBUG_107: size(endofdata) is %s, class %s, value %s\n', mat2str(size(endofdata)), class(endofdata), mat2str(endofdata));
 	dataregion = codingregion(datastart+length('data='):endofdata);
 
 	if structhere,
@@ -121,36 +119,24 @@ if startsWith(lower(codingregion), lower('STRUCT')) | startsWith(lower(codingreg
 	brace = vlt.string.bracelevel(dataregion_meta,'<','>') >= 1;
 	onsets = 1+find(diff(brace)==1);
 	offsets = find(diff(brace)==-1);
-
-	fprintf('DEBUG: dataregion = "%s"\n', dataregion);
-	fprintf('DEBUG: Outer onsets = %s\n', mat2str(onsets));
-	fprintf('DEBUG: Outer offsets = %s\n', mat2str(offsets));
-
 	if structhere,
 		for i=1:numel(onsets),
 			entrystring = dataregion(onsets(i):offsets(i));
-			fprintf('DEBUG: Outer loop i=%d, entrystring = "%s"\n', i, entrystring);
 			entrystring_meta = dataregion_meta(onsets(i):offsets(i));
 			vlt.string.bracelevel(entrystring_meta,'<','>');
 			structlevels = (vlt.string.bracelevel(entrystring_meta,'<','>') >= 1);
 			structonsets = 1+find(diff(structlevels)==1);
 			structoffsets = find(diff(structlevels)==-1);
-			fprintf('DEBUG: Inner structonsets = %s\n', mat2str(structonsets));
-			fprintf('DEBUG: Inner structoffsets = %s\n', mat2str(structoffsets));
 			vnew = vlt.data.emptystruct(fieldnames_values{:});
 			for j=1:numel(structonsets),
-				substring_to_eval = entrystring(structonsets(j):structoffsets(j));
-				fprintf('DEBUG: Inner loop j=%d, substring = "%s"\n', j, substring_to_eval);
-				eval(['vnew(1).' fieldnames_values{j} '=vlt.data.mlstr2var(substring_to_eval);']);
+				eval(['vnew(1).' fieldnames_values{j} '=vlt.data.mlstr2var(entrystring(structonsets(j):structoffsets(j)));']);
             end
 		    v(end+1) = vnew;
 		end
 
 	else,
 		for i=1:numel(onsets),
-			entrystring = dataregion(onsets(i):offsets(i));
-			fprintf('DEBUG: Cell loop i=%d, entrystring = "%s"\n', i, entrystring);
-			v{i} = vlt.data.mlstr2var(entrystring);
+			v{i} = vlt.data.mlstr2var(dataregion(onsets(i):offsets(i)));
 		end
     end
     
