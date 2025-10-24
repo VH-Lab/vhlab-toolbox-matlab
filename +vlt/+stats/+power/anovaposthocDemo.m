@@ -28,6 +28,7 @@ arguments
     options.numberOfDrugs (1,1) double {mustBeInteger, mustBeGreaterThan(options.numberOfDrugs,0)} = 2
     options.numberOfDays (1,1) double {mustBeInteger, mustBeGreaterThan(options.numberOfDays,0)} = 5
     options.numShuffles (1,1) double {mustBeInteger, mustBeGreaterThan(options.numShuffles,0)} = 1000
+    options.verbose (1,1) logical = true
 end
 
 % Create a sample data table
@@ -45,8 +46,10 @@ Measurement = randn(num_total_measurements, 1);
 
 dataTable = table(Animal, Drug, TestDay, Measurement);
 
-disp('Sample data table:');
-disp(dataTable);
+if options.verbose
+    disp('Sample data table:');
+    disp(dataTable);
+end
 
 % Define the parameters for the power analysis
 differences = 0:0.5:2;
@@ -56,15 +59,17 @@ groupShuffles = {[1], [2], [1 2]}; % Shuffle Drug, TestDay, or both
 
 % Run the power analysis
 anovaposthoc_results = vlt.stats.power.anovaposthoc(dataTable, differences, groupColumnNames, ...
-    groupComparisons, groupShuffles, 'numShuffles', options.numShuffles);
+    groupComparisons, groupShuffles, 'numShuffles', options.numShuffles, 'verbose', options.verbose);
 
-% Display the results
-for i = 1:numel(anovaposthoc_results)
-    disp(['Results for shuffle group: ' mat2str(groupShuffles{i})]);
-    disp('Comparison Powers:');
-    disp(anovaposthoc_results(i).groupComparisonPower);
-    disp('Comparison Names:');
-    disp(anovaposthoc_results(i).groupComparisonName);
+if options.verbose
+    % Display the results
+    for i = 1:numel(anovaposthoc_results)
+        disp(['Results for shuffle group: ' mat2str(groupShuffles{i})]);
+        disp('Comparison Powers:');
+        disp(anovaposthoc_results(i).groupComparisonPower);
+        disp('Comparison Names:');
+        disp(anovaposthoc_results(i).groupComparisonName);
+    end
 end
 
 end
