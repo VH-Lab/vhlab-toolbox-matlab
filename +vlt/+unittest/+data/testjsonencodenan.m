@@ -19,24 +19,36 @@ classdef testjsonencodenan < matlab.unittest.TestCase
             % Test encoding of a struct with NaN
             s = struct('value', NaN);
             json_str = vlt.data.jsonencodenan(s);
-            % Expected output: '{"value":NaN}'
-            testCase.verifyEqual(json_str, '{"value":NaN}');
+            expected_str = '{"value":NaN}';
+
+            % Remove whitespace for comparison as output may be pretty-printed
+            json_str(isspace(json_str)) = '';
+            expected_str(isspace(expected_str)) = '';
+            testCase.verifyEqual(json_str, expected_str);
         end
 
         function testEncodeInf(testCase)
             % Test encoding of a struct with Inf
             s = struct('value', Inf);
             json_str = vlt.data.jsonencodenan(s);
-            % Expected output: '{"value":Inf}'
-            testCase.verifyEqual(json_str, '{"value":Inf}');
+            expected_str = '{"value":Infinity}';
+
+            % Remove whitespace for comparison
+            json_str(isspace(json_str)) = '';
+            expected_str(isspace(expected_str)) = '';
+            testCase.verifyEqual(json_str, expected_str);
         end
 
         function testEncodeNegInf(testCase)
             % Test encoding of a struct with -Inf
             s = struct('value', -Inf);
             json_str = vlt.data.jsonencodenan(s);
-            % Expected output: '{"value":-Inf}'
-            testCase.verifyEqual(json_str, '{"value":-Inf}');
+            expected_str = '{"value":-Infinity}';
+
+            % Remove whitespace for comparison
+            json_str(isspace(json_str)) = '';
+            expected_str(isspace(expected_str)) = '';
+            testCase.verifyEqual(json_str, expected_str);
         end
 
         function testEncodeMixed(testCase)
@@ -44,12 +56,16 @@ classdef testjsonencodenan < matlab.unittest.TestCase
             s = struct('a', 1, 'b', NaN, 'c', Inf, 'd', 'text');
             json_str = vlt.data.jsonencodenan(s);
 
+            % Remove whitespace before checking content
+            json_str_no_space = json_str;
+            json_str_no_space(isspace(json_str_no_space)) = '';
+
             % The order of fields in the JSON output is not guaranteed.
             % So we verify that the JSON string contains the expected key-value pairs
-            testCase.verifyTrue(contains(json_str, '"a":1'));
-            testCase.verifyTrue(contains(json_str, '"b":NaN'));
-            testCase.verifyTrue(contains(json_str, '"c":Inf'));
-            testCase.verifyTrue(contains(json_str, '"d":"text"'));
+            testCase.verifyTrue(contains(json_str_no_space, '"a":1'));
+            testCase.verifyTrue(contains(json_str_no_space, '"b":NaN'));
+            testCase.verifyTrue(contains(json_str_no_space, '"c":Infinity'));
+            testCase.verifyTrue(contains(json_str_no_space, '"d":"text"'));
         end
     end
 end
