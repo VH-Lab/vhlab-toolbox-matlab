@@ -178,7 +178,11 @@ classdef (Abstract) base
 
             constructor_str = [params.timeseriesDetectorMLClassName '(' req_arg_str ];
             if ~isempty(name_value_str)
-                 constructor_str = [ constructor_str ',' name_value_str];
+                if ~isempty(req_arg_str)
+                    constructor_str = [ constructor_str ',' name_value_str];
+                else
+                    constructor_str = [ constructor_str name_value_str];
+                end
             end
             constructor_str = [constructor_str ')'];
 

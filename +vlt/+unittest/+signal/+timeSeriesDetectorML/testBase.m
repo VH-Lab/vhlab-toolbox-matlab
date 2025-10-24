@@ -13,12 +13,8 @@ classdef testBase < matlab.unittest.TestCase
 
             % Create parameters.json
             params.timeseriesDetectorMLClassName = 'vlt.signal.timeseriesDetectorML.conv1dNet';
-            params.creatorInputArgs(1).name = 'requiredArg1';
-            params.creatorInputArgs(1).value = 2; % two input channels
-            params.creatorInputArgs(2).name = 'requiredArg2';
-            params.creatorInputArgs(2).value = 10; % 10 samples
-            params.creatorInputArgs(3).name = 'name';
-            params.creatorInputArgs(3).value = 'myconv1dnet';
+            params.creatorInputArgs(1).name = 'detectorSamples';
+            params.creatorInputArgs(1).value = 10;
 
             jsonTxt = jsonencode(params);
             fid = fopen(fullfile(testCase.tempDir, 'parameters.json'), 'w');
