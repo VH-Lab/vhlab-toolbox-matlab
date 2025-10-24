@@ -33,7 +33,7 @@ if ~isletter(name(1)),
 	return;
 end;
 
-if ~strcmp(name,strtrim(name)),
+if any(isspace(name)),
 	errormsg = [errormsg 'must have no whitespace.'];
 	return;
 end;
