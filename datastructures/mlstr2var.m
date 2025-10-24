@@ -118,13 +118,7 @@ if startsWith(lower(codingregion), lower('STRUCT')) | startsWith(lower(codingreg
 	brace = bracelevel(dataregion_meta,'<','>') >= 1;
 	onsets = 1+find(diff(brace)==1);
 	offsets = find(diff(brace)==-1);
-	if numel(onsets)~=numel(offsets),
-		if numel(onsets) > numel(offsets), % extra onset
-			onsets = onsets(1:numel(offsets));
-		else, % extra offset
-			offsets = offsets(1:numel(onsets));
-		end;
-	end;
+	fprintf('Outer loop: size(onsets) = [%s], size(offsets) = [%s]\n', mat2str(size(onsets)), mat2str(size(offsets)));
 	if structhere,
 		for i=1:numel(onsets),
 			entrystring = dataregion(onsets(i):offsets(i));
@@ -133,13 +127,7 @@ if startsWith(lower(codingregion), lower('STRUCT')) | startsWith(lower(codingreg
 			structlevels = (bracelevel(entrystring_meta,'<','>') >= 1);
 			structonsets = 1+find(diff(structlevels)==1);
 			structoffsets = find(diff(structlevels)==-1);
-			if numel(structonsets)~=numel(structoffsets),
-				if numel(structonsets) > numel(structoffsets), % extra onset
-					structonsets = structonsets(1:numel(structoffsets));
-				else, % extra offset
-					structoffsets = structoffsets(1:numel(structonsets));
-				end;
-			end;
+			fprintf('Inner loop (i=%d): size(structonsets) = [%s], size(structoffsets) = [%s]\n', i, mat2str(size(structonsets)), mat2str(size(structoffsets)));
 			vnew = emptystruct(fieldnames_values{:});
 			for j=1:numel(structonsets),
 				%entrystring(structonsets(j):structoffsets(j))
