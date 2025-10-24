@@ -29,7 +29,7 @@ if ~isempty(n_in),
 			if length(sz)<j, sz(j) = 0; end;
 			mydims = size(n_out);
 			mydims(j) = dims(j) - sz(j);
-			n_out, NaN(mydims);
+			%n_out, NaN(mydims);
 			if mydims(j) < 0,
 				error(['NaN dimensions must be greater than or equal to n_in dimensions']);
 			end;
