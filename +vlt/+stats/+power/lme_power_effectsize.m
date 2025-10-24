@@ -85,7 +85,7 @@ function [mdes, power_curve] = lme_power_effectsize(tbl, categories_name, y_name
         fprintf('Parallel Computing Toolbox detected. Using parfor for simulations.\n');
     end
 
-    sim_func = vlt.stats.getLMESimFunc(options.Method);
+    sim_func = vlt.stats.power.getLMESimFunc(options.Method);
 
     while current_power < target_power
         test_effect_size = test_effect_size + options.EffectStep;

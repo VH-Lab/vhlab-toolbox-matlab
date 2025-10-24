@@ -29,7 +29,7 @@ classdef test_LME_power_helpers < matlab.unittest.TestCase
     methods (Test)
         function test_simulate_lme_data_gaussian(testCase)
             % Test the 'gaussian' simulation method
-            simTbl = vlt.stats.simulate_lme_data(testCase.LmeBase, testCase.TblBase, ...
+            simTbl = vlt.stats.power.simulate_lme_data(testCase.LmeBase, testCase.TblBase, ...
                 testCase.EffectSize, testCase.CategoryName, testCase.CategoryLevel, testCase.YNameFixed, testCase.GroupName);
 
             % Verifications
@@ -41,7 +41,7 @@ classdef test_LME_power_helpers < matlab.unittest.TestCase
 
         function test_simulate_lme_data_shuffled(testCase)
             % Test the 'shuffle' simulation method
-            simTbl = vlt.stats.simulate_lme_data_shuffled(testCase.LmeBase, testCase.TblBase, ...
+            simTbl = vlt.stats.power.simulate_lme_data_shuffled(testCase.LmeBase, testCase.TblBase, ...
                 testCase.EffectSize, testCase.CategoryName, testCase.CategoryLevel, testCase.YNameFixed, testCase.GroupName);
 
             % Verifications
@@ -53,7 +53,7 @@ classdef test_LME_power_helpers < matlab.unittest.TestCase
 
         function test_simulate_lme_data_hierarchical(testCase)
             % Test the 'hierarchical' simulation method
-            simTbl = vlt.stats.simulate_lme_data_hierarchical(testCase.LmeBase, testCase.TblBase, ...
+            simTbl = vlt.stats.power.simulate_lme_data_hierarchical(testCase.LmeBase, testCase.TblBase, ...
                 testCase.EffectSize, testCase.CategoryName, testCase.CategoryLevel, testCase.YNameFixed, testCase.GroupName);
 
             % Verifications
