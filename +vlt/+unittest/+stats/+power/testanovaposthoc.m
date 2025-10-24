@@ -88,7 +88,7 @@ classdef testanovaposthoc < matlab.unittest.TestCase
 
         function test_anovaposthoc_demo(testCase)
             % Test if the demo runs without error
-            testCase.verifyWarningFree(@() vlt.stats.power.anovaposthocDemo('numberOfAnimals', 5, 'numShuffles', 20));
+            testCase.verifyWarningFree(@() vlt.stats.power.anovaposthocDemo('numberOfAnimals', 5, 'numShuffles', 20, 'verbose', false));
         end
 
         function test_anovaposthoc_plot_option(testCase)
