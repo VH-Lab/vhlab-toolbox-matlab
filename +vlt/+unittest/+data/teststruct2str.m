@@ -17,7 +17,7 @@ classdef teststruct2str < matlab.unittest.TestCase
         function testStructWithNumericArray(testCase)
             % Test a struct with a numeric array
             S = struct('field1', [1 2 3]);
-            expectedStr = sprintf('[1 2 3]');
+            expectedStr = '1  2  3'; % Modern function also does not use brackets
             actualStr = vlt.data.struct2str(S);
             testCase.verifyEqual(actualStr, expectedStr);
         end

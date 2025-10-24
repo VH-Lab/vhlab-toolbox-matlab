@@ -23,7 +23,8 @@ classdef teststructwhatvaries < matlab.unittest.TestCase
 
             varying_fields = structwhatvaries(S);
 
-            testCase.verifyEqual(sort(varying_fields), sort({'field1', 'field2'}));
+            % Deprecated function returns a column vector
+            testCase.verifyEqual(sort(varying_fields), sort({'field1'; 'field2'}));
         end
 
         function testNoVariation(testCase)

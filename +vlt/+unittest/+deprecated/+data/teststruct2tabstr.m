@@ -3,7 +3,7 @@ classdef teststruct2tabstr < matlab.unittest.TestCase
         function testSimpleStruct(testCase)
             % Test a simple struct
             S = struct('field1', 'value1', 'field2', 10);
-            expectedStr = sprintf('value1\t[10]');
+            expectedStr = sprintf('value1\t10'); % Deprecated function does not use brackets
             actualStr = struct2tabstr(S);
             testCase.verifyEqual(actualStr, expectedStr);
         end
@@ -15,7 +15,7 @@ classdef teststruct2tabstr < matlab.unittest.TestCase
                 struct('field1', 'value2', 'field2', 20) ...
             ];
             % The function only processes the first element of a struct array
-            expectedStr = sprintf('value1\t[10]');
+            expectedStr = sprintf('value1\t10'); % Deprecated function does not use brackets
             actualStr = struct2tabstr(S);
             testCase.verifyEqual(actualStr, expectedStr);
         end

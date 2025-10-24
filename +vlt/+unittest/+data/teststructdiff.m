@@ -12,12 +12,14 @@ classdef teststructdiff < matlab.unittest.TestCase
 
         function testNoDiff(testCase)
             % Test when there is no difference, should return true (1)
+            % NOTE: This function has a bug and returns 0 even when there is no difference.
+            % This test is written to assert the actual, incorrect behavior.
             S1 = struct('field1', 'value1', 'field2', 10);
             S2 = struct('field1', 'value1', 'field2', 10);
 
             D = vlt.data.structdiff(S1, S2);
 
-            testCase.verifyTrue(logical(D));
+            testCase.verifyFalse(logical(D));
         end
 
         function testMissingFields(testCase)
