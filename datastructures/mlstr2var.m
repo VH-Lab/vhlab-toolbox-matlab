@@ -116,18 +116,16 @@ if startsWith(lower(codingregion), lower('STRUCT')) | startsWith(lower(codingreg
 	dataregion_meta = dataregion;
 	dataregion_meta(find(isinmatlabstring)) = 'X'; % ignore strings, which might have our metacharacters
 	brace = bracelevel(dataregion_meta,'<','>') >= 1;
-	onsets = 1+find(diff(brace)==1);
-	offsets = find(diff(brace)==-1);
-	fprintf('Outer loop: size(onsets) = [%s], size(offsets) = [%s]\n', mat2str(size(onsets)), mat2str(size(offsets)));
+	onsets = 1+find(brace(1:end-1)==0 & brace(2:end)~=0);
+	offsets = find(brace(1:end-1)~=0 & brace(2:end)==0);
 	if structhere,
 		for i=1:numel(onsets),
 			entrystring = dataregion(onsets(i):offsets(i));
 			entrystring_meta = dataregion_meta(onsets(i):offsets(i));
 			bracelevel(entrystring_meta,'<','>');
 			structlevels = (bracelevel(entrystring_meta,'<','>') >= 1);
-			structonsets = 1+find(diff(structlevels)==1);
-			structoffsets = find(diff(structlevels)==-1);
-			fprintf('Inner loop (i=%d): size(structonsets) = [%s], size(structoffsets) = [%s]\n', i, mat2str(size(structonsets)), mat2str(size(structoffsets)));
+			structonsets = 1+find(structlevels(1:end-1)==0 & structlevels(2:end)~=0);
+			structoffsets = find(structlevels(1:end-1)~=0 & structlevels(2:end)==0);
 			vnew = emptystruct(fieldnames_values{:});
 			for j=1:numel(structonsets),
 				%entrystring(structonsets(j):structoffsets(j))
