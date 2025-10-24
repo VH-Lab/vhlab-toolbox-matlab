@@ -7,10 +7,10 @@ function func_handle = getLMESimFunc(method)
 %   method using a consistent syntax via `feval`.
     switch lower(method)
         case 'gaussian'
-            func_handle = @vlt.stats.simulate_lme_data;
+            func_handle = @vlt.stats.power.simulate_lme_data;
         case 'shuffle'
-            func_handle = @vlt.stats.simulate_lme_data_shuffled;
+            func_handle = @vlt.stats.power.simulate_lme_data_shuffled;
         case 'hierarchical'
-            func_handle = @vlt.stats.simulate_lme_data_hierarchical;
+            func_handle = @vlt.stats.power.simulate_lme_data_hierarchical;
     end
 end
