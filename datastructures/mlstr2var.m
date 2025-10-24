@@ -51,6 +51,7 @@ codingregion = strtrim(mlstring(2:end-1));
 if startsWith(lower(codingregion), lower('STRUCT')) | startsWith(lower(codingregion), lower('CELL')),
 	% import struct or cell
 	datastart = strfind(lower(codingregion), 'data=');
+	datastart = datastart(1);
 	if isempty(datastart),
 		error(['Could not find ''data='' segment.']);
 	end
@@ -128,7 +129,6 @@ if startsWith(lower(codingregion), lower('STRUCT')) | startsWith(lower(codingreg
 			structoffsets = find(diff(structlevels)==-1);
 			vnew = emptystruct(fieldnames_values{:});
 			for j=1:numel(structonsets),
-				%entrystring(structonsets(j):structoffsets(j))
 				eval(['vnew(1).' fieldnames_values{j} '=mlstr2var(entrystring(structonsets(j):structoffsets(j)));']);
             end
 		    v(end+1) = vnew;
