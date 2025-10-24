@@ -73,7 +73,7 @@ while linesread<length(eol_marks),
 
 	%disp('entering big while loop')
 	
-	[nextline,position] = line_n(str,1+linesread,'eol_marks',eol_marks),
+	[nextline,position] = line_n(str,1+linesread,'eol_marks',eol_marks);
 
 	while (~isempty(nextline) & linesread<length(eol_marks)), % while no end of structure mark
 		% disp(['nextline: ' nextline ])
@@ -102,7 +102,7 @@ while linesread<length(eol_marks),
 				N = find(eol_marks>position+z-1,1,'first');
 				%str(eol_marks(N)+1:pos_match-1),
 				%double(str(eol_marks(N)+1:pos_match-1)),
-				value = text2struct(str(eol_marks(N)+1:pos_match-1)),
+				value = text2struct(str(eol_marks(N)+1:pos_match-1));
 				% now update the number of lines read
 				N = find(eol_marks>pos_match-1,1,'first');
 				linesread = N-1;
