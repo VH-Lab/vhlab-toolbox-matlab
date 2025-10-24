@@ -57,13 +57,10 @@ classdef testmlstr2var < matlab.unittest.TestCase
             s_original = struct('name', 'test', 'data', {{1, 'nested'}});
             ml_str = vlt.data.struct2mlstr(s_original);
 
-            % This function is known to produce a warning about colon operands
-            % As per user instructions, we are not fixing the source code, but
-            % we will verify that the warning is thrown.
-            testCase.verifyWarning(@() vlt.data.mlstr2var(ml_str), 'MATLAB:colon:operandsNotRealScalar');
+            % This function is known to produce a warning about colon operands.
+            % We verify the warning is thrown and capture the output in a single call.
+            [s_reconstructed] = testCase.verifyWarning(@() vlt.data.mlstr2var(ml_str), 'MATLAB:colon:operandsNotRealScalar');
 
-            % Now, call the function again to get the output for verification
-            s_reconstructed = vlt.data.mlstr2var(ml_str);
             testCase.verifyEqual(s_reconstructed, s_original);
         end
 
