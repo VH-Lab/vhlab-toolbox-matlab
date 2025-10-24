@@ -73,7 +73,7 @@ classdef testImposeCorrelationByReordering < matlab.unittest.TestCase
         function testHandlesRowAndColumnVectors(testCase)
             % Test that the function works with both row and column vector inputs
 
-            n_samples = 50;
+            n_samples = 500;
             X_col = randn(n_samples, 1);
             Y_col = randn(n_samples, 1);
             X_row = X_col';
