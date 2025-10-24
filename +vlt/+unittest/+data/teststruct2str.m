@@ -9,15 +9,17 @@ classdef teststruct2str < matlab.unittest.TestCase
         end
 
         function testStructWithCell(testCase)
-            % Test a struct with a cell, which is expected to error
+            % Test a struct with a cell, which should now be handled correctly
             S = struct('field1', {{'a', 'b'}});
-            testCase.verifyError(@() vlt.data.struct2str(S), 'MATLAB:maxlhs');
+            expectedStr = '{''a'' ''b''}';
+            actualStr = vlt.data.struct2str(S);
+            testCase.verifyEqual(actualStr, expectedStr);
         end
 
         function testStructWithNumericArray(testCase)
             % Test a struct with a numeric array
             S = struct('field1', [1 2 3]);
-            expectedStr = '1  2  3'; % Modern function also does not use brackets
+            expectedStr = '1  2  3';
             actualStr = vlt.data.struct2str(S);
             testCase.verifyEqual(actualStr, expectedStr);
         end
