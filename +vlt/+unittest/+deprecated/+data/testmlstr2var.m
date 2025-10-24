@@ -57,6 +57,7 @@ classdef testmlstr2var < matlab.unittest.TestCase
             s_original = struct('name', 'test', 'data', {{1, 'nested'}});
             ml_str = struct2mlstr(s_original);
 
+            % TEMPORARY DEBUGGING STEP: Call function directly to see output
             s_reconstructed = mlstr2var(ml_str);
 
             testCase.verifyEqual(s_reconstructed, s_original);

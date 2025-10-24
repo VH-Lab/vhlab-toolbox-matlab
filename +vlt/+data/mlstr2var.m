@@ -116,27 +116,38 @@ if startsWith(lower(codingregion), lower('STRUCT')) | startsWith(lower(codingreg
 	dataregion_meta = dataregion;
 	dataregion_meta(find(isinmatlabstring)) = 'X'; % ignore strings, which might have our metacharacters
 	brace = vlt.string.bracelevel(dataregion_meta,'<','>') >= 1;
-	onsets = 1+find(brace(1:end-1)==0 & brace(2:end)~=0);
-	offsets = find(brace(1:end-1)~=0 & brace(2:end)==0);
+	onsets = 1+find(diff(brace)==1);
+	offsets = find(diff(brace)==-1);
+
+	fprintf('DEBUG: dataregion = "%s"\n', dataregion);
+	fprintf('DEBUG: Outer onsets = %s\n', mat2str(onsets));
+	fprintf('DEBUG: Outer offsets = %s\n', mat2str(offsets));
+
 	if structhere,
 		for i=1:numel(onsets),
 			entrystring = dataregion(onsets(i):offsets(i));
+			fprintf('DEBUG: Outer loop i=%d, entrystring = "%s"\n', i, entrystring);
 			entrystring_meta = dataregion_meta(onsets(i):offsets(i));
 			vlt.string.bracelevel(entrystring_meta,'<','>');
 			structlevels = (vlt.string.bracelevel(entrystring_meta,'<','>') >= 1);
-			structonsets = 1+find(structlevels(1:end-1)==0 & structlevels(2:end)~=0);
-			structoffsets = find(structlevels(1:end-1)~=0 & structlevels(2:end)==0);
+			structonsets = 1+find(diff(structlevels)==1);
+			structoffsets = find(diff(structlevels)==-1);
+			fprintf('DEBUG: Inner structonsets = %s\n', mat2str(structonsets));
+			fprintf('DEBUG: Inner structoffsets = %s\n', mat2str(structoffsets));
 			vnew = vlt.data.emptystruct(fieldnames_values{:});
 			for j=1:numel(structonsets),
-				%entrystring(structonsets(j):structoffsets(j))
-				eval(['vnew(1).' fieldnames_values{j} '=vlt.data.mlstr2var(entrystring(structonsets(j):structoffsets(j)));']);
+				substring_to_eval = entrystring(structonsets(j):structoffsets(j));
+				fprintf('DEBUG: Inner loop j=%d, substring = "%s"\n', j, substring_to_eval);
+				eval(['vnew(1).' fieldnames_values{j} '=vlt.data.mlstr2var(substring_to_eval);']);
             end
 		    v(end+1) = vnew;
 		end
 
 	else,
 		for i=1:numel(onsets),
-			v{i} = vlt.data.mlstr2var(dataregion(onsets(i):offsets(i)));
+			entrystring = dataregion(onsets(i):offsets(i));
+			fprintf('DEBUG: Cell loop i=%d, entrystring = "%s"\n', i, entrystring);
+			v{i} = vlt.data.mlstr2var(entrystring);
 		end
     end
     
