@@ -52,7 +52,7 @@ classdef testBase < matlab.unittest.TestCase
 
             % Verify that some training has occurred (very basic check)
             % A more thorough test would require a mock object or deeper inspection
-            testCase.verifyNotEmpty(detector.net, 'The network should be trained.');
+            testCase.verifyNotEmpty(detector.Net, 'The network should be trained.');
         end
     end
 end
