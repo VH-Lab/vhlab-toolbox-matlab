@@ -11,7 +11,7 @@ function n = grect2local(r,units,lrect,fig)
 %  'pixels'.  In the case of 'pixels', a figure rectangle must be given to
 %  determine the mapping between 'normalized' and 'pixels'.
 
-w=lrect(3)-lrect(1); h=lrect(4)-lrect(2);
+w=lrect(3); h=lrect(4);
 
 n = [lrect(1)+w*r(1) lrect(2)+h*r(2) r(3)*w r(4)*h];
 

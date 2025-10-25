@@ -1,7 +1,7 @@
 function b = isinwhere(rect, units, where)
 % ISINWHERE 0/1 is a rectangle within another rectangle?
 %
-% B = ISINWHERE(RECT, UNITS, WHERE)
+% B = isinwhere(RECT, UNITS, WHERE)
 %
 % B is 1 if the rectangle RECT in the units UNITS (either 'normalized' or
 % 'pixels') is in the location structure WHERE.  The figure is assumed to be
@@ -21,5 +21,6 @@ elseif strcmp(where.units,'pixels'),
 	end;
 end;
 
-b=rect(1)>=where.rect(1)&rect(2)>=where.rect(2)&...
-	rect(3)<=where.rect(3)&rect(4)<=where.rect(4);
+b = rect(1) >= where.rect(1) & rect(2) >= where.rect(2) & ...
+    (rect(1)+rect(3)) <= (where.rect(1)+where.rect(3)) & ...
+    (rect(2)+rect(4)) <= (where.rect(2)+where.rect(4));

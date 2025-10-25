@@ -1,7 +1,7 @@
 function n = grect2local(r,units,lrect,fig)
 % Normalize a rectangle in units of a local rectangle
 
-%  R = GRECT2LOCAL(RECT, UNITS, LRECT [, FIGURERECT])
+%  R = grect2local(RECT, UNITS, LRECT [, FIGURERECT])
 %
 %    Takes a rectangle RECT, which is normalized to be in [(0,0), ... (1,1)],
 %  and computes new values returned in R so RECT is normalized within LRECT,

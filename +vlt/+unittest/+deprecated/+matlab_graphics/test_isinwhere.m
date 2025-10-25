@@ -46,14 +46,13 @@ classdef test_isinwhere < matlab.unittest.TestCase
             b_same = isinwhere(rect_same, 'normalized', where);
             testCase.verifyTrue(logical(b_same), 'A rectangle with the same dimensions should return true.');
 
-            % Case 5: Known bug - Overlapping rectangle is incorrectly identified as being inside.
-            % The function does not correctly check the right and top boundaries.
-            % It checks rect(3)<=where.rect(3) instead of (rect(1)+rect(3))<=(where.rect(1)+where.rect(3))
+            % Case 5: Overlapping rectangle should be correctly identified as outside.
+            % This test case verifies the fix for a bug in the original function.
             rect_overlap = [0.5 0.5 0.5 0.5]; % Starts at 0.5, has width 0.5, so right edge is at 1.0
                                               % `where` right edge is at 0.1+0.8 = 0.9.
-                                              % This rect should be FALSE, but the buggy code returns TRUE.
+                                              % This rect should be FALSE.
             b_overlap = isinwhere(rect_overlap, 'normalized', where);
-            testCase.verifyTrue(logical(b_overlap), 'NOTE: Testing known bug where an overlapping rectangle is incorrectly reported as inside.');
+            testCase.verifyFalse(logical(b_overlap), 'An overlapping rectangle should now correctly return false.');
         end
     end
 end

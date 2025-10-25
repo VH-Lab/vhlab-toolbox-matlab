@@ -35,9 +35,9 @@ for i=1:length(figlist),
 	tagname = get(figlist(i),'tag');
 	if isempty(tagname),
 		if ErrorIfTagEmpty,
-			error(['Tag of figure ' disp(figlist(i)) ' is empty']);
+			error(['Tag of figure ' num2str(figlist(i)) ' is empty']);
 		else,
-			warning(['Tag of figure ' disp(figlist(i)) ' is empty']);
+			warning(['Tag of figure ' num2str(figlist(i)) ' is empty']);
 		end;
 	end;
 	for f=1:length(Formats),

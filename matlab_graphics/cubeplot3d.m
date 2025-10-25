@@ -1,7 +1,7 @@
 function varargout = cubeplot3d(name, varargin)
 % CUBEPLOT3D - Plot 3-dimensional data from many views simultaneously
 %
-% CUBEPLOT3D(NAME, 'data', DATA, ...)
+% cubeplot3d(NAME, 'data', DATA, ...)
 %
 % 
 %
@@ -80,7 +80,7 @@ switch lower(command),
 			if strcmp(units,'pixels'),
 				position{i} = normalized2pixels(fig,position{i});
 			end
-			axes('units',units,'position',position{i},'tag',[name position{i}]);
+			axes('units',units,'position',position{i},'tag',[name axes_tags{i}]);
 		end
 
 		cubeplot3d(name,'command',[name 'Set_Vars'],'ud',ud);
@@ -114,9 +114,3 @@ switch lower(command),
 	case '-setparameters',
 
 end;
-
-	
-
-
-
-
