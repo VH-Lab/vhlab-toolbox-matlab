@@ -61,6 +61,8 @@ for i=1:numel(thestruct),
 			valuestr = value;
 		elseif isint(value),
 			valuestr = int2str(value);
+		elseif iscell(value),
+			valuestr = cell2str(value);
 		elseif isnumeric(value),
 			valuestr = mat2str(value,precision);
 		else,
