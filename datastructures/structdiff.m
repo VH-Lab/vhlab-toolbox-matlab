@@ -12,7 +12,7 @@ function c = structdiff(a,b)
 %
 %   Crucially, this check is one-way. Any fields that are present in B but
 %   not in A are ignored. Therefore, this function can be thought of as
-'   answering the question: "Is struct A a subset of struct B?"
+%   answering the question: "Is struct A a subset of struct B?"
 %
 %   Example:
 %      a = struct('field1', 5);
