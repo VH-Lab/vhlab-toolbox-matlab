@@ -49,8 +49,6 @@ if ~command_extract_success,
 	error(['Command must include plot name (see help cubeplot3d)']);
 end;
 
-command,
-
 % initialize our internal variables or pull it
 if strcmp(lower(command),'init'), 
 	for i=1:length(varlist),

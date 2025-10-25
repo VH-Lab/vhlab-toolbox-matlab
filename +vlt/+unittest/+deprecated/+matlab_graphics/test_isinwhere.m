@@ -47,7 +47,6 @@ classdef test_isinwhere < matlab.unittest.TestCase
             testCase.verifyTrue(logical(b_same), 'A rectangle with the same dimensions should return true.');
 
             % Case 5: Overlapping rectangle should be correctly identified as outside.
-            % This test case verifies the fix for a bug in the original function.
             rect_overlap = [0.5 0.5 0.5 0.5]; % Starts at 0.5, has width 0.5, so right edge is at 1.0
                                               % `where` right edge is at 0.1+0.8 = 0.9.
                                               % This rect should be FALSE.

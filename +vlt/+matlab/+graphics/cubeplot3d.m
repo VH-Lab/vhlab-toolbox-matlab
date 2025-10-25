@@ -49,8 +49,6 @@ if ~command_extract_success,
 	error(['Command must include plot name (see help vlt.matlab.graphics.cubeplot3d)']);
 end;
 
-command,
-
 % initialize our internal variables or pull it
 if strcmp(lower(command),'init'), 
 	for i=1:length(varlist),
@@ -80,7 +78,7 @@ switch lower(command),
 			if strcmp(units,'pixels'),
 				position{i} = vlt.matlab.graphics.normalized2pixels(fig,position{i});
 			end
-			axes('units',units,'position',position{i},'tag',[name axes_tags{i}]);
+			axes('units',units,'position',position{i},'tag',[name position{i}]);
 		end
 
 		vlt.matlab.graphics.cubeplot3d(name,'command',[name 'Set_Vars'],'ud',ud);
