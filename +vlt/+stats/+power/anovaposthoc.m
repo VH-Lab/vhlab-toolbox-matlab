@@ -50,7 +50,7 @@ else
     error(['Unknown posthoc test: ' options.posthocTest]);
 end
 
-useParallel = options.useParallel && license('test', 'Parallel_Computing_Toolbox') && ~isempty(ver('parallel'));
+useParallel = options.useParallel && ~isempty(ver('parallel'));
 
 anovaposthoc_results = struct('groupComparisonName', [], 'groupComparisonPower', []);
 
@@ -104,7 +104,7 @@ for s = 1:numel(groupShuffles)
         if useParallel
             counts_cell = cell(1, options.numShuffles);
             parfor n = 1:options.numShuffles
-                counts_cell{n} = loop_body(n);
+                counts_cell{n} = feval(loop_body, n);
             end
             significant_counts = sum(cell2mat(counts_cell'), 1);
         else
