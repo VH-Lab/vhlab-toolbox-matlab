@@ -78,7 +78,7 @@ switch lower(command),
 			if strcmp(units,'pixels'),
 				position{i} = vlt.matlab.graphics.normalized2pixels(fig,position{i});
 			end
-			axes('units',units,'position',position{i},'tag',[name position{i}]);
+			axes('units',units,'position',position{i},'tag',[name axes_tags{i}]);
 		end
 
 		vlt.matlab.graphics.cubeplot3d(name,'command',[name 'Set_Vars'],'ud',ud);

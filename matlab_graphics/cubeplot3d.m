@@ -78,7 +78,7 @@ switch lower(command),
 			if strcmp(units,'pixels'),
 				position{i} = normalized2pixels(fig,position{i});
 			end
-			axes('units',units,'position',position{i},'tag',[name position{i}]);
+			axes('units',units,'position',position{i},'tag',[name axes_tags{i}]);
 		end
 
 		cubeplot3d(name,'command',[name 'Set_Vars'],'ud',ud);
