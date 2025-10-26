@@ -128,6 +128,7 @@ if options.plot
         title(['Shuffle: ' mat2str(groupShuffles{i})]);
         xlabel('Difference');
         ylabel('Power');
+        ylim([0 1]);
         legend(anovaposthoc_results(i).groupComparisonName, 'Location', 'best');
         box off;
     end
