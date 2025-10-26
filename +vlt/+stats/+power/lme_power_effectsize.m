@@ -40,7 +40,18 @@ function [mdes, power_curve] = lme_power_effectsize(tbl, categories_name, y_name
     else
         primary_category = categories_name;
     end
-    coeff_name = [primary_category '_' category_to_test];
+
+    % Programmatically find the exact coefficient name from the baseline model
+    % This is the most robust way to handle spaces or special characters.
+    all_coeffs = lme_base.CoefficientNames;
+    % Find the coefficient that contains the category to test, but is not the intercept
+    coeff_idx = find(contains(all_coeffs, category_to_test) & ~strcmp(all_coeffs, '(Intercept)'));
+    if isempty(coeff_idx)
+        error('Could not find the coefficient corresponding to the category to test in the baseline model.');
+    end
+    coeff_name = all_coeffs{coeff_idx};
+    fprintf('Found coefficient to test: ''%s''\n', coeff_name);
+
 
     use_parallel = ~isempty(ver('parallel'));
     if use_parallel
@@ -62,9 +73,9 @@ function [mdes, power_curve] = lme_power_effectsize(tbl, categories_name, y_name
                 simTbl = sim_func(lme_base, tbl_base, test_effect_size, primary_category, category_to_test, y_name_fixed, group_name);
                 lme_sim = fitlme(simTbl, lme_base.Formula.char);
 
-                coeff_idx = find(strcmp(lme_sim.Coefficients.Name, coeff_name));
+                coeff_idx_sim = find(strcmp(lme_sim.Coefficients.Name, coeff_name));
                 p_value = 1;
-                if ~isempty(coeff_idx), p_value = lme_sim.Coefficients.pValue(coeff_idx); end
+                if ~isempty(coeff_idx_sim), p_value = lme_sim.Coefficients.pValue(coeff_idx_sim); end
                 if p_value < alpha, significant_count = significant_count + 1; end
             end
         else % Regular for loop
@@ -72,9 +83,9 @@ function [mdes, power_curve] = lme_power_effectsize(tbl, categories_name, y_name
                 simTbl = sim_func(lme_base, tbl_base, test_effect_size, primary_category, category_to_test, y_name_fixed, group_name);
                 lme_sim = fitlme(simTbl, lme_base.Formula.char);
 
-                coeff_idx = find(strcmp(lme_sim.Coefficients.Name, coeff_name));
+                coeff_idx_sim = find(strcmp(lme_sim.Coefficients.Name, coeff_name));
                 p_value = 1;
-                if ~isempty(coeff_idx), p_value = lme_sim.Coefficients.pValue(coeff_idx); end
+                if ~isempty(coeff_idx_sim), p_value = lme_sim.Coefficients.pValue(coeff_idx_sim); end
                 if p_value < alpha, significant_count = significant_count + 1; end
             end
         end
