@@ -41,6 +41,7 @@ arguments
     options.dataColumnName (1,1) string = dataTable.Properties.VariableNames{end}
     options.plot (1,1) logical = true
     options.verbose (1,1) logical = true
+    options.useParallel (1,1) logical = true
 end
 
 if strcmp(options.posthocTest, 'Tukey')
@@ -48,6 +49,8 @@ if strcmp(options.posthocTest, 'Tukey')
 else
     error(['Unknown posthoc test: ' options.posthocTest]);
 end
+
+useParallel = options.useParallel && license('test', 'Parallel_Computing_Toolbox') && ~isempty(ver('parallel'));
 
 anovaposthoc_results = struct('groupComparisonName', [], 'groupComparisonPower', []);
 
@@ -96,54 +99,19 @@ for s = 1:numel(groupShuffles)
 
         significant_counts = zeros(1, numComparisons);
 
-        for n = 1:options.numShuffles
+        loop_body = @(n) simulation_iteration(dataTable, groupColumnNames, currentShuffle, last_group_values, differences(d), options.dataColumnName, groupComparisons, matlabPosthocTest, options.alpha, c);
 
-            surrogateTable = dataTable;
-
-            % Shuffle the specified group labels
-            for g = 1:numel(currentShuffle)
-                col_to_shuffle = groupColumnNames{currentShuffle(g)};
-                surrogateTable.(col_to_shuffle) = surrogateTable.(col_to_shuffle)(randperm(height(surrogateTable)));
+        if useParallel
+            counts_cell = cell(1, options.numShuffles);
+            parfor n = 1:options.numShuffles
+                counts_cell{n} = loop_body(n);
             end
-
-            % Determine the target group for adding the difference *within the loop*
-            target_group_indices = true(height(surrogateTable), 1);
-            for i = 1:numel(currentShuffle)
-                target_group_indices = target_group_indices & ...
-                    (surrogateTable.(groupColumnNames{currentShuffle(i)}) == last_group_values{i});
+            significant_counts = sum(cell2mat(counts_cell'), 1);
+        else
+            for n = 1:options.numShuffles
+                significant_counts = significant_counts + loop_body(n);
             end
-
-            % Add the difference
-            surrogateTable.(options.dataColumnName)(target_group_indices) = ...
-                surrogateTable.(options.dataColumnName)(target_group_indices) + differences(d);
-
-            % Perform ANOVA and post-hoc test
-            grouping_vars_surrogate = cell(1, numel(groupColumnNames));
-            for i = 1:numel(groupColumnNames)
-                grouping_vars_surrogate{i} = surrogateTable.(groupColumnNames{i});
-            end
-
-            if numel(grouping_vars_surrogate) > 1
-                model = 'interaction';
-            else
-                model = 'linear';
-            end
-            [~, ~, stats_surr] = anovan(surrogateTable.(options.dataColumnName), grouping_vars_surrogate, 'model', model, 'display', 'off', 'varnames', groupColumnNames);
-
-            c_surr = multcompare(stats_surr, 'Dimension', groupComparisons, 'display', 'off', 'ctype', matlabPosthocTest);
-
-            % Check for significance
-            significant_pairs = c_surr(c_surr(:, 6) < options.alpha, [1 2]);
-
-            if ~isempty(significant_pairs)
-                for k = 1:size(c,1)
-                    if any(all(ismember(significant_pairs, c(k, [1 2])), 2))
-                        significant_counts(k) = significant_counts(k) + 1;
-                    end
-                end
-            end
-
-        end % for n (numShuffles)
+        end
 
         anovaposthoc_results(s).groupComparisonPower(d, :) = significant_counts / options.numShuffles;
 
@@ -165,4 +133,52 @@ if options.plot
     end
 end
 
+end
+
+function iteration_counts = simulation_iteration(dataTable, groupColumnNames, currentShuffle, last_group_values, difference, dataColumnName, groupComparisons, matlabPosthocTest, alpha, c)
+    surrogateTable = dataTable;
+
+    % Shuffle the specified group labels
+    for g = 1:numel(currentShuffle)
+        col_to_shuffle = groupColumnNames{currentShuffle(g)};
+        surrogateTable.(col_to_shuffle) = surrogateTable.(col_to_shuffle)(randperm(height(surrogateTable)));
+    end
+
+    % Determine the target group for adding the difference *within the loop*
+    target_group_indices = true(height(surrogateTable), 1);
+    for i = 1:numel(currentShuffle)
+        target_group_indices = target_group_indices & ...
+            (surrogateTable.(groupColumnNames{currentShuffle(i)}) == last_group_values{i});
+    end
+
+    % Add the difference
+    surrogateTable.(dataColumnName)(target_group_indices) = ...
+        surrogateTable.(dataColumnName)(target_group_indices) + difference;
+
+    % Perform ANOVA and post-hoc test
+    grouping_vars_surrogate = cell(1, numel(groupColumnNames));
+    for i = 1:numel(groupColumnNames)
+        grouping_vars_surrogate{i} = surrogateTable.(groupColumnNames{i});
+    end
+
+    if numel(grouping_vars_surrogate) > 1
+        model = 'interaction';
+    else
+        model = 'linear';
+    end
+    [~, ~, stats_surr] = anovan(surrogateTable.(dataColumnName), grouping_vars_surrogate, 'model', model, 'display', 'off', 'varnames', groupColumnNames);
+
+    c_surr = multcompare(stats_surr, 'Dimension', groupComparisons, 'display', 'off', 'ctype', matlabPosthocTest);
+
+    % Check for significance
+    significant_pairs = c_surr(c_surr(:, 6) < alpha, [1 2]);
+
+    iteration_counts = zeros(1, size(c,1));
+    if ~isempty(significant_pairs)
+        for k = 1:size(c,1)
+            if any(all(ismember(significant_pairs, c(k, [1 2])), 2))
+                iteration_counts(k) = 1;
+            end
+        end
+    end
 end
