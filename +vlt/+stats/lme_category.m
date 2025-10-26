@@ -1,20 +1,57 @@
 function [lme,newtable] = lme_category(tbl, categories_name, Y_name, Y_op, reference_category, group, rankorder, logdata)
-% LME_CATEGORY - (Dependency) Your original LME fitting function.
-    if nargin<7, rankorder = 0; end
-    if nargin<8, logdata = 0; end
-    categor = categorical(tbl.(categories_name));
+% LME_CATEGORY - Fits a Linear Mixed-Effects model for power analysis.
+%
+%   This is a core helper function that prepares data and constructs the LME model.
+%   It now supports multiple fixed effects by accepting a cell array for categories_name.
+%
+    arguments
+        tbl table
+        categories_name
+        Y_name {mustBeTextScalar}
+        Y_op {mustBeTextScalar}
+        reference_category {mustBeTextScalar}
+        group {mustBeTextScalar}
+        rankorder (1,1) double = 0
+        logdata (1,1) double = 0
+    end
+
+    % Handle single string or cell array for fixed effects
+    if iscell(categories_name)
+        primary_category_name = categories_name{1};
+        all_fixed_effects = strjoin(categories_name, ' + ');
+    else
+        primary_category_name = categories_name;
+        all_fixed_effects = categories_name;
+    end
+
+    % Reorder the primary category so the reference is the baseline
+    categor = tbl.(primary_category_name);
+    if ~iscategorical(categor), categor = categorical(categor); end
     cats = categories(categor);
     rc = find(strcmp(reference_category,cats));
     if isempty(rc), error(['No category found named ' reference_category '.']); end
     cats_reord = cats([rc 1:rc-1 rc+1:end]);
-    categor_reordered = reordercats(categor,cats_reord);
+
+    % Prepare the response variable
     Y = tbl.(Y_name);
     if ~isempty(Y_op), Y = eval(Y_op); end
     data = Y;
     original_data = data;
     if rankorder == 1, data = tiedrank(data); elseif logdata, data = log10(data); end
-    group_data = tbl.(group);
-    Y_name_fixed = strrep(Y_name,'.','__');
-    newtable = table(categor_reordered,group_data,data,original_data,'VariableNames',{categories_name,group,Y_name_fixed,'original_data'});
-    lme = fitlme(newtable, [Y_name_fixed ' ~ 1 + ' categories_name ' + (1 | ' group ')']);
+
+    % Use a valid variable name for the response
+    Y_name_fixed = matlab.lang.makeValidName(Y_name);
+
+    % Use the full original table to ensure no columns are dropped
+    newtable = tbl;
+    newtable.(Y_name_fixed) = data; % Add processed data if needed
+    if ~strcmp(Y_name, Y_name_fixed), newtable.(Y_name) = []; end % Remove old if name changed
+    newtable.original_data = original_data;
+    newtable.(primary_category_name) = reordercats(categorical(newtable.(primary_category_name)), cats_reord);
+
+    % Build the model formula dynamically
+    formula = sprintf('%s ~ 1 + %s + (1 | %s)', Y_name_fixed, all_fixed_effects, group);
+
+    % Fit the LME model
+    lme = fitlme(newtable, formula);
 end

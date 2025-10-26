@@ -6,32 +6,35 @@ function [mdes, power_curve] = run_lme_power_analysis(tbl, categories_name, y_na
 %   target power. Along the way, it generates a full power curve, showing the statistical
 %   power for a range of different effect sizes.
 %
-%   This function is particularly useful for repeated-measures or nested designs, where
-%   observations are not independent (e.g., multiple measurements from the same subject).
+%   This function is particularly useful for repeated-measures, multi-factor, or nested designs,
+%   where observations are not independent (e.g., multiple measurements from the same subject).
 %
 %   SYNTAX:
 %   [mdes, power_curve] = vlt.stats.power.run_lme_power_analysis(tbl, categories_name, ...
 %       y_name, reference_category, group_name, category_to_test, target_power, options)
 %
 %   INPUTS:
-%   tbl - A MATLAB table containing the data.
+%   tbl - A MATLAB table containing the data. All columns for the model must be present.
 %
-%   categories_name - The name of the table column that contains the primary categorical
-%       variable you want to test (a fixed effect). E.g., 'Condition'.
+%   categories_name - The name(s) of the table column(s) that contain the categorical
+%       fixed effects. This can be a single string (e.g., 'Condition') for a simple
+%       design, or a cell array of strings (e.g., {'Condition', 'TimePoint'}) for
+%       multi-factor designs. The function will build the model formula automatically.
+%       **The first entry in the cell array is always treated as the primary variable of
+%       interest for which power is being calculated.**
 %
 %   y_name - The name of the table column that contains the continuous response variable.
-%       E.g., 'Data'.
+%       E.g., 'Measurement' or 'Score'.
 %
-%   reference_category - One of the values from the 'categories_name' column that should
-%       be treated as the baseline or control group. The effect size will be added to the
-%       'category_to_test' group for comparison against this reference.
+%   reference_category - A value from the primary 'categories_name' column that should
+%       be treated as the baseline or control group.
 %
 %   group_name - The name of the table column that identifies the source of repeated
 %       measures, which will be modeled as a random effect. E.g., 'Animal' or 'SubjectID'.
 %
-%   category_to_test - The value from the 'categories_name' column that should be
-%       treated as the experimental group. During the simulation, the hypothetical
-%       effect size will be added to this group's data.
+%   category_to_test - The value from the primary 'categories_name' column that
+%       should be treated as the experimental group. The hypothetical effect size will be
+%       added to this group's data during the simulation.
 %
 %   target_power - The desired statistical power (e.g., 0.80 for 80% power). The
 %       function's primary output, 'mdes', is the effect size required to achieve this power.
@@ -47,8 +50,8 @@ function [mdes, power_curve] = run_lme_power_analysis(tbl, categories_name, y_na
 %       on the data's standard deviation.
 %
 %   'Method' - The simulation method for generating surrogate data. Can be 'gaussian'
-%       (fastest, assumes normal residuals), 'shuffle' (non-parametric), or
-%       'hierarchical' (for nested data structures). Default is 'gaussian'.
+%       (fastest, assumes normal residuals) or 'shuffle' (non-parametric, more robust).
+%       Default is 'gaussian'.
 %
 %   OUTPUTS:
 %   mdes - The Minimum Detectable Effect Size. This is the magnitude of the change in
@@ -59,50 +62,38 @@ function [mdes, power_curve] = run_lme_power_analysis(tbl, categories_name, y_na
 %       statistical power for a specific, hypothetical effect size.
 %
 %   EXAMPLE FOR A REPEATED-MEASURES DESIGN:
-%   % Imagine an experiment where different animals are assigned to one of two
-%   % conditions ('XPro' or 'No-Xpro'), and each animal is measured on
-%   % multiple days ('Hunting_day').
+%   % An experiment where animals are in one of two Conditions and are measured on multiple Days.
+%   % We want to find the power to detect a difference between Conditions, while accounting
+%   % for the variability across animals and days.
 %
-%   % Create a sample data table
 %   t = table(...
 %       repmat([1:8, 9:17]', 4, 1), ... % Animal IDs
-%       repelem({'Hunting XPro', 'Hunting No-Xpro'}', [32; 36]), ... % Condition
-%       repmat([1; 2; 3; 6], 17, 1), ... % Hunting_day
+%       repelem({'XPro', 'No-Xpro'}', [32; 36]), ... % Condition
+%       repmat(categorical([1; 2; 3; 6]), 17, 1), ... % Hunting_day
 %       randn(68, 1) * 15 + 50, ... % Simulated Data
 %       'VariableNames', {'Animal', 'Condition', 'Hunting_day', 'Data'});
 %
-%   % Define the parameters for the power analysis
-%   categories_name = 'Condition';
-%   y_name = 'Data';
-%   reference_category = 'Hunting No-Xpro'; % Control group
-%   group_name = 'Animal';                 % Subject ID (random effect)
-%   category_to_test = 'Hunting XPro';   % Experimental group
-%   target_power = 0.80;                   % Target power of 80%
-%
-%   % Run the analysis
 %   [mdes, power_curve] = vlt.stats.power.run_lme_power_analysis(t, ...
-%       categories_name, y_name, reference_category, group_name, ...
-%       category_to_test, target_power, 'NumSimulations', 500);
+%       {'Condition', 'Hunting_day'}, ... % << Specify both fixed effects here
+%       'Data', ...
+%       'No-Xpro', ...                   % Reference for the primary category ('Condition')
+%       'Animal', ...                    % Random effect
+%       'XPro', ...                      % Category to test
+%       0.80, ...                        % Target power
+%       'Method', 'shuffle');
 %
-%   % Display the results
 %   fprintf('The Minimum Detectable Effect Size for 80%% power is: %.3f\n', mdes);
-%   disp('Full Power Curve Data:');
 %   disp(power_curve);
 %
-%   % To find the power to detect a specific effect size (e.g., 20):
-%   [~, idx] = min(abs(power_curve.EffectSize - 20));
-%   fprintf('Power to detect an effect of %.2f is ~%.2f%%\n', ...
-%       power_curve.EffectSize(idx), power_curve.Power(idx) * 100);
-
     % --- 1. Argument Handling and Data Preparation ---
     arguments
-        tbl
+        tbl table
         categories_name
-        y_name
-        reference_category
-        group_name
-        category_to_test
-        target_power
+        y_name {mustBeTextScalar}
+        reference_category {mustBeTextScalar}
+        group_name {mustBeTextScalar}
+        category_to_test {mustBeTextScalar}
+        target_power (1,1) double
         options.Alpha (1,1) double = 0.05
         options.NumSimulations (1,1) double = 500
         options.EffectStep (1,1) double = -1
@@ -119,7 +110,11 @@ function [mdes, power_curve] = run_lme_power_analysis(tbl, categories_name, y_na
     fprintf('\n--- Starting LME Power Analysis ---\n');
     fprintf('Simulation Method: %s\n', upper(options.Method));
     fprintf('Target Power: %.0f%%\n', target_power * 100);
+
+    primary_category = categories_name;
+    if iscell(primary_category), primary_category = primary_category{1}; end
     fprintf('Category to Test: %s (Reference: %s)\n', category_to_test, reference_category);
+
     fprintf('Simulations per Step: %d\n\n', options.NumSimulations);
 
     [mdes, power_curve] = vlt.stats.power.lme_power_effectsize(tbl, categories_name, y_name, ...
@@ -133,7 +128,7 @@ function [mdes, power_curve] = run_lme_power_analysis(tbl, categories_name, y_na
     disp('Generating power curve plot...');
 
     figure_name_str = ['LME Power Analysis (' char(upper(options.Method)) ')'];
-    f = figure('Name', figure_name_str, 'NumberTitle', 'off', 'Visible', 'off');
+    f = figure('Name', figure_name_str, 'NumberTitle', 'off');
     plot(power_curve.EffectSize, power_curve.Power * 100, '-o', 'LineWidth', 1.5, 'MarkerFaceColor', 'b');
     hold on;
 
@@ -142,11 +137,11 @@ function [mdes, power_curve] = run_lme_power_analysis(tbl, categories_name, y_na
 
     xlabel(['Hypothetical Effect Size (in units of ' strrep(y_name, '_', '\_') ')']);
     ylabel('Statistical Power (%)');
-    title_str = sprintf('Power Curve for %s = ''%s'' (%s method)', strrep(categories_name, '_', '\_'), category_to_test, options.Method);
+    title_str = sprintf('Power Curve for %s = ''%s'' (%s method)', strrep(primary_category, '_', '\_'), category_to_test, options.Method);
     title(title_str);
     grid on;
     ylim([0 105]);
-    xlim([0, mdes * 1.25]);
+    xlim([0, max(mdes * 1.25, eps)]);
     hold off;
 
     fprintf('\n--- Analysis Complete ---\n\n');
