@@ -49,8 +49,6 @@ if ~command_extract_success,
 	error(['Command must include plot name (see help cubeplot3d)']);
 end;
 
-command,
-
 % initialize our internal variables or pull it
 if strcmp(lower(command),'init'), 
 	for i=1:length(varlist),
@@ -63,7 +61,7 @@ end;
 
 switch lower(command),
 	case 'init',
-		uidefs = basicuitools_defs('callbackstr', ['callbacknametag(''cubeplot3d'',''' name ''');']),
+		uidefs = vlt.ui.basicuitools_defs('callbackstr', ['vlt.ui.callbacknametag(''vlt.matlab.graphics.cubeplot3d'',''' name ''');']);
 
 		target_rect = ud.rect;
 		units = ud.units;
@@ -80,7 +78,7 @@ switch lower(command),
 			if strcmp(units,'pixels'),
 				position{i} = normalized2pixels(fig,position{i});
 			end
-			axes('units',units,'position',position{i},'tag',[name position{i}]);
+			axes('units',units,'position',position{i},'tag',[name axes_tags{i}]);
 		end
 
 		cubeplot3d(name,'command',[name 'Set_Vars'],'ud',ud);
@@ -114,9 +112,3 @@ switch lower(command),
 	case '-setparameters',
 
 end;
-
-	
-
-
-
-

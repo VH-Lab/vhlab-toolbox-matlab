@@ -22,4 +22,5 @@ elseif strcmp(where.units,'pixels'),
 end;
 
 b=rect(1)>=where.rect(1)&rect(2)>=where.rect(2)&...
-	rect(3)<=where.rect(3)&rect(4)<=where.rect(4);
+	(rect(1)+rect(3))<=(where.rect(1)+where.rect(3))&...
+	(rect(2)+rect(4))<=(where.rect(2)+where.rect(4));
