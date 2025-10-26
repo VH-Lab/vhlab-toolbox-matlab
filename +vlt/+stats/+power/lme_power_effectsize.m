@@ -41,10 +41,12 @@ function [mdes, power_curve] = lme_power_effectsize(tbl, categories_name, y_name
         primary_category = categories_name;
     end
 
+    % --- Whitespace Sanitization ---
+    category_to_test = strtrim(category_to_test);
+    % --- End Sanitization ---
+
     % Programmatically find the exact coefficient name from the baseline model
-    % This is the most robust way to handle spaces or special characters.
     all_coeffs = lme_base.CoefficientNames;
-    % Find the coefficient that contains the category to test, but is not the intercept
     coeff_idx = find(contains(all_coeffs, category_to_test) & ~strcmp(all_coeffs, '(Intercept)'));
     if isempty(coeff_idx)
         error('Could not find the coefficient corresponding to the category to test in the baseline model.');

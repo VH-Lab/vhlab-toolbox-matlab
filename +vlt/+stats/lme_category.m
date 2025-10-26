@@ -24,12 +24,24 @@ function [lme,newtable] = lme_category(tbl, categories_name, Y_name, Y_op, refer
         all_fixed_effects = categories_name;
     end
 
+    % --- Whitespace Sanitization ---
+    % Clean up leading/trailing whitespace from the data column and inputs
+    reference_category = strtrim(reference_category);
+
+    % Ensure data is a cell array of strings before trimming
+    cat_data = tbl.(primary_category_name);
+    if iscategorical(cat_data)
+        cat_data = cellstr(cat_data);
+    end
+    tbl.(primary_category_name) = strtrim(cat_data);
+    % --- End Sanitization ---
+
     % Reorder the primary category so the reference is the baseline
     categor = tbl.(primary_category_name);
     if ~iscategorical(categor), categor = categorical(categor); end
     cats = categories(categor);
     rc = find(strcmp(reference_category,cats));
-    if isempty(rc), error(['No category found named ' reference_category '.']); end
+    if isempty(rc), error(['No category found named ''' reference_category '''. Check for whitespace or spelling errors.']); end
     cats_reord = cats([rc 1:rc-1 rc+1:end]);
 
     % Prepare the response variable
