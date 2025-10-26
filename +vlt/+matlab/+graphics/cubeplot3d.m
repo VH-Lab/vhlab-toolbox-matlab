@@ -61,7 +61,7 @@ end;
 
 switch lower(command),
 	case 'init',
-		uidefs = vlt.ui.basicuitools_defs('callbackstr', ['vlt.ui.callbacknametag(''vlt.matlab.graphics.cubeplot3d'',''' name ''');']),
+		uidefs = vlt.ui.basicuitools_defs('callbackstr', ['vlt.ui.callbacknametag(''vlt.matlab.graphics.cubeplot3d'',''' name ''');']);
 
 		target_rect = ud.rect;
 		units = ud.units;

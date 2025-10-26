@@ -1,7 +1,7 @@
 function savefigurelist(figlist, varargin)
 % SAVEFIGURELIST - Write the current figures to disk using figure tags for file names
 %
-%   savefigurelist(FIGLIST, ...)
+%   SAVEFIGURELIST(FIGLIST, ...)
 %
 %   Writes all of the figures in FIGLIST to the present
 %   working directory, using the 'Tag' field of each figure as its filename.

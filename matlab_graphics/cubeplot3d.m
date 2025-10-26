@@ -1,7 +1,7 @@
 function varargout = cubeplot3d(name, varargin)
 % CUBEPLOT3D - Plot 3-dimensional data from many views simultaneously
 %
-% cubeplot3d(NAME, 'data', DATA, ...)
+% CUBEPLOT3D(NAME, 'data', DATA, ...)
 %
 % 
 %
@@ -61,7 +61,7 @@ end;
 
 switch lower(command),
 	case 'init',
-		uidefs = basicuitools_defs('callbackstr', ['callbacknametag(''cubeplot3d'',''' name ''');']),
+		uidefs = vlt.ui.basicuitools_defs('callbackstr', ['vlt.ui.callbacknametag(''vlt.matlab.graphics.cubeplot3d'',''' name ''');']);
 
 		target_rect = ud.rect;
 		units = ud.units;
@@ -78,7 +78,7 @@ switch lower(command),
 			if strcmp(units,'pixels'),
 				position{i} = normalized2pixels(fig,position{i});
 			end
-			axes('units',units,'position',position{i},'tag',[name axes_tags{i}]);
+			axes('units',units,'position',position{i},'tag',[name position{i}]);
 		end
 
 		cubeplot3d(name,'command',[name 'Set_Vars'],'ud',ud);

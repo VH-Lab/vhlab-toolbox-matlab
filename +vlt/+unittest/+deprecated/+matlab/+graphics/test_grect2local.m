@@ -9,7 +9,7 @@ classdef test_grect2local < matlab.unittest.TestCase
             % Expected output: The same as the input, since the local rect is the whole figure
             expected_rect = [0.1 0.1 0.5 0.5];
 
-            actual_rect = vlt.matlab.graphics.grect2local(rect, 'normalized', lrect);
+            actual_rect = grect2local(rect, 'normalized', lrect);
 
             testCase.verifyEqual(actual_rect, expected_rect, 'AbsTol', 1e-9);
         end
@@ -23,7 +23,7 @@ classdef test_grect2local < matlab.unittest.TestCase
             % Expected output: top-right quadrant of the local rect
             expected_rect = [0.75 0.25 0.25 0.25];
 
-            actual_rect = vlt.matlab.graphics.grect2local(rect, 'normalized', lrect);
+            actual_rect = grect2local(rect, 'normalized', lrect);
 
             testCase.verifyEqual(actual_rect, expected_rect, 'AbsTol', 1e-9);
         end
