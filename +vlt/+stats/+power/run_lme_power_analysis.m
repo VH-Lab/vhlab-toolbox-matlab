@@ -118,7 +118,11 @@ function [mdes, power_curve] = run_lme_power_analysis(tbl, categories_name, y_na
 
     % --- 2. Run the Core Power Analysis ---
     fprintf('\n--- Starting LME Power Analysis ---\n');
-    fprintf('Simulation Method: %s\n', upper(options.Method));
+    if ~isempty(options.ShufflePredictor)
+        fprintf('Simulation Method: SHUFFLE PREDICTOR (''%s'')\n', options.ShufflePredictor);
+    else
+        fprintf('Simulation Method: %s\n', upper(options.Method));
+    end
     fprintf('Target Power: %.0f%%\n', target_power * 100);
 
     primary_category = categories_name;
