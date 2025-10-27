@@ -24,16 +24,17 @@ function [lme,newtable] = lme_category(tbl, categories_name, Y_name, Y_op, refer
         all_fixed_effects = categories_name;
     end
 
-    % --- Whitespace Sanitization ---
-    % Clean up leading/trailing whitespace from the data column and inputs
-    reference_category = strtrim(reference_category);
+    % --- Whitespace and Character Sanitization ---
+    % A robust cleaning function to handle different space characters
+    clean_str = @(s) strtrim(replace(s, char(160), ' '));
 
-    % Ensure data is a cell array of strings before trimming
+    reference_category = clean_str(reference_category);
+
     cat_data = tbl.(primary_category_name);
     if iscategorical(cat_data)
         cat_data = cellstr(cat_data);
     end
-    tbl.(primary_category_name) = strtrim(cat_data);
+    tbl.(primary_category_name) = clean_str(cat_data);
     % --- End Sanitization ---
 
     % Reorder the primary category so the reference is the baseline
@@ -41,7 +42,7 @@ function [lme,newtable] = lme_category(tbl, categories_name, Y_name, Y_op, refer
     if ~iscategorical(categor), categor = categorical(categor); end
     cats = categories(categor);
     rc = find(strcmp(reference_category,cats));
-    if isempty(rc), error(['No category found named ''' reference_category '''. Check for whitespace or spelling errors.']); end
+    if isempty(rc), error(['No category found named ''' reference_category '''. Check for spelling errors.']); end
     cats_reord = cats([rc 1:rc-1 rc+1:end]);
 
     % Prepare the response variable
@@ -51,19 +52,15 @@ function [lme,newtable] = lme_category(tbl, categories_name, Y_name, Y_op, refer
     original_data = data;
     if rankorder == 1, data = tiedrank(data); elseif logdata, data = log10(data); end
 
-    % Use a valid variable name for the response
     Y_name_fixed = matlab.lang.makeValidName(Y_name);
 
-    % Use the full original table to ensure no columns are dropped
     newtable = tbl;
-    newtable.(Y_name_fixed) = data; % Add processed data if needed
-    if ~strcmp(Y_name, Y_name_fixed), newtable.(Y_name) = []; end % Remove old if name changed
+    newtable.(Y_name_fixed) = data;
+    if ~strcmp(Y_name, Y_name_fixed), newtable.(Y_name) = []; end
     newtable.original_data = original_data;
     newtable.(primary_category_name) = reordercats(categorical(newtable.(primary_category_name)), cats_reord);
 
-    % Build the model formula dynamically
     formula = sprintf('%s ~ 1 + %s + (1 | %s)', Y_name_fixed, all_fixed_effects, group);
 
-    % Fit the LME model
     lme = fitlme(newtable, formula);
 end

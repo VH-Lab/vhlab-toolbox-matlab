@@ -34,15 +34,15 @@ function [mdes, power_curve] = lme_power_effectsize(tbl, categories_name, y_name
     test_effect_size = 0;
     power_curve_data = [];
 
-    % Determine the primary category for testing
     if iscell(categories_name)
         primary_category = categories_name{1};
     else
         primary_category = categories_name;
     end
 
-    % --- Whitespace Sanitization ---
-    category_to_test = strtrim(category_to_test);
+    % --- Whitespace and Character Sanitization ---
+    clean_str = @(s) strtrim(replace(s, char(160), ' '));
+    category_to_test = clean_str(category_to_test);
     % --- End Sanitization ---
 
     % Programmatically find the exact coefficient name from the baseline model
