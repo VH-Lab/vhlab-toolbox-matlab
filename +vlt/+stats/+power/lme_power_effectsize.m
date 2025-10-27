@@ -16,6 +16,7 @@ function [mdes, power_curve] = lme_power_effectsize(tbl, categories_name, y_name
         options.NumSimulations (1,1) double = 500
         options.EffectStep (1,1) double = -1
         options.Method (1,1) string {mustBeMember(options.Method,{'gaussian','shuffle','hierarchical'})} = 'gaussian'
+        options.ShufflePredictor {mustBeTextScalar} = ''
     end
 
     disp('Fitting baseline model to original data...');
@@ -60,38 +61,29 @@ function [mdes, power_curve] = lme_power_effectsize(tbl, categories_name, y_name
         fprintf('Parallel Computing Toolbox detected. Using parfor for simulations.\n');
     end
 
-    sim_func = vlt.stats.power.getLMESimFunc(options.Method);
+    sim_func = vlt.stats.power.getLMESimFunc(options.Method, 'ShufflePredictor', options.ShufflePredictor);
     alpha = options.Alpha;
     num_simulations = options.NumSimulations;
 
     while current_power < target_power
         test_effect_size = test_effect_size + options.EffectStep;
 
-        significant_count = 0;
+        p_values = ones(num_simulations, 1);
         sim_loop = 1:num_simulations;
 
         if use_parallel
             parfor i = sim_loop
                 simTbl = sim_func(lme_base, tbl_base, test_effect_size, primary_category, category_to_test, y_name_fixed, group_name);
-                lme_sim = fitlme(simTbl, lme_base.Formula.char);
-
-                coeff_idx_sim = find(strcmp(lme_sim.Coefficients.Name, coeff_name));
-                p_value = 1;
-                if ~isempty(coeff_idx_sim), p_value = lme_sim.Coefficients.pValue(coeff_idx_sim); end
-                if p_value < alpha, significant_count = significant_count + 1; end
+                p_values(i) = run_single_simulation(simTbl, lme_base.Formula, coeff_name);
             end
         else % Regular for loop
             for i = sim_loop
                 simTbl = sim_func(lme_base, tbl_base, test_effect_size, primary_category, category_to_test, y_name_fixed, group_name);
-                lme_sim = fitlme(simTbl, lme_base.Formula.char);
-
-                coeff_idx_sim = find(strcmp(lme_sim.Coefficients.Name, coeff_name));
-                p_value = 1;
-                if ~isempty(coeff_idx_sim), p_value = lme_sim.Coefficients.pValue(coeff_idx_sim); end
-                if p_value < alpha, significant_count = significant_count + 1; end
+                p_values(i) = run_single_simulation(simTbl, lme_base.Formula, coeff_name);
             end
         end
 
+        significant_count = sum(p_values < alpha);
         current_power = significant_count / num_simulations;
         power_curve_data = [power_curve_data; test_effect_size, current_power];
 
@@ -103,4 +95,32 @@ function [mdes, power_curve] = lme_power_effectsize(tbl, categories_name, y_name
 
     fprintf('\n--- Search Finished ---\n');
     fprintf('Minimum Detectable Effect Size (MDES) for %.0f%% power is: %.4f\n', target_power*100, mdes);
+end
+
+function p_value = run_single_simulation(simTbl, formula, coeff_name)
+    % Runs a single LME fit and extracts the p-value for the coefficient of interest.
+    % Returns a p-value of 1 if the model cannot be fit (e.g., due to rank deficiency).
+
+    % Check for rank deficiency before fitting
+    unique_conditions = unique(simTbl.(formula.ResponseName));
+    if numel(unique_conditions) < 2
+        p_value = 1;
+        return;
+    end
+
+    try
+        lme_sim = fitlme(simTbl, formula.char);
+        coeff_idx_sim = find(strcmp(lme_sim.Coefficients.Name, coeff_name));
+        if ~isempty(coeff_idx_sim)
+            p_value = lme_sim.Coefficients.pValue(coeff_idx_sim);
+        else
+            p_value = 1; % Coefficient not found, cannot reject null
+        end
+    catch ME
+        if strcmp(ME.identifier, 'stats:fitlme:RankDeficient')
+            p_value = 1; % Treat rank-deficient fits as non-significant
+        else
+            rethrow(ME); % Rethrow other errors
+        end
+    end
 end

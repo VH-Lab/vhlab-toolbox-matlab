@@ -53,6 +53,14 @@ function [mdes, power_curve] = run_lme_power_analysis(tbl, categories_name, y_na
 %       (fastest, assumes normal residuals) or 'shuffle' (non-parametric, more robust).
 %       Default is 'gaussian'.
 %
+%   'ShufflePredictor' - (Default: '') As an advanced alternative to the standard 'shuffle'
+%       method (which shuffles the response variable), you can provide the name of a
+%       predictor column to shuffle here (e.g., 'condition_name'). This simulates the
+%       null hypothesis by breaking the relationship between that predictor and the
+%       response, while preserving the exact data distribution within each condition.
+%       This can prevent rank deficiency errors in highly unbalanced datasets. If a
+%       column name is provided here, it overrides the 'Method' setting.
+%
 %   OUTPUTS:
 %   mdes - The Minimum Detectable Effect Size. This is the magnitude of the change in
 %       'y_name' that you can detect with the specified 'target_power'.
@@ -99,6 +107,7 @@ function [mdes, power_curve] = run_lme_power_analysis(tbl, categories_name, y_na
         options.EffectStep (1,1) double = -1
         options.Method (1,1) string {mustBeMember(options.Method,{'gaussian','shuffle','hierarchical'})} = 'gaussian'
         options.plot (1,1) logical = true
+        options.ShufflePredictor {mustBeTextScalar} = ''
     end
 
     if any(ismissing(tbl))
@@ -123,7 +132,8 @@ function [mdes, power_curve] = run_lme_power_analysis(tbl, categories_name, y_na
         'Method', options.Method, ...
         'Alpha', options.Alpha, ...
         'NumSimulations', options.NumSimulations, ...
-        'EffectStep', options.EffectStep);
+        'EffectStep', options.EffectStep, ...
+        'ShufflePredictor', options.ShufflePredictor);
 
     % --- 3. Visualize the Results ---
     if options.plot
