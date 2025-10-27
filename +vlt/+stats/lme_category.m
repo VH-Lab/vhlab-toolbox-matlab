@@ -1,9 +1,8 @@
-function [lme,newtable] = lme_category(tbl, categories_name, Y_name, Y_op, reference_category, group, rankorder, logdata)
+function [lme,newtable] = lme_category(tbl, categories_name, Y_name, Y_op, reference_category, group, rankorder, logdata, options)
 % LME_CATEGORY - Fits a Linear Mixed-Effects model for power analysis.
 %
 %   This is a core helper function that prepares data and constructs the LME model.
-%   It now supports multiple fixed effects by accepting a cell array for categories_name
-%   and intelligently trims the input table to only include necessary columns.
+%   It now supports multiple fixed effects and optional, intelligent table trimming.
 %
     arguments
         tbl table
@@ -14,9 +13,10 @@ function [lme,newtable] = lme_category(tbl, categories_name, Y_name, Y_op, refer
         group {mustBeTextScalar}
         rankorder (1,1) double = 0
         logdata (1,1) double = 0
+        options.TrimTable (1,1) logical = true
     end
 
-    % --- 1. Gather all required variable names ---
+    % --- 1. Gather variable names and optionally trim table ---
     if iscell(categories_name)
         primary_category_name = categories_name{1};
         all_category_names = categories_name;
@@ -25,25 +25,24 @@ function [lme,newtable] = lme_category(tbl, categories_name, Y_name, Y_op, refer
         all_category_names = {categories_name};
     end
 
-    % Get a unique list of all columns needed for the model
-    required_cols = unique([all_category_names(:)', {Y_name, group}]);
+    if options.TrimTable
+        % Get a unique list of all columns needed for the model and create a smaller table
+        required_cols = unique([all_category_names(:)', {Y_name, group}]);
+        newtable = tbl(:, required_cols);
+    else
+        % Use the full table if trimming is disabled
+        newtable = tbl;
+    end
 
-    % --- 2. Create the smaller, optimized table ---
-    newtable = tbl(:, required_cols);
-
-    % --- 3. Sanitize strings in the new table ---
+    % --- 2. Sanitize strings in the new table ---
     clean_str = @(s) strtrim(replace(s, char(160), ' '));
-
     reference_category = clean_str(reference_category);
 
     cat_data = newtable.(primary_category_name);
-    if iscategorical(cat_data)
-        cat_data = cellstr(cat_data);
-    end
+    if iscategorical(cat_data), cat_data = cellstr(cat_data); end
     newtable.(primary_category_name) = clean_str(cat_data);
 
-    % --- 4. Prepare data and build model formula ---
-    % Reorder the primary category so the reference is the baseline
+    % --- 3. Prepare data and build model formula ---
     categor = newtable.(primary_category_name);
     if ~iscategorical(categor), categor = categorical(categor); end
     cats = categories(categor);
@@ -52,7 +51,6 @@ function [lme,newtable] = lme_category(tbl, categories_name, Y_name, Y_op, refer
     cats_reord = cats([rc 1:rc-1 rc+1:end]);
     newtable.(primary_category_name) = reordercats(categorical(newtable.(primary_category_name)), cats_reord);
 
-    % Prepare the response variable
     Y = newtable.(Y_name);
     if ~isempty(Y_op), Y = eval(Y_op); end
     data = Y;
@@ -61,17 +59,13 @@ function [lme,newtable] = lme_category(tbl, categories_name, Y_name, Y_op, refer
 
     Y_name_fixed = matlab.lang.makeValidName(Y_name);
 
-    % Add/replace response column and original data in the new table
     newtable.(Y_name_fixed) = data;
-    if ~strcmp(Y_name, Y_name_fixed) % If we created a new column (e.g. invalid name)
-        newtable = removevars(newtable, Y_name); % Remove the old one
-    end
+    if ~strcmp(Y_name, Y_name_fixed), newtable = removevars(newtable, Y_name); end
     newtable.original_data = original_data;
 
-    % Build the model formula dynamically
     all_fixed_effects = strjoin(all_category_names, ' + ');
     formula = sprintf('%s ~ 1 + %s + (1 | %s)', Y_name_fixed, all_fixed_effects, group);
 
-    % --- 5. Fit the model ---
+    % --- 4. Fit the model ---
     lme = fitlme(newtable, formula);
 end
