@@ -25,7 +25,7 @@ function [mdes, power_curve] = lme_power_effectsize(tbl, categories_name, y_name
     y_name_fixed = 'Y_data_for_fit'; % This is now the fixed response variable name
 
     if options.EffectStep == -1
-        options.EffectStep = std(tbl_base.(y_name_fixed)) / 50;
+        options.EffectStep = std(tbl_base.(y_name_fixed), 'omitnan') / 50;
         fprintf('Using a search step size of %.3f\n', options.EffectStep);
     end
 
