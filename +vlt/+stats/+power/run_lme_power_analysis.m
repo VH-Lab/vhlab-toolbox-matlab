@@ -98,6 +98,7 @@ function [mdes, power_curve] = run_lme_power_analysis(tbl, categories_name, y_na
         options.NumSimulations (1,1) double = 500
         options.EffectStep (1,1) double = -1
         options.Method (1,1) string {mustBeMember(options.Method,{'gaussian','shuffle','hierarchical'})} = 'gaussian'
+        options.plot (1,1) logical = true
     end
 
     if any(ismissing(tbl))
@@ -125,24 +126,26 @@ function [mdes, power_curve] = run_lme_power_analysis(tbl, categories_name, y_na
         'EffectStep', options.EffectStep);
 
     % --- 3. Visualize the Results ---
-    disp('Generating power curve plot...');
+    if options.plot
+        disp('Generating power curve plot...');
 
-    figure_name_str = ['LME Power Analysis (' char(upper(options.Method)) ')'];
-    f = figure('Name', figure_name_str, 'NumberTitle', 'off');
-    plot(power_curve.EffectSize, power_curve.Power * 100, '-o', 'LineWidth', 1.5, 'MarkerFaceColor', 'b');
-    hold on;
+        figure_name_str = ['LME Power Analysis (' char(upper(options.Method)) ')'];
+        f = figure('Name', figure_name_str, 'NumberTitle', 'off');
+        plot(power_curve.EffectSize, power_curve.Power * 100, '-o', 'LineWidth', 1.5, 'MarkerFaceColor', 'b');
+        hold on;
 
-    yline(target_power * 100, '--r', sprintf('%.0f%% Power', target_power*100), 'LineWidth', 1.5, 'LabelVerticalAlignment', 'bottom');
-    xline(mdes, '--r', sprintf('MDES = %.3g', mdes), 'LineWidth', 1.5, 'LabelVerticalAlignment', 'middle', 'LabelHorizontalAlignment', 'left');
+        yline(target_power * 100, '--r', sprintf('%.0f%% Power', target_power*100), 'LineWidth', 1.5, 'LabelVerticalAlignment', 'bottom');
+        xline(mdes, '--r', sprintf('MDES = %.3g', mdes), 'LineWidth', 1.5, 'LabelVerticalAlignment', 'middle', 'LabelHorizontalAlignment', 'left');
 
-    xlabel(['Hypothetical Effect Size (in units of ' strrep(y_name, '_', '\_') ')']);
-    ylabel('Statistical Power (%)');
-    title_str = sprintf('Power Curve for %s = ''%s'' (%s method)', strrep(primary_category, '_', '\_'), category_to_test, options.Method);
-    title(title_str);
-    grid on;
-    ylim([0 105]);
-    xlim([0, max(mdes * 1.25, eps)]);
-    hold off;
+        xlabel(['Hypothetical Effect Size (in units of ' strrep(y_name, '_', '\_') ')']);
+        ylabel('Statistical Power (%)');
+        title_str = sprintf('Power Curve for %s = ''%s'' (%s method)', strrep(primary_category, '_', '\_'), category_to_test, options.Method);
+        title(title_str);
+        grid on;
+        ylim([0 105]);
+        xlim([0, max(mdes * 1.25, eps)]);
+        hold off;
+    end
 
     fprintf('\n--- Analysis Complete ---\n\n');
 end
