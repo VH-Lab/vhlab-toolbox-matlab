@@ -21,7 +21,7 @@ function [mdes, power_curve] = lme_power_effectsize(tbl, categories_name, y_name
     disp('Fitting baseline model to original data...');
     [lme_base, tbl_base] = vlt.stats.lme_category(tbl, categories_name, y_name, '', reference_category, group_name, 0, 0);
 
-    y_name_fixed = lme_base.ResponseName;
+    y_name_fixed = 'Y_data_for_fit'; % This is now the fixed response variable name
 
     if options.EffectStep == -1
         options.EffectStep = std(tbl_base.(y_name_fixed)) / 50;

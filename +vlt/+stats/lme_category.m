@@ -16,7 +16,7 @@ function [lme,newtable] = lme_category(tbl, categories_name, Y_name, Y_op, refer
         options.TrimTable (1,1) logical = true
     end
 
-    % --- 1. Gather variable names and optionally trim table ---
+    % --- 1. Gather all required variable names ---
     if iscell(categories_name)
         primary_category_name = categories_name{1};
         all_category_names = categories_name;
@@ -25,12 +25,12 @@ function [lme,newtable] = lme_category(tbl, categories_name, Y_name, Y_op, refer
         all_category_names = {categories_name};
     end
 
+    % Get a unique list of all columns needed for the model
+    required_cols = unique([all_category_names(:)', {Y_name, group}]);
+
     if options.TrimTable
-        % Get a unique list of all columns needed for the model and create a smaller table
-        required_cols = unique([all_category_names(:)', {Y_name, group}]);
         newtable = tbl(:, required_cols);
     else
-        % Use the full table if trimming is disabled
         newtable = tbl;
     end
 
@@ -53,18 +53,18 @@ function [lme,newtable] = lme_category(tbl, categories_name, Y_name, Y_op, refer
 
     Y = newtable.(Y_name);
     if ~isempty(Y_op), Y = eval(Y_op); end
-    data = Y;
-    original_data = data;
-    if rankorder == 1, data = tiedrank(data); elseif logdata, data = log10(data); end
 
-    Y_name_fixed = matlab.lang.makeValidName(Y_name);
-
-    newtable.(Y_name_fixed) = data;
-    if ~strcmp(Y_name, Y_name_fixed), newtable = removevars(newtable, Y_name); end
-    newtable.original_data = original_data;
+    % Important: Do NOT change Y_name, as it may contain dots for struct fields
+    newtable.Y_data_for_fit = Y;
+    newtable.original_data = newtable.(Y_name);
+    if rankorder == 1
+        newtable.Y_data_for_fit = tiedrank(newtable.Y_data_for_fit);
+    elseif logdata
+        newtable.Y_data_for_fit = log10(newtable.Y_data_for_fit);
+    end
 
     all_fixed_effects = strjoin(all_category_names, ' + ');
-    formula = sprintf('%s ~ 1 + %s + (1 | %s)', Y_name_fixed, all_fixed_effects, group);
+    formula = sprintf('Y_data_for_fit ~ 1 + %s + (1 | %s)', all_fixed_effects, group);
 
     % --- 4. Fit the model ---
     lme = fitlme(newtable, formula);
