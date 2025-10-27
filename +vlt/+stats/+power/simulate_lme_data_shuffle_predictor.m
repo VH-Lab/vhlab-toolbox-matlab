@@ -28,20 +28,7 @@ function simTbl = simulate_lme_data_shuffle_predictor(lme_base, tbl_base, effect
     % --- Add the Hypothetical Effect Size ---
     % Important: Find the rows for the test category *after* shuffling to apply the effect.
     if effect_size ~= 0
-        % --- Whitespace and Character Sanitization ---
-        clean_str = @(s) strtrim(replace(s, char(160), ' '));
-        category_to_test_clean = clean_str(category_to_test);
-
-        primary_category_data = simTbl.(primary_category);
-        if iscell(primary_category_data)
-            primary_category_data = cellfun(clean_str, primary_category_data, 'UniformOutput', false);
-        elseif iscategorical(primary_category_data)
-            primary_category_data = categorical(cellfun(clean_str, cellstr(primary_category_data), 'UniformOutput', false));
-        end
-
-        idx_to_modify = (primary_category_data == category_to_test_clean);
-        % --- End Sanitization ---
-
-        simTbl.(y_name)(idx_to_modify) = simTbl.(y_name)(idx_to_modify) + effect_size;
+        is_target_category = vlt.stats.power.find_group_indices(simTbl, category_to_test);
+        simTbl.(y_name)(is_target_category) = simTbl.(y_name)(is_target_category) + effect_size;
     end
 end

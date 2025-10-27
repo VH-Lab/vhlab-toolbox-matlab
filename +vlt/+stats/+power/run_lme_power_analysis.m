@@ -26,15 +26,19 @@ function [mdes, power_curve] = run_lme_power_analysis(tbl, categories_name, y_na
 %   y_name - The name of the table column that contains the continuous response variable.
 %       E.g., 'Measurement' or 'Score'.
 %
-%   reference_category - A value from the primary 'categories_name' column that should
-%       be treated as the baseline or control group.
+%   reference_category - Defines the baseline or control group. This can be:
+%       1. A STRING: For simple models, this is a value from the primary
+%          'categories_name' column (e.g., 'Control').
+%       2. A STRUCT: For post-hoc tests in multi-factor models, this is a struct
+%          where field names match column names and values specify the group.
+%          E.g., struct('Condition','Control','Time',1)
 %
 %   group_name - The name of the table column that identifies the source of repeated
 %       measures, which will be modeled as a random effect. E.g., 'Animal' or 'SubjectID'.
 %
-%   category_to_test - The value from the primary 'categories_name' column that
-%       should be treated as the experimental group. The hypothetical effect size will be
-%       added to this group's data during the simulation.
+%   category_to_test - Defines the experimental group to compare against the reference.
+%       This can also be a STRING or a STRUCT, following the same format as
+%       'reference_category'.
 %
 %   target_power - The desired statistical power (e.g., 0.80 for 80% power). The
 %       function's primary output, 'mdes', is the effect size required to achieve this power.
@@ -98,9 +102,9 @@ function [mdes, power_curve] = run_lme_power_analysis(tbl, categories_name, y_na
         tbl table
         categories_name
         y_name {mustBeTextScalar}
-        reference_category {mustBeTextScalar}
+        reference_category
         group_name {mustBeTextScalar}
-        category_to_test {mustBeTextScalar}
+        category_to_test
         target_power (1,1) double
         options.Alpha (1,1) double = 0.05
         options.NumSimulations (1,1) double = 500
@@ -125,9 +129,13 @@ function [mdes, power_curve] = run_lme_power_analysis(tbl, categories_name, y_na
     end
     fprintf('Target Power: %.0f%%\n', target_power * 100);
 
-    primary_category = categories_name;
-    if iscell(primary_category), primary_category = primary_category{1}; end
-    fprintf('Category to Test: %s (Reference: %s)\n', category_to_test, reference_category);
+    if isstruct(category_to_test)
+        fprintf('Category to Test: <struct> (Reference: <struct>)\n');
+    else
+        primary_category = categories_name;
+        if iscell(primary_category), primary_category = primary_category{1}; end
+        fprintf('Category to Test: %s (Reference: %s)\n', category_to_test, reference_category);
+    end
 
     fprintf('Simulations per Step: %d\n\n', options.NumSimulations);
 

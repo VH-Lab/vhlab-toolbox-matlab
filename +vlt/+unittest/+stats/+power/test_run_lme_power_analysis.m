@@ -83,5 +83,28 @@ classdef test_run_lme_power_analysis < matlab.unittest.TestCase
             testCase.verifyEqual(char(fig.Name), expected_title, 'Figure title is incorrect.');
         end
 
+        function test_posthoc_struct_syntax(testCase)
+            % Test the new struct-based syntax for post-hoc tests
+
+            % Create a more complex table for post-hoc testing
+            Condition = categorical(repelem({'A'; 'B'}, 20, 1));
+            Time = categorical(repmat({'T1'; 'T2'}, 20, 1));
+            Subject = categorical(repelem([1:10]', 4, 1));
+            Measurement = rand(40, 1) * 10;
+            posthoc_tbl = table(Condition, Time, Subject, Measurement);
+
+            reference_group = struct('Condition', 'A', 'Time', 'T1');
+            test_group = struct('Condition', 'B', 'Time', 'T2');
+
+            [mdes, ~] = vlt.stats.power.run_lme_power_analysis(...
+                posthoc_tbl, {'Condition', 'Time'}, 'Measurement', ...
+                reference_group, 'Subject', test_group, 0.80, ...
+                'NumSimulations', 10, 'plot', false);
+
+            testCase.verifyClass(mdes, 'double', 'MDES should be a double.');
+            testCase.verifyTrue(isscalar(mdes), 'MDES should be a scalar.');
+            testCase.verifyGreaterThan(mdes, 0, 'MDES should be positive.');
+        end
+
     end
 end

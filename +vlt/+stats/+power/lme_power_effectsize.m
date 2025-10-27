@@ -19,8 +19,38 @@ function [mdes, power_curve] = lme_power_effectsize(tbl, categories_name, y_name
         options.ShufflePredictor {mustBeTextScalar} = ''
     end
 
-    disp('Fitting baseline model to original data...');
-    [lme_base, tbl_base] = vlt.stats.lme_category(tbl, categories_name, y_name, '', reference_category, group_name, 0, 0);
+    if isstruct(reference_category)
+        % Post-hoc test mode
+        disp('Post-hoc mode: Creating temporary interaction variable...');
+
+        % Combine all fields from the struct to create a unique group identifier
+        fields = fieldnames(reference_category);
+        interaction_vars = cell(height(tbl), numel(fields));
+        for i = 1:numel(fields)
+            interaction_vars(:,i) = cellstr(tbl.(fields{i}));
+        end
+        tbl.InteractionGroup = categorical(join(interaction_vars, '_'));
+
+        ref_group_str = strjoin(struct2cell(reference_category), '_');
+        test_group_str = strjoin(struct2cell(category_to_test), '_');
+
+        disp('Fitting baseline model to original data using interaction term...');
+        [lme_base, tbl_base] = vlt.stats.lme_category(tbl, 'InteractionGroup', y_name, '', ref_group_str, group_name, 0, 0);
+
+        primary_category = 'InteractionGroup';
+        category_to_test = test_group_str; % for coefficient finding
+
+    else
+        % Original main effect mode
+        disp('Fitting baseline model to original data...');
+        [lme_base, tbl_base] = vlt.stats.lme_category(tbl, categories_name, y_name, '', reference_category, group_name, 0, 0);
+
+        if iscell(categories_name)
+            primary_category = categories_name{1};
+        else
+            primary_category = categories_name;
+        end
+    end
 
     y_name_fixed = 'Y_data_for_fit'; % This is now the fixed response variable name
 
@@ -35,15 +65,11 @@ function [mdes, power_curve] = lme_power_effectsize(tbl, categories_name, y_name
     test_effect_size = 0;
     power_curve_data = [];
 
-    if iscell(categories_name)
-        primary_category = categories_name{1};
-    else
-        primary_category = categories_name;
-    end
-
     % --- Whitespace and Character Sanitization ---
-    clean_str = @(s) strtrim(replace(s, char(160), ' '));
-    category_to_test = clean_str(category_to_test);
+    if ischar(category_to_test) || isstring(category_to_test)
+        clean_str = @(s) strtrim(replace(s, char(160), ' '));
+        category_to_test = clean_str(category_to_test);
+    end
     % --- End Sanitization ---
 
     % Programmatically find the exact coefficient name from the baseline model
