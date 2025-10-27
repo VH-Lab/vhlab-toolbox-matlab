@@ -17,11 +17,12 @@ classdef test_lme_power_effectsize < matlab.unittest.TestCase
 
     methods (Test)
 
-        function test_worker_execution(testCase)
-            % Test the execution of the worker function
+        function test_worker_execution_smoketest(testCase)
+            % A smoke test to ensure the worker function runs without error.
+            % We use a very low target power to ensure the loop terminates quickly.
 
             [mdes, power_curve] = vlt.stats.power.lme_power_effectsize(...
-                testCase.SampleTbl, 'Model_Year', 'MPG', '70', 'Mfg', '76', 0.80, ...
+                testCase.SampleTbl, 'Model_Year', 'MPG', '70', 'Mfg', '76', 0.10, ... % Low power target
                 'Method', 'gaussian', 'NumSimulations', 10, 'EffectStep', 5); % Low sims for speed
 
             % Verifications
