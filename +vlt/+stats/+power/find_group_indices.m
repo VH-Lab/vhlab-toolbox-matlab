@@ -40,5 +40,4 @@ function indices = find_group_indices(tbl, group_definition, category_name)
         % String-based definition for single-factor groups
         indices = (tbl.(category_name) == group_definition);
     end
-    fprintf('DEBUG: Found %d rows for the test group.\n', sum(indices));
 end
