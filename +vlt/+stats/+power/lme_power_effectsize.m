@@ -27,7 +27,12 @@ function [mdes, power_curve] = lme_power_effectsize(tbl, categories_name, y_name
         fields = fieldnames(reference_category);
         interaction_vars = cell(height(tbl), numel(fields));
         for i = 1:numel(fields)
-            interaction_vars(:,i) = cellstr(tbl.(fields{i}));
+            column_data = tbl.(fields{i});
+            if isnumeric(column_data)
+                interaction_vars(:,i) = cellstr(num2str(column_data));
+            else
+                interaction_vars(:,i) = cellstr(column_data);
+            end
         end
         tbl.InteractionGroup = categorical(join(interaction_vars, '_'));
 
