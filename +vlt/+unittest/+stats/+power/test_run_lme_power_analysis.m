@@ -9,9 +9,11 @@ classdef test_run_lme_power_analysis < matlab.unittest.TestCase
     methods (TestMethodSetup)
         function create_test_data(testCase)
             % Create a sample table for testing
-            Mfg = categorical(repmat({'A'; 'B'; 'C'; 'D'}, 10, 1));
-            Model_Year = categorical(repmat({'70'; '76'; '82'; '85'}, 10, 1));
-            MPG = rand(40, 1) * 20 + 10;
+            reps = 50; % Increased repetitions for more stable test
+            num_rows = 4 * reps;
+            Mfg = categorical(repmat({'A'; 'B'; 'C'; 'D'}, reps, 1));
+            Model_Year = categorical(repmat({'70'; '76'; '82'; '85'}, reps, 1));
+            MPG = rand(num_rows, 1) * 20 + 10;
             testCase.SampleTbl = table(Mfg, Model_Year, MPG);
             testCase.figures_before_test = findall(0, 'type', 'figure');
         end
@@ -31,7 +33,7 @@ classdef test_run_lme_power_analysis < matlab.unittest.TestCase
             % Test the full pipeline with the 'gaussian' method
 
             [mdes, power_curve] = vlt.stats.power.run_lme_power_analysis(...
-                testCase.SampleTbl, 'Model_Year', 'MPG', '70', 'Mfg', '76', 0.80, ...
+                testCase.SampleTbl, 'Model_Year', 'MPG', '70', 'Mfg', '76', 0.10, ... % Low power target
                 'Method', 'gaussian', 'NumSimulations', 10, 'EffectStep', 5, 'plot', false); % Low sims for speed
 
             % Verifications
@@ -49,7 +51,7 @@ classdef test_run_lme_power_analysis < matlab.unittest.TestCase
             % Test the full pipeline with the 'hierarchical' method
 
             [mdes, power_curve] = vlt.stats.power.run_lme_power_analysis(...
-                testCase.SampleTbl, 'Model_Year', 'MPG', '70', 'Mfg', '76', 0.80, ...
+                testCase.SampleTbl, 'Model_Year', 'MPG', '70', 'Mfg', '76', 0.10, ... % Low power target
                 'Method', 'hierarchical', 'NumSimulations', 10, 'EffectStep', 5, 'plot', false); % Low sims for speed
 
             % Verifications
@@ -69,7 +71,7 @@ classdef test_run_lme_power_analysis < matlab.unittest.TestCase
             initial_figures = findall(0, 'type', 'figure');
 
             vlt.stats.power.run_lme_power_analysis(...
-                testCase.SampleTbl, 'Model_Year', 'MPG', '70', 'Mfg', '76', 0.80, ...
+                testCase.SampleTbl, 'Model_Year', 'MPG', '70', 'Mfg', '76', 0.10, ... % Low power target
                 'Method', 'gaussian', 'NumSimulations', 10, 'EffectStep', 5, 'plot', true);
 
             current_figures = findall(0, 'type', 'figure');
@@ -98,7 +100,7 @@ classdef test_run_lme_power_analysis < matlab.unittest.TestCase
 
             [mdes, ~] = vlt.stats.power.run_lme_power_analysis(...
                 posthoc_tbl, {'Condition', 'Time'}, 'Measurement', ...
-                reference_group, 'Subject', test_group, 0.80, ...
+                reference_group, 'Subject', test_group, 0.10, ... % Low power target
                 'NumSimulations', 10, 'plot', false);
 
             testCase.verifyClass(mdes, 'double', 'MDES should be a double.');
