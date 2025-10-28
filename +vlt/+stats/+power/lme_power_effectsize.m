@@ -36,8 +36,22 @@ function [mdes, power_curve] = lme_power_effectsize(tbl, categories_name, y_name
         end
         tbl.InteractionGroup = categorical(join(interaction_vars, '_'));
 
-        ref_group_str = strjoin(struct2cell(reference_category), '_');
-        test_group_str = strjoin(struct2cell(category_to_test), '_');
+        % Convert struct values to cell array of strings for robust joining
+        ref_cells = struct2cell(reference_category);
+        for i=1:numel(ref_cells)
+            if isnumeric(ref_cells{i})
+                ref_cells{i} = num2str(ref_cells{i});
+            end
+        end
+        ref_group_str = strjoin(ref_cells, '_');
+
+        test_cells = struct2cell(category_to_test);
+        for i=1:numel(test_cells)
+            if isnumeric(test_cells{i})
+                test_cells{i} = num2str(test_cells{i});
+            end
+        end
+        test_group_str = strjoin(test_cells, '_');
 
         disp('Fitting baseline model to original data using interaction term...');
         [lme_base, tbl_base] = vlt.stats.lme_category(tbl, 'InteractionGroup', y_name, '', ref_group_str, group_name, 0, 0);
