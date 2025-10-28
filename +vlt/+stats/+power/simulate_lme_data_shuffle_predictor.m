@@ -28,7 +28,7 @@ function simTbl = simulate_lme_data_shuffle_predictor(lme_base, tbl_base, effect
     % --- Add the Hypothetical Effect Size ---
     % Important: Find the rows for the test category *after* shuffling to apply the effect.
     if effect_size ~= 0
-        is_target_category = vlt.stats.power.find_group_indices(simTbl, category_to_test);
+        is_target_category = vlt.stats.power.find_group_indices(simTbl, category_to_test, primary_category);
         simTbl.(y_name)(is_target_category) = simTbl.(y_name)(is_target_category) + effect_size;
     end
 end

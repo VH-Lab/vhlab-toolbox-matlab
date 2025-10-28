@@ -1,19 +1,17 @@
-function indices = find_group_indices(tbl, group_definition)
+function indices = find_group_indices(tbl, group_definition, category_name)
 % FIND_GROUP_INDICES - Finds table rows that match a group definition.
 %
-%   indices = FIND_GROUP_INDICES(tbl, group_definition)
+%   indices = FIND_GROUP_INDICES(tbl, group_definition, category_name)
 %
 %   This is a helper function for the LME power analysis suite. It finds
 %   the logical indices of rows in the table `tbl` that match the criteria
 %   specified in `group_definition`.
 %
 %   The `group_definition` can be:
-%   1. A STRING or CHAR: In this case, the function finds all rows where the
-%      *first* column of the table matches the string. This is for simple,
-%      single-factor main effect tests.
-%   2. A STRUCT: In this case, the function finds all rows that match *all*
-%      of the field-value pairs specified in the struct. This is for complex,
-%      multi-factor post-hoc tests.
+%   1. A STRING or CHAR: For simple, single-factor tests. The function finds
+%      all rows where the column specified by `category_name` matches the string.
+%   2. A STRUCT: For complex, multi-factor post-hoc tests. The function finds
+%      all rows that match *all* of the field-value pairs in the struct.
 %
     if isstruct(group_definition)
         % Struct-based definition for multi-factor groups
@@ -23,7 +21,6 @@ function indices = find_group_indices(tbl, group_definition)
             field = fields{i};
             value = group_definition.(field);
 
-            % Get table data for the current field
             table_data = tbl.(field);
 
             % Sanitize strings for comparison
@@ -37,13 +34,11 @@ function indices = find_group_indices(tbl, group_definition)
                 value = strtrim(replace(value, char(160), ' '));
             end
 
-            % Accumulate the logical AND across all fields
             indices = indices & (table_data == value);
         end
     else
         % String-based definition for single-factor groups
-        % Assumes the first column is the one to test
-        primary_category_name = tbl.Properties.VariableNames{1};
-        indices = (tbl.(primary_category_name) == group_definition);
+        indices = (tbl.(category_name) == group_definition);
     end
+    fprintf('DEBUG: Found %d rows for the test group.\n', sum(indices));
 end
