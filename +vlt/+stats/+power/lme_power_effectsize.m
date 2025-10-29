@@ -19,12 +19,14 @@ function [mdes, power_curve] = lme_power_effectsize(tbl, categories_name, y_name
         options.ShufflePredictor {mustBeTextScalar} = ''
     end
 
+    interaction_fields = {};
     if isstruct(reference_category)
         % Post-hoc test mode
         disp('Post-hoc mode: Creating temporary interaction variable...');
 
         % Combine all fields from the struct to create a unique group identifier
         fields = fieldnames(reference_category);
+        interaction_fields = fields;
         interaction_vars = cell(height(tbl), numel(fields));
         for i = 1:numel(fields)
             column_data = tbl.(fields{i});
@@ -54,7 +56,8 @@ function [mdes, power_curve] = lme_power_effectsize(tbl, categories_name, y_name
         test_group_str = strjoin(test_cells, '_');
 
         disp('Fitting baseline model to original data using interaction term...');
-        [lme_base, tbl_base] = vlt.stats.lme_category(tbl, 'InteractionGroup', y_name, '', ref_group_str, group_name, 0, 0);
+        trim_opt = isempty(options.ShufflePredictor); % Don't trim if we need the predictor column for shuffling
+        [lme_base, tbl_base] = vlt.stats.lme_category(tbl, 'InteractionGroup', y_name, '', ref_group_str, group_name, 0, 0, 'TrimTable', trim_opt);
 
         primary_category = 'InteractionGroup';
         category_to_test = test_group_str; % for coefficient finding
@@ -62,7 +65,8 @@ function [mdes, power_curve] = lme_power_effectsize(tbl, categories_name, y_name
     else
         % Original main effect mode
         disp('Fitting baseline model to original data...');
-        [lme_base, tbl_base] = vlt.stats.lme_category(tbl, categories_name, y_name, '', reference_category, group_name, 0, 0);
+        trim_opt = isempty(options.ShufflePredictor); % Don't trim if we need the predictor column for shuffling
+        [lme_base, tbl_base] = vlt.stats.lme_category(tbl, categories_name, y_name, '', reference_category, group_name, 0, 0, 'TrimTable', trim_opt);
 
         if iscell(categories_name)
             primary_category = categories_name{1};
@@ -106,7 +110,7 @@ function [mdes, power_curve] = lme_power_effectsize(tbl, categories_name, y_name
         fprintf('Parallel Computing Toolbox detected. Using parfor for simulations.\n');
     end
 
-    sim_func = vlt.stats.power.getLMESimFunc(options.Method, 'ShufflePredictor', options.ShufflePredictor);
+    sim_func = vlt.stats.power.getLMESimFunc(options.Method, 'ShufflePredictor', options.ShufflePredictor, 'InteractionFields', interaction_fields);
     alpha = options.Alpha;
     num_simulations = options.NumSimulations;
 

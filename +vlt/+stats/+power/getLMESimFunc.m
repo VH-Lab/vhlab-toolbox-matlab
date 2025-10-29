@@ -9,6 +9,7 @@ function func_handle = getLMESimFunc(method, options)
     arguments
         method (1,1) string
         options.ShufflePredictor {mustBeTextScalar} = ''
+        options.InteractionFields cell = {}
     end
 
     if ~isempty(options.ShufflePredictor)
@@ -16,7 +17,7 @@ function func_handle = getLMESimFunc(method, options)
         func_handle = @(lme_base, tbl_base, effect_size, primary_category, category_to_test, y_name, group_name) ...
             vlt.stats.power.simulate_lme_data_shuffle_predictor(...
                 lme_base, tbl_base, effect_size, primary_category, category_to_test, y_name, group_name, ...
-                'ShufflePredictor', options.ShufflePredictor);
+                'ShufflePredictor', options.ShufflePredictor, 'InteractionFields', options.InteractionFields);
         return;
     end
 
