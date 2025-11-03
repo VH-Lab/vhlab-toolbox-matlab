@@ -49,7 +49,7 @@ function simTbl = simulate_lme_data_shuffle_predictor(lme_base, tbl_base, effect
     y_predicted_null = predict(lme_base, simTbl);
 
     % Get the original residuals and shuffle them to preserve noise structure
-    residuals_shuffled = lme_base.resid();
+    residuals_shuffled = residuals(lme_base);
     residuals_shuffled = residuals_shuffled(randperm(numel(residuals_shuffled)));
 
     % The null data is the prediction from the shuffled predictors + shuffled noise
