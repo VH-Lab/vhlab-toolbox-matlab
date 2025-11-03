@@ -113,7 +113,6 @@ function [mdes, power_curve, primary_category] = lme_power_effectsize(tbl, categ
     sim_func = vlt.stats.power.getLMESimFunc(options.Method, 'ShufflePredictor', options.ShufflePredictor, 'InteractionFields', interaction_fields);
     alpha = options.Alpha;
     num_simulations = options.NumSimulations;
-    first_debug_run = true; % Flag to control debug output
 
     while current_power < target_power
         test_effect_size = test_effect_size + options.EffectStep;
@@ -123,17 +122,16 @@ function [mdes, power_curve, primary_category] = lme_power_effectsize(tbl, categ
 
         if use_parallel
             parfor i = sim_loop
-                is_first = first_debug_run && (i == 1);
-                p_values(i) = run_simulation_iteration(sim_func, lme_base, tbl_base, test_effect_size, primary_category, category_to_test, y_name_fixed, group_name, coeff_name, is_first);
+                simTbl = sim_func(lme_base, tbl_base, test_effect_size, primary_category, category_to_test, y_name_fixed, group_name);
+                p_values(i) = run_single_simulation(simTbl, lme_base.Formula, coeff_name);
             end
         else % Regular for loop
             for i = sim_loop
-                is_first = first_debug_run && (i == 1);
-                p_values(i) = run_simulation_iteration(sim_func, lme_base, tbl_base, test_effect_size, primary_category, category_to_test, y_name_fixed, group_name, coeff_name, is_first);
+                simTbl = sim_func(lme_base, tbl_base, test_effect_size, primary_category, category_to_test, y_name_fixed, group_name);
+                p_values(i) = run_single_simulation(simTbl, lme_base.Formula, coeff_name);
             end
         end
 
-        first_debug_run = false; % Disable debug output after the first effect size step
         significant_count = sum(p_values < alpha);
         current_power = significant_count / num_simulations;
         power_curve_data = [power_curve_data; test_effect_size, current_power];
@@ -147,45 +145,6 @@ function [mdes, power_curve, primary_category] = lme_power_effectsize(tbl, categ
     fprintf('\n--- Search Finished ---\n');
     fprintf('Minimum Detectable Effect Size (MDES) for %.0f%% power is: %.4f\n', target_power*100, mdes);
 end
-
-function p_value = run_simulation_iteration(sim_func, lme_base, tbl_base, effect_size, primary_category, category_to_test, y_name, group_name, coeff_name, is_first_debug)
-    % --- This is the body of the simulation loop, refactored for debugging ---
-
-    simTbl = sim_func(lme_base, tbl_base, effect_size, primary_category, category_to_test, y_name, group_name);
-
-    if is_first_debug
-        fprintf('\n--- DEBUGGING: FIRST SIMULATION ITERATION ---\n');
-        fprintf('Effect Size Being Tested: %.4f\n', effect_size);
-        fprintf('Target Category String: ''%s''\n', category_to_test);
-
-        is_target_category = vlt.stats.power.find_group_indices(simTbl, category_to_test, primary_category);
-
-        fprintf('Shuffled/Recalculated Table Head:\n');
-        disp(head(simTbl));
-
-        fprintf('Number of rows found for target category: %d\n', sum(is_target_category));
-
-        % We need to find the data values *before* the effect was added.
-        % This requires re-running the sim func with a zero effect size.
-        nullTbl = sim_func(lme_base, tbl_base, 0, primary_category, category_to_test, y_name, group_name);
-        data_before_effect = nullTbl.(y_name)(is_target_category);
-        data_after_effect = simTbl.(y_name)(is_target_category);
-
-        fprintf('Data values for target rows BEFORE effect was added:\n');
-        disp(head(data_before_effect));
-
-        fprintf('Data values for target rows AFTER effect was added:\n');
-        disp(head(data_after_effect));
-    end
-
-    p_value = run_single_simulation(simTbl, lme_base.Formula, coeff_name);
-
-    if is_first_debug
-        fprintf('Resulting p-value for this iteration: %.4f\n', p_value);
-        fprintf('--- END DEBUGGING ---\n\n');
-    end
-end
-
 
 function p_value = run_single_simulation(simTbl, formula, coeff_name)
     % Runs a single LME fit and extracts the p-value for the coefficient of interest.
