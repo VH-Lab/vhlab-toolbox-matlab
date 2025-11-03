@@ -139,7 +139,7 @@ function [mdes, power_curve] = run_lme_power_analysis(tbl, categories_name, y_na
 
     fprintf('Simulations per Step: %d\n\n', options.NumSimulations);
 
-    [mdes, power_curve] = vlt.stats.power.lme_power_effectsize(tbl, categories_name, y_name, ...
+    [mdes, power_curve, primary_category] = vlt.stats.power.lme_power_effectsize(tbl, categories_name, y_name, ...
         reference_category, group_name, category_to_test, target_power, ...
         'Method', options.Method, ...
         'Alpha', options.Alpha, ...
@@ -161,7 +161,12 @@ function [mdes, power_curve] = run_lme_power_analysis(tbl, categories_name, y_na
 
         xlabel(['Hypothetical Effect Size (in units of ' strrep(y_name, '_', '\_') ')']);
         ylabel('Statistical Power (%)');
-        title_str = sprintf('Power Curve for %s = ''%s'' (%s method)', strrep(primary_category, '_', '\_'), category_to_test, options.Method);
+        if isstruct(category_to_test)
+            test_str = 'Post-hoc';
+        else
+            test_str = ['''' category_to_test ''''];
+        end
+        title_str = sprintf('Power Curve for %s = %s (%s method)', strrep(primary_category, '_', '\_'), test_str, options.Method);
         title(title_str);
         grid on;
         ylim([0 105]);

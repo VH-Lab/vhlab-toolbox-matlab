@@ -1,4 +1,4 @@
-function [mdes, power_curve] = lme_power_effectsize(tbl, categories_name, y_name, reference_category, group_name, category_to_test, target_power, options)
+function [mdes, power_curve, primary_category] = lme_power_effectsize(tbl, categories_name, y_name, reference_category, group_name, category_to_test, target_power, options)
 % LME_POWER_EFFECTSIZE - Finds the minimum detectable effect size (MDES) via simulation.
 %
 %   Core worker function for LME power analysis. See the documentation for the main
