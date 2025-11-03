@@ -33,7 +33,10 @@ function [mdes, power_curve] = lme_power_effectsize(tbl, categories_name, y_name
             if isnumeric(column_data)
                 interaction_vars(:,i) = cellstr(num2str(column_data));
             else
-                interaction_vars(:,i) = cellstr(column_data);
+                % Sanitize string data before joining to create the interaction term
+                clean_data = cellstr(column_data);
+                clean_data = cellfun(@(s) strtrim(replace(s, char(160), ' ')), clean_data, 'UniformOutput', false);
+                interaction_vars(:,i) = clean_data;
             end
         end
         tbl.InteractionGroup = categorical(join(interaction_vars, '_'));

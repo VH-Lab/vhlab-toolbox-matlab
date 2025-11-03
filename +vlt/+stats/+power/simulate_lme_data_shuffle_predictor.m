@@ -35,7 +35,10 @@ function simTbl = simulate_lme_data_shuffle_predictor(lme_base, tbl_base, effect
             if isnumeric(column_data)
                 interaction_vars(:,i) = cellstr(num2str(column_data));
             else
-                interaction_vars(:,i) = cellstr(column_data);
+                % Sanitize string data before joining
+                clean_data = cellstr(column_data);
+                clean_data = cellfun(@(s) strtrim(replace(s, char(160), ' ')), clean_data, 'UniformOutput', false);
+                interaction_vars(:,i) = clean_data;
             end
         end
         simTbl.InteractionGroup = categorical(join(interaction_vars, '_'));
