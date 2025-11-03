@@ -5,11 +5,7 @@ function simTbl = simulate_lme_data_shuffle_predictor(lme_base, tbl_base, effect
 %   column (e.g., 'condition_name'). This breaks the relationship between that predictor
 %   and the response variable.
 %
-%   Crucially, to preserve the original noise structure of the data, the simulation then:
-%   1. Predicts the response based on the shuffled fixed effects.
-%   2. Adds back shuffled residuals from the original model.
-%
-%   Finally, a hypothetical `effect_size` is added to the specified `category_to_test`.
+%   After shuffling, a hypothetical `effect_size` is added to the specified `category_to_test`.
 %
     arguments
         lme_base
@@ -44,18 +40,7 @@ function simTbl = simulate_lme_data_shuffle_predictor(lme_base, tbl_base, effect
         simTbl.InteractionGroup = categorical(join(interaction_vars, '_'));
     end
 
-    % --- 3. Create the Null Data by Predicting from Shuffled + Adding Residuals ---
-    % Predict the response based on the fixed effects of our shuffled data
-    y_predicted_null = predict(lme_base, simTbl);
-
-    % Get the original residuals and shuffle them to preserve noise structure
-    residuals_shuffled = residuals(lme_base);
-    residuals_shuffled = residuals_shuffled(randperm(numel(residuals_shuffled)));
-
-    % The null data is the prediction from the shuffled predictors + shuffled noise
-    simTbl.(y_name) = y_predicted_null + residuals_shuffled;
-
-    % --- 4. Add the Hypothetical Effect Size ---
+    % --- 3. Add the Hypothetical Effect Size ---
     if effect_size ~= 0
         is_target_category = vlt.stats.power.find_group_indices(simTbl, category_to_test, primary_category);
         simTbl.(y_name)(is_target_category) = simTbl.(y_name)(is_target_category) + effect_size;
