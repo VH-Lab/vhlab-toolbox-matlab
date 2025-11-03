@@ -28,6 +28,10 @@ function [mdes, power_curve] = lme_power_xpro_day6_vs_day1(t, options)
         options.NumSimulations (1,1) double = 500
     end
 
+    % --- Data Sanitization ---
+    % Clean the table of any non-breaking spaces that can cause issues with string comparisons
+    t = vlt.table.nonbsp(t);
+
     % --- 1. Define the parameters for the LME model ---
     % The model itself still accounts for both main factors.
     categories_name = {'Condition', 'Hunting_day'};
