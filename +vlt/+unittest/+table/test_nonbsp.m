@@ -7,7 +7,7 @@ classdef test_nonbsp < matlab.unittest.TestCase
             nbsp = char(160);
 
             T_in = table(...
-                string(['hello' nbsp 'world'; 'another' nbsp 'string']), ... % string array
+                string({'hello' nbsp 'world'; 'another' nbsp 'string'}), ... % string array
                 {'cell' nbsp 'str'; ['another' nbsp 'cell']}, ...           % cell array of chars
                 ['char' nbsp 'array '; 'another' nbsp 'char'], ...           % char array
                 [1; 2], ...                                                 % numeric

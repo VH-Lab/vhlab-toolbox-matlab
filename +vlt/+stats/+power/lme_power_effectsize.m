@@ -1,53 +1,8 @@
 function [mdes, power_curve] = lme_power_effectsize(tbl, categories_name, y_name, reference_category, group_name, category_to_test, target_power, options)
 % LME_POWER_EFFECTSIZE - Finds the minimum detectable effect size (MDES) via simulation.
 %
-%   This is the core worker function for the power analysis toolkit. It
-%   systematically searches for the smallest effect size that can be
-%   detected with a specified statistical power (the MDES).
-%
-%   Process:
-%   1.  A baseline linear mixed-effects model is fit to the actual data to
-%       extract its variance components (random effects and residual error).
-%   2.  The function enters a loop, starting with a small hypothetical
-%       effect size.
-%   3.  In each loop iteration, it runs hundreds or thousands of simulations.
-%       Each simulation generates a new dataset with the same noise
-%       characteristics as the real data but with the current hypothetical
-%       effect "injected" into the specified category.
-%   4.  An LME model is fit to each simulated dataset, and the function
-%       checks if the p-value for the effect is significant (e.g., < 0.05).
-%   5.  The statistical power for the current effect size is calculated as
-%       the proportion of simulations that yielded a significant result.
-%   6.  If the calculated power is less than the `target_power`, the effect
-%       size is increased, and the loop repeats.
-%   7.  The loop terminates when the `target_power` is achieved, and the
-%       effect size from that iteration is returned as the MDES.
-%
-%   Inputs:
-%       tbl              - The input data table.
-%       categories_name  - String name of the column with fixed-effect categories.
-%       y_name           - String name of the response variable column.
-%       reference_category - String name of the category to use as a baseline.
-%       group_name       - String name of a column for the random-effects grouping.
-%       category_to_test - String name of the specific category to test.
-%       target_power     - The desired statistical power (e.g., 0.80 for 80%).
-%
-%   Name-Value Options:
-%       'Alpha'          - The significance level (p-value threshold). Default is 0.05.
-%       'NumSimulations' - The number of simulations to run at each step of the
-%                          effect-size search. More simulations lead to more
-%                          stable estimates but take longer. Default is 500.
-%       'EffectStep'     - The amount to increase the effect size at each
-%                          step of the search. If not specified (-1), it is
-%                          auto-calculated based on the data's standard deviation.
-%       'Method'         - The simulation method to use: 'gaussian', 'shuffle',
-%                          or 'hierarchical'. Default is 'gaussian'.
-%
-%   Outputs:
-%       mdes        - The minimum detectable effect size for the target power.
-%       power_curve - A table containing the results of the search, with
-%                     columns 'EffectSize' and 'Power'. This is useful for
-%                     plotting how power changes with effect size.
+%   Core worker function for LME power analysis. See the documentation for the main
+%   function vlt.stats.power.run_lme_power_analysis for detailed information.
 %
     arguments
         tbl
@@ -61,15 +16,69 @@ function [mdes, power_curve] = lme_power_effectsize(tbl, categories_name, y_name
         options.NumSimulations (1,1) double = 500
         options.EffectStep (1,1) double = -1
         options.Method (1,1) string {mustBeMember(options.Method,{'gaussian','shuffle','hierarchical'})} = 'gaussian'
+        options.ShufflePredictor {mustBeTextScalar} = ''
     end
 
-    disp('Fitting baseline model to original data...');
-    [lme_base, tbl_base] = vlt.stats.lme_category(tbl, categories_name, y_name, 'Y', reference_category, group_name, 0, 0);
+    interaction_fields = {};
+    if isstruct(reference_category)
+        % Post-hoc test mode
+        disp('Post-hoc mode: Creating temporary interaction variable...');
 
-    y_name_fixed = strrep(y_name,'.','__');
+        % Combine all fields from the struct to create a unique group identifier
+        fields = fieldnames(reference_category);
+        interaction_fields = fields;
+        interaction_vars = cell(height(tbl), numel(fields));
+        for i = 1:numel(fields)
+            column_data = tbl.(fields{i});
+            if isnumeric(column_data)
+                interaction_vars(:,i) = cellstr(num2str(column_data));
+            else
+                interaction_vars(:,i) = cellstr(column_data);
+            end
+        end
+        tbl.InteractionGroup = categorical(join(interaction_vars, '_'));
+
+        % Convert struct values to cell array of strings for robust joining
+        ref_cells = struct2cell(reference_category);
+        for i=1:numel(ref_cells)
+            if isnumeric(ref_cells{i})
+                ref_cells{i} = num2str(ref_cells{i});
+            end
+        end
+        ref_group_str = strjoin(ref_cells, '_');
+
+        test_cells = struct2cell(category_to_test);
+        for i=1:numel(test_cells)
+            if isnumeric(test_cells{i})
+                test_cells{i} = num2str(test_cells{i});
+            end
+        end
+        test_group_str = strjoin(test_cells, '_');
+
+        disp('Fitting baseline model to original data using interaction term...');
+        trim_opt = isempty(options.ShufflePredictor); % Don't trim if we need the predictor column for shuffling
+        [lme_base, tbl_base] = vlt.stats.lme_category(tbl, 'InteractionGroup', y_name, '', ref_group_str, group_name, 0, 0, 'TrimTable', trim_opt);
+
+        primary_category = 'InteractionGroup';
+        category_to_test = test_group_str; % for coefficient finding
+
+    else
+        % Original main effect mode
+        disp('Fitting baseline model to original data...');
+        trim_opt = isempty(options.ShufflePredictor); % Don't trim if we need the predictor column for shuffling
+        [lme_base, tbl_base] = vlt.stats.lme_category(tbl, categories_name, y_name, '', reference_category, group_name, 0, 0, 'TrimTable', trim_opt);
+
+        if iscell(categories_name)
+            primary_category = categories_name{1};
+        else
+            primary_category = categories_name;
+        end
+    end
+
+    y_name_fixed = 'Y_data_for_fit'; % This is now the fixed response variable name
 
     if options.EffectStep == -1
-        options.EffectStep = std(tbl_base.(y_name_fixed)) / 50;
+        options.EffectStep = std(tbl_base.(y_name_fixed), 'omitnan') / 50;
         fprintf('Using a search step size of %.3f\n', options.EffectStep);
     end
 
@@ -78,58 +87,53 @@ function [mdes, power_curve] = lme_power_effectsize(tbl, categories_name, y_name
     current_power = 0;
     test_effect_size = 0;
     power_curve_data = [];
-    coeff_name = [categories_name '_' category_to_test];
+
+    % --- Whitespace and Character Sanitization ---
+    if ischar(category_to_test) || isstring(category_to_test)
+        clean_str = @(s) strtrim(replace(s, char(160), ' '));
+        category_to_test = clean_str(category_to_test);
+    end
+    % --- End Sanitization ---
+
+    % Programmatically find the exact coefficient name from the baseline model
+    all_coeffs = lme_base.CoefficientNames;
+    coeff_idx = find(contains(all_coeffs, category_to_test) & ~strcmp(all_coeffs, '(Intercept)'));
+    if isempty(coeff_idx)
+        error('Could not find the coefficient corresponding to the category to test in the baseline model.');
+    end
+    coeff_name = all_coeffs{coeff_idx};
+    fprintf('Found coefficient to test: ''%s''\n', coeff_name);
+
 
     use_parallel = ~isempty(ver('parallel'));
     if use_parallel
         fprintf('Parallel Computing Toolbox detected. Using parfor for simulations.\n');
     end
 
-    sim_func = vlt.stats.power.getLMESimFunc(options.Method);
+    sim_func = vlt.stats.power.getLMESimFunc(options.Method, 'ShufflePredictor', options.ShufflePredictor, 'InteractionFields', interaction_fields);
+    alpha = options.Alpha;
+    num_simulations = options.NumSimulations;
 
     while current_power < target_power
         test_effect_size = test_effect_size + options.EffectStep;
 
-        significant_count = 0;
-        sim_loop = 1:options.NumSimulations;
+        p_values = ones(num_simulations, 1);
+        sim_loop = 1:num_simulations;
 
         if use_parallel
             parfor i = sim_loop
-                simTbl = sim_func(lme_base, tbl_base, test_effect_size, categories_name, category_to_test, y_name_fixed, group_name);
-                lme_sim = fitlme(simTbl, lme_base.Formula.char);
-
-                % Robustly find the p-value by searching for the coefficient name
-                coeff_idx = find(strcmp(lme_sim.Coefficients.Name, coeff_name));
-                if ~isempty(coeff_idx)
-                    p_value = lme_sim.Coefficients.pValue(coeff_idx);
-                else
-                    p_value = 1; % If coefficient is missing, it's not significant
-                end
-
-                if p_value < options.Alpha
-                    significant_count = significant_count + 1;
-                end
+                simTbl = sim_func(lme_base, tbl_base, test_effect_size, primary_category, category_to_test, y_name_fixed, group_name);
+                p_values(i) = run_single_simulation(simTbl, lme_base.Formula, coeff_name);
             end
         else % Regular for loop
             for i = sim_loop
-                simTbl = sim_func(lme_base, tbl_base, test_effect_size, categories_name, category_to_test, y_name_fixed, group_name);
-                lme_sim = fitlme(simTbl, lme_base.Formula.char);
-
-                % Robustly find the p-value by searching for the coefficient name
-                coeff_idx = find(strcmp(lme_sim.Coefficients.Name, coeff_name));
-                if ~isempty(coeff_idx)
-                    p_value = lme_sim.Coefficients.pValue(coeff_idx);
-                else
-                    p_value = 1; % If coefficient is missing, it's not significant
-                end
-
-                if p_value < options.Alpha
-                    significant_count = significant_count + 1;
-                end
+                simTbl = sim_func(lme_base, tbl_base, test_effect_size, primary_category, category_to_test, y_name_fixed, group_name);
+                p_values(i) = run_single_simulation(simTbl, lme_base.Formula, coeff_name);
             end
         end
 
-        current_power = significant_count / options.NumSimulations;
+        significant_count = sum(p_values < alpha);
+        current_power = significant_count / num_simulations;
         power_curve_data = [power_curve_data; test_effect_size, current_power];
 
         fprintf('  Effect Size: %.3f  -->  Power: %.2f%%\n', test_effect_size, current_power*100);
@@ -140,4 +144,32 @@ function [mdes, power_curve] = lme_power_effectsize(tbl, categories_name, y_name
 
     fprintf('\n--- Search Finished ---\n');
     fprintf('Minimum Detectable Effect Size (MDES) for %.0f%% power is: %.4f\n', target_power*100, mdes);
+end
+
+function p_value = run_single_simulation(simTbl, formula, coeff_name)
+    % Runs a single LME fit and extracts the p-value for the coefficient of interest.
+    % Returns a p-value of 1 if the model cannot be fit (e.g., due to rank deficiency).
+
+    % Check for rank deficiency before fitting
+    unique_conditions = unique(simTbl.(formula.ResponseName));
+    if numel(unique_conditions) < 2
+        p_value = 1;
+        return;
+    end
+
+    try
+        lme_sim = fitlme(simTbl, formula.char);
+        coeff_idx_sim = find(strcmp(lme_sim.Coefficients.Name, coeff_name));
+        if ~isempty(coeff_idx_sim)
+            p_value = lme_sim.Coefficients.pValue(coeff_idx_sim);
+        else
+            p_value = 1; % Coefficient not found, cannot reject null
+        end
+    catch ME
+        if strcmp(ME.identifier, 'stats:fitlme:RankDeficient')
+            p_value = 1; % Treat rank-deficient fits as non-significant
+        else
+            rethrow(ME); % Rethrow other errors
+        end
+    end
 end
