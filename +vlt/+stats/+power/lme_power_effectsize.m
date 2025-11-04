@@ -95,7 +95,16 @@ function p_value = run_single_simulation(simTbl, formula, ref_group, test_group)
     % Runs a single LME fit and extracts the p-value.
 
     try
+        % --- DEBUG START ---
+        fprintf('[DEBUG] Fitting LME model with formula: %s\n', formula.char);
+        % --- DEBUG END ---
+
         lme_sim = fitlme(simTbl, formula.char);
+
+        % --- DEBUG START ---
+        fprintf('[DEBUG] Model fit complete. Coefficient names:\n');
+        disp(lme_sim.Coefficients.Name);
+        % --- DEBUG END ---
 
         if isstruct(ref_group)
             % Post-hoc mode: use coefTest
@@ -103,16 +112,30 @@ function p_value = run_single_simulation(simTbl, formula, ref_group, test_group)
         else
             % Main effect mode: find coefficient p-value directly
             coeff_name = [formula.PredictorNames{1} '_' test_group];
+
+            % --- DEBUG START ---
+            fprintf('[DEBUG]   Searching for coefficient: %s\n', coeff_name);
+            % --- DEBUG END ---
+
             coeff_idx_sim = find(strcmp(lme_sim.Coefficients.Name, coeff_name));
             if ~isempty(coeff_idx_sim)
                 p_value = lme_sim.Coefficients.pValue(coeff_idx_sim);
+                % --- DEBUG START ---
+                fprintf('[DEBUG]   Coefficient found. p-value: %.4f\n', p_value);
+                % --- DEBUG END ---
             else
                 p_value = 1; % Coefficient not found, cannot reject null
+                % --- DEBUG START ---
+                fprintf('[DEBUG]   WARNING: Coefficient not found. Defaulting p-value to 1.\n');
+                % --- DEBUG END ---
             end
         end
     catch ME
         if strcmp(ME.identifier, 'stats:fitlme:RankDeficient')
             p_value = 1; % Treat rank-deficient fits as non-significant
+            % --- DEBUG START ---
+            fprintf('[DEBUG]   WARNING: Model fit was rank-deficient. Defaulting p-value to 1.\n');
+            % --- DEBUG END ---
         else
             rethrow(ME); % Rethrow other errors
         end

@@ -23,7 +23,7 @@ classdef test_lme_power_effectsize < matlab.unittest.TestCase
             % We use a very low target power to ensure the loop terminates quickly.
             [mdes, power_curve] = vlt.stats.power.lme_power_effectsize(...
                 testCase.SampleTbl, 'Condition', 'Response', 'A', 'Subject', 'B', 0.10, ...
-                'Method', 'shuffle_predictor', 'NumSimulations', 10, 'EffectStep', 5, 'ShufflePredictor', 'Condition');
+                'NumSimulations', 10, 'EffectStep', 5, 'ShufflePredictor', 'Condition');
 
             % Verifications
             testCase.verifyClass(mdes, 'double', 'MDES should be a double.');
@@ -41,7 +41,7 @@ classdef test_lme_power_effectsize < matlab.unittest.TestCase
 
             [mdes, power_curve] = vlt.stats.power.lme_power_effectsize(...
                 testCase.SampleTbl, {'Condition', 'Day'}, 'Response', ref_struct, 'Subject', comp_struct, 0.10, ...
-                'Method', 'shuffle_predictor', 'NumSimulations', 10, 'EffectStep', 5, 'ShufflePredictor', 'Condition');
+                'NumSimulations', 10, 'EffectStep', 5, 'ShufflePredictor', 'Condition');
 
             % Verifications
             testCase.verifyClass(mdes, 'double', 'MDES should be a double.');
