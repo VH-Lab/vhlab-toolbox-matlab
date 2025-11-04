@@ -27,6 +27,13 @@ function simTbl = simulate_lme_data(lme_base, tbl_base, effect_size, category_na
 %   -   Can produce inaccurate power estimates if the true error distributions
 %       are skewed, heavy-tailed, or otherwise non-normal.
 %
+    % --- DEBUG START ---
+    fprintf('[DEBUG] Entering simulate_lme_data (gaussian method)\n');
+    fprintf('[DEBUG]   Effect Size to apply: %.4f\n', effect_size);
+    fprintf('[DEBUG]   Category Name (Column): %s\n', category_name);
+    fprintf('[DEBUG]   Category Level (Value): %s\n', char(category_level)); % Use char() to be safe with types
+    % --- DEBUG END ---
+
     beta_base = lme_base.fixedEffects;
     sigma_resid = sqrt(lme_base.MSE);
     D = lme_base.covarianceParameters{1};
@@ -40,9 +47,30 @@ function simTbl = simulate_lme_data(lme_base, tbl_base, effect_size, category_na
     random_effects = random_effects_per_group(group_idx);
     residual_error = randn(num_obs, 1) * sigma_resid;
     fixed_effects = ones(num_obs, 1) * beta_base(1);
+
     is_target_category = vlt.stats.power.find_group_indices(tbl_base, category_level, category_name);
+
+    % --- DEBUG START ---
+    num_indices_found = sum(is_target_category);
+    fprintf('[DEBUG]   Number of rows found for target category: %d\n', num_indices_found);
+    if num_indices_found == 0
+        fprintf('[DEBUG]   WARNING: No rows matched the target category. Effect will not be applied.\n');
+    end
+    % --- DEBUG END ---
+
     fixed_effects(is_target_category) = fixed_effects(is_target_category) + effect_size;
     Y_sim = fixed_effects + random_effects + residual_error;
+
+    % --- DEBUG START ---
+    if num_indices_found > 0
+        mean_target_group_after = mean(Y_sim(is_target_category));
+        mean_other_group_after = mean(Y_sim(~is_target_category));
+        fprintf('[DEBUG]   Mean of Y_sim for target group (after effect): %.4f\n', mean_target_group_after);
+        fprintf('[DEBUG]   Mean of Y_sim for other groups (after effect): %.4f\n', mean_other_group_after);
+    end
+    fprintf('[DEBUG] Leaving simulate_lme_data\n');
+    % --- DEBUG END ---
+
     simTbl = tbl_base;
     simTbl.(y_name) = Y_sim;
 end
