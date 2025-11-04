@@ -87,11 +87,17 @@ function [mdes, power_curve, primary_category] = lme_power_effectsize(tbl, categ
     sim_func = vlt.stats.power.getLMESimFunc(options.Method, 'ShufflePredictor', options.ShufflePredictor, 'InteractionFields', interaction_fields);
 
     % --- DEBUGGING LOOP ---
-    fprintf('\n--- DEBUGGING: Displaying 3 sample shuffles ---\n');
+    fprintf('\n--- DEBUGGING: Displaying 3 sample shuffles and their LME models ---\n');
     for i = 1:3
         fprintf('\n--- SHUFFLE %d ---\n', i);
         simTbl = sim_func(lme_base, tbl_base, 0.5, primary_category, category_to_test, y_name_fixed, group_name);
+
+        fprintf('--- Simulated Table Head ---\n');
         disp(head(simTbl));
+
+        fprintf('\n--- Fitted LME Model for Shuffle %d ---\n', i);
+        lme_sim = fitlme(simTbl, lme_base.Formula.char);
+        disp(lme_sim);
     end
 
     % --- Disable the rest of the function for debugging ---
