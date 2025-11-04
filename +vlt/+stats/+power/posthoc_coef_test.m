@@ -13,6 +13,15 @@ function p_val = posthoc_coef_test(lme, ref_group, test_group)
 %   The `ref_group` and `test_group` are structs that define the specific
 %   levels of the factors to be compared.
 %
+    % --- DEBUG START ---
+    fprintf('[DEBUG] Entering posthoc_coef_test\n');
+    fprintf('[DEBUG]   Reference Group:\n');
+    disp(ref_group);
+    fprintf('[DEBUG]   Test Group:\n');
+    disp(test_group);
+    fprintf('[DEBUG]   Model Coefficients:\n');
+    disp(lme.CoefficientNames);
+    % --- DEBUG END ---
 
     fields = fieldnames(ref_group);
     coeff_names = lme.CoefficientNames;
@@ -53,7 +62,16 @@ function p_val = posthoc_coef_test(lme, ref_group, test_group)
         end
     end
 
+    % --- DEBUG START ---
+    fprintf('[DEBUG]   Final Contrast Vector (H):\n');
+    disp(H);
+    % --- DEBUG END ---
+
     % Perform the F-test for the contrast H.
     [~, ~, p_val] = coefTest(lme, H);
 
+    % --- DEBUG START ---
+    fprintf('[DEBUG]   coefTest p-value: %.4f\n', p_val);
+    fprintf('[DEBUG] Leaving posthoc_coef_test\n');
+    % --- DEBUG END ---
 end

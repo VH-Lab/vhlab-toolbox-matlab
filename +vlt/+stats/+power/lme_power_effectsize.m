@@ -111,17 +111,25 @@ function p_value = run_single_simulation(simTbl, formula, ref_group, test_group)
             p_value = vlt.stats.power.posthoc_coef_test(lme_sim, ref_group, test_group);
         else
             % Main effect mode: find coefficient p-value directly
-            coeff_name = [formula.PredictorNames{1} '_' test_group];
+            predictor_name = formula.PredictorNames{1};
+
+            % Robustly find the coefficient name
+            all_coeffs = lme_sim.Coefficients.Name;
+
+            % Find the index of the coefficient that starts with the predictor name
+            % and contains the test group name. This is robust to whether fitlme
+            % uses an underscore or not.
+            idx = find(startsWith(all_coeffs, predictor_name) & contains(all_coeffs, test_group));
 
             % --- DEBUG START ---
-            fprintf('[DEBUG]   Searching for coefficient: %s\n', coeff_name);
+            fprintf('[DEBUG]   Searching for coefficient starting with "%s" and containing "%s"\n', predictor_name, test_group);
             % --- DEBUG END ---
 
-            coeff_idx_sim = find(strcmp(lme_sim.Coefficients.Name, coeff_name));
-            if ~isempty(coeff_idx_sim)
-                p_value = lme_sim.Coefficients.pValue(coeff_idx_sim);
+            if ~isempty(idx)
+                coeff_name = all_coeffs{idx};
+                p_value = lme_sim.Coefficients.pValue(idx);
                 % --- DEBUG START ---
-                fprintf('[DEBUG]   Coefficient found. p-value: %.4f\n', p_value);
+                fprintf('[DEBUG]   Coefficient "%s" found. p-value: %.4f\n', coeff_name, p_value);
                 % --- DEBUG END ---
             else
                 p_value = 1; % Coefficient not found, cannot reject null
