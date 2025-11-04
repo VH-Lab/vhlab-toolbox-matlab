@@ -21,11 +21,16 @@ function simTbl = simulate_lme_data_shuffle_predictor(lme_base, tbl_base, effect
 
     simTbl = tbl_base;
 
-    % --- 1. Simulate the Null Hypothesis for Fixed Effects by Shuffling ---
+    % --- 1. Identify Target Rows for Effect Application (BEFORE shuffling) ---
+    if effect_size ~= 0
+        is_target_category = vlt.stats.power.find_group_indices(tbl_base, category_to_test, primary_category);
+    end
+
+    % --- 2. Simulate the Null Hypothesis for Fixed Effects by Shuffling ---
     predictor_to_shuffle = options.ShufflePredictor;
     simTbl.(predictor_to_shuffle) = simTbl.(predictor_to_shuffle)(randperm(height(simTbl)));
 
-    % --- 2. Recalculate Interaction Term if Necessary ---
+    % --- 3. Recalculate Interaction Term if Necessary ---
     if ~isempty(options.InteractionFields)
         fields = options.InteractionFields;
         interaction_vars = cell(height(simTbl), numel(fields));
@@ -40,9 +45,8 @@ function simTbl = simulate_lme_data_shuffle_predictor(lme_base, tbl_base, effect
         simTbl.InteractionGroup = categorical(join(interaction_vars, '_'));
     end
 
-    % --- 3. Add the Hypothetical Effect Size ---
+    % --- 4. Add the Hypothetical Effect Size ---
     if effect_size ~= 0
-        is_target_category = vlt.stats.power.find_group_indices(simTbl, category_to_test, primary_category);
         simTbl.(y_name)(is_target_category) = simTbl.(y_name)(is_target_category) + effect_size;
     end
 end

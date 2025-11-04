@@ -9,7 +9,7 @@ function [lme,newtable] = lme_category(tbl, categories_name, Y_name, Y_op, refer
         categories_name
         Y_name {mustBeTextScalar}
         Y_op {mustBeTextScalar}
-        reference_category {mustBeTextScalar}
+        reference_category {mustBeScalarStructOrString}
         group {mustBeTextScalar}
         rankorder (1,1) double = 0
         logdata (1,1) double = 0
@@ -36,7 +36,15 @@ function [lme,newtable] = lme_category(tbl, categories_name, Y_name, Y_op, refer
 
     % --- 2. Sanitize strings in the new table ---
     clean_str = @(s) strtrim(replace(s, char(160), ' '));
-    reference_category = clean_str(reference_category);
+
+    if isstruct(reference_category)
+        % In post-hoc mode, use the first field of the ref struct to set the baseline
+        ref_fields = fieldnames(reference_category);
+        reference_category_str = reference_category.(ref_fields{1});
+    else
+        reference_category_str = reference_category;
+    end
+    reference_category_str = clean_str(reference_category_str);
 
     cat_data = newtable.(primary_category_name);
     if iscategorical(cat_data), cat_data = cellstr(cat_data); end
@@ -46,8 +54,8 @@ function [lme,newtable] = lme_category(tbl, categories_name, Y_name, Y_op, refer
     categor = newtable.(primary_category_name);
     if ~iscategorical(categor), categor = categorical(categor); end
     cats = categories(categor);
-    rc = find(strcmp(reference_category,cats));
-    if isempty(rc), error(['No category found named ''' reference_category '''. Check for spelling errors.']); end
+    rc = find(strcmp(reference_category_str,cats));
+    if isempty(rc), error(['No category found named ''' reference_category_str '''. Check for spelling errors.']); end
     cats_reord = cats([rc 1:rc-1 rc+1:end]);
     newtable.(primary_category_name) = reordercats(categorical(newtable.(primary_category_name)), cats_reord);
 
@@ -68,4 +76,12 @@ function [lme,newtable] = lme_category(tbl, categories_name, Y_name, Y_op, refer
 
     % --- 4. Fit the model ---
     lme = fitlme(newtable, formula);
+end
+
+function mustBeScalarStructOrString(a)
+    if ~(isstruct(a) && isscalar(a)) && ~isstring(a) && ~ischar(a) && ~iscellstr(a)
+        eid = 'vlt:lme_category:badInput';
+        msg = 'Input must be a scalar struct or a string/char/cellstr.';
+        throwAsCaller(MException(eid,msg));
+    end
 end

@@ -38,6 +38,7 @@ function indices = find_group_indices(tbl, group_definition, category_name)
         end
     else
         % String-based definition for single-factor groups
-        indices = (tbl.(category_name) == group_definition);
+        clean_group_def = strtrim(replace(group_definition, char(160), ' '));
+        indices = (tbl.(category_name) == clean_group_def);
     end
 end
