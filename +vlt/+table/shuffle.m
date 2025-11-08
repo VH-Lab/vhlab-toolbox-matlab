@@ -1,4 +1,4 @@
-function shuffledTable = vlt.table.shuffle(dataTable, dataColumn, groupingFactors, shuffleFactors)
+function shuffledTable = shuffle(dataTable, dataColumn, groupingFactors, shuffleFactors)
 % VLT.TABLE.SHUFFLE Shuffles factor labels in a table while keeping grouping factors constant.
 %
 % SHUFFLEDTABLE = VLT.TABLE.SHUFFLE(DATATABLE, DATACOLUMN, GROUPINGFACTORS, SHUFFLEFACTORS)

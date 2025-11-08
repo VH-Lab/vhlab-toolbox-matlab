@@ -7,7 +7,7 @@ classdef mustBeAValidTableVariable < matlab.unittest.TestCase
 
     properties (TestParameter)
         % Define a simple mock table for testing
-        TestTable = struct('T', table([1; 2], {'A'; 'B'}, 3:4, 'VariableNames', {'Factor1', 'DataCol', 'Factor2'}));
+        TestTable = struct('T', table([1; 2], {'A'; 'B'}, [3; 4], 'VariableNames', {'Factor1', 'DataCol', 'Factor2'}));
     end
 
     methods (Test, TestTags = {'ValidInputs'})
