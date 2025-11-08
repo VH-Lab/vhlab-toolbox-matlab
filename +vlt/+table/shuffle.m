@@ -72,7 +72,7 @@ function shuffledTable = shuffle(dataTable, dataColumn, groupingFactors, shuffle
 %    shuffledT = vlt.table.shuffle(T, ...
 %        'DM', ...                   % Data column
 %        {'Animal'}, ...             % Grouping Factor (The entire Animal unit)
-%        []);                        % Factors to shuffle (implicitly 'Drug', 'Day')
+%        []);                        % Factors to shuffle (implicitly 'Drug', 'Day', 'DM')
 %
 %    % Result: The entire sequence of {Drug, Day} assignments and associated 'DM'
 %    % values for Animal 1 might be reassigned to the Animal 5 unit.
@@ -96,12 +96,12 @@ function shuffledTable = shuffle(dataTable, dataColumn, groupingFactors, shuffle
 
     % --- ARGUMENTS BLOCK FOR VALIDATION AND DEFAULTS ---
     arguments
-        dataTable (1,1) table
+        dataTable (:,:) table
         % Calling the external validator function: Correctly passed 'dataColumn'
         % (the variable being validated) and 'dataTable' (the context).
-        dataColumn (1,:) {vlt.validators.mustBeAValidTableVariable(dataColumn, dataTable)}
-        groupingFactors (1,:) {vlt.validators.mustBeAValidTableVariable(groupingFactors, dataTable)} = string.empty(1,0)
-        shuffleFactors (1,:) {vlt.validators.mustBeAValidTableVariable(shuffleFactors, dataTable)} = string.empty(1,0)
+        dataColumn (:,:) string {vlt.validators.mustBeAValidTableVariable(dataColumn, dataTable)}
+        groupingFactors (:,:) string {vlt.validators.mustBeAValidTableVariable(groupingFactors, dataTable)} = string.empty(1,0)
+        shuffleFactors (:,:) string {vlt.validators.mustBeAValidTableVariable(shuffleFactors, dataTable)} = string.empty(1,0)
     end
 
     % --- 0. Setup: Convert all factor lists to cell arrays of strings for logic ---
@@ -111,22 +111,28 @@ function shuffledTable = shuffle(dataTable, dataColumn, groupingFactors, shuffle
     shuffleFactors = cellstr(shuffleFactors);
 
     % --- 1. Identify Factors to Shuffle (LabelsToShuffle) ---
-
     allCols = dataTable.Properties.VariableNames;
 
     if isempty(shuffleFactors)
-        % Implicitly determine shuffle factors: All columns minus data and grouping factors
-        factorsToExclude = [dataColumn, groupingFactors];
+        % --- IMPLICIT SHUFFLE FACTORS ---
+        if isempty(groupingFactors)
+            % Case 3: Row-Level Shuffle. Shuffle everything EXCEPT data.
+            factorsToExclude = dataColumn;
+        else
+            % Case 2: Subject-Level Shuffle. Shuffle everything EXCEPT grouping factors.
+            % The dataColumn is *part of* the shuffle in this case.
+            factorsToExclude = groupingFactors;
+        end
         LabelsToShuffle = setdiff(allCols, factorsToExclude);
 
         if isempty(LabelsToShuffle)
             error('vlt.table.shuffle:NoShuffleFactors', ...
-                  'With empty SHUFFLEFACTORS, no columns remained to shuffle after excluding DATACOLUMN and GROUPINGFACTORS.');
+                  'With empty SHUFFLEFACTORS, no columns remained to shuffle after excluding DATACOLUMN and/OR GROUPINGFACTORS.');
         end
     else
-        % Explicitly use provided shuffle factors
+        % --- EXPLICIT SHUFFLE FACTORS ---
+        % Case 1: Block Shuffle (explicit).
         LabelsToShuffle = shuffleFactors;
-
         % Check for conflicts: LabelsToShuffle must not contain data or grouping factors
         if any(ismember(LabelsToShuffle, dataColumn))
             error('vlt.table.shuffle:Conflict', 'SHUFFLEFACTORS cannot include columns from DATACOLUMN.');
@@ -137,24 +143,20 @@ function shuffledTable = shuffle(dataTable, dataColumn, groupingFactors, shuffle
     end
 
     % --- 2. Create Shuffling Units using findgroups ---
-
     if isempty(groupingFactors)
         % Case: Row-Level Shuffle (every row is its own group)
         numRows = height(dataTable);
         groupIndex = (1:numRows)';
-        % uniqueGroups is not strictly used in this branch, but we define it for clarity
-        uniqueGroups = table((1:numRows)', 'VariableNames', {'GroupID'});
+        numGroups = numRows; % Each row is a group
     else
         % Case: Block Shuffle (group rows based on grouping factors)
         % findgroups creates a vector of group numbers and a table of unique combinations
         groupVars = dataTable(:, groupingFactors);
         [groupIndex, uniqueGroups] = findgroups(groupVars);
+        numGroups = height(uniqueGroups);
     end
 
-    numGroups = height(uniqueGroups);
-
     % --- 3. Extract, Permute, and Reassign Labels ---
-
     % Prepare the table containing only the labels we intend to shuffle
     labelsTable = dataTable(:, LabelsToShuffle);
 
@@ -162,48 +164,47 @@ function shuffledTable = shuffle(dataTable, dataColumn, groupingFactors, shuffle
         % Row-Level Shuffle:
         numRows = height(dataTable);
         permutedLabelIndices = randperm(numRows)';
-
         % The shuffled labels are the rows of labelsTable indexed by the permutation
         shuffledLabels = labelsTable(permutedLabelIndices, :);
-
         % The assignment is direct: shuffledLabels(i, :) goes to row i
-        newLabelValues = shuffledLabels.Variables;
-
+        newLabelValuesTable = shuffledLabels;
     else
         % Block Shuffle:
 
-        % Strategy: Find the label combination for the first row of each group
-        firstRowIndices = splitapply(@(x) x(1), (1:height(dataTable))', groupIndex);
+        % 1. Create a cell array where each cell holds one *column* of data
+        %    (e.g., a 4x1 categorical vector, a 4x1 double vector).
+        %    These 4x1 columns match the 4x1 groupIndex.
+        dataCols = cell(1, length(LabelsToShuffle));
+        for i = 1:length(LabelsToShuffle)
+            dataCols{i} = labelsTable.(LabelsToShuffle{i});
+        end
 
-        % Extract the LabelsToShuffle columns for just the first row of each group.
-        % This gives us one unique label combination per unique group ID.
-        groupLabelsToShuffle = labelsTable(firstRowIndices, :);
+        % 2. Apply splitapply to these columns.
+        %    For each group, 'varargin' will contain the *chunks* of each column
+        %    (e.g., a 2x1 categorical, a 2x1 double).
+        %    The anonymous function re-combines them into a table.
+        labelBlocks = splitapply(@(varargin) {table(varargin{:}, 'VariableNames', LabelsToShuffle)}, ...
+                                 dataCols{:}, ...
+                                 groupIndex);
 
-        % 3a. Generate the permutation for the groups
-        permutedGroupIndices = randperm(numGroups)';
+        % labelBlocks is now a cell array, e.g. (for testSubjectLevelShuffle):
+        % { table(Drug,Day,DM) for S1; table(Drug,Day,DM) for S2 }
 
-        % 3b. Shuffle the unique label combinations
-        shuffledGroupLabels = groupLabelsToShuffle(permutedGroupIndices, :);
+        % 3. Shuffle this cell array of label blocks
+        permutedBlocks = labelBlocks(randperm(numGroups));
 
-        % 3c. Map the shuffled labels back to the original rows
-        % The 'shuffledGroupLabels' are indexed by the ORIGINAL Group ID index (1 to numGroups).
-        % We use the 'groupIndex' vector to map the group-wise shuffled label back to all
-        % rows belonging to that group.
-
-        newLabelValues = shuffledGroupLabels(groupIndex, :);
-        newLabelValues = newLabelValues.Variables;
+        % 4. Vertically concatenate the shuffled blocks back into a single table
+        newLabelValuesTable = vertcat(permutedBlocks{:});
     end
 
     % --- 4. Construct Shuffled Table ---
-
     % 4a. Create a copy of the input table
     shuffledTable = dataTable;
 
     % 4b. Overwrite the shuffle factor columns with the new permuted values
     for i = 1:length(LabelsToShuffle)
         colName = LabelsToShuffle{i};
-        % Assigning the new values. This handles categorical, string, and numeric types correctly.
-        shuffledTable.(colName) = newLabelValues(:, i);
+        % Assigning the new values.
+        shuffledTable.(colName) = newLabelValuesTable.(colName);
     end
-
 end
