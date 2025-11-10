@@ -35,8 +35,13 @@ function tbl_out = nonbsp(tbl_in)
             end
             tbl_out.(varName) = columnData;
         elseif ischar(columnData)
-            % For char arrays, use replace
-            tbl_out.(varName) = replace(columnData, char(160), ' ');
+            % For multi-row char arrays, we must operate row-by-row
+            newColumn = [];
+            for j = 1:size(columnData, 1)
+                newRow = replace(columnData(j, :), char(160), ' ');
+                newColumn = [newColumn; newRow];
+            end
+            tbl_out.(varName) = newColumn;
         end
     end
 end
