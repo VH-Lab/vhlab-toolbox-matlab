@@ -35,8 +35,8 @@ function tbl_out = nonbsp(tbl_in)
             end
             tbl_out.(varName) = columnData;
         elseif ischar(columnData)
-            % For char arrays, use strrep
-            tbl_out.(varName) = strrep(columnData, char(160), ' ');
+            % For char arrays, use replace
+            tbl_out.(varName) = replace(columnData, char(160), ' ');
         end
     end
 end
