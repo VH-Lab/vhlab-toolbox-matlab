@@ -23,9 +23,20 @@ function tbl_out = nonbsp(tbl_in)
         varName = varNames{i};
         columnData = tbl_out.(varName);
 
-        if isstring(columnData) || iscellstr(columnData) || ischar(columnData)
-            % For string arrays and cellstr, we can use vectorized replace
+        if isstring(columnData)
+            % For string arrays, we can use vectorized replace
             tbl_out.(varName) = replace(columnData, char(160), ' ');
+        elseif iscell(columnData)
+            % For cell arrays, iterate through elements
+            for j = 1:numel(columnData)
+                if ischar(columnData{j}) || isstring(columnData{j})
+                    columnData{j} = replace(columnData{j}, char(160), ' ');
+                end
+            end
+            tbl_out.(varName) = columnData;
+        elseif ischar(columnData)
+            % For char arrays, use strrep
+            tbl_out.(varName) = strrep(columnData, char(160), ' ');
         end
     end
 end
