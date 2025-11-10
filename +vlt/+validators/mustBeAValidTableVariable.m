@@ -8,18 +8,18 @@ function mustBeAValidTableVariable(arg, T)
 % ARGUMENTS:
 %   arg: The input value being validated (e.g., a data column name).
 %   T:   The MATLAB table object against which the names are checked.
-
-    % 1. Check type: must be string, cell array of strings, or empty
-    if ~isstring(arg) && ~iscellstr(arg) && ~isempty(arg)
-        error('vlt:table:shuffle:InvalidType', ...
-              'Input must be a string array or cell array of strings.');
+    % 1. Check type: must be string array, cell array of char vectors, or a single char row vector.
+    %    This logic handles: "str", ["str1", "str2"], 'char', {'char1', 'char2'},
+    %    and empty variants: "", string.empty, '', {}
+    if ~(isstring(arg) || iscellstr(arg) || (ischar(arg) && (isrow(arg) || isempty(arg))))
+        error('vlt:validators:mustBeAValidTableVariable:InvalidType', ...
+              'Input must be a string array, cell array of strings, or a char row vector.');
     end
-
+    % 2. Check existence: ensure all names exist in the table T
     arg = string(arg); % Convert to a string array for checking
 
-    % 2. Check existence: ensure all names exist in the table T
     if ~isempty(arg) && ~all(ismember(arg, T.Properties.VariableNames))
-         error('vlt:table:shuffle:UnknownVariable', ...
+         error('vlt:validators:mustBeAValidTableVariable:UnknownVariable', ...
                'All provided variable names must exist in the input table DATATABLE.');
     end
 end
