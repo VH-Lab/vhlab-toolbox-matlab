@@ -19,35 +19,31 @@ function simTbl = simulate_lme_data_shuffle_predictor(lme_base, tbl_base, effect
         options.InteractionFields cell = {}
     end
 
-    % --- 1. Identify Target Rows for Effect Application (BEFORE shuffling) ---
-    if effect_size ~= 0
-        is_target_category = vlt.stats.power.find_group_indices(tbl_base, category_to_test, primary_category);
-    end
-
-    % --- 2. Simulate the Null Hypothesis for Fixed Effects by Shuffling ---
+    % --- 1. Simulate the Null Hypothesis for Fixed Effects by Shuffling ---
     % We do a row-level shuffle of just the predictor column. The data column (y_name)
     % and any other columns remain fixed in place.
-    shuffledTbl = vlt.table.shuffle(tbl_base, y_name, {}, options.ShufflePredictor);
+    simTbl = vlt.table.shuffle(tbl_base, y_name, {}, options.ShufflePredictor);
 
-    % --- 3. Recalculate Interaction Term if Necessary ---
+    % --- 2. Recalculate Interaction Term if Necessary ---
     if ~isempty(options.InteractionFields)
         fields = options.InteractionFields;
-        interaction_vars = cell(height(shuffledTbl), numel(fields));
+        interaction_vars = cell(height(simTbl), numel(fields));
         for i = 1:numel(fields)
-            column_data = shuffledTbl.(fields{i});
+            column_data = simTbl.(fields{i});
             if isnumeric(column_data)
                 interaction_vars(:,i) = cellstr(num2str(column_data));
             else
                 interaction_vars(:,i) = cellstr(column_data);
             end
         end
-        shuffledTbl.InteractionGroup = categorical(join(interaction_vars, '_'));
+        simTbl.InteractionGroup = categorical(join(interaction_vars, '_'));
     end
 
-    % --- 4. Add the Hypothetical Effect Size ---
+    % --- 3. Add the Hypothetical Effect Size ---
     if effect_size ~= 0
-        shuffledTbl.(y_name)(is_target_category) = shuffledTbl.(y_name)(is_target_category) + effect_size;
+        % Note: We use the *original* table (tbl_base) to find the target indices
+        % to ensure the effect is applied to a consistent set of observations,
+        % even though the predictor values in simTbl have been shuffled.
+        simTbl = vlt.table.addDifference(simTbl, y_name, category_to_test, effect_size);
     end
-
-    simTbl = shuffledTbl;
 end

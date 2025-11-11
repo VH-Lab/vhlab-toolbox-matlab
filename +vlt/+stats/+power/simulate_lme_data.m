@@ -39,13 +39,16 @@ function simTbl = simulate_lme_data(lme_base, tbl_base, effect_size, category_na
     random_effects_per_group = randn(num_groups, 1) * sigma_random;
     random_effects = random_effects_per_group(group_idx);
     residual_error = randn(num_obs, 1) * sigma_resid;
+
+    % Simulate data under the null hypothesis (effect size = 0)
     fixed_effects = ones(num_obs, 1) * beta_base(1);
+    Y_sim_null = fixed_effects + random_effects + residual_error;
 
-    % Use the robust find_group_indices to handle both strings and structs for category_level
-    is_target_category = vlt.stats.power.find_group_indices(tbl_base, category_level, category_name);
-
-    fixed_effects(is_target_category) = fixed_effects(is_target_category) + effect_size;
-    Y_sim = fixed_effects + random_effects + residual_error;
     simTbl = tbl_base;
-    simTbl.(y_name) = Y_sim;
+    simTbl.(y_name) = Y_sim_null;
+
+    % Add the effect size using the robust addDifference function
+    if effect_size ~= 0
+        simTbl = vlt.table.addDifference(simTbl, y_name, category_level, effect_size);
+    end
 end
