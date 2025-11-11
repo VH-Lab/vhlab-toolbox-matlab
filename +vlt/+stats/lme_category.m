@@ -59,12 +59,12 @@ function [lme,newtable] = lme_category(tbl, categories_name, Y_name, Y_op, refer
     cats_reord = cats([rc 1:rc-1 rc+1:end]);
     newtable.(primary_category_name) = reordercats(categorical(newtable.(primary_category_name)), cats_reord);
 
-    Y = newtable.(Y_name);
-    if ~isempty(Y_op), Y = eval(Y_op); end
-
-    % Important: Do NOT change Y_name, as it may contain dots for struct fields
-    newtable.Y_data_for_fit = Y;
     newtable.original_data = newtable.(Y_name);
+    if ~isempty(Y_op)
+        newtable = vlt.table.columnMath(newtable, 'original_data', 'Y_data_for_fit', Y_op);
+    else
+        newtable.Y_data_for_fit = newtable.original_data;
+    end
     if rankorder == 1
         newtable.Y_data_for_fit = tiedrank(newtable.Y_data_for_fit);
     elseif logdata
