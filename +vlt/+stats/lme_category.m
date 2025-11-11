@@ -61,7 +61,9 @@ function [lme,newtable] = lme_category(tbl, categories_name, Y_name, Y_op, refer
 
     newtable.original_data = newtable.(Y_name);
     if ~isempty(Y_op)
-        newtable = vlt.table.columnMath(newtable, 'original_data', 'Y_data_for_fit', Y_op);
+        % Adapt the legacy 'Y' variable to the 'X' variable expected by columnMath
+        adapted_op = strrep(Y_op, 'Y', 'X');
+        newtable = vlt.table.columnMath(newtable, 'original_data', 'Y_data_for_fit', adapted_op);
     else
         newtable.Y_data_for_fit = newtable.original_data;
     end

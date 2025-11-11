@@ -40,8 +40,10 @@ cats_reord = cats([rc 1:rc-1 rc+1:end]);
 categor_reordered = reordercats(categor,cats_reord);
 
 if ~isempty(Y_op)
+    % Adapt the legacy 'Y' variable to the 'X' variable expected by columnMath
+    adapted_op = strrep(Y_op, 'Y', 'X');
     % Use a temporary column name for the result of the operation
-    temp_tbl = vlt.table.columnMath(tbl, Y_name, 'Y_data_processed', Y_op);
+    temp_tbl = vlt.table.columnMath(tbl, Y_name, 'Y_data_processed', adapted_op);
     data = temp_tbl.Y_data_processed;
 else
     data = tbl.(Y_name);
