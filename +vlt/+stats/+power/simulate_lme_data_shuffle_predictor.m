@@ -19,34 +19,35 @@ function simTbl = simulate_lme_data_shuffle_predictor(lme_base, tbl_base, effect
         options.InteractionFields cell = {}
     end
 
-    simTbl = tbl_base;
-
     % --- 1. Identify Target Rows for Effect Application (BEFORE shuffling) ---
     if effect_size ~= 0
         is_target_category = vlt.stats.power.find_group_indices(tbl_base, category_to_test, primary_category);
     end
 
     % --- 2. Simulate the Null Hypothesis for Fixed Effects by Shuffling ---
-    predictor_to_shuffle = options.ShufflePredictor;
-    simTbl.(predictor_to_shuffle) = simTbl.(predictor_to_shuffle)(randperm(height(simTbl)));
+    % We do a row-level shuffle of just the predictor column. The data column (y_name)
+    % and any other columns remain fixed in place.
+    shuffledTbl = vlt.table.shuffle(tbl_base, y_name, {}, options.ShufflePredictor);
 
     % --- 3. Recalculate Interaction Term if Necessary ---
     if ~isempty(options.InteractionFields)
         fields = options.InteractionFields;
-        interaction_vars = cell(height(simTbl), numel(fields));
+        interaction_vars = cell(height(shuffledTbl), numel(fields));
         for i = 1:numel(fields)
-            column_data = simTbl.(fields{i});
+            column_data = shuffledTbl.(fields{i});
             if isnumeric(column_data)
                 interaction_vars(:,i) = cellstr(num2str(column_data));
             else
                 interaction_vars(:,i) = cellstr(column_data);
             end
         end
-        simTbl.InteractionGroup = categorical(join(interaction_vars, '_'));
+        shuffledTbl.InteractionGroup = categorical(join(interaction_vars, '_'));
     end
 
     % --- 4. Add the Hypothetical Effect Size ---
     if effect_size ~= 0
-        simTbl.(y_name)(is_target_category) = simTbl.(y_name)(is_target_category) + effect_size;
+        shuffledTbl.(y_name)(is_target_category) = shuffledTbl.(y_name)(is_target_category) + effect_size;
     end
+
+    simTbl = shuffledTbl;
 end
