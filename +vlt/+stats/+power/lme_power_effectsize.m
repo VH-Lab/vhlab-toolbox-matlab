@@ -61,6 +61,7 @@ function [mdes, power_curve] = lme_power_effectsize(tbl, categories_name, y_name
         options.NumSimulations (1,1) double = 500
         options.EffectStep (1,1) double = -1
         options.Method (1,1) string {mustBeMember(options.Method,{'gaussian','shuffle','hierarchical'})} = 'gaussian'
+        options.ShufflePredictor {mustBeTextScalar} = ''
     end
 
     disp('Fitting baseline model to original data...');

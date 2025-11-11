@@ -139,7 +139,7 @@ function [mdes, power_curve] = run_lme_power_analysis(tbl, categories_name, y_na
 
     fprintf('Simulations per Step: %d\n\n', options.NumSimulations);
 
-    [mdes, power_curve, primary_category] = vlt.stats.power.lme_power_effectsize(tbl, categories_name, y_name, ...
+    [mdes, power_curve] = vlt.stats.power.lme_power_effectsize(tbl, categories_name, y_name, ...
         reference_category, group_name, category_to_test, target_power, ...
         'Method', options.Method, ...
         'Alpha', options.Alpha, ...
@@ -150,6 +150,13 @@ function [mdes, power_curve] = run_lme_power_analysis(tbl, categories_name, y_na
     % --- 3. Visualize the Results ---
     if options.plot
         disp('Generating power curve plot...');
+
+        % Determine the primary category name for the plot title
+        if iscell(categories_name)
+            primary_category = categories_name{1};
+        else
+            primary_category = categories_name;
+        end
 
         figure_name_str = ['LME Power Analysis (' char(upper(options.Method)) ')'];
         f = figure('Name', figure_name_str, 'NumberTitle', 'off');
