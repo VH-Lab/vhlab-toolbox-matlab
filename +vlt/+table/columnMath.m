@@ -8,8 +8,8 @@ function tbl_out = columnMath(tbl_in, columnName, newColumnName, op)
 %   stored in a new column named NEWCOLUMNNAME in the output table TBL_OUT.
 %
 %   The operation string OP must be a valid MATLAB expression that operates on
-%   a variable named 'X'. The function will substitute the data from
-%   TBL_IN.(COLUMNNAME) for 'X' when evaluating the expression.
+%   a variable named 'Y'. The function will substitute the data from
+%   TBL_IN.(COLUMNNAME) for 'Y' when evaluating the expression.
 %
 %   This function provides a robust and consistent way to perform column-wise
 %   calculations, centralizing the logic and reducing errors.
@@ -21,7 +21,7 @@ function tbl_out = columnMath(tbl_in, columnName, newColumnName, op)
 %     newColumnName (string): The name of the new column to be created with the
 %       results of the operation.
 %     op (string): The mathematical operation to perform. This string must use
-%       the variable 'X' to refer to the data from the source column.
+%       the variable 'Y' to refer to the data from the source column.
 %
 %   Returns:
 %     tbl_out (table): The output table, which is a copy of TBL_IN with the
@@ -30,20 +30,20 @@ function tbl_out = columnMath(tbl_in, columnName, newColumnName, op)
 %   Examples:
 %      % Example 1: Squaring a column
 %      T = table([1;2;3;4], 'VariableNames', {'MyData'});
-%      op = 'X.^2';
+%      op = 'Y.^2';
 %      T_new = vlt.table.columnMath(T, 'MyData', 'MyDataSquared', op);
 %      % T_new will be a 2-column table with 'MyData' and 'MyDataSquared'
 %      % The 'MyDataSquared' column will contain [1; 4; 9; 16].
 %
 %      % Example 2: Z-scoring a column
 %      T = table(rand(5,1)*10, 'VariableNames', {'Values'});
-%      op = '(X - mean(X)) / std(X)'; % z-score normalization
+%      op = '(Y - mean(Y)) / std(Y)'; % z-score normalization
 %      T_zscored = vlt.table.columnMath(T, 'Values', 'ZScoredValues', op);
 %      % T_zscored will have a new column with the z-scored data.
 %
 %      % Example 3: Applying a log transform
 %      T = table([10;100;1000], 'VariableNames', {'Measurements'});
-%      op = 'log10(X)';
+%      op = 'log10(Y)';
 %      T_log = vlt.table.columnMath(T, 'Measurements', 'LogMeasurements', op);
 %      % T_log will have a new column with values [1; 2; 3].
 %
@@ -61,25 +61,25 @@ function tbl_out = columnMath(tbl_in, columnName, newColumnName, op)
     tbl_out = tbl_in;
 
     % Extract the source column data
-    X = tbl_out.(columnName);
+    Y = tbl_out.(columnName);
 
     % Create an anonymous function from the operation string.
-    % The string must use 'X' as the placeholder for the column data.
+    % The string must use 'Y' as the placeholder for the column data.
     % Using str2func is safer than a direct eval on the op string.
     try
-        math_operation = str2func(['@(X)' char(op)]);
+        math_operation = str2func(['@(Y)' char(op)]);
 
         % Apply the operation
-        new_column_data = math_operation(X);
+        new_column_data = math_operation(Y);
 
         % Add the new column to the output table
         tbl_out.(newColumnName) = new_column_data;
 
     catch ME
         % Provide a more informative error message if the op is invalid
-        new_ME = MException('vlt:table:columnMath:invalidOp', ...
+        new_ME = MException('vlt.table:columnMath:invalidOp', ...
             ['The operation string ''' char(op) ''' could not be evaluated. ' ...
-             'Ensure it is a valid MATLAB expression using ''X'' as the input variable. '...
+             'Ensure it is a valid MATLAB expression using ''Y'' as the input variable. '...
              'Original error: ' ME.message]);
         throw(new_ME);
     end

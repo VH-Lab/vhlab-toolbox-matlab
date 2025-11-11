@@ -26,13 +26,13 @@ classdef testcolumnMath < matlab.unittest.TestCase
             % Tests basic arithmetic operations like addition and squaring.
 
             % 1. Test squaring a column
-            tbl_out = vlt.table.columnMath(testCase.SampleTable, 'ColA', 'ColASquared', 'X.^2');
+            tbl_out = vlt.table.columnMath(testCase.SampleTable, 'ColA', 'ColASquared', 'Y.^2');
             expected = [1; 4; 9; 16; 25];
             testCase.verifyEqual(tbl_out.ColASquared, expected, ...
                 'Squaring operation did not produce the expected result.');
 
             % 2. Test adding a constant
-            tbl_out = vlt.table.columnMath(testCase.SampleTable, 'ColB', 'ColBPlusTen', 'X + 10');
+            tbl_out = vlt.table.columnMath(testCase.SampleTable, 'ColB', 'ColBPlusTen', 'Y + 10');
             expected = [20; 30; 40; 50; 60];
             testCase.verifyEqual(tbl_out.ColBPlusTen, expected, ...
                 'Addition operation did not produce the expected result.');
@@ -42,14 +42,14 @@ classdef testcolumnMath < matlab.unittest.TestCase
             % Tests operations that involve calling MATLAB functions.
 
             % 1. Test log10 transform
-            tbl_out = vlt.table.columnMath(testCase.SampleTable, 'ColB', 'LogColB', 'log10(X)');
+            tbl_out = vlt.table.columnMath(testCase.SampleTable, 'ColB', 'LogColB', 'log10(Y)');
             expected = [1; log10(20); log10(30); log10(40); log10(50)];
             testCase.verifyEqual(tbl_out.LogColB, expected, 'AbsTol', 1e-9, ...
                 'log10 operation did not produce the expected result.');
 
             % 2. Test Z-score
             data = testCase.SampleTable.ColA;
-            op = '(X - mean(X)) / std(X)';
+            op = '(Y - mean(Y)) / std(Y)';
             tbl_out = vlt.table.columnMath(testCase.SampleTable, 'ColA', 'ZScoreColA', op);
             expected_zscore = (data - mean(data)) / std(data);
             testCase.verifyEqual(tbl_out.ZScoreColA, expected_zscore, 'AbsTol', 1e-9, ...
@@ -60,24 +60,24 @@ classdef testcolumnMath < matlab.unittest.TestCase
             % Tests that the function correctly throws errors for invalid inputs.
 
             % 1. Test with a non-existent column name
-            testCase.verifyError(@() vlt.table.columnMath(testCase.SampleTable, 'NonExistentCol', 'NewCol', 'X'), ...
+            testCase.verifyError(@() vlt.table.columnMath(testCase.SampleTable, 'NonExistentCol', 'NewCol', 'Y'), ...
                 'vlt:validators:mustBeAValidTableVariable:notFound', ...
                 'Did not error for a non-existent source column.');
 
             % 2. Test with an invalid operation string
-            testCase.verifyError(@() vlt.table.columnMath(testCase.SampleTable, 'ColA', 'NewCol', 'invalid_function(X)'), ...
+            testCase.verifyError(@() vlt.table.columnMath(testCase.SampleTable, 'ColA', 'NewCol', 'invalid_function(Y)'), ...
                 'vlt:table:columnMath:invalidOp', ...
                 'Did not error for an invalid operation string.');
 
             % 3. Test with a syntactically incorrect operation string
-             testCase.verifyError(@() vlt.table.columnMath(testCase.SampleTable, 'ColA', 'NewCol', 'X +'), ...
+             testCase.verifyError(@() vlt.table.columnMath(testCase.SampleTable, 'ColA', 'NewCol', 'Y +'), ...
                 'vlt:table:columnMath:invalidOp', ...
                 'Did not error for a syntactically incorrect op string.');
         end
 
         function testOverwritingColumn(testCase)
             % Tests that the function can overwrite an existing column.
-            tbl_out = vlt.table.columnMath(testCase.SampleTable, 'ColA', 'ColA', 'X * 100');
+            tbl_out = vlt.table.columnMath(testCase.SampleTable, 'ColA', 'ColA', 'Y * 100');
             expected = [100; 200; 300; 400; 500];
             testCase.verifyEqual(tbl_out.ColA, expected, ...
                 'Overwriting a column did not work as expected.');
