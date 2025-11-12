@@ -44,6 +44,6 @@ function simTbl = simulate_lme_data_shuffle_predictor(lme_base, tbl_base, effect
         % Note: We use the *original* table (tbl_base) to find the target indices
         % to ensure the effect is applied to a consistent set of observations,
         % even though the predictor values in simTbl have been shuffled.
-        simTbl = vlt.table.addDifference(simTbl, y_name, category_to_test, effect_size);
+        simTbl = vlt.table.addDifference(simTbl, y_name, primary_category, category_to_test, effect_size);
     end
 end

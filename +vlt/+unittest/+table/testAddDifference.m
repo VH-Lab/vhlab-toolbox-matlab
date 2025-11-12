@@ -29,7 +29,7 @@ classdef testAddDifference < matlab.unittest.TestCase
             % Tests adding a difference to a group defined by a single factor.
 
             % Target all rows where 'Condition' is 'B'
-            modifiedTable = vlt.table.addDifference(testCase.SampleTable, 'Measurement', 'B', 5);
+            modifiedTable = vlt.table.addDifference(testCase.SampleTable, 'Measurement', 'Condition', 'B', 5);
 
             expected = [10; 12; 25; 27; 15]; % Rows 3 and 4 should be incremented
             testCase.verifyEqual(modifiedTable.Measurement, expected, ...
@@ -41,7 +41,7 @@ classdef testAddDifference < matlab.unittest.TestCase
 
             % Define a target group where Condition is 'A' AND Group is 'X'
             target = struct('Condition', 'A', 'Group', 'X');
-            modifiedTable = vlt.table.addDifference(testCase.SampleTable, 'Measurement', target, 100);
+            modifiedTable = vlt.table.addDifference(testCase.SampleTable, 'Measurement', 'Condition', target, 100);
 
             % Rows 1 and 5 should be incremented (10->110, 15->115)
             expected = [110; 12; 20; 22; 115];
@@ -53,7 +53,7 @@ classdef testAddDifference < matlab.unittest.TestCase
             % Tests that the function does nothing when the target group does not exist.
 
             target = struct('Condition', 'C'); % 'C' does not exist
-            modifiedTable = vlt.table.addDifference(testCase.SampleTable, 'Measurement', target, 1000);
+            modifiedTable = vlt.table.addDifference(testCase.SampleTable, 'Measurement', 'Condition', target, 1000);
 
             % The table should be unchanged
             testCase.verifyEqual(modifiedTable.Measurement, testCase.SampleTable.Measurement, ...
@@ -64,14 +64,14 @@ classdef testAddDifference < matlab.unittest.TestCase
             % Tests that the function errors correctly for invalid inputs.
 
             % 1. Test with a non-existent data column
-            testCase.verifyError(@() vlt.table.addDifference(testCase.SampleTable, 'BadColumn', 'A', 5), ...
+            testCase.verifyError(@() vlt.table.addDifference(testCase.SampleTable, 'BadColumn', 'Condition', 'A', 5), ...
                 'vlt:validators:mustBeAValidTableVariable:notFound', ...
                 'Did not error for a non-existent data column.');
 
             % 2. Test with a non-existent factor column in the struct
             target = struct('BadFactor', 'A');
-            testCase.verifyError(@() vlt.table.addDifference(testCase.SampleTable, 'Measurement', target, 5), ...
-                'MATLAB:table:UnrecognizedVarName', ...
+            testCase.verifyError(@() vlt.table.addDifference(testCase.SampleTable, 'Measurement', 'Condition', target, 5), ...
+                'vlt:stats:power:find_group_indices:invalidField', ...
                 'Did not error for a non-existent factor column in the target struct.');
         end
 

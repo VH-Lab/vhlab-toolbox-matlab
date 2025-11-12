@@ -41,7 +41,8 @@ function simTbl = simulate_lme_data(lme_base, tbl_base, effect_size, category_na
     residual_error = randn(num_obs, 1) * sigma_resid;
 
     % Simulate data under the null hypothesis (effect size = 0)
-    fixed_effects = ones(num_obs, 1) * beta_base(1);
+    % Use predict() to account for ALL fixed effects, not just the intercept. This is the critical bug fix.
+    fixed_effects = predict(lme_base, tbl_base);
     Y_sim_null = fixed_effects + random_effects + residual_error;
 
     simTbl = tbl_base;
@@ -49,6 +50,6 @@ function simTbl = simulate_lme_data(lme_base, tbl_base, effect_size, category_na
 
     % Add the effect size using the robust addDifference function
     if effect_size ~= 0
-        simTbl = vlt.table.addDifference(simTbl, y_name, category_level, effect_size);
+        simTbl = vlt.table.addDifference(simTbl, y_name, category_name, category_level, effect_size);
     end
 end

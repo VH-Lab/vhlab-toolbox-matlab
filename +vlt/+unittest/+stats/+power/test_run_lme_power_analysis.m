@@ -8,12 +8,21 @@ classdef test_run_lme_power_analysis < matlab.unittest.TestCase
 
     methods (TestMethodSetup)
         function create_test_data(testCase)
-            % Create a sample table for testing
-            reps = 50; % Increased repetitions for more stable test
-            num_rows = 4 * reps;
-            Mfg = categorical(repmat({'A'; 'B'; 'C'; 'D'}, reps, 1));
-            Model_Year = categorical(repmat({'70'; '76'; '82'; '85'}, reps, 1));
+            % Create a sample table for testing.
+            % This now creates a crossed design to avoid confounding variables, which
+            % was causing the LME model to be unstable and leading to infinite loops.
+            reps = 10; % Reduced reps for speed, balanced design is more important
+            mfg_levels = {'A'; 'B'; 'C'; 'D'};
+            year_levels = {'70'; '76'; '82'; '85'};
+
+            [mfg_grid, year_grid] = ndgrid(1:numel(mfg_levels), 1:numel(year_levels));
+
+            num_rows = numel(mfg_grid) * reps;
+
+            Mfg = categorical(repmat(mfg_levels(mfg_grid(:)), reps, 1));
+            Model_Year = categorical(repmat(year_levels(year_grid(:)), reps, 1));
             MPG = rand(num_rows, 1) * 20 + 10;
+
             testCase.SampleTbl = table(Mfg, Model_Year, MPG);
             testCase.figures_before_test = findall(0, 'type', 'figure');
         end

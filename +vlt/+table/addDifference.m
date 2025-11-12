@@ -1,7 +1,7 @@
-function dataTable = addDifference(dataTable, dataColumn, targetGroup, difference)
+function dataTable = addDifference(dataTable, dataColumn, factorColumn, targetGroup, difference)
 % VLT.TABLE.ADDDIFFERENCE - Adds a specified difference to a subset of a table.
 %
-%   MODIFIED_TABLE = VLT.TABLE.ADDDIFFERENCE(DATATABLE, DATACOLUMN, TARGETGROUP, DIFFERENCE)
+%   MODIFIED_TABLE = VLT.TABLE.ADDDIFFERENCE(DATATABLE, DATACOLUMN, FACTORCOLUMN, TARGETGROUP, DIFFERENCE)
 %
 %   Takes a MATLAB table (DATATABLE) and adds a numeric value (DIFFERENCE) to
 %   the column specified by DATACOLUMN. The modification is only applied to
@@ -16,12 +16,12 @@ function dataTable = addDifference(dataTable, dataColumn, targetGroup, differenc
 %     dataColumn (string): The name of the column containing the numeric data
 %       to which the difference will be added.
 %
+%     factorColumn (string): The name of the primary factor column to search
+%       when `targetGroup` is a simple value (e.g., a string).
+%
 %     targetGroup (struct or string/char/categorical): Defines the target rows.
 %       - For simple designs (one factor), this can be a string, char, or
-%         categorical value that exists in the primary factor column. The
-%         primary factor column is assumed to be the first field in the struct,
-%         or if it's a string, the column name is taken from the first field of
-%         the struct array that defines targetGroup.
+%         categorical value that exists in the `factorColumn`.
 %       - For multi-factor designs, this must be a scalar struct where field
 %         names correspond to factor column names in the table and values
 %         correspond to the specific levels of those factors that define the
@@ -32,7 +32,7 @@ function dataTable = addDifference(dataTable, dataColumn, targetGroup, differenc
 %
 %   Returns:
 %     dataTable (table): The modified table with the difference applied to the
-%       specified subset. The original table is modified in place.
+%       specified subset. The original table is not modified; a copy is returned.
 %
 %   Example:
 %     % Create a sample table
@@ -42,14 +42,14 @@ function dataTable = addDifference(dataTable, dataColumn, targetGroup, differenc
 %         [10; 12; 20; 22], ...
 %         'VariableNames', {'Condition', 'Group', 'Measurement'});
 %
-%     % Define a target group using a struct for a multi-factor design
+%     % Add 5 to all rows where 'Condition' is 'B'
+%     T_mod1 = vlt.table.addDifference(T, 'Measurement', 'Condition', 'B', 5);
+%
+%     % Define a multi-factor target group
 %     target = struct('Condition', 'B', 'Group', 'Y');
 %
-%     % Add a difference of 5 to the 'Measurement' of the target group
-%     T_mod = vlt.table.addDifference(T, 'Measurement', target, 5);
-%
-%     % Display the result: the last row should be 27
-%     disp(T_mod);
+%     % Add 100 to the 'Measurement' of the target group
+%     T_mod2 = vlt.table.addDifference(T, 'Measurement', 'Condition', target, 100);
 %
 %   See also: VLT.STATS.POWER.FIND_GROUP_INDICES, VLT.STATS.POWER.RUN_LME_POWER_ANALYSIS
 %
@@ -57,33 +57,13 @@ function dataTable = addDifference(dataTable, dataColumn, targetGroup, differenc
     arguments
         dataTable table
         dataColumn {mustBeTextScalar, mustBeAValidTableVariable(dataTable, dataColumn)}
+        factorColumn {mustBeTextScalar, mustBeAValidTableVariable(dataTable, factorColumn)}
         targetGroup
         difference (1,1) double
     end
 
-    % Determine the primary category name. If targetGroup is a struct, it's the
-    % first field name. Otherwise, we assume it's the name of the first variable
-    % in the table that is not the dataColumn. This logic might need to be
-    % adjusted based on more complex use cases, but it's a reasonable default.
-    if isstruct(targetGroup)
-        fields = fieldnames(targetGroup);
-        primaryCategoryName = fields{1};
-    else
-        % Fallback for non-struct targetGroup: find the first categorical/string column
-        varNames = dataTable.Properties.VariableNames;
-        isDataCol = strcmp(varNames, dataColumn);
-        potentialFactorCols = varNames(~isDataCol);
-        isCatOrString = cellfun(@(x) iscategorical(dataTable.(x)) || isstring(dataTable.(x)) || iscellstr(dataTable.(x)), potentialFactorCols);
-        firstFactor = find(isCatOrString, 1);
-        if isempty(firstFactor)
-            error('vlt:table:addDifference:noFactorCol', ...
-                'Could not automatically determine the factor column. Please use a struct for targetGroup.');
-        end
-        primaryCategoryName = potentialFactorCols{firstFactor};
-    end
-
     % Find the indices of the rows that match the target group criteria
-    targetIndices = vlt.stats.power.find_group_indices(dataTable, targetGroup, primaryCategoryName);
+    targetIndices = vlt.stats.power.find_group_indices(dataTable, targetGroup, factorColumn);
 
     % Add the difference to the specified rows in the data column
     dataTable.(dataColumn)(targetIndices) = dataTable.(dataColumn)(targetIndices) + difference;

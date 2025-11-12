@@ -42,6 +42,6 @@ function simTbl = simulate_lme_data_shuffled(lme_base, tbl_base, effect_size, ca
 
     % Add the effect size using the robust addDifference function
     if effect_size ~= 0
-        simTbl = vlt.table.addDifference(simTbl, y_name, category_level, effect_size);
+        simTbl = vlt.table.addDifference(simTbl, y_name, category_name, category_level, effect_size);
     end
 end
