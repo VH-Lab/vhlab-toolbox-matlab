@@ -2,7 +2,7 @@ classdef intanTest < matlab.unittest.TestCase
     methods (Test)
         function test_intan_readers(testCase)
             % Get the path to the example data
-            example_data_path = ['example_data' ];
+            example_data_path = fullfile(ndr.fun.ndrpath,'example_data');
 
             % Get a list of all .rhd files in the directory
             rhd_files = dir(fullfile(example_data_path, '*.rhd'));
