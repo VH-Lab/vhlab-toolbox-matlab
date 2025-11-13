@@ -40,8 +40,8 @@ function [data,total_samples,total_time,blockinfo] = read_Intan_RHD2000_datafile
 %
 %  Notes: (1) The Intan RHD2000 board has its own clock. Asking this function
 %  to read at time T0=0 will read the first sample in the file. This time
-_of_the_recording_is_0_and_T1_is_the_time_to_stop_reading__If_T0_is_negative__we_will
-%  start with time 0. If T1 is INF, we will use the end time of the whole file.
+%  might correspond to some other time on the Intan board.  Reading the
+%  'time' channel will indicate the time of the sample on the board's clock.
 %
 %  CHANNEL_TYPE values:
 %  Value:                      | Meaning:
