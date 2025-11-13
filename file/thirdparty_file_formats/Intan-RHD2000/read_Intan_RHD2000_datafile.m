@@ -139,8 +139,7 @@ end;
 
 fid = fopen(filename,'r');
 if fileid_value(fid)<0,
-        error(['Could not open filename ' filename_value(filename) ' for reading
- (check path, spelling, permissions).']);
+        error(['Could not open filename ' filename_value(filename) ' for reading (check path, spelling, permissions).']);
 end;
 
  % now read the data
