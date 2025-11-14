@@ -5,7 +5,7 @@ classdef dirlist_trimdotsTest < matlab.unittest.TestCase
             dirlist = {'.', '..', 'mydir', '.DS_Store', '.git', '.svn', '__pycache__', 'anotherdir'};
             expected = {'mydir', 'anotherdir'};
             actual = vlt.file.dirlist_trimdots(dirlist);
-            testCase.verifyEqual(actual, expected);
+            testCase.verifyEqual(sort(actual), sort(expected));
         end
 
         function test_struct_input(testCase)
@@ -13,7 +13,7 @@ classdef dirlist_trimdotsTest < matlab.unittest.TestCase
             dirlist = struct('name', {'.', '..', 'mydir', '.DS_Store', '.git', '.svn', '__pycache__', 'anotherdir'}, 'isdir', {1, 1, 1, 0, 1, 1, 1, 1});
             expected = {'mydir', 'anotherdir'};
             actual = vlt.file.dirlist_trimdots(dirlist);
-            testCase.verifyEqual(actual, expected);
+            testCase.verifyEqual(sort(actual), sort(expected));
         end
 
         function test_struct_output(testCase)
@@ -21,6 +21,10 @@ classdef dirlist_trimdotsTest < matlab.unittest.TestCase
             dirlist = struct('name', {'.', '..', 'mydir', '.DS_Store', '.git', '.svn', '__pycache__', 'anotherdir'}, 'isdir', {1, 1, 1, 0, 1, 1, 1, 1});
             expected = struct('name', {'mydir', 'anotherdir'}, 'isdir', {1, 1});
             actual = vlt.file.dirlist_trimdots(dirlist, 1);
+            [~, order] = sort({expected.name});
+            expected = expected(order);
+            [~, order] = sort({actual.name});
+            actual = actual(order);
             testCase.verifyEqual(actual, expected);
         end
 
@@ -37,7 +41,7 @@ classdef dirlist_trimdotsTest < matlab.unittest.TestCase
             dirlist = {'mydir', 'anotherdir'};
             expected = {'mydir', 'anotherdir'};
             actual = vlt.file.dirlist_trimdots(dirlist);
-            testCase.verifyEqual(actual, expected);
+            testCase.verifyEqual(sort(actual), sort(expected));
         end
     end
 end

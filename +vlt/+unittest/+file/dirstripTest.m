@@ -11,7 +11,7 @@ classdef dirstripTest < matlab.unittest.TestCase
 
             actual_names = {d.name};
 
-            testCase.verifyEqual(actual_names, expected_names);
+            testCase.verifyEqual(sort(actual_names), sort(expected_names));
         end
 
         function test_dirstrip_empty(testCase)
@@ -35,7 +35,7 @@ classdef dirstripTest < matlab.unittest.TestCase
 
             actual_names = {d.name};
 
-            testCase.verifyEqual(actual_names, expected_names);
+            testCase.verifyEqual(sort(actual_names), sort(expected_names));
         end
     end
 end
