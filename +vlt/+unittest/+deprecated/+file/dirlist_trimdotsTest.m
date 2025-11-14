@@ -1,0 +1,43 @@
+classdef dirlist_trimdotsTest < matlab.unittest.TestCase
+    methods(Test)
+        function test_cell_array_input(testCase)
+            % Test with a cell array of strings
+            dirlist = {'.', '..', 'mydir', '.DS_Store', '.git', '.svn', '__pycache__', 'anotherdir'};
+            expected = {'mydir', '.git', '.svn', '__pycache__', 'anotherdir'};
+            actual = dirlist_trimdots(dirlist);
+            testCase.verifyEqual(actual, expected);
+        end
+
+        function test_struct_input(testCase)
+            % Test with a struct from MATLAB's dir function
+            dirlist = struct('name', {'.', '..', 'mydir', '.DS_Store', '.git', '.svn', '__pycache__', 'anotherdir'}, 'isdir', {1, 1, 1, 0, 1, 1, 1, 1});
+            expected = {'mydir', '.git', '.svn', '__pycache__', 'anotherdir'};
+            actual = dirlist_trimdots(dirlist);
+            testCase.verifyEqual(actual, expected);
+        end
+
+        function test_struct_output(testCase)
+            % Test with a struct from MATLAB's dir function and struct output
+            dirlist = struct('name', {'.', '..', 'mydir', '.DS_Store', '.git', '.svn', '__pycache__', 'anotherdir'}, 'isdir', {1, 1, 1, 0, 1, 1, 1, 1});
+            expected = struct('name', {'mydir', '.git', '.svn', '__pycache__', 'anotherdir'}, 'isdir', {1, 1, 1, 1, 1});
+            actual = dirlist_trimdots(dirlist, 1);
+            testCase.verifyEqual(actual, expected);
+        end
+
+        function test_empty_input(testCase)
+            % Test with an empty cell array
+            dirlist = {};
+            expected = {};
+            actual = dirlist_trimdots(dirlist);
+            testCase.verifyEqual(actual, expected);
+        end
+
+        function test_no_dots_input(testCase)
+            % Test with a cell array containing no dots
+            dirlist = {'mydir', 'anotherdir'};
+            expected = {'mydir', 'anotherdir'};
+            actual = dirlist_trimdots(dirlist);
+            testCase.verifyEqual(actual, expected);
+        end
+    end
+end
