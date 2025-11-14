@@ -1,6 +1,10 @@
 classdef intanTest < matlab.unittest.TestCase
     methods (Test)
         function test_intan_readers(testCase)
+            % Check if ndr.fun.ndrpath is on the path
+            testCase.assumeTrue(exist('ndr.fun.ndrpath', 'file') == 2, ...
+                'The function ndr.fun.ndrpath is not on the path, skipping test.');
+
             % Get the path to the example data
             example_data_path = fullfile(ndr.fun.ndrpath,'example_data');
 
