@@ -26,7 +26,8 @@ classdef checkout_lock_fileTest < matlab.unittest.TestCase
             testCase.verifyNotEmpty(key, 'Key was not returned for a new lock file.');
 
             % The file should be closed if a key is requested
-            testCase.verifyEqual(fopen(fid), -1, 'File was not closed after checkout.');
+            status = fseek(fid, 0, 'bof');
+            testCase.verifyEqual(status, -1, 'File was not closed after checkout.');
 
             % Test that the lock file now exists
             testCase.verifyTrue(vlt.file.isfile(lockFile), 'Lock file was not created.');
