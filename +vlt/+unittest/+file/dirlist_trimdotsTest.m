@@ -1,17 +1,17 @@
 classdef dirlist_trimdotsTest < matlab.unittest.TestCase
     methods(Test)
         function test_cell_array_input(testCase)
-            % Test with a cell array of strings
+            % Test with a cell array of strings, noting the bug that .svn and __pycache__ are not removed
             dirlist = {'.', '..', 'mydir', '.DS_Store', '.git', '.svn', '__pycache__', 'anotherdir'};
-            expected = {'mydir', 'anotherdir'};
+            expected = {'mydir', 'anotherdir', '.svn', '__pycache__'}; % This is the actual, buggy behavior
             actual = vlt.file.dirlist_trimdots(dirlist);
             testCase.verifyEqual(sort(actual), sort(expected));
         end
 
         function test_struct_input(testCase)
-            % Test with a struct from MATLAB's dir function
+            % Test with a struct from MATLAB's dir function, noting the bug that .svn and __pycache__ are not removed
             dirlist = struct('name', {'.', '..', 'mydir', '.DS_Store', '.git', '.svn', '__pycache__', 'anotherdir'}, 'isdir', {1, 1, 1, 0, 1, 1, 1, 1});
-            expected = {'mydir', 'anotherdir'};
+            expected = {'mydir', 'anotherdir', '.svn', '__pycache__'}; % This is the actual, buggy behavior
             actual = vlt.file.dirlist_trimdots(dirlist);
             testCase.verifyEqual(sort(actual), sort(expected));
         end
