@@ -25,9 +25,9 @@ classdef checkout_lock_fileTest < matlab.unittest.TestCase
             testCase.verifyGreaterThan(fid, 0, 'Failed to create a new lock file.');
             testCase.verifyNotEmpty(key, 'Key was not returned for a new lock file.');
 
-            % The file should be closed if a key is requested
-            status = fseek(fid, 0, 'bof');
-            testCase.verifyEqual(status, -1, 'File was not closed after checkout.');
+            % The file should be closed if a key is requested, which means the fid is invalid.
+            % Test that using the fid throws an error.
+            testCase.verifyError(@() fseek(fid, 0, 'bof'), 'MATLAB:badfid_mx', 'File handle should be invalid after checkout.');
 
             % Test that the lock file now exists
             testCase.verifyTrue(vlt.file.isfile(lockFile), 'Lock file was not created.');
