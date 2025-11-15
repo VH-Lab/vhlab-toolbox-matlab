@@ -49,7 +49,7 @@ classdef fileobjTest < matlab.unittest.TestCase
             testCase.verifyEqual(count_w, numel(data_out));
 
             testCase.fo.fopen('r');
-            [data_in, count_r] = testCase.fo.fread(Inf, 'uint8');
+            [data_in, count_r] = testCase.fo.fread(Inf, 'uint8=>uint8');
             testCase.fo.fclose();
 
             testCase.verifyEqual(count_r, numel(data_out));
@@ -83,6 +83,7 @@ classdef fileobjTest < matlab.unittest.TestCase
             testCase.fo.fopen('r');
             testCase.verifyFalse(logical(testCase.fo.feof()));
             testCase.fo.fread(3, 'double');
+            testCase.fo.fread(1, 'double'); % try to read past the end
             testCase.verifyTrue(logical(testCase.fo.feof()));
             testCase.fo.fclose();
         end
