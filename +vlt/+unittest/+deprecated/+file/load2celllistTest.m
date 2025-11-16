@@ -25,25 +25,37 @@ classdef load2celllistTest < matlab.unittest.TestCase
         function test_load_all_variables(testCase)
             [objs, objnames] = load2celllist(testCase.testFile);
 
-            % fieldnames returns sorted names
             expectedNames = {'another_var'; 'var_a'; 'var_b'};
-            testCase.verifyEqual(objnames, expectedNames);
+            expectedObjs = {struct('x', 1); 'hello'; [1 2 3]};
 
-            testCase.verifyEqual(length(objs), 3);
-            testCase.verifyEqual(objs{1}, struct('x', 1));
-            testCase.verifyEqual(objs{2}, 'hello');
-            testCase.verifyEqual(objs{3}, [1 2 3]);
+            % Sort both actual and expected names to make test order-independent
+            [sorted_objnames, p_actual] = sort(objnames);
+            [sorted_expectedNames, p_expected] = sort(expectedNames);
+
+            % Reorder the corresponding object cells based on the sort permutation
+            sorted_objs = objs(p_actual);
+            sorted_expectedObjs = expectedObjs(p_expected);
+
+            testCase.verifyEqual(sorted_objnames, sorted_expectedNames);
+            testCase.verifyEqual(sorted_objs, sorted_expectedObjs);
         end
 
         function test_load_specific_variables(testCase)
             [objs, objnames] = load2celllist(testCase.testFile, 'var_*');
 
             expectedNames = {'var_a'; 'var_b'};
-            testCase.verifyEqual(objnames, expectedNames);
+            expectedObjs = {'hello'; [1 2 3]};
 
-            testCase.verifyEqual(length(objs), 2);
-            testCase.verifyEqual(objs{1}, 'hello');
-            testCase.verifyEqual(objs{2}, [1 2 3]);
+            % Sort both actual and expected names to make test order-independent
+            [sorted_objnames, p_actual] = sort(objnames);
+            [sorted_expectedNames, p_expected] = sort(expectedNames);
+
+            % Reorder the corresponding object cells
+            sorted_objs = objs(p_actual);
+            sorted_expectedObjs = expectedObjs(p_expected);
+
+            testCase.verifyEqual(sorted_objnames, sorted_expectedNames);
+            testCase.verifyEqual(sorted_objs, sorted_expectedObjs);
         end
 
         function test_load_nonexistent_file(testCase)
