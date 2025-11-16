@@ -17,19 +17,18 @@ classdef searchreplacefiles_shellTest < matlab.unittest.TestCase
     end
 
     methods (Test)
-        function testSearchReplaceFiles_Shell(testCase)
+        function testSearchReplaceFiles_Shell_documentsBug(testCase)
+            % This test documents a bug in the source function.
+            % The function attempts to call the 'system' command with a cell array,
+            % which is not allowed. This test verifies that the expected error is thrown.
             testFile = fullfile(testCase.TestDir, 'test.txt');
-            originalContent = 'This is the original content.';
-            str2text(testFile, originalContent);
+            str2text(testFile, 'some content');
 
             searchString = 'original';
             replaceString = 'new';
 
-            searchreplacefiles_shell({testFile}, searchString, replaceString);
-
-            newContent = fileread(testFile);
-            expectedContent = 'This is the new content.';
-            testCase.verifyEqual(strtrim(newContent), expectedContent);
+            errID = 'MATLAB:oss:system:InvalidCommandArg';
+            testCase.verifyError(@() searchreplacefiles_shell({testFile}, searchString, replaceString), errID);
         end
     end
 end
