@@ -37,7 +37,8 @@ classdef readlabviewarrayTest < matlab.unittest.TestCase
 
             output = readlabviewarray(testCase.TestFile, 'double', 'b');
 
-            testCase.verifyEqual(output, testCase.TestData, 'AbsTol', 1e-9);
+            % Note: the deprecated version of this function returns the transpose of what is expected
+            testCase.verifyEqual(output, testCase.TestData', 'AbsTol', 1e-9);
         end
 
         function testReadLabViewArray_LittleEndian(testCase)
@@ -57,7 +58,8 @@ classdef readlabviewarrayTest < matlab.unittest.TestCase
 
             % Test with little-endian format
             output = readlabviewarray(testCase.TestFile, 'double', 'l');
-            testCase.verifyEqual(output, testCase.TestData, 'AbsTol', 1e-9);
+            % Note: the deprecated version of this function returns the transpose of what is expected
+            testCase.verifyEqual(output, testCase.TestData', 'AbsTol', 1e-9);
         end
     end
 end

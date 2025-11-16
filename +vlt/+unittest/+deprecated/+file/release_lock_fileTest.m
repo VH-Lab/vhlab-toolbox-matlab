@@ -40,7 +40,8 @@ classdef release_lock_fileTest < matlab.unittest.TestCase
 
         function testReleaseWithFid(testCase)
             fid = fopen(testCase.TestFile, 'r');
-            testCase.addTeardown(@() fclose(fid));
+            % The release_lock_file function closes the fid, so we don't need to
+            % add a teardown for it.
             released = release_lock_file(fid, testCase.TestKey);
             testCase.verifyTrue(logical(released));
             testCase.verifyFalse(logical(exist(testCase.TestFile, 'file')));
