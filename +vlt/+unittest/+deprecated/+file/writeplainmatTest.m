@@ -48,10 +48,10 @@ classdef writeplainmatTest < matlab.unittest.TestCase
             testCase.verifyEqual(className, mat_class, 'The class name was not written correctly.');
 
             dims = fread(fid, 1, '*uint8');
-            testCase.verifyEqual(dims, mat_dims, 'The number of dimensions was not written correctly.');
+            testCase.verifyEqual(dims, uint8(mat_dims), 'The number of dimensions was not written correctly.');
 
             sz = fread(fid, dims, '*uint32');
-            testCase.verifyEqual(sz(:)', mat_size, 'The dimension sizes were not written correctly.');
+            testCase.verifyEqual(sz(:)', uint32(mat_size), 'The dimension sizes were not written correctly.');
 
             data = fread(fid, inf, ['*' mat_class]);
             data = reshape(data, sz(:)');
@@ -81,10 +81,10 @@ classdef writeplainmatTest < matlab.unittest.TestCase
             testCase.verifyEqual(className, mat_class, 'The class name for the char matrix is incorrect.');
 
             dims = fread(fid, 1, '*uint8');
-            testCase.verifyEqual(dims, mat_dims, 'The number of dimensions for the char matrix is incorrect.');
+            testCase.verifyEqual(dims, uint8(mat_dims), 'The number of dimensions for the char matrix is incorrect.');
 
             sz = fread(fid, dims, '*uint32');
-            testCase.verifyEqual(sz(:)', mat_size, 'The dimension sizes for the char matrix are incorrect.');
+            testCase.verifyEqual(sz(:)', uint32(mat_size), 'The dimension sizes for the char matrix are incorrect.');
 
             data = fread(fid, inf, ['*' mat_class]);
             data = reshape(data, sz(:)');

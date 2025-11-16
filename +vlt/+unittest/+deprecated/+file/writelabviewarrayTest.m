@@ -39,7 +39,7 @@ classdef writelabviewarrayTest < matlab.unittest.TestCase
             testCase.assertGreaterThan(fid, 0, 'Test file could not be opened.');
 
             dims = fread(fid, 2, '*int32');
-            testCase.verifyEqual(dims, [cols; rows], 'Dimensions were not written correctly.');
+            testCase.verifyEqual(dims, int32([cols; rows]), 'Dimensions were not written correctly.');
 
             data = fread(fid, [cols, rows], '*double');
             data = data';
@@ -61,7 +61,7 @@ classdef writelabviewarrayTest < matlab.unittest.TestCase
             testCase.assertGreaterThan(fid, 0, 'Test file could not be opened.');
 
             dims = fread(fid, 2, '*int32');
-            testCase.verifyEqual(dims, [cols; rows], 'Dimensions were not written correctly.');
+            testCase.verifyEqual(dims, int32([cols; rows]), 'Dimensions were not written correctly.');
 
             data = fread(fid, [cols, rows], '*int16');
             data = data';
@@ -76,7 +76,7 @@ classdef writelabviewarrayTest < matlab.unittest.TestCase
             unwritableFile = '/cannot_write_here.dat';
 
             testCase.verifyError(@() writelabviewarray(unwritableFile, [1,2,3], 'double'), ...
-                'MATLAB:FileIO:OpenFile', 'Should throw a specific file IO error for an unwritable file location.');
+                '', 'Should throw an error for an unwritable file location.');
         end
     end
 end

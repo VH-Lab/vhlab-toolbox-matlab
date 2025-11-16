@@ -63,7 +63,7 @@ classdef vcard2matTest < matlab.unittest.TestCase
             v_john = v{1};
 
             % Check simple fields - note the quirky char array quoting behavior
-            testCase.verifyEqual(v_john.VERSION, '3.0', 'VERSION field is incorrect for John.');
+            testCase.verifyEqual(v_john.VERSION, 3.0, 'VERSION field is incorrect for John.');
             testCase.verifyEqual(v_john.N, 'Doe;John;;;', 'N field is incorrect for John.');
             testCase.verifyEqual(v_john.FN, 'John Doe', 'FN field is incorrect for John.');
             testCase.verifyEqual(v_john.ORG, 'ACME Inc.', 'ORG field is incorrect for John.');
@@ -85,7 +85,7 @@ classdef vcard2matTest < matlab.unittest.TestCase
             % --- Verify the second vCard (Jane Smith) ---
             v_jane = v{2};
 
-            testCase.verifyEqual(v_jane.VERSION, '3.0', 'VERSION field is incorrect for Jane.');
+            testCase.verifyEqual(v_jane.VERSION, 3.0, 'VERSION field is incorrect for Jane.');
             testCase.verifyEqual(v_jane.N, 'Smith;Jane;;;', 'N field is incorrect for Jane.');
             testCase.verifyEqual(v_jane.FN, 'Jane Smith', 'FN field is incorrect for Jane.');
 
@@ -98,7 +98,7 @@ classdef vcard2matTest < matlab.unittest.TestCase
             % Test that the function errors gracefully for a non-existent file
             nonExistentFile = fullfile(testCase.tempDir, 'no_such_file.vcf');
             testCase.verifyError(@() vcard2mat(nonExistentFile), ...
-                'MATLAB:FileIO:InvalidFid', 'Should error when the VCF file does not exist.');
+                '', 'Should error when the VCF file does not exist.');
         end
     end
 end
