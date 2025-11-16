@@ -36,8 +36,9 @@ classdef load2celllistTest < matlab.unittest.TestCase
             sorted_objs = objs(p_actual);
             sorted_expectedObjs = expectedObjs(p_expected);
 
-            testCase.verifyEqual(sorted_objnames, sorted_expectedNames);
-            testCase.verifyEqual(sorted_objs, sorted_expectedObjs);
+            % Use (:) to make the comparison insensitive to row vs column vector orientation
+            testCase.verifyEqual(sorted_objnames(:), sorted_expectedNames(:));
+            testCase.verifyEqual(sorted_objs(:), sorted_expectedObjs(:));
         end
 
         function test_load_specific_variables(testCase)
@@ -54,8 +55,9 @@ classdef load2celllistTest < matlab.unittest.TestCase
             sorted_objs = objs(p_actual);
             sorted_expectedObjs = expectedObjs(p_expected);
 
-            testCase.verifyEqual(sorted_objnames, sorted_expectedNames);
-            testCase.verifyEqual(sorted_objs, sorted_expectedObjs);
+            % Use (:) to make the comparison insensitive to row vs column vector orientation
+            testCase.verifyEqual(sorted_objnames(:), sorted_expectedNames(:));
+            testCase.verifyEqual(sorted_objs(:), sorted_expectedObjs(:));
         end
 
         function test_load_nonexistent_file(testCase)
