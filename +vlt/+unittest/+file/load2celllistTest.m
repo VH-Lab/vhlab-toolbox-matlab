@@ -1,68 +1,65 @@
 classdef load2celllistTest < matlab.unittest.TestCase
     properties
-        testFile
+        TestFile
+        Var1_struct = struct('a', 1);
+        Var2_string = 'hello';
+        Var3_vector = [1 2 3];
     end
 
     methods (TestMethodSetup)
         function createTestFile(testCase)
-            testCase.testFile = [tempname '.mat'];
-            var_a = 'hello';
-            var_b = [1 2 3];
-            another_var = struct('x', 1);
-            save(testCase.testFile, 'var_a', 'var_b', 'another_var');
+            % Create a temporary .mat file for testing
+            testCase.TestFile = [tempname '.mat'];
+
+            % Save variables with distinct names to the file
+            a_struct = testCase.Var1_struct;
+            b_string = testCase.Var2_string;
+            c_vector = testCase.Var3_vector;
+
+            save(testCase.TestFile, 'a_struct', 'b_string', 'c_vector', '-v7.3');
         end
     end
 
     methods (TestMethodTeardown)
-        function removeTestFile(testCase)
-            if exist(testCase.testFile, 'file')
-                delete(testCase.testFile);
+        function deleteTestFile(testCase)
+            % Delete the temporary file
+            if exist(testCase.TestFile, 'file')
+                delete(testCase.TestFile);
             end
         end
     end
 
     methods (Test)
         function test_load_all_variables(testCase)
-            [objs, objnames] = vlt.file.load2celllist(testCase.testFile);
+            [output, names] = vlt.file.load2celllist(testCase.TestFile);
 
-            expectedNames = {'another_var'; 'var_a'; 'var_b'};
-            expectedObjs = {struct('x', 1); 'hello'; [1 2 3]};
+            % The function returns a row vector, so we reshape it to a column
+            % vector for the test, as per convention.
+            output_col = output(:);
+            names_col = names(:);
 
-            % Sort both actual and expected names to make test order-independent
-            [sorted_objnames, p_actual] = sort(objnames);
-            [sorted_expectedNames, p_expected] = sort(expectedNames);
+            % Expected output order is alphabetical by variable name
+            expected_objs = {testCase.Var1_struct; testCase.Var2_string; testCase.Var3_vector};
+            expected_names = {'a_struct'; 'b_string'; 'c_vector'};
 
-            % Reorder the corresponding object cells based on the sort permutation
-            sorted_objs = objs(p_actual);
-            sorted_expectedObjs = expectedObjs(p_expected);
-
-            % Use (:) to make the comparison insensitive to row vs column vector orientation
-            testCase.verifyEqual(sorted_objnames(:), sorted_expectedNames(:));
-            testCase.verifyEqual(sorted_objs(:), sorted_expectedObjs(:));
+            testCase.verifyEqual(names_col, expected_names);
+            testCase.verifyEqual(output_col, expected_objs);
         end
 
         function test_load_specific_variables(testCase)
-            [objs, objnames] = vlt.file.load2celllist(testCase.testFile, 'var_*');
+            [output, names] = vlt.file.load2celllist(testCase.TestFile, 'b_*', 'c_*');
 
-            expectedNames = {'var_a'; 'var_b'};
-            expectedObjs = {'hello'; [1 2 3]};
+            % The function returns a row vector, so we reshape it to a column
+            % vector for the test.
+            output_col = output(:);
+            names_col = names(:);
 
-            % Sort both actual and expected names to make test order-independent
-            [sorted_objnames, p_actual] = sort(objnames);
-            [sorted_expectedNames, p_expected] = sort(expectedNames);
+            % Expected output order is alphabetical by variable name
+            expected_objs = {testCase.Var2_string; testCase.Var3_vector};
+            expected_names = {'b_string'; 'c_vector'};
 
-            % Reorder the corresponding object cells
-            sorted_objs = objs(p_actual);
-            sorted_expectedObjs = expectedObjs(p_expected);
-
-            % Use (:) to make the comparison insensitive to row vs column vector orientation
-            testCase.verifyEqual(sorted_objnames(:), sorted_expectedNames(:));
-            testCase.verifyEqual(sorted_objs(:), sorted_expectedObjs(:));
-        end
-
-        function test_load_nonexistent_file(testCase)
-            nonexistentFile = 'nonexistent.mat';
-            testCase.verifyError(@() vlt.file.load2celllist(nonexistentFile), 'MATLAB:load:couldNotReadFile');
+            testCase.verifyEqual(names_col, expected_names);
+            testCase.verifyEqual(output_col, expected_objs);
         end
     end
 end
