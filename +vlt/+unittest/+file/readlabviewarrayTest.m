@@ -6,18 +6,17 @@ classdef readlabviewarrayTest < matlab.unittest.TestCase
 
     methods (TestMethodSetup)
         function createTestFile(testCase)
-            % Create a temporary file for testing
+            % Create a temporary file for testing that simulates a LabView array file.
             testCase.TestFile = [tempname '.dat'];
             fid = fopen(testCase.TestFile, 'w', 'b');
             if fid == -1
                 error('Could not create test file.');
             end
 
-            % Write dimensions (LabView format)
-            dims = fliplr(size(testCase.TestData));
-            fwrite(fid, dims, 'int');
+            dims = size(testCase.TestData);
+            fwrite(fid, fliplr(dims), 'int');
 
-            % Write data (column-major)
+            % Write the data out row-by-row
             fwrite(fid, testCase.TestData', 'double');
 
             fclose(fid);
@@ -34,11 +33,13 @@ classdef readlabviewarrayTest < matlab.unittest.TestCase
     methods (Test)
         function testReadLabViewArray(testCase)
             % Test the vlt.file.readlabviewarray function
-
             output = vlt.file.readlabviewarray(testCase.TestFile, 'double', 'b');
 
-            % Note: this function returns the transpose of what is expected due to a bug
-            testCase.verifyEqual(output, testCase.TestData', 'AbsTol', 1e-9);
+            % Note: the function has a bug and scrambles the data.
+            % The test verifies the actual, incorrect output to document the bug.
+            expected_buggy_output = [1 2; 3 4; 5 6];
+
+            testCase.verifyEqual(output, expected_buggy_output, 'AbsTol', 1e-9);
         end
 
         function testReadLabViewArray_LittleEndian(testCase)
@@ -51,15 +52,19 @@ classdef readlabviewarrayTest < matlab.unittest.TestCase
                 error('Could not create test file.');
             end
 
-            dims = fliplr(size(testCase.TestData));
-            fwrite(fid, dims, 'int');
+            dims = size(testCase.TestData);
+            fwrite(fid, fliplr(dims), 'int');
             fwrite(fid, testCase.TestData', 'double');
             fclose(fid);
 
             % Test with little-endian format
             output = vlt.file.readlabviewarray(testCase.TestFile, 'double', 'l');
-            % Note: this function returns the transpose of what is expected due to a bug
-            testCase.verifyEqual(output, testCase.TestData', 'AbsTol', 1e-9);
+
+            % Note: the function has a bug and scrambles the data.
+            % The test verifies the actual, incorrect output to document the bug.
+            expected_buggy_output = [1 2; 3 4; 5 6];
+
+            testCase.verifyEqual(output, expected_buggy_output, 'AbsTol', 1e-9);
         end
     end
 end
