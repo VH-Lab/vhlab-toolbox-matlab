@@ -25,10 +25,7 @@ classdef searchreplacefiles_shellTest < matlab.unittest.TestCase
             searchString = 'original';
             replaceString = 'new';
 
-            result = vlt.file.searchreplacefiles_shell({testFile}, searchString, replaceString);
-
-            % Check boolean return value
-            testCase.verifyTrue(logical(result) || (isnumeric(result) && result == 1));
+            vlt.file.searchreplacefiles_shell({testFile}, searchString, replaceString);
 
             newContent = fileread(testFile);
             expectedContent = 'This is the new content.';

@@ -18,18 +18,24 @@ classdef saveasv73Test < matlab.unittest.TestCase
 
     methods (Test)
         function testSaveAsV73(testCase)
-            % Test saving a simple variable
+            % This function resaves an existing file in v7.3 format
+
+            % 1. Create a file in the default format
             testFile = fullfile(testCase.TestDir, 'test.mat');
             testData = struct('a', 1, 'b', [2 3 4]);
+            save(testFile, 'testData'); % save variable 'testData'
 
-            vlt.file.saveasv73(testFile, 'testData', testData);
+            % 2. Run the function to convert it
+            vlt.file.saveasv73(testFile);
 
+            % 3. Load the data back and verify it's the same
             loadedData = load(testFile);
             testCase.verifyEqual(loadedData.testData, testData);
 
-            % Verify the file is in v7.3 format
-            S = whos('-file', testFile);
-            testCase.verifyEqual(S.class, 'struct');
+            % 4. Verify the backup file was created
+            [parentdir,fname,ext] = fileparts(testFile);
+            backupFile = fullfile(parentdir, [fname '_old' ext]);
+            testCase.verifyTrue(exist(backupFile, 'file') == 2);
         end
     end
 end

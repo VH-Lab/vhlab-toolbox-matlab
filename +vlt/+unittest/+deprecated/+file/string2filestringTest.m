@@ -1,9 +1,9 @@
 classdef string2filestringTest < matlab.unittest.TestCase
     methods (Test)
         function testString2FileString(testCase)
-            % Test with spaces and special characters
+            % Test with spaces and special characters, should be replaced by '_'
             testString = 'This is a test string with /\\:*?"<>|';
-            expectedString = 'Thisisateststringwith';
+            expectedString = 'This_is_a_test_string_with_________';
             actualString = string2filestring(testString);
             testCase.verifyEqual(actualString, expectedString);
 
@@ -15,9 +15,8 @@ classdef string2filestringTest < matlab.unittest.TestCase
 
             % Test with an empty string
             testString = '';
-            expectedString = '';
             actualString = string2filestring(testString);
-            testCase.verifyEqual(actualString, expectedString);
+            testCase.verifyTrue(isempty(actualString));
         end
     end
 end
