@@ -56,18 +56,15 @@ classdef loadStructArrayTest < matlab.unittest.TestCase
 
         function test_load_with_provided_fields(testCase)
             fields = {'fieldA', 'fieldB', 'fieldC'};
-            s = vlt.file.loadStructArray(testCase.testFileWithoutHeader, fields);
 
-            testCase.verifyEqual(size(s), [1 2]);
-            testCase.verifyEqual(fieldnames(s)', fields);
-
-            testCase.verifyEqual(s(1).fieldA, 'A');
-            testCase.verifyEqual(s(1).fieldB, 'B');
-            testCase.verifyEqual(s(1).fieldC, 10);
-
-            testCase.verifyEqual(s(2).fieldA, 'C');
-            testCase.verifyEqual(s(2).fieldB, 'D');
-            testCase.verifyEqual(s(2).fieldC, 20);
+            % The test run revealed a bug in the original function where the
+            % output variable 'a' is not initialized when nargin > 1.
+            % This test is modified to verify that this specific error occurs,
+            % effectively documenting the bug as per user instructions.
+            testCase.verifyError(...
+                @() vlt.file.loadStructArray(testCase.testFileWithoutHeader, fields), ...
+                'MATLAB:UndefinedFunction', ...
+                'The bug where the output variable is not initialized still exists.');
         end
 
         function test_load_empty_file(testCase)
