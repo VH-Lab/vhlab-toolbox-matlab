@@ -50,7 +50,7 @@ offset_effect = [];
 condition_effect = [];
 condition_boundaries = [];
 
-Y_name_fixed = strrep(Y_name,'.','__');
+Y_name_fixed = 'Y_data_for_fit';
 
  % plot categories in order
 

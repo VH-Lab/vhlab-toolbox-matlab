@@ -34,10 +34,14 @@ function simTbl = simulate_lme_data_shuffled(lme_base, tbl_base, effect_size, ca
     num_obs = height(tbl_base);
     residuals = y_observed - fixed_prediction;
     shuffled_residuals = residuals(randperm(num_obs));
+
+    % Simulate data under the null hypothesis
     Y_sim_null = fixed_prediction + shuffled_residuals;
-    Y_sim = Y_sim_null;
-    is_target_category = tbl_base.(category_name) == category_level;
-    Y_sim(is_target_category) = Y_sim(is_target_category) + effect_size;
     simTbl = tbl_base;
-    simTbl.(y_name) = Y_sim;
+    simTbl.(y_name) = Y_sim_null;
+
+    % Add the effect size using the robust addDifference function
+    if effect_size ~= 0
+        simTbl = vlt.table.addDifference(simTbl, y_name, category_name, category_level, effect_size);
+    end
 end

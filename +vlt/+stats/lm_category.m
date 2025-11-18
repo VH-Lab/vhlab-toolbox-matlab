@@ -39,12 +39,13 @@ cats_reord = cats([rc 1:rc-1 rc+1:end]);
 
 categor_reordered = reordercats(categor,cats_reord);
 
-Y = tbl.(Y_name);
-if ~isempty(Y_op),
-	Y = eval(Y_op);
+if ~isempty(Y_op)
+    % Use a temporary column name for the result of the operation
+    temp_tbl = vlt.table.columnMath(tbl, Y_name, 'Y_data_processed', Y_op);
+    data = temp_tbl.Y_data_processed;
+else
+    data = tbl.(Y_name);
 end;
-
-data = Y;
 
 if rankorder == 1,
 	data = vlt.data.sortorder(data);
