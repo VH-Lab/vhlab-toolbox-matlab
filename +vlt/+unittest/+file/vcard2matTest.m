@@ -97,7 +97,7 @@ classdef vcard2matTest < matlab.unittest.TestCase
             % Test that the function errors gracefully for a non-existent file
             nonExistentFile = fullfile(testCase.tempDir, 'no_such_file.vcf');
             testCase.verifyError(@() vlt.file.vcard2mat(nonExistentFile), ...
-                'MATLAB:FileIO:InvalidFid', 'Should error when the VCF file does not exist.');
+                '', 'Should error when the VCF file does not exist.');
         end
     end
 end

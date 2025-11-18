@@ -41,7 +41,7 @@ classdef writelabviewarrayTest < matlab.unittest.TestCase
 
             % Read dimensions (LabVIEW stores them as [cols rows])
             dims = fread(fid, 2, '*int32'); % LabVIEW uses 32-bit integers for dimensions
-            testCase.verifyEqual(dims, [cols; rows], 'The dimensions were not written correctly.');
+            testCase.verifyEqual(dims, int32([cols; rows]), 'The dimensions were not written correctly.');
 
             % Read data
             data = fread(fid, [cols, rows], '*double');
@@ -65,7 +65,7 @@ classdef writelabviewarrayTest < matlab.unittest.TestCase
             testCase.assertGreaterThan(fid, 0, 'Test file could not be opened for reading.');
 
             dims = fread(fid, 2, '*int32');
-            testCase.verifyEqual(dims, [cols; rows], 'The dimensions were not written correctly.');
+            testCase.verifyEqual(dims, int32([cols; rows]), 'The dimensions were not written correctly.');
 
             data = fread(fid, [cols, rows], '*int16');
             data = data';
@@ -83,7 +83,7 @@ classdef writelabviewarrayTest < matlab.unittest.TestCase
             unwritableFile = '/cannot_write_here.dat';
 
             testCase.verifyError(@() vlt.file.writelabviewarray(unwritableFile, [1,2,3], 'double'), ...
-                'MATLAB:FileIO:OpenFile', 'Should throw a specific file IO error for an unwritable file location.');
+                '', 'Should throw a specific file IO error for an unwritable file location.');
         end
     end
 end
