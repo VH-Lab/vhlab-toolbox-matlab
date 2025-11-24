@@ -66,12 +66,13 @@ function T = factorPercentiles(T, dataVar, factors)
     % Format: dataVar_Factor1_Factor2_..._PERCENTILE
     newColName = strjoin([dataVar, factors, "PERCENTILE"], '_');
 
-    % Check if new column name already exists?
-    % The function will overwrite if it does, which is standard behavior for "adding/updating" columns.
-    % I won't error, just overwrite.
-
     % Initialize new column with NaNs
     T.(newColName) = nan(height(T), 1);
+
+    % Return early if table is empty
+    if height(T) == 0
+        return;
+    end
 
     % 3. Grouping
     if isempty(factors)
