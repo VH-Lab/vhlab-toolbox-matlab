@@ -10,15 +10,35 @@ classdef fullfilenameTest < matlab.unittest.TestCase
             testCase.originalDir = pwd;
             testCase.testDir = tempname;
             mkdir(testCase.testDir);
-            cd(testCase.testDir);
+            try
+                cd(testCase.testDir);
+            catch
+                % If cd fails, ensure we don't leave the system in an inconsistent state
+                % and fail the test gracefully or try to recover
+                error('Could not change to temporary directory.');
+            end
         end
     end
 
     methods(TestMethodTeardown)
         function teardown(testCase)
-            cd(testCase.originalDir);
+            try
+                cd(testCase.originalDir);
+            catch
+                % If originalDir is gone (e.g. it was a temp dir itself), fall back to a safe location
+                if ispc
+                    cd(getenv('USERPROFILE'));
+                else
+                    cd(getenv('HOME'));
+                end
+            end
+
             if exist(testCase.testDir, 'dir')
-                rmdir(testCase.testDir, 's');
+                try
+                    rmdir(testCase.testDir, 's');
+                catch
+                    % Ignore cleanup errors if we can't remove the dir
+                end
             end
         end
     end

@@ -14,9 +14,10 @@ function fn = fixtilde(filename)
 
 fn = filename;
 if strcmp(fn(1),'~'),
-	currdir = pwd;
-	cd('~');
-	homedir = pwd;
-	cd(currdir);
+	if ispc
+		homedir = getenv('USERPROFILE');
+	else
+		homedir = getenv('HOME');
+	end
 	fn = [homedir fn(2:end)];
 end;
