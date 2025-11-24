@@ -1,9 +1,16 @@
 classdef intanTest < matlab.unittest.TestCase
     methods (Test)
         function test_intan_readers(testCase)
-            % Check if ndr.fun.ndrpath is on the path
-            testCase.assumeTrue(exist('ndr.fun.ndrpath', 'file') == 2, ...
-                'The function ndr.fun.ndrpath is not on the path, skipping test.');
+            % Check if ndr.fun.ndrpath is on the path and returns a valid folder
+            try
+                folder_path = ndr.fun.ndrpath;
+                has_ndr = isfolder(folder_path);
+            catch
+                has_ndr = false;
+            end
+
+            testCase.assumeTrue(has_ndr, ...
+                'The function ndr.fun.ndrpath is not on the path or does not return a valid folder, skipping test.');
 
             % Get the path to the example data
             example_data_path = fullfile(ndr.fun.ndrpath,'example_data');
@@ -22,9 +29,15 @@ classdef intanTest < matlab.unittest.TestCase
                 filename = fullfile(example_data_path, rhd_files(i).name);
 
                 % Run the manufacturer's code
+                currdir = pwd;
                 cd(temp_dir);
-                manufacturer_output = read_Intan_RHD2000_file_var(filename);
-                cd ..
+                try
+                    manufacturer_output = read_Intan_RHD2000_file_var(filename);
+                catch ME
+                    cd(currdir);
+                    rethrow(ME);
+                end
+                cd(currdir);
 
                 % Run our lab's code
                 header = read_Intan_RHD2000_header(filename);
