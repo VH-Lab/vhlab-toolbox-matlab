@@ -7,10 +7,11 @@ classdef fixtildeTest < matlab.unittest.TestCase
     methods(TestMethodSetup)
         function getHomeDir(testCase)
             % Determine home directory in a platform-independent way
-            currdir = pwd;
-            cd('~');
-            testCase.homeDir = pwd;
-            cd(currdir);
+            if ispc
+                testCase.homeDir = getenv('USERPROFILE');
+            else
+                testCase.homeDir = getenv('HOME');
+            end
         end
     end
 
