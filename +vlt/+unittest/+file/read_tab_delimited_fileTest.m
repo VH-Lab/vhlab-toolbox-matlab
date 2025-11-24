@@ -1,4 +1,4 @@
-classdef read_tab_delimited_file_test < matlab.unittest.TestCase
+classdef read_tab_delimited_fileTest < matlab.unittest.TestCase
     properties
         TestFile
     end

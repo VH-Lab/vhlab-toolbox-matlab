@@ -84,11 +84,9 @@ switch lower(command),
 		cubeplot3d(name,'command',[name 'Set_Vars'],'ud',ud);
 
 	case 'get_vars',
-		handles = at_itemeditlist_gui(name,'command',[name 'get_handles'],'fig',fig);
-		out = get(handles.ItemList,'userdata');
+		out = getappdata(fig, [name '_vars']);
 	case 'set_vars',  % needs 'ud' to be passed by caller
-		handles = at_itemeditlist_gui(name,'command',[name 'get_handles'],'fig',fig);
-		set(handles.ItemList,'userdata',ud);
+		setappdata(fig, [name '_vars'], ud);
 
 	case 'get_handles',
 		handle_base_names = {'3dAxes'};
