@@ -60,14 +60,14 @@ classdef dirstructTest < matlab.unittest.TestCase
             testCase.verifyEqual(tag.tagname, 'mytag');
             testCase.verifyEqual(tag.value, 123);
 
-            testCase.verifyTrue(ds.hastag('t00001', 'mytag'));
+            testCase.verifyTrue(logical(ds.hastag('t00001', 'mytag')));
 
             val = ds.gettagvalue('t00001', 'mytag');
             testCase.verifyEqual(val, 123);
 
             % Remove tag
             ds.removetag('t00001', 'mytag');
-            testCase.verifyFalse(ds.hastag('t00001', 'mytag'));
+            testCase.verifyFalse(logical(ds.hastag('t00001', 'mytag')));
 
             val = ds.gettagvalue('t00001', 'mytag');
             testCase.verifyEmpty(val);
