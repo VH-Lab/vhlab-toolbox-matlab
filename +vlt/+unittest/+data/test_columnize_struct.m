@@ -66,14 +66,13 @@ classdef test_columnize_struct < matlab.unittest.TestCase
         function test_non_struct_input_error(testCase)
             % Test that non-struct input throws an error
             not_a_struct = [1 2 3];
-            testCase.verifyError(@() vlt.data.columnize_struct(not_a_struct), '');
-            % The original function just uses `error` without an ID, so we expect ''
+            % With arguments block, this throws a validation error
+            testCase.verifyError(@() vlt.data.columnize_struct(not_a_struct), ?MException);
         end
 
-        function test_struct_array_with_nested_structs_bug(testCase)
-            % This tests the potential bug case.
-            % The original function is expected to fail here.
-            % The test should verify that an error is thrown.
+        function test_struct_array_with_nested_structs_fixed(testCase)
+            % This tests the previously buggy case where recursing on struct fields
+            % in a struct array would fail.
             s_in(1).a = 1;
             s_in(1).b = struct('c', 10);
             s_in(2).a = 2;
@@ -81,9 +80,44 @@ classdef test_columnize_struct < matlab.unittest.TestCase
             s_in(3).a = 3;
             s_in(3).b = struct('c', 30);
 
-            % The getfield on s_out.b will return multiple outputs,
-            % causing isstruct to fail.
-            testCase.verifyError(@() vlt.data.columnize_struct(s_in), 'MATLAB:scalarStrucRequired');
+            s_out = vlt.data.columnize_struct(s_in);
+
+            testCase.verifyEqual(size(s_out), [3 1]);
+            % Verify the nested struct fields are preserved (and correct)
+            testCase.verifyEqual(s_out(2).b.c, 20);
+
+            % Expected result is just the columnized version of input
+            s_expected = s_in(:);
+            testCase.verifyEqual(s_out, s_expected);
+        end
+
+        function test_columnizeNumericVectors(testCase)
+            % Test the columnizeNumericVectors option
+            s_in.a = [1 2 3];
+            s_in.b = 'hello'; % char array, not numeric
+            s_in.c = struct('d', [4 5]);
+            s_in.e = [1; 2; 3]; % already column
+            s_in.f = [1 2; 3 4]; % matrix, not vector
+
+            % Default behavior (false)
+            s_out = vlt.data.columnize_struct(s_in);
+            testCase.verifyEqual(s_out.a, [1 2 3]);
+            testCase.verifyEqual(s_out.c.d, [4 5]);
+            testCase.verifyEqual(s_out.b, 'hello');
+
+            % Enabled behavior (true)
+            s_out = vlt.data.columnize_struct(s_in, 'columnizeNumericVectors', true);
+
+            % Check conversion
+            testCase.verifyEqual(s_out.a, [1; 2; 3]);
+            % Check recursive conversion
+            testCase.verifyEqual(s_out.c.d, [4; 5]);
+            % Check non-numeric unchanged
+            testCase.verifyEqual(s_out.b, 'hello');
+            % Check already column unchanged
+            testCase.verifyEqual(s_out.e, [1; 2; 3]);
+            % Check matrix unchanged
+            testCase.verifyEqual(s_out.f, [1 2; 3 4]);
         end
 
     end
