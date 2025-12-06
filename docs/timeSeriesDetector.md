@@ -65,6 +65,59 @@ The data must be stored in standard MATLAB `.mat` files.
 
 You can have multiple `.mat` files for both positive and negative examples; the builder will load all of them and concatenate the data.
 
+### Generating Training Data from Raw Signals
+
+You can generate these training matrices from raw data using helper methods in `vlt.signal`. A common workflow is to perform an initial, rough detection (e.g., using thresholding), refine the event times (e.g., by aligning to peaks), and then extract the data snippets.
+
+#### 1. Initial Detection
+Use `vlt.signal.threshold_crossings` to find candidate event locations.
+
+```matlab
+% Finds indices where signal crosses the threshold
+threshold = 3.5; % Example threshold
+detected_indices = vlt.signal.threshold_crossings(raw_signal, threshold);
+
+% Convert indices to timestamps (if you have a time vector)
+% or work with indices directly.
+detected_timestamps = time_vector(detected_indices);
+```
+
+#### 2. Filtering Close Events
+Use `vlt.signal.refractory` to remove duplicate detections of the same event (e.g., multiple crossings for one spike).
+
+```matlab
+refractory_period = 0.002; % 2ms refractory period
+detected_timestamps = vlt.signal.refractory(detected_timestamps, refractory_period);
+```
+
+#### 3. Refining and Extracting
+Use `vlt.signal.timeseriesDetectorML.base.timeStamps2Observations` to refine the timestamps by aligning them to the local signal peak and extract the waveforms.
+
+```matlab
+detectorSamples = 50; % Must match your parameter.json
+examplesArePositives = true; % Set to false for negative examples
+
+% Options for peak alignment
+options.optimizeForPeak = true;
+options.peakFindingSamples = 10; % Search +/- 10 samples for the peak
+options.useNegativeForPeak = false; % Set to true if looking for troughs (negative peaks)
+
+[positiveExamples, TFvalues, refinedTimeStamps] = ...
+    vlt.signal.timeseriesDetectorML.base.timeStamps2Observations(...
+        time_vector, raw_signal, detected_timestamps, ...
+        detectorSamples, examplesArePositives, options);
+```
+
+This function performs two key tasks:
+1.  **Refinement**: It searches within `peakFindingSamples` of each initial timestamp to find the local maximum (or minimum). This centers your training examples on the event peak, which improves detector performance.
+2.  **Extraction**: It extracts a window of `detectorSamples` centered on the refined timestamp.
+
+Finally, save the extracted `positiveExamples` (or `negativeExamples`) to a `.mat` file as described above.
+
+```matlab
+save('training_data_positive_1.mat', 'positiveExamples');
+```
+
 ## Step 4: Build and Train the Detector
 
 Once your directory is set up with `parameters.json` and your `.mat` files, you can build and train the detector in MATLAB with a single command:
