@@ -71,11 +71,10 @@ classdef testBase < matlab.unittest.TestCase
             minSpacing = 0.1; % 100ms
             numNegatives = 50;
 
-            options.minimumSpacingFromPositive = minSpacing;
-            options.negativeDataSetSize = numNegatives;
-
             [observations, TFvalues, newTimeStamps] = vlt.signal.timeseriesDetectorML.base.timeStamps2NegativeObservations(...
-                t, timeSeriesData, positiveEventTimes, detectorSamples, options);
+                t, timeSeriesData, positiveEventTimes, detectorSamples, ...
+                'minimumSpacingFromPositive', minSpacing, ...
+                'negativeDataSetSize', numNegatives);
 
             % Verify output dimensions
             testCase.verifySize(observations, [detectorSamples, numNegatives], 'Observations matrix has incorrect size.');

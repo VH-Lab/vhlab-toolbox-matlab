@@ -161,7 +161,7 @@ classdef (Abstract) base
                 options.peakFindingSamples (1,1) double = 10
                 options.useNegativeForPeak (1,1) logical = false
                 options.minimumSpacingFromPositive (1,1) double = 0.050
-                options.negativeDataSetSize (1,1) double = []
+                options.negativeDataSetSize double = []
             end
 
             if isempty(options.negativeDataSetSize)
@@ -171,13 +171,21 @@ classdef (Abstract) base
             newTimeStamps = [];
             N = numel(timeSeriesTimeStamps);
 
+            half_window = floor(double(detectorSamples)/2);
+            min_idx = 1 + half_window;
+            max_idx = N - double(detectorSamples) + 1 + half_window;
+
+            if max_idx < min_idx
+                 error('Time series data is shorter than detectorSamples.');
+            end
+
             % If we can't find valid spots after many tries, we should stop to avoid infinite loop
             maxAttempts = options.negativeDataSetSize * 100;
             attempts = 0;
 
             while numel(newTimeStamps) < options.negativeDataSetSize && attempts < maxAttempts
                 attempts = attempts + 1;
-                rand_idx = randi(N);
+                rand_idx = randi([min_idx, max_idx]);
                 candidate_time = timeSeriesTimeStamps(rand_idx);
 
                 % Check distance from all positive timestamps
