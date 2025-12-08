@@ -161,7 +161,7 @@ classdef (Abstract) base
                 options.peakFindingSamples (1,1) double = 10
                 options.useNegativeForPeak (1,1) logical = false
                 options.minimumSpacingFromPositive (1,1) double = 0.050
-                options.negativeDataSetSize (1,1) double = []
+                options.negativeDataSetSize double = []
             end
 
             if isempty(options.negativeDataSetSize)
