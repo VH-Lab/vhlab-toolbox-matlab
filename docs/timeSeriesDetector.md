@@ -90,7 +90,7 @@ refractory_period = 0.002; % 2ms refractory period
 detected_timestamps = vlt.signal.refractory(detected_timestamps, refractory_period);
 ```
 
-#### 3. Refining and Extracting
+#### 3. Refining and Extracting Positive Examples
 Use `vlt.signal.timeseriesDetectorML.base.timeStamps2Observations` to refine the timestamps by aligning them to the local signal peak and extract the waveforms.
 
 ```matlab
@@ -116,6 +116,61 @@ Finally, save the extracted `positiveExamples` (or `negativeExamples`) to a `.ma
 
 ```matlab
 save('training_data_positive_1.mat', 'positiveExamples');
+```
+
+#### 4. Generating Negative Examples
+To train a robust detector, you need negative examples: parts of the signal that are *not* events. You can generate these in two ways:
+
+**Method A: "Shoulders" (Near Misses)**
+This extracts data slightly offset from the true events. This teaches the detector that a peak must be centered to be valid.
+
+```matlab
+% Create offset timestamps (e.g., 5 samples before and after)
+offset_samples = 5;
+dt = time_vector(2) - time_vector(1);
+offset_time = offset_samples * dt;
+
+negative_timestamps = [refinedTimeStamps - offset_time; refinedTimeStamps + offset_time];
+
+% Extract without re-optimizing for peak (we want the off-center view)
+options_neg = options;
+options_neg.optimizeForPeak = false;
+
+[negativeExamples_shoulders, ~, ~] = ...
+    vlt.signal.timeseriesDetectorML.base.timeStamps2Observations(...
+        time_vector, raw_signal, negative_timestamps, ...
+        detectorSamples, false, options_neg);
+```
+
+**Method B: Random Background Noise**
+This extracts random snippets from the signal that are far away from any detected events.
+
+```matlab
+num_random_examples = 1000;
+random_indices = randi(length(time_vector), num_random_examples, 1);
+random_timestamps = time_vector(random_indices);
+
+% Filter out any that are too close to real events
+min_dist = 0.010; % 10ms
+is_far_enough = true(size(random_timestamps));
+for i = 1:numel(random_timestamps)
+    if min(abs(refinedTimeStamps - random_timestamps(i))) < min_dist
+        is_far_enough(i) = false;
+    end
+end
+random_timestamps = random_timestamps(is_far_enough);
+
+% Extract these background examples
+[negativeExamples_noise, ~, ~] = ...
+    vlt.signal.timeseriesDetectorML.base.timeStamps2Observations(...
+        time_vector, raw_signal, random_timestamps, ...
+        detectorSamples, false, options_neg);
+```
+
+Combine your negative examples and save them:
+```matlab
+negativeExamples = [negativeExamples_shoulders, negativeExamples_noise];
+save('training_data_negative_1.mat', 'negativeExamples');
 ```
 
 ## Step 4: Build and Train the Detector
