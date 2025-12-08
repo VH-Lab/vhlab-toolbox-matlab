@@ -143,28 +143,20 @@ options_neg.optimizeForPeak = false;
 ```
 
 **Method B: Random Background Noise**
-This extracts random snippets from the signal that are far away from any detected events.
+Use the helper function `timeStamps2NegativeObservations` to automatically generate random snippets from the signal that are sufficiently far away from any detected events.
 
 ```matlab
-num_random_examples = 1000;
-random_indices = randi(length(time_vector), num_random_examples, 1);
-random_timestamps = time_vector(random_indices);
+% Generate 1000 negative examples that are at least 50ms away from any positive event
+options_rand.minimumSpacingFromPositive = 0.050; % 50ms
+options_rand.negativeDataSetSize = 1000;
 
-% Filter out any that are too close to real events
-min_dist = 0.010; % 10ms
-is_far_enough = true(size(random_timestamps));
-for i = 1:numel(random_timestamps)
-    if min(abs(refinedTimeStamps - random_timestamps(i))) < min_dist
-        is_far_enough(i) = false;
-    end
-end
-random_timestamps = random_timestamps(is_far_enough);
+% Note: optimizeForPeak should usually be false for random noise
+options_rand.optimizeForPeak = false;
 
-% Extract these background examples
 [negativeExamples_noise, ~, ~] = ...
-    vlt.signal.timeseriesDetectorML.base.timeStamps2Observations(...
-        time_vector, raw_signal, random_timestamps, ...
-        detectorSamples, false, options_neg);
+    vlt.signal.timeseriesDetectorML.base.timeStamps2NegativeObservations(...
+        time_vector, raw_signal, refinedTimeStamps, ...
+        detectorSamples, options_rand);
 ```
 
 Combine your negative examples and save them:
