@@ -37,15 +37,9 @@ detectorSamples = uint64(event_duration_samples);
 [obs_pos, tf_pos, ~] = vlt.signal.timeseriesDetectorML.base.timeStamps2Observations(t, timeSeriesData, ground_truth_event_times, detectorSamples, true);
 
 % Negative examples from random points
-num_random_negative = 2 * size(obs_pos, 2);
-random_negative_times = [];
-while numel(random_negative_times) < num_random_negative
-    rand_idx = randi(N);
-    if ~any(abs(t(rand_idx) - ground_truth_event_times) < (event_duration_samples * dt * 5))
-        random_negative_times(end+1) = t(rand_idx);
-    end
-end
-[obs_neg, tf_neg, ~] = vlt.signal.timeseriesDetectorML.base.timeStamps2Observations(t, timeSeriesData, random_negative_times, detectorSamples, false);
+[obs_neg, tf_neg, random_negative_times] = vlt.signal.timeseriesDetectorML.base.timeStamps2NegativeObservations(t, timeSeriesData, ground_truth_event_times, detectorSamples, ...
+    'minimumSpacingFromPositive', event_duration_samples * dt * 5, ...
+    'negativeDataSetSize', 2 * size(obs_pos, 2));
 
 % Combine all data
 observations = [obs_pos, obs_neg];

@@ -54,5 +54,78 @@ classdef testBase < matlab.unittest.TestCase
             % A more thorough test would require a mock object or deeper inspection
             testCase.verifyNotEmpty(detector.Net, 'The network should be trained.');
         end
+
+        function testTimeStamps2NegativeObservations(testCase)
+            % Test the timeStamps2NegativeObservations method
+
+            % Setup test data
+            dt = 0.001;
+            t = (0:dt:10)';
+            timeSeriesData = sin(2*pi*10*t); % Dummy signal
+            detectorSamples = 100;
+
+            % Define some "known" positive events
+            positiveEventTimes = [1.0, 2.0, 3.0, 4.0, 5.0];
+
+            % Constraints
+            minSpacing = 0.1; % 100ms
+            numNegatives = 50;
+
+            [observations, TFvalues, newTimeStamps] = vlt.signal.timeseriesDetectorML.base.timeStamps2NegativeObservations(...
+                t, timeSeriesData, positiveEventTimes, detectorSamples, ...
+                'minimumSpacingFromPositive', minSpacing, ...
+                'negativeDataSetSize', numNegatives);
+
+            % Verify output dimensions
+            testCase.verifySize(observations, [detectorSamples, numNegatives], 'Observations matrix has incorrect size.');
+            testCase.verifySize(TFvalues, [1, numNegatives], 'TFvalues has incorrect size.');
+            testCase.verifySize(newTimeStamps, [1, numNegatives], 'newTimeStamps has incorrect size.');
+
+            % Verify all TFvalues are false
+            testCase.verifyTrue(all(~TFvalues), 'All TFvalues should be false.');
+
+            % Verify minimum spacing constraint
+            for i = 1:numel(newTimeStamps)
+                distToPositives = abs(positiveEventTimes - newTimeStamps(i));
+                minDist = min(distToPositives);
+                testCase.verifyTrue(minDist >= minSpacing, ...
+                    sprintf('Negative example at %f is too close (%f) to a positive event.', newTimeStamps(i), minDist));
+            end
+
+            % Verify that observations are actually from the data
+            % Just check one random one
+            idx = randi(numNegatives);
+            ts = newTimeStamps(idx);
+            [~, t_idx] = min(abs(t - ts));
+            expected_start = t_idx - floor(detectorSamples/2);
+            expected_end = expected_start + detectorSamples - 1;
+
+            if expected_start >= 1 && expected_end <= numel(timeSeriesData)
+                expected_obs = timeSeriesData(expected_start:expected_end);
+                testCase.verifyEqual(observations(:, idx), expected_obs, 'Extracted observation does not match data.');
+            end
+        end
+
+        function testTimeStamps2NegativeObservationsDefaults(testCase)
+            % Test default behavior
+             % Setup test data
+            dt = 0.001;
+            t = (0:dt:1)';
+            timeSeriesData = randn(size(t));
+            detectorSamples = 10;
+            positiveEventTimes = [0.2, 0.5];
+
+            % Call without options struct (using default arguments)
+            % But since arguments are in a name-value block, we pass empty options or just rely on defaults if we didn't pass options?
+            % The function signature is `options.negativeDataSetSize (1,1) double = []`.
+            % So we can pass specific name-value pairs or rely on defaults.
+
+            [observations, ~, newTimeStamps] = vlt.signal.timeseriesDetectorML.base.timeStamps2NegativeObservations(...
+                t, timeSeriesData, positiveEventTimes, detectorSamples);
+
+            % Default size should be 2 * numel(positiveEventTimes) = 4
+            expectedSize = 2 * numel(positiveEventTimes);
+            testCase.verifyEqual(size(observations, 2), expectedSize, 'Default negative data set size should be 2 * numPositives.');
+        end
     end
 end

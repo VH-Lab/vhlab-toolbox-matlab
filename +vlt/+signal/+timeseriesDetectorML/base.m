@@ -1,5 +1,10 @@
 classdef (Abstract) base
     % vlt.signal.timeseriesDetectorML.base - Abstract base class for time series machine learning detectors
+    %
+    % This class provides a framework for building machine learning-based detectors for time series data.
+    % It defines the interface for training, evaluation, and initialization, and provides static helper
+    % methods for data preparation and event detection.
+    %
 
     properties
         detectorSamples (1,1) double {mustBeInteger, mustBePositive} = 1; % The number of samples to be considered for the detection
@@ -7,12 +12,75 @@ classdef (Abstract) base
 
     methods (Abstract)
         [obj, scores, errorEachIteration] = train(obj, observation, TFvalues, doReset, numIterations, falsePositivePenalty)
+        % TRAIN - Train the detector
+        %
+        %   [OBJ, SCORES, ERROR] = TRAIN(OBJ, OBSERVATIONS, TFVALUES, DORESET, NUMITERATIONS, FALSEPOSITIVEPENALTY)
+        %
+        %   Trains the detector using the provided observations and truth values.
+        %
+        %   Inputs:
+        %   OBJ - The detector object.
+        %   OBSERVATIONS - Matrix of training examples (samples x examples).
+        %   TFVALUES - Boolean vector of truth values (true for positive examples, false for negative).
+        %   DORESET - Boolean, if true, resets the detector before training.
+        %   NUMITERATIONS - Number of training iterations.
+        %   FALSEPOSITIVEPENALTY - Penalty weight for false positives.
+        %
+        %   Outputs:
+        %   OBJ - The trained detector object.
+        %   SCORES - Training scores.
+        %   ERROR - Training error history.
+        %
+
         [detectLikelihood] = evaluateTimeSeries(obj, timeSeriesData)
+        % EVALUATETIMESERIES - Evaluate the detector on a time series
+        %
+        %   [LIKELIHOOD] = EVALUATETIMESERIES(OBJ, TIMESERIESDATA)
+        %
+        %   Evaluates the detector on the given time series data.
+        %
+        %   Inputs:
+        %   OBJ - The detector object.
+        %   TIMESERIESDATA - The time series data vector.
+        %
+        %   Outputs:
+        %   LIKELIHOOD - Vector of likelihood scores (0 to 1) for each sample.
+        %
+
         obj = initialize(obj)
+        % INITIALIZE - Initialize the detector
+        %
+        %   OBJ = INITIALIZE(OBJ)
+        %
+        %   Initializes the detector's parameters (e.g., weights).
+        %
     end
 
     methods (Static)
         function [observations, TFvalues, newTimeStamps] = timeStamps2Observations(timeSeriesTimeStamps, timeSeriesData, detectedTimeStamps, detectorSamples, examplesArePositives, options)
+            % TIMESTAMPS2OBSERVATIONS - Extract observations from time series based on timestamps
+            %
+            %   [OBSERVATIONS, TFVALUES, NEWTIMESTAMPS] = TIMESTAMPS2OBSERVATIONS(TIMESERIESTIMESTAMPS, TIMESERIESDATA, DETECTEDTIMESTAMPS, DETECTORSAMPLES, EXAMPLESAREPOSITIVES, OPTIONS)
+            %
+            %   Extracts windows of data centered around specific timestamps. Can optionally optimize the
+            %   timestamps to align with local peaks in the data.
+            %
+            %   Inputs:
+            %   TIMESERIESTIMESTAMPS - Time vector of the time series.
+            %   TIMESERIESDATA - Data vector of the time series.
+            %   DETECTEDTIMESTAMPS - Vector of timestamps around which to extract data.
+            %   DETECTORSAMPLES - Size of the window to extract (in samples).
+            %   EXAMPLESAREPOSITIVES - Boolean, true if these are positive examples (sets TFvalues).
+            %   OPTIONS - Name-value arguments:
+            %       'optimizeForPeak' (logical, default false) - Whether to align to local peaks.
+            %       'peakFindingSamples' (double, default 10) - Window size for peak search (+/- samples).
+            %       'useNegativeForPeak' (logical, default false) - If true, searches for local minimum instead of maximum.
+            %
+            %   Outputs:
+            %   OBSERVATIONS - Extracted data matrix (detectorSamples x numExamples).
+            %   TFVALUES - Boolean vector indicating class (all true or all false).
+            %   NEWTIMESTAMPS - The actual timestamps used for extraction (refined if optimized).
+            %
             arguments
                 timeSeriesTimeStamps (:,1) double
                 timeSeriesData (:,1) double
@@ -61,7 +129,107 @@ classdef (Abstract) base
             end
         end
 
+        function [observations, TFvalues, newTimeStamps] = timeStamps2NegativeObservations(timeSeriesTimeStamps, timeSeriesData, detectedTimeStamps, detectorSamples, options)
+            % TIMESTAMPS2NEGATIVEOBSERVATIONS - Generate negative observations by random sampling
+            %
+            %   [OBSERVATIONS, TFVALUES, NEWTIMESTAMPS] = TIMESTAMPS2NEGATIVEOBSERVATIONS(TIMESERIESTIMESTAMPS, TIMESERIESDATA, DETECTEDTIMESTAMPS, DETECTORSAMPLES, OPTIONS)
+            %
+            %   Generates negative examples by randomly sampling the time series at locations
+            %   that are sufficiently far from known positive events (DETECTEDTIMESTAMPS).
+            %
+            %   Inputs:
+            %   TIMESERIESTIMESTAMPS - Time vector of the time series.
+            %   TIMESERIESDATA - Data vector of the time series.
+            %   DETECTEDTIMESTAMPS - Vector of known positive event timestamps.
+            %   DETECTORSAMPLES - Size of the window to extract (in samples).
+            %   OPTIONS - Name-value arguments:
+            %       'minimumSpacingFromPositive' (double, default 0.050) - Minimum time distance from any positive event.
+            %       'negativeDataSetSize' (double, default 2 * numel(detectedTimeStamps)) - Number of negative examples to generate.
+            %       Also accepts options for timeStamps2Observations (though optimizeForPeak is usually false for random noise).
+            %
+            %   Outputs:
+            %   OBSERVATIONS - Extracted data matrix (detectorSamples x numExamples).
+            %   TFVALUES - Boolean vector (all false).
+            %   NEWTIMESTAMPS - The random timestamps selected.
+            %
+            arguments
+                timeSeriesTimeStamps (:,1) double
+                timeSeriesData (:,1) double
+                detectedTimeStamps (1,:) double
+                detectorSamples (1,1) double
+                options.optimizeForPeak (1,1) logical = false
+                options.peakFindingSamples (1,1) double = 10
+                options.useNegativeForPeak (1,1) logical = false
+                options.minimumSpacingFromPositive (1,1) double = 0.050
+                options.negativeDataSetSize double = []
+            end
+
+            if isempty(options.negativeDataSetSize)
+                options.negativeDataSetSize = 2 * numel(detectedTimeStamps);
+            end
+
+            newTimeStamps = [];
+            N = numel(timeSeriesTimeStamps);
+
+            half_window = floor(double(detectorSamples)/2);
+            min_idx = 1 + half_window;
+            max_idx = N - double(detectorSamples) + 1 + half_window;
+
+            if max_idx < min_idx
+                 error('Time series data is shorter than detectorSamples.');
+            end
+
+            % If we can't find valid spots after many tries, we should stop to avoid infinite loop
+            maxAttempts = options.negativeDataSetSize * 100;
+            attempts = 0;
+
+            while numel(newTimeStamps) < options.negativeDataSetSize && attempts < maxAttempts
+                attempts = attempts + 1;
+                rand_idx = randi([min_idx, max_idx]);
+                candidate_time = timeSeriesTimeStamps(rand_idx);
+
+                % Check distance from all positive timestamps
+                if isempty(detectedTimeStamps) || ~any(abs(candidate_time - detectedTimeStamps) < options.minimumSpacingFromPositive)
+                    newTimeStamps(end+1) = candidate_time;
+                end
+            end
+
+            if attempts >= maxAttempts
+                warning('Could not generate the requested number of negative examples with the given constraints.');
+            end
+
+            % Pass the generated timestamps to timeStamps2Observations to do the extraction
+            % We pass the inherited options (optimizeForPeak, etc.) as name-value pairs
+            % Note: newTimeStamps is passed as a row vector to match the (1,:) requirement of timeStamps2Observations
+
+            [observations, TFvalues, newTimeStamps] = vlt.signal.timeseriesDetectorML.base.timeStamps2Observations(...
+                timeSeriesTimeStamps, timeSeriesData, newTimeStamps, detectorSamples, false, ...
+                'optimizeForPeak', options.optimizeForPeak, ...
+                'peakFindingSamples', options.peakFindingSamples, ...
+                'useNegativeForPeak', options.useNegativeForPeak);
+        end
+
         function [eventTimes, filtered_signal] = detectIndividualEvents(timeSeriesTimeStamps, detectorOutput, options)
+            % DETECTINDIVIDUALEVENTS - Detect discrete events from detector output likelihood
+            %
+            %   [EVENTTIMES, FILTERED_SIGNAL] = DETECTINDIVIDUALEVENTS(TIMESERIESTIMESTAMPS, DETECTOROUTPUT, OPTIONS)
+            %
+            %   Smooths the detector output and finds peaks above a threshold to identify event times.
+            %   Applies a refractory period to merge close detections.
+            %
+            %   Inputs:
+            %   TIMESERIESTIMESTAMPS - Time vector corresponding to the detector output.
+            %   DETECTOROUTPUT - Likelihood signal from the detector.
+            %   OPTIONS - Name-value arguments:
+            %       'useGaussianBlur' (logical, default true) - Whether to smooth the output.
+            %       'gaussianSigmaTime' (double, default 0.010) - Sigma for Gaussian smoothing (in time units).
+            %       'refractoryPeriod' (double, default 0.010) - Minimum time between events.
+            %       'threshold' (double, default 0.9) - Detection threshold.
+            %
+            %   Outputs:
+            %   EVENTTIMES - Vector of detected event timestamps.
+            %   FILTERED_SIGNAL - The smoothed detector output signal.
+            %
             arguments
                 timeSeriesTimeStamps (:,1) double
                 detectorOutput (1,:) double
