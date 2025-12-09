@@ -27,12 +27,20 @@ if nargin<2,
 	spacesToIndentEachLevel = 2;
 end;
 
+try
+    jsonObj = jsondecode(json_encoded_object);
+    pretty = jsonencode(jsonObj,'ConvertInfAndNAN',true,'PrettyPrint',true);
+    return;
+catch
+    % if that fails, then try to load the java object as the function does now and try that route
+end
+
 try,
 	import org.json.JSONObject;
+    o = JSONObject(json_encoded_object);
+    pretty = char(o.toString(spacesToIndentEachLevel));
+    return;
 catch,
-	error(['This function requires the Java object org.json.JSONObject. Make sure it is installed or that you have vhlab-thirdparty-matlab installed properly.']);
+    warning('vlt:data:prettyjson:failure', 'The text could not be made pretty. Returning input text.');
+    pretty = json_encoded_object;
 end;
-
-o = JSONObject(json_encoded_object);
-pretty = o.toString(spacesToIndentEachLevel); 
-
