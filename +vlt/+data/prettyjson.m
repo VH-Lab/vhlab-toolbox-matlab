@@ -36,8 +36,7 @@ catch
 end
 
 try,
-	import org.json.JSONObject;
-    o = JSONObject(json_encoded_object);
+    o = org.json.JSONObject(json_encoded_object);
     pretty = char(o.toString(spacesToIndentEachLevel));
     return;
 catch,
