@@ -1,5 +1,5 @@
-classdef (Abstract) base
-    % vlt.signal.timeseriesDetectorML.base - Abstract base class for time series machine learning detectors
+classdef base
+    % vlt.signal.timeseriesDetectorML.base -  base class for time series machine learning detectors
     %
     % This class provides a framework for building machine learning-based detectors for time series data.
     % It defines the interface for training, evaluation, and initialization, and provides static helper
@@ -10,7 +10,7 @@ classdef (Abstract) base
         detectorSamples (1,1) double {mustBeInteger, mustBePositive} = 1; % The number of samples to be considered for the detection
     end
 
-    methods (Abstract)
+    methods
         [obj, scores, errorEachIteration] = train(obj, observation, TFvalues)
         % TRAIN - Train the detector
         %
