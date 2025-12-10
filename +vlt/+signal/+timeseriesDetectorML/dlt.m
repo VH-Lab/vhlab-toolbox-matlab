@@ -1,4 +1,4 @@
-classdef dlt
+classdef dlt < vlt.signal.timeseriesDetectorML.base
     % DLT - Deep Learning Toolbox-based time series detector
     %
 
