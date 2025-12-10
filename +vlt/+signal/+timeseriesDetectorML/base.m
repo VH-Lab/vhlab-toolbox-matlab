@@ -11,10 +11,10 @@ classdef (Abstract) base
     end
 
     methods (Abstract)
-        [obj, scores, errorEachIteration] = train(obj, observation, TFvalues, doReset, numIterations, falsePositivePenalty)
+        [obj, scores, errorEachIteration] = train(obj, observation, TFvalues)
         % TRAIN - Train the detector
         %
-        %   [OBJ, SCORES, ERROR] = TRAIN(OBJ, OBSERVATIONS, TFVALUES, DORESET, NUMITERATIONS, FALSEPOSITIVEPENALTY)
+        %   [OBJ, SCORES, ERROR] = TRAIN(OBJ, OBSERVATIONS, TFVALUES)
         %
         %   Trains the detector using the provided observations and truth values.
         %
@@ -22,9 +22,6 @@ classdef (Abstract) base
         %   OBJ - The detector object.
         %   OBSERVATIONS - Matrix of training examples (samples x examples).
         %   TFVALUES - Boolean vector of truth values (true for positive examples, false for negative).
-        %   DORESET - Boolean, if true, resets the detector before training.
-        %   NUMITERATIONS - Number of training iterations.
-        %   FALSEPOSITIVEPENALTY - Penalty weight for false positives.
         %
         %   Outputs:
         %   OBJ - The trained detector object.
