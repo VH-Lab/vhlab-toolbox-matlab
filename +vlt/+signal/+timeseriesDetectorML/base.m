@@ -98,7 +98,7 @@ classdef base
             up_crossings = up_crossings(1:n_events);
             down_crossings = down_crossings(1:n_events);
 
-            detectedEvents = zeros(1, n_events);
+            detectedEvents = zeros(n_events, 1);
 
             for i = 1:n_events
                 idx_start = up_crossings(i);
@@ -125,7 +125,7 @@ classdef base
                 else
                     detectedEvents = vlt.signal.refractory(detectedEvents, round(options.refractoryPeriod));
                 end
-                detectedEvents = detectedEvents(:).';
+                detectedEvents = detectedEvents(:);
             end
         end
     end
