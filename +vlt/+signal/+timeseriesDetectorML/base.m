@@ -65,6 +65,9 @@ classdef base
             %       'threshold' (double, default 0.5) - Detection threshold.
             %       'timestamps' (double, default []) - Optional time vector. If provided,
             %                                           returns event times instead of indices.
+            %       'refractoryPeriod' (double, default 0.002) - Minimum distance from any positive event.
+            %                                                    If 'timestamps' is provided, units are seconds.
+            %                                                    Otherwise, units are samples (rounded).
             %
             %   Outputs:
             %   DETECTEDEVENTS - Vector of sample indices (or times) where events were detected.
