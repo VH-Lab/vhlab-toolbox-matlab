@@ -209,6 +209,80 @@ classdef (Abstract) base
                 'useNegativeForPeak', options.useNegativeForPeak);
         end
 
+        function [observations, TFvalues, newTimeStamps] = negativeShoulderEvents(timeSeriesTimeStamps, timeSeriesData, positiveEventTimeStamps, detectorSamples, options)
+            % NEGATIVESHOULDEREVENTS - Generate negative observations from shoulders of positive events
+            %
+            %   [OBSERVATIONS, TFVALUES, NEWTIMESTAMPS] = NEGATIVESHOULDEREVENTS(TIMESERIESTIMESTAMPS, TIMESERIESDATA, POSITIVEEVENTTIMESTAMPS, DETECTORSAMPLES, OPTIONS)
+            %
+            %   Generates negative examples by sampling the "shoulders" (near misses) of known positive events.
+            %   It samples every time point within the specified shoulder windows.
+            %
+            %   Inputs:
+            %   TIMESERIESTIMESTAMPS - Time vector of the time series.
+            %   TIMESERIESDATA - Data vector of the time series.
+            %   POSITIVEEVENTTIMESTAMPS - Vector of known positive event timestamps.
+            %   DETECTORSAMPLES - Size of the window to extract (in samples).
+            %   OPTIONS - Name-value arguments:
+            %       'leftShoulderOnset' (double, default -0.010) - Start time of left shoulder relative to event.
+            %       'leftShoulderOffset' (double, default -0.005) - End time of left shoulder relative to event.
+            %       'rightShoulderOnset' (double, default 0.005) - Start time of right shoulder relative to event.
+            %       'rightShoulderOffset' (double, default 0.010) - End time of right shoulder relative to event.
+            %       'refractoryPeriod' (double, default 0.002) - Minimum distance from any positive event.
+            %
+            %   Outputs:
+            %   OBSERVATIONS - Extracted data matrix.
+            %   TFVALUES - Boolean vector (all false).
+            %   NEWTIMESTAMPS - The timestamps selected.
+            %
+            arguments
+                timeSeriesTimeStamps (:,1) double
+                timeSeriesData (:,1) double
+                positiveEventTimeStamps (1,:) double
+                detectorSamples (1,1) double
+                options.leftShoulderOnset (1,1) double = -0.010
+                options.leftShoulderOffset (1,1) double = -0.005
+                options.rightShoulderOnset (1,1) double = 0.005
+                options.rightShoulderOffset (1,1) double = 0.010
+                options.refractoryPeriod (1,1) double = 0.002
+            end
+
+            dt = nanmedian(diff(timeSeriesTimeStamps));
+
+            % Define time offsets for shoulders
+            left_onset_idx = round(options.leftShoulderOnset / dt);
+            left_offset_idx = round(options.leftShoulderOffset / dt);
+
+            right_onset_idx = round(options.rightShoulderOnset / dt);
+            right_offset_idx = round(options.rightShoulderOffset / dt);
+
+            % Generate relative offsets (in time)
+            left_offsets = (left_onset_idx : left_offset_idx) * dt;
+            right_offsets = (right_onset_idx : right_offset_idx) * dt;
+
+            all_offsets = [left_offsets, right_offsets];
+
+            % Generate candidates
+            [P, O] = meshgrid(positiveEventTimeStamps, all_offsets);
+            candidateTimeStamps = P(:)' + O(:)';
+
+            % Filter based on refractory period
+            valid_mask = true(size(candidateTimeStamps));
+
+            if ~isempty(positiveEventTimeStamps) && ~isempty(candidateTimeStamps)
+                 for i = 1:numel(positiveEventTimeStamps)
+                     pos_t = positiveEventTimeStamps(i);
+                     bad_indices = abs(candidateTimeStamps - pos_t) <= options.refractoryPeriod;
+                     valid_mask(bad_indices) = false;
+                 end
+            end
+
+            newTimeStamps = candidateTimeStamps(valid_mask);
+
+            [observations, TFvalues, newTimeStamps] = vlt.signal.timeseriesDetectorML.base.timeStamps2Observations(...
+                timeSeriesTimeStamps, timeSeriesData, newTimeStamps, detectorSamples, false, ...
+                'optimizeForPeak', false);
+        end
+
         function [eventTimes, filtered_signal] = detectIndividualEvents(timeSeriesTimeStamps, detectorOutput, options)
             % DETECTINDIVIDUALEVENTS - Detect discrete events from detector output likelihood
             %

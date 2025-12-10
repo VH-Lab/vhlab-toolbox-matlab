@@ -127,5 +127,52 @@ classdef testBase < matlab.unittest.TestCase
             expectedSize = 2 * numel(positiveEventTimes);
             testCase.verifyEqual(size(observations, 2), expectedSize, 'Default negative data set size should be 2 * numPositives.');
         end
+
+        function testNegativeShoulderEvents(testCase)
+            % Test the negativeShoulderEvents method
+
+            dt = 0.001;
+            t = (0:dt:1)';
+            timeSeriesData = randn(size(t));
+            detectorSamples = 10;
+
+            % Defined positive events
+            positiveEventTimes = [0.2, 0.5];
+
+            % Call negativeShoulderEvents with specific options to test logic
+            % Default is -0.010 to -0.005 (left) and 0.005 to 0.010 (right)
+            % Left: -10 to -5 samples (6 samples)
+            % Right: +5 to +10 samples (6 samples)
+            % Total 12 per event * 2 events = 24 total.
+
+            [observations, TFvalues, newTimeStamps] = vlt.signal.timeseriesDetectorML.base.negativeShoulderEvents(...
+                t, timeSeriesData, positiveEventTimes, detectorSamples);
+
+            % Verify counts
+            testCase.verifyEqual(numel(newTimeStamps), 24, 'Default parameters should generate 12 events per positive event.');
+            testCase.verifyTrue(all(~TFvalues), 'All TFvalues should be false.');
+
+            % Verify refractory period check
+            % Let's create a case where shoulders overlap/impinge
+            % Event A at 0.200
+            % Event B at 0.206
+            % Right shoulder of A: 0.205 to 0.210
+            % B is at 0.206.
+            % Shoulder A at 0.205 is |0.205 - 0.206| = 0.001 < 0.002. Should be removed.
+            % Shoulder A at 0.206 is |0.206 - 0.206| = 0.000 < 0.002. Should be removed.
+            % Shoulder A at 0.207 is |0.207 - 0.206| = 0.001 < 0.002. Should be removed.
+            % Shoulder A at 0.208 is |0.208 - 0.206| = 0.002 <= 0.002. Should be removed.
+            % Shoulder A at 0.209 is |0.209 - 0.206| = 0.003 > 0.002. Kept.
+
+            positiveEventTimesOverlap = [0.200, 0.206];
+             [~, ~, newTimeStampsOverlap] = vlt.signal.timeseriesDetectorML.base.negativeShoulderEvents(...
+                t, timeSeriesData, positiveEventTimesOverlap, detectorSamples);
+
+            % Check that no timestamp is within 0.002 of any positive event
+            for i=1:numel(newTimeStampsOverlap)
+                 minDist = min(abs(newTimeStampsOverlap(i) - positiveEventTimesOverlap));
+                 testCase.verifyTrue(minDist > 0.002, sprintf('Timestamp %f is too close (%f) to a positive event.', newTimeStampsOverlap(i), minDist));
+            end
+        end
     end
 end
