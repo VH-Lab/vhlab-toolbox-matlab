@@ -65,6 +65,9 @@ classdef base
             %       'threshold' (double, default 0.5) - Detection threshold.
             %       'timestamps' (double, default []) - Optional time vector. If provided,
             %                                           returns event times instead of indices.
+            %       'refractoryPeriod' (double, default 0.002) - Minimum distance from any positive event.
+            %                                                    If 'timestamps' is provided, units are seconds.
+            %                                                    Otherwise, units are samples (rounded).
             %
             %   Outputs:
             %   DETECTEDEVENTS - Vector of sample indices (or times) where events were detected.
@@ -75,6 +78,7 @@ classdef base
                 timeSeriesData (:,1) double
                 options.threshold (1,1) double = 0.5
                 options.timestamps (:,1) double = []
+                options.refractoryPeriod (1,1) double = 0.002
             end
 
             likelihood = obj.evaluateTimeSeries(timeSeriesData);
@@ -94,7 +98,7 @@ classdef base
             up_crossings = up_crossings(1:n_events);
             down_crossings = down_crossings(1:n_events);
 
-            detectedEvents = zeros(1, n_events);
+            detectedEvents = zeros(n_events, 1);
 
             for i = 1:n_events
                 idx_start = up_crossings(i);
@@ -113,6 +117,15 @@ classdef base
 
             if ~isempty(options.timestamps)
                 detectedEvents = options.timestamps(detectedEvents);
+            end
+
+            if options.refractoryPeriod > 0
+                if ~isempty(options.timestamps)
+                    detectedEvents = vlt.signal.refractory(detectedEvents, options.refractoryPeriod);
+                else
+                    detectedEvents = vlt.signal.refractory(detectedEvents, round(options.refractoryPeriod));
+                end
+                detectedEvents = detectedEvents(:);
             end
         end
     end

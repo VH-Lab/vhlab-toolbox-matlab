@@ -64,7 +64,7 @@ classdef testBase < matlab.unittest.TestCase
 
             % Test 1: Basic indices
             [events, likelihood] = detector.detectEvents(data, 'threshold', 0.5);
-            testCase.verifyEqual(events, [2, 4], 'Failed to detect event indices.');
+            testCase.verifyEqual(events, [2; 4], 'Failed to detect event indices.');
             testCase.verifyEqual(likelihood, data, 'Likelihood output incorrect.');
 
             % Test 2: With timestamps
