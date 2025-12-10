@@ -56,6 +56,77 @@ classdef (Abstract) base
         %
     end
 
+    methods
+        function [detectedEvents, likelihood] = detectEvents(obj, timeSeriesData, options)
+            % DETECTEVENTS - Detect events in a time series
+            %
+            %   [DETECTEDEVENTS, LIKELIHOOD] = DETECTEVENTS(OBJ, TIMESERIESDATA, OPTIONS)
+            %
+            %   Detects events by finding threshold crossings in the likelihood signal
+            %   and identifying the peak likelihood within each suprathreshold interval.
+            %   The peak is defined as the maximum value in the interval. If multiple
+            %   points share the maximum value, the center point (or left of center)
+            %   is selected.
+            %
+            %   Inputs:
+            %   OBJ - The detector object.
+            %   TIMESERIESDATA - The time series data vector.
+            %   OPTIONS - Name-value arguments:
+            %       'threshold' (double, default 0.5) - Detection threshold.
+            %       'timestamps' (double, default []) - Optional time vector. If provided,
+            %                                           returns event times instead of indices.
+            %
+            %   Outputs:
+            %   DETECTEDEVENTS - Vector of sample indices (or times) where events were detected.
+            %   LIKELIHOOD - The likelihood signal computed by the detector.
+            %
+            arguments
+                obj
+                timeSeriesData (:,1) double
+                options.threshold (1,1) double = 0.5
+                options.timestamps (:,1) double = []
+            end
+
+            likelihood = obj.evaluateTimeSeries(timeSeriesData);
+
+            up_crossings = vlt.signal.threshold_crossings(likelihood, options.threshold);
+            down_crossings = 1 + find(likelihood(1:end-1) >= options.threshold & likelihood(2:end) < options.threshold);
+
+            % Filter crossings to ensure valid epochs
+            if ~isempty(down_crossings) && ~isempty(up_crossings)
+                if down_crossings(1) < up_crossings(1)
+                    down_crossings(1) = [];
+                end
+            end
+
+            % Match pairs
+            n_events = min(numel(up_crossings), numel(down_crossings));
+            up_crossings = up_crossings(1:n_events);
+            down_crossings = down_crossings(1:n_events);
+
+            detectedEvents = zeros(1, n_events);
+
+            for i = 1:n_events
+                idx_start = up_crossings(i);
+                idx_end = down_crossings(i) - 1;
+
+                segment = likelihood(idx_start:idx_end);
+                max_val = max(segment);
+                max_indices = find(segment == max_val);
+
+                % Pick center
+                center_idx = ceil(numel(max_indices) / 2);
+                peak_offset = max_indices(center_idx);
+
+                detectedEvents(i) = idx_start + peak_offset - 1;
+            end
+
+            if ~isempty(options.timestamps)
+                detectedEvents = options.timestamps(detectedEvents);
+            end
+        end
+    end
+
     methods (Static)
         function [observations, TFvalues, newTimeStamps] = timeStamps2Observations(timeSeriesTimeStamps, timeSeriesData, detectedTimeStamps, detectorSamples, examplesArePositives, options)
             % TIMESTAMPS2OBSERVATIONS - Extract observations from time series based on timestamps
