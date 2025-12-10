@@ -75,6 +75,7 @@ classdef base
                 timeSeriesData (:,1) double
                 options.threshold (1,1) double = 0.5
                 options.timestamps (:,1) double = []
+                options.refractoryPeriod (1,1) double = 0.002
             end
 
             likelihood = obj.evaluateTimeSeries(timeSeriesData);
@@ -113,6 +114,15 @@ classdef base
 
             if ~isempty(options.timestamps)
                 detectedEvents = options.timestamps(detectedEvents);
+            end
+
+            if options.refractoryPeriod > 0
+                if ~isempty(options.timestamps)
+                    detectedEvents = vlt.signal.refractory(detectedEvents, options.refractoryPeriod);
+                else
+                    detectedEvents = vlt.signal.refractory(detectedEvents, round(options.refractoryPeriod));
+                end
+                detectedEvents = detectedEvents(:).';
             end
         end
     end
