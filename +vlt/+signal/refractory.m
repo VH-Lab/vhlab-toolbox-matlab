@@ -20,18 +20,23 @@ function [out_times,out_index] = refractory(in_times, refractory_period)
 [out_times,first_rearrange] = sort(in_times); % make sure they are sorted
 out_index = 1:length(out_times);
 
+if refractory_period == 0
+    out_index = first_rearrange;
+    return
+end
+
 done = isempty(out_times); % make sure we have something to do
 
-while ~done,
+while ~done
 	d = diff(out_times);
 	inds = [1;1+find(d(:)>refractory_period)];
-	if length(inds)==length(out_times),
+	if length(inds)==length(out_times)
 		done = 1;
-	else,
+	else
 		out_times = out_times(inds);
 		out_index = out_index(inds);
-	end;
-end;
+	end
+end
 
 out_index = first_rearrange(out_index);
 
