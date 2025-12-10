@@ -44,13 +44,6 @@ classdef base
         %   LIKELIHOOD - Vector of likelihood scores (0 to 1) for each sample.
         %
 
-        obj = initialize(obj)
-        % INITIALIZE - Initialize the detector
-        %
-        %   OBJ = INITIALIZE(OBJ)
-        %
-        %   Initializes the detector's parameters (e.g., weights).
-        %
     end
 
     methods
