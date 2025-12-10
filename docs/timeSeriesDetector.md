@@ -97,15 +97,13 @@ Use `vlt.signal.timeseriesDetectorML.base.timeStamps2Observations` to refine the
 detectorSamples = 50; % Must match your parameter.json
 examplesArePositives = true; % Set to false for negative examples
 
-% Options for peak alignment
-options.optimizeForPeak = true;
-options.peakFindingSamples = 10; % Search +/- 10 samples for the peak
-options.useNegativeForPeak = false; % Set to true if looking for troughs (negative peaks)
-
 [positiveExamples, TFvalues, refinedTimeStamps] = ...
     vlt.signal.timeseriesDetectorML.base.timeStamps2Observations(...
         time_vector, raw_signal, detected_timestamps, ...
-        detectorSamples, examplesArePositives, options);
+        detectorSamples, examplesArePositives, ...
+        'optimizeForPeak', true, ...
+        'peakFindingSamples', 10, ... % Search +/- 10 samples for the peak
+        'useNegativeForPeak', false); % Set to true if looking for troughs (negative peaks)
 ```
 
 This function performs two key tasks:
@@ -133,13 +131,13 @@ offset_time = offset_samples * dt;
 negative_timestamps = [refinedTimeStamps - offset_time; refinedTimeStamps + offset_time];
 
 % Extract without re-optimizing for peak (we want the off-center view)
-options_neg = options;
-options_neg.optimizeForPeak = false;
-
 [negativeExamples_shoulders, ~, ~] = ...
     vlt.signal.timeseriesDetectorML.base.timeStamps2Observations(...
         time_vector, raw_signal, negative_timestamps, ...
-        detectorSamples, false, options_neg);
+        detectorSamples, false, ...
+        'optimizeForPeak', false, ...
+        'peakFindingSamples', 10, ...
+        'useNegativeForPeak', false);
 ```
 
 **Method B: Random Background Noise**
@@ -147,16 +145,15 @@ Use the helper function `timeStamps2NegativeObservations` to automatically gener
 
 ```matlab
 % Generate 1000 negative examples that are at least 50ms away from any positive event
-options_rand.minimumSpacingFromPositive = 0.050; % 50ms
-options_rand.negativeDataSetSize = 1000;
-
 % Note: optimizeForPeak should usually be false for random noise
-options_rand.optimizeForPeak = false;
 
 [negativeExamples_noise, ~, ~] = ...
     vlt.signal.timeseriesDetectorML.base.timeStamps2NegativeObservations(...
         time_vector, raw_signal, refinedTimeStamps, ...
-        detectorSamples, options_rand);
+        detectorSamples, ...
+        'minimumSpacingFromPositive', 0.050, ... % 50ms
+        'negativeDataSetSize', 1000, ...
+        'optimizeForPeak', false);
 ```
 
 Combine your negative examples and save them:
