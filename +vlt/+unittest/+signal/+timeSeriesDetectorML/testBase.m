@@ -43,6 +43,43 @@ classdef testBase < matlab.unittest.TestCase
     end
 
     methods (Test)
+        function testDetectEvents(testCase)
+            % Test the detectEvents method
+
+            % Use a local dummy class
+            % We need to make sure DummyDetector is on the path or in the package
+            % Assuming DummyDetector is created in the same directory as this test
+
+            try
+                detector = vlt.unittest.signal.timeSeriesDetectorML.DummyDetector();
+            catch
+                % Fallback if package path is an issue (e.g. during dev)
+                % But for now assume it works if file exists
+                error('Could not instantiate DummyDetector. Make sure it is in +vlt/+unittest/+signal/+timeSeriesDetectorML/');
+            end
+
+            % Data: [0 0.8 0 0.8 0]
+            % Events at indices 2 and 4.
+            data = [0; 0.8; 0; 0.8; 0];
+
+            % Test 1: Basic indices
+            [events, likelihood] = detector.detectEvents(data, 'threshold', 0.5);
+            testCase.verifyEqual(events, [2, 4], 'Failed to detect event indices.');
+            testCase.verifyEqual(likelihood, data, 'Likelihood output incorrect.');
+
+            % Test 2: With timestamps
+            timestamps = [10; 11; 12; 13; 14];
+            [eventsTime, likelihood2] = detector.detectEvents(data, 'threshold', 0.5, 'timestamps', timestamps);
+            testCase.verifyEqual(eventsTime, [11; 13], 'Failed to map events to timestamps.');
+            testCase.verifyEqual(likelihood2, data, 'Likelihood output incorrect with timestamps.');
+
+            % Test 3: With timestamps but empty events
+            dataEmpty = [0; 0; 0];
+            timestampsEmpty = [10; 11; 12];
+            eventsEmpty = detector.detectEvents(dataEmpty, 'threshold', 0.5, 'timestamps', timestampsEmpty);
+            testCase.verifyEmpty(eventsEmpty, 'Should return empty events.');
+        end
+
         function testBuildFromDirectory(testCase)
             % Test the buildTimeseriesDetectorMLFromDirectory method
             detector = vlt.signal.timeseriesDetectorML.base.buildTimeseriesDetectorMLFromDirectory(testCase.tempDir);

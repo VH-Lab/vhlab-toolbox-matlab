@@ -57,10 +57,10 @@ classdef (Abstract) base
     end
 
     methods
-        function [detectedEvents] = detectEvents(obj, timeSeriesData, options)
+        function [detectedEvents, likelihood] = detectEvents(obj, timeSeriesData, options)
             % DETECTEVENTS - Detect events in a time series
             %
-            %   [DETECTEDEVENTS] = DETECTEVENTS(OBJ, TIMESERIESDATA, OPTIONS)
+            %   [DETECTEDEVENTS, LIKELIHOOD] = DETECTEVENTS(OBJ, TIMESERIESDATA, OPTIONS)
             %
             %   Detects events by finding threshold crossings in the likelihood signal
             %   and identifying the peak likelihood within each suprathreshold interval.
@@ -73,14 +73,18 @@ classdef (Abstract) base
             %   TIMESERIESDATA - The time series data vector.
             %   OPTIONS - Name-value arguments:
             %       'threshold' (double, default 0.5) - Detection threshold.
+            %       'timestamps' (double, default []) - Optional time vector. If provided,
+            %                                           returns event times instead of indices.
             %
             %   Outputs:
-            %   DETECTEDEVENTS - Vector of sample indices where events were detected.
+            %   DETECTEDEVENTS - Vector of sample indices (or times) where events were detected.
+            %   LIKELIHOOD - The likelihood signal computed by the detector.
             %
             arguments
                 obj
                 timeSeriesData (:,1) double
                 options.threshold (1,1) double = 0.5
+                options.timestamps (:,1) double = []
             end
 
             likelihood = obj.evaluateTimeSeries(timeSeriesData);
@@ -115,6 +119,10 @@ classdef (Abstract) base
                 peak_offset = max_indices(center_idx);
 
                 detectedEvents(i) = idx_start + peak_offset - 1;
+            end
+
+            if ~isempty(options.timestamps)
+                detectedEvents = options.timestamps(detectedEvents);
             end
         end
     end
