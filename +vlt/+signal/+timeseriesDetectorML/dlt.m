@@ -1,4 +1,4 @@
-classdef dlt
+classdef dlt < vlt.signal.timeseriesDetectorML.base
     % DLT - Deep Learning Toolbox-based time series detector
     %
 
@@ -6,7 +6,7 @@ classdef dlt
         Layers
         DLToptions
         Net
-        DetectorSamples (1,1) double {mustBeInteger, mustBePositive} = 50;
+        % detectorSamples is inherited from base
     end
 
     methods
@@ -21,15 +21,17 @@ classdef dlt
             %   for 1D time series classification.
             %
 
-            if nargin > 0
-                obj.DetectorSamples = detectorSamples;
+            if nargin < 1 || isempty(detectorSamples)
+                detectorSamples = 50;
             end
+
+            obj.detectorSamples = detectorSamples;
 
             if nargin > 1 && ~isempty(layers)
                 obj.Layers = layers;
             else
                 obj.Layers = [
-                    imageInputLayer([obj.DetectorSamples 1 1], 'Normalization', 'none')
+                    imageInputLayer([obj.detectorSamples 1 1], 'Normalization', 'none')
                     convolution2dLayer([5 1], 8, 'Padding', 'same')
                     reluLayer
                     maxPooling2dLayer([2 1], 'Stride', [2 1])
@@ -55,19 +57,51 @@ classdef dlt
             end
         end
 
-        function obj = train(obj, observations, TFvalues)
+        function [obj, scores, errorEachIteration] = train(obj, observations, TFvalues, doReset, numIterations, falsePositivePenalty)
             % TRAIN - Train the network using the Deep Learning Toolbox
             %
             %   Reshapes the data and trains the network using trainNetwork.
             %
 
-            X_train = reshape(observations, [obj.DetectorSamples, 1, 1, size(observations, 2)]);
+            arguments
+                obj
+                observations
+                TFvalues
+                doReset (1,1) logical = true
+                numIterations (1,1) double = []
+                falsePositivePenalty (1,1) double = []
+            end
+
+            X_train = reshape(observations, [obj.detectorSamples, 1, 1, size(observations, 2)]);
             Y_train = categorical(TFvalues);
 
             % The DLToptions property should be set with validation data before calling train
             current_options = obj.DLToptions;
 
-            obj.Net = trainNetwork(X_train, Y_train, obj.Layers, current_options);
+            % Attempt to handle numIterations if it is provided and we can modify current_options
+            if ~isempty(numIterations)
+                 try
+                     current_options.MaxEpochs = numIterations;
+                 catch
+                     warning('vlt:signal:timeseriesDetectorML:dlt:OptionsImmutable', ...
+                         'Could not set MaxEpochs from numIterations. Using value in DLToptions.');
+                 end
+            end
+
+            input_network = obj.Layers;
+            if ~doReset && ~isempty(obj.Net)
+                input_network = obj.Net;
+            end
+
+            [obj.Net, info] = trainNetwork(X_train, Y_train, input_network, current_options);
+
+            scores = info.TrainingAccuracy; % Or TrainingLoss
+            errorEachIteration = info.TrainingLoss;
+        end
+
+        function obj = initialize(obj)
+             % INITIALIZE - Reset the trained network
+             obj.Net = [];
         end
 
         function [detectLikelihood] = evaluateTimeSeries(obj, timeSeriesData)
@@ -82,7 +116,7 @@ classdef dlt
 
             V = timeSeriesData(:);
             L = length(V);
-            windowSize = obj.DetectorSamples;
+            windowSize = obj.detectorSamples;
             numWindows = L - windowSize + 1;
 
             % Create sliding windows
