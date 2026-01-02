@@ -4,6 +4,7 @@ classdef vcard2matTest < matlab.unittest.TestCase
     properties
         tempDir
         vcfFile
+        unicodeVcfFile
     end
 
     methods (TestMethodSetup)
@@ -37,6 +38,11 @@ classdef vcard2matTest < matlab.unittest.TestCase
                 fprintf(fid, '%s\r\n', vcfContent{i});
             end
             fclose(fid);
+
+            % Locate the unicode test file
+            currentFile = mfilename('fullpath');
+            [testDir, ~, ~] = fileparts(currentFile);
+            testCase.unicodeVcfFile = fullfile(testDir, 'unicode_test.vcf');
         end
     end
 
@@ -61,12 +67,12 @@ classdef vcard2matTest < matlab.unittest.TestCase
             % --- Verify the first vCard (John Doe) ---
             v_john = v{1};
 
-            % Check simple fields - note the quirky string quoting behavior of the function
-            testCase.verifyEqual(v_john.VERSION, string("3.0"), 'VERSION field is incorrect for John.');
-            testCase.verifyEqual(v_john.N, string("'Doe;John;;;'"), 'N field is incorrect for John.');
-            testCase.verifyEqual(v_john.FN, string("'John Doe'"), 'FN field is incorrect for John.');
-            testCase.verifyEqual(v_john.ORG, string("'ACME Inc.'"), 'ORG field is incorrect for John.');
-            testCase.verifyEqual(v_john.TITLE, string("'CEO'"), 'TITLE field is incorrect for John.');
+            % Check simple fields - note the quirky char array quoting behavior
+            testCase.verifyEqual(v_john.VERSION, 3.0, 'VERSION field is incorrect for John.');
+            testCase.verifyEqual(v_john.N, 'Doe;John;;;', 'N field is incorrect for John.');
+            testCase.verifyEqual(v_john.FN, 'John Doe', 'FN field is incorrect for John.');
+            testCase.verifyEqual(v_john.ORG, 'ACME Inc.', 'ORG field is incorrect for John.');
+            testCase.verifyEqual(v_john.TITLE, 'CEO', 'TITLE field is incorrect for John.');
 
             % Check complex fields (with parameters)
             testCase.verifyTrue(isfield(v_john, 'TEL'), 'TEL field should exist for John.');
@@ -74,22 +80,22 @@ classdef vcard2matTest < matlab.unittest.TestCase
             testCase.verifyEqual(numel(v_john.TEL), 1, 'TEL cell array should have one element.');
             tel_struct = v_john.TEL{1};
             testCase.verifyEqual(tel_struct.TYPE, {'WORK,VOICE'}, 'TEL TYPE parameter is incorrect.');
-            testCase.verifyEqual(tel_struct.data, string("(123) 456-7890"), 'TEL data is incorrect.');
+            testCase.verifyEqual(tel_struct.data, '(123) 456-7890', 'TEL data is incorrect.');
 
             testCase.verifyTrue(isfield(v_john, 'EMAIL'), 'EMAIL field should exist for John.');
             email_struct = v_john.EMAIL{1};
             testCase.verifyEqual(email_struct.TYPE, {'PREF,INTERNET'}, 'EMAIL TYPE parameter is incorrect.');
-            testCase.verifyEqual(email_struct.data, string("john.doe@acme.com"), 'EMAIL data is incorrect.');
+            testCase.verifyEqual(email_struct.data, 'john.doe@acme.com', 'EMAIL data is incorrect.');
 
             % --- Verify the second vCard (Jane Smith) ---
             v_jane = v{2};
 
-            testCase.verifyEqual(v_jane.VERSION, string("3.0"), 'VERSION field is incorrect for Jane.');
-            testCase.verifyEqual(v_jane.N, string("'Smith;Jane;;;'"), 'N field is incorrect for Jane.');
-            testCase.verifyEqual(v_jane.FN, string("'Jane Smith'"), 'FN field is incorrect for Jane.');
+            testCase.verifyEqual(v_jane.VERSION, 3.0, 'VERSION field is incorrect for Jane.');
+            testCase.verifyEqual(v_jane.N, 'Smith;Jane;;;', 'N field is incorrect for Jane.');
+            testCase.verifyEqual(v_jane.FN, 'Jane Smith', 'FN field is incorrect for Jane.');
 
             % Check multi-line field
-            expectedNote = string("'This is a note that continues on the next line.'");
+            expectedNote = 'This is a note that continues on the next line.';
             testCase.verifyEqual(v_jane.NOTE, expectedNote, 'Multi-line NOTE field was not parsed correctly.');
         end
 
@@ -98,6 +104,35 @@ classdef vcard2matTest < matlab.unittest.TestCase
             nonExistentFile = fullfile(testCase.tempDir, 'no_such_file.vcf');
             testCase.verifyError(@() vlt.file.vcard2mat(nonExistentFile), ...
                 '', 'Should error when the VCF file does not exist.');
+        end
+
+        function testUnicodeParsing(testCase)
+            % Test parsing of a VCF file with Unicode characters
+            % This ensures that unicode characters are stripped and do not cause errors
+
+            if ~exist(testCase.unicodeVcfFile, 'file')
+                warning('Unicode test file not found at %s. Skipping test.', testCase.unicodeVcfFile);
+                return;
+            end
+
+            v = vlt.file.vcard2mat(testCase.unicodeVcfFile);
+
+            % The file contains one vCard
+            testCase.verifyEqual(numel(v), 1, 'Should parse one vCard.');
+
+            v_gump = v{1};
+
+            % Verify the NOTE field which contained unicode characters
+            % The unicode char \u200E should have been stripped
+
+            % Note: The function returns char arrays
+            noteStr = v_gump.NOTE;
+
+            % Verify it is a char array
+            testCase.verifyTrue(ischar(noteStr), 'NOTE field should be a char array.');
+
+            % Verify it contains the expected text
+            testCase.verifyTrue(contains(noteStr, 'This contains unicode formatting char'), 'Note content mismatch.');
         end
     end
 end

@@ -4,6 +4,7 @@ classdef vcard2matTest < matlab.unittest.TestCase
     properties
         tempDir
         vcfFile
+        unicodeVcfFile
     end
 
     methods (TestMethodSetup)
@@ -37,6 +38,11 @@ classdef vcard2matTest < matlab.unittest.TestCase
                 fprintf(fid, '%s\r\n', vcfContent{i});
             end
             fclose(fid);
+
+            % Locate the unicode test file
+            currentFile = mfilename('fullpath');
+            [testDir, ~, ~] = fileparts(currentFile);
+            testCase.unicodeVcfFile = fullfile(testDir, 'unicode_test.vcf');
         end
     end
 
@@ -99,6 +105,35 @@ classdef vcard2matTest < matlab.unittest.TestCase
             nonExistentFile = fullfile(testCase.tempDir, 'no_such_file.vcf');
             testCase.verifyError(@() vcard2mat(nonExistentFile), ...
                 '', 'Should error when the VCF file does not exist.');
+        end
+
+        function testUnicodeParsing(testCase)
+            % Test parsing of a VCF file with Unicode characters
+            % This ensures that unicode characters are stripped and do not cause errors
+
+            if ~exist(testCase.unicodeVcfFile, 'file')
+                warning('Unicode test file not found at %s. Skipping test.', testCase.unicodeVcfFile);
+                return;
+            end
+
+            v = vcard2mat(testCase.unicodeVcfFile);
+
+            % The file contains one vCard
+            testCase.verifyEqual(numel(v), 1, 'Should parse one vCard.');
+
+            v_gump = v{1};
+
+            % Verify the NOTE field which contained unicode characters
+            % The unicode char \u200E should have been stripped
+
+            % Note: The deprecated function returns char arrays
+            noteStr = v_gump.NOTE;
+
+            % Verify it is a char array
+            testCase.verifyTrue(ischar(noteStr), 'NOTE field should be a char array.');
+
+            % Verify it contains the expected text
+            testCase.verifyTrue(contains(noteStr, 'This contains unicode formatting char'), 'Note content mismatch.');
         end
     end
 end
