@@ -73,7 +73,7 @@ while ~feof(fid)
 				value = nextline(c(1)+1:end);
                 value = value(value<=127);
 				try
-					eval(value);
+					eval([value ';']);
 					myvalue = value;
 				catch
 					value = strrep(value,'''','''''');
@@ -93,10 +93,16 @@ while ~feof(fid)
 				s = struct([]);
 				for i=2:numel(here)
 					e = find(here{i}=='=');
+                    if isempty(e)
+                        param = 'type';
+                        value = here{i};
+                    else
 					value = here{i}(e(1)+1:end);
+                        param = here{i}(1:e(1)-1);
+                    end
                     value = value(value<=127);
 					value = strrep(value,'''','''''');
-					param = matlab.lang.makeValidName(here{i}(1:e(1)-1));
+					param = matlab.lang.makeValidName(param);
 					if isfield(s,param)
 						N = numel(getfield(s,param));
 					else
