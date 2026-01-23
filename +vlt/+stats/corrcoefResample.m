@@ -1,7 +1,7 @@
-function [rho, rho_perm, percentile] = corrcoefResample(X, Y, N)
+function [rho, rho_perm, percentile] = corrcoefResample(X, Y, N, options)
 %CORRCOEFRESAMPLE Calculates the correlation coefficient and its significance using resampling.
 %
-%   [RHO, RHO_PERM, PERCENTILE] = vlt.stats.corrcoefResample(X, Y, N)
+%   [RHO, RHO_PERM, PERCENTILE] = vlt.stats.corrcoefResample(X, Y, N, ...)
 %   calculates the Pearson correlation coefficient RHO between vectors X and Y.
 %   It then performs N resamples by permuting X and calculating the
 %   correlation coefficient with Y for each permutation, storing the results
@@ -14,6 +14,9 @@ function [rho, rho_perm, percentile] = corrcoefResample(X, Y, N)
 %       X         - A vector of data.
 %       Y         - Another vector of data with the same length as X.
 %       N         - The number of resamples to perform.
+%       options   - (Optional) Name-value pairs:
+%                   'useRanks' (default false) - If true, compute ranks of X and Y
+%                   before analysis (Spearman correlation).
 %
 %   Outputs:
 %       rho       - The Pearson correlation coefficient between X and Y.
@@ -22,9 +25,22 @@ function [rho, rho_perm, percentile] = corrcoefResample(X, Y, N)
 %       percentile - The percentile of RHO within the distribution of RHO_PERM.
 %
 arguments
-  X (:,1) double {mustBeVector}
-  Y (:,1) double {mustBeVector, mustBeEqualSize(X,Y)}
+  X double {mustBeVector}
+  Y double {mustBeVector}
   N (1,1) double {mustBeInteger, mustBePositive}
+  options.useRanks (1,1) logical = false
+end
+
+X = X(:);
+Y = Y(:);
+
+if length(X) ~= length(Y)
+    error('vlt:stats:corrcoefResample:InputSizeMismatch', 'X and Y must have the same length.');
+end
+
+if options.useRanks
+    X = vlt.stats.ranks(X);
+    Y = vlt.stats.ranks(Y);
 end
 
 % Calculate the actual correlation coefficient
@@ -49,11 +65,3 @@ percentile = sum(rho_perm >= rho) / N * 100;
 
 end
 
-function mustBeEqualSize(a,b)
-    % Test for equal size
-    if ~isequal(size(a),size(b))
-        eid = 'Size:notEqual';
-        msg = 'Inputs must have equal size.';
-        error(eid,msg)
-    end
-end
