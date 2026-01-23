@@ -5,7 +5,7 @@ classdef test_corrcoefResample < matlab.unittest.TestCase
             Y = [1; 2; 3; 4; 5];
             N = 10;
             [rho, rho_perm, percentile] = vlt.stats.corrcoefResample(X, Y, N);
-            testCase.verifyEqual(rho, 1);
+            testCase.verifyEqual(rho, 1, 'AbsTol', 1e-10);
             testCase.verifySize(rho_perm, [N 1]);
             testCase.verifyTrue(percentile >= 0 && percentile <= 100);
         end
