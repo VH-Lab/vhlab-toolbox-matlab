@@ -1,4 +1,4 @@
-function [rho, rho_perm, percentile] = corrcoefResample(X, Y, N)
+function [rho, rho_perm, percentile] = corrcoefResample(X, Y, N, options)
 %CORRCOEFRESAMPLE Calculates the correlation coefficient and its significance using resampling.
 %
 %   [RHO, RHO_PERM, PERCENTILE] = vlt.stats.corrcoefResample(X, Y, N, ...)
