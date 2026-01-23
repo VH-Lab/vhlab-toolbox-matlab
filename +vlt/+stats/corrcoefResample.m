@@ -25,10 +25,17 @@ function [rho, rho_perm, percentile] = corrcoefResample(X, Y, N)
 %       percentile - The percentile of RHO within the distribution of RHO_PERM.
 %
 arguments
-  X (:) double {mustBeVector}
-  Y (:) double {mustBeVector, mustBeEqualSize(X,Y)}
+  X double {mustBeVector}
+  Y double {mustBeVector}
   N (1,1) double {mustBeInteger, mustBePositive}
   options.useRanks (1,1) logical = false
+end
+
+X = X(:);
+Y = Y(:);
+
+if length(X) ~= length(Y)
+    error('vlt:stats:corrcoefResample:InputSizeMismatch', 'X and Y must have the same length.');
 end
 
 if options.useRanks
@@ -58,11 +65,3 @@ percentile = sum(rho_perm >= rho) / N * 100;
 
 end
 
-function mustBeEqualSize(a,b)
-    % Test for equal size
-    if ~isequal(size(a),size(b))
-        eid = 'Size:notEqual';
-        msg = 'Inputs must have equal size.';
-        error(eid,msg)
-    end
-end
