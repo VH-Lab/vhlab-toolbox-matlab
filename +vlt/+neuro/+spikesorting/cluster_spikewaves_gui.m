@@ -250,7 +250,7 @@ switch command,
                 button.BackgroundColor = [0.8 0.8 0.8];
                 button.HorizontalAlignment = 'center';
                 button.Callback = callbackstr;
-                txt.Units = 'pixels'; txt.BackgroundColor = [0.8 0.8 0.8];
+                txt.Units = 'pixels'; txt.BackgroundColor = get(fig,'Color');
                 txt.fontsize = 10; txt.fontweight = 'normal';
                 txt.HorizontalAlignment = 'left';txt.Style='text';
                 edit = txt; edit.BackgroundColor = [ 1 1 1]; edit.Style = 'Edit';
