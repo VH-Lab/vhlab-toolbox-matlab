@@ -30,7 +30,11 @@ function inside = selectpoints3d(pts3d)
 %
 %
 
+disp('DEBUG: selectpoints3d called.');
+disp(['DEBUG: pts3d size: ' mat2str(size(pts3d))]);
+disp('DEBUG: Calling getline_3dplane...');
 [x,y,z] = vlt.matlab.graphics.getline_3dplane;
+disp('DEBUG: getline_3dplane returned.');
 
 [A] = vlt.matlab.graphics.viewpoint3dto2d( [x(:) y(:) z(:)]' );
 
