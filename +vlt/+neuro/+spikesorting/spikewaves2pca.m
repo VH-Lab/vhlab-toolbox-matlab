@@ -23,7 +23,7 @@ end;
 
 waves = reshape(waves,size(waves,1)*size(waves,2),size(waves,3))';
 
-[coeff,features] = pca(waves,'Rows','complete');
+[coeff,features] = vlt.stats.safe_pca(waves,'Rows','complete');
 
 features = features(:,1:N)';
 
