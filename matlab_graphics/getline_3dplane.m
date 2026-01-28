@@ -84,6 +84,7 @@ else
     switch get(varargin{1}, 'Type')
     case 'figure'
         GETLINE_FIG = varargin{1};
+        if numel(GETLINE_FIG)>1, GETLINE_FIG = GETLINE_FIG(1); end
         GETLINE_AX = get(GETLINE_FIG, 'CurrentAxes');
         if (isempty(GETLINE_AX))
             GETLINE_AX = axes('Parent', GETLINE_FIG);
@@ -91,6 +92,7 @@ else
 
     case 'axes'
         GETLINE_AX = varargin{1};
+        if numel(GETLINE_AX)>1, GETLINE_AX = GETLINE_AX(1); end
         GETLINE_FIG = ancestor(GETLINE_AX, 'figure');
 
     otherwise
@@ -98,6 +100,9 @@ else
         error(message('getline_3dplane:expectedFigureOrAxesHandle'));
     end
 end
+
+if numel(GETLINE_FIG)>1, GETLINE_FIG = GETLINE_FIG(1); end
+if numel(GETLINE_AX)>1, GETLINE_AX = GETLINE_AX(1); end
 
 % Remember initial figure state
 state= uisuspend(GETLINE_FIG);
@@ -224,6 +229,7 @@ global GETLINE_ISCLOSED
 global GETLINE_X GETLINE_Y GETLINE_Z
 
 key = get(GETLINE_FIG, 'CurrentCharacter');
+if iscell(key), key = key{1}; end
 switch key
 case {char(8), char(127)}  % delete and backspace keys
     % remove the previously selected point
