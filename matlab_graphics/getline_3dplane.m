@@ -292,6 +292,12 @@ z = pt(1,3);
 xlim = get(GETLINE_AX,'xlim');
 ylim = get(GETLINE_AX,'ylim');
 zlim = get(GETLINE_AX,'zlim');
+
+[az,el] = view(GETLINE_AX);
+if abs(el)==90,
+    z = max(zlim); % force to top of box for visibility in 2D view
+end
+
 if (x>=xlim(1)) && (x<=xlim(2)) && (y>=ylim(1)) && (y<=ylim(2)) && (z>=zlim(1)) && (z<=zlim(2))
     % inside axis limits
     GETLINE_X = x;
@@ -376,6 +382,12 @@ pt = get(GETLINE_AX, 'CurrentPoint');
 newx = pt(1,1);
 newy = pt(1,2);
 newz = pt(1,3);
+
+[az,el] = view(GETLINE_AX);
+if abs(el)==90,
+    zlim = get(GETLINE_AX,'zlim');
+    newz = max(zlim); % force to top of box for visibility in 2D view
+end
 
 if (GETLINE_ISCLOSED && (length(GETLINE_X) >= 3))
     x = [GETLINE_X(1:end-1) newx GETLINE_X(end)];
