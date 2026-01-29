@@ -555,9 +555,7 @@ switch command,
 		cluster_spikewaves_gui('command','UpdateMergeQualityMenu','fig',fig);
 		cluster_spikewaves_gui('command','Draw','fig',fig);
 	case 'SelectSpikesToExcludeFeatureAxes', 
-		disp('DEBUG: SelectSpikesToExcludeFeatureAxes called.');
 		currentSelectedCluster = cluster_spikewaves_gui('command','CurrentSelectedCluster','fig',fig);
-		disp(['DEBUG: currentSelectedCluster: ' num2str(currentSelectedCluster)]);
 		if isnan(currentSelectedCluster),
 			errordlg(['Cannot exclude from NaN cluster']);
 			return;
@@ -566,19 +564,11 @@ switch command,
 		indexes = cluster_spikewaves_gui('command','FindVisibleSpikes','fig',fig);
 		z = find(ud.clusterids(indexes)==currentSelectedCluster);
 		indexes = indexes(z); % subset that belong to this cluster
-		disp(['DEBUG: ud.F size: ' mat2str(size(ud.F))]);
-		disp(['DEBUG: indexes length: ' num2str(length(indexes))]);
-		if ~isempty(indexes),
-			disp(['DEBUG: indexes min/max: ' num2str(min(indexes)) '/' num2str(max(indexes))]);
-			if max(indexes) > size(ud.F,1), disp('DEBUG: WARNING - indexes exceed ud.F dimensions!'); end
-		end
 		if isempty(indexes),
 			errordlg(['No visible spikes here to exclude']);
 			return;
 		end;
-		disp('DEBUG: Calling selectpoints3d...');
 		inside = selectpoints3d(ud.F(indexes,:)');
-		disp('DEBUG: selectpoints3d returned.');
 		z = find(inside); % who is inside the selection region?
 		indexes = indexes(z); 
 		cluster_spikewaves_gui('command','SplitCluster','fig',fig,'parentcluster',currentSelectedCluster,'indexes',indexes);

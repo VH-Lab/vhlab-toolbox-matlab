@@ -84,7 +84,6 @@ else
     switch get(varargin{1}, 'Type')
     case 'figure'
         GETLINE_FIG = varargin{1};
-        if numel(GETLINE_FIG)>1, GETLINE_FIG = GETLINE_FIG(1); end
         GETLINE_AX = get(GETLINE_FIG, 'CurrentAxes');
         if (isempty(GETLINE_AX))
             GETLINE_AX = axes('Parent', GETLINE_FIG);
@@ -92,7 +91,6 @@ else
 
     case 'axes'
         GETLINE_AX = varargin{1};
-        if numel(GETLINE_AX)>1, GETLINE_AX = GETLINE_AX(1); end
         GETLINE_FIG = ancestor(GETLINE_AX, 'figure');
 
     otherwise
@@ -100,9 +98,6 @@ else
         error(message('getline_3dplane:expectedFigureOrAxesHandle'));
     end
 end
-
-if numel(GETLINE_FIG)>1, GETLINE_FIG = GETLINE_FIG(1); end
-if numel(GETLINE_AX)>1, GETLINE_AX = GETLINE_AX(1); end
 
 % Remember initial figure state
 state= uisuspend(GETLINE_FIG);
@@ -124,8 +119,7 @@ GETLINE_H1 = line('Parent', GETLINE_AX, ...
                   'Visible', 'off', ...
                   'Clipping', 'off', ...
                   'Color', 'k', ...
-                  'LineStyle', '-', ...
-                  'LineWidth', 2);
+                  'LineStyle', '-');
 
 GETLINE_H2 = line('Parent', GETLINE_AX, ...
                   'XData', GETLINE_X, ...
@@ -134,8 +128,7 @@ GETLINE_H2 = line('Parent', GETLINE_AX, ...
                   'Visible', 'off', ...
                   'Clipping', 'off', ...
                   'Color', 'w', ...
-                  'LineStyle', ':', ...
-                  'LineWidth', 2);
+                  'LineStyle', ':');
 
 % We're ready; wait for the user to do the drag
 % Wrap the call to waitfor in try-catch so we'll
@@ -231,7 +224,6 @@ global GETLINE_ISCLOSED
 global GETLINE_X GETLINE_Y GETLINE_Z
 
 key = get(GETLINE_FIG, 'CurrentCharacter');
-if iscell(key), key = key{1}; end
 switch key
 case {char(8), char(127)}  % delete and backspace keys
     % remove the previously selected point
@@ -292,12 +284,6 @@ z = pt(1,3);
 xlim = get(GETLINE_AX,'xlim');
 ylim = get(GETLINE_AX,'ylim');
 zlim = get(GETLINE_AX,'zlim');
-
-[az,el] = view(GETLINE_AX);
-if abs(el)==90,
-    z = max(zlim); % force to top of box for visibility in 2D view
-end
-
 if (x>=xlim(1)) && (x<=xlim(2)) && (y>=ylim(1)) && (y<=ylim(2)) && (z>=zlim(1)) && (z<=zlim(2))
     % inside axis limits
     GETLINE_X = x;
@@ -382,12 +368,6 @@ pt = get(GETLINE_AX, 'CurrentPoint');
 newx = pt(1,1);
 newy = pt(1,2);
 newz = pt(1,3);
-
-[az,el] = view(GETLINE_AX);
-if abs(el)==90,
-    zlim = get(GETLINE_AX,'zlim');
-    newz = max(zlim); % force to top of box for visibility in 2D view
-end
 
 if (GETLINE_ISCLOSED && (length(GETLINE_X) >= 3))
     x = [GETLINE_X(1:end-1) newx GETLINE_X(end)];

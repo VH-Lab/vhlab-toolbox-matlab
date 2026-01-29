@@ -30,23 +30,15 @@ function inside = selectpoints3d(pts3d)
 %
 %
 
-disp('DEBUG: selectpoints3d called.');
-disp(['DEBUG: pts3d size: ' mat2str(size(pts3d))]);
-disp('DEBUG: Calling getline_3dplane...');
 [x,y,z] = vlt.matlab.graphics.getline_3dplane;
-disp('DEBUG: getline_3dplane returned.');
 
-dar = get(gca,'DataAspectRatio');
-% scale the points for view rotation
-S = [1/dar(1) 0 0 ; 0 1/dar(2) 0; 0 0 1/dar(3)];
-
-[A] = vlt.matlab.graphics.viewpoint3dto2d( S * [x(:) y(:) z(:)]' );
+[A] = vlt.matlab.graphics.viewpoint3dto2d( [x(:) y(:) z(:)]' );
 
 if size(pts3d,1) == 2,
 	pts3d = [pts3d; zeros(1,size(pts3d,2))];
 end;
 
-[B] = vlt.matlab.graphics.viewpoint3dto2d( S * pts3d );
+[B] = vlt.matlab.graphics.viewpoint3dto2d( pts3d );
 
 inside = inpolygon(B(1,:),B(2,:),A(1,:),A(2,:));
 
