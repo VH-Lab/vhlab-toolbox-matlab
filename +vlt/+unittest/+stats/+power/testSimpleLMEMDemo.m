@@ -11,7 +11,8 @@ classdef testSimpleLMEMDemo < matlab.unittest.TestCase
             % 2. Run the Demo
             % If this function errors, the test framework will catch it and fail.
             try
-                vlt.stats.power.simpleLMEMDemo();
+                % Run with single effect size and no plot for speed/headless environment
+                vlt.stats.power.simpleLMEMDemo(5.0, false);
                 didRun = true;
             catch ME
                 didRun = false;
