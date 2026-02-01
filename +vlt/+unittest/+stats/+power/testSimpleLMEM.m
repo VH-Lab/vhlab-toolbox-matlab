@@ -105,6 +105,71 @@ classdef testSimpleLMEM < matlab.unittest.TestCase
             testCase.verifyTrue(startsWith(stats.formula, 'Y ~'), ...
                 'Auto-detect failed to identify column Y.');
         end
+
+        function testArrayEffectSize(testCase)
+            % SCENARIO: Provide multiple effect sizes. Check output shapes.
+            T = testCase.createTestTable(10);
+
+            effectSizes = [0, 10, 100];
+            sims = 5;
+            stats = vlt.stats.power.simpleLMEM(T, "Y", "AnimalID", ...
+                ["Strain", "Drug"], [false, true], "Drug", "DrugB", effectSizes, ...
+                'Simulations', sims, 'verbose', false, 'useProgressBar', false);
+
+            testCase.verifySize(stats.power, [1, 3], 'Power should be a 1x3 vector.');
+            testCase.verifySize(stats.pValues, [sims, 3], 'pValues should be Simulations x 3.');
+            testCase.verifySize(stats.successCount, [1, 3]);
+            testCase.verifySize(stats.simulations, [1, 3]);
+
+            % Power should likely increase (or stay same for 0 vs small, but definitely 100 should be high)
+            % Since N is small and data random, just check last one is high
+            testCase.verifyGreaterThanOrEqual(stats.power(3), stats.power(1), ...
+                'Power for EffectSize=100 should be >= Power for EffectSize=0');
+        end
+
+        function testUseLog(testCase)
+            % SCENARIO: Use Log transformation.
+            % We use positive data.
+            T = testCase.createTestTable(10);
+            T.Y = abs(T.Y) + 1; % Ensure positive
+
+            % Just verify it runs without error and produces results
+            stats = vlt.stats.power.simpleLMEM(T, "Y", "AnimalID", ...
+                ["Strain", "Drug"], [false, true], "Drug", "DrugB", 5, ...
+                'Simulations', 2, 'useLog', true, 'verbose', false);
+
+            testCase.verifyTrue(isstruct(stats));
+        end
+
+        function testUseRanks(testCase)
+            % SCENARIO: Use Rank transformation.
+            T = testCase.createTestTable(10);
+
+            stats = vlt.stats.power.simpleLMEM(T, "Y", "AnimalID", ...
+                ["Strain", "Drug"], [false, true], "Drug", "DrugB", 5, ...
+                'Simulations', 2, 'useRanks', true, 'verbose', false);
+
+             testCase.verifyTrue(isstruct(stats));
+        end
+
+        function testUseParallel(testCase)
+            % SCENARIO: Verify useParallel true/false both run.
+            T = testCase.createTestTable(6);
+
+            % Serial
+            statsSerial = vlt.stats.power.simpleLMEM(T, "Y", "AnimalID", ...
+                ["Strain", "Drug"], [false, true], "Drug", "DrugB", 5, ...
+                'Simulations', 2, 'useParallel', false, 'verbose', false);
+            testCase.verifyTrue(isstruct(statsSerial));
+
+            % Parallel (Default)
+            % Since we are in an environment where we might not want to wait for pool startup if not already running,
+            % this test effectively checks syntax validity of parfor block.
+            statsParallel = vlt.stats.power.simpleLMEM(T, "Y", "AnimalID", ...
+                ["Strain", "Drug"], [false, true], "Drug", "DrugB", 5, ...
+                'Simulations', 2, 'useParallel', true, 'verbose', false);
+            testCase.verifyTrue(isstruct(statsParallel));
+        end
         
     end
     
