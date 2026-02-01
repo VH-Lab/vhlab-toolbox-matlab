@@ -28,8 +28,9 @@ function stats = simpleLMEM(T, Observation, Replicate, FixedFactors, FactorShuff
 %       The name of the factor you are testing (e.g., "Drug").
 %   TargetLevel (String/Numeric)
 %       The specific group to receive the signal (e.g., "Drug_A").
-%   EffectSize (Double)
-%       The magnitude of the signal to inject.
+%   EffectSize (Numeric Vector)
+%       The magnitude(s) of the signal to inject.
+%       If a vector is provided, power is calculated for each effect size.
 %
 %   OPTIONAL PARAMETERS:
 %   'Simulations' (Integer, Default: 1000)
@@ -42,22 +43,30 @@ function stats = simpleLMEM(T, Observation, Replicate, FixedFactors, FactorShuff
 %       If true, fits full interactions between fixed factors (e.g., 'A*B').
 %       If false, fits only main effects (e.g., 'A + B').
 %   'verbose' (Boolean, Default: false)
-%       If true, prints progress to command line every 20 simulations.
+%       If true, prints progress to command line.
 %   'useProgressBar' (Boolean, Default: true)
-%       If true, displays a graphical waitbar.
+%       If true, displays a graphical waitbar (only in serial mode).
+%   'useRanks' (Boolean, Default: false)
+%       If true, transforms the Observation values to ranks before computing.
+%   'useLog' (Boolean, Default: false)
+%       If true, transforms the Observation values to log10 before computing.
+%   'useParallel' (Boolean, Default: true)
+%       If true, uses parfor to run simulations in parallel.
 %
 %   OUTPUTS:
 %   stats (Struct)
-%       .power        - Fraction of simulations with p < Alpha
-%       .pValues      - Vector of p-values from all simulations
-%       .successCount - Number of significant hits
-%       .simulations  - Total simulations run
+%       .power        - Vector of fractions of simulations with p < Alpha (one per EffectSize)
+%       .pValues      - Matrix of p-values (Simulations x NumEffectSizes)
+%       .successCount - Vector of number of significant hits
+%       .simulations  - Vector of total valid simulations run
+%       .formula      - The LMEM formula used
+%       .effectSize   - The input EffectSize vector
 %
 %   EXAMPLE:
 %       mask = [0, 1]; % Stratify Strain, Shuffle Drug
 %       res = vlt.stats.power.simpleLMEM(data, "ReactionTime", "MouseID", ...
-%             ["Strain", "Drug"], mask, "Drug", "Drug_A", 5.5, ...
-%             'useInteractionTerms', true);
+%             ["Strain", "Drug"], mask, "Drug", "Drug_A", [0, 5, 10], ...
+%             'useInteractionTerms', true, 'useParallel', true);
 %
 %   See also VLT.STATS.PERMUTEREPLICATES, VLT.STATS.INJECTEFFECTTOTABLE.
 
@@ -69,13 +78,16 @@ function stats = simpleLMEM(T, Observation, Replicate, FixedFactors, FactorShuff
         FactorShuffleMask (1,:) logical
         TargetFactor (1,1) string
         TargetLevel (1,1) % polymorphic
-        EffectSize (1,1) double
+        EffectSize double {mustBeVector}
         options.Simulations (1,1) double {mustBeInteger, mustBePositive} = 1000
         options.Alpha (1,1) double {mustBeInRange(options.Alpha, 0, 1)} = 0.05
         options.useConstantTerm (1,1) logical = true
         options.useInteractionTerms (1,1) logical = false
         options.verbose (1,1) logical = false
         options.useProgressBar (1,1) logical = true
+        options.useRanks (1,1) logical = false
+        options.useLog (1,1) logical = false
+        options.useParallel (1,1) logical = true
     end
 
     %% 1. Setup and Validation
@@ -98,6 +110,18 @@ function stats = simpleLMEM(T, Observation, Replicate, FixedFactors, FactorShuff
         if options.verbose
             fprintf('Auto-selected Observation column: "%s"\n', obsCol);
         end
+    end
+
+    % Apply Transformations
+    if options.useLog
+        if any(T.(obsCol) <= 0)
+            warning('simpleLMEM:LogNegative', 'Log10 requested but data contains <= 0 values. Results may be complex or NaN.');
+        end
+        T.(obsCol) = log10(T.(obsCol));
+    end
+
+    if options.useRanks
+        T.(obsCol) = vlt.stats.ranks(T.(obsCol));
     end
 
     % Validate Mask Logic: The Target Factor MUST be shuffled (1)
@@ -140,30 +164,96 @@ function stats = simpleLMEM(T, Observation, Replicate, FixedFactors, FactorShuff
 
     %% 2. Simulation Loop
     
-    pValues = zeros(options.Simulations, 1);
+    numES = numel(EffectSize);
+    pValues = zeros(options.Simulations, numES);
     
-    % Setup Progress Bar
+    % Setup Progress Bar (Only for serial mode)
     wb = [];
-    if options.useProgressBar && options.Simulations > 10
+    useWB = options.useProgressBar && options.Simulations > 10 && ~options.useParallel;
+    if useWB
         wb = waitbar(0, sprintf('Running %d Simulations...', options.Simulations));
         cleanUp = onCleanup(@() delete(wb)); % Ensure closure on error/exit
     end
     
     startTime = tic;
     
-    for i = 1:options.Simulations
+    if options.useParallel
+        parfor i = 1:options.Simulations
+            pValues(i, :) = simulationWorker(T, obsCol, FixedFactors, Replicate, FactorShuffleMask, ...
+                TargetFactor, TargetLevel, EffectSize, formulaFull);
+        end
+    else
+        for i = 1:options.Simulations
+            pValues(i, :) = simulationWorker(T, obsCol, FixedFactors, Replicate, FactorShuffleMask, ...
+                TargetFactor, TargetLevel, EffectSize, formulaFull);
+
+            % Progress Reporting (Serial only)
+            if mod(i, 20) == 0
+                % Verbose text output
+                if options.verbose
+                    t = toc(startTime);
+                    estTimeLeft = (t / i) * (options.Simulations - i);
+                    fprintf('Completed %d / %d simulations (%.1f%%). Est time left: %.1f sec.\n', ...
+                        i, options.Simulations, (i/options.Simulations)*100, estTimeLeft);
+                end
+
+                % Waitbar update
+                if ~isempty(wb) && isvalid(wb)
+                    waitbar(i/options.Simulations, wb);
+                end
+            end
+        end
+    end
+
+    %% 3. Compile Statistics
+
+    % Initialize output stats vectors
+    stats.power = zeros(1, numES);
+    stats.successCount = zeros(1, numES);
+    stats.simulations = zeros(1, numES);
+
+    for e = 1:numES
+        colP = pValues(:, e);
+        validSims = sum(~isnan(colP));
+        sigHits = sum(colP < options.Alpha, 'omitnan');
         
-        % A. SANITIZE (Create H0)
-        % Shuffle to remove existing effects, respecting the mask.
-        % --- FIX: Use obsCol instead of Observation ---
-        T_null = vlt.stats.permuteReplicates(T, obsCol, FixedFactors, ...
-                                             Replicate, FactorShuffleMask);
+        stats.power(e) = sigHits / validSims;
+        stats.successCount(e) = sigHits;
+        stats.simulations(e) = validSims;
+    end
+
+    stats.pValues = pValues;
+    stats.formula = formulaFull;
+    stats.effectSize = EffectSize;
+
+    if options.verbose
+        fprintf('\nPower Analysis Complete.\n');
+        for e = 1:numES
+             fprintf('Effect Size %.2f: Detected %d/%d (%.2f%%)\n', ...
+                 EffectSize(e), stats.successCount(e), stats.simulations(e), stats.power(e) * 100);
+        end
+    end
+
+end
+
+function pVals = simulationWorker(T, obsCol, FixedFactors, Replicate, FactorShuffleMask, TargetFactor, TargetLevel, EffectSizes, formulaFull)
+    % Helper function to run one simulation iteration (shuffle -> loop effect sizes -> fit)
+
+    numES = numel(EffectSizes);
+    pVals = NaN(1, numES);
+
+    % A. SANITIZE (Create H0)
+    % Shuffle to remove existing effects, respecting the mask.
+    T_null = vlt.stats.permuteReplicates(T, obsCol, FixedFactors, ...
+                                         Replicate, FactorShuffleMask);
+
+    for e = 1:numES
+        es = EffectSizes(e);
         
         % B. INJECT (Create H1)
         % Add the specific signal to the target group.
-        % --- FIX: Use obsCol instead of Observation ---
         T_sim = vlt.stats.injectEffectToTable(T_null, obsCol, ...
-                                              TargetFactor, TargetLevel, EffectSize);
+                                              TargetFactor, TargetLevel, es);
         
         % C. FIT MODEL
         try
@@ -178,52 +268,14 @@ function stats = simpleLMEM(T, Observation, Replicate, FixedFactors, FactorShuff
             
             if isempty(pVal)
                 % Fallback: If term dropped or aliased
-                pValues(i) = NaN; 
+                pVals(e) = NaN;
             else
-                pValues(i) = pVal;
+                pVals(e) = pVal;
             end
             
-        catch ME
-            % Warn only if verbose to avoid spamming 1000 lines
-            if options.verbose
-                warning('Fit failed on iteration %d: %s', i, ME.message);
-            end
-            pValues(i) = NaN;
-        end
-        
-        % Progress Reporting
-        if mod(i, 20) == 0
-            % Verbose text output
-            if options.verbose
-                t = toc(startTime);
-                estTimeLeft = (t / i) * (options.Simulations - i);
-                fprintf('Completed %d / %d simulations (%.1f%%). Est time left: %.1f sec.\n', ...
-                    i, options.Simulations, (i/options.Simulations)*100, estTimeLeft);
-            end
-            
-            % Waitbar update
-            if ~isempty(wb) && isvalid(wb)
-                waitbar(i/options.Simulations, wb);
-            end
+        catch
+            % Fit failed
+            pVals(e) = NaN;
         end
     end
-    
-    %% 3. Compile Statistics
-    
-    validSims = sum(~isnan(pValues));
-    sigHits = sum(pValues < options.Alpha, 'omitnan');
-    
-    stats.power = sigHits / validSims;
-    stats.successCount = sigHits;
-    stats.simulations = validSims;
-    stats.pValues = pValues;
-    stats.formula = formulaFull;
-    stats.effectSize = EffectSize;
-    
-    if options.verbose
-        fprintf('\nPower Analysis Complete.\n');
-        fprintf('Detected Signal: %d/%d times.\n', sigHits, validSims);
-        fprintf('Estimated Power: %.2f%%\n', stats.power * 100);
-    end
-
 end
