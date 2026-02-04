@@ -29,8 +29,8 @@ function p = probOfSuper(A, B)
 % See also: vlt.stats.ranks2, vlt.stats.mwustat
 
 arguments
-    A double {mustBeVector, mustBeReal}
-    B double {mustBeVector, mustBeReal}
+    A double {mustBeReal}
+    B double {mustBeReal}
 end
 
 % Force column vectors
