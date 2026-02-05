@@ -6,7 +6,7 @@ classdef test_get_lme_effect_sizes < matlab.unittest.TestCase
     %
     %   This test suite verifies:
     %   1. That the function runs correctly on a standard model without interactions.
-    %   2. That the math (Cohen's d and StdBeta) matches manual calculations.
+    %   2. That the math (Cohen's d, StdBeta, and N) matches manual calculations.
     %   3. That the function correctly throws an error when interactions are present.
 
     properties
@@ -62,6 +62,7 @@ classdef test_get_lme_effect_sizes < matlab.unittest.TestCase
             testCase.verifyTrue(isfield(es, 'RawBeta'));
             testCase.verifyTrue(isfield(es, 'CohensD'));
             testCase.verifyTrue(isfield(es, 'StdBeta'));
+            testCase.verifyTrue(isfield(es, 'N'));
         end
         
         function testCalculations(testCase)
@@ -82,18 +83,29 @@ classdef test_get_lme_effect_sizes < matlab.unittest.TestCase
             
             for i = 1:length(betaVector)
                 beta = betaVector(i);
-                sigma_x = std(X(:, i), 'omitnan');
+                col = X(:, i);
+                sigma_x = std(col, 'omitnan');
                 
                 % Expected values
                 expected_CohensD = beta / sigma_y;
                 expected_StdBeta = beta * (sigma_x / sigma_y);
                 
+                % Expected N calculation
+                if all(col == 0 | col == 1)
+                    expected_N = sum(col);
+                else
+                    expected_N = length(col);
+                end
+
                 % Assertions with tolerance
                 testCase.verifyEqual(es.CohensD(i), expected_CohensD, ...
                     'AbsTol', 1e-10, 'Cohen''s D calculation mismatch');
                 
                 testCase.verifyEqual(es.StdBeta(i), expected_StdBeta, ...
                     'AbsTol', 1e-10, 'Standardized Beta calculation mismatch');
+
+                testCase.verifyEqual(es.N(i), expected_N, ...
+                    'N calculation mismatch');
             end
         end
 
