@@ -67,12 +67,12 @@ classdef test_get_lme_effect_sizes < matlab.unittest.TestCase
         end
 
         function testObservationData(testCase)
-            % Verify that the observation field matches the response data
+            % Verify that the observation field matches the response variable name
             es = vlt.stats.get_lme_effect_sizes(testCase.SimpleLME);
-            expected_Y = testCase.TestTable.Response;
+            expected_Y_Name = 'Response';
 
-            testCase.verifyEqual(es.observation, expected_Y, ...
-                'Observation data should match response variable.');
+            testCase.verifyEqual(es.observation, expected_Y_Name, ...
+                'Observation field should match the response variable name.');
         end
         
         function testCalculations(testCase)

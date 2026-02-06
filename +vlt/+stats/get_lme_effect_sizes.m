@@ -134,6 +134,6 @@ function effectSizes = get_lme_effect_sizes(lme)
     effectSizes.CohensD = cohensD;
     effectSizes.StdBeta = stdBeta;
     effectSizes.N = N;
-    effectSizes.observation = yData;
+    effectSizes.observation = yName;
 
 end
