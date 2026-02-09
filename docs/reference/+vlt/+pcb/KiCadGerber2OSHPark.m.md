@@ -16,6 +16,6 @@
   F.Mask.gbr    -> F.Mask.gbr.GTS
   F.SilkS.gbr   -> F.SilkS.gbr.GTO
   Edge.Cuts.gbr -> Edge.Cuts.gbr.GKO
-  .drl          -> drl.XLN
+  .drl          -> drl.XLN (any .drl file is renamed)
 
 ```
