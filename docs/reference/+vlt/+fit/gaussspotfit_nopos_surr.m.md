@@ -16,12 +16,14 @@
    INPUTS:
      XRANGE and YRANGE specify the size of the stimulus field. They should be vectors:
      (e.g., XRANGE = 0:800; YRANGE=0:600).
-     X_CTR, Y_CTR, RADIUS, and RESPONSE are vectors that describe the stimulus circles.
-     RESPONSE is the response of the system to that circle.
+     RADIUS is a vector that describes the radius of each stimulus. If the stimulus is a circle that 
+       is filled, RADIUS should be positive. If the stimulus is a circle that is empty (with the stimulus 
+       surrounding the center), the RADIUS should be negative. 
+     RESPONSE is a vector with the mean response to each stimulus.
    OUTPUTS:
      MU - Always [0 0]
      C  - The covariance matrix of the best-fit gaussian PDF; always [C1 0 ; 0 C1]
-     AMP - The amplitude of the response 
+     AMP - The amplitude of the response
      B - The modulating factor
      FIT_RESPONSES - the fit responses
      R_SQUARED - The error of the fit normalized by the square of the data around its mean

@@ -12,7 +12,11 @@ t = '';
 
 for i=1:numel(out),
 	t = cat(2,t,[repmat(' ',1,spaces)]);
-	t = cat(2,t,['- ' out(i).title]);
+	title_str = out(i).title;
+	if ~isempty(title_str) && title_str(1)=='@',
+		title_str = ['''' title_str ''''];
+	end;
+	t = cat(2,t,['- ' title_str]);
 	if ~isstruct(out(i).path),
 		t = cat(2,t,[': ''' out(i).path '''' newline]);
 	else,
