@@ -63,7 +63,7 @@ function g = hedgesG(A, B)
         if m1 == m2
             d = 0;
         else
-            d = Inf; % Or handle as needed, Inf is standard for 0 variance with difference
+            d = sign(m1 - m2) * Inf;
         end
     else
         d = (m1 - m2) / s_pool;
