@@ -35,19 +35,30 @@ if ~isstring(factors) && ~iscellstr(factors)
     error('vlt:stats:groupMeans:InvalidInput', 'FACTORS must be a string array or a cell array of character arrays.');
 end
 
+% Determine output column names
+default_mean_col_name = ['mean_' char(dependent_variable)];
+desired_mean_col_name = ['Mean_' char(dependent_variable)];
+factor_vars = cellstr(factors(:)');
+
+% Handle empty table explicitly to avoid groupsummary issues with 0x0
+if isempty(T)
+    % Create an empty table with the correct columns
+    % We copy the structure from T for factors
+    O = T(:, factor_vars);
+
+    % Add the mean column (assuming double type for mean)
+    O.(desired_mean_col_name) = zeros(0, 1);
+
+    return;
+end
+
 % Calculate group means using groupsummary
 % groupsummary(T, GroupVars, Method, DataVars)
 G = groupsummary(T, factors, 'mean', dependent_variable);
 
-% Determine the default output column name from groupsummary
-default_mean_col_name = ['mean_' char(dependent_variable)];
-
-% Determine the desired output column name
-desired_mean_col_name = ['Mean_' char(dependent_variable)];
-
 % Select columns: Factors + Mean Column
 % We explicitly select by name to ensure we only get what we asked for (excluding GroupCount, etc.)
-cols_to_keep = [cellstr(factors(:)'), {default_mean_col_name}];
+cols_to_keep = [factor_vars, {default_mean_col_name}];
 O = G(:, cols_to_keep);
 
 % Rename the mean column
