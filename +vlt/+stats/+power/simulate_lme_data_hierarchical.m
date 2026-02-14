@@ -40,7 +40,7 @@ function simTbl = simulate_lme_data_hierarchical(lme_base, tbl_base, effect_size
         Y_sim_null(is_in_group) = y_shuffled_for_this_group;
     end
     Y_sim = Y_sim_null;
-    is_target_category = tbl_base.(category_name) == category_level;
+    is_target_category = vlt.stats.power.find_group_indices(tbl_base, category_level, category_name);
     Y_sim(is_target_category) = Y_sim(is_target_category) + effect_size;
     simTbl = tbl_base;
     simTbl.(y_name) = Y_sim;
