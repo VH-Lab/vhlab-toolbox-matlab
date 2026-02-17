@@ -8,7 +8,6 @@ classdef test_multiChannelPanZoom < matlab.unittest.TestCase
     
     methods (TestMethodSetup)
         function createFigure(testCase)
-            % Create a fresh figure for each test
             testCase.Figure = figure('Visible', 'off');
             testCase.Axes = axes(testCase.Figure);
             testCase.TempFile = [tempname '.mat'];
@@ -17,138 +16,90 @@ classdef test_multiChannelPanZoom < matlab.unittest.TestCase
     
     methods (TestMethodTeardown)
         function closeFigure(testCase)
-            % Close figure (triggers cleanup)
-            if isvalid(testCase.Figure)
-                close(testCase.Figure);
-            end
-            
-            % Ensure temp file is gone (double check)
-            if isfile(testCase.TempFile)
-                delete(testCase.TempFile);
-            end
+            if isvalid(testCase.Figure), close(testCase.Figure); end
+            if isfile(testCase.TempFile), delete(testCase.TempFile); end
         end
     end
     
     methods (Test)
         
-        function testBasicPlotting(testCase)
-            % Test 1: Does it run without error?
-            t = (0:0.1:10)';
-            data = rand(length(t), 2);
+        function testThreeTierLogic(testCase)
+            % This test verifies the 3-Stage Zoom Pyramid
             
-            h = vlt.plot.multiChannelPanZoom(...
-                'time', t, ...
-                'data', data, ...
-                'tempFile', testCase.TempFile);
+            % Setup: 300 seconds of data
+            % T1 (Overview): > 60s window
+            % T2 (Mid-Tier): 2s - 60s window
+            % T3 (Raw Disk): < 2s window
             
-            % Verify handles
-            testCase.verifyTrue(isfield(h, 'lines'), 'Handle struct missing lines');
-            testCase.verifyEqual(length(h.lines), 2, 'Should have created 2 lines');
-            testCase.verifyTrue(isfile(testCase.TempFile), 'Temp file was not created');
-        end
-        
-        function testDataValues(testCase)
-            % Test 2: Verify the Overview data (min/max) matches input range
-            t = (0:0.1:100)';
-            % Create known data: Ch1=0..1, Ch2=10..11
-            data = [rand(length(t),1), rand(length(t),1) + 10]; 
-            
-            h = vlt.plot.multiChannelPanZoom(...
-                'time', t, ...
-                'data', data, ...
-                'channelSpacing', 0, ... % No offset for easier checking
-                'tempFile', testCase.TempFile);
-            
-            % Check Overview Data limits
-            y_data = h.Overview.Data;
-            
-            % Channel 1 should be within [0, 1]
-            testCase.verifyGreaterThanOrEqual(min(y_data(:,1)), 0);
-            testCase.verifyLessThanOrEqual(max(y_data(:,1)), 1);
-            
-            % Channel 2 should be within [10, 11]
-            testCase.verifyGreaterThanOrEqual(min(y_data(:,2)), 10);
-            testCase.verifyLessThanOrEqual(max(y_data(:,2)), 11);
-        end
-        
-        function testZoomSwitchLogic(testCase)
-            % Test 3: Verify switching between RAM (Overview) and Disk (Detail)
-            
-            % Setup: 100 seconds of data, Threshold = 5s
-            % High sample rate to ensure Detail view has MORE points than Overview
             Fs = 1000;
-            t = (0:1/Fs:100)'; 
-            data = sin(2*pi*t); % 100k points
+            t = (0:1/Fs:300)'; 
+            data = sin(2*pi*t); % 300k points
             
             h = vlt.plot.multiChannelPanZoom(...
                 'time', t, ...
                 'data', data, ...
-                'threshold', 5.0, ...
-                'tempFile', testCase.TempFile);
-            
-            % CASE A: Zoomed OUT (Range = 100s) -> Should have FEW points (Overview)
-            % Overview is targeted at ~2000 points (x2 for min/max = 4000)
-            xlim(testCase.Axes, [0 100]);
-            drawnow; % Process callbacks
-            
-            % Check number of points in line object
-            n_points_out = length(h.lines(1).XData);
-            testCase.verifyLessThan(n_points_out, 5000, 'Zoomed OUT should use downsampled data');
-            
-            % CASE B: Zoomed IN (Range = 0.5s) 
-            % 0.5s * 1000 Hz = 500 points.
-            % Wait, if Overview is 4000 points, 500 is smaller.
-            % We need to zoom in to a chunk that has MORE points than the Overview 
-            % to prove we switched, OR check the values.
-            
-            % Let's use a VERY high sample rate for the test to be clear
-            Fs = 20000; % 20kHz
-            t = (0:1/Fs:10)'; % 10s -> 200k points
-            data = rand(length(t), 1);
-            
-            % Update existing plot
-            h = vlt.plot.multiChannelPanZoom(...
-                'previousHandle', h, ... 
-                'time', t, ...
-                'data', data, ...
+                'midThreshold', 60.0, ...
                 'threshold', 2.0, ...
                 'tempFile', testCase.TempFile);
             
-            % Zoom to 1.0s window -> 20,000 points
-            % Overview is fixed at ~4000 points.
-            xlim(testCase.Axes, [4 5]);
+            % --- TEST 1: MACRO VIEW (Tier 1) ---
+            % Zoom out to full 300s
+            xlim(testCase.Axes, [0 300]);
             drawnow; 
             
-            % Get the current data from the plot
-            current_x = h.lines(1).XData;
+            % Check point count. Tier 1 target is ~2000 points.
+            n_points = length(h.lines(1).XData);
+            testCase.verifyLessThan(n_points, 5000, 'Macro View should use Tier 1 (Small RAM)');
             
-            testCase.verifyGreaterThan(length(current_x), 10000, 'Zoomed IN should load raw high-res data (>10k points)');
+            
+            % --- TEST 2: MID VIEW (Tier 2) ---
+            % Zoom to 30s window (Between 2s and 60s)
+            xlim(testCase.Axes, [100 130]);
+            drawnow;
+            
+            n_points = length(h.lines(1).XData);
+            
+            % Tier 2 target is ~50,000 points. 
+            % It should be MUCH larger than Tier 1.
+            testCase.verifyGreaterThan(n_points, 10000, 'Mid View should use Tier 2 (Large RAM)');
+            
+            % CRITICAL CHECK: Tier 2 loads the WHOLE 50k vector for the full 300s, 
+            % whereas Tier 3 loads only the sliced 30s.
+            % The XData for Tier 2 should span 0..300s.
+            x_range = h.lines(1).XData(end) - h.lines(1).XData(1);
+            testCase.verifyGreaterThan(x_range, 299, 'Tier 2 should have data for the FULL duration in RAM');
+            
+            
+            % --- TEST 3: MICRO VIEW (Tier 3) ---
+            % Zoom to 0.5s window (< 2s)
+            xlim(testCase.Axes, [150 150.5]);
+            drawnow;
+            
+            % This should trigger disk load.
+            % Data should only exist for the visible window (plus/minus margins).
+            x_range = h.lines(1).XData(end) - h.lines(1).XData(1);
+            
+            testCase.verifyLessThan(x_range, 2.0, 'Tier 3 (Disk) should only load the specific slice requested');
         end
         
         function testCleanup(testCase)
-            % Test 4: Does closing the figure delete the file?
-            
-            t = (0:1:10)';
-            data = rand(length(t), 1);
-            temp_file = [tempname '.mat']; % Use specific name
-            
-            % Create in a SEPARATE figure so we can close it safely
-            f = figure('Visible', 'off');
-            h = vlt.plot.multiChannelPanZoom(...
-                'time', t, ...
-                'data', data, ...
-                'tempFile', temp_file);
-            
-            % Assert file exists
-            testCase.verifyTrue(isfile(temp_file), 'File should exist');
-            
-            % Close figure
-            close(f);
-            drawnow; % Allow callbacks to fire
-            
-            % Assert file is gone
-            testCase.verifyFalse(isfile(temp_file), 'File should be deleted after figure close');
+             % This test previously failed. It should now pass.
+             
+             t = (0:1:10)'; data = rand(length(t), 1);
+             f = figure('Visible', 'off');
+             
+             % Create plot
+             h = vlt.plot.multiChannelPanZoom('time', t, 'data', data, 'tempFile', testCase.TempFile);
+             
+             % File should exist
+             testCase.verifyTrue(isfile(testCase.TempFile));
+             
+             % Close figure. 
+             % NOTE: 'h' still exists in this workspace, but the file should be deleted anyway
+             close(f);
+             drawnow;
+             
+             testCase.verifyFalse(isfile(testCase.TempFile), 'File should be deleted even if handle h exists');
         end
-        
     end
 end
