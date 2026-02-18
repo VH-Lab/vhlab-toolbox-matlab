@@ -29,8 +29,17 @@ classdef test_syncTriggers < matlab.unittest.TestCase
         end
 
         function testArgumentsValidation(testCase)
-             testCase.verifyError(@() vlt.time.syncTriggers('a', 'b'), ...
+            % Test with a cell array to ensure type mismatch
+             testCase.verifyError(@() vlt.time.syncTriggers({1}, {2}), ...
                 'MATLAB:validation:UnableToConvert');
+        end
+
+        function testInvalidMatrixInput(testCase)
+            % Test with 2D matrix
+            T1 = [1 2; 3 4];
+            T2 = [1 2; 3 4];
+            testCase.verifyError(@() vlt.time.syncTriggers(T1, T2), ...
+                'vlt:time:syncTriggers:InvalidInput');
         end
 
         function testEmpty(testCase)

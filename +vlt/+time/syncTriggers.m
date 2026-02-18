@@ -24,8 +24,12 @@ function [mapping] = syncTriggers(T1, T2)
 %
 
 arguments
-    T1 double {mustBeVector}
-    T2 double {mustBeVector}
+    T1 double
+    T2 double
+end
+
+if (~isvector(T1) && ~isempty(T1)) || (~isvector(T2) && ~isempty(T2))
+    error('vlt:time:syncTriggers:InvalidInput', 'Inputs must be vectors.');
 end
 
 if numel(T1) ~= numel(T2)
