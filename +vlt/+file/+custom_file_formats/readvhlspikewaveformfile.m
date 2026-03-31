@@ -25,7 +25,7 @@ this_function_opened_the_file = 0;
 waveforms = [];
 
 if ischar(file_or_fid),
-	fid = fopen(file_or_fid,'r','b'); % big endian
+	fid = fopen(file_or_fid,'rb','b'); % big endian
 	if fid<0,
 		error(['Could not open file ' file_or_fid '.']);
 	end;

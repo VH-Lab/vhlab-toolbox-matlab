@@ -129,7 +129,7 @@ T = []; D = [];
 
 % open the file, skip through to the chunk where we will start reading
 
-fid = fopen(myfilename,'r');
+fid = fopen(myfilename,'rb');
 
 if fid<0, error(['Could not open file ' myfilename '.']); end;
 
