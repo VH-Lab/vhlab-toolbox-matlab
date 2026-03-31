@@ -136,7 +136,7 @@ end;
 
 % NOW, WE KNOW WHAT TO READ, LET'S READ IT
 
-fid = fopen(filename,'r');
+fid = fopen(filename,'rb');
 if fileid_value(fid)<0,
         error(['Could not open filename ' filename_value(filename) ' for reading (check path, spelling, permissions).']);
 end;

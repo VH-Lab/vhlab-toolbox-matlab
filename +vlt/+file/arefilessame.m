@@ -11,8 +11,8 @@ arguments
     file2 char {mustBeFile}
 end; % arguments
 
-fid1 = fopen(file1,'r');
-fid2 = fopen(file2,'r');
+fid1 = fopen(file1,'rb');
+fid2 = fopen(file2,'rb');
 
 if fid1<0,
     error(['Could not open ' file1 ' for reading.']);
@@ -27,8 +27,8 @@ buffersize = 100000;
 b = 1;
 
 while ~feof(fid1),
-    D1 = fread(fid1,buffersize,'char');
-    D2 = fread(fid2,buffersize,'char');
+    D1 = fread(fid1,buffersize,'uint8');
+    D2 = fread(fid2,buffersize,'uint8');
     b = isequaln(D1,D2);
     if ~b,
         fclose(fid1);

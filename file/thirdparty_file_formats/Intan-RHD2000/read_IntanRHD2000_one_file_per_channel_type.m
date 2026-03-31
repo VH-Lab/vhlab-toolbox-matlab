@@ -64,7 +64,7 @@ end % switch
 
 fn = fixdatfilename([directory_name filesep filename_post]);
 
-fid = fopen(fn,'r','ieee-le');
+fid = fopen(fn,'rb','ieee-le');
 if fid<0
     error(['Could not open ' fn ' for reading.']);
 end

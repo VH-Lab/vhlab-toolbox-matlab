@@ -24,7 +24,7 @@ function A = readlabviewarray(fname, datasize, machineformat)
 
 if nargin<3,  mf = 'b'; else, mf = machineformat; end;
 
-fid = fopen(fname, 'r',mf);
+fid = fopen(fname, 'rb',mf);
 
 if fid>0,
 	dims = fread(fid,2,'int');

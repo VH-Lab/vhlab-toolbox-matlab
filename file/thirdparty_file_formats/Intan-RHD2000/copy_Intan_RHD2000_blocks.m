@@ -22,7 +22,7 @@ chunk_size = 100; % read at most 100 blocks per step, so we don't run out of mem
 status = 0;
 h = read_Intan_RHD2000_header(filename_in);
 
-fid_i = fopen(filename_in,'r');
+fid_i = fopen(filename_in,'rb');
 fid_o = fopen(filename_out,'w');
 if fid_o<0,
 	error(['Could not open the file ' filename_out ' for writing.']);

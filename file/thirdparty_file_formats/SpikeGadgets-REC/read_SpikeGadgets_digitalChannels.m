@@ -20,7 +20,7 @@ if (nargin < 8)
 end
 
 %Open file
-fid = fopen(filename,'r');
+fid = fopen(filename,'rb');
 
 %Store config text
 if (configExists)

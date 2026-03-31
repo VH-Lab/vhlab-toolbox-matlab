@@ -35,9 +35,9 @@ end
 
 [pathname filename2 extension] = fileparts(filename);
 if strcmpi(extension,'.smr'), % little endian
-        fid=fopen(filename,'r','l');
+        fid=fopen(filename,'rb','l');
 elseif strcmp(extension,'.son'), % big endian
-        fid=fopen(filename,'r','b');
+        fid=fopen(filename,'rb','b');
 else,
         error(['Unknown extension for SOM/SMR file: .' extension '.']);
 end;

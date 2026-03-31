@@ -2,7 +2,7 @@ function copy_SpikeGadgets_rec_files(filename_in,s0,s1,filename_out)
 % COPY_SPIKEGADGETS_REC_FILES Shortens .rec files from sample to sample provided in arguments
 
 %Open file in
-fid_in = fopen(filename_in,'r');
+fid_in = fopen(filename_in,'rb');
 %Open file out to write
 fid_out = fopen(filename_out,'w');
 
