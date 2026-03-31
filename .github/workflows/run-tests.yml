@@ -29,6 +29,7 @@ jobs:
         uses: matlab-actions/run-command@v2
         with:
           command: |
+            userpath(tempdir);
             vlt_Init;
             suite = matlab.unittest.TestSuite.fromPackage('vlt.unittest', 'IncludingSubpackages', true);
             runner = matlab.unittest.TestRunner.withTextOutput;
