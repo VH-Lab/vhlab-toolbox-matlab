@@ -24,6 +24,7 @@ jobs:
             Optimization_Toolbox
             Signal_Processing_Toolbox
             Image_Processing_Toolbox
+            Deep_Learning_Toolbox
 
       - name: Run tests
         uses: matlab-actions/run-command@v2
