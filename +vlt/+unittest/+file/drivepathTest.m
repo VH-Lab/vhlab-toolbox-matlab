@@ -2,11 +2,12 @@ classdef drivepathTest < matlab.unittest.TestCase
     methods(Test)
         function test_drivepath_output(testCase)
             % Test the output of drivepath based on the current OS
+            % Note: On Linux (GLNXA64) drivepath returns '/media'.
 
             p = vlt.file.drivepath();
 
             switch computer
-                case 'GLNXA66'
+                case 'GLNXA64'
                     expected = '/media';
                 case 'MACI64'
                     expected = '/Volumes';

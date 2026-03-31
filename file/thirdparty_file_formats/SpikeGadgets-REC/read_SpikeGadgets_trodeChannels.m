@@ -20,7 +20,7 @@ if (nargin < 8)
     configExists = 1;
 end
 % We open file
-fid = fopen(filename,'r');
+fid = fopen(filename,'rb');
 
 % Store config text
 if (configExists)

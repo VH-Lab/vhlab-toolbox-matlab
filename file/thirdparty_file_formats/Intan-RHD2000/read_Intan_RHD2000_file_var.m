@@ -4,7 +4,7 @@ function vars = read_Intan_RHD2000_file_var(filename)
 % A modification of the manufacturer's code to accept a filename and
 % return the variables in a struct.
 vars = [];
-fid = fopen(filename, 'r');
+fid = fopen(filename, 'rb');
 s = dir(filename);
 filesize = s.bytes;
 % Check 'magic number' at beginning of file to make sure this is an Intan

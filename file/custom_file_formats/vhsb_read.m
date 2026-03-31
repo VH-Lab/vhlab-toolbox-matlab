@@ -30,7 +30,7 @@ h = vhsb_readheader(fo);
 
  % vhsb_readheader will close the file
 
-fo = fopen(fo,'r','ieee-le');
+fo = fopen(fo,'rb','ieee-le');
 
  % calculate sample number
 

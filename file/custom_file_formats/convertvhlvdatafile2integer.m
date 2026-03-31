@@ -61,7 +61,7 @@ if isfield(headerstruct,'Multiplexed'),
 	multiplexed = headerstruct.Multiplexed;
 end;
 
-fid = fopen(myfilename,'r');
+fid = fopen(myfilename,'rb');
 if fid<0, error(['Could not open file ' myfilename '.']); end;
 
 total_samples_per_chunk = headerstruct.SamplesPerChunk * headerstruct.NumChans; % 

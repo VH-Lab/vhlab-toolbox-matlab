@@ -3,6 +3,14 @@ classdef test_hashmatlabvariable < matlab.unittest.TestCase
     properties
     end
 
+    methods (TestClassSetup)
+        function checkDataHashAvailable(testCase)
+            if ~exist('DataHash','file')
+                testCase.assumeFail('DataHash is not installed. Skipping tests.');
+            end
+        end
+    end
+
     methods (Test)
         function test_hash_consistency(testCase)
             % Test that hashing is consistent for the same data

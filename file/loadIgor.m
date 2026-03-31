@@ -19,7 +19,7 @@ if nargin==1, start=0; stop=Inf;
 elseif nargin==3, start=fix(start0)-1; stop=fix(stop0);
 elseif nargin==2, error('LoadIgor needs 1 or 3 arguments.'); end;
 
-fid = fopen(filename, 'r','b');
+fid = fopen(filename, 'rb','b');
 
 if (fid>2),   %  successful file open
    s = fseek(fid,17,'bof');

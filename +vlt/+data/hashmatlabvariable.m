@@ -28,6 +28,8 @@ function h=hashmatlabvariable(d, varargin)
 % for information about the undocumented function getByteStreamFromArray
 % function, upon which the default algorithm relies.
 %
+% Requires: DataHash (third-party, available on MATLAB File Exchange)
+%
 % See also: DataHash
 %
 % Example:

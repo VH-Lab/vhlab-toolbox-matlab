@@ -19,7 +19,7 @@ function [out,officialchannels] = read_SpikeGadgets_config(filename)
 
 
     %Open file for reading file id assigned to fid
-    fid = fopen(filename,'r');
+    fid = fopen(filename,'rb');
     %Displays error if couldn't be opened
     if (fid == -1)
         error('Error opening file.');

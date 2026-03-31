@@ -22,7 +22,7 @@ function [header] = read_Intan_RHD2000_header(filename);
 % See also: READ_INTAN_RDH2000_DATAFILE
 %
 
-fid = fopen(filename,'r');
+fid = fopen(filename,'rb');
 if fileid_value(fid)<0,
         error(['Could not open filename ' filename_value(filename) ' for reading (check path, spelling, permissions).']);
 end;

@@ -57,7 +57,7 @@ if fid_o<0,
 end;
 
 for i=1:length(varargin),
-	fid_i = fopen(varargin{i},'r'); % should not fail because we've already read header files
+	fid_i = fopen(varargin{i},'rb'); % should not fail because we've already read header files
 	if i~=1, % if i==1, copy the header, too
 		fseek(fid_i,h{i}.fileinfo.headersize,'bof');
 	end;

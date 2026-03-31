@@ -27,19 +27,13 @@ classdef test_savefigurelist < matlab.unittest.TestCase
         function test_savefigurelist_saves_files(testCase)
             % Test that savefigurelist saves files in the specified formats
 
-            % Get the current working directory to restore it later
-            originalDir = pwd;
-            % Change to the temporary directory
-            cd(testCase.tempDir);
-
             % Define the formats to save
             formatsToSave = {'fig', 'pdf'};
 
-            % Run the function
+            % Run the function from the temporary directory
+            cd(testCase.tempDir);
+            testCase.addTeardown(@() cd(tempdir));
             savefigurelist(testCase.fig, 'Formats', formatsToSave);
-
-            % Change back to the original directory
-            cd(originalDir);
 
             % Verify that the files were created in the temporary directory
             for i = 1:length(formatsToSave)
