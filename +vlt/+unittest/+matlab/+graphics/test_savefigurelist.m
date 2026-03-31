@@ -31,11 +31,9 @@ classdef test_savefigurelist < matlab.unittest.TestCase
             formatsToSave = {'fig', 'pdf'};
 
             % Run the function from the temporary directory
-            originalDir = pwd;
             cd(testCase.tempDir);
             testCase.addTeardown(@() cd(tempdir));
             vlt.matlab.graphics.savefigurelist(testCase.fig, 'Formats', formatsToSave);
-            cd(originalDir);
 
             % Verify that the files were created in the temporary directory
             for i = 1:length(formatsToSave)
