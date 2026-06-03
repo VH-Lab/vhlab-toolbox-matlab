@@ -31,6 +31,8 @@ function filelist = findfilegroups(parentdir, fileparameters, options)
 %  SearchParent (1)            | Should we search the parent?
 %  SearchDepth (Inf)           | How many directories 'deep' should we search?
 %                              |   0 means parent only, 1 means one folder in, ...
+%  followHidden (0)            | Should we traverse subdirectories whose names begin
+%                              |    with a '.' (hidden directories)?
 %
 %  Examples:
 %
@@ -67,6 +69,7 @@ arguments
     options.SearchParentFirst = 1
     options.SearchDepth = Inf
     options.SearchParent = 1
+    options.followHidden = 0
 end
 
 vlt.data.struct2var(options);
@@ -80,6 +83,12 @@ d = vlt.file.dirstrip(dir(parentdir));
 
 subdirs = find([d.isdir]);
 regularfiles = find(~[d.isdir]);
+
+if ~followHidden, % drop subdirectories whose names begin with '.'
+	subdirnames = {d(subdirs).name};
+	ishidden = ~cellfun(@isempty, regexp(subdirnames,'^\.','once'));
+	subdirs = subdirs(~ishidden);
+end;
 
 if ~SearchParentFirst,
 	for i=subdirs,
