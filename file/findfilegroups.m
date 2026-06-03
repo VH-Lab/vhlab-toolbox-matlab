@@ -31,6 +31,8 @@ function filelist = findfilegroups(parentdir, fileparameters, options)
 %  SearchParent (1)            | Should we search the parent?
 %  SearchDepth (Inf)           | How many directories 'deep' should we search?
 %                              |   0 means parent only, 1 means one folder in, ...
+%  followHidden (0)            | Should we traverse subdirectories whose names begin
+%                              |    with a '.' (hidden directories)?
 %
 %  Examples:
 %
@@ -67,6 +69,7 @@ function filelist = findfilegroups(parentdir, fileparameters, options)
         options.SearchParentFirst logical = true;
         options.SearchDepth (1,1) double = Inf;
         options.SearchParent logical = true;
+        options.followHidden logical = false;
     end
 
 filelist = {};
@@ -77,6 +80,12 @@ d = dirstrip(dir(parentdir));
 
 subdirs = find([d.isdir]);
 regularfiles = find(~[d.isdir]);
+
+if ~options.followHidden, % drop subdirectories whose names begin with '.'
+	subdirnames = {d(subdirs).name};
+	ishidden = ~cellfun(@isempty, regexp(subdirnames,'^\.','once'));
+	subdirs = subdirs(~ishidden);
+end;
 
 if ~options.SearchParentFirst,
 	for i=subdirs,
