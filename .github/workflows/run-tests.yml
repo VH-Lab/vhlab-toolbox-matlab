@@ -52,49 +52,37 @@ jobs:
           fi
           echo "mkl.so dependencies all resolve"
 
-      # TEMPORARY probes (PR #139). A-F cleared vlt_Init, testCdfTukey alone,
-      # the preceding classes followed by a generic BLAS call, full suite
-      # construction, and the JVM. So it is the COMBINATION: those classes
-      # followed by testCdfTukey in one process. Bisect which one matters.
-      # test_simple_batch is the prime suspect -- it evaluates jobs, and a
-      # fork() leaves an OpenMP runtime in an undefined state, which is a
-      # classic source of "Intel oneMKL FATAL ERROR: Cannot load".
-      - name: 'Probe G: batch then testCdfTukey'
+      # TEMPORARY probes (PR #139). Probes A-I cleared every isolated cause.
+      # Two new leads: (1) +vlt/+batch/simple_batch.m:48 runs
+      # evalin('base','clear; clear mex;') during the first test class of the
+      # suite, which manipulates process state mid-run; (2) the failure may be
+      # purely order-dependent. Probe K is the decisive test -- same full suite,
+      # stats moved to the front.
+      - name: 'Probe J: the whole stats package, alone'
         continue-on-error: true
         uses: matlab-actions/run-command@v2
         with:
           command: |
             userpath(tempdir); vlt_Init;
-            fprintf(1,'G1 batch\n');
-            r = runtests('vlt.unittest.batch.test_simple_batch');
-            fprintf(1,'G2 now testCdfTukey\n');
-            r = runtests('vlt.unittest.stats.testCdfTukey');
-            fprintf(1,'G3 PROBE G PASSED\n');
+            fprintf(1,'J1 running vlt.unittest.stats alone\n');
+            s = matlab.unittest.TestSuite.fromPackage('vlt.unittest.stats','IncludingSubpackages',true);
+            fprintf(1,'J2 %d stats tests\n', numel(s));
+            r = matlab.unittest.TestRunner.withTextOutput.run(s);
+            fprintf(1,'J3 PROBE J PASSED: %d passed, %d failed\n', nnz([r.Passed]), nnz([r.Failed]));
 
-      - name: 'Probe H: colorspace+docs then testCdfTukey'
+      - name: 'Probe K: full suite, stats reordered FIRST'
         continue-on-error: true
         uses: matlab-actions/run-command@v2
         with:
           command: |
             userpath(tempdir); vlt_Init;
-            fprintf(1,'H1 colorspace+docs\n');
-            r = runtests({'vlt.unittest.colorspace.TestColorspace', ...
-                          'vlt.unittest.docs.test_mkdocsnavtext'});
-            fprintf(1,'H2 now testCdfTukey\n');
-            r = runtests('vlt.unittest.stats.testCdfTukey');
-            fprintf(1,'H3 PROBE H PASSED\n');
-
-      - name: 'Probe I: batch then plain BLAS and cdfTukey directly'
-        continue-on-error: true
-        uses: matlab-actions/run-command@v2
-        with:
-          command: |
-            userpath(tempdir); vlt_Init;
-            r = runtests('vlt.unittest.batch.test_simple_batch');
-            fprintf(1,'I1 batch done\n');
-            C = inv(rand(50)); fprintf(1,'I2 inv ok\n');
-            y = vlt.stats.cdfTukey(3.879,3,10); fprintf(1,'I3 cdfTukey ok = %g\n', y);
-            fprintf(1,'I4 PROBE I PASSED\n');
+            suite = matlab.unittest.TestSuite.fromPackage('vlt.unittest','IncludingSubpackages',true);
+            names = {suite.Name};
+            isStats = startsWith(names,'vlt.unittest.stats');
+            fprintf(1,'K1 %d total, %d stats moved to front\n', numel(suite), nnz(isStats));
+            reordered = [suite(isStats), suite(~isStats)];
+            r = matlab.unittest.TestRunner.withTextOutput.run(reordered);
+            fprintf(1,'K2 PROBE K PASSED: %d passed, %d failed\n', nnz([r.Passed]), nnz([r.Failed]));
 
       - name: Run tests
         uses: matlab-actions/run-command@v2
