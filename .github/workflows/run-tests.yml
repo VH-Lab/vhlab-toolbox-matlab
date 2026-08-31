@@ -18,6 +18,16 @@ jobs:
       - name: Set up MATLAB
         uses: matlab-actions/setup-matlab@v2
         with:
+          # Pinned deliberately. Without a release, this action installs the
+          # latest, which moved to R2026a and broke the suite: MATLAB aborts
+          # with "Intel oneMKL FATAL ERROR: Cannot load .../glnxa64/mkl.so"
+          # (exit status 255) at the first test to touch a BLAS routine.
+          # Commit 0bccce1 passed on 2026-06-03 and fails today unchanged, so
+          # the regression is in the runner image / MATLAB release, not here.
+          # Same class of problem as matlab-actions/setup-matlab#154, where
+          # newer releases crash because base dependencies are not installed.
+          # Revisit once that is fixed upstream.
+          release: R2025b
           products: >
             Statistics_and_Machine_Learning_Toolbox
             Curve_Fitting_Toolbox
