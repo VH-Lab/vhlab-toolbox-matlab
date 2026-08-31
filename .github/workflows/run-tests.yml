@@ -26,19 +26,31 @@ jobs:
             Image_Processing_Toolbox
             Deep_Learning_Toolbox
 
-      # MATLAB ships its Intel OpenMP runtime in sys/os/glnxa64, but mkl.so
-      # lives in bin/glnxa64 and, on the current runner image, cannot find it.
-      # MATLAB then aborts at the first BLAS call with
-      #   Intel oneMKL FATAL ERROR: Cannot load .../glnxa64/mkl.so
-      # (exit status 255), which reads as a test failure but is a loader
-      # problem. Confirmed by ldd: "libiomp5.so => not found", with the library
-      # present at $matlabroot/sys/os/glnxa64/libiomp5.so. See PR #139.
-      - name: Put MATLAB's OpenMP runtime on the loader path
+      # MATLAB aborts at the first BLAS call with
+      #   Intel oneMKL FATAL ERROR: Cannot load .../bin/glnxa64/mkl.so
+      # (exit status 255). That reads as a test failure but is a loader
+      # problem: ldd on mkl.so reports "libiomp5.so => not found". MATLAB does
+      # ship that library, at $matlabroot/sys/os/glnxa64/libiomp5.so, but on
+      # the current runner image mkl.so no longer resolves it.
+      #
+      # Exporting LD_LIBRARY_PATH does not help -- MATLAB's launcher computes
+      # its own -- so expose the library through the system loader, which the
+      # launcher cannot override. See PR #139.
+      - name: Expose MATLAB's OpenMP runtime to the system loader
         run: |
           ROOT=$(ls -d /opt/hostedtoolcache/MATLAB/*/x64 | head -1)
-          test -f "$ROOT/sys/os/glnxa64/libiomp5.so" || {
-            echo "::error::libiomp5.so not found under $ROOT/sys/os/glnxa64"; exit 1; }
-          echo "LD_LIBRARY_PATH=$ROOT/sys/os/glnxa64:$LD_LIBRARY_PATH" >> "$GITHUB_ENV"
+          SRC="$ROOT/sys/os/glnxa64/libiomp5.so"
+          test -f "$SRC" || { echo "::error::libiomp5.so not found at $SRC"; exit 1; }
+          sudo ln -sf "$SRC" /usr/lib/x86_64-linux-gnu/libiomp5.so
+          sudo ldconfig
+          echo "--- verifying mkl.so now resolves ---"
+          ldd "$ROOT/bin/glnxa64/mkl.so" | grep -i iomp5
+          if ldd "$ROOT/bin/glnxa64/mkl.so" | grep -q "not found"; then
+            echo "::error::mkl.so still has unresolved dependencies"
+            ldd "$ROOT/bin/glnxa64/mkl.so" | grep "not found"
+            exit 1
+          fi
+          echo "mkl.so dependencies all resolve"
 
       - name: Run tests
         uses: matlab-actions/run-command@v2
