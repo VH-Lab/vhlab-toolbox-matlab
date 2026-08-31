@@ -38,8 +38,10 @@ jobs:
             % current runner image that lazy load fails once the test suite is
             % already running, aborting the process with
             %   Intel oneMKL FATAL ERROR: Cannot load .../glnxa64/mkl.so
-            % at whichever test first needs BLAS. Ported from #139 so this
-            % branch's CI is meaningful; it is a no-op once #139 merges.
+            % at whichever test first needs BLAS. It is not that test's fault:
+            % the identical suite passes in full when the stats tests are moved
+            % to the front, and MKL loads fine at startup. Touching BLAS here,
+            % before any test runs, sidesteps the failing lazy load. See #139.
             inv(rand(50));
             suite = matlab.unittest.TestSuite.fromPackage('vlt.unittest', 'IncludingSubpackages', true);
             runner = matlab.unittest.TestRunner.withTextOutput;
