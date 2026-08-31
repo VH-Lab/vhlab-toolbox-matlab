@@ -6,6 +6,12 @@ function descr = structwhatvaries(celllistofstructures)
 %  Given a cell list of structures, returns a list of the fieldnames that vary in
 %  value across the cell list.
 %
+%  NaN semantics: equality is tested with EQLEN, which bottoms out in X==Y, and
+%  NaN is not equal to itself. A field that is NaN in *every* structure is
+%  therefore reported as varying, which is usually not what a caller expects.
+%  Callers needing NaN-aware behaviour should compare with ISEQUALN themselves.
+%  See VH-Lab/vhlab-toolbox-matlab#137 (item 3); NDI-matlab#902 took this route.
+%
 
 descr = {};
 
@@ -36,7 +42,7 @@ for i=2:numel(celllistofstructures),
 	for j=1:numel(bothfn),
 		if ~vlt.data.eqlen(getfield(celllistofstructures{1},bothfn{j}),...
 				getfield(celllistofstructures{i},bothfn{j})),
-			descr = cat(1,descr,bothfn{j});
+			descr = cat(1,descr,bothfn(j));
 		end;
 	end;
 end;

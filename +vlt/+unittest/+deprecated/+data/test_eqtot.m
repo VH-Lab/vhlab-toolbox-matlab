@@ -7,10 +7,15 @@ classdef test_eqtot < matlab.unittest.TestCase
             testCase.verifyEqual(eqtot([], []), 1, 'Both empty should return 1');
         end
 
-        function test_one_empty_bug(testCase)
-            % Test case where one input is empty
+        function test_one_empty(testCase)
+            % Test case where exactly one input is empty.
+            % eqtot inherits eqemp's empty handling, which was asymmetric:
+            % eqtot(5,[]) and eqtot([1 2],[]) both returned 1. See issue
+            % #137, item 1.
             testCase.verifyEqual(eqtot([], 5), 0, 'First empty, second not should return 0');
-            testCase.verifyEqual(eqtot(5, []), 1, 'BUG: First not, second empty should return 1');
+            testCase.verifyEqual(eqtot(5, []), 0, 'First not, second empty should return 0');
+            testCase.verifyEqual(eqtot([1 2], []), 0, 'Non-empty vs empty should return 0');
+            testCase.verifyEqual(eqtot([], [1 2]), 0, 'Empty vs non-empty should return 0');
         end
 
         function test_different_sizes_error(testCase)
