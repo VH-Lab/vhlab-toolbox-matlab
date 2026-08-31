@@ -18,16 +18,6 @@ jobs:
       - name: Set up MATLAB
         uses: matlab-actions/setup-matlab@v2
         with:
-          # Pinned deliberately. Without a release, this action installs the
-          # latest, which moved to R2026a and broke the suite: MATLAB aborts
-          # with "Intel oneMKL FATAL ERROR: Cannot load .../glnxa64/mkl.so"
-          # (exit status 255) at the first test to touch a BLAS routine.
-          # Commit 0bccce1 passed on 2026-06-03 and fails today unchanged, so
-          # the regression is in the runner image / MATLAB release, not here.
-          # Same class of problem as matlab-actions/setup-matlab#154, where
-          # newer releases crash because base dependencies are not installed.
-          # Revisit once that is fixed upstream.
-          release: R2025b
           products: >
             Statistics_and_Machine_Learning_Toolbox
             Curve_Fitting_Toolbox
@@ -36,30 +26,19 @@ jobs:
             Image_Processing_Toolbox
             Deep_Learning_Toolbox
 
-      # TEMPORARY diagnostic (see PR #139). ldd showed mkl.so needs libiomp5.so
-      # and cannot find it. Determine whether MATLAB ships it at all, or ships
-      # it somewhere the loader is not looking. Remove once the fix is in.
-      - name: Diagnose MKL load failure
-        continue-on-error: true
+      # MATLAB ships its Intel OpenMP runtime in sys/os/glnxa64, but mkl.so
+      # lives in bin/glnxa64 and, on the current runner image, cannot find it.
+      # MATLAB then aborts at the first BLAS call with
+      #   Intel oneMKL FATAL ERROR: Cannot load .../glnxa64/mkl.so
+      # (exit status 255), which reads as a test failure but is a loader
+      # problem. Confirmed by ldd: "libiomp5.so => not found", with the library
+      # present at $matlabroot/sys/os/glnxa64/libiomp5.so. See PR #139.
+      - name: Put MATLAB's OpenMP runtime on the loader path
         run: |
-          ROOT=$(ls -d /opt/hostedtoolcache/MATLAB/*/x64 2>/dev/null | head -1)
-          echo "matlabroot = $ROOT"
-          echo "--- libiomp5 anywhere under matlabroot ---"
-          find "$ROOT" -name 'libiomp5*' 2>/dev/null || true
-          echo "(end of find)"
-          echo "--- contents of bin/glnxa64 matching iomp/omp/mkl ---"
-          ls -la "$ROOT/bin/glnxa64" 2>/dev/null | grep -iE 'iomp|omp|mkl' || echo "(no matches)"
-          echo "--- dlopen with LD_LIBRARY_PATH=bin/glnxa64 ---"
-          LD_LIBRARY_PATH="$ROOT/bin/glnxa64:$LD_LIBRARY_PATH" python3 - "$ROOT/bin/glnxa64/mkl.so" <<'PY'
-          import ctypes, sys
-          try:
-              ctypes.CDLL(sys.argv[1]); print("dlopen OK with LD_LIBRARY_PATH")
-          except OSError as e:
-              print("dlopen STILL FAILED:", e)
-          PY
-          echo "--- system openmp packages available ---"
-          apt-cache policy libomp5-18 libomp-dev intel-oneapi-runtime-openmp 2>/dev/null | head -20 || true
-          ls -la /usr/lib/x86_64-linux-gnu/ | grep -iE 'libomp|libiomp' || echo "(no system openmp lib)"
+          ROOT=$(ls -d /opt/hostedtoolcache/MATLAB/*/x64 | head -1)
+          test -f "$ROOT/sys/os/glnxa64/libiomp5.so" || {
+            echo "::error::libiomp5.so not found under $ROOT/sys/os/glnxa64"; exit 1; }
+          echo "LD_LIBRARY_PATH=$ROOT/sys/os/glnxa64:$LD_LIBRARY_PATH" >> "$GITHUB_ENV"
 
       - name: Run tests
         uses: matlab-actions/run-command@v2
