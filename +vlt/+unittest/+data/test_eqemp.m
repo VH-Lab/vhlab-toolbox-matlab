@@ -44,5 +44,18 @@ classdef test_eqemp < matlab.unittest.TestCase
             testCase.verifyError(@() vlt.data.eqemp([1 2], [1 2 3]), 'MATLAB:sizeDimensionsMustMatch');
         end
 
+        function test_cell_comparison_uses_toolbox_overload(testCase)
+            % Issue #137 item 2. The old help said an error results when X==Y
+            % is undefined. Not so here: datastructures/@cell/eq.m defines ==
+            % for cells and vlt_Init puts it on the path, so this returns a
+            % value rather than throwing. Guards both the behaviour and the
+            % dependency -- if the legacy tree were retired, this would fail
+            % rather than silently changing eqemp's contract.
+            testCase.verifyEqual(double(vlt.data.eqemp({'r','g','b'}, {'r','g','b'})), 1, ...
+                'Equal cell arrays should compare equal, not error');
+            testCase.verifyEqual(double(vlt.data.eqemp({'r','g','b'}, {'r','g','x'})), 0, ...
+                'Differing cell arrays should compare unequal, not error');
+        end
+
     end
 end

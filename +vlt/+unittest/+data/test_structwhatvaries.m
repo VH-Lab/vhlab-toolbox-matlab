@@ -62,5 +62,31 @@ classdef test_structwhatvaries < matlab.unittest.TestCase
             testCase.verifyError(@() vlt.data.structwhatvaries(struct('a',1)), ?MException);
         end
 
+        function test_all_nan_field_is_not_varying(testCase)
+            % Issue #137 item 3. A field that is NaN in every structure is
+            % constant, not varying. EQLEN bottoms out in X==Y, under which
+            % NaN differs from itself, so this used to report 'angle'.
+            s1 = struct('angle', NaN, 'sf', 1);
+            s2 = struct('angle', NaN, 'sf', 1);
+            descr = vlt.data.structwhatvaries({s1, s2});
+            testCase.verifyEmpty(descr, ...
+                'A field that is NaN in every structure must not count as varying');
+        end
+
+        function test_nan_within_array_is_not_varying(testCase)
+            s1 = struct('v', [1 NaN 3]);
+            s2 = struct('v', [1 NaN 3]);
+            testCase.verifyEmpty(vlt.data.structwhatvaries({s1, s2}), ...
+                'Identical arrays containing NaN must not count as varying');
+        end
+
+        function test_nan_versus_number_still_varies(testCase)
+            % NaN-aware must not mean NaN-blind: NaN and 5 still differ.
+            s1 = struct('angle', NaN);
+            s2 = struct('angle', 5);
+            testCase.verifyEqual(sort(vlt.data.structwhatvaries({s1, s2})), {'angle'}, ...
+                'NaN versus a number must still be reported as varying');
+        end
+
     end
 end

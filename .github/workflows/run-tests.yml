@@ -26,49 +26,6 @@ jobs:
             Image_Processing_Toolbox
             Deep_Learning_Toolbox
 
-      # TEMPORARY probe for issue #137 items 2 and 3. Removed before review.
-      - name: 'Probe: cell/struct == and NaN semantics'
-        continue-on-error: true
-        uses: matlab-actions/run-command@v2
-        with:
-          command: |
-            userpath(tempdir); vlt_Init;
-            fprintf(1,'--- item 2: is == defined for cells? ---\n');
-            fprintf(1,'which cell/eq: %s\n', which('cell/eq'));
-            fprintf(1,'which struct/eq: %s\n', which('struct/eq'));
-            try
-              r = {'r','g','b'} == {'r','g','b'};
-              fprintf(1,'{r,g,b}=={r,g,b} -> class=%s size=%s value=%s\n', class(r), mat2str(size(r)), mat2str(double(r)));
-            catch e
-              fprintf(1,'{r,g,b}=={r,g,b} -> THREW %s\n', e.identifier);
-            end
-            try
-              fprintf(1,'eqemp cellsame  = %s\n', mat2str(double(vlt.data.eqemp({'r','g','b'},{'r','g','b'}))));
-              fprintf(1,'eqemp celldiff  = %s\n', mat2str(double(vlt.data.eqemp({'r','g','b'},{'r','g','x'}))));
-              fprintf(1,'eqlen  cellsame = %s\n', mat2str(vlt.data.eqlen({'r','g','b'},{'r','g','b'})));
-              fprintf(1,'eqlen  celldiff = %s\n', mat2str(vlt.data.eqlen({'r','g','b'},{'r','g','x'})));
-            catch e
-              fprintf(1,'eqemp/eqlen on cells THREW %s: %s\n', e.identifier, e.message);
-            end
-            fprintf(1,'--- with datastructures OFF the path ---\n');
-            d = fileparts(which('structwhatvaries'));
-            rmpath(genpath(fullfile(fileparts(which('vlt_Init')),'datastructures')));
-            try
-              r2 = {'a'} == {'a'};
-              fprintf(1,'cell == after rmpath -> %s\n', mat2str(double(r2)));
-            catch e
-              fprintf(1,'cell == after rmpath -> THREW %s\n', e.identifier);
-            end
-            vlt_Init;
-            fprintf(1,'--- item 3: NaN ---\n');
-            fprintf(1,'eqlen(NaN,NaN)        = %s\n', mat2str(vlt.data.eqlen(NaN,NaN)));
-            fprintf(1,'eqlen([1 NaN],[1 NaN])= %s\n', mat2str(vlt.data.eqlen([1 NaN],[1 NaN])));
-            fprintf(1,'isequaln(NaN,NaN)     = %s\n', mat2str(isequaln(NaN,NaN)));
-            s1 = struct('angle',NaN,'sf',1); s2 = struct('angle',NaN,'sf',1);
-            d3 = vlt.data.structwhatvaries({s1,s2});
-            fprintf(1,'structwhatvaries all-NaN -> n=%d first=%s\n', numel(d3), strjoin(d3,','));
-            fprintf(1,'PROBE DONE\n');
-
       - name: Run tests
         uses: matlab-actions/run-command@v2
         with:

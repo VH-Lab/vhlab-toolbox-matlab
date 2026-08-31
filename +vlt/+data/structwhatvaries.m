@@ -6,11 +6,17 @@ function descr = structwhatvaries(celllistofstructures)
 %  Given a cell list of structures, returns a list of the fieldnames that vary in
 %  value across the cell list.
 %
-%  NaN semantics: equality is tested with EQLEN, which bottoms out in X==Y, and
-%  NaN is not equal to itself. A field that is NaN in *every* structure is
-%  therefore reported as varying, which is usually not what a caller expects.
-%  Callers needing NaN-aware behaviour should compare with ISEQUALN themselves.
-%  See VH-Lab/vhlab-toolbox-matlab#137 (item 3); NDI-matlab#902 took this route.
+%  NaN semantics: equality is tested with ISEQUALN, so a field that is NaN in
+%  every structure counts as constant and is NOT reported as varying. This was
+%  changed in issue #137 (item 3): the previous EQLEN comparison bottoms out in
+%  X==Y, under which NaN differs from itself, so an all-NaN field was reported
+%  as varying -- which is not what "what varies" should mean.
+%
+%  The fix is deliberately here rather than in EQLEN. EQLEN has 52 call sites in
+%  this toolbox, and datastructures/@cell/eq.m and @struct/eq.m both call it, so
+%  changing its NaN semantics would silently change == for every cell and struct
+%  in any session with vlt on the path. NDI-matlab#902 fixed it at its own call
+%  site for the same reason.
 %
 
 descr = {};
@@ -43,7 +49,7 @@ for i=2:numel(celllistofstructures),
 	% 2x0 accumulator that then rejects a 1x1 fieldname. See issue #137.
 	descr = cat(1,descr(:),fn2_not_fn1(:),fn1_not_fn2(:));
 	for j=1:numel(bothfn),
-		if ~vlt.data.eqlen(getfield(celllistofstructures{1},bothfn{j}),...
+		if ~isequaln(getfield(celllistofstructures{1},bothfn{j}),...
 				getfield(celllistofstructures{i},bothfn{j})),
 			descr = cat(1,descr(:),bothfn(j));
 		end;
