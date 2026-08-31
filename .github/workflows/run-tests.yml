@@ -52,46 +52,44 @@ jobs:
           fi
           echo "mkl.so dependencies all resolve"
 
-      # TEMPORARY probes (PR #139). The previous probe showed BLAS/LAPACK
-      # (normcdf, inv, svd, 200x200 matmul, version -blas) all work fine in a
-      # plain run-command invocation -- yet the suite still aborts on MKL. So
-      # something between MATLAB startup and testCdfTukey breaks the load.
-      # These three isolate which: vlt_Init, the test class itself, or state
-      # left behind by the classes that run before it.
-      - name: 'Probe A: vlt_Init then BLAS'
+      # TEMPORARY probes (PR #139). Probes A-C cleared vlt_Init, testCdfTukey
+      # in isolation, and the three classes that precede it. Only the FULL
+      # suite fails. The full suite differs by constructing over every package,
+      # which is when the org.json.JSONObject import in
+      # +unittest/+deprecated/+data/test_prettyjson.m is attempted -- and that
+      # starts the JVM. A JVM bringing in its own OpenMP runtime is a classic
+      # cause of "Intel oneMKL FATAL ERROR: Cannot load".
+      - name: 'Probe D: build full suite, then BLAS'
         continue-on-error: true
         uses: matlab-actions/run-command@v2
         with:
           command: |
             userpath(tempdir); vlt_Init;
-            fprintf(1,'A1 vlt_Init done\n');
-            y = normcdf(0); fprintf(1,'A2 normcdf ok\n');
-            C = inv(rand(50)); fprintf(1,'A3 inv ok\n');
-            fprintf(1,'A4 PROBE A PASSED\n');
-
-      - name: 'Probe B: testCdfTukey alone'
-        continue-on-error: true
-        uses: matlab-actions/run-command@v2
-        with:
-          command: |
-            userpath(tempdir); vlt_Init;
-            fprintf(1,'B1 running testCdfTukey alone\n');
-            r = runtests('vlt.unittest.stats.testCdfTukey');
-            fprintf(1,'B2 PROBE B PASSED, %d passed %d failed\n', nnz([r.Passed]), nnz([r.Failed]));
-
-      - name: 'Probe C: the three classes that precede it, then BLAS'
-        continue-on-error: true
-        uses: matlab-actions/run-command@v2
-        with:
-          command: |
-            userpath(tempdir); vlt_Init;
-            fprintf(1,'C1 running batch/colorspace/docs\n');
-            r = runtests({'vlt.unittest.batch.test_simple_batch', ...
-                          'vlt.unittest.colorspace.TestColorspace', ...
-                          'vlt.unittest.docs.test_mkdocsnavtext'});
-            fprintf(1,'C2 those passed, now BLAS\n');
+            fprintf(1,'D1 building full suite\n');
+            suite = matlab.unittest.TestSuite.fromPackage('vlt.unittest','IncludingSubpackages',true);
+            fprintf(1,'D2 suite built, %d tests\n', numel(suite));
             C = inv(rand(50));
-            fprintf(1,'C3 PROBE C PASSED - BLAS still works after them\n');
+            fprintf(1,'D3 PROBE D PASSED - BLAS survives suite construction\n');
+
+      - name: 'Probe E: start the JVM, then BLAS'
+        continue-on-error: true
+        uses: matlab-actions/run-command@v2
+        with:
+          command: |
+            fprintf(1,'E1 jvm initially: %d\n', usejava('jvm'));
+            s = javaObject('java.lang.String','hello');
+            fprintf(1,'E2 JVM started\n');
+            C = inv(rand(50));
+            fprintf(1,'E3 PROBE E PASSED - BLAS survives the JVM\n');
+
+      - name: 'Probe F: BLAS first, then JVM, then BLAS again'
+        continue-on-error: true
+        uses: matlab-actions/run-command@v2
+        with:
+          command: |
+            C = inv(rand(50)); fprintf(1,'F1 BLAS before JVM ok\n');
+            s = javaObject('java.lang.String','hello'); fprintf(1,'F2 JVM started\n');
+            C = inv(rand(50)); fprintf(1,'F3 PROBE F PASSED\n');
 
       - name: Run tests
         uses: matlab-actions/run-command@v2
