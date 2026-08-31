@@ -36,6 +36,33 @@ jobs:
             Image_Processing_Toolbox
             Deep_Learning_Toolbox
 
+      # TEMPORARY diagnostic (see PR #139). Pinning the MATLAB release did not
+      # help: R2026a and R2025b both fail to load mkl.so, so the change is in
+      # the runner image, not MATLAB. This prints the unresolved dependencies
+      # so the missing package can be named instead of guessed at. Remove once
+      # the real fix is in.
+      - name: Diagnose MKL load failure
+        continue-on-error: true
+        run: |
+          set -x
+          cat /etc/os-release | head -2
+          MKL=$(ls /opt/hostedtoolcache/MATLAB/*/x64/bin/glnxa64/mkl.so 2>/dev/null | head -1)
+          echo "mkl.so = $MKL"
+          ls -la "$MKL" || true
+          echo "--- ldd ---"
+          ldd "$MKL" || true
+          echo "--- unresolved ---"
+          ldd "$MKL" 2>&1 | grep -i "not found" || echo "(none reported by ldd)"
+          echo "--- dlopen attempt ---"
+          python3 - "$MKL" <<'PY'
+          import ctypes, sys
+          try:
+              ctypes.CDLL(sys.argv[1])
+              print("dlopen OK")
+          except OSError as e:
+              print("dlopen FAILED:", e)
+          PY
+
       - name: Run tests
         uses: matlab-actions/run-command@v2
         with:
