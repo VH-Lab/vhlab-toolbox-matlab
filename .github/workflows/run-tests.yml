@@ -32,6 +32,10 @@ jobs:
           command: |
             userpath(tempdir);
             vlt_Init;
+            % Force BLAS/LAPACK to load before the suite starts; MATLAB's lazy
+            % MKL load fails mid-suite on the current runner image. Ported from
+            % #139, a no-op once that merges.
+            inv(rand(50));
             suite = matlab.unittest.TestSuite.fromPackage('vlt.unittest', 'IncludingSubpackages', true);
             runner = matlab.unittest.TestRunner.withTextOutput;
             results = runner.run(suite);
