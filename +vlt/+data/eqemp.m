@@ -12,7 +12,7 @@ function b = eqemp(x,y)
 b=1;
 xe=isempty(x);
 ye=isempty(y);
-if (xe&(~ye))|(xe&(~ye)),
+if (xe&(~ye))|(ye&(~xe)),
 	b=0;
 elseif ~xe&~ye,
 	b=(x==y);

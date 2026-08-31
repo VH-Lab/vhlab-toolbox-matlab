@@ -7,12 +7,23 @@ classdef test_eqemp < matlab.unittest.TestCase
             testCase.verifyEqual(double(vlt.data.eqemp([], [])), 1, 'Both empty should return 1');
         end
 
-        function test_one_empty_bug(testCase)
-            % Test case where one input is empty
-            % The function has a bug where it returns true if the first
-            % argument is non-empty and the second is empty.
+        function test_one_empty(testCase)
+            % Test case where exactly one input is empty.
+            % The empty check must be symmetric. It previously tested
+            % (xe&~ye) twice, so eqemp(5,[]) matched neither branch and kept
+            % the b=1 initialiser. See issue #137, item 1.
             testCase.verifyEqual(double(vlt.data.eqemp([], 5)), 0, 'First empty, second not should return 0');
-            testCase.verifyEqual(double(vlt.data.eqemp(5, [])), 1, 'BUG: First not, second empty should return 1');
+            testCase.verifyEqual(double(vlt.data.eqemp(5, [])), 0, 'First not, second empty should return 0');
+        end
+
+        function test_one_empty_symmetry(testCase)
+            % Emptiness comparison must not depend on argument order.
+            cases = { 5, [1 2 3], 'abc', {1,2} };
+            for i=1:numel(cases),
+                testCase.verifyEqual(double(vlt.data.eqemp(cases{i}, [])), ...
+                    double(vlt.data.eqemp([], cases{i})), ...
+                    'eqemp must give the same answer regardless of which argument is empty');
+            end;
         end
 
         function test_both_nonempty_equal(testCase)
