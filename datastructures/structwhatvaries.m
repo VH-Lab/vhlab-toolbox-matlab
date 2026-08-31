@@ -38,11 +38,14 @@ for i=2:numel(celllistofstructures),
 	% fieldnames that are in fn1 but not fn2
 	fn1_not_fn2 = setdiff(fn1,fn2);
 	bothfn = intersect(fn1,fn2);
-	descr = cat(1,descr,fn2_not_fn1,fn1_not_fn2);
+	% (:) forces every piece to a column, so cat(1,...) always agrees on
+	% dim 2. setdiff on a 1x1 cell returns 1x0, and stacking those yields a
+	% 2x0 accumulator that then rejects a 1x1 fieldname. See issue #137.
+	descr = cat(1,descr(:),fn2_not_fn1(:),fn1_not_fn2(:));
 	for j=1:numel(bothfn),
 		if ~eqlen(getfield(celllistofstructures{1},bothfn{j}),...
 				getfield(celllistofstructures{i},bothfn{j})),
-			descr = cat(1,descr,bothfn(j));
+			descr = cat(1,descr(:),bothfn(j));
 		end;
 	end;
 end;
