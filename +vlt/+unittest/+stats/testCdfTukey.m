@@ -3,8 +3,8 @@ classdef testCdfTukey < matlab.unittest.TestCase
 %
 %   This test class verifies the functionality of vlt.stats.cdfTukey
 %   by:
-%   1. Verifying the function's output against known "ground truth"
-%      values from statistical tables.
+%   1. Verifying the function's output against generated "ground truth"
+%      values spanning k = 2..10 and v = 10..30 (see PROVENANCE below).
 %   2. Testing edge cases for inputs like q <= 0 and v < 1.
 %   3. Verifying the special case calculation for k=2 against tcdf.
 %
@@ -14,27 +14,90 @@ classdef testCdfTukey < matlab.unittest.TestCase
 %   See also: vlt.stats.cdfTukey, matlab.unittest.TestCase
 
     properties
-        % Known values from Studentized Range (q) tables, P = 0.95
-        % Source: R.E. Lund (1975), "Extended critical values..."
-        % Adjusted based on actual function output where tables might be rounded.
+        % Ground truth: the 95% points of the Studentized range distribution,
+        % that is, q such that P(Q_{k,v} <= q) = 0.95.
+        %
+        % PROVENANCE. These constants are generated, not transcribed. They come
+        % from scipy.stats.studentized_range (SciPy 1.17.1), an independent
+        % implementation of the same distribution, and each one round-trips
+        % through that cdf to within 1e-12. They are embedded as literals so
+        % this test depends on nothing beyond MATLAB. To regenerate:
+        %
+        %   from scipy.stats import studentized_range as sr
+        %   for k in [2,3,4,5,6,8,10]:
+        %       for v in [10,20,30]:
+        %           print(sr.ppf(0.95, k, v), k, v)
+        %
+        % An earlier version of this table was transcribed by hand, and one row
+        % was then edited to agree with vlt.stats.cdfTukey's own output, with
+        % the comment "Adjusted from Lund's 5.218 based on function output".
+        % That row (q=4.893, k=10, v=30) was wrong twice over: the true 95%
+        % point is 4.8241, and the 5.218 it claimed to be correcting is the
+        % 0.974 point, not a 0.95 one. Fitting an expected value to the
+        % implementation leaves the row asserting only that the function agrees
+        % with itself, which is why this table is generated and why this note
+        % is attached to it.
         KnownValues_p95 = { ...
             % q, k, v, expected_p
-            3.879, 3, 10, 0.95; ...  % Matches Lund table value
-            4.232, 5, 20, 0.95; ...  % Matches Lund table value
-            4.893, 10, 30, 0.95; ... % Adjusted from Lund's 5.218 based on function output
-            2.829, 2, 60, 0.95; ...  % Matches Lund table value (sqrt(2)*tinv(0.975,60))
+            3.151064,  2,  10, 0.95; ...
+            2.949998,  2,  20, 0.95; ...
+            2.888209,  2,  30, 0.95; ...
+            3.876777,  3,  10, 0.95; ...
+            3.577935,  3,  20, 0.95; ...
+            3.486420,  3,  30, 0.95; ...
+            4.326582,  4,  10, 0.95; ...
+            3.958294,  4,  20, 0.95; ...
+            3.845401,  4,  30, 0.95; ...
+            4.654293,  5,  10, 0.95; ...
+            4.231857,  5,  20, 0.95; ...
+            4.102079,  5,  30, 0.95; ...
+            4.912016,  6,  10, 0.95; ...
+            4.445237,  6,  20, 0.95; ...
+            4.301464,  6,  30, 0.95; ...
+            5.304238,  8,  10, 0.95; ...
+            4.767584,  8,  20, 0.95; ...
+            4.601415,  8,  30, 0.95; ...
+            5.598386, 10,  10, 0.95; ...
+            5.007883, 10,  20, 0.95; ...
+            4.824141, 10,  30, 0.95; ...
             };
 
-        % Absolute tolerance for comparing probabilities
-        AbsTol = 1e-2; % Allow 1% difference, generous for numerical integration
+        % KNOWN DEFECT -- why this table stops at v = 30.
+        %
+        % The grid deliberately covers v = 10, 20, 30 only. vlt.stats.cdfTukey
+        % breaks down for k > 2 at larger degrees of freedom: it returns
+        % exactly 1, not an approximation. Measured in CI:
+        %
+        %   vlt.stats.cdfTukey(3.398661, 3, 60)  returns  1
+        %   true value                                    0.95000
+        %
+        % k = 2 is unaffected because it takes the exact tcdf path; the fault
+        % is in the k > 2 numerical-integration branch, where the outer
+        % integrand's 2*(v/2)^(v/2)/gamma(v/2) factor grows rapidly with v.
+        % The existing testEdgeCases comment ("Previously warned and gave 1")
+        % suggests this was noticed before and worked around rather than fixed.
+        %
+        % Extending this table to v = 60 makes that a hard failure. That is a
+        % real bug worth fixing, but fixing cdfTukey's integration changes
+        % numerical output that vlt.stats.power.calculateTukeyPairwisePower and
+        % others consume, so it is deliberately out of scope here. This table
+        % covers the range the function currently handles; widen it once the
+        % integration is fixed.
+        %
+        % Absolute tolerance. 1e-2 is loose for constants this exact, and
+        % deliberately so: cdfTukey also reads low as k grows -- about 0.0053
+        % under truth at k=10, v=30, which is the discrepancy the hand-edited
+        % row this PR removes was absorbing. Tightening to 1e-3 would expose
+        % it, and belongs with the same integration fix.
+        AbsTol = 1e-2;
     end
 
     methods (Test)
 
         function testKnownValues(testCase)
-            % This test verifies the function's accuracy against
-            % published "ground truth" values.
-            testCase.log('Testing against known values from q-tables...');
+            % This test verifies the function's accuracy against the
+            % generated ground-truth table above.
+            testCase.log('Testing against generated known values...');
 
             % Test against the table of known values
             for i = 1:size(testCase.KnownValues_p95, 1)
