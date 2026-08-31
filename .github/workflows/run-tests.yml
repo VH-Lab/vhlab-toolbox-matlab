@@ -52,6 +52,28 @@ jobs:
           fi
           echo "mkl.so dependencies all resolve"
 
+      # TEMPORARY probe (PR #139): find the FIRST operation that triggers the
+      # MKL load, so the failure has a minimal reproduction. The abort is a
+      # process kill, not a catchable error, so each line prints its marker
+      # BEFORE running -- the last marker printed names the culprit.
+      - name: Probe which operation triggers the MKL load
+        continue-on-error: true
+        uses: matlab-actions/run-command@v2
+        with:
+          command: |
+            fprintf(1,'PROBE 01 arithmetic\n');   x = 1+1;
+            fprintf(1,'PROBE 02 erfc\n');         y = erfc(0.5);
+            fprintf(1,'PROBE 03 normcdf\n');      y = normcdf(0);
+            fprintf(1,'PROBE 04 normpdf\n');      y = normpdf(0);
+            fprintf(1,'PROBE 05 tcdf\n');         y = tcdf(1,10);
+            fprintf(1,'PROBE 06 integral\n');     y = integral(@(z) exp(-z.^2), -1, 1);
+            fprintf(1,'PROBE 07 matmul 5x5\n');   A = rand(5);   B = A*A;
+            fprintf(1,'PROBE 08 matmul 200\n');   A = rand(200); B = A*A;
+            fprintf(1,'PROBE 09 inv 50\n');       C = inv(rand(50));
+            fprintf(1,'PROBE 10 svd 50\n');       [U,S,V] = svd(rand(50));
+            fprintf(1,'PROBE 11 version -blas\n'); disp(version('-blas'));
+            fprintf(1,'PROBE 12 ALL PASSED - no crash\n');
+
       - name: Run tests
         uses: matlab-actions/run-command@v2
         with:
