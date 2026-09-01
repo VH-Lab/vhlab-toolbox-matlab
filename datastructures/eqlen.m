@@ -13,9 +13,10 @@ function b = eqlen(x,y)
 %
 %  Comparison bottoms out in X==Y (see EQEMP), which has two consequences
 %  worth knowing: NaN is not equal to itself, so EQLEN(NaN,NaN) is 0; and
-%  classes for which == is undefined, cell arrays among them, raise an error
-%  rather than returning a value. Use ISEQUALN when you want either of those
-%  to come out the other way. See issue #137 (items 2 and 3).
+%  classes for which == is undefined raise an error rather than returning a
+%  value. Cell arrays of char vectors are not among them -- EQLEN({'r','g','b'},
+%  {'r','g','b'}) is 1, not an error (issue #137, item 2). Use ISEQUALN when you
+%  want either of those to come out the other way. See issue #137 (items 2 and 3).
 %
 %  See also:  EQTOT, EQEMP, EQ, ISEQUALN
 

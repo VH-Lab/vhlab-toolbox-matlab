@@ -14,10 +14,10 @@
    came back as varying over a single distinct value. EQLEN itself is
    unchanged -- the fix is at this call site only, as NDI-matlab#902 did.
  
-   Two further consequences of comparing with ISEQUALN rather than EQLEN:
-   values of different class no longer compare equal (ISEQUALN separates 'a'
-   from 97, EQLEN did not), and cell-, struct- or object-valued fields are
-   compared instead of throwing, since ISEQUALN does not need == to be
-   defined for the class (see issue #137, item 2).
+   NaN is the only change in answer for ordinary values. ISEQUALN compares a
+   char against its double code point exactly as == does, so 'a' and 97 still
+   count as equal; an earlier draft of this note claimed otherwise and CI
+   refuted it. ISEQUALN does not need == to be defined at all, so struct- and
+   object-valued fields compare here rather than raising.
 
 ```

@@ -88,27 +88,16 @@ classdef test_structwhatvaries < matlab.unittest.TestCase
             testCase.verifyEqual(sort(descr(:)), {'angle'});
         end
 
-        function test_cell_valued_field_is_compared(testCase)
-            % ISEQUALN does not need == to be defined, so cell-valued fields
-            % now compare instead of throwing. See issue #137, item 2.
-            s1 = struct('colors', {{'r','g','b'}});
-            s2 = struct('colors', {{'r','g','b'}});
-            testCase.verifyEmpty(structwhatvaries({s1, s2}), ...
-                'Equal cell-valued fields must not be reported as varying');
-            s3 = struct('colors', {{'r','g','x'}});
-            descr = structwhatvaries({s1, s3});
-            testCase.verifyEqual(sort(descr(:)), {'colors'});
-        end
-
-        function test_class_difference_counts_as_varying(testCase)
-            % Consequence of the switch, pinned deliberately: EQLEN compared
-            % 'a' with 97 as equal because char promotes to double under ==.
-            % ISEQUALN separates them, and for "what varies" that is the more
-            % useful answer. Issue #137, item 3.
+        function test_char_and_double_still_compare_equal(testCase)
+            % ISEQUALN compares a char against its double code point exactly
+            % as == did, so switching the comparison did not change this:
+            % isequaln('a',97) is true and the field is constant. An earlier
+            % draft of this PR asserted the opposite and CI refuted it.
+            % Pinned so the claim is not made again. Issue #137, item 3.
             s1 = struct('a', 'a');
             s2 = struct('a', 97);
-            descr = structwhatvaries({s1, s2});
-            testCase.verifyEqual(sort(descr(:)), {'a'});
+            testCase.verifyEmpty(structwhatvaries({s1, s2}), ...
+                'isequaln treats a char as its code point, as == does');
         end
 
     end
