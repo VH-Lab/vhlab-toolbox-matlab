@@ -64,7 +64,7 @@ else,
 end;
 X_stored = 1;
 if numel(x)>3,
-	X_constantinterval = (max(diff(diff(x)))<1e-7);
+	X_constantinterval = (max(abs(diff(diff(x))))<1e-7);
 else,
 	X_constantinterval = 0;
 end;
