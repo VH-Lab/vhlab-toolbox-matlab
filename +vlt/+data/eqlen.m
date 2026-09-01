@@ -11,7 +11,15 @@ function b = eqlen(x,y)
 %             vlt.data.eqlen([1 1],[1 1])=1
 %             vlt.data.eqlen([],[]) = 1
 %
-%  See also:  vlt.data.eqtot, vlt.data.eqemp, EQ
+%  Comparison bottoms out in X==Y (see vlt.data.eqemp), which has two
+%  consequences worth knowing: NaN is not equal to itself, so
+%  vlt.data.eqlen(NaN,NaN) is 0; and classes for which == is undefined raise
+%  an error rather than returning a value. Cell arrays of char vectors are not
+%  among them -- vlt.data.eqlen({'r','g','b'},{'r','g','b'}) is 1, not an error
+%  (issue #137, item 2). Use ISEQUALN when you want either of those to come out
+%  the other way. See issue #137 (items 2 and 3).
+%
+%  See also:  vlt.data.eqtot, vlt.data.eqemp, EQ, ISEQUALN
 
 if vlt.data.sizeeq(x,y),
 	b = vlt.data.eqtot(x,y);

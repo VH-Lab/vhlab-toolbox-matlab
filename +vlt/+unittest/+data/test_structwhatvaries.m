@@ -62,5 +62,43 @@ classdef test_structwhatvaries < matlab.unittest.TestCase
             testCase.verifyError(@() vlt.data.structwhatvaries(struct('a',1)), ?MException);
         end
 
+        function test_all_nan_field_does_not_vary(testCase)
+            % Issue #137, item 3. Comparison is ISEQUALN, so a field that is
+            % NaN in every structure is constant, not varying. Under the old
+            % EQLEN comparison this reported 'angle' as varying over exactly
+            % one distinct value, which is what NDI-matlab#902 ran into.
+            s1 = struct('angle', NaN, 'b', 1);
+            s2 = struct('angle', NaN, 'b', 1);
+            testCase.verifyEmpty(vlt.data.structwhatvaries({s1, s2}), ...
+                'A field that is NaN in every structure must not be reported as varying');
+        end
+
+        function test_nan_inside_array_field_does_not_vary(testCase)
+            s1 = struct('v', [1 NaN 3]);
+            s2 = struct('v', [1 NaN 3]);
+            testCase.verifyEmpty(vlt.data.structwhatvaries({s1, s2}), ...
+                'Identical arrays containing NaN must not be reported as varying');
+        end
+
+        function test_nan_versus_value_varies(testCase)
+            % NaN-aware does not mean NaN matches everything.
+            s1 = struct('angle', NaN);
+            s2 = struct('angle', 30);
+            descr = vlt.data.structwhatvaries({s1, s2});
+            testCase.verifyEqual(sort(descr(:)), {'angle'});
+        end
+
+        function test_char_and_double_still_compare_equal(testCase)
+            % ISEQUALN compares a char against its double code point exactly
+            % as == did, so switching the comparison did not change this:
+            % isequaln('a',97) is true and the field is constant. An earlier
+            % draft of this PR asserted the opposite and CI refuted it.
+            % Pinned so the claim is not made again. Issue #137, item 3.
+            s1 = struct('a', 'a');
+            s2 = struct('a', 97);
+            testCase.verifyEmpty(vlt.data.structwhatvaries({s1, s2}), ...
+                'isequaln treats a char as its code point, as == does');
+        end
+
     end
 end

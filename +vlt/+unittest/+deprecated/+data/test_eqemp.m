@@ -38,10 +38,20 @@ classdef test_eqemp < matlab.unittest.TestCase
             testCase.verifyEqual(double(eqemp([1 2 3], [3 2 1])), [0 1 0], 'Unequal arrays should return a double array');
         end
 
-        function test_different_sizes_error(testCase)
-            % Test case where non-empty inputs have different sizes
-            % This should error because of the `==` operator
-            testCase.verifyError(@() eqemp([1 2], [1 2 3]), 'MATLAB:sizeDimensionsMustMatch');
+        function test_cell_inputs_do_not_error(testCase)
+            % Issue #137, item 2, settled by CI rather than by reading the
+            % source. The help asserted that a comparison with no defined ==
+            % raises, and predicted that cell arrays were such a case. They
+            % are not: this does not throw. The first version of this test
+            % asserted MATLAB:UndefinedFunction and CI refuted it, which is
+            % the same answer NDI's symmetry battery got. Pinned so the help
+            % text cannot drift back.
+            b = eqemp({'r','g','b'}, {'r','g','b'});
+            testCase.verifyTrue(all(logical(b(:))), ...
+                'Equal cell arrays of char vectors must compare equal, not raise');
+            b2 = eqemp({'r','g','b'}, {'r','g','x'});
+            testCase.verifyFalse(all(logical(b2(:))), ...
+                'Differing cell arrays of char vectors must not compare equal');
         end
 
     end
