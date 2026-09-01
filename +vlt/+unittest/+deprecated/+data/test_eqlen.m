@@ -29,5 +29,22 @@ classdef test_eqlen < matlab.unittest.TestCase
             testCase.verifyEqual(eqlen([1 2 3], [3 2 1]), 0, 'Unequal arrays should return 0');
         end
 
+        function test_cell_inputs_error(testCase)
+            % Same size, so sizeeq passes and the comparison reaches eqemp's
+            % x==y on two cells, which raises. Issue #137, item 2.
+            testCase.verifyError(@() eqlen({'r','g','b'}, {'r','g','b'}), ...
+                'MATLAB:UndefinedFunction');
+        end
+
+        function test_nan_is_not_equal_to_itself(testCase)
+            % eqlen keeps == semantics deliberately: issue #137 item 3 was
+            % fixed at the structwhatvaries call site, not here, because
+            % changing eqlen would alter every caller in the toolbox.
+            testCase.verifyEqual(eqlen(NaN, NaN), 0, ...
+                'eqlen must keep x==y semantics: NaN is not equal to NaN');
+            testCase.verifyEqual(eqlen([1 NaN 3], [1 NaN 3]), 0, ...
+                'eqlen must keep x==y semantics for arrays containing NaN');
+        end
+
     end
 end

@@ -44,5 +44,15 @@ classdef test_eqemp < matlab.unittest.TestCase
             testCase.verifyError(@() eqemp([1 2], [1 2 3]), 'MATLAB:sizeDimensionsMustMatch');
         end
 
+        function test_cell_inputs_error(testCase)
+            % Issue #137, item 2. The help says a comparison with no defined ==
+            % is an error, and MATLAB does not define == for cell arrays. That
+            % had only ever been inferred; this pins it on a real release so
+            % the help text and the behaviour cannot drift apart.
+            testCase.verifyError(@() eqemp({'r','g','b'}, {'r','g','b'}), ...
+                'MATLAB:UndefinedFunction', ...
+                'eqemp on two cell arrays must raise, since == is undefined for cells');
+        end
+
     end
 end

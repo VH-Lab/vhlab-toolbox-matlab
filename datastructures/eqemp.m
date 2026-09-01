@@ -5,9 +5,16 @@ function b = eqemp(x,y)
 %    B = EQEMP(X,Y)
 %
 %  If both X and Y are not empty, returns X==Y.  If both X and Y are empty, b=1.
-%  Otherwise, b=0;  Note that if X==Y is not defined, there will be an error.
+%  Otherwise, b=0;
 %
-%  See also:  EQ, EQTOT, EQLEN
+%  X==Y must be defined for the classes of X and Y, or there will be an error.
+%  MATLAB does not define == for cell arrays, so EQEMP({'r'},{'r'}) raises
+%  MATLAB:UndefinedFunction rather than returning a value; the same is true of
+%  EQTOT and EQLEN, which reach this comparison. Use ISEQUAL or ISEQUALN for
+%  cells, structs and objects. See issue #137 (item 2), which measured this on
+%  a supported release.
+%
+%  See also:  EQ, ISEQUAL, ISEQUALN, EQTOT, EQLEN
 
 b=1;
 xe=isempty(x);
