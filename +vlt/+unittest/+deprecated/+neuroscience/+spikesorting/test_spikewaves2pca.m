@@ -14,7 +14,7 @@ classdef test_spikewaves2pca < matlab.unittest.TestCase
             waves(1, 1, 10) = NaN;
             
             % Call function
-            features = vlt.neuro.spikesorting.spikewaves2pca(waves, N, [1 NumSamples]);
+            features = spikewaves2pca(waves, N, [1 NumSamples]);
             
             % Verify dimensions
             testCase.verifyEqual(size(features), [N, NumSpikes], 'Output dimensions incorrect');
