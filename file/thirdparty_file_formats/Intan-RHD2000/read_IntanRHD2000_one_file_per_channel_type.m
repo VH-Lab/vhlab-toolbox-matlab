@@ -47,17 +47,20 @@ switch(channel_type)
     case 2
         filename_post = 'amplifier.dat';
     case 3
-        filename_post = 'auxin.dat'; % guess
+        filename_post = 'auxiliary.dat';
     case 4
-        filename_post = 'supply.dat'; % guess
+        filename_post = 'supply.dat';
     case 5
-        filename_post = 'temp.dat'; % guess
+        % Intan does not write a standalone temperature file in the
+        % "one file per signal type" format; temperature is interleaved
+        % with the supply-voltage stream.
+        filename_post = 'temp.dat';
     case 6
-        filename_post = 'analogin.dat'; 
+        filename_post = 'analogin.dat';
     case 7
         filename_post = 'digitalin.dat';
     case 8
-        filename_post = 'digitalout.dat'; % guess
+        filename_post = 'digitalout.dat';
     otherwise
         error(['Unknown channel_type ' int2str(channel_type)]);
 end % switch
