@@ -62,7 +62,11 @@ switch(channel_type)
         error(['Unknown channel_type ' int2str(channel_type)]);
 end % switch
 
-fn = fixdatfilename([directory_name filesep filename_post]);
+try
+    fn = fixdatfilename([directory_name filesep filename_post]);
+catch
+    error(['Could not fix data file name: ' [directory_name filesep filename_post]]);
+end
 
 fid = fopen(fn,'rb','ieee-le');
 if fid<0
