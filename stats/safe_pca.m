@@ -20,9 +20,13 @@ function [coeff, score, latent] = safe_pca(X, varargin)
     try
         cd(statsPCA_Path);
         stats_pca_func = @pca; % Create handle to the function in the CURRENT folder
-        cd(oldDir);
+        if isfolder(oldDir)
+            cd(oldDir);
+        end
     catch ME
-        cd(oldDir);
+        if isfolder(oldDir)
+            cd(oldDir);
+        end
         rethrow(ME);
     end
     
