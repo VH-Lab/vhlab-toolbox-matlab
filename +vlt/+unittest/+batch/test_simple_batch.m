@@ -7,6 +7,9 @@ function setupOnce(testCase)
     testCase.TestData.tempDir = tempname;
     mkdir(testCase.TestData.tempDir);
 
+    % simple_batch changes directory, so store the starting folder
+    testCase.TestData.originalDir = pwd;
+
     % Store the original path
     testCase.TestData.originalPath = path;
 
@@ -27,34 +30,37 @@ function setupOnce(testCase)
         'a=1;b=2;c=a+b;', ...
         testCase.TestData.saveFile, ...
         testCase.TestData.errorFile);
-    fclose(fid);
-
-    % Create a mock vlt.time.dowait that will throw an error to break the loop
-    mockPath = fullfile(testCase.TestData.tempDir, '+vlt', '+time');
-    mkdir(mockPath);
-    addpath(testCase.TestData.tempDir); % Add parent of +vlt to path
-
-    fid = fopen(fullfile(mockPath, 'dowait.m'), 'wt');
-    fprintf(fid, 'function dowait(t)\n    error("TEST:LoopBreak", "Loop broken by mock dowait.");\nend\n');
+    % A second job whose directory does not exist. simple_batch errors when it
+    % cannot cd there, which ends its infinite loop right after the first job
+    % runs, without waiting in vlt.time.dowait and without shadowing any function.
+    testCase.TestData.missingDir = fullfile(testCase.TestData.tempDir, 'doesNotExist');
+    fprintf(fid, '%s\t%s\t%s\t%s\t%s\n', ...
+        fullfile(testCase.TestData.tempDir, 'job2.claim'), ...
+        testCase.TestData.missingDir, ...
+        'a=1;b=2;c=a+b;', ...
+        fullfile(testCase.TestData.tempDir, 'output2.mat'), ...
+        fullfile(testCase.TestData.tempDir, 'error2.mat'));
     fclose(fid);
 end
 
 function teardownOnce(testCase)
-    % Restore the original path
+    % Restore the original folder and path
+    cd(testCase.TestData.originalDir);
     path(testCase.TestData.originalPath);
     % Clean up the temporary directory
     rmdir(testCase.TestData.tempDir, 's');
 end
 
 function test_job_execution(testCase)
-    % Run the batch function and expect it to be interrupted by our mock dowait
+    % Run the batch function and expect it to stop at the second job's missing directory
     try
         vlt.batch.simple_batch(testCase.TestData.batchFile);
         % If it reaches here, the loop wasn't broken, which is a failure
         testCase.verifyFail('The infinite loop in simple_batch was not terminated as expected.');
     catch ME
-        % Verify that we caught the specific error we threw from the mock function
-        testCase.verifyEqual(ME.identifier, 'TEST:LoopBreak', 'The process was terminated by an unexpected error.');
+        % Verify that the loop ended on the second job's missing directory
+        testCase.verifySubstring(ME.message, ['Could not change to directory ' testCase.TestData.missingDir], ...
+            'The process was terminated by an unexpected error.');
     end
 
     % Now, verify the results of the job execution

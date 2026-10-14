@@ -7,6 +7,9 @@ function setupOnce(testCase)
     testCase.TestData.tempDir = tempname;
     mkdir(testCase.TestData.tempDir);
 
+    % simple_batch changes directory, so store the starting folder
+    testCase.TestData.originalDir = pwd;
+
     % Store the original path and add temp dir
     testCase.TestData.originalPath = path;
     addpath(testCase.TestData.tempDir);
@@ -28,12 +31,16 @@ function setupOnce(testCase)
         'a=1;b=2;c=a+b;', ...
         testCase.TestData.saveFile, ...
         testCase.TestData.errorFile);
-    fclose(fid);
-
-    % Create mock functions for dependencies on the path
-    % Mock dowait to throw an error to break the loop
-    fid = fopen(fullfile(testCase.TestData.tempDir, 'dowait.m'), 'wt');
-    fprintf(fid, 'function dowait(t)\n    error("TEST:LoopBreak", "Loop broken by mock dowait.");\nend\n');
+    % A second job whose directory does not exist. simple_batch errors when it
+    % cannot cd there, which ends its infinite loop right after the first job
+    % runs, without waiting in dowait and without shadowing any function.
+    testCase.TestData.missingDir = fullfile(testCase.TestData.tempDir, 'doesNotExist');
+    fprintf(fid, '%s\t%s\t%s\t%s\t%s\n', ...
+        fullfile(testCase.TestData.tempDir, 'job2.claim'), ...
+        testCase.TestData.missingDir, ...
+        'a=1;b=2;c=a+b;', ...
+        fullfile(testCase.TestData.tempDir, 'output2.mat'), ...
+        fullfile(testCase.TestData.tempDir, 'error2.mat'));
     fclose(fid);
 
     % Mock read_tab_delimited_file to call the namespaced version
@@ -43,7 +50,8 @@ function setupOnce(testCase)
 end
 
 function teardownOnce(testCase)
-    % Restore the original path
+    % Restore the original folder and path
+    cd(testCase.TestData.originalDir);
     path(testCase.TestData.originalPath);
     % Clean up the temporary directory
     rmdir(testCase.TestData.tempDir, 's');
@@ -59,14 +67,15 @@ function test_job_execution(testCase)
     % Add the directory containing the original simple_batch to the path
     addpath(batchDir);
 
-    % Run the batch function and expect it to be interrupted by our mock dowait
+    % Run the batch function and expect it to stop at the second job's missing directory
     try
         simple_batch(testCase.TestData.batchFile);
         % If it reaches here, the loop wasn't broken, which is a failure
         testCase.verifyFail('The infinite loop in simple_batch was not terminated as expected.');
     catch ME
-        % Verify that we caught the specific error we threw from the mock function
-        testCase.verifyEqual(ME.identifier, 'TEST:LoopBreak', 'The process was terminated by an unexpected error.');
+        % Verify that the loop ended on the second job's missing directory
+        testCase.verifySubstring(ME.message, ['Could not change to directory ' testCase.TestData.missingDir], ...
+            'The process was terminated by an unexpected error.');
     end
 
     % Now, verify the results of the job execution
