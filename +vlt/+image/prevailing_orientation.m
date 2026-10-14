@@ -6,7 +6,10 @@ function [theta,im_out] = prevailing_orientation(im)
 % Performs a 2D fourier transform on the image IM and identifies the prevailing image
 % orientation by finding the peak non-DC sinusoidal component. 
 %
-% THETA is the orientation in radians.
+% THETA is the orientation in radians. Because the Fourier transform of a real
+% image has two mirror-image peaks, THETA is an orientation (defined modulo pi):
+% THETA and THETA+pi (or THETA-pi) describe the same orientation, and either may
+% be returned. THETA lies in (-pi, pi].
 %
 % This function will likely work poorly on data that is not a simple sinusoid or that lacks
 % a dominant sinusoid.
@@ -47,9 +50,16 @@ bigmax = max(abs(Y(:)));
   % Let's say x=j and y=k
   %     (exp(-2*pi*i*p*x/m)*exp(-2*pi*i*q*y/n)*im(j+1,k+1)
   %
-  % Then 1 phase is when x is m/p and y is n/q
-  % Change in X is m/p and change in y is n/q.
-  % Tan(theta) = delta_y / delta_x
+  % The wave vector of this component is (p/m, q/n) cycles per sample along
+  % dimensions 1 and 2. The FFT indices p = 0..m-1 and q = 0..n-1 are not signed
+  % frequencies, though: indices above m/2 (n/2) are aliases of the negative
+  % frequencies p-m (q-n). Without wrapping them, p and q are always >= 0 and the
+  % angle could only fall in [0, pi/2]. So we wrap p and q to signed frequencies
+  % and take the angle of the wave vector:
+  %     tan(theta) = (p/m) / (q/n)
+  % For p, q in the lower half this is identical to the earlier formula
+  % atan2(n/q, m/p). Because the FFT of a real image has mirror peaks at (p,q)
+  % and (-p,-q), theta is only defined modulo pi.
   %  
 
  % select only a single point
@@ -59,7 +69,11 @@ J = J(1);
 p = I(1)-1;
 q = J(1)-1;
 
-theta = atan2(n/q,m/p);
+ % wrap to signed frequencies
+if p > m/2, p = p - m; end
+if q > n/2, q = q - n; end
+
+theta = atan2(p/m, q/n);
 
 theta_degrees = vlt.math.rad2deg(theta);
 
