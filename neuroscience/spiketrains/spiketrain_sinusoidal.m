@@ -19,7 +19,7 @@ function spiketimes = spiketrain_sinusoidal(maxrate, frequency, phase, rate_offs
 %    %a background of 50Hz rate
 %    ST =spiketrain_sinusoidal(20,4,0,50,t_start,t_end,dt);
 %    % convert back to bins
-%    T = t_start:dt:t_end; % time bins
+%    T = t_start:dt:t_end-dt; % time bins (one full set of cycles; don't repeat t_end)
 %    SC = spiketimes2bins(ST,T);
 %    % convert spikes to be instantaneous rates
 %    SCr = SC/dt;
