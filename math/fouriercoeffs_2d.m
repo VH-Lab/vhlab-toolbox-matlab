@@ -9,9 +9,9 @@ function [Y, FX, FY, R, FR] = fouriercoeffs_2d(X, pixelsize)
 %  Y = shifted discrete 2d fourier transform of X (shifted with fftshift)
 %      These coefficients are normalized so that a*exp(-sqrt(-1)*2*pi*n/T)) has coefficient of a
 %      This differs from the default normalization (none) of the discrete 2d fourier transform
-%  FX - the frequencies examined in the first dimension (shifted, so negative
+%  FX - the frequencies examined in the second dimension (columns) (shifted, so negative
 %       frequencies come first and zero frequency is at the center)
-%  FY - the frequencies examined in the second dimension (shifted)
+%  FY - the frequencies examined in the first dimension (rows) (shifted)
 %  R - the Fourier cofficients at fixed radii (averaged over one half-plane, since
 %      the other half holds the complex conjugates for real X)
 %  FR - the Fourier frequencies at fixed radii
