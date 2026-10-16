@@ -9,17 +9,19 @@ function [Y, FX, FY, R, FR] = fouriercoeffs_2d(X, pixelsize)
 %  Y = shifted discrete 2d fourier transform of X (shifted with fftshift)
 %      These coefficients are normalized so that a*exp(-sqrt(-1)*2*pi*n/T)) has coefficient of a
 %      This differs from the default normalization (none) of the discrete 2d fourier transform
-%  FX - the frequencies examined in the first dimension (shifted)
+%  FX - the frequencies examined in the first dimension (shifted, so negative
+%       frequencies come first and zero frequency is at the center)
 %  FY - the frequencies examined in the second dimension (shifted)
-%  R - the Fourier cofficients at fixed radii
+%  R - the Fourier cofficients at fixed radii (averaged over one half-plane, since
+%      the other half holds the complex conjugates for real X)
 %  FR - the Fourier frequencies at fixed radii
 %
 %  A progress bar is shown during radial averaging.
 %
 %  Example:
 %     % a grating
-%     X_1 = 0:0.001:1; % 1 mm steps to 1 meter
-%     X_2 = 0:0.001:1; % 1 mm steps to 1 meter
+%     X_1 = 0:0.001:1-0.001; % 1 mm steps to 1 meter (don't repeat the sample at 1 meter)
+%     X_2 = 0:0.001:1-0.001; % 1 mm steps to 1 meter
 %     f1 = 3; % 3 cycles per meter
 %     f2 = 10; % 10 cycles per meter
 %     f3 = 5; % 5 cycles per meter
@@ -41,8 +43,9 @@ function [Y, FX, FY, R, FR] = fouriercoeffs_2d(X, pixelsize)
 
 [M, N, ~] = size(X);
 
-freqs_y = (0:size(X,1)-1)/(pixelsize*(size(X,1)-1));
-freqs_x = (0:size(X,2)-1)/(pixelsize*(size(X,2)-1));
+% bins at or above ceil(n/2) are negative frequencies, so fftshift puts them first
+freqs_y = ((0:M-1) - M*((0:M-1)>=ceil(M/2)))/(pixelsize*M);
+freqs_x = ((0:N-1) - N*((0:N-1)>=ceil(N/2)))/(pixelsize*N);
 
 [FX,FY] = meshgrid(freqs_x,freqs_y);
 
@@ -52,7 +55,8 @@ Y_ = 2 * fft2(X) / (M*N); % use factor of 2 to normalize so coefficient of a * s
 Y_(1,1) = Y_(1,1)/2;      % but don't do this for the DC component
 Y = fftshift(Y_);
 
-R2 = FX.^2 + FY.^2;
+halfPlane = find(FX>0 | (FX==0 & FY>=0)); % the other half holds the complex conjugates
+R2 = FX(halfPlane).^2 + FY(halfPlane).^2;
 
 [u_sorted, sorted_indexes] = sort(R2(:));
 u = unique(u_sorted);
@@ -73,10 +77,10 @@ for i=1:numel(u),
 	if 0, % this is NOT faster
 		end_local = find(u_sorted(search_start:end) > u(i), 1, 'first');
 		end_run = search_start-1 + end_local;
-		inds = sorted_indexes(search_start:end_run);
+		inds = halfPlane(sorted_indexes(search_start:end_run));
 		search_start = end_run+1;
 	else,
-		inds = find(R2(:)==u(i));
+		inds = halfPlane(R2==u(i));
 	end;
 	FR(i) = sqrt(u(i));
 	R(i) = mean(Y(inds));

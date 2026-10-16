@@ -26,7 +26,7 @@ function [fc, freqs] = fouriercoeffs(data,si)
 %  See also:  FFT
 %
 %  Example:
-%    t = 0:0.001:3;
+%    t = 0:0.001:3-0.001; % 3 s of data; don't repeat the sample at t=3
 %    f = 4; % 4 Hz
 %    phase = pi/3;
 %    s = 2+0.5*sin(2*pi*f*t+phase); % sinusoidal function with amplitude 0.5
@@ -50,5 +50,5 @@ fc = fft(data);
 
 fc(1) = fc(1)/(length(data));
 fc(2:end) = (2/(length(data)))*(real(fc(2:end))-sqrt(-1)*imag(fc(2:end)));
-freqs = (0:length(data)-1)/(si*(length(data)-1));
+freqs = (0:length(data)-1)/(si*length(data));
 
