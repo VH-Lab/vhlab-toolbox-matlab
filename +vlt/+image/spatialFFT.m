@@ -32,8 +32,9 @@ function [spatialFrequency, spatialFrequencyAmp] = spatialFFT(image, meters_per_
 %     treating each radius in pixels as the same frequency in both directions.
 %     This is exact only for square images. For a non-square image the true
 %     spacing is 1/(cols * pixel size) along x and 1/(rows * pixel size) along
-%     y, so frequencies are slightly off in both directions (by the ratio of
-%     the mean dimension to that axis's dimension).
+%     y, so a reported frequency along an axis is off by a factor of
+%     (that axis's dimension)/mean([rows cols]), e.g. for a 256x512 image,
+%     1.33 along x and 0.67 along y.
 %
 %   Example:
 %     % Create a sample image with a known frequency
