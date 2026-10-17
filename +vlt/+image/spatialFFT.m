@@ -27,6 +27,15 @@ function [spatialFrequency, spatialFrequencyAmp] = spatialFFT(image, meters_per_
 %     spatialFrequencyAmp - A 1D vector containing the corresponding mean
 %                           amplitude for each spatial frequency.
 %
+%   Notes:
+%     The frequency spacing is computed as 1/(mean([rows cols]) * pixel size),
+%     treating each radius in pixels as the same frequency in both directions.
+%     This is exact only for square images. For a non-square image the true
+%     spacing is 1/(cols * pixel size) along x and 1/(rows * pixel size) along
+%     y, so a reported frequency along an axis is off by a factor of
+%     (that axis's dimension)/mean([rows cols]), e.g. for a 256x512 image,
+%     1.33 along x and 0.67 along y.
+%
 %   Example:
 %     % Create a sample image with a known frequency
 %     [x, ~] = meshgrid(1:256);
