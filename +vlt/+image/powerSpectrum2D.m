@@ -32,6 +32,14 @@ function results = powerSpectrum2D(image, options)
 %       .directional_profiles- A cell array of the 1D power profiles for each angle.
 %       .directional_dist_ax - The distance axis for the directional profiles.
 %
+%   Notes:
+%     The frequency spacing is computed as 1/(mean([rows cols]) * pixel size),
+%     treating each radius in pixels as the same frequency in both directions.
+%     This is exact only for square images. For a non-square image the true
+%     spacing is 1/(cols * pixel size) along x and 1/(rows * pixel size) along
+%     y, so frequencies are slightly off in both directions (by the ratio of
+%     the mean dimension to that axis's dimension).
+%
 
 % --- Input Validation and Defaults ---
 arguments

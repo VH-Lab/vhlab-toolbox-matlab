@@ -24,6 +24,14 @@ function [spatialFrequency, spatialPower] = spatialPowerSpectralDensity(image, m
 %     spatialFrequency - A 1D vector of the spatial frequency axis (cycles/meter).
 %     spatialPower     - A 1D vector of the mean power for each frequency.
 %
+%   Notes:
+%     The frequency spacing is computed as 1/(mean([rows cols]) * pixel size),
+%     treating each radius in pixels as the same frequency in both directions.
+%     This is exact only for square images. For a non-square image the true
+%     spacing is 1/(cols * pixel size) along x and 1/(rows * pixel size) along
+%     y, so frequencies are slightly off in both directions (by the ratio of
+%     the mean dimension to that axis's dimension).
+%
 
 % --- Input Validation and Defaults ---
 arguments
