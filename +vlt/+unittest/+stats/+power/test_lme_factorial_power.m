@@ -47,7 +47,7 @@ classdef test_lme_factorial_power < matlab.unittest.TestCase
             % a zero effect should rarely be significant; a large effect usually should be
             testCase.verifyLessThan(results.powerMatrix(2,1),0.3);
             testCase.verifyGreaterThan(results.powerMatrix(2,2),results.powerMatrix(2,1));
-            testCase.verifyEqual(height(results.requiredAnimals),2);
+            testCase.verifyEqual(height(results.requiredSubjects),2);
         end
 
         function testContrastAndUnits(testCase)
