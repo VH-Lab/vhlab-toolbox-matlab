@@ -63,6 +63,43 @@ classdef test_lme_factorial < matlab.unittest.TestCase
             end
         end
 
+        function testEffects(testCase)
+            [~,~,stats] = vlt.stats.lme_factorial(testCase.Tbl,'Density',...
+                {'Condition','Treatment'},{'AnimalID','NeuronID'},...
+                'referenceCategories',{'ctrl','GFP'});
+            e = stats.effects;
+            testCase.verifyEqual(e.Term,["Condition";"Treatment";"Condition:Treatment"]);
+            testCase.verifyEqual(e.Definition(3),"(sh / DREADDs - sh / GFP) - (ctrl / DREADDs - ctrl / GFP)");
+            testCase.verifyEqual(e.Definition(1),"sh - ctrl; averaged over Treatment");
+            testCase.verifyEqual(stats.effectsUnits,'units of Y');
+            % cell means are ctrl/GFP, ctrl/DREADDs, sh/GFP, sh/DREADDs
+            m = stats.cellMeans.Estimate;
+            testCase.verifyEqual(e.Estimate(3),(m(4)-m(3))-(m(2)-m(1)),'AbsTol',1e-10);
+            testCase.verifyEqual(e.Estimate(1),mean(m(3:4))-mean(m(1:2)),'AbsTol',1e-10);
+            testCase.verifyEqual(e.Estimate(2),mean(m([2 4]))-mean(m([1 3])),'AbsTol',1e-10);
+            % the simulated interaction is 1
+            testCase.verifyEqual(e.Estimate(3),1,'AbsTol',1);
+            testCase.verifyTrue(all(e.CILower<e.Estimate & e.Estimate<e.CIUpper));
+            % with effects coding, the p-values match the ANOVA
+            for t=1:3
+                testCase.verifyEqual(e.pValue(t),stats.anovaTable.pValue(strcmp(stats.anovaTable.Term,e.Term(t))),...
+                    'RelTol',1e-6);
+            end
+            % the estimates do not depend on the coding
+            [~,~,statsRef] = vlt.stats.lme_factorial(testCase.Tbl,'Density',...
+                {'Condition','Treatment'},{'AnimalID','NeuronID'},...
+                'referenceCategories',{'ctrl','GFP'},'dummyVarCoding','reference');
+            testCase.verifyEqual(statsRef.effects.Estimate,e.Estimate,'AbsTol',1e-6);
+            % log fit reports ratios
+            [~,~,statsLog] = vlt.stats.lme_factorial(testCase.Tbl,'Density',...
+                {'Condition','Treatment'},{'AnimalID','NeuronID'},'logData',true);
+            testCase.verifyEqual(statsLog.effects.Ratio,10.^statsLog.effects.Estimate,'RelTol',1e-12);
+            % and it can be skipped
+            [~,~,statsNone] = vlt.stats.lme_factorial(testCase.Tbl,'Density',...
+                {'Condition','Treatment'},{'AnimalID','NeuronID'},'computeEffects',false);
+            testCase.verifyEqual(height(statsNone.effects),0);
+        end
+
         function testRankAndLog(testCase)
             [~,~,stats] = vlt.stats.lme_factorial(testCase.Tbl,'Density',...
                 {'Condition','Treatment'},{'AnimalID','NeuronID'},'rankOrder',true);

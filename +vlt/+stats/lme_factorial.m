@@ -49,6 +49,11 @@ function [lme, newTable, stats] = lme_factorial(tbl, yName, factorNames, groupNa
 %       contrasts - a table of pairwise comparisons between cell means (see
 %           'contrasts' option) with Satterthwaite (or other) DF and p-values
 %           adjusted for multiple comparisons
+%       effects - a table with one row per main effect and interaction (the
+%           terms of anovaTable), each expressed as a difference of cell means
+%           in the units of the fitted response, with its definition, SE, DF,
+%           95% confidence interval, and p-value (see "Effects" below)
+%       effectsUnits - the units of effects.Estimate (see "Effects" below)
 %
 % This function also takes name/value pairs that modify the default behavior:
 % |---------------------------------|--------------------------------------------|
@@ -81,12 +86,46 @@ function [lme, newTable, stats] = lme_factorial(tbl, yName, factorNames, groupNa
 % |                                 |   'none' skips the comparisons.            |
 % | multipleComparisons ('holm')    | 'holm', 'bonferroni', or 'none' p-value    |
 % |                                 |   adjustment across the contrasts          |
+% | computeEffects (true)           | Compute STATS.effects. Set false to save   |
+% |                                 |   time when only the tests are needed      |
+% |                                 |   (e.g., in simulations); STATS.effects is |
+% |                                 |   then an empty table.                     |
 % | randomTerms ('')                | If not empty, use this string for the      |
 % |                                 |   random-effects part of the formula       |
 % |                                 |   instead of the default nested intercepts |
 % |                                 |   (e.g., '(1+Treatment|AnimalID) +         |
 % |                                 |   (1|NeuronID_in_AnimalID)').              |
 % |---------------------------------|--------------------------------------------|
+%
+% Effects:
+%   The coefficients of LME depend on the coding of the factors (with effects
+%   coding, a two-level main effect coefficient is half of the difference
+%   between levels and a two-way interaction coefficient is a quarter of the
+%   difference of differences). STATS.effects reports each term directly as
+%   a difference of model cell means, so its size and sign do not depend on
+%   the coding:
+%     - a main effect is (non-reference level) - (reference level), averaged
+%       over the levels of the other factors;
+%     - a two-way interaction is a difference of differences, e.g.
+%       (sh / DREADDs - sh / GFP) - (ctrl / DREADDs - ctrl / GFP);
+%     - a three-way interaction is a difference of differences of differences,
+%       and so on.
+%   The Definition column spells out each one. The SE comes from the
+%   covariance of the fixed effects, and the DF and p-value from COEFTEST with
+%   the chosen dfMethod; the 95% CI is Estimate +/- tinv(0.975,DF)*SE. With
+%   the default 'effects' coding, and factors with two levels, each p-value
+%   equals the one for the same term in anovaTable. (With 'reference' coding,
+%   anovaTable tests main effects at the reference level of the other
+%   factors, but STATS.effects still reports the averaged main effects.) A term that involves a factor with more than two levels is not
+%   a single difference; its row is NaN, and cellMeans and contrasts describe it.
+%   The units of the estimate are the units of the fitted response
+%   (STATS.effectsUnits):
+%     - default: the units of Y (after yOp, if given);
+%     - logData: log10 units. The columns Ratio, RatioCILower, and
+%       RatioCIUpper give 10.^Estimate and its CI: a ratio for a main effect,
+%       a ratio of ratios for a two-way interaction;
+%     - rankOrder: ranks. The p-value is valid, but the estimate and CI depend
+%       on the sample size and are not interpretable as the size of an effect.
 %
 % Example:
 %   tbl = readtable('Big_data_spine_density_rat_DREADDs.xlsx');
@@ -96,6 +135,7 @@ function [lme, newTable, stats] = lme_factorial(tbl, yName, factorNames, groupNa
 %   disp(stats.anovaTable);
 %   disp(stats.cellMeans);
 %   disp(stats.contrasts);
+%   disp(stats.effects);   % e.g., the interaction as a difference of differences
 %   figure;
 %   vlt.stats.plot_lme_factorial(lme,newTable,stats,'yLabel','Spine density');
 %
@@ -117,6 +157,7 @@ arguments
     options.dfMethod (1,:) char {mustBeMember(options.dfMethod,{'satterthwaite','residual','none'})} = 'satterthwaite'
     options.contrasts (1,:) char {mustBeMember(options.contrasts,{'simple','all','none'})} = 'simple'
     options.multipleComparisons (1,:) char {mustBeMember(options.multipleComparisons,{'holm','bonferroni','none'})} = 'holm'
+    options.computeEffects (1,1) logical = true
     options.randomTerms (1,:) char = ''
 end
 
@@ -325,12 +366,113 @@ if ~strcmp(options.contrasts,'none') && nCells>1
         'VariableNames',{'Cell1','Cell2','Difference','SE','tStat','DF','pValue','pAdjusted'});
 end
 
+ % step 8: main effects and interactions as differences of cell means, in the units of the response
+
+if options.computeEffects
+    [effects, effectsUnits] = termEffects(lme, anovaTable.Term, factorNames, factorLevels, ...
+        cellMeans, cellRows, options.dfMethod, transform);
+else
+    effects = table();
+    effectsUnits = '';
+end
+
 stats = struct('formula',formula, 'factorNames',{factorNames}, 'factorLevels',{factorLevels}, ...
     'groupNames',{groupNames}, 'groupVarNames',{groupVarNames}, 'yName',yName, ...
     'yNameFixed',yNameFixed, 'transform',transform, 'dfMethod',options.dfMethod, ...
-    'anova',a, 'anovaTable',anovaTable, 'cellMeans',cellMeans, 'contrasts',contrasts);
+    'anova',a, 'anovaTable',anovaTable, 'cellMeans',cellMeans, 'contrasts',contrasts, ...
+    'effects',effects, 'effectsUnits',effectsUnits);
 stats.cellIndexes = cellIndexes;
 
+end
+
+function [effects, units] = termEffects(lme, terms, factorNames, factorLevels, cellMeans, cellRows, dfMethod, transform)
+% TERMEFFECTS - each main effect and interaction as a difference of cell means
+%
+% For a term made of the factors T, the weight of cell c is the product, over
+% the factors in T, of +1 (non-reference level) or -1 (reference level),
+% divided by the number of cells of the other factors (to average over them).
+% The effect is the weighted sum of the model cell means.
+
+    beta = fixedEffects(lme);
+    covB = lme.CoefficientCovariance;
+    nLevels = cellfun(@numel,factorLevels);
+
+    terms = terms(~strcmp(terms,'(Intercept)'));
+    nTerms = numel(terms);
+    definition = strings(nTerms,1);
+    estimate = nan(nTerms,1);
+    se = nan(nTerms,1);
+    df = nan(nTerms,1);
+    ciLower = nan(nTerms,1);
+    ciUpper = nan(nTerms,1);
+    pValue = nan(nTerms,1);
+
+    for t=1:nTerms
+        termFactors = strsplit(terms{t},':');
+        inTerm = ismember(factorNames,termFactors);
+        tooMany = factorNames(inTerm & nLevels~=2);
+        if ~isempty(tooMany)
+            definition(t) = "not a single difference (" + strjoin(string(tooMany),', ') + ...
+                " has more than two levels); see cellMeans and contrasts";
+            continue;
+        end
+        termIndexes = find(inTerm);
+
+        weights = ones(height(cellMeans),1) / prod(nLevels(~inTerm));
+        for i=termIndexes(:)'
+            isOther = strcmp(cellMeans.(factorNames{i}), factorLevels{i}{2});
+            weights = weights .* (2*isOther - 1);
+        end
+
+        definition(t) = differenceText(factorNames, factorLevels, termIndexes, 1, {});
+        averagedOver = factorNames(~inTerm);
+        if ~isempty(averagedOver)
+            definition(t) = definition(t) + "; averaged over " + strjoin(string(averagedOver),', ');
+        end
+
+        L = weights' * cellRows;
+        if any(isnan(L))
+            continue; % an empty cell
+        end
+        estimate(t) = L*beta;
+        se(t) = sqrt(L*covB*L');
+        [pValue(t),~,~,df(t)] = coefTest(lme,L,0,'DFMethod',dfMethod);
+        halfWidth = tinv(0.975,df(t)) * se(t);
+        ciLower(t) = estimate(t) - halfWidth;
+        ciUpper(t) = estimate(t) + halfWidth;
+    end
+
+    effects = table(string(terms(:)), definition, estimate, se, df, ciLower, ciUpper, pValue, ...
+        'VariableNames',{'Term','Definition','Estimate','SE','DF','CILower','CIUpper','pValue'});
+
+    switch transform
+        case 'log10'
+            units = 'log10 units of Y; Ratio = 10^Estimate (a ratio for a main effect, a ratio of ratios for a two-way interaction)';
+            effects.Ratio = 10.^estimate;
+            effects.RatioCILower = 10.^ciLower;
+            effects.RatioCIUpper = 10.^ciUpper;
+        case 'rank'
+            units = 'ranks; the p-values are valid, but Estimate and the CI are not interpretable as effect sizes';
+        otherwise
+            units = 'units of Y';
+    end
+end
+
+function text = differenceText(factorNames, factorLevels, termIndexes, k, assigned)
+% DIFFERENCETEXT - write out a (nested) difference of cells, e.g.
+% "(sh / DREADDs - sh / GFP) - (ctrl / DREADDs - ctrl / GFP)"
+    if k > numel(termIndexes)
+        text = string(strjoin(assigned,' / '));
+        return;
+    end
+    levels = factorLevels{termIndexes(k)};
+    a = differenceText(factorNames, factorLevels, termIndexes, k+1, [assigned levels(2)]);
+    b = differenceText(factorNames, factorLevels, termIndexes, k+1, [assigned levels(1)]);
+    if k == numel(termIndexes)
+        text = a + " - " + b;
+    else
+        text = "(" + a + ") - (" + b + ")";
+    end
 end
 
 function labels = labelsOf(v)
