@@ -107,6 +107,12 @@ function results = lme_factorial_power(tbl, yName, factorNames, groupNames, nSub
 % |                                 |   8 units x 3 observations vs. 2 units x   |
 % |                                 |   12 observations. Requires 1 or 2         |
 % |                                 |   grouping levels.                         |
+% | testContrasts (struct([]))      | Planned contrasts to record in every       |
+% |                                 |   simulation, in the format of the         |
+% |                                 |   'plannedContrasts' option of             |
+% |                                 |   vlt.stats.lme_factorial (name, weights,  |
+% |                                 |   direction, margin). See "Contrasts"      |
+% |                                 |   below.                                   |
 % | targetPower (0.8)               | Power used for requiredSubjects            |
 % | alpha (0.05)                    | Significance level                         |
 % | numSimulations (500)            | Simulations per number of subjects         |
@@ -130,6 +136,23 @@ function results = lme_factorial_power(tbl, yName, factorNames, groupNames, nSub
 %     reported in the nFailed column.
 %   - The simulation is Gaussian. Outliers in the pilot data inflate the
 %     residual SD, which makes the power estimates conservative.
+%
+% Contrasts:
+%   With 'testContrasts', every simulated fit also estimates each contrast,
+%   and RESULTS has two more fields:
+%     contrastDraws - structure with fields names (1 x nContrasts) and
+%         estimate, se, df (each nSimulations x nContrasts x
+%         numel(NSUBJECTSPERGROUP) x numel(EFFECTSIZES)); NaN for failed fits
+%     contrastPower - table with, for each number of subjects and effect
+%         size, the power of each contrast (significant, two-sided, and in the
+%         predicted direction if one is given), the power that all contrasts
+%         with a predicted direction succeed together (powerAll), and the
+%         power of the equivalence test for contrasts with a margin
+%   Because the model is linear in the response, shifting the true cell
+%   means shifts every contrast estimate by the same amount and leaves its
+%   SE and DF unchanged. So draws simulated with no effect (EFFECTSIZES = 0)
+%   give the power for ANY true contrast values, with
+%   vlt.stats.power.contrast_power_from_draws, without new simulations.
 %
 % Example:
 %   tbl = readtable('Big_data_spine_density_rat_DREADDs.xlsx');
@@ -163,6 +186,7 @@ arguments
     options.baseline (1,:) char {mustBeMember(options.baseline,{'null','pilot'})} = 'null'
     options.nUnitsPerSubject double {mustBeScalarOrEmpty, mustBeInteger, mustBePositive} = []
     options.nObsPerUnit double {mustBeScalarOrEmpty, mustBeInteger, mustBePositive} = []
+    options.testContrasts struct = struct([])
     options.targetPower (1,1) double {mustBeInRange(options.targetPower,0,1)} = 0.8
     options.alpha (1,1) double {mustBeInRange(options.alpha,0,1)} = 0.05
     options.numSimulations (1,1) double {mustBeInteger, mustBePositive} = 500
@@ -373,6 +397,7 @@ design.baseline = baseline;
 design.effectPattern = effectPattern;
 design.effectSizes = effectSizes;
 design.test = test;
+design.testContrasts = options.testContrasts;
 design.fitMethod = options.fitMethod;
 design.dfMethod = options.dfMethod;
 
@@ -380,20 +405,34 @@ useParallel = options.useParallel && ~isempty(ver('parallel'));
 
 nN = numel(nSubjectsPerGroup);
 nES = numel(effectSizes);
+nC = numel(options.testContrasts);
 powerMatrix = zeros(nN,nES);
 failedMatrix = zeros(nN,nES);
+contrastEstimate = nan(options.numSimulations, nC, nN, nES);
+contrastSE = nan(size(contrastEstimate));
+contrastDF = nan(size(contrastEstimate));
 
 for n=1:nN
     nSubjects = nSubjectsPerGroup(n);
     pValues = nan(options.numSimulations,nES);
+    draws = nan(options.numSimulations,nES,nC,3);
     if useParallel
         parfor i=1:options.numSimulations
-            pValues(i,:) = simulateOnce(design,nSubjects);
+            [pv, dr] = simulateOnce(design,nSubjects);
+            pValues(i,:) = pv;
+            draws(i,:,:,:) = dr;
         end
     else
         for i=1:options.numSimulations
-            pValues(i,:) = simulateOnce(design,nSubjects);
+            [pv, dr] = simulateOnce(design,nSubjects);
+            pValues(i,:) = pv;
+            draws(i,:,:,:) = dr;
         end
+    end
+    for e=1:nES
+        contrastEstimate(:,:,n,e) = reshape(draws(:,e,:,1), options.numSimulations, nC);
+        contrastSE(:,:,n,e) = reshape(draws(:,e,:,2), options.numSimulations, nC);
+        contrastDF(:,:,n,e) = reshape(draws(:,e,:,3), options.numSimulations, nC);
     end
     powerMatrix(n,:) = sum(pValues<options.alpha,1) / options.numSimulations;
     failedMatrix(n,:) = sum(isnan(pValues),1);
@@ -427,6 +466,25 @@ results = struct('power',powerTable, 'powerMatrix',powerMatrix, 'requiredSubject
     'nSubjectsPerGroup',nSubjectsPerGroup, 'effectSizes',effectSizes, 'test',test, ...
     'effectPattern',effectPatternTable, 'pilot',pilot, 'options',options);
 
+if nC > 0
+    contrastNames = string(arrayfun(@(c) char(c.name), options.testContrasts(:)', 'UniformOutput', false));
+    results.contrastDraws = struct('names', contrastNames, 'estimate', contrastEstimate, ...
+        'se', contrastSE, 'df', contrastDF);
+    rows = {};
+    for n=1:nN
+        for e=1:nES
+            cp = vlt.stats.power.contrast_power_from_draws(contrastEstimate(:,:,n,e), ...
+                contrastSE(:,:,n,e), contrastDF(:,:,n,e), zeros(1,nC), options.testContrasts, ...
+                'alpha', options.alpha);
+            rows(end+1,:) = {nSubjectsPerGroup(n), effectSizes(e), cp.powerEach, cp.powerAll, ...
+                cp.powerEquivalent}; %#ok<AGROW>
+        end
+    end
+    results.contrastPower = cell2table(rows, 'VariableNames', ...
+        {'nSubjectsPerGroup','effectSize','powerEach','powerAll','powerEquivalent'});
+    results.contrastPower.Properties.UserData = contrastNames;
+end
+
 if options.doPlot
     figure;
     hold on;
@@ -452,11 +510,13 @@ end
 
 end
 
-function pValues = simulateOnce(design, nSubjects)
+function [pValues, draws] = simulateOnce(design, nSubjects)
 % SIMULATEONCE - draw subjects, simulate data for each effect size, fit, and return p-values
 
     nES = numel(design.effectSizes);
     pValues = nan(1,nES);
+    nC = numel(design.testContrasts);
+    draws = nan(nES, nC, 3); % estimate, SE, DF of each test contrast
 
      % draw subjects and collect the pilot rows that set their design
      % (the pilot rows only supply the factor levels; Y is simulated below)
@@ -538,19 +598,25 @@ function pValues = simulateOnce(design, nSubjects)
             if strcmp(design.test.type,'term')
                 [~,~,st] = vlt.stats.lme_factorial(simTable, 'simY', design.factorNames, design.groupNames, ...
                     'referenceCategories', design.referenceCategories, 'fitMethod', design.fitMethod, ...
-                    'dfMethod', design.dfMethod, 'contrasts', 'none', 'computeEffects', false);
+                    'dfMethod', design.dfMethod, 'contrasts', 'none', 'computeEffects', false, ...
+                    'plannedContrasts', design.testContrasts);
                 p = st.anovaTable.pValue(strcmp(st.anovaTable.Term,design.test.term));
             else
                 [~,~,st] = vlt.stats.lme_factorial(simTable, 'simY', design.factorNames, design.groupNames, ...
                     'referenceCategories', design.referenceCategories, 'fitMethod', design.fitMethod, ...
                     'dfMethod', design.dfMethod, 'contrasts', 'all', 'multipleComparisons', 'none', ...
-                    'computeEffects', false);
+                    'computeEffects', false, 'plannedContrasts', design.testContrasts);
                 match = (st.contrasts.Cell1==design.test.cells(1) & st.contrasts.Cell2==design.test.cells(2)) | ...
                     (st.contrasts.Cell1==design.test.cells(2) & st.contrasts.Cell2==design.test.cells(1));
                 p = st.contrasts.pValue(match);
             end
             if isscalar(p)
                 pValues(e) = p;
+            end
+            if nC > 0 && height(st.plannedContrasts) == nC
+                draws(e,:,1) = st.plannedContrasts.Estimate;
+                draws(e,:,2) = st.plannedContrasts.SE;
+                draws(e,:,3) = st.plannedContrasts.DF;
             end
         catch
             % fit failed; leave as NaN (counted as not significant)

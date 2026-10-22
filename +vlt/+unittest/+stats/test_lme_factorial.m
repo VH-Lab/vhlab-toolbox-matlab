@@ -100,6 +100,34 @@ classdef test_lme_factorial < matlab.unittest.TestCase
             testCase.verifyEqual(height(statsNone.effects),0);
         end
 
+        function testPlannedContrasts(testCase)
+            % cells: ctrl/GFP, ctrl/DREADDs, sh/GFP, sh/DREADDs
+            contrasts = struct('name', {'C1','C2','C3','S1'}, ...
+                'weights', {[-1 1 0 0], [-1 0 1 0], [1 -1 -1 1], [0 0 -1 1]}, ...
+                'direction', {'greater','greater','less','none'}, ...
+                'margin', {NaN, NaN, NaN, 100}, ...
+                'family', {'', '', '', 'S'});
+            [~,~,stats] = vlt.stats.lme_factorial(testCase.Tbl,'Density',...
+                {'Condition','Treatment'},{'AnimalID','NeuronID'},...
+                'referenceCategories',{'ctrl','GFP'},'plannedContrasts',contrasts);
+            pc = stats.plannedContrasts;
+            m = stats.cellMeans.Estimate;
+            testCase.verifyEqual(pc.Name, ["C1";"C2";"C3";"S1"]);
+            testCase.verifyEqual(pc.Estimate(1), m(2)-m(1), 'AbsTol', 1e-10);
+            testCase.verifyEqual(pc.Estimate(2), m(3)-m(1), 'AbsTol', 1e-10);
+            % the interaction contrast matches stats.effects
+            testCase.verifyEqual(pc.Estimate(3), stats.effects.Estimate(3), 'AbsTol', 1e-10);
+            testCase.verifyEqual(pc.pValue(3), stats.effects.pValue(3), 'RelTol', 1e-8);
+            testCase.verifyEqual(pc.Prediction(3), "less");
+            % a huge margin makes the equivalence test pass
+            testCase.verifyTrue(pc.Equivalent(4));
+            testCase.verifyTrue(all(isnan(pc.pEquivalence(1:3))));
+            % contrasts without a family are not adjusted
+            testCase.verifyEqual(pc.pAdjusted(1:3), pc.pValue(1:3));
+            % the simulated interaction is +1, so a prediction of < 0 is not supported
+            testCase.verifyFalse(pc.Supported(3));
+        end
+
         function testSubjectMeans(testCase)
             [~,newTable,stats] = vlt.stats.lme_factorial(testCase.Tbl,'Density',...
                 {'Condition','Treatment'},{'AnimalID','NeuronID'},...

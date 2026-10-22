@@ -54,6 +54,8 @@ function [lme, newTable, stats] = lme_factorial(tbl, yName, factorNames, groupNa
 %           in the units of the fitted response, with its definition, SE, DF,
 %           95% confidence interval, and p-value (see "Effects" below)
 %       effectsUnits - the units of effects.Estimate (see "Effects" below)
+%       plannedContrasts - a table with one row per planned contrast (see
+%           'plannedContrasts' and "Planned contrasts" below); empty if none
 %
 % This function also takes name/value pairs that modify the default behavior:
 % |---------------------------------|--------------------------------------------|
@@ -90,6 +92,9 @@ function [lme, newTable, stats] = lme_factorial(tbl, yName, factorNames, groupNa
 % |                                 |   time when only the tests are needed      |
 % |                                 |   (e.g., in simulations); STATS.effects is |
 % |                                 |   then an empty table.                     |
+% | plannedContrasts (struct([]))   | Contrasts planned in advance (see "Planned |
+% |                                 |   contrasts" below)                        |
+% | alpha (0.05)                    | Significance level for plannedContrasts    |
 % | randomTerms ('')                | If not empty, use this string for the      |
 % |                                 |   random-effects part of the formula       |
 % |                                 |   instead of the default nested intercepts |
@@ -127,6 +132,30 @@ function [lme, newTable, stats] = lme_factorial(tbl, yName, factorNames, groupNa
 %     - rankOrder: ranks. The p-value is valid, but the estimate and CI depend
 %       on the sample size and are not interpretable as the size of an effect.
 %
+% Planned contrasts:
+%   'plannedContrasts' is a struct array, one element per contrast, with fields
+%     name      - a short name, e.g. 'C1'
+%     weights   - one weight per cell, in the order of STATS.cellMeans (the
+%                 first factor varies slowest), e.g. [-1 1 0 0] for
+%                 ctrl/DREADDs - ctrl/GFP with cells ctrl/GFP, ctrl/DREADDs,
+%                 sh/GFP, sh/DREADDs
+%     direction - (optional) the predicted sign: 'greater' (> 0), 'less'
+%                 (< 0), or 'none' (default). The test is always two-sided;
+%                 the direction only decides whether a significant result
+%                 supports the prediction.
+%     margin    - (optional) equivalence margin m > 0 for an equivalence test
+%                 (two one-sided tests, TOST) of -m < contrast < m; NaN or
+%                 absent for none
+%     family    - (optional) a label; p-values are Holm-adjusted within each
+%                 family (contrasts without a family are not adjusted)
+%   STATS.plannedContrasts has columns Name, Definition, Prediction,
+%   Estimate, SE, DF, CILower, CIUpper (100*(1-alpha)% CI), pValue,
+%   pAdjusted, Supported (significant and in the predicted direction, or just
+%   significant if there is no prediction), Margin, pEquivalence (the larger
+%   of the two one-sided p-values), and Equivalent (pEquivalence < alpha;
+%   equivalently, the 100*(1-2*alpha)% CI is inside (-m, m)). Estimates are in
+%   the units of the fitted response (see "Effects").
+%
 % Example:
 %   tbl = readtable('Big_data_spine_density_rat_DREADDs.xlsx');
 %   [lme,newTable,stats] = vlt.stats.lme_factorial(tbl,'Density',...
@@ -158,6 +187,8 @@ arguments
     options.contrasts (1,:) char {mustBeMember(options.contrasts,{'simple','all','none'})} = 'simple'
     options.multipleComparisons (1,:) char {mustBeMember(options.multipleComparisons,{'holm','bonferroni','none'})} = 'holm'
     options.computeEffects (1,1) logical = true
+    options.plannedContrasts struct = struct([])
+    options.alpha (1,1) double {mustBeInRange(options.alpha,0,1)} = 0.05
     options.randomTerms (1,:) char = ''
 end
 
@@ -376,13 +407,98 @@ else
     effectsUnits = '';
 end
 
+ % step 9: planned contrasts
+
+plannedContrasts = plannedContrastTable(lme, options.plannedContrasts, cellMeans, cellRows, ...
+    options.dfMethod, options.alpha);
+
 stats = struct('formula',formula, 'factorNames',{factorNames}, 'factorLevels',{factorLevels}, ...
     'groupNames',{groupNames}, 'groupVarNames',{groupVarNames}, 'yName',yName, ...
     'yNameFixed',yNameFixed, 'transform',transform, 'dfMethod',options.dfMethod, ...
     'anova',a, 'anovaTable',anovaTable, 'cellMeans',cellMeans, 'contrasts',contrasts, ...
-    'effects',effects, 'effectsUnits',effectsUnits);
+    'effects',effects, 'effectsUnits',effectsUnits, 'plannedContrasts',plannedContrasts);
 stats.cellIndexes = cellIndexes;
 
+end
+
+function planned = plannedContrastTable(lme, contrasts, cellMeans, cellRows, dfMethod, alpha)
+% PLANNEDCONTRASTTABLE - estimate and test contrasts of the cell means given as weights
+    planned = table();
+    if isempty(contrasts)
+        return;
+    end
+    beta = fixedEffects(lme);
+    covB = lme.CoefficientCovariance;
+    nCells = height(cellMeans);
+    n = numel(contrasts);
+    name = strings(n,1); definition = strings(n,1); prediction = strings(n,1); family = strings(n,1);
+    estimate = nan(n,1); se = nan(n,1); df = nan(n,1); ciLower = nan(n,1); ciUpper = nan(n,1);
+    pValue = nan(n,1); supported = false(n,1); margin = nan(n,1); pEquivalence = nan(n,1);
+    equivalent = false(n,1);
+    for i=1:n
+        c = contrasts(i);
+        if ~isfield(c,'name') || ~isfield(c,'weights')
+            error('Each planned contrast needs the fields name and weights.');
+        end
+        w = double(c.weights(:)');
+        if numel(w) ~= nCells
+            error('Planned contrast %s has %d weights; there are %d cells.', char(c.name), numel(w), nCells);
+        end
+        name(i) = string(c.name);
+        prediction(i) = "none";
+        if isfield(c,'direction') && ~isempty(c.direction)
+            prediction(i) = string(c.direction);
+        end
+        if ~ismember(prediction(i), ["none","greater","less"])
+            error('direction of planned contrast %s must be ''greater'', ''less'', or ''none''.', name(i));
+        end
+        if isfield(c,'margin') && ~isempty(c.margin)
+            margin(i) = double(c.margin);
+        end
+        if isfield(c,'family') && ~isempty(c.family)
+            family(i) = string(c.family);
+        end
+        terms = strings(0,1);
+        for k=find(w~=0)
+            terms(end+1) = sprintf('%+g*(%s)', w(k), cellMeans.Label(k)); %#ok<AGROW>
+        end
+        definition(i) = strjoin(terms, ' ');
+
+        L = w * cellRows;
+        if any(isnan(L))
+            continue; % an empty cell
+        end
+        estimate(i) = L*beta;
+        se(i) = sqrt(L*covB*L');
+        [pValue(i),~,~,df(i)] = coefTest(lme,L,0,'DFMethod',dfMethod);
+        halfWidth = tinv(1-alpha/2, df(i)) * se(i);
+        ciLower(i) = estimate(i) - halfWidth;
+        ciUpper(i) = estimate(i) + halfWidth;
+        switch prediction(i)
+            case "greater"
+                supported(i) = pValue(i) < alpha && estimate(i) > 0;
+            case "less"
+                supported(i) = pValue(i) < alpha && estimate(i) < 0;
+            otherwise
+                supported(i) = pValue(i) < alpha;
+        end
+        if ~isnan(margin(i))
+            pLower = 1 - tcdf((estimate(i) + margin(i))/se(i), df(i)); % H0: contrast <= -m
+            pUpper = tcdf((estimate(i) - margin(i))/se(i), df(i));     % H0: contrast >= +m
+            pEquivalence(i) = max(pLower, pUpper);
+            equivalent(i) = pEquivalence(i) < alpha;
+        end
+    end
+    pAdjusted = pValue;
+    families = unique(family(family~=""));
+    for f=1:numel(families)
+        inFamily = family==families(f);
+        pAdjusted(inFamily) = adjustPValues(pValue(inFamily), 'holm');
+    end
+    planned = table(name, definition, prediction, family, estimate, se, df, ciLower, ciUpper, ...
+        pValue, pAdjusted, supported, margin, pEquivalence, equivalent, ...
+        'VariableNames', {'Name','Definition','Prediction','Family','Estimate','SE','DF', ...
+        'CILower','CIUpper','pValue','pAdjusted','Supported','Margin','pEquivalence','Equivalent'});
 end
 
 function [effects, units] = termEffects(lme, terms, factorNames, factorLevels, cellMeans, cellRows, dfMethod, transform)

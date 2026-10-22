@@ -60,6 +60,46 @@ classdef test_lme_factorial_power < matlab.unittest.TestCase
             testCase.verifyEqual(numel(results.powerMatrix),1);
         end
 
+        function testContrastDraws(testCase)
+            contrasts = struct('name', {'C1','C3','S1'}, ...
+                'weights', {[-1 1 0 0], [1 -1 -1 1], [0 0 -1 1]}, ...
+                'direction', {'greater','less','none'}, 'margin', {NaN, NaN, 1});
+            results = vlt.stats.power.lme_factorial_power(testCase.Tbl,'Density',...
+                {'Condition','Treatment'},{'AnimalID','NeuronID'},[3 5],0,...
+                'referenceCategories',{'ctrl','GFP'},'testContrasts',contrasts,...
+                'numSimulations',10,'useParallel',false,'doPlot',false,'verbose',false);
+            d = results.contrastDraws;
+            testCase.verifyEqual(d.names, ["C1","C3","S1"]);
+            testCase.verifyEqual(size(d.estimate), [10 3 2]);
+            testCase.verifyEqual(height(results.contrastPower), 2);
+            % shifting the true values: huge effects in the predicted directions always succeed
+            cp = vlt.stats.power.contrast_power_from_draws(d.estimate(:,:,2), d.se(:,:,2), ...
+                d.df(:,:,2), [100 -100 0; 0 0 0], contrasts);
+            testCase.verifyEqual(cp.powerEach(1,1:2), [1 1]);
+            testCase.verifyEqual(cp.powerAll(1), 1);
+            testCase.verifyLessThanOrEqual(cp.powerAll(2), min(cp.powerEach(2,1:2)));
+            testCase.verifyTrue(isnan(cp.powerEquivalent(1,1)));
+            testCase.verifyTrue(cp.powerEquivalent(1,3) >= 0 && cp.powerEquivalent(1,3) <= 1);
+        end
+
+        function testContrastPowerFromSyntheticDraws(testCase)
+            % known draws: estimates N(0,1), SE 1, very large DF (normal tests)
+            rng(3);
+            n = 20000;
+            estimate = randn(n,2);
+            se = ones(n,2);
+            df = 1e6*ones(n,2);
+            contrasts = struct('name', {'A','B'}, 'direction', {'greater','none'}, 'margin', {NaN, 3});
+            cp = vlt.stats.power.contrast_power_from_draws(estimate, se, df, [0 0; 2.8 0], contrasts);
+            % no effect: one-directional success ~ alpha/2; two-sided ~ alpha
+            testCase.verifyEqual(cp.powerEach(1,1), 0.025, 'AbsTol', 0.006);
+            testCase.verifyEqual(cp.powerEach(1,2), 0.05, 'AbsTol', 0.008);
+            % effect of 2.8 SE: power ~ 0.80
+            testCase.verifyEqual(cp.powerEach(2,1), 0.80, 'AbsTol', 0.02);
+            % equivalence with margin 3 SE and true value 0: power ~ 2*Phi(3-1.645)-1 = 0.82
+            testCase.verifyEqual(cp.powerEquivalent(1,2), 0.82, 'AbsTol', 0.02);
+        end
+
         function testOneGroupingLevel(testCase)
             % with only subjects as random effects, nObsPerUnit sets observations per subject per cell
             results = vlt.stats.power.lme_factorial_power(testCase.Tbl,'Density',...
