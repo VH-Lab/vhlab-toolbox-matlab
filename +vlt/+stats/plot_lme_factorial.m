@@ -58,6 +58,9 @@ function [h, plotInfo] = plot_lme_factorial(lme, newTable, stats, options)
 % | sortRandomEffects (true)        | Plot units in ascending order of their     |
 % |                                 |   random effect (true) or in label order   |
 % | showStats (true)                | Show the ANOVA p-values in the title       |
+% | titleText ('')                  | Text for the first line of the title       |
+% |                                 |   (e.g., 'Regular fit'); the p-values, if  |
+% |                                 |   shown, go on the second line             |
 % | yLabel ('')                     | Y axis label                               |
 % |---------------------------------|--------------------------------------------|
 %
@@ -94,6 +97,7 @@ arguments
     options.plotOriginalData (1,1) logical = true
     options.sortRandomEffects (1,1) logical = true
     options.showStats (1,1) logical = true
+    options.titleText {mustBeTextScalar} = ''
     options.yLabel {mustBeText} = ''
 end
 
@@ -272,10 +276,18 @@ for c=1:nCells
     for i=1:numel(stats.factorNames)
         parts{i} = strrep(cellMeans.(stats.factorNames{i}){c},'_','\_');
     end
-    tickLabels{c} = strjoin(parts,'\newline');
+    % concatenate rather than strjoin: strjoin would turn the \n of \newline into a line break
+    tickLabels{c} = parts{1};
+    for i=2:numel(parts)
+        tickLabels{c} = [tickLabels{c} '\newline' parts{i}];
+    end
 end
 set(gca,'xtick',mean(cellBoundaries,2),'xticklabel',tickLabels,'TickLabelInterpreter','tex');
 
+titleLines = {};
+if ~isempty(options.titleText)
+    titleLines{end+1} = char(options.titleText);
+end
 if options.showStats
     terms = stats.anovaTable.Term;
     pValues = stats.anovaTable.pValue;
@@ -286,7 +298,10 @@ if options.showStats
     for i=1:numel(terms)
         titleParts{i} = sprintf('%s: p = %.3g',terms{i},pValues(i));
     end
-    title(strjoin(titleParts,', '),'Interpreter','none');
+    titleLines{end+1} = strjoin(titleParts,', ');
+end
+if ~isempty(titleLines)
+    title(titleLines,'Interpreter','none');
 end
 
 plotInfo = vlt.data.var2struct('xCenter','x','y','unitCell','unitOuterLabel','unitInnerLabel',...
