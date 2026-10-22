@@ -100,6 +100,44 @@ classdef test_lme_factorial < matlab.unittest.TestCase
             testCase.verifyEqual(height(statsNone.effects),0);
         end
 
+        function testSubjectMeans(testCase)
+            [~,newTable,stats] = vlt.stats.lme_factorial(testCase.Tbl,'Density',...
+                {'Condition','Treatment'},{'AnimalID','NeuronID'},...
+                'referenceCategories',{'ctrl','GFP'});
+            means = vlt.stats.lme_factorial_subject_means(newTable,stats);
+            % 10 animals, each in 2 cells; 3 neurons per animal per cell; 6 segments per neuron
+            testCase.verifyEqual(numel(means.subjects),10);
+            testCase.verifyEqual(height(means.subjectMeans),20);
+            testCase.verifyEqual(height(means.unitMeans),60);
+            testCase.verifyTrue(all(means.subjectMeans.nUnits==3));
+            testCase.verifyTrue(all(means.subjectMeans.nObs==18));
+            testCase.verifyEqual(means.scale,'linear');
+            % a subject mean is the mean of its unit means
+            r = 1;
+            units = means.unitMeans(means.unitMeans.Cell==means.subjectMeans.Cell(r) & ...
+                means.unitMeans.Subject==means.subjectMeans.Subject(r),:);
+            testCase.verifyEqual(means.subjectMeans.Mean(r),mean(units.Mean),'AbsTol',1e-12);
+        end
+
+        function testSuperplotAndPaired(testCase)
+            [lme,newTable,stats] = vlt.stats.lme_factorial(testCase.Tbl,'Density',...
+                {'Condition','Treatment'},{'AnimalID','NeuronID'},...
+                'referenceCategories',{'ctrl','GFP'});
+            f = figure('Visible','off');
+            testCase.addTeardown(@() close(f));
+            [h,info] = vlt.stats.plot_lme_superplot(lme,newTable,stats,'yLabel','Density',...
+                'titleText','SuperPlot');
+            testCase.verifyNotEmpty(h);
+            testCase.verifyEqual(size(info.subjectColors),[10 3]);
+            testCase.verifyFalse(any(isnan(info.subjectMeans.x)));
+            clf(f);
+            [h,info] = vlt.stats.plot_lme_paired(lme,newTable,stats,'yLabel','Density');
+            testCase.verifyNotEmpty(h);
+            testCase.verifyEqual(info.panels,["ctrl";"sh"]);
+            testCase.verifyEqual(info.nWithBoth,[5;5]);
+            testCase.verifyEqual(info.nSubjects,[5;5]);
+        end
+
         function testRankAndLog(testCase)
             [~,~,stats] = vlt.stats.lme_factorial(testCase.Tbl,'Density',...
                 {'Condition','Treatment'},{'AnimalID','NeuronID'},'rankOrder',true);
