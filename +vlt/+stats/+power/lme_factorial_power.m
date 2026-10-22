@@ -91,6 +91,13 @@ function results = lme_factorial_power(tbl, yName, factorNames, groupNames, nAni
 % |                                 |   unit is drawn from the pilot inner units |
 % |                                 |   of the same cell. Requires exactly 2     |
 % |                                 |   grouping levels (e.g., animal, neuron).  |
+% | nObsPerInner ([])               | Used with nInnerPerCell. If not empty,     |
+% |                                 |   each inner unit has exactly this many    |
+% |                                 |   observations (e.g., dendritic segments   |
+% |                                 |   per neuron) instead of a pilot number.   |
+% |                                 |   Use it to compare ways of spending the   |
+% |                                 |   same counting effort, e.g. 8 neurons x 3 |
+% |                                 |   segments vs. 2 neurons x 12 segments.    |
 % | targetPower (0.8)               | Power used for requiredAnimals             |
 % | alpha (0.05)                    | Significance level                         |
 % | numSimulations (500)            | Simulations per number of animals          |
@@ -139,6 +146,7 @@ arguments
     options.effectPattern double = []
     options.baseline (1,:) char {mustBeMember(options.baseline,{'null','pilot'})} = 'null'
     options.nInnerPerCell double {mustBeScalarOrEmpty, mustBeInteger, mustBePositive} = []
+    options.nObsPerInner double {mustBeScalarOrEmpty, mustBeInteger, mustBePositive} = []
     options.targetPower (1,1) double {mustBeInRange(options.targetPower,0,1)} = 0.8
     options.alpha (1,1) double {mustBeInRange(options.alpha,0,1)} = 0.05
     options.numSimulations (1,1) double {mustBeInteger, mustBePositive} = 500
@@ -307,6 +315,10 @@ end
 design.cellOfRow = cellOfRow;
 design.animalRows = animalRows;
 design.nInnerPerCell = options.nInnerPerCell;
+design.nObsPerInner = options.nObsPerInner;
+if ~isempty(options.nObsPerInner) && isempty(options.nInnerPerCell)
+    error('nObsPerInner requires nInnerPerCell.');
+end
 if ~isempty(options.nInnerPerCell)
     if nGroupLevels~=2
         error('nInnerPerCell requires exactly 2 grouping levels (e.g., {''AnimalID'',''NeuronID''}).');
@@ -427,6 +439,9 @@ function pValues = simulateOnce(design, nAnimals)
                     units = design.cellUnitRows{c};
                     for u=1:design.nInnerPerCell
                         r = units{randi(numel(units))};
+                        if ~isempty(design.nObsPerInner)
+                            r = r(randi(numel(r),design.nObsPerInner,1));
+                        end
                         rows = [rows; r]; %#ok<AGROW>
                         newAnimal = [newAnimal; repmat(animalLabel, numel(r), 1)]; %#ok<AGROW>
                         newInner = [newInner; repmat("c" + c + "u" + u, numel(r), 1)]; %#ok<AGROW>
