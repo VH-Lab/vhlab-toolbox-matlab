@@ -54,6 +54,10 @@ function [h, plotInfo] = plot_lme_superplot(lme, newTable, stats, options)
 % | subjectMarkerSize (12)          | Marker size of the subject means           |
 % | cellMeanColor ([0 0 0])         | Color of the cell mean and SE bars         |
 % | cellMeanLineWidth (3)           | Linewidth of the cell mean and SE bars     |
+% | subjectName ('')                | Word for a subject in the legend, e.g.     |
+% |                                 |   'animal'; empty uses the grouping name   |
+% | unitName ('')                   | Word for a unit in the legend, e.g.        |
+% |                                 |   'neuron'; empty uses the grouping name   |
 % | showLegend (true)               | Show a legend of the marker types          |
 % | showStats (true)                | Show the ANOVA p-values in the title       |
 % | titleText ('')                  | Text for the first line of the title       |
@@ -84,6 +88,8 @@ arguments
     options.subjectMarkerSize (1,1) double = 12
     options.cellMeanColor (1,3) double = [0 0 0]
     options.cellMeanLineWidth (1,1) double = 3
+    options.subjectName {mustBeTextScalar} = ''
+    options.unitName {mustBeTextScalar} = ''
     options.showLegend (1,1) logical = true
     options.showStats (1,1) logical = true
     options.titleText {mustBeTextScalar} = ''
@@ -199,7 +205,14 @@ ylabel(options.yLabel);
 box off;
 
 if options.showLegend
-    nestedNames = stats.groupNames;
+    subjectName = char(options.subjectName);
+    if isempty(subjectName)
+        subjectName = stats.groupNames{1};
+    end
+    unitName = char(options.unitName);
+    if isempty(unitName)
+        unitName = stats.groupNames{end};
+    end
     legendHandles = gobjects(0);
     legendText = {};
     legendHandles(end+1) = plot(nan, nan, '.', 'color', options.observationColor, ...
@@ -208,11 +221,11 @@ if options.showLegend
     if numel(stats.groupVarNames) > 1
         legendHandles(end+1) = plot(nan, nan, 'o', 'color', [0.4 0.4 0.4], ...
             'markerfacecolor', [0.6 0.6 0.6], 'markersize', options.unitMarkerSize);
-        legendText{end+1} = sprintf('%s means (color: %s)', nestedNames{end}, nestedNames{1});
+        legendText{end+1} = sprintf('%s means (color: %s)', unitName, subjectName);
     end
     legendHandles(end+1) = plot(nan, nan, 'o', 'color', [0 0 0], 'markerfacecolor', [0.6 0.6 0.6], ...
         'markersize', options.subjectMarkerSize, 'linewidth', 1.5);
-    legendText{end+1} = sprintf('%s means', nestedNames{1});
+    legendText{end+1} = sprintf('%s means', subjectName);
     legendHandles(end+1) = plot(nan, nan, '-', 'color', options.cellMeanColor, ...
         'linewidth', options.cellMeanLineWidth);
     legendText{end+1} = 'model cell mean \pm SE';

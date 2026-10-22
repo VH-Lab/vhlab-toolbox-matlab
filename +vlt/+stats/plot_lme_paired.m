@@ -33,7 +33,8 @@ function [h, plotInfo] = plot_lme_paired(lme, newTable, stats, options)
 %   H - handles of the plotted objects
 %   PLOTINFO - a structure with fields subjectMeans (table: Panel, Subject,
 %       SubjectIndex, Level, Mean, nUnits, nObs), panels (labels), nWithBoth
-%       (number of subjects with data at two or more levels, per panel),
+%       (number of subjects with data at two or more levels of WITHINFACTOR,
+%       e.g. animals with both GFP and DREADDs neurons, per panel),
 %       nSubjects (per panel), subjects, and subjectColors
 %
 % This function also takes name/value pairs that modify the default behavior:
@@ -50,6 +51,10 @@ function [h, plotInfo] = plot_lme_paired(lme, newTable, stats, options)
 % |                                 |   so overlapping means can be seen         |
 % | cellMeanColor ([0 0 0])         | Color of the model cell means              |
 % | cellMeanLineWidth (3)           | Linewidth of the model cell means          |
+% | subjectName ('')                | Word for one subject in labels, e.g.       |
+% |                                 |   'animal'; empty uses the grouping name   |
+% | subjectNamePlural ('')          | Plural, e.g. 'animals'; empty uses         |
+% |                                 |   subjectName                              |
 % | showLegend (true)               | Show a legend in the last panel            |
 % | showStats (true)                | Show the ANOVA p-values in the title       |
 % | titleText ('')                  | Text for the first line of the title       |
@@ -77,6 +82,8 @@ arguments
     options.spread (1,1) double {mustBeNonnegative} = 0.15
     options.cellMeanColor (1,3) double = [0 0 0]
     options.cellMeanLineWidth (1,1) double = 3
+    options.subjectName {mustBeTextScalar} = ''
+    options.subjectNamePlural {mustBeTextScalar} = ''
     options.showLegend (1,1) logical = true
     options.showStats (1,1) logical = true
     options.titleText {mustBeTextScalar} = ''
@@ -95,6 +102,23 @@ end
 otherFactors = factorNames([1:w-1 w+1:end]);
 levels = stats.factorLevels{w};
 nLevels = numel(levels);
+
+subjectName = char(options.subjectName);
+if isempty(subjectName)
+    subjectName = stats.groupNames{1};
+end
+subjectNamePlural = char(options.subjectNamePlural);
+if isempty(subjectNamePlural)
+    subjectNamePlural = subjectName;
+end
+ % how to describe subjects with data at several levels of withinFactor, e.g. "both GFP and DREADDs"
+if nLevels == 2
+    severalText = sprintf('both %s and %s', levels{1}, levels{2});
+    oneText = sprintf('%s only or %s only', levels{1}, levels{2});
+else
+    severalText = sprintf('more than one level of %s', withinFactor);
+    oneText = sprintf('one level of %s only', withinFactor);
+end
 
 means = vlt.stats.lme_factorial_subject_means(newTable, stats);
 subjects = means.subjects;
@@ -195,8 +219,8 @@ for p=1:nPanels
         set(gca,'yscale','log');
     end
     title(char(panels(p)), 'Interpreter', 'none');
-    subtitle(sprintf('%d of %d %s with more than one level', nWithBoth(p), nSubjects(p), ...
-        stats.groupNames{1}), 'Interpreter', 'none');
+    subtitle(sprintf('%d of %d %s have %s', nWithBoth(p), nSubjects(p), subjectNamePlural, ...
+        severalText), 'Interpreter', 'none');
     box off;
 end
 linkaxes(axesHandles, 'y');
@@ -209,8 +233,8 @@ if options.showLegend
         plot(axesHandles(end), nan, nan, '-s', 'color', options.cellMeanColor, ...
             'markerfacecolor', options.cellMeanColor, 'linewidth', options.cellMeanLineWidth)];
     legend(axesHandles(end), legendHandles, ...
-        {sprintf('one %s (both levels)', stats.groupNames{1}), ...
-        sprintf('%s with one level only', stats.groupNames{1}), 'model cell mean \pm SE'}, ...
+        {sprintf('one %s with %s', subjectName, severalText), ...
+        sprintf('%s with %s', subjectName, oneText), 'model cell mean \pm SE'}, ...
         'Location', 'best');
 end
 
