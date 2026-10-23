@@ -28,10 +28,16 @@ if nargin<2,
 	braceleft = '(';
 end;
 
-level = 0*str;
+level = zeros(size(str));
 
-level(1+find(str==braceleft)) = 1;
-level(find(str==braceright)) = -1;
+ % the character after a left brace goes up one level; a right brace goes down one level.
+ % add rather than assign so an empty pair '()' cancels out, and ignore a left brace at the end
+up = 1+find(str==braceleft);
+up = up(up<=numel(str));
+down = find(str==braceright);
+
+level(up) = level(up) + 1;
+level(down) = level(down) - 1;
 
 level = cumsum(level);
 

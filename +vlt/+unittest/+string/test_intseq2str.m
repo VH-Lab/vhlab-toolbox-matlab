@@ -11,6 +11,10 @@ classdef test_intseq2str < matlab.unittest.TestCase
 			testCase.verifyEqual(vlt.string.intseq2str([4 5 6 7]), '4-7');
 		end
 
+		function test_column_input(testCase)
+			testCase.verifyEqual(vlt.string.intseq2str([1;2;3;7;10]), '1-3,7,10');
+		end
+
 		function test_single_value(testCase)
 			testCase.verifyEqual(vlt.string.intseq2str(5), '5');
 		end

@@ -35,6 +35,11 @@ classdef test_bracematch < matlab.unittest.TestCase
 			testCase.verifyEqual(bd, vlt.string.bracelevel(str));
 		end
 
+		function test_empty_pair(testCase)
+			testCase.verifyEqual(vlt.string.bracematch('f()', 2), 3);
+			testCase.verifyEqual(vlt.string.bracematch('f()+(g)', 5), 7);
+		end
+
 		function test_unmatched_returns_empty(testCase)
 			testCase.verifyTrue(isempty(vlt.string.bracematch('a(b', 2)));
 		end
