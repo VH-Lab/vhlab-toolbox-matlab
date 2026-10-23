@@ -1,8 +1,8 @@
-function dD = dangdiff(a,wrap)
+function dD = dangdiffwrap(a,wrap)
 
-% DANGDIFF - Derivative of angular difference in 0..WRAP
+% DANGDIFFWRAP - Derivative of angular difference in 0..WRAP
 %
-%  DD = DANGDIFF(A,WRAP)
+%  DD = DANGDIFFWRAP(A,WRAP)
 %
 %  Returns numerical derivative of angular difference in 0..wrap
 %  Value is always -1, 0, or 1

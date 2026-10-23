@@ -28,6 +28,13 @@ classdef test_bracematch < matlab.unittest.TestCase
 			testCase.verifyEqual(bracematch(str, 20, 'bracedepth', bd), 26);
 		end
 
+		function test_second_output_is_bracedepth(testCase)
+			str = 'this is (a test of (depth))';
+			[m, bd] = bracematch(str, 9);
+			testCase.verifyEqual(m, 27);
+			testCase.verifyEqual(bd, bracelevel(str));
+		end
+
 		function test_unmatched_returns_empty(testCase)
 			testCase.verifyTrue(isempty(bracematch('a(b', 2)));
 		end

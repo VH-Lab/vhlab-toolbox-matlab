@@ -27,6 +27,12 @@ classdef test_trimws < matlab.unittest.TestCase
 			testCase.verifyEqual(s, [char(9) 'abc']);
 		end
 
+		function test_all_spaces(testCase)
+			s = vlt.string.trimws('    ');
+			testCase.verifyTrue(isempty(s));
+			testCase.verifyTrue(ischar(s));
+		end
+
 		function test_empty(testCase)
 			testCase.verifyTrue(isempty(vlt.string.trimws('')));
 		end

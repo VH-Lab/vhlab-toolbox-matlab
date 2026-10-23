@@ -27,10 +27,10 @@ classdef test_center_of_mass < matlab.unittest.TestCase
 			testCase.verifyEqual(pos, [2 3 4], 'AbsTol', 1e-12);
 		end
 
-		% A single point (one row) is not tested here: the deprecated
-		% version calls SUM without a dimension, so a 1xN POINTS matrix is
-		% summed across columns and returns a scalar. vlt.math.center_of_mass
-		% fixes this by summing along dimension 1.
+		function test_single_point(testCase)
+			pos = center_of_mass([5 7]);
+			testCase.verifyEqual(pos, [5 7], 'AbsTol', 1e-12);
+		end
 
 		function test_1d_points(testCase)
 			pos = center_of_mass([1;2;3;6]);
