@@ -24,5 +24,7 @@ str = mystring;
 inds = find(mystring~=' ');
 if length(inds)>0,
 	str = mystring(inds(1):end);
+else,
+	str = mystring([]); % string was all spaces (or empty)
 end;
 

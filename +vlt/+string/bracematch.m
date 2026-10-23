@@ -1,4 +1,4 @@
-function [pos_match, bravedepth] = bracematch(str,pos,varargin)
+function [pos_match, bracedepth] = bracematch(str,pos,varargin)
 % BRACEMATCH - Match parenthesis in a text string
 %
 %  [POS_MATCH,BRACEDEPTH] = vlt.string.bracematch(STR, POS)

@@ -1,4 +1,4 @@
-function [ index_values ] = theshold_crossings( input, threshold )
+function [ index_values ] = threshold_crossings( input, threshold )
 %THRESHOLD_CROSSINGS Detect threshold crossings in data
 % 
 %  INDEX_VALUES = vlt.signal.threshold_crossings(INPUT, THRESHOLD)
