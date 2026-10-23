@@ -24,6 +24,8 @@ function str=intseq2str(A, varargin)
 sep = ',';
 seq = '-';
 
+assign(varargin{:});
+
 str = '';
 if isempty(A),
 	return;

@@ -27,6 +27,18 @@ classdef test_intseq2str < matlab.unittest.TestCase
 			testCase.verifyEqual(intseq2str([1 3 4 5]), '1,3-5');
 		end
 
+		function test_custom_separators(testCase)
+			str = intseq2str([1 2 3 7 10], 'sep', ';', 'seq', ':');
+			testCase.verifyEqual(str, '1:3;7;10');
+		end
+
+		function test_custom_separators_round_trip(testCase)
+			A = [-3 -2 -1 4 6 7];
+			str = intseq2str(A, 'sep', ';', 'seq', ':');
+			testCase.verifyEqual(str, '-3:-1;4;6:7');
+			testCase.verifyEqual(str2intseq(str, 'sep', ';', 'seq', ':'), A);
+		end
+
 		function test_empty(testCase)
 			testCase.verifyTrue(isempty(intseq2str([])));
 		end
