@@ -13,6 +13,9 @@ function str=intseq2str(A, varargin)
 % sep (',')                    | The separator between the numbers
 % seq ('-')                    | The character that indicates a sequential run of numbers
 %
+% If A contains negative numbers, choose a SEQ other than '-' (for example, ':')
+% so that the string can be read back unambiguously.
+%
 % Example:  
 %     A = [1 2 3 7 10]
 %     str = vlt.string.intseq2str(A)
@@ -30,6 +33,8 @@ str = '';
 if isempty(A),
 	return;
 end;
+
+A = A(:)'; % accept row or column input
 
 d = [Inf diff(A) Inf];
 d_points = find(d~=1);

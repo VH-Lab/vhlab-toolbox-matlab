@@ -24,6 +24,22 @@ classdef test_bracelevel < matlab.unittest.TestCase
 			testCase.verifyEqual(vlt.string.bracelevel('((a))'), [0 1 2 1 0]);
 		end
 
+		function test_empty_pair(testCase)
+			% an empty pair '()' should not change the depth
+			testCase.verifyEqual(vlt.string.bracelevel('f()'), [0 0 0]);
+			testCase.verifyEqual(vlt.string.bracelevel('f()g(x)'), [0 0 0 0 0 1 0]);
+		end
+
+		function test_trailing_left_brace(testCase)
+			% a left brace at the end must not lengthen the output
+			level = vlt.string.bracelevel('abc(');
+			testCase.verifyEqual(level, [0 0 0 0]);
+		end
+
+		function test_empty_string(testCase)
+			testCase.verifyTrue(isempty(vlt.string.bracelevel('')));
+		end
+
 		function test_custom_braces(testCase)
 			str2 = 'this is [a test of [depth]]';
 			level = vlt.string.bracelevel(str2, '[', ']');
